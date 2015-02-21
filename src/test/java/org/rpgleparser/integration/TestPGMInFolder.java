@@ -1,8 +1,8 @@
-package org.rpgscript.integration;
+package org.rpgleparser.integration;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.Test;
-import org.rpgscript.utils.TestUtils;
+import org.rpgleparser.utils.TestUtils;
 
 import java.io.File;
 import java.util.ArrayList;

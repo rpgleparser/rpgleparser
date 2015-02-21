@@ -1,13 +1,13 @@
-package org.rpgscript;
+package org.rpgleparser;
 
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.Test;
-import org.rpgscript.utils.TestUtils;
+import org.rpgleparser.utils.TestUtils;
 
 import java.util.List;
 
-import static org.rpgscript.utils.TestUtils.assertTokens;
+import static org.rpgleparser.utils.TestUtils.assertTokens;
 
 public class TestH {
 

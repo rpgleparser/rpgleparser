@@ -1,4 +1,4 @@
-package org.rpgscript.utils;
+package org.rpgleparser.utils;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
@@ -6,9 +6,9 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.gui.TreeViewer;
 import org.junit.Assert;
-import org.rpgscript.RpgLexer;
-import org.rpgscript.RpgParser;
-import org.rpgscript.RpgParser.RContext;
+import org.rpgleparser.RpgLexer;
+import org.rpgleparser.RpgParser;
+import org.rpgleparser.RpgParser.RContext;
 
 import javax.swing.*;
 import java.awt.*;

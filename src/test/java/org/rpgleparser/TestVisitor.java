@@ -1,11 +1,11 @@
-package org.rpgscript;
+package org.rpgleparser;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 import org.junit.Test;
-import org.rpgscript.RpgParser.*;
-import org.rpgscript.utils.TestUtils;
+import org.rpgleparser.RpgParser.*;
+import org.rpgleparser.utils.TestUtils;
 
 public class TestVisitor {
 
