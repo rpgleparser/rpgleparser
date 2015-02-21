@@ -12,7 +12,7 @@ public class TestPGMInFolder {
 
     @Test
     public void testSinglePgm() throws Exception {
-        String rpgsource = TestUtils.loadFileByPath("");
+        String rpgsource = TestUtils.loadFile("./dataqueue.rpgle");
         rpgsource = TestUtils.pad280(rpgsource);
         //System.out.println(rpgsource);
         System.out.println("---------------------------------------");
