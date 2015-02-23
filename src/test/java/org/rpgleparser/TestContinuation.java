@@ -4,8 +4,12 @@ import org.antlr.v4.runtime.CommonToken;
 import org.junit.Test;
 import org.rpgleparser.utils.TestUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.rpgleparser.utils.TestUtils.assertTokens;
 
 public class TestContinuation {
@@ -15,7 +19,9 @@ public class TestContinuation {
         String inputstr = TestUtils.pad280Free(
                 "x = a + \r\n" +
                         "b;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "x", "=", "a", "+", "b", ";", "");
     }
 
@@ -25,7 +31,9 @@ public class TestContinuation {
                 "x = 'ab+\r\n" +
                         "c';");
         System.out.println(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
 
         assertTokens(tokenList, "x", "=", "'", "ab", "c", "'", ";", "");
     }
@@ -36,7 +44,9 @@ public class TestContinuation {
                 "x = 'ab+\r\n" +
                         "             c';");
         System.out.println(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
 
         assertTokens(tokenList, "x", "=", "'", "ab", "c", "'", ";", "");
     }
@@ -47,7 +57,9 @@ public class TestContinuation {
                 "x = 'ab-\r\n" +
                         "c';");
         System.out.println(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "x", "=", "'", "ab", "c", "'", ";", "");
     }
 
@@ -57,7 +69,9 @@ public class TestContinuation {
                 "x = 'ab-\r\n" +
                         "             c';");
         System.out.println(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
 
         assertTokens(tokenList, "x", "=", "'", "ab", "c", "'", ";", "");
     }
@@ -69,7 +83,9 @@ public class TestContinuation {
                         "     C                                    %trim(EffDateChr) + ' to ' +\r\n" +
                         "     C                                    %trim(ExpDateChr)\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         TestUtils.showToks(tokenList);
         assertTokens(tokenList, "C", "", "", "", "eval", "DATA", "=", "'",
                 "Current Policy Term:", "'", "+", "%trim", "(", "EffDateChr",
@@ -83,7 +99,9 @@ public class TestContinuation {
                 "     C                   EVAL      A = (B*D)/ C +\r\n" +
                         "     C                             24\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "EVAL", "A", "=", "(", "B", "*", "D", ")", "/", "C", "+", "24", "");
     }
 
@@ -96,7 +114,9 @@ public class TestContinuation {
                         "     C                                        - ZServChrgPaid(Ptr)\r\n" +
                         "     C                   eval      InstClosed = ZInstClosed(Ptr)\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "eval", "InstallDue", "=",
                 "ZAmountDue", "(", "Ptr", ")", "-", "ZAmountPaid", "(", "Ptr",
                 ")", "+", "ZServChrgDue", "(", "Ptr", ")", "-",

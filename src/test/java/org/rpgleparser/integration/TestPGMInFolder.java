@@ -8,6 +8,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsEmptyCollection.empty;
+
 public class TestPGMInFolder {
 
     @Test
@@ -16,7 +20,9 @@ public class TestPGMInFolder {
         rpgsource = TestUtils.pad280(rpgsource);
         //System.out.println(rpgsource);
         System.out.println("---------------------------------------");
-        List<CommonToken> tokenList = TestUtils.runX(rpgsource);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(rpgsource, errors);
+        assertThat(errors, is(empty()));
         System.out.println(tokenList);
     }
 
@@ -31,12 +37,11 @@ public class TestPGMInFolder {
                 String rpgsource = TestUtils.loadFile(file);
                 rpgsource = TestUtils.pad280(rpgsource);
                 System.out.print("\r\n" + file + ":");
-                List<CommonToken> tokenList = TestUtils.runX(rpgsource, errors);
+                List<CommonToken> tokenList = TestUtils.runXQuietly(rpgsource, errors);
                 files.add(file.getName());
 
                 if (errors.size() > 0) {
                     System.out.println(tokenList);
-                    System.out.println(errors);
                     break;
                 }
             }
@@ -44,6 +49,8 @@ public class TestPGMInFolder {
         for (String file : files) {
             System.out.println("\t" + file);
         }
+
+        assertThat(errors, is(empty()));
     }
 
     private String getResourcePath(String resourcePath) {

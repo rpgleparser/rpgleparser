@@ -2,11 +2,14 @@ package org.rpgleparser;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.Test;
-import org.rpgleparser.RpgLexer;
 import org.rpgleparser.utils.TestUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.Assert.assertEquals;
 import static org.rpgleparser.utils.TestUtils.assertTokens;
 
@@ -18,7 +21,9 @@ public class TestC {
                 "     C                   EVAL      QuiteLongFieldName...\r\n" +
                         "     C                             ThatCannotAlwaysFitInOneLine = 'abc'\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "EVAL", "QuiteLongFieldName", "...", "ThatCannotAlwaysFitInOneLine", "=", "'", "abc", "'", "");
     }
 
@@ -26,7 +31,9 @@ public class TestC {
     public void testCSpec() {
         String inputstr = "     C     FACTOR1       XXAL      FACTOR2\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertEquals(RpgLexer.C_FACTOR, tokenList.get(3).getType());
         assertEquals(RpgLexer.C_FACTOR, tokenList.get(5).getType());
         assertEquals(RpgLexer.C_FACTOR, tokenList.get(6).getType());
@@ -39,7 +46,9 @@ public class TestC {
 //	public void testCSpec_EVAL(){
 //		String inputstr="     C     FACTOR1       EVAL      FACTOR2 is really long long long\r\n";
 //		inputstr = TestUtils.pad280(inputstr);
-//		List<CommonToken> tokenList = TestUtils.runX(inputstr);
+//		List<String> errors = new ArrayList<String>();
+//      List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+//      assertThat(errors, is(empty()));
 //		assertEquals(RpgLexer.C_FACTOR,tokenList.get(4).getType());
 //		assertEquals(RpgLexer.C2_FACTOR2,tokenList.get(6).getType());
 //		assertEquals("FACTOR1",tokenList.get(4).getText().trim());
@@ -51,7 +60,9 @@ public class TestC {
         String inputstr = "     C     *ENTRY        PLIST\r\n" +
                 "     C                   PARM                    TODAY";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "*ENTRY", "PLIST");
     }
 
@@ -59,7 +70,9 @@ public class TestC {
     public void testCSpec_IF() {
         String inputstr = "     C                   IF        WHOS = 'G'";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "IF", "WHOS", "=", "'", "G", "'", "");
     }
 
@@ -67,7 +80,9 @@ public class TestC {
     public void testCSpec_TIME() {
         String inputstr = "     C                   TIME                    CTIME             6 0\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "TIME", "", "CTIME");
     }
 
@@ -76,7 +91,9 @@ public class TestC {
         String inputstr = "     C                   MOVEL     'P'           B8BATX\r\n";
         ;
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "MOVEL", "'P'", "B8BATX");
     }
 
@@ -88,7 +105,9 @@ public class TestC {
                 "     C+                      :AmountOS)\r\n" +
                 "     C/End-Exec";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C/Exec SQL",
                 "call GETCANCPOLICYOS(:ReWritePol,", ":ActiveSts,",
                 ":AmountOS)", "C/End-Exec");
@@ -102,7 +121,9 @@ public class TestC {
                 "     C+                      :AmountOS)\r\n" +
                 "     C/End-Exec";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C/Exec SQL",
                 "call GETCANCPOLICYOS(:ReWritePol,", ":ActiveSts,",
                 ":AmountOS)", "C/End-Exec");
@@ -113,7 +134,9 @@ public class TestC {
         String inputstr = "     C                   PARM                    POLNBR                         POLICY NUMBER\r\n";
         ;
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "PARM", "", "POLNBR", "", "", "", "POLICY NUMBER", "");
     }
 
@@ -121,7 +144,9 @@ public class TestC {
     public void testCSpec_Comments2() {
         String inputstr = "     C                   IF        WHOS = 'G'                                   Home office cpy";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "IF", "WHOS", "=", "'", "G", "'", "");
     }
 
@@ -132,7 +157,9 @@ public class TestC {
                 "     C                             'DEVTYPE(*AFPDS) PAGRTT(0) ':200)\r\n" +
                 "     C                   open      QSYSPRT";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "callp", "Cmd", "(", "'",
                 "OVRPRTF FILE(QSYSPRT) OUTQ(PRT30\\)", "'", "+", "'",
                 "DRAWER(5) HOLD(*YES) SAVE(*YES)", "'", "+", "'",
@@ -146,7 +173,9 @@ public class TestC {
         String inputstr = "                                                                                Get next number2\r\n" +
                 "     C                   eval      @IRDRW = 'PHAR'";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "eval", "@IRDRW", "=", "'", "PHAR", "'", "");
     }
 
@@ -154,7 +183,9 @@ public class TestC {
     public void testCSpec_SetONLR() {
         String inputstr = "     C                   seton                                        lr    		";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "seton", "", "", "", "", "lr", "");
     }
 

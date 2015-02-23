@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.CommonToken;
 import org.junit.Test;
 import org.rpgleparser.utils.TestUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.collection.IsEmptyCollection.empty;
@@ -19,7 +20,9 @@ public class TestComments {
     public void testLeadComments() {
         String inputstr = "cmntsC        \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertEquals("C", tokenList.get(0).getText().trim());
         assertEquals("", tokenList.get(1).getText().trim());
         for (int i = 2; i < tokenList.size(); i++) {
@@ -31,7 +34,9 @@ public class TestComments {
     public void testEmptyLine() {
         String inputstr = "     C        \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertEquals("C", tokenList.get(0).getText().trim());
         for (int i = 1; i < tokenList.size(); i++) {
             assertEquals("", tokenList.get(i).getText().trim());
@@ -43,7 +48,9 @@ public class TestComments {
     public void testFixedCommentWithComma() {
         String inputstr = "     �*  Prototype for call to program MSR141A\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "�*", "Prototype for call to program MSR141A");
     }
 
@@ -51,7 +58,9 @@ public class TestComments {
     public void testAsterisk1() {
         String inputstr = "     C* This is a comment\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertEquals("C*", tokenList.get(0).getText().trim());
         //assertEquals("This is a comment",tokenList.get(1).getText().trim());
         //assertEquals(HelloLexer.COMMENTS_TEXT,tokenList.get(1).getType());
@@ -61,7 +70,9 @@ public class TestComments {
     public void testAsterisk2() {
         String inputstr = "      *=====================================================\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertEquals("*", tokenList.get(0).getText().trim());
         //assertEquals("=====================================================",tokenList.get(1).getText().trim());
         //assertEquals(HelloLexer.COMMENTS_TEXT,tokenList.get(1).getType());
@@ -71,7 +82,9 @@ public class TestComments {
     public void testAllAsterisk() {
         String inputstr = "********************************************************\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         //assertEquals("*****",tokenList.get(0).getText().trim());
         assertEquals("**", tokenList.get(0).getText().trim());
         //assertEquals(HelloLexer.COMMENTS_TEXT,tokenList.get(1).getType());
@@ -83,7 +96,9 @@ public class TestComments {
                 "** ZLNG LONG CONSTANTS    Char(25)\r\n" +
                         "some text here \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "** ZLNG LONG CONSTANTS    Char(25)", "some text here", "");
     }
 
@@ -91,7 +106,9 @@ public class TestComments {
     public void testBlankLine() {
         String inputstr = "\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertThat(tokenList, is(not(empty())));
         assertEquals("", tokenList.get(0).getText().trim());
         assertEquals(RpgLexer.BLANK_LINE, tokenList.get(0).getType());
@@ -102,7 +119,9 @@ public class TestComments {
     public void testSlash() {
         String inputstr = "       //This is a comment\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         System.out.println("tokens:" + tokenList.size());
         //assertEquals("//",tokenList.get(0).getText().trim());
         //assertEquals("This is a comment",tokenList.get(1).getText().trim());
@@ -114,7 +133,9 @@ public class TestComments {
         String inputstr = "       //                  \r\n" +
                 "       //  external calls                       \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         System.out.println("tokens:" + tokenList.size());
         //assertEquals("//",tokenList.get(0).getText().trim());
         //assertEquals("",tokenList.get(1).getText().trim());
@@ -126,7 +147,9 @@ public class TestComments {
     public void testSlashesCloseToFront() {
         String inputstr = "      //-----------------------------------------------------------------";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "//", "-----------------------------------------------------------------");
     }
 
@@ -137,7 +160,9 @@ public class TestComments {
                 + "      OPRLNM CHAR(15) POS(5);\r\n" +
                 " END-DS;";
         inputstr = TestUtils.pad280Free(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "DCL-DS", "POLHLD", "LEN", "(", "107", ")", ";", "OPRLNM", "CHAR", "(", "15", ")", "POS", "(", "5", ")", ";", "END-DS", ";");
     }
 
