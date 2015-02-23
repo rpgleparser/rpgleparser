@@ -7,6 +7,9 @@ import org.rpgleparser.utils.TestUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.collection.IsEmptyCollection.empty;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.rpgleparser.utils.TestUtils.assertTokens;
 
@@ -16,7 +19,9 @@ public class TestFREE {
     public void testAssignment() {
         String inputstr = "             cmdlength = 123;     \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "cmdlength", "=", "123", ";", "");
     }
 
@@ -26,7 +31,9 @@ public class TestFREE {
                 "         set :FieldAll =coalesce( getProcenter(:PolicyNbr,\r\n" +
                 "         :DateCode, ''),'');\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         TestUtils.showToks(tokenList);
         assertTokens(tokenList, "Exec SQL", "set :FieldAll =coalesce( getProcenter(:PolicyNbr,", ":DateCode, ''),'')", ";");
     }
@@ -35,7 +42,9 @@ public class TestFREE {
     public void testExecSQL1() {
         String inputstr = "         Exec SQL x=1;\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "Exec SQL", "x=1", ";", "");
     }
 
@@ -44,7 +53,9 @@ public class TestFREE {
     public void testStringAssignment() {
         String inputstr = "             cmdlength = '123';     \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "cmdlength", "=", "'", "123", "'", ";", "");
     }
 
@@ -52,7 +63,9 @@ public class TestFREE {
     public void testBasicFunction() {
         String inputstr = "             cmdlength = %len(123);     \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "cmdlength", "=", "%len", "(", "123", ")", ";");
     }
 
@@ -60,7 +73,9 @@ public class TestFREE {
     public void testBasicFunctionParms() {
         String inputstr = "             cmdlength = %len(123:456);     \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "cmdlength", "=", "%len", "(", "123", ":", "456", ")", ";");
     }
 
@@ -68,7 +83,9 @@ public class TestFREE {
     public void testNestedFunction() {
         String inputstr = "             cmdlength = %len(%trim(cmdstring));     \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "cmdlength", "=", "%len", "(", "%trim", "(", "cmdstring", ")", ")", ";");
 
     }
@@ -78,7 +95,9 @@ public class TestFREE {
         String inputstr = "             cmdlength = \r\n" +
                 "               123;     \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "cmdlength", "=", "123", ";");
     }
 
@@ -87,7 +106,9 @@ public class TestFREE {
         String inputstr = "             cmdstring = \r\n" +
                 "              'CRTDTAARA DTAARA(QTEMP/MYTWENTY1) TYPE(*CHAR) LEN(21)';\r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "cmdstring", "=", "'", "CRTDTAARA DTAARA(QTEMP/MYTWENTY1) TYPE(*CHAR) LEN(21)", "'", ";", "");
     }
 
@@ -95,7 +116,9 @@ public class TestFREE {
     public void testON_ERROR() {
         String inputstr = "             on-error; \r\n";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "on-error", ";");
     }
 
@@ -103,7 +126,9 @@ public class TestFREE {
     public void testComparision() {
         String inputstr = "         if %parms > 2;";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "if", "%parms", ">", "2");
     }
 
@@ -111,7 +136,9 @@ public class TestFREE {
     public void testQualified() {
         String inputstr = "        Destination = PCINFO.Destination;";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "Destination", "=", "PCINFO", ".", "Destination");
     }
 
@@ -119,7 +146,9 @@ public class TestFREE {
     public void testIndAndBIF() {
         String inputstr = "        *IN99 = NOT %FOUND;";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "*IN99", "=", "NOT", "%FOUND");
     }
 
@@ -129,7 +158,9 @@ public class TestFREE {
                 "       OR ARNTCT = 'C  '\r\n" +
                 "       OR ARNTCT = 'D  ';";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "IF", "ARNTCT", "=", "'", "B", "'", "OR", "ARNTCT", "=", "'", "C", "'", "OR", "ARNTCT", "=", "'", "D", "'", ";", "");
     }
 
@@ -138,7 +169,9 @@ public class TestFREE {
         String inputstr = "       IF ARNTCT = 'B' OR ARNTCT = 'C  ' OR ARNTCT = 'D  '\r\n"
                 + "          ;";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "IF", "ARNTCT", "=", "'", "B", "'", "OR", "ARNTCT", "=", "'", "C", "'", "OR", "ARNTCT", "=", "'", "D", "'", ";", "");
     }
 
@@ -146,7 +179,9 @@ public class TestFREE {
     public void testSubst() {
         String inputstr = "       %subst(MARK3: 1: 3) = '613';";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "%subst", "(", "MARK3", ":", "1", ":", "3", ")", "=", "'", "613", "'", ";", "");
 
     }
@@ -155,7 +190,9 @@ public class TestFREE {
     public void testStringconcat() {
         String inputstr = "       DATA ='Loan No:  ' + %TRIM(LOANNO);";
         inputstr = TestUtils.pad280(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "DATA", "=", "'", "Loan No:", "'", "+", "%TRIM", "(", "LOANNO", ")", ";", "");
     }
 
@@ -163,7 +200,9 @@ public class TestFREE {
     public void testMultiplyDecimal() {
         String inputstr = TestUtils.pad280Free(
                 "InstPct = A1IPCT * .01 * I;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "InstPct", "=", "A1IPCT", "*", ".01", "*", "I", ";", "");
     }
 
@@ -171,7 +210,9 @@ public class TestFREE {
     public void testNestedArgsExpr() {
         String inputstr = TestUtils.pad280Free(
                 "Temp60 = %INT((TermPrem * InstPct) + .5);");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "Temp60", "=", "%INT", "(", "(", "TermPrem", "*", "InstPct", ")", "+", ".5", ")", ";", "");
     }
 
@@ -179,7 +220,9 @@ public class TestFREE {
     public void testSimpleBareBIF() {
         String inputstr = TestUtils.pad280Free(
                 "%INT(1.5);");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "%INT", "(", "1.5", ")", ";", "");
     }
 
@@ -187,7 +230,9 @@ public class TestFREE {
     public void testSimpleNestedBIF() {
         String inputstr = TestUtils.pad280Free(
                 "%INT((1.5));");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "%INT", "(", "(", "1.5", ")", ")", ";");
     }
 
@@ -196,7 +241,9 @@ public class TestFREE {
     public void testAlgebraExpr1() {
         String inputstr = TestUtils.pad280Free(
                 "InstallPrem = (TermPrem * InstPct) - PremApplied;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "InstallPrem", "=", "(", "TermPrem", "*", "InstPct", ")", "-", "PremApplied", ";", "");
     }
 
@@ -204,7 +251,9 @@ public class TestFREE {
     public void testAlgebraExpr2() {
         String inputstr = TestUtils.pad280Free(
                 "Mths2Add = Months * (I - 1);");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "Mths2Add", "=", "Months", "*", "(", "I", "-", "1", ")", ";", "");
     }
 
@@ -213,7 +262,9 @@ public class TestFREE {
         String inputstr = TestUtils.pad280Free(
                 "dcl-s continued...\r\n" +
                         "name char(10);");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "dcl-s", "continued", "...", "name", "char", "(", "10", ")", ";");
     }
 
@@ -221,7 +272,9 @@ public class TestFREE {
     public void testFreeNameAtSign() {
         String inputstr = TestUtils.pad280Free(
                 "CvtDate(ProcessDate: @DTE);");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "CvtDate", "(", "ProcessDate", ":", "@DTE", ")", ";", "");
     }
 
@@ -229,7 +282,9 @@ public class TestFREE {
     public void testFreeNameLBSign() {
         String inputstr = TestUtils.pad280Free(
                 "#1F2CD = PolicyType;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "#1F2CD", "=", "PolicyType", ";", "");
     }
 
@@ -237,7 +292,9 @@ public class TestFREE {
     public void testChain() {
         String inputstr = TestUtils.pad280Free(
                 "chain (PolicyNumber) AR1203B;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "chain", "(", "PolicyNumber", ")", "AR1203B");
     }
 
@@ -245,7 +302,9 @@ public class TestFREE {
     public void testChainLiteral() {
         String inputstr = TestUtils.pad280Free(
                 "chain 'PolicyNumber' AR1203B;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "chain", "'", "PolicyNumber", "'", "AR1203B", ";", "");
     }
 
@@ -253,7 +312,9 @@ public class TestFREE {
     public void testMultNegative() {
         String inputstr = TestUtils.pad280Free(
                 "Days2Add = LeadDays * -1;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "Days2Add", "=", "LeadDays", "*", "-", "1", ";");
     }
 
@@ -261,7 +322,9 @@ public class TestFREE {
     public void testKeywordID() {
         String inputstr = TestUtils.pad280Free(
                 "IF DELETE = ' ';");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "IF", "DELETE", "=", "'", "", "'", ";", "");
     }
 
@@ -269,7 +332,9 @@ public class TestFREE {
     public void testKeywordID2() {
         String inputstr = TestUtils.pad280Free(
                 "EVAL IN = INSTAL;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "EVAL", "IN", "=", "INSTAL", ";", "");
     }
 
@@ -277,7 +342,9 @@ public class TestFREE {
     public void testKeywordID3() {
         String inputstr = TestUtils.pad280Free(
                 "TEMP14 = ZLNG(IN);");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "TEMP14", "=", "ZLNG", "(", "IN", ")", ";", "");
     }
 
@@ -285,7 +352,9 @@ public class TestFREE {
     public void testLongLineIssue() {
         String inputstr = TestUtils.pad280(
                 "       DAYS = 5;                                                               // EFT DATE");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "DAYS", "=", "5", ";", "//", "EFT DATE", "");
     }
 
@@ -294,7 +363,9 @@ public class TestFREE {
         String inputstr = TestUtils.pad280Free(
                 "       IF *IN78 = *OFF                                                          // RECORD EXISTS\r\n" +
                         "          AND MHTRPR = 'N';");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "IF", "*IN78", "=", "*OFF", "AND", "MHTRPR", "=", "'", "N", "'", ";", "");
     }
 
@@ -302,7 +373,9 @@ public class TestFREE {
     public void testFreeWithTailComment() {
         String inputstr = TestUtils.pad280Free(
                 "if CovName = 'DWELLING';//CP & CF");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "if", "CovName", "=", "'", "DWELLING", "'", ";");
     }
 
@@ -310,7 +383,9 @@ public class TestFREE {
     public void testFreeExprMixedOpsAndLiterals() {
         String inputstr = TestUtils.pad280Free(
                 "EVAL TEST = 'N';");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "EVAL", "TEST", "=", "'", "N", "'", ";", "");
     }
 
@@ -318,7 +393,9 @@ public class TestFREE {
     public void testFreeLeftHandSideAssignment() {
         String inputstr = TestUtils.pad280Free(
                 "%SUBST(COPYTO:2:18) = ZCPY(A);");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "%SUBST", "(", "COPYTO", ":", "2", ":", "18", ")", "=", "ZCPY", "(A)", ";", "");
     }
@@ -327,7 +404,9 @@ public class TestFREE {
     public void testFreeStringConcat() {
         String inputstr = TestUtils.pad280Free(
                 "DS1802 = %TRIMR(DS1802) + '-';");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "DS1802", "=", "%TRIMR", "(", "DS1802", ")", "+", "'", "-", "'", ";", "");
     }
 
@@ -335,7 +414,9 @@ public class TestFREE {
     public void testFreeAssignment() {
         String inputstr = TestUtils.pad280Free(
                 "B1DQNB = -.25;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "B1DQNB", "=", "-", ".25", ";");
     }
 
@@ -343,7 +424,9 @@ public class TestFREE {
     public void testFreeArray() {
         String inputstr = TestUtils.pad280Free(
                 "ZCPY(A);");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "ZCPY", "(A)", ";");
     }
     //TODO this should not be an OP_E
@@ -352,7 +435,9 @@ public class TestFREE {
     public void testSplatAll() {
         String inputstr = TestUtils.pad280Free(
                 "*in = *all'0' ;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "*in", "=", "*all", "'", "0", "'", ";");
     }
 
@@ -360,7 +445,9 @@ public class TestFREE {
     public void testForBy() {
         String inputstr = TestUtils.pad280Free(
                 "FOR X = 100 BY -1 TO 100;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "FOR", "X", "=", "100", "BY", "-", "1", "TO", "100", ";");
     }
 
@@ -370,7 +457,9 @@ public class TestFREE {
                 "       DCL-DS *N;\r\n" +
                         "       END-DS;");
 
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "DCL-DS", "*", "N", ";", "END-DS", ";");
     }
 
@@ -381,7 +470,9 @@ public class TestFREE {
                         "         ABDTFL ZONED(7);\r\n" +
                         "         ABDTFL ZONED(7);\r\n" +
                         "       END-DS;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "DCL-DS", "*N", ";", "ABDTFL", "ZONED", "(",
                 "7", ")", ";", "ABDTFL", "ZONED", "(", "7", ")", ";", "END-DS",
                 ";");
@@ -391,7 +482,9 @@ public class TestFREE {
     public void testDclDsShort() {
         String inputstr = TestUtils.pad280Free(
                 "       DCL-DS prtDs LEN(132) END-DS;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "DCL-DS", "prtDs", "LEN", "(", "132", ")", "END-DS", ";");
     }
 
@@ -399,7 +492,9 @@ public class TestFREE {
     public void testPlusEquals() {
         String inputstr = TestUtils.pad280Free(
                 "B1SQ## += 1;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "B1SQ##", "+=", "1", ";");
     }
@@ -408,7 +503,9 @@ public class TestFREE {
     public void testTest() {
         String inputstr = TestUtils.pad280Free(
                 "TEST(De) *iso0 LicIssueDate ;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "TEST", "(De)", "*iso0", "LicIssueDate", ";");
     }
@@ -417,7 +514,9 @@ public class TestFREE {
     public void testXMLId() {
         String inputstr = TestUtils.pad280Free(
                 "EndNbr = Endorsements.Endorsement(EndCnt).EndorsementNumber;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "EndNbr", "=", "Endorsements", ".",
                 "Endorsement", "(", "EndCnt", ")", ".", "EndorsementNumber",
@@ -430,7 +529,9 @@ public class TestFREE {
                 + " 1  �        //DLT       SCTRAN    OREQ '3'\r\n"
                 + "             OR SCTRAN = '6';");
 
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "IF", "SCTRAN", "=", "'", "1", "'", "OR", "SCTRAN", "=", "'", "6", "'", ";");
     }
@@ -440,7 +541,9 @@ public class TestFREE {
         String inputstr = TestUtils.pad280Free("    DCL-PR CLR014 EXTPGM;\r\n" +
                 "    TRNSDT_ LIKE(TRNSDT);\r\n" +
                 "    END-PR;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "DCL-PR", "CLR014", "EXTPGM", ";", "TRNSDT_", "LIKE", "(", "TRNSDT", ")", ";", "END-PR", ";");
     }
@@ -449,7 +552,9 @@ public class TestFREE {
     public void testPI() {
         String inputstr = TestUtils.pad280Free("    DCL-PI CLR014;\r\n"
                 + "TRNSDT PACKED(7);\r\n" + "END-PI;");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "DCL-PI", "CLR014", ";", "TRNSDT", "PACKED", "(", "7", ")", ";", "END-PI", ";");
     }
@@ -457,7 +562,9 @@ public class TestFREE {
     @Test
     public void testConstant() {
         String inputstr = TestUtils.pad280Free("DCL-C CRLF CONST(X'0d25');");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "DCL-C", "CRLF", "CONST", "(", "X'", "0d25", "'", ")", ";");
     }
@@ -465,7 +572,9 @@ public class TestFREE {
     @Test
     public void testExpressionAsterisk() {
         String inputstr = TestUtils.pad280Free("FROMcymd = ((Year)*10000);");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "FROMcymd", "=", "(", "(", "Year", ")", "*", "10000", ")", ";");
     }
@@ -473,7 +582,9 @@ public class TestFREE {
     @Test
     public void testDateLiteral() {
         String inputstr = TestUtils.pad280Free("IF OVTRDZ = d'0001-01-01';   // ACTIVE");
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "IF", "OVTRDZ", "=", "d'", "0001-01-01", "'", ";");
     }
@@ -483,7 +594,9 @@ public class TestFREE {
         String inputstr = TestUtils.pad280Free(" CTL-OPT\r\n" +
                         "DATEDIT(*YMD);"
         );
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "CTL-OPT", "DATEDIT", "(", "*YMD", ")", ";");
     }
@@ -493,7 +606,9 @@ public class TestFREE {
         String inputstr = TestUtils.pad280Free(" DCL-DS *N;\r\n" +
                         "END-DS;"
         );
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "DCL-DS", "*", "N", ";", "END-DS", ";");
     }
@@ -514,7 +629,9 @@ public class TestFREE {
     public void testMultiply() {
         String inputstr = TestUtils.pad280Free(" 1 * N;"
         );
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "1", "*", "N", ";");
     }
@@ -523,7 +640,9 @@ public class TestFREE {
     public void testMultiply2() {
         String inputstr = TestUtils.pad280Free(" 1*N;"
         );
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "1", "*", "N", ";");
     }
@@ -534,7 +653,9 @@ public class TestFREE {
                 "BDEBMTH = *zero and ADEBMTH <> *zero or +\r\n" +
                 "BDEBDAY = *zero and ADEBDAY <> *zero;";
         inputstr = TestUtils.pad280Free(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "C", "", "", "", "seton", "", "", "", "", "lr", "");
     }
 
@@ -547,7 +668,9 @@ public class TestFREE {
                 "\r\n" +
                 "END-PI;";
         inputstr = TestUtils.pad280Free(inputstr);
-        List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
+        assertThat(errors, is(empty()));
         assertTokens(tokenList, "DCL-PI", "PPR751G", ";", "PAR_ENDMTH",
                 "PACKED", "(", "7", ")", ";", "TOADDR_PARM", "LIKE", "(",
                 "TOADDR", ")", ";", "END-PI", ";");

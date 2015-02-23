@@ -2,12 +2,15 @@ package org.rpgleparser;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.Test;
-import org.rpgleparser.RpgLexer;
 import org.rpgleparser.utils.TestUtils;
 
 import java.util.List;
 
+import static org.hamcrest.collection.IsEmptyCollection.empty;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.rpgleparser.utils.TestUtils.assertTokens;
 
 public class TestComments {
@@ -89,6 +92,7 @@ public class TestComments {
         String inputstr = "\r\n";
         inputstr = TestUtils.pad280(inputstr);
         List<CommonToken> tokenList = TestUtils.runX(inputstr);
+        assertThat(tokenList, is(not(empty())));
         assertEquals("", tokenList.get(0).getText().trim());
         assertEquals(RpgLexer.BLANK_LINE, tokenList.get(0).getType());
     }

@@ -84,7 +84,7 @@ public class TestContinuation {
                         "     C                             24\r\n";
         inputstr = TestUtils.pad280(inputstr);
         List<CommonToken> tokenList = TestUtils.runX(inputstr);
-        assertTokens(tokenList, "C", "", "", "", "EVAL", "A", "=", "(", "B*D", ")", "/", "C", "+", "24", "");
+        assertTokens(tokenList, "C", "", "", "", "EVAL", "A", "=", "(", "B", "*", "D", ")", "/", "C", "+", "24", "");
     }
 
     @Test
