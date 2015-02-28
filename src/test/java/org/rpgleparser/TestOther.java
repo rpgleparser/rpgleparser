@@ -90,8 +90,10 @@ public class TestOther {
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
         TestUtils.showToks(tokenList);
-        assertTokens(tokenList, "P", "Roundit", "B", "", "*",
-                "procedure interface definition", "", "D", "Roundit", "", "",
+        assertTokens(tokenList,
+                "P", "Roundit", "B", "",
+                "*", // comment text is skipped
+                "D", "Roundit", "", "",
                 "PI", "", "11", "p", "2", "", "", "", "D", "Premium", "", "",
                 "", "", "11", "p", "2", "", "", "");
     }

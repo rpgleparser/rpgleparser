@@ -9,7 +9,6 @@ import java.util.List;
 
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.rpgleparser.utils.TestUtils.assertTokens;
@@ -109,9 +108,7 @@ public class TestComments {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        assertThat(tokenList, is(not(empty())));
-        assertEquals("", tokenList.get(0).getText().trim());
-        assertEquals(RpgLexer.BLANK_LINE, tokenList.get(0).getType());
+        assertThat(tokenList, is(empty())); // blank lines are skipped
     }
 
 
