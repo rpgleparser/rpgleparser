@@ -40,21 +40,21 @@ NEWLINE : ('\r' '\n'? | '\n') -> skip;
 WS : {getCharPositionInLine()>5}? [ \t]+ -> skip ; // skip spaces, tabs, NEWLINEs
 
 mode DIRECTIVE_MODE;
-DIRECTIVE_FREE: ([fF][rR][eE][eE] | [eE][nN][dD] '-' [fF][rR][eE][eE]) -> pushMode(SKIP_REMAINING_WS);
-DIRECTIVE_TITLE: [tT][iI][tT][lL][eE];
-DIRECTIVE_EJECT: [eE][jJ][eE][cC][tT] -> pushMode(SKIP_REMAINING_WS);
-DIRECTIVE_SPACE: [sS][pP][aA][cC][eE];
-DIRECTIVE_SET: [sS][eE][tT];
-DIRECTIVE_RESTORE: [rR][eE][sS][tT][oO][rR][eE];
-DIRECTIVE_COPY: [cC][oO][pP][yY];
-DIRECTIVE_INCLUDE: [iI][nN][cC][lL][uU][dD][eE];
-DIRECTIVE_EOF: [eE][oO][fF];
-DIRECTIVE_DEFINE: ([dD][eE][fF][iI][nN][eE]);
-DIRECTIVE_UNDEFINE: ([uU][nN][dD][eE][fF][iI][nN][eE]);
-DIRECTIVE_IF: ([iI][fF]);
-DIRECTIVE_ELSE: ([eE][lL][sS][eE]);
-DIRECTIVE_ELSEIF: ([eE][lL][sS][eE][iI][fF]);
-DIRECTIVE_ENDIF: ([eE][nN][dD][iI][fF]);
+DIRECTIVE_FREE: {getCharPositionInLine()==7}? ([fF][rR][eE][eE] | [eE][nN][dD] '-' [fF][rR][eE][eE]) -> pushMode(SKIP_REMAINING_WS);
+DIRECTIVE_TITLE:{getCharPositionInLine()==7}? ([tT][iI][tT][lL][eE]);
+DIRECTIVE_EJECT: {getCharPositionInLine()==7}? [eE][jJ][eE][cC][tT] -> pushMode(SKIP_REMAINING_WS);
+DIRECTIVE_SPACE: {getCharPositionInLine()==7}? [sS][pP][aA][cC][eE];
+DIRECTIVE_SET: {getCharPositionInLine()==7}? [sS][eE][tT];
+DIRECTIVE_RESTORE: {getCharPositionInLine()==7}? [rR][eE][sS][tT][oO][rR][eE];
+DIRECTIVE_COPY: {getCharPositionInLine()==7}? [cC][oO][pP][yY];
+DIRECTIVE_INCLUDE: {getCharPositionInLine()==7}? [iI][nN][cC][lL][uU][dD][eE];
+DIRECTIVE_EOF: {getCharPositionInLine()==7}? [eE][oO][fF];
+DIRECTIVE_DEFINE: {getCharPositionInLine()==7}? ([dD][eE][fF][iI][nN][eE]);
+DIRECTIVE_UNDEFINE: {getCharPositionInLine()==7}? ([uU][nN][dD][eE][fF][iI][nN][eE]);
+DIRECTIVE_IF: {getCharPositionInLine()==7}? ([iI][fF]);
+DIRECTIVE_ELSE: {getCharPositionInLine()==7}? ([eE][lL][sS][eE]);
+DIRECTIVE_ELSEIF: {getCharPositionInLine()==7}? ([eE][lL][sS][eE][iI][fF]);
+DIRECTIVE_ENDIF: {getCharPositionInLine()==7}? ([eE][nN][dD][iI][fF]);
 DIR_NUMBER: NUMBER;
 DIR_SPACE: [ ] ;
 DIR_OTHER_TEXT : ~[\r\n \t]+ ;
@@ -146,6 +146,7 @@ OP_WRITE: [Ww][Rr][Ii][Tt][Ee];
 OP_XML_INTO: [Xx][Mm][Ll][-][Ii][Nn][Tt][Oo];
 OP_XML_SAX: [Xx][Mm][Ll][-][Ss][Aa][Xx];
 SPLAT_ALL: '*'[aA][lL][lL];
+
 //--------------
 OP_E: '(' [aAdDeEhHmMnNpPrRtTzZ][aAdDeEhHmMnNpPrRtTzZ]? ')';
 FREE_OPEN_PAREN: OPEN_PAREN;
@@ -458,5 +459,4 @@ fragment WORD_WCOLON : ~[\r\n];//[a-zA-Z0-9 :*];
 fragment WORD5_WCOLON : WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON;
 //fragment C_OP_EXT: [ aAhHnNpPdDtTzZmMrReE];
 fragment IND_FRAG: ('  ' | [0-9lLhH][0-9] | [kK][A-NP-Ya-np0y] | [lLmM][rR] | [rR][tT] | [uU][1-8] | [oO][a-gvA-GV] | [0-9][pP]);
-
 
