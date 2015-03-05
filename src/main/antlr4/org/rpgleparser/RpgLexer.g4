@@ -41,14 +41,20 @@ WS : {getCharPositionInLine()>5}? [ \t]+ -> skip ; // skip spaces, tabs, NEWLINE
 
 mode DIRECTIVE_MODE;
 DIRECTIVE_FREE: ([fF][rR][eE][eE] | [eE][nN][dD] '-' [fF][rR][eE][eE]) -> pushMode(SKIP_REMAINING_WS);
-DIRECTIVE_TITLE: 'TITLE';
-DIRECTIVE_EJECT: 'EJECT' -> pushMode(SKIP_REMAINING_WS);
-DIRECTIVE_SPACE: 'SPACE';
-DIRECTIVE_SET: 'SET';
-DIRECTIVE_RESTORE: 'RESTORE';
-DIRECTIVE_COPY: 'COPY';
-DIRECTIVE_INCLUDE: 'INCLUDE';
-DIRECTIVE_EOF: 'EOF';
+DIRECTIVE_TITLE: [tT][iI][tT][lL][eE];
+DIRECTIVE_EJECT: [eE][jJ][eE][cC][tT] -> pushMode(SKIP_REMAINING_WS);
+DIRECTIVE_SPACE: [sS][pP][aA][cC][eE];
+DIRECTIVE_SET: [sS][eE][tT];
+DIRECTIVE_RESTORE: [rR][eE][sS][tT][oO][rR][eE];
+DIRECTIVE_COPY: [cC][oO][pP][yY];
+DIRECTIVE_INCLUDE: [iI][nN][cC][lL][uU][dD][eE];
+DIRECTIVE_EOF: [eE][oO][fF];
+DIRECTIVE_DEFINE: ([dD][eE][fF][iI][nN][eE]);
+DIRECTIVE_UNDEFINE: ([uU][nN][dD][eE][fF][iI][nN][eE]);
+DIRECTIVE_IF: ([iI][fF]);
+DIRECTIVE_ELSE: ([eE][lL][sS][eE]);
+DIRECTIVE_ELSEIF: ([eE][lL][sS][eE][iI][fF]);
+DIRECTIVE_ENDIF: ([eE][nN][dD][iI][fF]);
 DIR_NUMBER: NUMBER;
 DIR_SPACE: [ ] ;
 DIR_OTHER_TEXT : ~[\r\n \t]+ ;
