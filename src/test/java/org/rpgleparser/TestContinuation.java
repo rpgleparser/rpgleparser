@@ -30,7 +30,7 @@ public class TestContinuation {
         String inputstr = TestUtils.pad280Free(
                 "x = 'ab+\r\n" +
                         "c';");
-        System.out.println(inputstr);
+        //System.out.println(inputstr);
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
@@ -43,7 +43,7 @@ public class TestContinuation {
         String inputstr = TestUtils.pad280Free(
                 "x = 'ab+\r\n" +
                         "             c';");
-        System.out.println(inputstr);
+        //System.out.println(inputstr);
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
@@ -56,7 +56,7 @@ public class TestContinuation {
         String inputstr = TestUtils.pad280Free(
                 "x = 'ab-\r\n" +
                         "c';");
-        System.out.println(inputstr);
+        //System.out.println(inputstr);
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
@@ -68,7 +68,7 @@ public class TestContinuation {
         String inputstr = TestUtils.pad280Free(
                 "x = 'ab-\r\n" +
                         "             c';");
-        System.out.println(inputstr);
+        //System.out.println(inputstr);
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
@@ -86,7 +86,7 @@ public class TestContinuation {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
+      //  TestUtils.showToks(tokenList);
         assertTokens(tokenList, "C", "", "", "", "eval", "DATA", "=", "'",
                 "Current Policy Term:", "'", "+", "%trim", "(", "EffDateChr",
                 ")", "+", "'", "to", "'", "+", "%trim", "(", "ExpDateChr", ")",

@@ -17,7 +17,7 @@ public class TestOther {
 
     @Test
     public void testDirective() {
-        String inputstr = "       /FREE  \r\n";
+        String inputstr = "      /FREE     ";
         inputstr = TestUtils.pad280(inputstr);
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
@@ -74,7 +74,7 @@ public class TestOther {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
+       // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "P", "Roundit", "B", "", "");
     }
 
@@ -89,9 +89,8 @@ public class TestOther {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
-        assertTokens(tokenList, "P", "Roundit", "B", "", "*",
-                "procedure interface definition", "", "D", "Roundit", "", "",
+       // TestUtils.showToks(tokenList);
+        assertTokens(tokenList, "P", "Roundit", "B", "", "*", "D", "Roundit", "", "",
                 "PI", "", "11", "p", "2", "", "", "", "D", "Premium", "", "",
                 "", "", "11", "p", "2", "", "", "");
     }

@@ -24,9 +24,9 @@ public class TestO {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        for (CommonToken tok : tokenList) {
-            System.out.println(tok);
-        }
+//        for (CommonToken tok : tokenList) {
+//            System.out.println(tok);
+//        }
         assertTokens(tokenList, "O", "QSYSPRT", "E", "", "", "", "", "HDR1",
                 "", "1", "3", "", "", "O", "", "", "", "", "BegMonth", "", "",
                 "", "D", "", "O", "", "", "", "", "", "", "", "40", "",
@@ -41,7 +41,7 @@ public class TestO {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
+        //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "O", "Filename++", "D", "F", "N01", "N02", "N03", "Excnam++++", "001", "002", "003", "004", "", "");
     }
 
@@ -54,7 +54,7 @@ public class TestO {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
+        //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "O", "Filename++", "D", "F", "N01", "N02", "N03", "Excnam++++", "", "", "", "", "", "");
     }
 
@@ -66,7 +66,7 @@ public class TestO {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
+       // TestUtils.showToks(tokenList);
         assertTokens(tokenList, "O", "Filename++", "D", "Add", "N01", "N02", "N03", "Excnam++++", "", "");
     }
 
@@ -78,7 +78,7 @@ public class TestO {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
+        //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "O", "", "N01", "N02", "N03", "Field+++++++++", "Y", "B", "End++", "P", "Constant/editword/DTformat++", "");
     }
     //O..............................................Constant/editword-ContinutioComment+++++++++++++
@@ -92,7 +92,7 @@ public class TestO {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
+        //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "O", "", "n78", "", "", "LicIssDte", "", "", "56", "", "", "");
     }
 
@@ -104,7 +104,7 @@ public class TestO {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
+        //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "O", "AND", "10", "N73", "N07", "", "", "", "", "", "");
     }
 

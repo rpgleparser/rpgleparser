@@ -23,7 +23,7 @@ public class TestPGMInFolder {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(rpgsource, errors);
         assertThat(errors, is(empty()));
-        System.out.println(tokenList);
+        //System.out.println(tokenList);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class TestPGMInFolder {
                 files.add(file.getName());
 
                 if (errors.size() > 0) {
-                    System.out.println(tokenList);
+                    //System.out.println(tokenList);
                     break;
                 }
             }

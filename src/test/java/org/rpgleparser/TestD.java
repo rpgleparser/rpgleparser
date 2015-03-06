@@ -23,9 +23,6 @@ public class TestD {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        for (CommonToken tok : tokenList) {
-            System.out.println(tok);
-        }
         assertTokens(tokenList, "D", "CalcNewSweepDate", "123", "", "", "PR", "", "", "", "", "", "EXTPGM('MSR173')", "");
     }
 

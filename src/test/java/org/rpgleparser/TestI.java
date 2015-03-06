@@ -51,7 +51,7 @@ public class TestI {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
         assertThat(errors, is(empty()));
-        TestUtils.showToks(tokenList);
+        //TestUtils.showToks(tokenList);
         assertTokens(tokenList, "I", "INTAPE", "AB", "", "", "01", "2 C5", "");
     }
 
