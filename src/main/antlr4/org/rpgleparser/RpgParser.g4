@@ -199,11 +199,74 @@ free_directive: free_text;
 space_directive: DIRECTIVE_SPACE (DIR_SPACE DIR_NUMBER)?;
 free_text: DIRECTIVE_FREE;
 trailing_ws: DIR_FREE_OTHER_TEXT;
-title_directive: DIRECTIVE_TITLE DIR_SPACE title_text DIR_SPACE*;
-title_text: (DIR_SPACE | DIR_NUMBER | DIR_OTHER_TEXT)* (DIR_NUMBER | DIR_OTHER_TEXT)+;
+//title_directive: DIRECTIVE_TITLE DIR_SPACE title_text DIR_SPACE*;
+title_directive: DIRECTIVE_TITLE (DIR_SPACE* DIR_OTHER_TEXT)*;
+title_text: (DIR_SPACE | DIR_NUMBER | DIR_OTHER_TEXT) (DIR_NUMBER | DIR_OTHER_TEXT);
  
 //------- Auto from here
-op: op_acq | op_begsr | op_callp | op_chain | op_clear | op_close | op_commit | op_dealloc | op_delete | op_dou | op_dow | op_dsply | op_dump | op_else | op_elseif | op_enddo | op_endfor | op_endif | op_endmon | op_endsl | op_endsr | op_eval | op_evalr | op_eval_corr | op_except | op_exfmt | op_exsr | op_feod | op_for | op_force | op_if | op_in | op_iter | op_leave | op_leavesr | op_monitor | op_next | op_on_error | op_open | op_other | op_out | op_post | op_read | op_readc | op_reade | op_readp | op_readpe | op_rel | op_reset | op_return | op_rolbk | op_select | op_setgt | op_setll | op_sorta | op_test | op_unlock | op_update | op_when | op_write | op_xml_into | op_xml_sax;
+op: op_acq 
+	| op_begsr 
+	| op_callp 
+	| op_chain 
+	| op_clear 
+	| op_close 
+	| op_commit 
+	| op_dealloc 
+	| op_delete 
+	| op_dou 
+	| op_dow 
+	| op_dsply 
+	| op_dump 
+	| op_else 
+	| op_elseif 
+	| op_enddo 
+	| op_endfor 
+	| op_endif 
+	| op_endmon 
+	| op_endsl 
+	| op_endsr 
+	| op_eval 
+	| op_evalr
+	| op_eval_corr 
+	| op_except 
+	| op_exfmt 
+	| op_exsr 
+	| op_feod 
+	| op_for 
+	| op_force 
+	| op_if 
+	| op_in 
+	| op_iter 
+	| op_leave 
+	| op_leavesr 
+	| op_monitor 
+	| op_next 
+	| op_on_error 
+	| op_open 
+	| op_other 
+	| op_out 
+	| op_post 
+	| op_read 
+	| op_readc 
+	| op_reade 
+	| op_readp 
+	| op_readpe 
+	| op_rel 
+	| op_reset 
+	| op_reset2 
+	| op_return 
+	| op_rolbk 
+	| op_select 
+	| op_setgt 
+	| op_setll 
+	| op_sorta 
+	| op_test 
+	| op_unlock 
+	| op_update 
+	| op_when 
+	| op_write 
+	| op_xml_into 
+	| op_xml_sax;
 op_acq: OP_ACQ OP_E? identifier identifier ;
 op_begsr: OP_BEGSR identifier ;
 op_callp: (OP_CALLP OP_E? )? identifier FREE_OPEN_PAREN (expression (FREE_COLON expression )* )? FREE_CLOSE_PAREN ;
@@ -255,7 +318,8 @@ op_reade: OP_READE OP_E? search_arg identifier (identifier )? ;
 op_readp: OP_READP OP_E? identifier (identifier )? ;
 op_readpe: OP_READPE OP_E? search_arg identifier (identifier )? ;
 op_rel: OP_REL OP_E? identifier identifier ;
-op_reset: OP_RESET OP_E? (identifier )? (identifier )? identifier ;
+op_reset: OP_RESET OP_E?  (identifier)? (identifier )? identifier ;
+op_reset2: OP_RESET OP_E? identifier  FREE_OPEN_PAREN FREE_OPERATION_MULT_NOSPACE?  FREE_CLOSE_PAREN ;
 op_return: OP_RETURN OP_E? identifier? ;
 op_rolbk: OP_ROLBK OP_E? ;
 op_select: OP_SELECT ;
@@ -379,6 +443,7 @@ indexed_identifier: free_identifier FREE_OPEN_PAREN expression FREE_CLOSE_PAREN;
 opCode: free_identifier;
 number: FREE_OPERATION_MINUS? FREE_NUMBER ;
 free_identifier: (continuedIdentifier | FREE_OPERATION_MULT_NOSPACE? FREE_ID | FREE_NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
+//free_identifier: (continuedIdentifier | FREE_ID | FREE_NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
 continuedIdentifier: FREE_ID (FREE_CONTINUATION | C_FREE_CONTINUATION_DOTS) FREE_ID ;
 		
 datatype: ID OPEN_PAREN NUMBER CLOSE_PAREN SEMI;
