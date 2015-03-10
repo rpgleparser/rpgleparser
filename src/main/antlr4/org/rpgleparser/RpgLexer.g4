@@ -25,7 +25,7 @@ H_SPEC_FIXED : {getCharPositionInLine()==5}? [hH] -> pushMode(H_SPEC_FREE) ;
 
 BLANK_LINE : {getCharPositionInLine()==5}? [ ]+ NEWLINE -> skip;
 COMMENTS : {getCharPositionInLine()>=5}? [ ][ ]*? '//' -> pushMode(FIXED_COMMENT_SPEC),skip ;
-EMPTY_LIBE : {getCharPositionInLine()>=5}? 
+EMPTY_LINE : {getCharPositionInLine()>=5}?
 	'                                                                           ' -> pushMode(FIXED_COMMENT_SPEC),skip ;
 	//Directives are not necessarily blank at pos 5
 DIRECTIVE : {getCharPositionInLine()>=5}? .[ ]*? '/' -> pushMode(DIRECTIVE_MODE) ;
