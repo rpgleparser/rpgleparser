@@ -200,8 +200,10 @@ space_directive: DIRECTIVE_SPACE (DIR_SPACE DIR_NUMBER)?;
 free_text: DIRECTIVE_FREE;
 trailing_ws: DIR_FREE_OTHER_TEXT;
 //title_directive: DIRECTIVE_TITLE DIR_SPACE title_text DIR_SPACE*;
-title_directive: DIRECTIVE_TITLE (DIR_SPACE* DIR_OTHER_TEXT)*;
-title_text: (DIR_SPACE | DIR_NUMBER | DIR_OTHER_TEXT) (DIR_NUMBER | DIR_OTHER_TEXT);
+//title_directive: DIRECTIVE_TITLE (DIR_SPACE* DIR_OTHER_TEXT)?;
+title_directive: DIRECTIVE_TITLE DIR_SPACE title_text*;
+//title_text: (DIR_SPACE | DIR_NUMBER | DIR_OTHER_TEXT) (DIR_NUMBER | DIR_OTHER_TEXT);
+title_text: (DIR_SPACE | DIR_NUMBER | DIR_OTHER_TEXT);
  
 //------- Auto from here
 op: op_acq 
