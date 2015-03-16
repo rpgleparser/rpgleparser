@@ -24,6 +24,7 @@ import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.Assert.assertEquals;
 
 public class TestUtils {
+    static Vocabulary vocabulary;
 
     public static String padSourceLines(String input, boolean isSnippet) {
         StringBuilder output = new StringBuilder();
@@ -52,11 +53,14 @@ public class TestUtils {
     public static List<CommonToken> runX(String inputstr, final List<String> errors, final boolean gui) {
         ANTLRInputStream input = new ANTLRInputStream(inputstr);
         RpgLexer lexer = new RpgLexer(input);
+        vocabulary = lexer.getVocabulary();
         TokenStream tokens = new CommonTokenStream(lexer);
         final RpgParser parser = new RpgParser(tokens);
 
         if (errors != null) {
-            parser.addErrorListener(new ErrorTokenListener(errors, parser));
+            ErrorListener errorListener = new ErrorListener(errors, lexer, parser);
+            lexer.addErrorListener(errorListener);
+            parser.addErrorListener(errorListener);
         }
 
         RpgParser.RContext entry = parser.r();
@@ -143,38 +147,33 @@ public class TestUtils {
         Iterator<CommonToken> commonTokens = parsedTokens.iterator();
         Iterator<String> stringTokens = Arrays.asList(expectedTokens).iterator();
 
-        while (commonTokens.hasNext() && stringTokens.hasNext()) {
+        while (commonTokens.hasNext() || stringTokens.hasNext()) {
             String message = toString(parsedTokens);
-            String expected = stringTokens.next().trim();
-            String parsed = commonTokens.next().getText().trim();
+            String expected = stringTokens.hasNext() ? stringTokens.next().trim() : null;
+            String parsed = commonTokens.hasNext() ? commonTokens.next().getText().trim() : null;
             assertEquals(message, expected, parsed);
-        }
-
-        // TODO fix the tests that break when we check for trailing tokens
-        if(stringTokens.hasNext()){
-        	assertThat("Less tokens parsed than expected. Expected[" + stringTokens.next() + "]", false);
-        }
-        if(commonTokens.hasNext()){
-        	assertThat("More tokens parsed than expected. Actual[" + commonTokens.next() + "]", false);
         }
     }
 
     public static String toString(List<CommonToken> tokenList) {
-        final StringBuilder b = new StringBuilder();
-        final Iterator<CommonToken> toks = tokenList.iterator();
-        while (toks.hasNext()) {
-            b.append(",\"").append(toks.next().getText().trim()).append("\"");
+        final StringBuilder stringTokens = new StringBuilder();
+        final StringBuilder tokenNames = new StringBuilder();
+        for (CommonToken token : tokenList) {
+            stringTokens.append(",\"").append(token.getText().trim()).append("\"");
+            tokenNames.append(", ").append(vocabulary.getDisplayName(token.getType()));
         }
-        return b.toString().substring(1);
+        return stringTokens.substring(1) + "\n" + tokenNames.substring(1);
     }
 
-    private static class ErrorTokenListener implements ANTLRErrorListener {
+    private static class ErrorListener implements ANTLRErrorListener {
 
         private final List<String> errors;
+        private final RpgLexer lexer;
         private final RpgParser parser;
 
-        public ErrorTokenListener(List<String> errors, RpgParser parser) {
+        public ErrorListener(List<String> errors, RpgLexer lexer, RpgParser parser) {
             this.errors = errors;
+            this.lexer = lexer;
             this.parser = parser;
         }
 
@@ -182,7 +181,11 @@ public class TestUtils {
         public void syntaxError(Recognizer<?, ?> recognizer,
                                 Object offendingSymbol, int line, int charPositionInLine,
                                 String msg, RecognitionException e) {
-            errors.add("Line:" + line + " " + msg + parser.getDFAStrings());
+            if (recognizer instanceof RpgParser) {
+                errors.add("Line: " + line + " " + msg + parser.getDFAStrings());
+            } else if (recognizer instanceof RpgLexer) {
+                errors.add("Line: " + line + " " + msg);
+            }
         }
 
         @Override
