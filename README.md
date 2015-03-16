@@ -9,3 +9,5 @@
 
 ## Contributors
 [David Gregory](https://github.com/DavidGregory084)
+
+[Eric Wilson](https://github.com/TheEricWilson)
