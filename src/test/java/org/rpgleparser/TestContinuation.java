@@ -12,7 +12,7 @@ public class TestContinuation {
         String inputString =
                 "x = a + \r\n" +
                         "b;";
-        expectTokensForFreeSnippet(inputString, "x", "=", "a", "+", "b", ";", "");
+        expectTokensForFreeSnippet(inputString, "x", "=", "a", "+", "b", ";");
     }
 
     @Test
@@ -20,7 +20,7 @@ public class TestContinuation {
         String inputString =
                 "x = 'ab+\r\n" +
                         "c';";
-        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";", "");
+        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";");
     }
 
     @Test
@@ -28,7 +28,7 @@ public class TestContinuation {
         String inputString =
                 "x = 'ab+\r\n" +
                         "             c';";
-        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";", "");
+        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";");
     }
 
     @Test
@@ -36,7 +36,7 @@ public class TestContinuation {
         String inputString =
                 "x = 'ab-\r\n" +
                         "c';";
-        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";", "");
+        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class TestContinuation {
         String inputString =
                 "x = 'ab-\r\n" +
                         "             c';";
-        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";", "");
+        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";");
     }
 
     @Test
