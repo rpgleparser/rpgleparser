@@ -58,9 +58,10 @@ public class TestC {
     public void testCSpec_ENTRYPLIST() {
         String inputString =
                 "     C     *ENTRY        PLIST\r\n" +
-                        "     C                   PARM                    TODAY";
+                "     C                   PARM                    TODAY";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "*ENTRY", "PLIST");
+                "C", "", "", "*ENTRY", "PLIST","","","","","","\r\n",
+        		"C", "", "", "", "PARM","","TODAY","","","","\r\n");
     }
 
     @Test
@@ -76,7 +77,7 @@ public class TestC {
         String inputString =
                 "     C                   TIME                    CTIME             6 0\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "TIME", "", "CTIME");
+                "C", "", "", "", "TIME", "", "CTIME","6","0","","\r\n");
     }
 
     @Test
@@ -84,7 +85,7 @@ public class TestC {
         String inputString =
                 "     C                   MOVEL     'P'           B8BATX\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "MOVEL", "'P'", "B8BATX");
+                "C", "", "", "", "MOVEL", "'P'", "B8BATX","","","","\r\n");
     }
 
     @Test
