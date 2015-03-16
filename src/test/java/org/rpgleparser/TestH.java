@@ -10,7 +10,7 @@ public class TestH {
     @Test
     public void testFixedH() {
         String inputString = "     H DFTACTGRP(*NO) ACTGRP(*CALLER)";
-        expectTokensForSourceLines(inputString, "H", "DFTACTGRP", "(", "*NO", ")", "ACTGRP");
+        expectTokensForSourceLines(inputString, "H", "DFTACTGRP", "(", "*NO", ")", "ACTGRP", "(", "*CALLER", ")","\r\n");
     }
 
     @Test
