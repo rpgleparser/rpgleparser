@@ -26,7 +26,7 @@ public class TestFREE {
         String inputString =
                 "             cmdlength = 123;     \r\n";
         expectTokensForSourceLines(inputString,
-                "cmdlength", "=", "123", ";", "");
+                "cmdlength", "=", "123", ";");
     }
 
     @Test
@@ -46,7 +46,7 @@ public class TestFREE {
         String inputString =
                 "         Exec SQL x=1;\r\n";
         expectTokensForSourceLines(inputString,
-                "Exec SQL", "x=1", ";", "");
+                "Exec SQL", "x=1", ";");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class TestFREE {
         String inputString =
                 "             cmdlength = '123';     \r\n";
         expectTokensForSourceLines(inputString,
-                "cmdlength", "=", "'", "123", "'", ";", "");
+                "cmdlength", "=", "'", "123", "'", ";");
     }
 
     @Test
@@ -101,7 +101,7 @@ public class TestFREE {
         expectTokensForSourceLines(inputString,
                 "cmdstring", "=", "'",
                 "CRTDTAARA DTAARA(QTEMP/MYTWENTY1) TYPE(*CHAR) LEN(21)", "'",
-                ";", "");
+                ";");
     }
 
     @Test
@@ -117,7 +117,7 @@ public class TestFREE {
         String inputString =
                 "         if %parms > 2;";
         expectTokensForSourceLines(inputString,
-                "if", "%parms", ">", "2");
+                "if", "%parms", ">", "2",";");
     }
 
     @Test
@@ -126,7 +126,7 @@ public class TestFREE {
                 "        Destination = PCINFO.Destination;";
         expectTokensForSourceLines(inputString,
                 "Destination", "=", "PCINFO", ".",
-                "Destination");
+                "Destination",";");
     }
 
     @Test
@@ -134,7 +134,7 @@ public class TestFREE {
         String inputString =
                 "        *IN99 = NOT %FOUND;";
         expectTokensForSourceLines(inputString,
-                "*IN99", "=", "NOT", "%FOUND");
+                "*IN99", "=", "NOT", "%FOUND",";");
     }
 
     @Test
@@ -145,7 +145,7 @@ public class TestFREE {
         expectTokensForSourceLines(inputString,
                 "IF", "ARNTCT", "=", "'", "B", "'", "OR",
                 "ARNTCT", "=", "'", "C", "'", "OR", "ARNTCT", "=", "'", "D",
-                "'", ";", "");
+                "'", ";");
     }
 
     @Test
@@ -156,7 +156,7 @@ public class TestFREE {
         expectTokensForSourceLines(inputString,
                 "IF", "ARNTCT", "=", "'", "B", "'", "OR",
                 "ARNTCT", "=", "'", "C", "'", "OR", "ARNTCT", "=", "'", "D",
-                "'", ";", "");
+                "'", ";");
     }
 
     @Test
@@ -165,7 +165,7 @@ public class TestFREE {
                 "       %subst(MARK3: 1: 3) = '613';";
         expectTokensForSourceLines(inputString,
                 "%subst", "(", "MARK3", ":", "1", ":", "3",
-                ")", "=", "'", "613", "'", ";", "");
+                ")", "=", "'", "613", "'", ";");
 
     }
 
@@ -175,7 +175,7 @@ public class TestFREE {
                 "       DATA ='Loan No:  ' + %TRIM(LOANNO);";
         expectTokensForSourceLines(inputString,
                 "DATA", "=", "'", "Loan No:", "'", "+",
-                "%TRIM", "(", "LOANNO", ")", ";", "");
+                "%TRIM", "(", "LOANNO", ")", ";");
     }
 
     @Test
@@ -184,7 +184,7 @@ public class TestFREE {
                 "InstPct = A1IPCT * .01 * I;";
         expectTokensForFreeSnippet(inputString,
                 "InstPct", "=", "A1IPCT", "*", ".01", "*", "I",
-                ";", "");
+                ";");
     }
 
     @Test
@@ -193,7 +193,7 @@ public class TestFREE {
                 "Temp60 = %INT((TermPrem * InstPct) + .5);";
         expectTokensForFreeSnippet(inputString,
                 "Temp60", "=", "%INT", "(", "(", "TermPrem",
-                "*", "InstPct", ")", "+", ".5", ")", ";", "");
+                "*", "InstPct", ")", "+", ".5", ")", ";");
     }
 
     @Test
@@ -201,7 +201,7 @@ public class TestFREE {
         String inputString =
                 "%INT(1.5);";
         expectTokensForFreeSnippet(inputString,
-                "%INT", "(", "1.5", ")", ";", "");
+                "%INT", "(", "1.5", ")", ";");
     }
 
     @Test
@@ -218,7 +218,7 @@ public class TestFREE {
                 "InstallPrem = (TermPrem * InstPct) - PremApplied;";
         expectTokensForFreeSnippet(inputString,
                 "InstallPrem", "=", "(", "TermPrem", "*",
-                "InstPct", ")", "-", "PremApplied", ";", "");
+                "InstPct", ")", "-", "PremApplied", ";");
     }
 
     @Test
@@ -227,7 +227,7 @@ public class TestFREE {
                 "Mths2Add = Months * (I - 1);";
         expectTokensForFreeSnippet(inputString,
                 "Mths2Add", "=", "Months", "*", "(", "I", "-",
-                "1", ")", ";", "");
+                "1", ")", ";");
     }
 
     @Test
@@ -246,7 +246,7 @@ public class TestFREE {
                 "CvtDate(ProcessDate: @DTE);";
         expectTokensForFreeSnippet(inputString,
                 "CvtDate", "(", "ProcessDate", ":", "@DTE",
-                ")", ";", "");
+                ")", ";");
     }
 
     @Test
@@ -254,7 +254,7 @@ public class TestFREE {
         String inputString =
                 "#1F2CD = PolicyType;";
         expectTokensForFreeSnippet(inputString,
-                "#1F2CD", "=", "PolicyType", ";", "");
+                "#1F2CD", "=", "PolicyType", ";");
     }
 
     @Test
@@ -262,7 +262,7 @@ public class TestFREE {
         String inputString =
                 "chain (PolicyNumber) AR1203B;";
         expectTokensForFreeSnippet(inputString,
-                "chain", "(", "PolicyNumber", ")", "AR1203B");
+                "chain", "(", "PolicyNumber", ")", "AR1203B",";");
     }
 
     @Test
@@ -270,7 +270,7 @@ public class TestFREE {
         String inputString =
                 "chain 'PolicyNumber' AR1203B;";
         expectTokensForFreeSnippet(inputString,
-                "chain", "'", "PolicyNumber", "'", "AR1203B", ";", "");
+                "chain", "'", "PolicyNumber", "'", "AR1203B", ";");
     }
 
     @Test
@@ -286,7 +286,7 @@ public class TestFREE {
         String inputString =
                 "IF DELETE = ' ';";
         expectTokensForFreeSnippet(inputString,
-                "IF", "DELETE", "=", "'", "", "'", ";", "");
+                "IF", "DELETE", "=", "'", "", "'", ";");
     }
 
     @Test
@@ -294,7 +294,7 @@ public class TestFREE {
         String inputString =
                 "EVAL IN = INSTAL;";
         expectTokensForFreeSnippet(inputString,
-                "EVAL", "IN", "=", "INSTAL", ";", "");
+                "EVAL", "IN", "=", "INSTAL", ";");
     }
 
     @Test
@@ -302,7 +302,7 @@ public class TestFREE {
         String inputString =
                 "TEMP14 = ZLNG(IN);";
         expectTokensForFreeSnippet(inputString,
-                "TEMP14", "=", "ZLNG", "(", "IN", ")", ";", "");
+                "TEMP14", "=", "ZLNG", "(", "IN", ")", ";");
     }
 
     @Test
@@ -310,7 +310,7 @@ public class TestFREE {
         String inputString =
                 "       DAYS = 5;                                                               // EFT DATE";
         expectTokensForFreeSnippet(inputString,
-                "DAYS", "=", "5", ";", "//", "EFT DATE", "");
+                "DAYS", "=", "5", ";");
     }
 
     @Test
@@ -320,7 +320,7 @@ public class TestFREE {
                         + "          AND MHTRPR = 'N';";
         expectTokensForFreeSnippet(inputString,
                 "IF", "*IN78", "=", "*OFF", "AND", "MHTRPR",
-                "=", "'", "N", "'", ";", "");
+                "=", "'", "N", "'", ";");
     }
 
     @Test
@@ -336,7 +336,7 @@ public class TestFREE {
         String inputString =
                 "EVAL TEST = 'N';";
         expectTokensForFreeSnippet(inputString,
-                "EVAL", "TEST", "=", "'", "N", "'", ";", "");
+                "EVAL", "TEST", "=", "'", "N", "'", ";");
     }
 
     @Test
@@ -345,7 +345,7 @@ public class TestFREE {
                 "%SUBST(COPYTO:2:18) = ZCPY(A);";
         expectTokensForFreeSnippet(inputString,
                 "%SUBST", "(", "COPYTO", ":", "2", ":", "18",
-                ")", "=", "ZCPY", "(A)", ";", "");
+                ")", "=", "ZCPY", "(A)", ";");
     }
 
     @Test
@@ -354,7 +354,7 @@ public class TestFREE {
                 "DS1802 = %TRIMR(DS1802) + '-';";
         expectTokensForFreeSnippet(inputString,
                 "DS1802", "=", "%TRIMR", "(", "DS1802", ")",
-                "+", "'", "-", "'", ";", "");
+                "+", "'", "-", "'", ";");
     }
 
     @Test
