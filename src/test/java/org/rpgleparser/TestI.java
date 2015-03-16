@@ -9,7 +9,7 @@ public class TestI {
     @Test
     public void testRecordId() {
         String inputString = "     IAR1203B\r\n";
-        expectTokensForSourceLines(inputString, "I", "AR1203B", "");
+        expectTokensForSourceLines(inputString, "I", "AR1203B", "", "", "", "\r\n");
     }
 
     @Test

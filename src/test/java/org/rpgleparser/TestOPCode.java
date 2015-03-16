@@ -10,37 +10,37 @@ public class TestOPCode {
     @Test
     public void testACQ() {
         String inputString = "           ACQ(E) device workstnfile;     \r\n";
-        expectTokensForSourceLines(inputString, "ACQ", "(E)", "device", "workstnfile");
+        expectTokensForSourceLines(inputString, "ACQ", "(E)", "device", "workstnfile",";");
     }
 
     @Test
     public void testIN() {
         String inputString = "           in(e) *lock Program21;     \r\n";
-        expectTokensForSourceLines(inputString, "in", "(e)", "*lock", "Program21");
+        expectTokensForSourceLines(inputString, "in", "(e)", "*lock", "Program21",";");
     }
 
     @Test
     public void testDOW() {
         String inputString = "           dow *in99 = *on;        \r\n";
-        expectTokensForSourceLines(inputString, "dow", "*in99", "=");
+        expectTokensForSourceLines(inputString, "dow", "*in99", "=","*on",";");
     }
 
     @Test
     public void testREADE() {
         String inputString = "      READE TODAY AR1007D;";
-        expectTokensForSourceLines(inputString, "READE", "TODAY", "AR1007D");
+        expectTokensForSourceLines(inputString, "READE", "TODAY", "AR1007D",";");
     }
 
     @Test
     public void testFOR() {
         String inputString = "for Ptr = 1 to 40;";
-        expectTokensForFreeSnippet(inputString, "for", "Ptr", "=", "1", "to", "40", ";", "");
+        expectTokensForFreeSnippet(inputString, "for", "Ptr", "=", "1", "to", "40", ";");
     }
 
     @Test
     public void testSETLL() {
         String inputString = "setll (Term: State: EffDate) AR1014D; // position on db";
-        expectTokensForFreeSnippet(inputString, "setll", "(", "Term", ":", "State", ":", "EffDate", ")", "AR1014D", ";", "//", "position on db", "");
+        expectTokensForFreeSnippet(inputString, "setll", "(", "Term", ":", "State", ":", "EffDate", ")", "AR1014D", ";");
     }
 
     @Test

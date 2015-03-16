@@ -151,8 +151,12 @@ public class TestUtils {
         }
 
         // TODO fix the tests that break when we check for trailing tokens
-        // assertThat("Less tokens parsed than expected.", !stringTokens.hasNext());
-        // assertThat("More tokens parsed than expected.", !commonTokens.hasNext());
+        if(stringTokens.hasNext()){
+        	assertThat("Less tokens parsed than expected. Expected[" + stringTokens.next() + "]", false);
+        }
+        if(commonTokens.hasNext()){
+        	assertThat("More tokens parsed than expected. Actual[" + commonTokens.next() + "]", false);
+        }
     }
 
     public static String toString(List<CommonToken> tokenList) {
