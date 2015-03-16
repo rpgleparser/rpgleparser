@@ -1,93 +1,60 @@
 package org.rpgleparser;
 
-import org.antlr.v4.runtime.CommonToken;
 import org.junit.Test;
-import org.rpgleparser.utils.TestUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.collection.IsEmptyCollection.empty;
-import static org.rpgleparser.utils.TestUtils.assertTokens;
+import static org.rpgleparser.utils.TestUtils.expectTokensForFreeSnippet;
+import static org.rpgleparser.utils.TestUtils.expectTokensForSourceLines;
 
 public class TestContinuation {
 
     @Test
     public void testFree_Continuation_Not1() {
-        String inputstr = TestUtils.pad280Free(
+        String inputString =
                 "x = a + \r\n" +
-                        "b;");
-        List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
-        assertThat(errors, is(empty()));
-        assertTokens(tokenList, "x", "=", "a", "+", "b", ";", "");
+                        "b;";
+        expectTokensForFreeSnippet(inputString, "x", "=", "a", "+", "b", ";", "");
     }
 
     @Test
     public void testFree_Continuation_FreePlus1() {
-        String inputstr = TestUtils.pad280Free(
+        String inputString =
                 "x = 'ab+\r\n" +
-                        "c';");
-        //System.out.println(inputstr);
-        List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
-        assertThat(errors, is(empty()));
-
-        assertTokens(tokenList, "x", "=", "'", "ab", "c", "'", ";", "");
+                        "c';";
+        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";", "");
     }
 
     @Test
     public void testFree_Continuation_FreePlus2() {
-        String inputstr = TestUtils.pad280Free(
+        String inputString =
                 "x = 'ab+\r\n" +
-                        "             c';");
-        //System.out.println(inputstr);
-        List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
-        assertThat(errors, is(empty()));
-
-        assertTokens(tokenList, "x", "=", "'", "ab", "c", "'", ";", "");
+                        "             c';";
+        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";", "");
     }
 
     @Test
     public void testFree_Continuation_FreeMinus1() {
-        String inputstr = TestUtils.pad280Free(
+        String inputString =
                 "x = 'ab-\r\n" +
-                        "c';");
-        //System.out.println(inputstr);
-        List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
-        assertThat(errors, is(empty()));
-        assertTokens(tokenList, "x", "=", "'", "ab", "c", "'", ";", "");
+                        "c';";
+        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";", "");
     }
 
     @Test
     public void testFree_Continuation_FreeMinus2() {
-        String inputstr = TestUtils.pad280Free(
+        String inputString =
                 "x = 'ab-\r\n" +
-                        "             c';");
-        //System.out.println(inputstr);
-        List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
-        assertThat(errors, is(empty()));
-
-        assertTokens(tokenList, "x", "=", "'", "ab", "c", "'", ";", "");
+                        "             c';";
+        expectTokensForFreeSnippet(inputString, "x", "=", "'", "ab", "c", "'", ";", "");
     }
 
     @Test
     public void testCSpec_EVAL_continuation() {
-        String inputstr =
+        String inputString =
                 "     C                   eval      DATA = 'Current Policy Term:  ' +\r\n" +
                         "     C                                    %trim(EffDateChr) + ' to ' +\r\n" +
                         "     C                                    %trim(ExpDateChr)\r\n";
-        inputstr = TestUtils.pad280(inputstr);
-        List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
-        assertThat(errors, is(empty()));
-      //  TestUtils.showToks(tokenList);
-        assertTokens(tokenList, "C", "", "", "", "eval", "DATA", "=", "'",
+
+        expectTokensForSourceLines(inputString, "C", "", "", "", "eval", "DATA", "=", "'",
                 "Current Policy Term:", "'", "+", "%trim", "(", "EffDateChr",
                 ")", "+", "'", "to", "'", "+", "%trim", "(", "ExpDateChr", ")",
                 "");
@@ -95,35 +62,25 @@ public class TestContinuation {
 
     @Test
     public void testCSpec_EVAL_continuation2() {
-        String inputstr =
+        String inputString =
                 "     C                   EVAL      A = (B*D)/ C +\r\n" +
                         "     C                             24\r\n";
-        inputstr = TestUtils.pad280(inputstr);
-        List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
-        assertThat(errors, is(empty()));
-        assertTokens(tokenList, "C", "", "", "", "EVAL", "A", "=", "(", "B", "*", "D", ")", "/", "C", "+", "24", "");
+        expectTokensForSourceLines(inputString, "C", "", "", "", "EVAL", "A", "=", "(", "B", "*", "D", ")", "/", "C", "+", "24", "");
     }
 
     @Test
     public void testCSpec_EVAL_continuation3() {
-        String inputstr =
+        String inputString =
                 "     C                   eval      InstallDue = ZAmountDue(Ptr)\r\n" +
                         "     C                                        - ZAmountPaid(Ptr)\r\n" +
                         "     C                                        + ZServChrgDue(Ptr)\r\n" +
                         "     C                                        - ZServChrgPaid(Ptr)\r\n" +
                         "     C                   eval      InstClosed = ZInstClosed(Ptr)\r\n";
-        inputstr = TestUtils.pad280(inputstr);
-        List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.runXQuietly(inputstr, errors);
-        assertThat(errors, is(empty()));
-        assertTokens(tokenList, "C", "", "", "", "eval", "InstallDue", "=",
+        expectTokensForSourceLines(inputString, "C", "", "", "", "eval", "InstallDue", "=",
                 "ZAmountDue", "(", "Ptr", ")", "-", "ZAmountPaid", "(", "Ptr",
                 ")", "+", "ZServChrgDue", "(", "Ptr", ")", "-",
                 "ZServChrgPaid", "(", "Ptr", ")", "", "C", "", "", "", "eval",
                 "InstClosed", "=", "ZInstClosed", "(", "Ptr", ")", "");
     }
-
-
 }
 

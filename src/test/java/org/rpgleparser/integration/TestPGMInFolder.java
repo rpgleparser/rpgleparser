@@ -17,13 +17,10 @@ public class TestPGMInFolder {
     @Test
     public void testOneRpgSource() throws Exception {
         String rpgsource = TestUtils.loadFileByPath(getResourcePath("./dataqueue.rpgle"));
-        rpgsource = TestUtils.pad280(rpgsource);
-        //System.out.println(rpgsource);
-        System.out.println("---------------------------------------");
+        rpgsource = TestUtils.padSourceLines(rpgsource, false);
         List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.runXQuietly(rpgsource, errors);
+        List<CommonToken> tokenList = TestUtils.parseInput(rpgsource, errors);
         assertThat(errors, is(empty()));
-        //System.out.println(tokenList);
     }
 
     @Test
@@ -35,21 +32,13 @@ public class TestPGMInFolder {
         for (File file : dir.listFiles()) {
             if (isRpgSourceFile(file)) {
                 String rpgsource = TestUtils.loadFile(file);
-                rpgsource = TestUtils.pad280(rpgsource);
-                System.out.print("\r\n" + file + ":");
-                List<CommonToken> tokenList = TestUtils.runXQuietly(rpgsource, errors);
-                files.add(file.getName());
-
+                rpgsource = TestUtils.padSourceLines(rpgsource, false);
+                List<CommonToken> tokenList = TestUtils.parseInput(rpgsource, errors);
                 if (errors.size() > 0) {
-                    //System.out.println(tokenList);
                     break;
                 }
             }
         }
-        for (String file : files) {
-            System.out.println("\t" + file);
-        }
-
         assertThat(errors, is(empty()));
     }
 
