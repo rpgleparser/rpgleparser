@@ -31,7 +31,7 @@ public class TestC {
                 "     C     FACTOR1       XXAL      FACTOR2\r\n";
         inputString = TestUtils.padSourceLines(inputString, false);
         List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.parseInput(inputString, errors);
+        List<CommonToken> tokenList = TestUtils.getParsedTokens(inputString, errors);
         assertThat(errors, is(empty()));
         assertEquals(RpgLexer.C_FACTOR, tokenList.get(3).getType());
         assertEquals(RpgLexer.C_FACTOR, tokenList.get(5).getType());
@@ -46,7 +46,7 @@ public class TestC {
 //		String inputString="     C     FACTOR1       EVAL      FACTOR2 is really long long long\r\n";
 //		inputString = TestUtils.padSourceLines(inputString);
 //		List<String> errors = new ArrayList<String>();
-//      List<CommonToken> tokenList = TestUtils.parseInput(inputString, errors);
+//      List<CommonToken> tokenList = TestUtils.getParsedTokens(inputString, errors);
 //      assertThat(errors, is(empty()));
 //		assertEquals(RpgLexer.C_FACTOR,tokenList.get(4).getType());
 //		assertEquals(RpgLexer.C2_FACTOR2,tokenList.get(6).getType());

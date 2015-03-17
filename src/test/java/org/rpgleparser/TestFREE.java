@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
-import static org.rpgleparser.utils.TestUtils.expectTokensForFreeSnippet;
-import static org.rpgleparser.utils.TestUtils.expectTokensForSourceLines;
+import static org.rpgleparser.utils.TestUtils.*;
 
 public class TestFREE {
 
@@ -527,7 +526,7 @@ public class TestFREE {
     public void testDCL_DS_Err() {
         String inputString = " DCL-DS * N;\r\n" + "END-DS;";
         List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.parseInput(inputString, errors);
+        List<CommonToken> tokenList = TestUtils.getParsedTokens(inputString, errors);
         assertTrue("Errors expected", errors.size() > 0);
 
     }
@@ -569,4 +568,11 @@ public class TestFREE {
                 "TOADDR", ")", ";", "END-PI", ";");
     }
 
+    @Test
+    public void testArithmeticTree() {
+        String inputString =
+                "i = 1 + 2;";
+        expectTreeForFreeSnippet(inputString,
+                "(r (free (baseExpression (op (op_eval (assignmentExpression (expression (identifier (free_identifier i))) = (expression (expression (number 1)) + (expression (number 2))))))) ;))");
+    }
 }

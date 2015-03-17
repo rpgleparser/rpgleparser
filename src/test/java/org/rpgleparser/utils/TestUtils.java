@@ -42,16 +42,32 @@ public class TestUtils {
         return output.toString();
     }
 
-    public static List<CommonToken> parseInput(String inputstr, final List<String> errors) {
-        return runX(inputstr, errors, false);
+    public static List<CommonToken> getParsedTokens(String inputstr, final List<String> errors) {
+        return parseAndGetTokens(inputstr, errors, false);
     }
 
     public static List<CommonToken> showParseTree(String inputstr) {
-        return runX(inputstr, null, true);
+        return parseAndGetTokens(inputstr, null, true);
     }
 
-    public static List<CommonToken> runX(String inputstr, final List<String> errors, final boolean gui) {
-        ANTLRInputStream input = new ANTLRInputStream(inputstr);
+    private static List<CommonToken> parseAndGetTokens(String inputString, final List<String> errors, final boolean gui) {
+        final RpgParser parser = initialiseParser(inputString, errors);
+
+        RpgParser.RContext parseTree = parser.r();
+        List<CommonToken> tokenList = new ArrayList<CommonToken>();
+        for (int i = 0; i < parseTree.getChildCount(); i++) {
+            fillTokenList(parseTree.getChild(i), tokenList);
+        }
+
+        if (gui) {
+            showGUI(parseTree, parser);
+        }
+
+        return tokenList;
+    }
+
+    private static RpgParser initialiseParser(String inputString, List<String> errors) {
+        ANTLRInputStream input = new ANTLRInputStream(inputString);
         RpgLexer lexer = new RpgLexer(input);
         vocabulary = lexer.getVocabulary();
         TokenStream tokens = new CommonTokenStream(lexer);
@@ -62,37 +78,34 @@ public class TestUtils {
             lexer.addErrorListener(errorListener);
             parser.addErrorListener(errorListener);
         }
-
-        RpgParser.RContext entry = parser.r();
-        List<CommonToken> tokenList = new ArrayList<CommonToken>();
-        for (int i = 0; i < entry.getChildCount(); i++) {
-            fillTokenList(entry.getChild(i), tokenList);
-        }
-
-        if (gui) {
-            for (CommonToken token : tokenList) {
-                System.out.println(token + " - " + (token.getType() > 0 ? lexer.getRuleNames()[token.getType() - 1] : ""));
-            }
-            String tree = entry.toStringTree(parser).replaceAll("\\\\r\\\\n", "\\r\\n\r\n");
-            System.out.println(tree);
-            if (tree.length() < 1000)
-                showGUI(entry, parser);
-        }
-        return tokenList;
+        return parser;
     }
 
-    private static void showGUI(RContext tree, RpgParser parser) {
+    private static void showGUI(RContext parseTree, RpgParser parser) {
         JDialog frame = new JDialog();
-        JPanel panel = new JPanel();
-        TreeViewer viewr = new TreeViewer(Arrays.asList(
-                parser.getRuleNames()), tree);
-        viewr.setAutoscrolls(true);
-        viewr.setScale(1.5);//scale a little
+        TreeViewer viewer = initialiseTreeViewer(parseTree, parser);
+        JScrollPane viewport = initialiseViewport(viewer);
+        initialiseFrame(frame, viewport);
+    }
 
+    private static JScrollPane initialiseViewport(TreeViewer viewer) {
         JScrollPane viewport = new JScrollPane();
         viewport.setSize(100, 100);
-        viewport.setViewportView(viewr);
+        viewport.setViewportView(viewer);
+        return viewport;
+    }
 
+    private static TreeViewer initialiseTreeViewer(RContext parseTree, RpgParser parser) {
+        TreeViewer viewer = new TreeViewer(
+                Arrays.asList(parser.getRuleNames()),
+                parseTree
+        );
+        viewer.setAutoscrolls(true);
+        viewer.setScale(1.5);
+        return viewer;
+    }
+
+    private static void initialiseFrame(JDialog frame, JScrollPane viewport) {
         frame.add(viewport);
         frame.setSize(1100, 800);
         frame.setLocation(new Point(200, 100));
@@ -101,7 +114,7 @@ public class TestUtils {
         frame.setVisible(true);
     }
 
-    static void fillTokenList(ParseTree parseTree, List<CommonToken> tokenList) {
+    private static void fillTokenList(ParseTree parseTree, List<CommonToken> tokenList) {
         for (int i = 0; i < parseTree.getChildCount(); i++) {
             ParseTree payload = parseTree.getChild(i);
 
@@ -136,9 +149,27 @@ public class TestUtils {
         assertParsedTokens(paddedInput, expectedTokens);
     }
 
+    public static void expectTreeForSourceLines(String input, String stringTree) {
+        String paddedInput = TestUtils.padSourceLines(input, false);
+        assertTree(paddedInput, stringTree);
+    }
+
+    public static void expectTreeForFreeSnippet(String input, String stringTree) {
+        String paddedInput = TestUtils.padSourceLines(input, true);
+        assertTree(paddedInput, stringTree);
+    }
+
+    private static void assertTree(String paddedInput, String stringTree) {
+        List<String> errors = new ArrayList<String>();
+        RpgParser parser = initialiseParser(paddedInput, errors);
+        ParseTree parseTree = parser.r();
+        assertThat(errors, is(empty()));
+        assertEquals("The parse trees do not match", stringTree, parseTree.toStringTree(parser));
+    }
+
     private static void assertParsedTokens(String paddedInput, String[] expectedTokens) {
         List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.parseInput(paddedInput, errors);
+        List<CommonToken> tokenList = getParsedTokens(paddedInput, errors);
         assertThat(errors, is(empty()));
         assertTokens(tokenList, expectedTokens);
     }

@@ -19,7 +19,7 @@ public class TestPGMInFolder {
         String rpgsource = TestUtils.loadFileByPath(getResourcePath("./dataqueue.rpgle"));
         rpgsource = TestUtils.padSourceLines(rpgsource, false);
         List<String> errors = new ArrayList<String>();
-        List<CommonToken> tokenList = TestUtils.parseInput(rpgsource, errors);
+        List<CommonToken> tokenList = TestUtils.getParsedTokens(rpgsource, errors);
         assertThat(errors, is(empty()));
     }
 
@@ -33,7 +33,7 @@ public class TestPGMInFolder {
             if (isRpgSourceFile(file)) {
                 String rpgsource = TestUtils.loadFile(file);
                 rpgsource = TestUtils.padSourceLines(rpgsource, false);
-                List<CommonToken> tokenList = TestUtils.parseInput(rpgsource, errors);
+                List<CommonToken> tokenList = TestUtils.getParsedTokens(rpgsource, errors);
                 if (errors.size() > 0) {
                     break;
                 }
