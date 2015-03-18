@@ -337,7 +337,8 @@ C_OP_AND_EXTNDR: {getCharPositionInLine()==25}? WORD5 WORD5;
 //C_FACTOR: {getCharPositionInLine()==49}? -->RESULT
 C_FIELD_LENGTH: {getCharPositionInLine()==63}? [ 0-9][ 0-9][ 0-9][ 0-9][ 0-9];
 C_DECIMAL_POSITIONS: {getCharPositionInLine()==68}? [ 0-9][ 0-9];
-C_RESULTING_INDICATORS: {getCharPositionInLine()==70}? IND_FRAG IND_FRAG IND_FRAG;
+C_RESULTING_INDICATOR: {getCharPositionInLine()==70 || getCharPositionInLine()==72 
+		|| getCharPositionInLine()==74}? IND_FRAG ;
 C_WS : {getCharPositionInLine()>=76}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
 C_COMMENTS : {getCharPositionInLine()>=80}? ~[\r\n]+  ; // skip spaces, tabs, newlines
 C_EOL : NEWLINE -> popMode;
