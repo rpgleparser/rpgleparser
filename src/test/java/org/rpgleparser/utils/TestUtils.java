@@ -10,6 +10,7 @@ import org.rpgleparser.RpgParser;
 import org.rpgleparser.RpgParser.RContext;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,13 +27,13 @@ import static org.junit.Assert.assertEquals;
 public class TestUtils {
     static Vocabulary vocabulary;
 
-    public static String padSourceLines(String input, boolean isSnippet) {
+    public static String padSourceLines(String input, boolean isFreeSnippet) {
         StringBuilder output = new StringBuilder();
         String[] lines = input.split("\\r?\\n");
         String lineStart = "        ";
 
         for (String line : lines) {
-            if (isSnippet && !line.startsWith(lineStart)) {
+            if (isFreeSnippet && !line.startsWith(lineStart)) {
                 line = lineStart + line;
             }
             output.append(String.format("%-112s", line))
@@ -46,7 +47,16 @@ public class TestUtils {
         return parseAndGetTokens(inputstr, errors, false);
     }
 
-    public static List<CommonToken> showParseTree(String inputstr) {
+    /**
+     * 
+     * @param inputstr - RPG source line(s)
+     * @param isFreeSnippet  - true for Free syntax, false for Fixed, null for 'no auto padding'
+     * @return list of Tokens
+     */
+    public static List<CommonToken> showParseTree(String inputstr, Boolean isFreeSnippet) {
+    	if(isFreeSnippet != null){
+    		inputstr=padSourceLines(inputstr,isFreeSnippet.booleanValue());
+    	}
         return parseAndGetTokens(inputstr, null, true);
     }
 
@@ -110,7 +120,7 @@ public class TestUtils {
         frame.setSize(1100, 800);
         frame.setLocation(new Point(200, 100));
         frame.setModal(true);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
 

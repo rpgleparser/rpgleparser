@@ -121,8 +121,15 @@ cspec_fixed: C_SPEC_FIXED
 cspec_fixed_sql: C_SPEC_FIXED_SQL
 	C_SQL_TEXT+
 	C_SQL_END;
-cspec_fixed_standard: C_OP_AND_EXTNDR C_FACTOR C_FACTOR C_FIELD_LENGTH 
-	C_DECIMAL_POSITIONS C_RESULTING_INDICATORS cspec_fixed_comments? C_EOL;
+cspec_fixed_standard: operation=C_OP_AND_EXTNDR 
+	factor2=C_FACTOR 
+	result=C_FACTOR 
+	len=C_FIELD_LENGTH 
+	decimalPositions=C_DECIMAL_POSITIONS 
+	hi=C_RESULTING_INDICATOR 
+	lo=C_RESULTING_INDICATOR
+	eq=C_RESULTING_INDICATOR 
+	cspec_fixed_comments? C_EOL;
 cspec_fixed_comments:C_COMMENTS;		
 //cspec_fixed_x2: C_OP_AND_EXTNDR_X2 C2_FACTOR2_CONT* C2_FACTOR2 C_EOL;
 cspec_fixed_x2: C_OP_AND_EXTNDR_X2 c_free C_FREE_NEWLINE;

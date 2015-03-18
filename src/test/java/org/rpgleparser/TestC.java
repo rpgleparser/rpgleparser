@@ -60,8 +60,8 @@ public class TestC {
                 "     C     *ENTRY        PLIST\r\n" +
                 "     C                   PARM                    TODAY";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "*ENTRY", "PLIST","","","","","","\r\n",
-        		"C", "", "", "", "PARM","","TODAY","","","","\r\n");
+                "C", "", "", "*ENTRY", "PLIST","","","","","", "", "","\r\n",
+        		"C", "", "", "", "PARM","","TODAY","","","", "", "","\r\n");
     }
 
     @Test
@@ -77,7 +77,7 @@ public class TestC {
         String inputString =
                 "     C                   TIME                    CTIME             6 0\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "TIME", "", "CTIME","6","0","","\r\n");
+                "C", "", "", "", "TIME", "", "CTIME","6","0","", "", "","\r\n");
     }
 
     @Test
@@ -85,7 +85,7 @@ public class TestC {
         String inputString =
                 "     C                   MOVEL     'P'           B8BATX\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "MOVEL", "'P'", "B8BATX","","","","\r\n");
+                "C", "", "", "", "MOVEL", "'P'", "B8BATX","","","","","","\r\n");
     }
 
     @Test
@@ -121,7 +121,7 @@ public class TestC {
         String inputString =
                 "     C                   PARM                    POLNBR                         POLICY NUMBER\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "PARM", "", "POLNBR", "", "", "", "POLICY NUMBER", "");
+                "C", "", "", "", "PARM", "", "POLNBR", "", "", "", "", "","POLICY NUMBER", "");
     }
 
     @Test
@@ -144,7 +144,7 @@ public class TestC {
                 "OVRPRTF FILE(QSYSPRT) OUTQ(PRT30\\)", "'", "+", "'",
                 "DRAWER(5) HOLD(*YES) SAVE(*YES)", "'", "+", "'",
                 "DEVTYPE(*AFPDS) PAGRTT(0)", "'", ":", "200", ")", "", "C", "",
-                "", "", "open", "QSYSPRT", "", "", "", "", "");
+                "", "", "open", "QSYSPRT", "", "", "", "", "", "", "");
     }
 
 
@@ -162,7 +162,7 @@ public class TestC {
         String inputString =
                 "     C                   seton                                        lr    		";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "seton", "", "", "", "", "lr", "");
+                "C", "", "", "", "seton", "", "", "", "", "lr", "", "", "");
     }
 
 
