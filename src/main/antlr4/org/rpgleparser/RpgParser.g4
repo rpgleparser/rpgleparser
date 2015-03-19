@@ -99,7 +99,8 @@ ospec_fixed_pgmfield:
 	OF_DATA_FORMAT
 	OF_WORDS;
 	
-pspec_fixed: P_SPEC_FIXED P_NAME P_BEGINEND P_KEYWORDS;
+pspec_fixed: P_SPEC_FIXED pspec_name P_BEGINEND P_KEYWORDS;
+pspec_name: P_CONTINUATION_NAME* P_NAME;
  
 //dspec_continuation:	D_SPEC_FIXED CONTINUATION_NAME EOL;
 fspec:  F_SPEC filename  

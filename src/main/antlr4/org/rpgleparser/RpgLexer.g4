@@ -225,6 +225,9 @@ WORDS: ~[ ;\r\n] (~[;\r\n]+ ~[ ;\r\n])?;
 // ----------------- Everything FIXED_P_SPEC of a tag ---------------------
 mode FIXED_P_SPEC;
 P_NAME : {getCharPositionInLine()==6}? WORD5 WORD5 WORD5 {setText(getText().trim());};
+P_CONTINUATION_NAME : [ ]* ~[\r\n ]+ P_CONTINUATION {setText(getText().substring(0,getText().length()-3));} -> pushMode(CONTINUATION_ELIPSIS) ;
+P_CONTINUATION : '...' ;
+
 P_RESERVED1: {getCharPositionInLine()==21}? '  ' -> skip;
 P_BEGINEND: {getCharPositionInLine()==23}? [bBeE];
 P_RESERVED2: {getCharPositionInLine()==24}? '                   ' -> skip;
@@ -232,7 +235,7 @@ P_KEYWORDS : {getCharPositionInLine()==43}? ~[\r\n]+ -> popMode;
 
 // ----------------- Everything FIXED_D_SPEC of a tag ---------------------
 mode FIXED_D_SPEC;
-CONTINUATION_NAME : [ ]* ~[\r\n ]+ CONTINUATION {setText(getText().substring(0,getText().length()-3));} -> pushMode(CONTINUATION_D_ELIPSIS) ;
+CONTINUATION_NAME : [ ]* ~[\r\n ]+ CONTINUATION {setText(getText().substring(0,getText().length()-3));} -> pushMode(CONTINUATION_ELIPSIS) ;
 CONTINUATION : '...' ;
 NAME : {getCharPositionInLine()==6}? WORD5 WORD5 WORD5 {setText(getText().trim());};
 EXTERNAL_DESCRIPTION: {getCharPositionInLine()==21}? [eE ];
@@ -248,11 +251,12 @@ D_WS : {getCharPositionInLine()>=80}? [ \t]+ -> skip  ; // skip spaces, tabs, ne
 D_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN); // skip comments after 80
 EOL : NEWLINE ->  popMode;
 
-mode CONTINUATION_D_ELIPSIS;
+mode CONTINUATION_ELIPSIS;
 CE_WS: WS ->skip;
 CE_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n ]~[\r\n]* -> channel(HIDDEN); // skip comments after 80
 CE_LEAD_WS5 :  LEAD_WS5 ->skip;
-CE_D_SPEC_FIXED : {getCharPositionInLine()==5}? [dD] -> skip,popMode ;
+CE_D_SPEC_FIXED : {_modeStack.peek()==FIXED_D_SPEC && getCharPositionInLine()==5}? [dD] -> skip,popMode ;
+CE_P_SPEC_FIXED : {_modeStack.peek()==FIXED_P_SPEC && getCharPositionInLine()==5}? [pP] -> skip,popMode ;
 CE_NEWLINE: NEWLINE ->skip;
 
 // ----------------- Everything FIXED_F_SPEC of a tag ---------------------
