@@ -59,6 +59,28 @@ public class TestUtils {
     	}
         return parseAndGetTokens(inputstr, null, true);
     }
+    
+    public static void printTokens(List<? extends Token> tokens){
+    	for (Token token:tokens){ // A token from a ParseTree object
+    		String displayName = vocabulary.getDisplayName(token.getType());
+    		StringBuilder sb = new StringBuilder();
+    		sb.append(displayName);
+    		sb.append("                         ".substring(displayName.length(),25));
+    		sb.append('<');
+    		sb.append(token.getText());
+    		sb.append('>');
+    		System.out.println(sb.toString() );
+    	}
+    }
+    public static void printTokens(String inputString, Boolean isFreeSnippet){
+    	if(isFreeSnippet != null){
+    		inputString=padSourceLines(inputString,isFreeSnippet.booleanValue());
+    	}
+        ANTLRInputStream input = new ANTLRInputStream(inputString);
+    	RpgLexer lexer = new RpgLexer(input);
+    	vocabulary = lexer.getVocabulary();
+    	printTokens(lexer.getAllTokens());
+    }
 
     private static List<CommonToken> parseAndGetTokens(String inputString, final List<String> errors, final boolean gui) {
         final RpgParser parser = initialiseParser(inputString, errors);
