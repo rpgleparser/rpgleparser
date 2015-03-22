@@ -31,7 +31,7 @@ endSource*
 ;
 endSource: endSourceHead endSourceLine*;
 endSourceHead: END_SOURCE ;
-endSourceLine: EOS_TEXT EOS_EOL;
+endSourceLine: EOS_Text EOL;
 
 star_comments: COMMENT_SPEC_FIXED ;//comments COMMENTS_EOL;
 free_comments: COMMENTS comments COMMENTS_EOL;
@@ -39,179 +39,275 @@ free_linecomments: COMMENTS comments;
 comments: COMMENTS_TEXT; 
 //just_comments: COMMENTS COMMENTS_TEXT COMMENTS_EOL;
 
-dspec:  D_SPEC identifier (identifier|function)* FREE_SEMI free_linecomments?;
-dcl_ds:  D_DS_SPEC (identifier | function)* FREE_SEMI?  
+dspec:  DS_Standalone identifier (identifier|function)* FREE_SEMI free_linecomments?;
+dcl_ds:  DS_DataStructureStart (identifier | function)* FREE_SEMI?  
 	dcl_ds_field*
 	end_dcl_ds FREE_SEMI;
 dcl_ds_field: ((identifier | function)+ FREE_SEMI );
-end_dcl_ds: D_DS_END;
-dcl_pr:  D_PR_SPEC (identifier | function)* FREE_SEMI?  
+end_dcl_ds: DS_DataStructureEnd;
+dcl_pr:  DS_PrototypeStart (identifier | function)* FREE_SEMI?  
 	dcl_pr_field*
 	end_dcl_pr FREE_SEMI;
 dcl_pr_field: ((identifier | function)+ FREE_SEMI );
-end_dcl_pr: D_PR_END;
-dcl_pi:  D_PI_SPEC (identifier | function)* FREE_SEMI?  
+end_dcl_pr: DS_PrototypeEnd;
+dcl_pi:  DS_ProcedureStart (identifier | function)* FREE_SEMI?  
 	dcl_pi_field*
 	end_dcl_pi FREE_SEMI;
 dcl_pi_field: ((identifier | function)+ FREE_SEMI );
-end_dcl_pi: D_PI_END;
-dcl_c:  D_C_SPEC identifier (identifier | expression) FREE_SEMI ;
+end_dcl_pi: DS_ProcedureEnd;
+dcl_c:  DS_Constant identifier (identifier | expression) FREE_SEMI ;
 ctl_opt:  H_SPEC (identifier | expression)* FREE_SEMI ;
 
 
-dspec_fixed: D_SPEC_FIXED dspec_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE FROM_POSITION TO_POSITION
+dspec_fixed: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE FROM_POSITION TO_POSITION
 	DATA_TYPE DECIMAL_POSITIONS RESERVED KEYWORDS EOL;
-dspec_name: CONTINUATION_NAME* NAME;
+ds_name: CONTINUATION_NAME* NAME;
 
-ospec_fixed: O_SPEC_FIXED (((O_RECORD_NAME 
-	O_TYPE
-	(ospec_fixed_pgmdesc1 | ospec_fixed_pgmdesc2)) | ospec_fixed_pgmfield) 
-	  |ospec_fixed_pgmdesc_compound)
-	O_COMMENTS80?;
+ospec_fixed: OS_FIXED (((OS_RecordName 
+	OS_Type
+	(os_fixed_pgmdesc1 | os_fixed_pgmdesc2)) | os_fixed_pgmfield) 
+	  |os_fixed_pgmdesc_compound)
+	OS_Comments?;
 
-ospec_fixed_pgmdesc1:
-	O_FETCH_OVERFLOW
-	O_OUTPUT_COND O_OUTPUT_COND O_OUTPUT_COND
-	O_EXCEPT_NAME
-	O_SPACE_3 O_SPACE_3 O_SPACE_3 O_SPACE_3
-	O_REMAINING_SPACE;
+os_fixed_pgmdesc1:
+	OS_FetchOverflow
+	outputConditioningIndicator
+	outputConditioningIndicator
+	outputConditioningIndicator
+	OS_ExceptName
+	OS_Space3 OS_Space3 OS_Space3 OS_Space3
+	OS_RemainingSpace;
 
-ospec_fixed_pgmdesc_compound:
-	O_AND_OR
-	O_OUTPUT_COND O_OUTPUT_COND O_OUTPUT_COND
-	O_EXCEPT_NAME
-	O_SPACE_3 O_SPACE_3 O_SPACE_3 O_SPACE_3
-	O_REMAINING_SPACE;
+outputConditioningIndicator:
+	BlankIndicator
+	| GeneralIndicator
+	| FunctionKeyIndicator
+	| ControlLevelIndicator
+	| HaltIndicator
+	| ExternalIndicator
+	| OverflowIndicator
+	| MatchingRecordIndicator
+	| LastRecordIndicator
+	| ReturnIndicator
+	| FirstPageIndicator;
 	
-ospec_fixed_pgmdesc2:
-	O_ADD_DELETE
-	O1_OUTPUT_COND O1_OUTPUT_COND O1_OUTPUT_COND
-	O1_EXCEPT_NAME
-	O1_REMAINING_SPACE2;
+os_fixed_pgmdesc_compound:
+	OS_AndOr
+	outputConditioningIndicator
+	outputConditioningIndicator
+	outputConditioningIndicator
+	OS_ExceptName
+	OS_Space3 OS_Space3 OS_Space3 OS_Space3
+	OS_RemainingSpace;
 	
-ospec_fixed_pgmfield:
-	O_FIELD_RESERVED
-	OF_OUTPUT_COND OF_OUTPUT_COND OF_OUTPUT_COND
-	OF_FIELD_NAME 
-	OF_EDIT_CODES
-	OF_BLANK_AFTER
-	OF_END_POSITION
-	OF_DATA_FORMAT
-	OF_WORDS;
+os_fixed_pgmdesc2:
+	OS_AddDelete
+	outputConditioningIndicator
+	outputConditioningIndicator
+	outputConditioningIndicator
+	OS_ExceptName
+	OS_RemainingSpace;
 	
-pspec_fixed: P_SPEC_FIXED pspec_name P_BEGINEND P_KEYWORDS;
-pspec_name: P_CONTINUATION_NAME* P_NAME;
+os_fixed_pgmfield:
+	OS_FieldReserved
+	outputConditioningIndicator
+	outputConditioningIndicator
+	outputConditioningIndicator
+	OS_FieldName 
+	OS_EditNames
+	OS_BlankAfter
+	OS_EndPosition
+	OS_DataFormat
+	OS_Words;
+	
+pspec_fixed: PS_FIXED ps_name (PS_BEGIN | PS_END) PS_KEYWORDS;
+ps_name: PS_CONTINUATION_NAME* PS_NAME;
  
-//dspec_continuation:	D_SPEC_FIXED CONTINUATION_NAME EOL;
-fspec:  F_SPEC filename  
-	fspec_expression*; 
-filename: FREE_ID; 
-fspec_expression: (FREE_ID (FREE_OPEN_PAREN (fspec_parm (FREE_COLON fspec_parm)*)? FREE_CLOSE_PAREN)?);
-fspec_parm: expression | fspec_string;
-fspec_string: (FREE_STRING_START|FREE_HEXSTRING_START|FREE_DATESTRING_START) (FREE_STRING_CONTENT | FREE_STRING_ESCAPEQUOTE )* FREE_STRING_ENDQUOTE;
+//dspec_continuation:	DS_FIXED CONTINUATION_NAME EOL;
+fspec:  FS_FreeFile filename  
+	fs_expression*; 
+filename: ID; 
+fs_expression: (ID (OPEN_PAREN (fs_parm (COLON fs_parm)*)? CLOSE_PAREN)?);
+fs_parm: expression | fs_string;
+fs_string: (StringLiteralStart|HexLiteralStart|DateLiteralStart) (StringContent | StringEscapedQuote )* StringLiteralEnd;
 
 
 
-fspec_fixed: F_SPEC_FIXED F_RECORD_NAME F_TYPE F_DESIGNATION F_END_OF_FILE F_ADDITION 
-	F_SEQUENCE F_FORMAT F_RECORD_LEN F_LIMITS F_LEN_OF_KEY F_RECORD_ADDRESS_TYPE F_ORGANIZATION F_DEVICE F_RESERVED 
-	F_KEYWORDS F_EOL;	
-cspec_fixed: C_SPEC_FIXED 
-	(C_CONTROL_LEVEL | C_CONTROL_LEVEL_COND ) 
-	C_INDICATORS C_FACTOR 
+fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addution 
+	FS_Sequence FS_Format FS_RecordLength FS_Limits FS_LengthOfKey FS_RecordAddressType FS_Organization FS_Device FS_Reserved 
+	FS_Keywords FS_EOL;	
+cspec_fixed: CS_FIXED 
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=(CS_FactorContent | SPLAT_JOBRUN)? 
 	(cspec_fixed_standard|cspec_fixed_x2);
-cspec_fixed_sql: C_SPEC_FIXED_SQL
-	C_SQL_TEXT+
-	C_SQL_END;
-cspec_fixed_standard: operation=C_OP_AND_EXTNDR 
-	factor2=C_FACTOR 
-	result=C_FACTOR 
-	len=C_FIELD_LENGTH 
-	decimalPositions=C_DECIMAL_POSITIONS 
-	hi=C_RESULTING_INDICATOR 
-	lo=C_RESULTING_INDICATOR
-	eq=C_RESULTING_INDICATOR 
-	cspec_fixed_comments? C_EOL;
-cspec_fixed_comments:C_COMMENTS;		
-//cspec_fixed_x2: C_OP_AND_EXTNDR_X2 C2_FACTOR2_CONT* C2_FACTOR2 C_EOL;
-cspec_fixed_x2: C_OP_AND_EXTNDR_X2 c_free C_FREE_NEWLINE;
+	
+onOffIndicatorsFlag:
+BlankFlag
+| NoFlag;
+
+cs_controlLevel:
+BlankIndicator
+	|ControlLevel0Indicator
+	| ControlLevelIndicator
+	| LastRecordIndicator
+	| SubroutineIndicator
+	| AndIndicator
+	| OrIndicator
+;
+cs_indicators:
+BlankIndicator
+	| GeneralIndicator
+	| ControlLevelIndicator
+	| FunctionKeyIndicator 
+	| LastRecordIndicator
+	| MatchingRecordIndicator
+	| HaltIndicator
+	| ReturnIndicator
+	| ExternalIndicator
+	| OverflowIndicator
+;
+resultIndicator:
+ BlankIndicator
+    | GeneralIndicator
+	| ControlLevelIndicator
+	| FunctionKeyIndicator 
+	| LastRecordIndicator
+	| MatchingRecordIndicator
+	| HaltIndicator
+	| ExternalIndicator
+	| OverflowIndicator
+	| ReturnIndicator
+;
+cspec_fixed_sql: CS_ExecSQL
+	CSQL_TEXT+
+	CSQL_END;
+cspec_fixed_standard: operation=CS_OperationAndExtender 
+	factor2=(CS_FactorContent | SPLAT_JOBRUN)? 
+	result=(CS_FactorContent | SPLAT_JOBRUN)? 
+	len=CS_FieldLength 
+	decimalPositions=CS_DecimalPositions 
+	hi=resultIndicator 
+	lo=resultIndicator
+	eq=resultIndicator 
+	cs_fixed_comments? EOL;
+cs_fixed_comments:CS_Comments;		
+//cs_fixed_x2: CS_OperationAndExtendedFactor2 C2_FACTOR2_CONT* C2_FACTOR2 C_EOL;
+cspec_fixed_x2: CS_OperationAndExtendedFactor2 c_free C_FREE_NEWLINE;
 
 
-ispec_fixed: I_SPEC_FIXED 
-	((I_FILE_NAME
-	//I_LOGICAL_RELATIONSHIP
-		(ispec_external_rec
-		|ispec_rec)
-		I_EOL
+ispec_fixed: IS_FIXED 
+	((IS_FileName
+	//IS_LogicalRelationship
+		(is_external_rec
+		|is_rec)
+		EOL
 	)
-	| (ispec_external_field
-		I_EOL
+	| (is_external_field
+		EOL
 	)
-	| (I_F_DATA_ATTR
-		I_F_DATETIME_SEP
-		I_F_DATA_FORMAT
-		I_F_FIELD_LOCATION
-		I_F_DECIMAL_POSITIONS
-		I_F_FIELD_NAME
-		I_F_CONTROL_LEVEL
-		I_F_MATCHING_FIELDS
-		I_F_FIELD_RELATION
-		I_F_FIELD_IND
-		I_F_EOL
+	| (IFD_DATA_ATTR
+		IFD_DATETIME_SEP
+		IFD_DATA_FORMAT
+		IFD_FIELD_LOCATION
+		IFD_DECIMAL_POSITIONS
+		IFD_FIELD_NAME
+		IFD_CONTROL_LEVEL
+		IFD_MATCHING_FIELDS
+		fieldRecordRelation
+		fieldIndicator
+		fieldIndicator
+		fieldIndicator
+		EOL
 	))
 	;
-ispec_external_rec:	
-			I_EXT_REC_RESERVED
-			I_EXT_REC_ID_IND
-			I_EXT_REC_WS;
-ispec_rec:				
-			I_SEQUENCE
-			I_NUMBER
-			I_OPTION
-			I_RECORD_ID_IND
-			I_RECORD_ID_CODE
-			I_WS?;
-ispec_external_field:
-			I_EXT_FILE_NAME
-			I_EXT_FILE_FIELDNAME
-			I_EXT_FILE_CONTROL_LEVEL
-			I_EXT_FILE_MATCHING_FIELDS
-			I_EXT_FILE_INDICATORS
+	
+fieldRecordRelation:
+ BlankIndicator
+    | GeneralIndicator
+	| ControlLevelIndicator
+	| MatchingRecordIndicator
+	| ExternalIndicator
+	| HaltIndicator
+	| ReturnIndicator
+;	
+
+fieldIndicator:
+ BlankIndicator
+    | GeneralIndicator
+	| ControlLevelIndicator
+	| HaltIndicator
+	| ExternalIndicator
+	| ReturnIndicator
+;	
+is_external_rec:	
+			IS_ExtRecordReserved
+			resultIndicator
+			WS;
+is_rec:				
+			IS_Sequence
+			IS_Number
+			IS_Option
+			recordIdIndicator
+			IS_RecordIdCode
+			WS?;
+recordIdIndicator:
+	GeneralIndicator
+  | HaltIndicator
+  | ControlLevelIndicator
+  | LastRecordIndicator
+  | ExternalIndicator
+  | ReturnIndicator;
+
+is_external_field:
+			IF_Name
+			IF_FieldName
+			controlLevelIndicator
+			matchingFieldsIndicator
+			resultIndicator
+			resultIndicator
+			resultIndicator
 ;
 
-hspec_fixed: H_SPEC_FIXED 
-	hspec_expression*
-	H_EOL;
-hspec_expression: (H_ID (H_OPEN_PAREN (hspec_parm (H_COLON hspec_parm)*)? H_CLOSE_PAREN)?);
-hspec_parm: H_ID | hspec_string;
-hspec_string: H_STRING_START (FREE_STRING_CONTENT | FREE_STRING_ESCAPEQUOTE )* FREE_STRING_ENDQUOTE;
+controlLevelIndicator:
+ControlLevelIndicator;
+
+matchingFieldsIndicator:
+MatchingRecordIndicator;
+
+hspec_fixed: HS_FIXED 
+	hs_expression*
+	EOL;
+hs_expression: (ID (OPEN_PAREN (hs_parm (COLON hs_parm)*)? CLOSE_PAREN)?);
+hs_parm: ID | hs_string;
+hs_string: StringLiteralStart (StringContent | StringEscapedQuote )* StringLiteralEnd;
 blank_line: BLANK_LINE;
 directive: DIRECTIVE 
 		(free_directive
 		| title_directive
-		| DIRECTIVE_EJECT
+		| DIR_EJECT
 		| space_directive
-		| DIRECTIVE_SET
-		| DIRECTIVE_RESTORE
-		| (DIRECTIVE_COPY DIR_SPACE* DIR_OTHER_TEXT)
-		| (DIRECTIVE_INCLUDE DIR_SPACE* DIR_OTHER_TEXT)
-		| DIRECTIVE_EOF
-		| (DIRECTIVE_DEFINE DIR_SPACE* DIR_OTHER_TEXT)
-		| (DIRECTIVE_UNDEFINE DIR_SPACE* DIR_OTHER_TEXT)
-		| (DIRECTIVE_IF DIR_SPACE* DIR_OTHER_TEXT)
-		| (DIRECTIVE_ELSE DIR_SPACE* DIR_OTHER_TEXT)
-		| (DIRECTIVE_ELSEIF DIR_SPACE* DIR_OTHER_TEXT)
-		| (DIRECTIVE_ENDIF DIR_SPACE* DIR_OTHER_TEXT)
+		| DIR_SET
+		| DIR_RESTORE
+		| (DIR_COPY WS* DIR_OtherText)
+		| (DIR_INCLUDE WS* DIR_OtherText)
+		| DIR_EOF
+		| (DIR_DEFINE WS* DIR_OtherText)
+		| (DIR_UNDEFINE WS* DIR_OtherText)
+		| (DIR_IF WS* DIR_OtherText)
+		| (DIR_ELSE WS* DIR_OtherText)
+		| (DIR_ELSEIF WS* DIR_OtherText)
+		| (DIR_ENDIF WS* DIR_OtherText)
 		)
-	DIR_EOL;
+	EOL;
 free_directive: free_text;
-space_directive: DIRECTIVE_SPACE (DIR_SPACE DIR_NUMBER)?;
-free_text: DIRECTIVE_FREE;
+space_directive: DIR_SPACE (WS NUMBER)?;
+free_text: DIR_FREE;
 trailing_ws: DIR_FREE_OTHER_TEXT;
-//title_directive: DIRECTIVE_TITLE DIR_SPACE title_text DIR_SPACE*;
-//title_directive: DIRECTIVE_TITLE (DIR_SPACE* DIR_OTHER_TEXT)?;
-title_directive: DIRECTIVE_TITLE DIR_SPACE title_text*;
-//title_text: (DIR_SPACE | DIR_NUMBER | DIR_OTHER_TEXT) (DIR_NUMBER | DIR_OTHER_TEXT);
-title_text: (DIR_SPACE | DIR_NUMBER | DIR_OTHER_TEXT);
+//title_directive: DIR_TITLE WS title_text WS*;
+//title_directive: DIR_TITLE (WS* DIR_OtherText)?;
+title_directive: DIR_TITLE WS title_text*;
+//title_text: (WS | NUMBER | DIR_OtherText) (NUMBER | DIR_OtherText);
+title_text: (WS | NUMBER | DIR_OtherText);
  
 //------- Auto from here
 op: op_acq 
@@ -279,7 +375,7 @@ op: op_acq
 	| op_xml_sax;
 op_acq: OP_ACQ OP_E? identifier identifier ;
 op_begsr: OP_BEGSR identifier ;
-op_callp: (OP_CALLP OP_E? )? identifier FREE_OPEN_PAREN (expression (FREE_COLON expression )* )? FREE_CLOSE_PAREN ;
+op_callp: (OP_CALLP OP_E? )? identifier OPEN_PAREN (expression (COLON expression )* )? CLOSE_PAREN ;
 op_chain: OP_CHAIN OP_E? search_arg identifier (identifier )? ;
 op_clear: OP_CLEAR (identifier )? (identifier )? expression ;
 op_close: OP_CLOSE OP_E? identifier ;
@@ -317,7 +413,7 @@ op_leave: OP_LEAVE ;
 op_leavesr: OP_LEAVESR ;
 op_monitor: OP_MONITOR ;
 op_next: OP_NEXT OP_E? identifier identifier ;
-op_on_error: OP_ON_ERROR (identifier (FREE_COLON identifier )* )? ;
+op_on_error: OP_ON_ERROR (identifier (COLON identifier )* )? ;
 op_open: OP_OPEN OP_E? identifier ;
 op_other: OP_OTHER ;
 op_out: OP_OUT OP_E? (identifier )? identifier ;
@@ -328,7 +424,7 @@ op_reade: OP_READE OP_E? search_arg identifier (identifier )? ;
 op_readp: OP_READP OP_E? identifier (identifier )? ;
 op_readpe: OP_READPE OP_E? search_arg identifier (identifier )? ;
 op_rel: OP_REL OP_E? identifier identifier ;
-op_reset2: OP_RESET OP_E? identifier  FREE_OPEN_PAREN FREE_OPERATION_MULT_NOSPACE?  FREE_CLOSE_PAREN ;
+op_reset2: OP_RESET OP_E? identifier  OPEN_PAREN FREE_OPERATION_MULT_NOSPACE?  CLOSE_PAREN ;
 op_reset: OP_RESET OP_E?  (identifier)? (identifier )? identifier ;
 op_return: OP_RETURN OP_E? identifier? ;
 op_rolbk: OP_ROLBK OP_E? ;
@@ -412,9 +508,9 @@ free: ((baseExpression FREE_SEMI free_linecomments? ) | exec_sql); // (NEWLINE |
 c_free: (((baseExpression) free_linecomments? ) | exec_sql);
 
 control: opCode indicator_expr;
-exec_sql: EXEC_SQL WORDS+ SEMI_COLON ;
-//sql_quoted: SINGLE_QTE (WORDS | SEMI_COLON | DOUBLE_QTE) * SINGLE_QTE ;
-//sql_quoted2: DOUBLE_QTE (WORDS | SEMI_COLON |SINGLE_QTE)* DOUBLE_QTE ;
+exec_sql: EXEC_SQL WORDS+ SEMI ;
+//sql_quoted: SINGLE_QTE (WORDS | SEMI | DOUBLE_QTE) * SINGLE_QTE ;
+//sql_quoted2: DOUBLE_QTE (WORDS | SEMI |SINGLE_QTE)* DOUBLE_QTE ;
 
 //--------------- 
 baseExpression: op | assignmentExpression | expression;
@@ -426,7 +522,7 @@ expression:
 	| literal  
 	| function 
 	| FREE_NOT expression
-	| FREE_OPEN_PAREN expression FREE_CLOSE_PAREN
+	| OPEN_PAREN expression CLOSE_PAREN
 	| expression (FREE_ASSIGNMENT | FREE_COMPARE) expression
 	| expression (FREE_OR | FREE_AND | FREE_OPERATION | FREE_OPERATION_MINUS |FREE_OPERATION_MULT | FREE_OPERATION_MULT_NOSPACE) expression	
 	;
@@ -442,20 +538,90 @@ compare_expr:(FREE_ASSIGNMENT | FREE_COMPARE);
 expression: identifier | number | literal | function;
 function: functionName args;
 //---------------*/
-args: FREE_OPEN_PAREN (expression (FREE_COLON expression)*)? FREE_CLOSE_PAREN;
-literal: (FREE_STRING_START|FREE_HEXSTRING_START|FREE_DATESTRING_START) (FREE_STRING_CONTENT | FREE_STRING_ESCAPEQUOTE | FREE_MINUS_PLUS)* FREE_STRING_ENDQUOTE;
+args: OPEN_PAREN (expression (COLON expression)*)? CLOSE_PAREN;
+literal: (StringLiteralStart|HexLiteralStart|DateLiteralStart) (StringContent | StringEscapedQuote | PlusOrMinus)* StringLiteralEnd;
 identifier: free_identifier (FREE_CONT free_identifier)? |multipart_identifier | all;
-all: SPLAT_ALL literal?;
+all: symbolicConstants literal?;
 //assignIdentifier: multipart_identifier;
 functionName: free_identifier;
 multipart_identifier: free_identifier (FREE_DOT (free_identifier | indexed_identifier))*;
-indexed_identifier: free_identifier FREE_OPEN_PAREN expression FREE_CLOSE_PAREN;
+indexed_identifier: free_identifier OPEN_PAREN expression CLOSE_PAREN;
 opCode: free_identifier;
-number: FREE_OPERATION_MINUS? FREE_NUMBER ;
-free_identifier: (continuedIdentifier | FREE_OPERATION_MULT_NOSPACE? FREE_ID | FREE_NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
-//free_identifier: (continuedIdentifier | FREE_ID | FREE_NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
-continuedIdentifier: FREE_ID (FREE_CONTINUATION | C_FREE_CONTINUATION_DOTS) FREE_ID ;
+number: FREE_OPERATION_MINUS? NUMBER ;
+free_identifier: (continuedIdentifier | FREE_OPERATION_MULT_NOSPACE? ID | FREE_NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
+//free_identifier: (continuedIdentifier | ID | FREE_NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
+continuedIdentifier: ID CONTINUATION ID ;
 		
 datatype: ID OPEN_PAREN NUMBER CLOSE_PAREN SEMI;
 argument: ID;
 
+symbolicConstants:
+SPLAT_ALL
+   | SPLAT_NONE
+   | SPLAT_ILERPG
+   | SPLAT_CRTBNDRPG
+   | SPLAT_CRTRPGMOD
+   | SPLAT_VRM
+   | SPLAT_ALLG
+   | SPLAT_ALLU
+   | SPLAT_ALLX
+   | SPLAT_BLANKS
+   | SPLAT_CANCL
+   | SPLAT_CYMD
+   | SPLAT_CMDY
+   | SPLAT_CDMY
+   | SPLAT_MDY
+   | SPLAT_DMY
+   | SPLAT_YMD
+   | SPLAT_JUL
+   | SPLAT_ISO
+   | SPLAT_USA
+   | SPLAT_EUR
+   | SPLAT_JIS
+   | SPLAT_DATE
+   | SPLAT_DAY
+   | SPlAT_DETC
+   | SPLAT_DETL
+   | SPLAT_DTAARA
+   | SPLAT_END
+   | SPLAT_ENTRY
+   | SPLAT_EQUATE
+   | SPLAT_EXTDFT
+   | SPLAT_EXT
+   | SPLAT_FILE
+   | SPLAT_GETIN
+   | SPLAT_HIVAL
+   | SPLAT_INIT
+   | SPLAT_INDICATOR
+   | SPLAT_INZSR
+   | SPLAT_IN
+   | SPLAT_JOBRUN
+   | SPLAT_JOB
+   | SPLAT_LDA
+   | SPLAT_LIKE
+   | SPLAT_LONGJUL
+   | SPLAT_LOVAL
+   | SPLAT_MONTH
+   | SPLAT_M
+   | SPLAT_NOIND
+   | SPLAT_NOKEY
+   | SPLAT_NULL
+   | SPLAT_OFL
+   | SPLAT_ON
+   | SPLAT_OFF
+   | SPLAT_PDA
+   | SPLAT_PLACE
+   | SPLAT_PSSR
+   | SPLAT_ROUTINE
+   | SPLAT_START
+   | SPLAT_SYS
+   | SPLAT_TERM
+   | SPLAT_TOTC
+   | SPLAT_TOTL
+   | SPLAT_USER
+   | SPLAT_VAR
+   | SPLAT_YEAR
+   | SPLAT_ZEROS
+   | SPLAT_HMS
+   | SPLAT_INLR
+   | SPLAT_INOF;
