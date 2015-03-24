@@ -28,17 +28,19 @@ public class TestC {
     @Test
     public void testCSpec() {
         String inputString =
-                "     C     FACTOR1       XXAL      FACTOR2\r\n";
+                "     C  NL9FACTOR1       XXAL      FACTOR2\r\n";
         inputString = TestUtils.padSourceLines(inputString, false);
+        TestUtils.printTokens(inputString, false);
+        TestUtils.showParseTree(inputString, false);
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.getParsedTokens(inputString, errors);
         assertThat(errors, is(empty()));
-        assertEquals(RpgLexer.C_FACTOR, tokenList.get(3).getType());
-        assertEquals(RpgLexer.C_FACTOR, tokenList.get(5).getType());
-        assertEquals(RpgLexer.C_FACTOR, tokenList.get(6).getType());
-        assertEquals("FACTOR1", tokenList.get(3).getText().trim());
-        assertEquals("FACTOR2", tokenList.get(5).getText().trim());
-        assertEquals("", tokenList.get(6).getText().trim());
+        assertEquals(RpgLexer.CS_FactorContent, tokenList.get(4).getType());
+        assertEquals(RpgLexer.CS_OperationAndExtender, tokenList.get(5).getType());
+        assertEquals(RpgLexer.CS_FactorContent, tokenList.get(6).getType());
+        assertEquals("FACTOR1", tokenList.get(4).getText());
+        assertEquals("XXAL", tokenList.get(5).getText());
+        assertEquals("FACTOR2", tokenList.get(6).getText());
     }
 
 //	@Test

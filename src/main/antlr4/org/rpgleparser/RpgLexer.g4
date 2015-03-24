@@ -17,7 +17,7 @@ COMMENT_SPEC_FIXED : {getCharPositionInLine()==5}? .'*' -> pushMode(FIXED_Commen
 DS_FIXED : {getCharPositionInLine()==5}? [dD] -> pushMode(FIXED_DefSpec) ;
 FS_FIXED : {getCharPositionInLine()==5}? [fF] -> pushMode(FIXED_FileSpec) ;
 OS_FIXED : {getCharPositionInLine()==5}? [oO] -> pushMode(FIXED_OutputSpec) ;
-CS_FIXED : {getCharPositionInLine()==5}? [cC] -> pushMode(FIXED_CalcSpec),pushMode(OnOffIndicatorMode) ;
+CS_FIXED : {getCharPositionInLine()==5}? [cC] -> pushMode(FIXED_CalcSpec),pushMode(OnOffIndicatorMode),pushMode(IndicatorMode) ;
 CS_ExecSQL : {getCharPositionInLine()==5}? [cC] '/' EXEC_SQL -> pushMode(FIXED_CalcSpec_SQL);
 IS_FIXED : {getCharPositionInLine()==5}? [iI] -> pushMode(FIXED_InputSpec) ;
 PS_FIXED : {getCharPositionInLine()==5}? [pP] -> pushMode(FIXED_ProcedureSpec) ;
@@ -549,7 +549,7 @@ CS_OperationAndExtendedFactor2: {getCharPositionInLine()==25}?
 		| OP_DOW'       '
 		| OP_ELSEIF'    '
 	) -> pushMode(FREE);
-CS_OperationAndExtender: {getCharPositionInLine()==25}? WORD5 WORD5;
+CS_OperationAndExtender: {getCharPositionInLine()==25}? WORD5 WORD5 {setText(getText().trim());};
 CS_FieldLength: {getCharPositionInLine()==63}? [ 0-9][ 0-9][ 0-9][ 0-9][ 0-9];
 CS_DecimalPositions: {getCharPositionInLine()==68}? [ 0-9][ 0-9]
 	-> pushMode(IndicatorMode),pushMode(IndicatorMode),pushMode(IndicatorMode); // 3 Indicators in a row
