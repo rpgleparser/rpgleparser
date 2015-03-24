@@ -531,10 +531,16 @@ CS_Factor2_SPLAT_HMS : {35<= getCharPositionInLine() && getCharPositionInLine()+
 CS_Factor2_SPLAT_INLR : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_INLR -> type(SPLAT_INLR);
 CS_Factor2_SPLAT_INOF : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_INOF -> type(SPLAT_INOF);
 
-CS_BlankFactor: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
+CS_BlankFactor: {(getCharPositionInLine()==11)
+			|| (getCharPositionInLine()==35)
+			|| (getCharPositionInLine()==49)}? 
+			 		'              ';
+CS_FactorWs: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
-}? 
+}?  
+		' ')+ -> skip;
+CS_FactorWs2: ({(getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
+}?  
 		' ')+ -> skip;
 CS_FactorContent: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)

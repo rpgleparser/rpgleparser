@@ -138,7 +138,7 @@ fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addut
 	FS_Keywords FS_EOL;	
 cspec_fixed: CS_FIXED 
 	cs_controlLevel 
-	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=(CS_FactorContent | SPLAT_JOBRUN)? 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(cspec_fixed_standard|cspec_fixed_x2);
 	
 onOffIndicatorsFlag:
@@ -182,14 +182,18 @@ cspec_fixed_sql: CS_ExecSQL
 	CSQL_TEXT+
 	CSQL_END;
 cspec_fixed_standard: operation=CS_OperationAndExtender 
-	factor2=(CS_FactorContent | SPLAT_JOBRUN)? 
-	result=(CS_FactorContent | SPLAT_JOBRUN)? 
+	factor2=factor
+	result=resultType 
 	len=CS_FieldLength 
 	decimalPositions=CS_DecimalPositions 
 	hi=resultIndicator 
 	lo=resultIndicator
 	eq=resultIndicator 
 	cs_fixed_comments? EOL;
+factor:
+   CS_FactorContent | CS_BlankFactor | symbolicConstants;
+resultType:	
+   CS_FactorContent | CS_BlankFactor;
 cs_fixed_comments:CS_Comments;		
 //cs_fixed_x2: CS_OperationAndExtendedFactor2 C2_FACTOR2_CONT* C2_FACTOR2 C_EOL;
 cspec_fixed_x2: CS_OperationAndExtendedFactor2 c_free C_FREE_NEWLINE;
