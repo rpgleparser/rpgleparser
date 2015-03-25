@@ -54,7 +54,7 @@ public class TestContinuation {
                         "     C                                    %trim(EffDateChr) + ' to ' +\r\n" +
                         "     C                                    %trim(ExpDateChr)\r\n";
 
-        expectTokensForSourceLines(inputString, "C", "", "", "", "eval", "DATA", "=", "'",
+        expectTokensForSourceLines(inputString, "C", "", "", "", "", "eval", "DATA", "=", "'",
                 "Current Policy Term:", "'", "+", "%trim", "(", "EffDateChr",
                 ")", "+", "'", "to", "'", "+", "%trim", "(", "ExpDateChr", ")",
                 "");
@@ -65,7 +65,7 @@ public class TestContinuation {
         String inputString =
                 "     C                   EVAL      A = (B*D)/ C +\r\n" +
                         "     C                             24\r\n";
-        expectTokensForSourceLines(inputString, "C", "", "", "", "EVAL", "A", "=", "(", "B", "*", "D", ")", "/", "C", "+", "24", "");
+        expectTokensForSourceLines(inputString, "C", "", "", "", "", "EVAL", "A", "=", "(", "B", "*", "D", ")", "/", "C", "+", "24", "");
     }
 
     @Test
@@ -76,10 +76,10 @@ public class TestContinuation {
                         "     C                                        + ZServChrgDue(Ptr)\r\n" +
                         "     C                                        - ZServChrgPaid(Ptr)\r\n" +
                         "     C                   eval      InstClosed = ZInstClosed(Ptr)\r\n";
-        expectTokensForSourceLines(inputString, "C", "", "", "", "eval", "InstallDue", "=",
+        expectTokensForSourceLines(inputString, "C", "", "", "", "", "eval", "InstallDue", "=",
                 "ZAmountDue", "(", "Ptr", ")", "-", "ZAmountPaid", "(", "Ptr",
                 ")", "+", "ZServChrgDue", "(", "Ptr", ")", "-",
-                "ZServChrgPaid", "(", "Ptr", ")", "", "C", "", "", "", "eval",
+                "ZServChrgPaid", "(", "Ptr", ")", "", "C", "", "", "", "", "eval",
                 "InstClosed", "=", "ZInstClosed", "(", "Ptr", ")", "");
     }
 }

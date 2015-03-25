@@ -288,7 +288,7 @@ mode SQL_MODE;
 SQL_WS: [ \t\r\n]+ -> skip;
 //SINGLE_QTE: ['];
 //DOUBLE_QTE: ["];
-SEMI_COLON: SEMI -> type(COLON),popMode, popMode;
+SEMI_COLON: SEMI -> type(SEMI),popMode, popMode;
 WORDS: ~[ ;\r\n] (~[;\r\n]+ ~[ ;\r\n])?; 
 
 // ----------------- Everything FIXED_ProcedureSpec of a tag ---------------------
@@ -351,7 +351,8 @@ FS_EOL : NEWLINE -> popMode;
 
 mode FIXED_OutputSpec;
 OS_RecordName : {getCharPositionInLine()==6}? WORD5 WORD5;
-OS_AndOr: {getCharPositionInLine()==6}? '         ' ([aA][nN][dD] | [oO][rR] ' ') '  ';
+OS_AndOr: {getCharPositionInLine()==6}? '         ' ([aA][nN][dD] | [oO][rR] ' ') '  ' -> 
+	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode);
 OS_FieldReserved: {getCharPositionInLine()==6}? '              ' -> pushMode(FIXED_OutputSpec_PGMFIELD),
 	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode);
 OS_Type: {getCharPositionInLine()==16}? [a-zA-Z ];
@@ -555,7 +556,14 @@ CS_OperationAndExtendedFactor2: {getCharPositionInLine()==25}?
 		| OP_DOW'       '
 		| OP_ELSEIF'    '
 	) -> pushMode(FREE);
-CS_OperationAndExtender: {getCharPositionInLine()==25}? WORD5 WORD5 {setText(getText().trim());};
+CS_OperationAndExtender:  
+   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?~[\r\n)(])+
+   {setText(getText().trim());};
+CS_OperationExtenderOpen: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?OPEN_PAREN -> type(OPEN_PAREN);
+CS_OperationExtenderClose: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?CLOSE_PAREN 
+  ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}? ' ')*
+  {setText(getText().trim());}
+  -> type(CLOSE_PAREN);
 CS_FieldLength: {getCharPositionInLine()==63}? [ 0-9][ 0-9][ 0-9][ 0-9][ 0-9];
 CS_DecimalPositions: {getCharPositionInLine()==68}? [ 0-9][ 0-9]
 	-> pushMode(IndicatorMode),pushMode(IndicatorMode),pushMode(IndicatorMode); // 3 Indicators in a row

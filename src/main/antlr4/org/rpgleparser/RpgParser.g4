@@ -71,12 +71,16 @@ ospec_fixed: OS_FIXED (((OS_RecordName
 
 os_fixed_pgmdesc1:
 	OS_FetchOverflow
-	outputConditioningIndicator
-	outputConditioningIndicator
-	outputConditioningIndicator
+	outputConditioningOnOffIndicator
+	outputConditioningOnOffIndicator
+	outputConditioningOnOffIndicator
 	OS_ExceptName
 	OS_Space3 OS_Space3 OS_Space3 OS_Space3
 	OS_RemainingSpace;
+
+outputConditioningOnOffIndicator:
+	onOffIndicatorsFlag
+	outputConditioningIndicator;
 
 outputConditioningIndicator:
 	BlankIndicator
@@ -93,26 +97,26 @@ outputConditioningIndicator:
 	
 os_fixed_pgmdesc_compound:
 	OS_AndOr
-	outputConditioningIndicator
-	outputConditioningIndicator
-	outputConditioningIndicator
+	outputConditioningOnOffIndicator
+	outputConditioningOnOffIndicator
+	outputConditioningOnOffIndicator
 	OS_ExceptName
 	OS_Space3 OS_Space3 OS_Space3 OS_Space3
 	OS_RemainingSpace;
 	
 os_fixed_pgmdesc2:
 	OS_AddDelete
-	outputConditioningIndicator
-	outputConditioningIndicator
-	outputConditioningIndicator
+	outputConditioningOnOffIndicator
+	outputConditioningOnOffIndicator
+	outputConditioningOnOffIndicator
 	OS_ExceptName
 	OS_RemainingSpace;
 	
 os_fixed_pgmfield:
 	OS_FieldReserved
-	outputConditioningIndicator
-	outputConditioningIndicator
-	outputConditioningIndicator
+	outputConditioningOnOffIndicator
+	outputConditioningOnOffIndicator
+	outputConditioningOnOffIndicator
 	OS_FieldName 
 	OS_EditNames
 	OS_BlankAfter
@@ -181,7 +185,8 @@ resultIndicator:
 cspec_fixed_sql: CS_ExecSQL
 	CSQL_TEXT+
 	CSQL_END;
-cspec_fixed_standard: operation=CS_OperationAndExtender 
+cspec_fixed_standard: operation=CS_OperationAndExtender
+	operationExtender=cs_operationExtender?
 	factor2=factor
 	result=resultType 
 	len=CS_FieldLength 
@@ -190,6 +195,11 @@ cspec_fixed_standard: operation=CS_OperationAndExtender
 	lo=resultIndicator
 	eq=resultIndicator 
 	cs_fixed_comments? EOL;
+	
+cs_operationExtender:
+  OPEN_PAREN
+  extender=CS_OperationAndExtender
+  CLOSE_PAREN;	
 factor:
    CS_FactorContent | CS_BlankFactor | symbolicConstants;
 resultType:	
@@ -221,6 +231,7 @@ ispec_fixed: IS_FIXED
 		fieldIndicator
 		fieldIndicator
 		fieldIndicator
+		IFD_COMMENTS?
 		EOL
 	))
 	;
@@ -273,10 +284,12 @@ is_external_field:
 ;
 
 controlLevelIndicator:
-ControlLevelIndicator;
+ControlLevelIndicator
+| BlankIndicator;
 
 matchingFieldsIndicator:
-MatchingRecordIndicator;
+MatchingRecordIndicator
+| BlankIndicator;
 
 hspec_fixed: HS_FIXED 
 	hs_expression*

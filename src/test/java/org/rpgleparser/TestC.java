@@ -21,7 +21,7 @@ public class TestC {
                 "     C                   EVAL      QuiteLongFieldName...\r\n" +
                         "     C                             ThatCannotAlwaysFitInOneLine = 'abc'\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "EVAL", "QuiteLongFieldName", "...",
+                "C", "", "", "", "", "EVAL", "QuiteLongFieldName", "...",
                 "ThatCannotAlwaysFitInOneLine", "=", "'", "abc", "'", "");
     }
 
@@ -62,8 +62,8 @@ public class TestC {
                 "     C     *ENTRY        PLIST\r\n" +
                 "     C                   PARM                    TODAY";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "*ENTRY", "PLIST","","","","","", "", "","\r\n",
-        		"C", "", "", "", "PARM","","TODAY","","","", "", "","\r\n");
+                "C", "", "", "", "*ENTRY", "PLIST","","","","","", "", "","\r\n",
+        		"C", "", "", "", "", "PARM","","TODAY","","","", "", "","\r\n");
     }
 
     @Test
@@ -71,7 +71,7 @@ public class TestC {
         String inputString =
                 "     C                   IF        WHOS = 'G'";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "IF", "WHOS", "=", "'", "G", "'", "");
+                "C", "", "", "", "", "IF", "WHOS", "=", "'", "G", "'", "");
     }
 
     @Test
@@ -79,7 +79,7 @@ public class TestC {
         String inputString =
                 "     C                   TIME                    CTIME             6 0\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "TIME", "", "CTIME","6","0","", "", "","\r\n");
+                "C", "", "", "", "", "TIME", "", "CTIME","6","0","", "", "","\r\n");
     }
 
     @Test
@@ -87,7 +87,7 @@ public class TestC {
         String inputString =
                 "     C                   MOVEL     'P'           B8BATX\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "MOVEL", "'P'", "B8BATX","","","","","","\r\n");
+                "C", "", "", "", "", "MOVEL", "'P'", "B8BATX","","","","","","\r\n");
     }
 
     @Test
@@ -123,7 +123,7 @@ public class TestC {
         String inputString =
                 "     C                   PARM                    POLNBR                         POLICY NUMBER\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "PARM", "", "POLNBR", "", "", "", "", "","POLICY NUMBER", "");
+                "C", "", "", "", "", "PARM", "", "POLNBR", "", "", "", "", "","POLICY NUMBER", "");
     }
 
     @Test
@@ -131,7 +131,7 @@ public class TestC {
         String inputString =
                 "     C                   IF        WHOS = 'G'                                   Home office cpy";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "IF", "WHOS", "=", "'", "G", "'", "");
+                "C", "", "", "", "", "IF", "WHOS", "=", "'", "G", "'", "");
     }
 
     @Test
@@ -142,11 +142,11 @@ public class TestC {
                         "     C                             'DEVTYPE(*AFPDS) PAGRTT(0) ':200)\r\n" +
                         "     C                   open      QSYSPRT";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "callp", "Cmd", "(", "'",
+                "C", "", "", "", "", "callp", "Cmd", "(", "'",
                 "OVRPRTF FILE(QSYSPRT) OUTQ(PRT30\\)", "'", "+", "'",
                 "DRAWER(5) HOLD(*YES) SAVE(*YES)", "'", "+", "'",
                 "DEVTYPE(*AFPDS) PAGRTT(0)", "'", ":", "200", ")", "", "C", "",
-                "", "", "open", "QSYSPRT", "", "", "", "", "", "", "");
+                "", "", "", "open", "QSYSPRT", "", "", "", "", "", "", "");
     }
 
 
@@ -156,7 +156,7 @@ public class TestC {
                 "                                                                                Get next number2\r\n" +
                         "     C                   eval      @IRDRW = 'PHAR'";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "eval", "@IRDRW", "=", "'", "PHAR", "'", "");
+                "C", "", "", "", "", "eval", "@IRDRW", "=", "'", "PHAR", "'", "");
     }
 
     @Test
@@ -164,7 +164,7 @@ public class TestC {
         String inputString =
                 "     C                   seton                                        lr    		";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "seton", "", "", "", "", "lr", "", "", "");
+                "C", "", "", "", "", "seton", "", "", "", "", "lr", "", "", "");
     }
 
 

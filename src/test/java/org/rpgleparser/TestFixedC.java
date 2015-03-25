@@ -8,13 +8,13 @@ public class TestFixedC {
     @Test
     public void testKLIST() {
         String inputString = "     C     WCKEY1        KLIST";
-        expectTokensForSourceLines(inputString, "C", "", "", "WCKEY1", "KLIST", "", "", "", "", "", "", "", "");
+        expectTokensForSourceLines(inputString, "C", "", "", "", "WCKEY1", "KLIST", "", "", "", "", "", "", "", "");
     }
 
     @Test
     public void testKFLD() {
         String inputString = "     C                   KFLD                    WCREGN";
-        expectTokensForSourceLines(inputString, "C", "", "", "", "KFLD", "", "WCREGN", "", "", "", "", "", "");
+        expectTokensForSourceLines(inputString, "C", "", "", "", "", "KFLD", "", "WCREGN", "", "", "", "", "", "");
     }
 
 }
