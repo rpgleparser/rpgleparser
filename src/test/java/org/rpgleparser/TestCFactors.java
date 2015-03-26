@@ -29,5 +29,23 @@ public class TestCFactors {
     			"     C                   MOVE      ' '           PSLFLG            1\r\n";
     	TestUtils.showParseTree(inputString, false);
     }
+    @Test
+    public void testMove2(){
+    	String inputString = 
+    			"     C                   MOVE      '  '          PSLFLG            2\r\n";
+    	TestUtils.showParseTree(inputString, false);
+    }
+    @Test
+    public void testMoveSymConst(){
+    	String inputString = 
+    			"     C                   MOVE      *BLANKS       PSLFLG            1\r\n";
+    	TestUtils.showParseTree(inputString, false);
+    }
+    @Test
+    public void testMoveLiteralChar(){
+    	String inputString = 
+    			"     C                   MOVE      'C'           PSLFLG            1\r\n";
+    	TestUtils.showParseTree(inputString, false);
+    }
 
 }
