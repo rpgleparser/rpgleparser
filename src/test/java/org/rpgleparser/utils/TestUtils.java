@@ -65,7 +65,9 @@ public class TestUtils {
     		String displayName = vocabulary.getDisplayName(token.getType());
     		StringBuilder sb = new StringBuilder();
     		sb.append(displayName);
-    		sb.append("                         ".substring(displayName.length(),25));
+    		if(displayName.length()<25){
+    			sb.append("                         ".substring(displayName.length(),25));
+    		}
     		sb.append('<');
     		sb.append(token.getText());
     		sb.append('>');

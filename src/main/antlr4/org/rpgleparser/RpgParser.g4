@@ -6,7 +6,7 @@ options {   tokenVocab = RpgLexer; }
 
 r: (dspec 
 	| dcl_ds
-	| dcl_pr
+	| dcl_pr 
 	| dcl_pi
 	| dcl_c
 	| ctl_opt
@@ -201,7 +201,7 @@ cs_operationExtender:
   extender=CS_OperationAndExtender
   CLOSE_PAREN;	
 factor:
-   CS_FactorContent | CS_BlankFactor | symbolicConstants;
+   content=CS_FactorContent (COLON (content2=CS_FactorContent | constant2=symbolicConstants))? | CS_BlankFactor | constant=symbolicConstants;
 resultType:	
    CS_FactorContent | CS_BlankFactor;
 cs_fixed_comments:CS_Comments;		
@@ -619,7 +619,6 @@ SPLAT_ALL
    | SPLAT_LONGJUL
    | SPLAT_LOVAL
    | SPLAT_MONTH
-   | SPLAT_M
    | SPLAT_NOIND
    | SPLAT_NOKEY
    | SPLAT_NULL
@@ -641,4 +640,19 @@ SPLAT_ALL
    | SPLAT_ZEROS
    | SPLAT_HMS
    | SPLAT_INLR
-   | SPLAT_INOF;
+   | SPLAT_INOF
+   //Durations
+   | SPLAT_D
+   | SPLAT_DAYS
+   | SPLAT_HOURS
+   | SPLAT_M
+   | SPLAT_MINUTES
+   | SPLAT_MONTHS
+   | SPLAT_MN
+   | SPLAT_MS
+   | SPLAT_MSECONDS
+   | SPLAT_S
+   | SPLAT_SECONDS
+   | SPLAT_Y
+   | SPLAT_YEARS
+   ;

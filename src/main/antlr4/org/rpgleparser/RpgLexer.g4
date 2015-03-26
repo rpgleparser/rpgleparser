@@ -192,7 +192,6 @@ SPLAT_LIKE: '*'[lL][iI][kK][eE];
 SPLAT_LONGJUL: '*'[lL][oO][nN][gG][jJ][uU][lL];
 SPLAT_LOVAL: '*'[lL][oO][vV][aA][lL];
 SPLAT_MONTH: '*'[mM][oO][nN][tT][hH];
-SPLAT_M: '*'[mM];
 SPLAT_NOIND: '*'[nN][oO][iI][nN][dD];
 SPLAT_NOKEY: '*'[nN][oO][kK][eE][yY];
 SPLAT_NULL: '*'[nN][uU][lL][lL];
@@ -254,6 +253,24 @@ FREE_FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> skip;
 C_FREE_NEWLINE: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE -> popMode,popMode;
 FREE_NEWLINE: {_modeStack.peek()!=FIXED_CalcSpec}? NEWLINE -> skip;
 FREE_SEMI: SEMI -> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
+
+mode DurationCodes; //Referenced (not used)
+SPLAT_D: '*'[dD];
+SPLAT_H: '*'[hH];
+SPLAT_HOURS: '*'[hH][oO][uU][rR][sS];
+SPLAT_DAYS:  SPLAT_DAY[sS];
+SPLAT_M: '*'[mM];
+SPLAT_MINUTES: '*'[mM][iI][nN][uU][tT][eE][sS];
+SPLAT_MONTHS: SPLAT_MONTH[sS];
+SPLAT_MN: '*'[mM][nN]; //Minutes
+SPLAT_MS: '*'[mM][sS]; //Minutes
+SPLAT_MSECONDS: '*'[mM][sS][eE][cC][oO][nN][dD][sS];
+SPLAT_S: '*'[sS];
+SPLAT_SECONDS: '*'[sS][eE][cC][oO][nN][dD][sS];
+SPLAT_Y: '*'[yY];
+SPLAT_YEARS: SPLAT_YEAR[sS];
+
+
 
 mode FREE_ENDED;
 FE_BLANKS : [ ]+ -> skip;
@@ -438,7 +455,6 @@ CS_Factor1_SPLAT_LIKE : {11<= getCharPositionInLine() && getCharPositionInLine()
 CS_Factor1_SPLAT_LONGJUL : {11<= getCharPositionInLine() && getCharPositionInLine()+8<=24}? SPLAT_LONGJUL -> type(SPLAT_LONGJUL);
 CS_Factor1_SPLAT_LOVAL : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_LOVAL -> type(SPLAT_LOVAL);
 CS_Factor1_SPLAT_MONTH : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_MONTH -> type(SPLAT_MONTH);
-CS_Factor1_SPLAT_M : {11<= getCharPositionInLine() && getCharPositionInLine()+2<=24}? SPLAT_M -> type(SPLAT_M);
 CS_Factor1_SPLAT_NOIND : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_NOIND -> type(SPLAT_NOIND);
 CS_Factor1_SPLAT_NOKEY : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_NOKEY -> type(SPLAT_NOKEY);
 CS_Factor1_SPLAT_NULL : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_NULL -> type(SPLAT_NULL);
@@ -461,6 +477,21 @@ CS_Factor1_SPLAT_ZEROS : {11<= getCharPositionInLine() && getCharPositionInLine(
 CS_Factor1_SPLAT_HMS : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_HMS -> type(SPLAT_HMS);
 CS_Factor1_SPLAT_INLR : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_INLR -> type(SPLAT_INLR);
 CS_Factor1_SPLAT_INOF : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_INOF -> type(SPLAT_INOF);
+//DurationCodes
+CS_Factor1_SPLAT_D : {11<= getCharPositionInLine() && getCharPositionInLine()+2<=24}? SPLAT_D -> type(SPLAT_D);
+CS_Factor1_SPLAT_DAYS : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_DAYS -> type(SPLAT_DAYS);
+CS_Factor1_SPLAT_H : {11<= getCharPositionInLine() && getCharPositionInLine()+2<=24}? SPLAT_H -> type(SPLAT_H);
+CS_Factor1_SPLAT_HOURS : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_HOURS -> type(SPLAT_HOURS);
+CS_Factor1_SPLAT_MINUTES : {11<= getCharPositionInLine() && getCharPositionInLine()+8<=24}? SPLAT_MINUTES -> type(SPLAT_MINUTES);
+CS_Factor1_SPLAT_MONTHS : {11<= getCharPositionInLine() && getCharPositionInLine()+7<=24}? SPLAT_MONTHS -> type(SPLAT_MONTHS);
+CS_Factor1_SPLAT_M : {11<= getCharPositionInLine() && getCharPositionInLine()+2<=24}? SPLAT_M -> type(SPLAT_M);
+CS_Factor1_SPLAT_MN : {11<= getCharPositionInLine() && getCharPositionInLine()+3<=24}? SPLAT_MN -> type(SPLAT_MN);
+CS_Factor1_SPLAT_MS : {11<= getCharPositionInLine() && getCharPositionInLine()+3<=24}? SPLAT_MS -> type(SPLAT_MS);
+CS_Factor1_SPLAT_MSECONDS : {11<= getCharPositionInLine() && getCharPositionInLine()+9<=24}? SPLAT_MSECONDS -> type(SPLAT_MSECONDS);
+CS_Factor1_SPLAT_SECONDS : {11<= getCharPositionInLine() && getCharPositionInLine()+8<=24}? SPLAT_SECONDS -> type(SPLAT_SECONDS);
+CS_Factor1_SPLAT_YEARS : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_YEARS -> type(SPLAT_YEARS);
+CS_Factor1_SPLAT_Y : {11<= getCharPositionInLine() && getCharPositionInLine()+2<=24}? SPLAT_Y -> type(SPLAT_Y);
+
 //Factor 2
 CS_Factor2_SPLAT_ALL : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_ALL -> type(SPLAT_ALL);
 CS_Factor2_SPLAT_NONE : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_NONE -> type(SPLAT_NONE);
@@ -508,7 +539,6 @@ CS_Factor2_SPLAT_LIKE : {35<= getCharPositionInLine() && getCharPositionInLine()
 CS_Factor2_SPLAT_LONGJUL : {35<= getCharPositionInLine() && getCharPositionInLine()+8<=48}? SPLAT_LONGJUL -> type(SPLAT_LONGJUL);
 CS_Factor2_SPLAT_LOVAL : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_LOVAL -> type(SPLAT_LOVAL);
 CS_Factor2_SPLAT_MONTH : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_MONTH -> type(SPLAT_MONTH);
-CS_Factor2_SPLAT_M : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_M -> type(SPLAT_M);
 CS_Factor2_SPLAT_NOIND : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_NOIND -> type(SPLAT_NOIND);
 CS_Factor2_SPLAT_NOKEY : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_NOKEY -> type(SPLAT_NOKEY);
 CS_Factor2_SPLAT_NULL : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_NULL -> type(SPLAT_NULL);
@@ -531,6 +561,20 @@ CS_Factor2_SPLAT_ZEROS : {35<= getCharPositionInLine() && getCharPositionInLine(
 CS_Factor2_SPLAT_HMS : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_HMS -> type(SPLAT_HMS);
 CS_Factor2_SPLAT_INLR : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_INLR -> type(SPLAT_INLR);
 CS_Factor2_SPLAT_INOF : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_INOF -> type(SPLAT_INOF);
+//Duration
+CS_Factor2_SPLAT_D : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_D -> type(SPLAT_D);
+CS_Factor2_SPLAT_DAYS : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_DAYS -> type(SPLAT_DAYS);
+CS_Factor2_SPLAT_H : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_H -> type(SPLAT_H);
+CS_Factor2_SPLAT_HOURS : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_HOURS -> type(SPLAT_HOURS);
+CS_Factor2_SPLAT_MINUTES : {35<= getCharPositionInLine() && getCharPositionInLine()+8<=48}? SPLAT_MINUTES -> type(SPLAT_MINUTES);
+CS_Factor2_SPLAT_MONTHS : {35<= getCharPositionInLine() && getCharPositionInLine()+7<=48}? SPLAT_MONTHS -> type(SPLAT_MONTHS);
+CS_Factor2_SPLAT_M : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_M -> type(SPLAT_M);
+CS_Factor2_SPLAT_MN : {35<= getCharPositionInLine() && getCharPositionInLine()+3<=48}? SPLAT_MN -> type(SPLAT_MN);
+CS_Factor2_SPLAT_MS : {35<= getCharPositionInLine() && getCharPositionInLine()+3<=48}? SPLAT_MS -> type(SPLAT_MS);
+CS_Factor2_SPLAT_MSECONDS : {35<= getCharPositionInLine() && getCharPositionInLine()+9<=48}? SPLAT_MSECONDS -> type(SPLAT_MSECONDS);
+CS_Factor2_SPLAT_SECONDS : {35<= getCharPositionInLine() && getCharPositionInLine()+8<=48}? SPLAT_SECONDS -> type(SPLAT_SECONDS);
+CS_Factor2_SPLAT_YEARS : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_YEARS -> type(SPLAT_YEARS);
+CS_Factor2_SPLAT_Y : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_Y -> type(SPLAT_Y);
 
 CS_BlankFactor: {(getCharPositionInLine()==11)
 			|| (getCharPositionInLine()==35)
@@ -547,7 +591,12 @@ CS_FactorContent: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
 			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 }?
-		~[\r\n ])+;
+		~[\r\n :])+;
+CS_FactorColon: ({(getCharPositionInLine()>11 && getCharPositionInLine()<24)
+			|| (getCharPositionInLine()>35 && getCharPositionInLine()<48)
+			|| (getCharPositionInLine()>49 && getCharPositionInLine()<62)
+}?
+		[:]) -> type(COLON);//pushMode(FIXED_CalcSpec_2PartFactor), 
 CS_OperationAndExtendedFactor2: {getCharPositionInLine()==25}? 
 	(OP_EVAL '      ' 
 		| OP_IF '        '  
@@ -571,6 +620,12 @@ CS_WhiteSpace : {getCharPositionInLine()>=76}? [ \t]+ -> skip  ; // skip spaces,
 CS_Comments : {getCharPositionInLine()>=80}? ~[\r\n]+  ; // skip spaces, tabs, newlines
 CS_EOL : NEWLINE -> type(EOL),popMode;
 
+mode FIXED_CalcSpec_2PartFactor;
+CS_FactorContent2: ({(getCharPositionInLine()>11 && getCharPositionInLine()<=24)
+			|| (getCharPositionInLine()>35 && getCharPositionInLine()<=48)
+			|| (getCharPositionInLine()>49 && getCharPositionInLine()<=62)
+}?
+		~[\r\n:])+ -> popMode;
 
 mode OnOffIndicatorMode;
 BlankFlag: [ ] ->popMode,pushMode(IndicatorMode);
