@@ -639,7 +639,7 @@ CS_FactorContentLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine(
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
 			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 }?
-		~[\r\n :])*
+		~[\r\n'\''])*
 ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
 			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
