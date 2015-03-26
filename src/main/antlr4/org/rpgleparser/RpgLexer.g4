@@ -145,6 +145,7 @@ OP_WHEN: [Ww][Hh][Ee][Nn];
 OP_WRITE: [Ww][Rr][Ii][Tt][Ee];
 OP_XML_INTO: [Xx][Mm][Ll][-][Ii][Nn][Tt][Oo];
 OP_XML_SAX: [Xx][Mm][Ll][-][Ss][Aa][Xx];
+
 // Symbolic Constants
 SPLAT_ALL: '*'[aA][lL][lL];
 SPLAT_NONE: '*'[nN][oO][nN][eE];
@@ -215,22 +216,56 @@ SPLAT_HMS: '*'[hH][mM][sS];
 SPLAT_INLR: '*'[iI][nN][lL][rR];
 SPLAT_INOF: '*'[iI][nN][oO][fF];
 
+// Reserved Words
+UDATE : [uU] [dD] [aA] [tT] [eE] ;
+DATE : '*' [dD] [aA] [tT] [eE] ;
+UMONTH : [uU] [mM] [oO] [nN] [tT] [hH] ;
+MONTH : '*' [mM] [oO] [nN] [tT] [hH] ;
+UYEAR : [uU] [yY] [eE] [aA] [rR] ;
+YEAR : '*' [yY] [eE] [aA] [rR] ;
+UDAY : [uU] [dD] [aA] [yY] ;
+DAY : '*' [dD] [aA] [yY] ;
+PAGE : [pP] [aA] [gG] [eE] [1-7]? ;
+
+// Boolean operators
+AND : [aA] [nN] [dD] ;
+OR : [oO] [rR] ;
+NOT : [nN] [oO] [tT] ;
+
+// Arithmetical Operators
+PLUS : '+' ;
+MINUS : '-' ;
+EXP : '**' ;
+//MULT : '*' ;
+MULT_NOSPACE: {_input.LA(2) != 32}? '*';
+MULT: {_input.LA(2) == 32}? '*' ;
+DIV : '/' ;
+
+// Assignment Operators
+CPLUS : '+=' ;
+CMINUS : '-=' ;
+CMULT : '*=' ;
+CDIV : '/=' ;
+
+// Comparison Operators
+GT : '>' ;
+LT : '<' ;
+GE : '>=' ;
+LE : '<=' ;
+NE : '<>' ;
+
 //--------------
 OP_E: '(' [aAdDeEhHmMnNpPrRtTzZ][aAdDeEhHmMnNpPrRtTzZ]? ')';
 FREE_OPEN_PAREN: OPEN_PAREN -> type(OPEN_PAREN);
 FREE_CLOSE_PAREN: CLOSE_PAREN -> type(CLOSE_PAREN);
 FREE_DOT: '.';
 FREE_NUMBER: NUMBER -> type(NUMBER);
-FREE_ASSIGNMENT: '=';
-FREE_OPERATION: '+' | '/' | '+=' | '-=';
-FREE_OPERATION_MULT_NOSPACE: {_input.LA(2) != 32}? '*';
-FREE_OPERATION_MULT: {_input.LA(2) == 32}? '*' ;
-FREE_OPERATION_MINUS: '-' ;
-FREE_COMPARE: '<' | '>'  | '<'[>=] | '>=';
+EQUAL: '=';
+
+//FREE_OPERATION: '+' | '/' | '+=' | '-=';
+//FREE_COMPARE: '<' | '>'  | '<'[>=] | '>=';
 FREE_COLON: COLON -> type(COLON);
-FREE_NOT: [nN][oO][tT];
-FREE_OR: [oO][rR];
-FREE_AND: [aA][nN][dD];
+
 FREE_BY: [bB][yY];
 FREE_TO: [tT][oO];
 FREE_DOWNTO: [dD][oO][wW][nN][tT][oO];
@@ -238,6 +273,10 @@ FREE_ID: ID -> type(ID);
 //FREE_STRING: ['] ~[']* ['];
 HexLiteralStart: [xX]['] -> pushMode(InStringMode) ;
 DateLiteralStart: [dD]['] -> pushMode(InStringMode) ;
+TimeLiteralStart: [tT]['] -> pushMode(InStringMode) ;
+TimeStampLiteralStart: [zZ]['] -> pushMode(InStringMode) ;
+GraphicLiteralStart: [gG]['] -> pushMode(InStringMode) ;
+UCS2LiteralStart: [uU]['] -> pushMode(InStringMode) ;
 StringLiteralStart: ['] -> pushMode(InStringMode) ; 
 FREE_COMMENTS: {getCharPositionInLine()>=7}? [ ]*? '//' -> pushMode(FIXED_CommentMode_HIDDEN),channel(HIDDEN) ;
 FREE_WS: {getCharPositionInLine()>5}? [ \t]+ -> skip;

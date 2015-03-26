@@ -67,7 +67,6 @@ public class TestO {
     public void testOSpec_2() {
         String inputString =
                 "     O         AND   10N73N07";
-        TestUtils.printTokens(inputString, false);
         expectTokensForSourceLines(inputString,
                 "O", "AND", "","10", "N","73", "N","07", "", "", "", "", "", "");
     }

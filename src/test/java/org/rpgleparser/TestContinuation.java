@@ -1,6 +1,7 @@
 package org.rpgleparser;
 
 import org.junit.Test;
+import org.rpgleparser.utils.TestUtils;
 
 import static org.rpgleparser.utils.TestUtils.expectTokensForFreeSnippet;
 import static org.rpgleparser.utils.TestUtils.expectTokensForSourceLines;

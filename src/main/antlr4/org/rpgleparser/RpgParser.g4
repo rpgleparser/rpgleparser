@@ -419,7 +419,7 @@ op_exfmt: OP_EXFMT OP_E? identifier (identifier )? ;
 op_exsr: OP_EXSR identifier ;
 op_feod: OP_FEOD OP_E? identifier ;
 op_for: OP_FOR OP_E? expression   //For(E) I
-	(FREE_ASSIGNMENT expression )? // = 1
+	(EQUAL expression )? // = 1
 	(FREE_BY expression )?    // By 1
 	((FREE_TO | FREE_DOWNTO) expression )?; // TO 10 ;
 op_force: OP_FORCE identifier ;
@@ -441,7 +441,7 @@ op_reade: OP_READE OP_E? search_arg identifier (identifier )? ;
 op_readp: OP_READP OP_E? identifier (identifier )? ;
 op_readpe: OP_READPE OP_E? search_arg identifier (identifier )? ;
 op_rel: OP_REL OP_E? identifier identifier ;
-op_reset2: OP_RESET OP_E? identifier  OPEN_PAREN FREE_OPERATION_MULT_NOSPACE?  CLOSE_PAREN ;
+op_reset2: OP_RESET OP_E? identifier  OPEN_PAREN MULT_NOSPACE?  CLOSE_PAREN ;
 op_reset: OP_RESET OP_E?  (identifier)? (identifier )? identifier ;
 op_return: OP_RETURN OP_E? identifier? ;
 op_rolbk: OP_ROLBK OP_E? ;
@@ -531,32 +531,36 @@ exec_sql: EXEC_SQL WORDS+ SEMI ;
 
 //--------------- 
 baseExpression: op | assignmentExpression | expression;
-assignmentExpression: expression FREE_ASSIGNMENT expression;
+assignmentExpression: expression EQUAL expression;
 expression: 
 	// op | // should drop op I think? 
 	identifier 
 	| number 
 	| literal  
 	| function 
-	| FREE_NOT expression
+	| NOT expression
 	| OPEN_PAREN expression CLOSE_PAREN
-	| expression (FREE_ASSIGNMENT | FREE_COMPARE) expression
-	| expression (FREE_OR | FREE_AND | FREE_OPERATION | FREE_OPERATION_MINUS |FREE_OPERATION_MULT | FREE_OPERATION_MULT_NOSPACE) expression	
+	| expression (assignmentOperator | comparisonOperator) expression
+	| expression (OR | AND | arithmeticalOperator | EQUAL) expression	
 	;
 indicator_expr: expression;
 function: functionName args;
+arithmeticalOperator:PLUS | MINUS | EXP | MULT | MULT_NOSPACE | DIV;
+comparisonOperator: GT | LT | GE | LE | NE;
+assignmentOperator: CPLUS | CMINUS | CMULT | CDIV ;
 
 /*--------------- what words 
-assignment: expression FREE_ASSIGNMENT indicator_expr;
-indicator_expr: indicator_expr_simple ((FREE_OR | FREE_AND | FREE_OPERATION) indicator_expr)*;
-indicator_expr_simple: (FREE_NOT? expression (compare_expr expression)?) ;
-compare_expr:(FREE_ASSIGNMENT | FREE_COMPARE);
+assignment: expression EQUAL indicator_expr;
+indicator_expr: indicator_expr_simple ((OR | AND | FREE_OPERATION) indicator_expr)*;
+indicator_expr_simple: (NOT? expression (compare_expr expression)?) ;
+compare_expr:(EQUAL | FREE_COMPARE);
 //and_or: {$getText =="OR"}? free_identifier ; //TODO
 expression: identifier | number | literal | function;
 function: functionName args;
 //---------------*/
 args: OPEN_PAREN (expression (COLON expression)*)? CLOSE_PAREN;
-literal: (StringLiteralStart|HexLiteralStart|DateLiteralStart) (StringContent | StringEscapedQuote | PlusOrMinus)* StringLiteralEnd;
+literal: (StringLiteralStart|HexLiteralStart|DateLiteralStart|TimeLiteralStart|TimeStampLiteralStart|UCS2LiteralStart|GraphicLiteralStart) 
+	(StringContent | StringEscapedQuote | PlusOrMinus)* StringLiteralEnd;
 identifier: free_identifier (FREE_CONT free_identifier)? |multipart_identifier | all;
 all: symbolicConstants literal?;
 //assignIdentifier: multipart_identifier;
@@ -564,9 +568,9 @@ functionName: free_identifier;
 multipart_identifier: free_identifier (FREE_DOT (free_identifier | indexed_identifier))*;
 indexed_identifier: free_identifier OPEN_PAREN expression CLOSE_PAREN;
 opCode: free_identifier;
-number: FREE_OPERATION_MINUS? NUMBER ;
-free_identifier: (continuedIdentifier | FREE_OPERATION_MULT_NOSPACE? ID | FREE_NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
-//free_identifier: (continuedIdentifier | ID | FREE_NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
+number: MINUS? NUMBER ;
+free_identifier: (continuedIdentifier | MULT_NOSPACE? ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
+//free_identifier: (continuedIdentifier | ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
 continuedIdentifier: ID CONTINUATION ID ;
 		
 datatype: ID OPEN_PAREN NUMBER CLOSE_PAREN SEMI;

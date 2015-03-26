@@ -528,7 +528,6 @@ public class TestFREE {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.getParsedTokens(inputString, errors);
         assertTrue("Errors expected", errors.size() > 0);
-
     }
 
     @Test
@@ -573,6 +572,6 @@ public class TestFREE {
         String inputString =
                 "i = 1 + 2;";
         expectTreeForFreeSnippet(inputString,
-                "(r (free (baseExpression (op (op_eval (assignmentExpression (expression (identifier (free_identifier i))) = (expression (expression (number 1)) + (expression (number 2))))))) ;))");
+                "(r (free (baseExpression (op (op_eval (assignmentExpression (expression (identifier (free_identifier i))) = (expression (expression (number 1)) (arithmeticalOperator +) (expression (number 2))))))) ;))");
     }
 }

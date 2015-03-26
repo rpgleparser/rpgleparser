@@ -22,10 +22,8 @@ public class TestP {
                         "     D  SomeNumber                         like(typeP50u)                 const\r\n";
         inputString = TestUtils.padSourceLines(inputString, false);
         List<String> errors = new ArrayList<String>();
-        //TestUtils.printTokens(inputString, null);
         List<CommonToken> tokenList = TestUtils.getParsedTokens(inputString, errors);
         assertThat(errors, is(empty()));
-        TestUtils.printTokens(tokenList);
     }
     
 
