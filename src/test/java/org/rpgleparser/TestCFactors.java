@@ -1,6 +1,8 @@
 package org.rpgleparser;
 
 import org.junit.Test;
+import org.rpgleparser.utils.TestUtils;
+
 import static org.rpgleparser.utils.TestUtils.expectTokensForSourceLines;
 
 public class TestCFactors {
@@ -21,5 +23,11 @@ public class TestCFactors {
         		"C","","N","L9","LOANDATE","ADDDUR","XX",":","YEARS","DUEDATE","","","","","","");
     }
 
+    @Test
+    public void testMove(){
+    	String inputString = 
+    			"     C                   MOVE      ' '           PSLFLG            1\r\n";
+    	TestUtils.showParseTree(inputString, false);
+    }
 
 }
