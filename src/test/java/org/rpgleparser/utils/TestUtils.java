@@ -148,7 +148,7 @@ public class TestUtils {
         frame.setVisible(true);
     }
 
-    private static void fillTokenList(ParseTree parseTree, List<CommonToken> tokenList) {
+    public static void fillTokenList(ParseTree parseTree, List<CommonToken> tokenList) {
         for (int i = 0; i < parseTree.getChildCount(); i++) {
             ParseTree payload = parseTree.getChild(i);
 
