@@ -201,7 +201,11 @@ cs_operationExtender:
   extender=CS_OperationAndExtender
   CLOSE_PAREN;	
 factor:
-   content=CS_FactorContent (COLON (content2=CS_FactorContent | constant2=symbolicConstants))? | CS_BlankFactor | constant=symbolicConstants;
+   content=factorContent (COLON (content2=factorContent | constant2=symbolicConstants))? | CS_BlankFactor | constant=symbolicConstants;
+   
+factorContent:
+CS_FactorContent | CS_FactorContentLiteral;
+
 resultType:	
    CS_FactorContent | CS_BlankFactor;
 cs_fixed_comments:CS_Comments;		

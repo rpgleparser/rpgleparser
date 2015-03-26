@@ -626,6 +626,26 @@ CS_FactorWs: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 CS_FactorWs2: ({(getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 }?  
 		' ')+ -> skip;
+		
+/*
+ * This rather awkward token, matches a literal. including whitespace literals
+ */		
+CS_FactorContentLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
+}?
+		'\''
+({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
+}?
+		~[\r\n :])*
+({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
+}?
+		'\'')
+;		
 CS_FactorContent: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
 			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
@@ -658,13 +678,6 @@ CS_DecimalPositions: {getCharPositionInLine()==68}? [ 0-9][ 0-9]
 CS_WhiteSpace : {getCharPositionInLine()>=76}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
 CS_Comments : {getCharPositionInLine()>=80}? ~[\r\n]+  ; // skip spaces, tabs, newlines
 CS_EOL : NEWLINE -> type(EOL),popMode;
-
-mode FIXED_CalcSpec_2PartFactor;
-CS_FactorContent2: ({(getCharPositionInLine()>11 && getCharPositionInLine()<=24)
-			|| (getCharPositionInLine()>35 && getCharPositionInLine()<=48)
-			|| (getCharPositionInLine()>49 && getCharPositionInLine()<=62)
-}?
-		~[\r\n:])+ -> popMode;
 
 mode OnOffIndicatorMode;
 BlankFlag: [ ] ->popMode,pushMode(IndicatorMode);
