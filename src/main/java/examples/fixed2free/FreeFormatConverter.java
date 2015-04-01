@@ -21,18 +21,6 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	private static final Logger logger = LoggerFactory
 			.getLogger(FreeFormatConverter.class);
 
-	public static void fillTokenList(ParseTree parseTree, List<CommonToken> tokenList) {
-        for (int i = 0; i < parseTree.getChildCount(); i++) {
-            ParseTree payload = parseTree.getChild(i);
-
-            if (payload.getPayload() instanceof CommonToken) {
-                tokenList.add((CommonToken) payload.getPayload());
-            } else {
-                fillTokenList(payload, tokenList);
-            }
-
-        }
-    }
 	private ArrayList<String> cspecs = new ArrayList<String>();
 	private ArrayList<String> dspecs = new ArrayList<String>();
 	private ArrayList<String> fspecs = new ArrayList<String>();
@@ -44,13 +32,12 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	private ArrayList<String> ospecs = new ArrayList<String>();
 	private int spacesToIndent = 3;
 	private Vocabulary voc;
-	
 	private String workString;
 	
 	public FreeFormatConverter(RpgLexer lex){
 		voc = lex.getVocabulary();
 	}
-
+	
 	protected void checkOpCodeStuff(CommonToken ct, List<CommonToken> myList,
 			int opCodeIndex) throws RPGFormatException {
 		if (opCodeIndex == 0)
@@ -101,7 +88,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		} else if (opCode.equals("KFLD")) {
 			doKFLD(result, opCodeIndex);
 		} else if (opCode.equals("PLIST")) {
-			doPLIST(result, opCodeIndex);
+			doPLIST(factor1, opCodeIndex);
 		} else if (opCode.equals("PARM")) {
 			doPARM(factor1, opCodeIndex);
 		} else if (opCode.equals("DEFINE")) {
@@ -150,8 +137,6 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 			doORGT(factor1, factor2);
 		} else if (opCode.equals("ORLT")) {
 			doORLT(factor1, factor2);
-		} else if (opCode.equals("Z-ADD")) {
-			doZ_ADD(factor1, factor2, result);
 		} else if (opCode.equals("ACQ")) {
 			doACQ(factor1, factor2);
 		} else if (opCode.equals("ADD")) {
@@ -448,7 +433,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doACQ(CommonToken factor1, CommonToken factor2) {
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent)
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent))
 				+ "ACQ " + factor1.getText() + " " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
@@ -456,16 +441,17 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	private void doADD(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken length, CommonToken decpos)
 			throws RPGFormatException {
-		if (length.getText().trim().length() != 0) {
-			workString = RPGSpecs.formatDSpec(result.getText().trim(), " ",
-					" ", "S", " ", length.getText().trim(), " ", decpos
-							.getText().trim(), " ", "Created by conversion");
-			dspecs.add(workString);
+		doResultCheck(result, length, decpos);
+		if (factor1.getText().trim().length() > 0){
+			workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent))
+					+ result.getText().trim() + " = " + factor1.getText() + " + "
+					+ factor2.getText() + ";";
+			cspecs.add(workString);
+		} else {
+			workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent))
+					+ result.getText().trim() + " += " + factor2.getText() + ";";
+			cspecs.add(workString);
 		}
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent)
-				+ result.getText().trim() + " = " + factor1.getText() + " + "
-				+ factor2.getText() + ";";
-		cspecs.add(workString);
 
 	}
 
@@ -476,49 +462,50 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doALLOC(CommonToken factor2, CommonToken result) {
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + result.getText().trim() + " = %ALLOC(" + factor2.getText().trim() + ");";
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + result.getText().trim() + " = %ALLOC(" + factor2.getText().trim() + ");";
 		cspecs.add(workString);
 
 	}
 
 	private void doANDEQ(CommonToken factor1, CommonToken factor2) {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent)
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "AND " + factor1.getText() + " = " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doANDGE(CommonToken factor1, CommonToken factor2) {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent)
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "AND " + factor1.getText() + " >= " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doANDGT(CommonToken factor1, CommonToken factor2) {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent)
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "AND " + factor1.getText() + " > " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doANDLE(CommonToken factor1, CommonToken factor2) {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent)
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "AND " + factor1.getText() + " <= " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doANDLT(CommonToken factor1, CommonToken factor2) {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent)
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "AND " + factor1.getText() + " < " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doANDNE(CommonToken factor1, CommonToken factor2) {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent)
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "AND " + factor1.getText() + " <> " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doBEGSR(CommonToken factor1) {
-		workString = " BEGSR " + factor1.getText().trim() + ";";
+		setIndentLevel(0);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "BEGSR " + factor1.getText().trim() + ";";
 		cspecs.add(workString);
 	}
 
@@ -651,31 +638,13 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		} else if (ER){
 			opCode += "(E)";
 		}
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + opCode + " " + factor1.getText().trim() + " " + factor2.getText().trim() + " " + result.getText().trim() + ";";
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + opCode + " " + factor1.getText().trim() + " " + factor2.getText().trim() + " " + result.getText().trim() + ";";
 		cspecs.add(workString);
 		if (NR){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF %FOUND = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + high.getText() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + high.getText() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
-			cspecs.add(workString);
+			setResultingIndicator(low, "IF %FOUND = *OFF;");
 		}
 		if (ER){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF %ERROR = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
-			cspecs.add(workString);
+			setResultingIndicator(low, "IF %ERROR = *ON;");
 		}
 
 	}
@@ -685,7 +654,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 	private void doCHECKR(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken low, CommonToken equal) {
 		// TODO Auto-generated method stub
@@ -694,7 +663,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doCLEAR(CommonToken factor1, CommonToken factor2,
 			CommonToken result) {
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "CLEAR ";
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "CLEAR ";
 		if (factor1.getText().trim().length() > 0){
 			workString += "*NOKEY ";
 		}
@@ -711,19 +680,10 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		if (ER){
 			opCode += "(E)";
 		}
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + opCode + " " + factor2.getText().trim() + ";";
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + opCode + " " + factor2.getText().trim() + ";";
 		cspecs.add(workString);
 		if (ER){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF %ERROR;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
-			cspecs.add(workString);
+			setResultingIndicator(low, "IF %ERRROR = *ON;");
 		}
 
 	}
@@ -734,50 +694,21 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		if (ER){
 			opCode += "(E)";
 		}
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + opCode + " " + factor1.getText().trim() + ";";
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + opCode + " " + factor1.getText().trim() + ";";
 		cspecs.add(workString);
 
 	}
-	
-	
 
 	private void doCOMP(CommonToken factor1, CommonToken factor2,
 			CommonToken high, CommonToken low, CommonToken equal) {
 		if (high.getText().trim().length() > 0){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF " + factor1.getText().trim() + " > " + factor2.getText().trim() + ";" ;
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + high.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + high.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
-			cspecs.add(workString);
+			setResultingIndicator(high, "IF "+ factor1.getText().trim() + " > " + factor2.getText().trim() + ";");
 		}
 		if (low.getText().trim().length() > 0){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF " + factor1.getText().trim() + " < " + factor2.getText().trim() + ";" ;
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
-			cspecs.add(workString);
+			setResultingIndicator(low, "IF "+ factor1.getText().trim() + " < " + factor2.getText().trim() + ";");
 		}
 		if (equal.getText().trim().length() > 0){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF " + factor1.getText().trim() + " = " + factor2.getText().trim() + ";" ;
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + equal.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + equal.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
-			cspecs.add(workString);
+			setResultingIndicator(equal, "IF "+ factor1.getText().trim() + " = " + factor2.getText().trim() + ";");
 		}
 
 	}
@@ -788,29 +719,20 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		if (ER){
 			opCode += "(E)";
 		}
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + opCode + result.getText().trim() + ";";
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + opCode + result.getText().trim() + ";";
 		cspecs.add(workString);
 		if (ER){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF %ERROR;" ;
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
-			cspecs.add(workString);
+			setResultingIndicator(low, "IF %ERROR = *ON;");
 		}
 	}
 
 	private void doDEFINE(CommonToken factor1, CommonToken factor2,
 			CommonToken result) throws RPGFormatException {
 		if (factor1.getType() == RpgLexer.SPLAT_LIKE) {
-			workString = RPGSpecs.formatDSpec(result.getText(), " ", " ", "S", " ", " ", " ", " ", "LIKE(" +factor2.getText().trim() + ")", "From a define statement");
+			workString = RPGSpecs.formatDSpec(' ' + result.getText(), " ", " ", "S", " ", " ", " ", " ", "LIKE(" +factor2.getText().trim() + ")", "From a define statement");
 			dspecs.add(workString);
 		} else if (factor1.getType() == RpgLexer.SPLAT_DTAARA){
-			workString = RPGSpecs.formatDSpec(result.getText(), " ", " ", "DS", " ", " ", " ", " ", "DTAARA(" +factor2.getText().trim() + ")", "From a define statement");
+			workString = RPGSpecs.formatDSpec(' ' + result.getText(), " ", " ", "DS", " ", " ", " ", " ", "DTAARA(" +factor2.getText().trim() + ")", "From a define statement");
 			dspecs.add(workString);
 		}
 	}
@@ -827,32 +749,14 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		} else if (ER){
 			opCode += ("E");
 		}
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + opCode + " " + factor1.getText().trim() + " " + factor2.getText().trim() + ";";
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + opCode + " " + factor1.getText().trim() + " " + factor2.getText().trim() + ";";
 		cspecs.add(workString);
 		if (ER){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF %ERROR;" ;
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
-			cspecs.add(workString);
+			setResultingIndicator(low, "IF %ERROR = *ON;");
 		}
 
 		if (NR){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF %FOUND;" ;
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
-			cspecs.add(workString);
+			setResultingIndicator(high, "IF %FOUND = *OFF");
 		}
 	}
 
@@ -864,43 +768,19 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		boolean NEG = low.getText().trim().length() > 0;
 		boolean ZERO = equal.getText().trim().length() > 0;
 		if (F1F){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + result.getText().trim() + " = " + factor1.getText().trim() + " / " + factor2.getText().trim() + ";";
+			workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + result.getText().trim() + " = " + factor1.getText().trim() + " / " + factor2.getText().trim() + ";";
 		} else {
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + result.getText().trim() + " = " + result.getText().trim() + " / " + factor2.getText().trim() + ";";
+			workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + result.getText().trim() + " = " + result.getText().trim() + " / " + factor2.getText().trim() + ";";
 		}
 		cspecs.add(workString);
 		if (POS){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF " + result.getText().trim() + " > 0;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + high.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + high.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
+			setResultingIndicator(high, "IF " + result.getText().trim() + " > 0;");
 		}
 		if (NEG){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF " + result.getText().trim() + " < 0;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + low.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
+			setResultingIndicator(low, "IF " + result.getText().trim() + " < 0;");
 		}
 		if (ZERO){
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "IF " + result.getText().trim() + " = 0;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + equal.getText().trim() + " = *ON;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ELSE;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel + 1 * spacesToIndent) + "*IN" + equal.getText().trim() + " = *OFF;";
-			cspecs.add(workString);
-			workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "ENDIF;";
+			setResultingIndicator(equal, "IF " + result.getText().trim() + " = 0;");
 		}
 	}
 
@@ -912,9 +792,9 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		} else {
 			factor1s = factor1.getText().trim();
 		}
-		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent) + "FOR " + result.getText().trim() 
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "FOR " + result.getText().trim() 
 				+ " = " + factor1s + " TO "+ factor2.getText().trim() + ";";
-		setIndentLevel(indentLevel++);
+		setIndentLevel(++indentLevel);
 		cspecs.add(workString);
 	}
 
@@ -1000,7 +880,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doELSE() {
-		workString =StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent) + "ELSE;";
+		workString =StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ELSE;";
 		cspecs.add(workString);
 	}
 
@@ -1020,34 +900,34 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doENDDO(CommonToken factor2) {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent) + "ENDDO;";
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDDO;";
 		cspecs.add(workString);
-		setIndentLevel(indentLevel--);
+		setIndentLevel(--indentLevel);
 
 	}
 
 	private void doENDFOR() {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent) + "ENDFOR;";
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDFOR;";
 		cspecs.add(workString);
-		setIndentLevel(indentLevel--);
+		setIndentLevel(--indentLevel);
 	}
 
 	private void doENDIF() {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent) + "ENDIF;";
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
 		cspecs.add(workString);
-		setIndentLevel(indentLevel--);
+		setIndentLevel(--indentLevel);
 	}
 
 	private void doENDMON() {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent) + "ENDMON;";
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDMON;";
 		cspecs.add(workString);
-		setIndentLevel(indentLevel--);
+		setIndentLevel(--indentLevel);
 	}
 
 	private void doENDSL() {
-		workString = StringUtils.repeat(" ", 7 + indentLevel * spacesToIndent) + "ENDSL;";
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDSL;";
 		cspecs.add(workString);
-		setIndentLevel(indentLevel--);
+		setIndentLevel(--indentLevel);
 
 	}
 
@@ -1134,53 +1014,53 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doIFEQ(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(indentLevel++);
+		setIndentLevel(++indentLevel);
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " = " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doIFGE(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(indentLevel++);
+		setIndentLevel(++indentLevel);
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " >= " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doIFGT(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(indentLevel++);
+		setIndentLevel(++indentLevel);
 		workString =StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " > " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doIFLE(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(indentLevel++);
+		setIndentLevel(++indentLevel);
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " <= " + factor2.getText() + ";";
 		cspecs.add(workString);
 	}
 
 	private void doIFLT(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(indentLevel++);
+		setIndentLevel(++indentLevel);
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " < " + factor2.getText() + ";";
 	}
 
 	private void doIFNE(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(indentLevel++);
+		setIndentLevel(++indentLevel);
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " <> " + factor2.getText() + ";";
 		cspecs.add(workString);
@@ -1193,30 +1073,31 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doITER() {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent) + "ITER;";
+				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ITER;";
 		cspecs.add(workString);
 	}
 
 	private void doKFLD(CommonToken result, int opCodeIndex) throws RPGFormatException {
-		workString = RPGSpecs.formatDSpec(result.getText().trim(), " ", " ", " ", " ", " ", " ", " ", " ", "From a KLIST KLFD");
+		workString = RPGSpecs.formatDSpec(' ' + result.getText().trim(), " ", " ", " ", " ", " ", " ", " ", " ", "From a KLIST KLFD");
 		dspecs.add(workString);
 	}
 
 	private void doKLIST(CommonToken factor1, int opCodeIndex) throws RPGFormatException {
 		inKList = true;
-		workString = RPGSpecs.formatDSpec(factor1.getText().trim(), " ", " ", "DS", " ", " ", " ", " ", " ", "From a KLIST");
+		workString = RPGSpecs.formatDSpec(' ' + factor1.getText().trim(), " ", " ", "DS", " ", " ", " ", " ", " ", "From a KLIST");
+		dspecs.add("");
 		dspecs.add(workString);
 	}
 
 	private void doLEAVE() {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent) + "LEAVE;";
+				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "LEAVE;";
 		cspecs.add(workString);
 	}
 
 	private void doLEAVESR() {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent) + "LEAVESR;";
+				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "LEAVESR;";
 		cspecs.add(workString);
 	}
 
@@ -1252,9 +1133,9 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doMONITOR() {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent) + "MONITOR;";
+				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "MONITOR;";
 		cspecs.add(workString);
-		setIndentLevel(indentLevel++);
+		setIndentLevel(++indentLevel);
 	}
 
 	private void doMOVE(CommonToken factor1, CommonToken factor2,
@@ -1316,7 +1197,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doOREQ(CommonToken factor1, CommonToken factor2) {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "OR "
 				+ factor1.getText() + " = " + factor2.getText() + ";";
 		cspecs.add(workString);
@@ -1324,7 +1205,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doORGE(CommonToken factor1, CommonToken factor2) {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "OR "
 				+ factor1.getText() + " >= " + factor2.getText() + ";";
 		cspecs.add(workString);
@@ -1332,7 +1213,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doORGT(CommonToken factor1, CommonToken factor2) {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "OR "
 				+ factor1.getText() + " > " + factor2.getText() + ";";
 		cspecs.add(workString);
@@ -1340,7 +1221,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doORLE(CommonToken factor1, CommonToken factor2) {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "OR "
 				+ factor1.getText() + " <= " + factor2.getText() + ";";
 		cspecs.add(workString);
@@ -1348,7 +1229,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doORLT(CommonToken factor1, CommonToken factor2) {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "OR "
 				+ factor1.getText() + " < " + factor2.getText() + ";";
 		cspecs.add(workString);
@@ -1356,7 +1237,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doORNE(CommonToken factor1, CommonToken factor2) {
 		workString = StringUtils
-				.repeat(" ", 7 + indentLevel * spacesToIndent)
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "OR "
 				+ factor1.getText() + " <> " + factor2.getText() + ";";
 		cspecs.add(workString);
@@ -1373,13 +1254,14 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doPARM(CommonToken result, int opCodeIndex) throws RPGFormatException {
-		workString = RPGSpecs.formatDSpec(result.getText().trim(), " ", " ", " ", " ", " ", " ", " ", " ", "From PLIST PARM");
+		workString = RPGSpecs.formatDSpec(' ' + result.getText().trim(), " ", " ", " ", " ", " ", " ", " ", " ", "From PLIST PARM");
 		dspecs.add(workString);
 	}
 
 	private void doPLIST(CommonToken factor1, int opCodeIndex) throws RPGFormatException {
 		inPList = true;
-		workString = RPGSpecs.formatDSpec(factor1.getText().trim(), " ", " ", "PI", " ", " ", " ", " ", " ", "From PLIST");
+		workString = RPGSpecs.formatDSpec(' ' + factor1.getText().trim(), " ", " ", "PI", " ", " ", " ", " ", " ", "From PLIST");
+		dspecs.add("");
 		dspecs.add(workString);
 	}
 
@@ -1434,6 +1316,27 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 			CommonToken result, CommonToken low) {
 		// TODO Auto-generated method stub
 
+	}
+
+	private void doResultCheck(CommonToken result, CommonToken length,
+			CommonToken decpos) throws RPGFormatException {
+		boolean lengthFound = length.getText().trim().length() >0;
+		String lengths = length.getText().trim();
+		boolean decimalsFound = decpos.getText().trim().length() > 0;
+		String decposs = decpos.getText().trim();
+		
+		if (lengthFound){
+			if (decimalsFound){
+				workString = RPGSpecs.formatDSpec(' ' + result.getText().trim(), " ", " ", "S", " ", lengths, " ", decposs, " ", "From conversion of result field");
+				dspecs.add(workString);
+			} else {
+				workString = RPGSpecs.formatDSpec(' ' + result.getText().trim(), " ", " ", "S", " ", lengths, " ", " ", " ", "From conversion of result field");
+				dspecs.add(workString);
+			}
+			
+		}
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void doRETURN(CommonToken factor2) {
@@ -1626,47 +1529,41 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	}
 
-	private void doZ_ADD(CommonToken factor1, CommonToken factor2,
-			CommonToken result) {
-		String factor1s = factor1.getText().trim();
-		String factor2s = factor2.getText().trim();
-		if (factor1s.length() == 0) {
-			if (factor2s.length() == 0) {
-				// Oops we should not be here!!!
-			} else {
-				workString = StringUtils.repeat(" ", indentLevel
-						* spacesToIndent)
-						+ result.getText() + " = " + factor2s + ";";
-			}
-		} else {
-			if (factor2s.length() == 0) {
-				workString = StringUtils.repeat(" ", indentLevel
-						* spacesToIndent)
-						+ result.getText() + " = " + factor1s + ";";
-			} else {
-				workString = StringUtils.repeat(" ", indentLevel
-						* spacesToIndent)
-						+ result.getText()
-						+ " = "
-						+ factor1s
-						+ " + "
-						+ factor2s + ";";
-			}
+	private void doZ_ADD(CommonToken factor2, CommonToken result,
+			CommonToken length, CommonToken decpos, CommonToken high,
+			CommonToken low, CommonToken equal) throws RPGFormatException {
+		workString = StringUtils.repeat(" ", 7 + (indentLevel
+				* spacesToIndent)) + result.getText().trim() + " = " + factor2.getText().trim() + ";";
+		cspecs.add(workString);
+		doResultCheck(result, length, decpos);
+		if (high.getText().trim().length()> 0){
+			setResultingIndicator(high, "IF " + result.getText().trim() + " >  0;");
+		}
+		if (low.getText().trim().length()> 0){
+			setResultingIndicator(low, "IF " + result.getText().trim() + " <  0;");
+		}
+		if (equal.getText().trim().length()> 0){
+			setResultingIndicator(equal, "IF " + result.getText().trim() + " =  0;");
 		}
 	}
 
-	private void doZ_ADD(CommonToken factor2, CommonToken result,
-			CommonToken length, CommonToken decpos, CommonToken high,
-			CommonToken low, CommonToken equal) {
-		// TODO Auto-generated method stub
-
-	}
 
 	private void doZ_SUB(CommonToken factor2, CommonToken result,
 			CommonToken length, CommonToken decpos, CommonToken high,
-			CommonToken low, CommonToken equal) {
-		// TODO Auto-generated method stub
-
+			CommonToken low, CommonToken equal) throws RPGFormatException {
+		workString = StringUtils.repeat(" ", 7 + (indentLevel
+				* spacesToIndent)) + result.getText().trim() + " = " + factor2.getText().trim() + " * -1;";
+		cspecs.add(workString);
+		doResultCheck(result, length, decpos);
+		if (high.getText().trim().length()> 0){
+			setResultingIndicator(high, "IF " + result.getText().trim() + " >  0;");
+		}
+		if (low.getText().trim().length()> 0){
+			setResultingIndicator(low, "IF " + result.getText().trim() + " <  0;");
+		}
+		if (equal.getText().trim().length()> 0){
+			setResultingIndicator(equal, "IF " + result.getText().trim() + " =  0;");
+		}
 	}
 
 	@Override
@@ -1690,10 +1587,10 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 				}
 			}
 		}
-		for (CommonToken ct : myList) {
-			System.err.println(voc.getDisplayName(ct.getType()) + "\t"
-					+ ct.getText());
-		}
+//		for (CommonToken ct : myList) {
+//			System.err.println(voc.getDisplayName(ct.getType()) + "\t"
+//					+ ct.getText());
+//		}
 
 		super.exitCspec_fixed(ctx);
 
@@ -1735,6 +1632,19 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		}
 	}
 
+	private void fillTokenList(ParseTree parseTree, List<CommonToken> tokenList) {
+        for (int i = 0; i < parseTree.getChildCount(); i++) {
+            ParseTree payload = parseTree.getChild(i);
+
+            if (payload.getPayload() instanceof CommonToken) {
+                tokenList.add((CommonToken) payload.getPayload());
+            } else {
+                fillTokenList(payload, tokenList);
+            }
+
+        }
+    }
+
 	public int getIndentLevel() {
 		return indentLevel;
 	}
@@ -1749,6 +1659,19 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		} else {
 			this.indentLevel = indentLevel;
 		}
+	}
+
+	private void setResultingIndicator(CommonToken indicator, String condition){
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + condition;
+		cspecs.add(workString);
+		workString = StringUtils.repeat(' ', 7 + ((indentLevel + 1) * spacesToIndent)) + "*IN" + indicator.getText().trim() + " = *ON;";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "ELSE;";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(' ', 7 + ((indentLevel + 1) * spacesToIndent)) + "*IN" + indicator.getText().trim() + " = *OFF;";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 	}
     public void setSpacesToIndent(int spacesToIndent) {
 		this.spacesToIndent = spacesToIndent;
