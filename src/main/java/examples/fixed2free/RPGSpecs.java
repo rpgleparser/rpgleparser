@@ -176,7 +176,7 @@ public class RPGSpecs {
 		}
 		result = "     D" + StringUtils.rightPad(name, 15)
 				+ externalDescription + typeOfDataStructure
-				+ StringUtils.rightPad(typeOfDataStructure, 2)
+				+ StringUtils.rightPad(definitionType, 2)
 				+ StringUtils.leftPad(fromPosition, 7)
 				+ StringUtils.leftPad(toPosition, 7)
 				+ internalDataType
