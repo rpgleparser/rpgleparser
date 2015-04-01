@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.Vocabulary;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.lang3.StringUtils;
 import org.rpgleparser.RpgLexer;
 import org.rpgleparser.RpgParser.Cspec_fixedContext;
 import org.rpgleparser.RpgParser.Cspec_fixed_x2Context;
 import org.rpgleparser.RpgParserBaseListener;
-import org.rpgleparser.utils.TestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +21,18 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	private static final Logger logger = LoggerFactory
 			.getLogger(FreeFormatConverter.class);
 
+	public static void fillTokenList(ParseTree parseTree, List<CommonToken> tokenList) {
+        for (int i = 0; i < parseTree.getChildCount(); i++) {
+            ParseTree payload = parseTree.getChild(i);
+
+            if (payload.getPayload() instanceof CommonToken) {
+                tokenList.add((CommonToken) payload.getPayload());
+            } else {
+                fillTokenList(payload, tokenList);
+            }
+
+        }
+    }
 	private ArrayList<String> cspecs = new ArrayList<String>();
 	private ArrayList<String> dspecs = new ArrayList<String>();
 	private ArrayList<String> fspecs = new ArrayList<String>();
@@ -32,21 +44,11 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	private ArrayList<String> ospecs = new ArrayList<String>();
 	private int spacesToIndent = 3;
 	private Vocabulary voc;
+	
 	private String workString;
 	
 	public FreeFormatConverter(RpgLexer lex){
 		voc = lex.getVocabulary();
-	}
-	
-	public List<String> collectOutput(){
-		ArrayList<String> result = new ArrayList<String>(hspecs.size() + fspecs.size() + ispecs.size() + dspecs.size() + cspecs.size() +ospecs.size()); 
-			result.addAll(hspecs);
-			result.addAll(fspecs);
-			result.addAll(ispecs);
-			result.addAll(dspecs);
-			result.addAll(cspecs);
-			result.addAll(ospecs);
-			return result;
 	}
 
 	protected void checkOpCodeStuff(CommonToken ct, List<CommonToken> myList,
@@ -434,6 +436,17 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		}
 	}
 
+	public List<String> collectOutput(){
+		ArrayList<String> result = new ArrayList<String>(hspecs.size() + fspecs.size() + ispecs.size() + dspecs.size() + cspecs.size() +ospecs.size()); 
+			result.addAll(hspecs);
+			result.addAll(fspecs);
+			result.addAll(ispecs);
+			result.addAll(dspecs);
+			result.addAll(cspecs);
+			result.addAll(ospecs);
+			return result;
+	}
+
 	private void doACQ(CommonToken factor1, CommonToken factor2) {
 		workString = StringUtils.repeat(' ', 7 + indentLevel * spacesToIndent)
 				+ "ACQ " + factor1.getText() + " " + factor2.getText() + ";";
@@ -717,6 +730,8 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		cspecs.add(workString);
 
 	}
+	
+	
 
 	private void doCOMP(CommonToken factor1, CommonToken factor2,
 			CommonToken high, CommonToken low, CommonToken equal) {
@@ -758,8 +773,6 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		}
 
 	}
-	
-	
 
 	private void doDEALLOC(CommonToken result, CommonToken low) {
 		boolean ER = low.getText().trim().length() > 0;
@@ -1625,7 +1638,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 			logger.debug(ctx.getText());
 		}
 		List<CommonToken> myList = new ArrayList<CommonToken>();
-		TestUtils.fillTokenList(ctx, myList);
+		fillTokenList(ctx, myList);
 		for (int i = 0; i < myList.size(); i++) {
 			CommonToken ct = myList.get(i);
 			if (ct.getType() == RpgLexer.CS_OperationAndExtender) {
@@ -1656,7 +1669,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		}
 
 		List<CommonToken> myList = new ArrayList<CommonToken>();
-		TestUtils.fillTokenList(ctx, myList);
+		fillTokenList(ctx, myList);
 		for (int i = 0; i < myList.size(); i++) {
 			CommonToken ct = myList.get(i);
 			if (ct.getType() == RpgLexer.CS_OperationAndExtendedFactor2) {
@@ -1684,16 +1697,12 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		}
 	}
 
-	public int getSpacesToIndent() {
-		return spacesToIndent;
-	}
-
-	public void setSpacesToIndent(int spacesToIndent) {
-		this.spacesToIndent = spacesToIndent;
-	}
-
 	public int getIndentLevel() {
 		return indentLevel;
+	}
+
+	public int getSpacesToIndent() {
+		return spacesToIndent;
 	}
 
 	public void setIndentLevel(int indentLevel) {
@@ -1702,6 +1711,9 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		} else {
 			this.indentLevel = indentLevel;
 		}
+	}
+    public void setSpacesToIndent(int spacesToIndent) {
+		this.spacesToIndent = spacesToIndent;
 	}
 
 
