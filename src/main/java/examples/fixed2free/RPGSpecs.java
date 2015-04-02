@@ -188,5 +188,65 @@ public class RPGSpecs {
 		return result;
 
 	}
+	public static String formatCSpec(String controlLevel, String not, String indicator, String factor1, String opCode, String factor2, String result, String length, String decPos, String hi, String lo, String eq, String comments ) throws RPGFormatException{
+		//Check field lengths of input parms
+		if (controlLevel == null || controlLevel.trim().length() > 2){
+			throw new RPGFormatException(
+					"Control Level must be provided and can not be more than 2 characters in length");
+		}
+		if (not == null || not.trim().length() > 1){
+			throw new RPGFormatException(
+					"And/Not must be provided and can not be more than 1 characters in length");
+		}
+		if (indicator == null || indicator.trim().length() > 2){
+			throw new RPGFormatException(
+					"Conditioning Indicator must be provided and can not be more than 2 characters in length");
+		}
+		if (factor1 == null || factor1.trim().length() >14){
+			throw new RPGFormatException(
+					"Factor1 must be provided and can not be more than 14 characters in length");
+		}
+		if (opCode == null || opCode.trim().length() > 10){
+			throw new RPGFormatException(
+					"OpCode must be provided and can not be more than 10 characters in length");
+		}
+		if (factor2 == null || factor2.trim().length() > 14){
+			throw new RPGFormatException(
+					"Factor 2 must be provided and can not be more than 14 characters in length");
+		}
+		if (result == null || result.trim().length() > 14){
+			throw new RPGFormatException(
+					"Result must be provided and can not be more than 14 characters in length");
+		}
+		if (length == null || length.trim().length() > 5){
+			throw new RPGFormatException(
+					"Length must be provided and can not be more than 5 characters in length");
+		}
+		if (decPos == null || decPos.trim().length() > 2){
+			throw new RPGFormatException(
+					"Decimal Position must be provided and can not be more than 2 characters in length");
+		}
+		if (hi == null || hi.trim().length() > 2){
+			throw new RPGFormatException(
+					"High Indicator must be provided and can not be more than 2 characters in length");
+		}
+		if (lo == null || lo.trim().length() > 2){
+			throw new RPGFormatException(
+					"Low Indicator must be provided and can not be more than 2 characters in length");
+		}
+		if (eq == null || eq.trim().length() > 2){
+			throw new RPGFormatException(
+					"Equal Indicator must be provided and can not be more than 2 characters in length");
+		}
+
+		//     *.. 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8 ...+... 9 ...+... 10
+		//     CL0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....Comment
+		
+		String output = "     C" + StringUtils.rightPad(controlLevel, 2) + not + StringUtils.rightPad(indicator, 2) + StringUtils.rightPad(factor1, 14) + StringUtils.rightPad(opCode, 10) + StringUtils.rightPad(factor2, 14) 
+				+ StringUtils.rightPad(result, 14) + StringUtils.leftPad(length, 5) + StringUtils.leftPad(decPos, 2) + StringUtils.rightPad(hi, 2) + StringUtils.rightPad(lo, 2) + StringUtils.rightPad(eq, 2) + "    " + comments ;
+		
+		
+		return output;
+	}
 
 }

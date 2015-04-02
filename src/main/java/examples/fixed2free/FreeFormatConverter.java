@@ -521,43 +521,136 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 
 	private void doCABEQ(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
-			CommonToken equal) {
-		// TODO Auto-generated method stub
+			CommonToken equal) throws RPGFormatException {
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " = " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		doGOTO(result);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 
 	}
 
 	private void doCABGE(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
-			CommonToken equal) {
-		// TODO Auto-generated method stub
-
+			CommonToken equal) throws RPGFormatException {
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " >= " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		doGOTO(result);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 	}
 
 	private void doCABGT(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
-			CommonToken equal) {
-		// TODO Auto-generated method stub
-
+			CommonToken equal) throws RPGFormatException {
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " > " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		doGOTO(result);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 	}
 
 	private void doCABLE(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
-			CommonToken equal) {
-		// TODO Auto-generated method stub
+			CommonToken equal) throws RPGFormatException {
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " <= " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		doGOTO(result);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 
 	}
 
 	private void doCABLT(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
-			CommonToken equal) {
-		// TODO Auto-generated method stub
-
+			CommonToken equal) throws RPGFormatException {
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " < " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		doGOTO(result);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 	}
 
 	private void doCABNE(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
-			CommonToken equal) {
-		// TODO Auto-generated method stub
+			CommonToken equal) throws RPGFormatException {
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " <> " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		doGOTO(result);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 
 	}
 
@@ -581,43 +674,139 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	private void doCASEQ(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
 			CommonToken equal) {
-		// TODO Auto-generated method stub
-
-	}
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " = " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + ((indentLevel + 1) * spacesToIndent)) + "EXSR " + result.getText().trim()  +  "; // From CASEQ statement";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
+}
 
 	private void doCASGE(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
 			CommonToken equal) {
-		// TODO Auto-generated method stub
-
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " >= " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + ((indentLevel + 1) * spacesToIndent)) + "EXSR " + result.getText().trim()  +  "; // From CASGE statement";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 	}
 
 	private void doCASGT(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
 			CommonToken equal) {
-		// TODO Auto-generated method stub
-
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " > " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + ((indentLevel + 1) * spacesToIndent)) + "EXSR " + result.getText().trim()  +  "; // From CASGT statement";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 	}
 
 	private void doCASLE(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
 			CommonToken equal) {
-		// TODO Auto-generated method stub
-
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " <= " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + ((indentLevel + 1) * spacesToIndent)) + "EXSR " + result.getText().trim()  +  "; // From CASLE statement";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 	}
 
 	private void doCASLT(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
 			CommonToken equal) {
-		// TODO Auto-generated method stub
-
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " < " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + ((indentLevel + 1) * spacesToIndent)) + "EXSR " + result.getText().trim()  +  "; // From CASLT statement";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 	}
 
 	private void doCASNE(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken high, CommonToken low,
 			CommonToken equal) {
-		// TODO Auto-generated method stub
-
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		if (HI){
+			setResultingIndicator(high, "IF " +factor1.getText().trim() + " > " + factor2.getText() + ";");
+		}
+		if (LO){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " < " + factor2.getText() + ";");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF " +factor1.getText().trim() + " = " + factor2.getText() + ";");
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "IF " + factor1.getText().trim() + " <> " + factor2.getText().trim() +  ";";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + ((indentLevel + 1) * spacesToIndent)) + "EXSR " + result.getText().trim()  +  "; // From CASNE statement";
+		cspecs.add(workString);
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
+		cspecs.add(workString);
 	}
 
 	private void doCAT(CommonToken factor1, CommonToken factor2,
@@ -641,7 +830,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + opCode + " " + factor1.getText().trim() + " " + factor2.getText().trim() + " " + result.getText().trim() + ";";
 		cspecs.add(workString);
 		if (NR){
-			setResultingIndicator(low, "IF %FOUND = *OFF;");
+			setResultingIndicator(high, "IF %FOUND = *OFF;");
 		}
 		if (ER){
 			setResultingIndicator(low, "IF %ERROR = *ON;");
@@ -799,103 +988,125 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doDOU(CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOU " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOUEQ(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOU " + factor1.getText().trim() + " = " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOUGE(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOU " + factor1.getText().trim() + " >= " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOUGT(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOU " + factor1.getText().trim() + " > " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOULE(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOU " + factor1.getText().trim() + " <= " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOULT(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOU " + factor1.getText().trim() + " < " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOUNE(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOU " + factor1.getText().trim() + " <> " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOW(CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOW " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOWEQ(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOW " + factor1.getText().trim() + " = " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOWGE(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOW " + factor1.getText().trim() + " >= " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOWGT(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOW " + factor1.getText().trim() + " > " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOWLE(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOW " + factor1.getText().trim() + " <= " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOWLT(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOW " + factor1.getText().trim() + " < " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDOWNE(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DOW " + factor1.getText().trim() + " <> " + factor2.getText().trim() + ";";
+		setIndentLevel(++indentLevel);
+		cspecs.add(workString);
 	}
 
 	private void doDSPLY(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken low) {
-		// TODO Auto-generated method stub
-
+		boolean ER = low.getText().trim().length() > 0;
+		String opCode = "DSPLY";
+		if (ER){
+			opCode += "(E)";
+		}
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + opCode + " " + factor1.getText().trim() + " " + factor2.getText().trim() + result.getText().trim() +";";
+		cspecs.add(workString);
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
 	}
 
 	private void doDUMP(CommonToken factor1) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + (indentLevel * spacesToIndent)) + "DUMP " + factor1.getText().trim() + ";";
+		cspecs.add(workString);
 	}
 
 	private void doELSE() {
-		workString =StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ELSE;";
+		workString =StringUtils.repeat(" ", 7 + ((indentLevel-1) * spacesToIndent)) + "ELSE;";
 		cspecs.add(workString);
 	}
 
 	private void doELSEIF(CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(' ', 7 + ((indentLevel-1) * spacesToIndent)) + "ELSEIF " + factor2.getText().trim() + ";";
+		cspecs.add(workString);
 	}
 
 	private void doEND(CommonToken factor2) {
-		// TODO Auto-generated method stub
+		// TODO Got to keep a stack of structured operations and then emit the right ENDxx opcode
 
 	}
 
 	private void doENDCS() {
-		// TODO Auto-generated method stub
+		// Safely ignoring this as the CASxx methods terminate the individual CAS groups
 
 	}
 
@@ -932,7 +1143,13 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doENDSR(CommonToken factor1, CommonToken factor2) {
-		// TODO Auto-generated method stub
+		// If there is a label then emit a tag
+		if (factor1.getText().trim().length() > 0){
+			doTAG(factor1);
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDSR " + factor2.getText().trim() + ";";
+		cspecs.add(workString);
+		setIndentLevel(--indentLevel);
 
 	}
 
@@ -958,29 +1175,36 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doEVAL_CORR(CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "EVAL-CORR " + factor2.getText().trim() + ";";
+		cspecs.add(workString);
 	}
 
 	private void doEVALR(CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "EVALR " + factor2.getText().trim() + ";";
+		cspecs.add(workString);
 	}
 
 	private void doEXCEPT(CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "EXCEPT " + factor2.getText().trim() + ";";
+		cspecs.add(workString);
 	}
 
 	private void doEXFMT(CommonToken factor2, CommonToken result,
 			CommonToken length, CommonToken decPos, CommonToken low) {
-		// TODO Auto-generated method stub
-
+		boolean ER = low.getText().trim().length() > 0;
+		String opCode = "EXFMT";
+		if (ER){
+			opCode += "(E)";
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + opCode + factor2.getText().trim() + " " + result.getText().trim().length() + ";";
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
 	}
 
 	private void doEXSR(CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "EXSR " + factor2.getText().trim() + ";";
+		cspecs.add(workString);
 	}
 
 	private void doEXTRCT(CommonToken factor2) {
@@ -989,86 +1213,108 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	}
 
 	private void doFEOD(CommonToken factor2, CommonToken low) {
-		// TODO Auto-generated method stub
+		boolean ER = low.getText().trim().length() > 0;
+		String opCode = "FEOD";
+		if (ER){
+			opCode += "(E)";
+		}
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + opCode + factor2.getText().trim() +";";
+		cspecs.add(workString);
 
 	}
 
 	private void doFOR(CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "FOR " + factor2.getText().trim() +";";
+		cspecs.add(workString);
+		setIndentLevel(++ indentLevel );
 	}
 
 	private void doFORCE(CommonToken factor2) {
-		// TODO Auto-generated method stub
+		workString = StringUtils.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "FORCE " + factor2.getText().trim() +";";
+		cspecs.add(workString);
 
 	}
 
-	private void doGOTO(CommonToken factor2) {
-		// TODO Auto-generated method stub
+	private void doGOTO(CommonToken factor2) throws RPGFormatException {
+		cspecs.add("       /END-FREE");
+		cspecs.add(RPGSpecs.formatCSpec(" ", " ", " ", " ", "GOTO", " ", factor2.getText().trim(), " ", " ", " ", " ", " ", "From a GOTO or CABxx statement"));
+		cspecs.add("       /FREE");
 
 	}
 
 	private void doIF(CommonToken factor2) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ "IF "
+				 + factor2.getText() + ";";
+		cspecs.add(workString);
+		setIndentLevel(++indentLevel);
 	}
 
 	private void doIFEQ(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(++indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " = " + factor2.getText() + ";";
 		cspecs.add(workString);
+		setIndentLevel(++indentLevel);
 	}
 
 	private void doIFGE(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(++indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " >= " + factor2.getText() + ";";
 		cspecs.add(workString);
+		setIndentLevel(++indentLevel);
 	}
 
 	private void doIFGT(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(++indentLevel);
 		workString =StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " > " + factor2.getText() + ";";
 		cspecs.add(workString);
+		setIndentLevel(++indentLevel);
 	}
 
 	private void doIFLE(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(++indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " <= " + factor2.getText() + ";";
 		cspecs.add(workString);
+		setIndentLevel(++indentLevel);
 	}
 
 	private void doIFLT(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(++indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " < " + factor2.getText() + ";";
+		setIndentLevel(++indentLevel);
 	}
 
 	private void doIFNE(CommonToken factor1, CommonToken factor2) {
-		setIndentLevel(++indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent))
 				+ "IF "
 				+ factor1.getText() + " <> " + factor2.getText() + ";";
 		cspecs.add(workString);
+		setIndentLevel(++indentLevel);
 	}
 
 	private void doIN(CommonToken factor1, CommonToken factor2, CommonToken low) {
-		// TODO Auto-generated method stub
-
+		boolean ER = low.getText().trim().length() > 0;
+		String opCode = "IN";
+		if (ER){
+			opCode += "(E)";
+		}
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ opCode
+				+ factor1.getText().trim() + " " + factor2.getText().trim() + ";";
+		cspecs.add(workString);
 	}
 
 	private void doITER() {
