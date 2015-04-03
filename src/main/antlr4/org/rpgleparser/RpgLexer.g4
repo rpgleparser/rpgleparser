@@ -309,7 +309,16 @@ SPLAT_SECONDS: '*'[sS][eE][cC][oO][nN][dD][sS];
 SPLAT_Y: '*'[yY];
 SPLAT_YEARS: SPLAT_YEAR[sS];
 
-
+mode FixedOpCodes; //Referenced (not used)
+OP_ADD: [aA][dD][dD];
+OP_ADDDUR: OP_ADD [dD][uU][rR];
+OP_ALLOC: [aA][lL][lL][oO][cC];
+OP_ANDxx: [aA][nN][dD][0-9][0-9];
+OP_BITOFF: [bB][iI][tT][oO][fF][fF];
+OP_BITON: [bB][iI][tT][oO][nN];
+OP_CABxx: [cc][aA][bB][0-9][0-9];
+OP_CALL: [Cc][Aa][Ll][Ll];
+OP_CALLB: OP_CALL [bB];
 
 mode FREE_ENDED;
 FE_BLANKS : [ ]+ -> skip;
@@ -664,8 +673,23 @@ CS_OperationAndExtendedFactor2: {getCharPositionInLine()==25}?
 		| OP_DOW'       '
 		| OP_ELSEIF'    '
 	) -> pushMode(FREE);
+CS_OperationAndExtender_Blank:  
+   {getCharPositionInLine()==25}?'          ';
+CS_OperationAndExtender_WS:
+	({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[ ])+ -> skip;	
+CS_Operation_ACQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<33}? OP_ACQ -> type(OP_ACQ);
+CS_Operation_ADD: {getCharPositionInLine()>=25 && getCharPositionInLine()<33}? OP_ADD -> type(OP_ADD);
+CS_Operation_ADDDUR: {getCharPositionInLine()>=25 && getCharPositionInLine()<30}? OP_ADDDUR -> type(OP_ADDDUR);
+CS_Operation_ALLOC: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ALLOC -> type(OP_ALLOC);
+CS_Operation_ANDxx: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ANDxx -> type(OP_ANDxx);
+CS_Operation_BEGSR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_BEGSR -> type(OP_BEGSR);
+CS_Operation_BITOFF: {getCharPositionInLine()>=25 && getCharPositionInLine()<30}? OP_BITOFF -> type(OP_BITOFF);
+CS_Operation_BITON: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_BITON -> type(OP_BITON);
+CS_Operation_CABxx: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABxx-> type(OP_CABxx);
+CS_Operation_CALL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALL -> type(OP_CALL);
+CS_Operation_CALLB: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALLB -> type(OP_CALLB);
 CS_OperationAndExtender:  
-   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?~[\r\n)(])+
+   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[a-zA-Z0-9\\-])+
    {setText(getText().trim());};
 CS_OperationExtenderOpen: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?OPEN_PAREN -> type(OPEN_PAREN);
 CS_OperationExtenderClose: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?CLOSE_PAREN 

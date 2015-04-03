@@ -167,5 +167,47 @@ public class TestC {
                 "C", "", "", "", "", "seton", "", "", "", "", "lr", "", "", "");
     }
 
+    @Test
+    public void testCSpec_ACQ() {
+        String inputString =
+                "     C  NL9FACTOR1       ACQ       FACTOR2\r\n";
+        expectTokensForSourceLines(inputString,
+        		"C","","N","L9","FACTOR1","ACQ","FACTOR2","","","","","","","");
+    }
 
+    @Test
+    public void testCSpec_ADD() {
+        String inputString =
+                "     C  NL9FACTOR1       ADD       FACTOR2       RESULT\r\n";
+        expectTokensForSourceLines(inputString,
+        		"C","","N","L9","FACTOR1","ADD","FACTOR2","RESULT","","","","","","");
+    }
+    @Test
+    public void testCSpec_ADD_H() {
+        String inputString =
+                "     C  NL9FACTOR1       ADD (H)   FACTOR2       RESULT\r\n";
+        expectTokensForSourceLines(inputString,
+        		"C","","N","L9","FACTOR1","ADD","(","H",")","FACTOR2","RESULT","","","","","","");
+    }
+    @Test
+    public void testCSpec_CALLB_notExtender() {
+        String inputString =
+                "     C  NL9              CALLB     FACTOR2       RESULT\r\n";
+        expectTokensForSourceLines(inputString,
+        		"C","","N","L9","","CALLB","FACTOR2","RESULT","","","","","","");
+    }    
+    @Test
+    public void testCSpec_CALLB_1Extender() {
+        String inputString =
+                "     C  NL9              CALLB(D)  FACTOR2       RESULT\r\n";
+        expectTokensForSourceLines(inputString,
+        		"C","","N","L9","","CALLB","(","D",")","FACTOR2","RESULT","","","","","","");
+    }
+    @Test
+    public void testCSpec_CALLB_2Extenders() {
+        String inputString =
+                "     C  NL9              CALLB(D E)FACTOR2       RESULT\r\n";
+        expectTokensForSourceLines(inputString,
+        		"C","","N","L9","","CALLB","(","D","E",")","FACTOR2","RESULT","","","","","","");
+    }
 }

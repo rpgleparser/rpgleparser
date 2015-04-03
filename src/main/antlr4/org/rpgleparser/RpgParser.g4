@@ -140,10 +140,12 @@ fs_string: (StringLiteralStart|HexLiteralStart|DateLiteralStart) (StringContent 
 fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addution 
 	FS_Sequence FS_Format FS_RecordLength FS_Limits FS_LengthOfKey FS_RecordAddressType FS_Organization FS_Device FS_Reserved 
 	FS_Keywords FS_EOL;	
-cspec_fixed: CS_FIXED 
+cspec_fixed: CS_FIXED
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(cspec_fixed_standard|cspec_fixed_x2);
+	
+
 	
 onOffIndicatorsFlag:
 BlankFlag
@@ -185,8 +187,22 @@ resultIndicator:
 cspec_fixed_sql: CS_ExecSQL
 	CSQL_TEXT+
 	CSQL_END;
-cspec_fixed_standard: operation=CS_OperationAndExtender
+cspec_fixed_standard: 
+	csACQ
+	| csADD
+	| csADDDUR
+	| csALLOC
+	| csANDxx
+	| csBEGSR
+	| csBITOFF
+	| csBITON
+	| csCABxx
+	| csCALL
+	| csCALLB
+	|(operation=CS_OperationAndExtender
 	operationExtender=cs_operationExtender?
+	cspec_fixed_standard_parts);
+cspec_fixed_standard_parts: 
 	factor2=factor
 	result=resultType 
 	len=CS_FieldLength 
@@ -194,11 +210,56 @@ cspec_fixed_standard: operation=CS_OperationAndExtender
 	hi=resultIndicator 
 	lo=resultIndicator
 	eq=resultIndicator 
-	cs_fixed_comments? EOL;
+	cs_fixed_comments? EOL;	
+
+/*
+ * Fixed op codes 
+ */	
+csACQ:
+	operation=OP_ACQ
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;	
+csADD:
+	operation=OP_ADD
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;	
+csADDDUR:
+	operation=OP_ADDDUR
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csALLOC:
+	operation=OP_ALLOC
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csANDxx:
+	operation=OP_ANDxx
+	cspec_fixed_standard_parts;
+csBEGSR:
+	operation=OP_BEGSR
+	cspec_fixed_standard_parts;
+csBITOFF:
+	operation=OP_BITOFF
+	cspec_fixed_standard_parts;
+csBITON:
+	operation=OP_BITON
+	cspec_fixed_standard_parts;
+csCABxx:
+	operation=OP_CABxx
+	cspec_fixed_standard_parts;
+csCALL:
+	operation=OP_CALL
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csCALLB:
+	operation=OP_CALLB
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
 	
+			
 cs_operationExtender:
   OPEN_PAREN
   extender=CS_OperationAndExtender
+  extender2=CS_OperationAndExtender?
   CLOSE_PAREN;	
 factor:
    content=factorContent (COLON (content2=factorContent | constant2=symbolicConstants))? | CS_BlankFactor | constant=symbolicConstants;
