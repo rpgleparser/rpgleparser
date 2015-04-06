@@ -193,12 +193,163 @@ cspec_fixed_standard:
 	| csADDDUR
 	| csALLOC
 	| csANDxx
+	| csANDEQ
+	| csANDNE
+	| csANDLE
+	| csANDLT
+	| csANDGE
+	| csANDGT
 	| csBEGSR
 	| csBITOFF
 	| csBITON
 	| csCABxx
+	| csCABEQ
+	| csCABNE
+	| csCABLE
+	| csCABLT
+	| csCABGE
+	| csCABGT
 	| csCALL
 	| csCALLB
+	| csCASEQ
+	| csCASNE
+	| csCASLE
+	| csCASLT
+	| csCASGE
+	| csCASGT
+	| csCAT
+	| csCHAIN
+	| csCHECK
+	| csCHECKR
+	| csCLEAR
+	| csCLOSE
+	| csCOMMIT
+	| csCOMP
+	| csDEALLOC
+	| csDEFINE
+	| csDELETE
+	| csDIV
+	| csDO
+	| csDOU
+	| csDOUEQ
+	| csDOUNE
+	| csDOULE
+	| csDOULT
+	| csDOUGE
+	| csDOUGT
+	| csDOW
+	| csDOWEQ
+	| csDOWNE
+	| csDOWLE
+	| csDOWLT
+	| csDOWGE
+	| csDOWGT
+	| csDSPLY
+	| csDUMP
+	| csELSE
+	| csELSEIF
+	| csEND
+	| csENDCS
+	| csENDDO
+	| csENDFOR
+	| csENDIF
+	| csENDMON
+	| csENDSL
+	| csENDSR
+	| csEVAL
+	| csEVAL_CORR
+	| csEVALR
+	| csEXCEPT
+	| csEXFMT
+	| csEXSR
+	| csEXTRCT
+	| csFEOD
+	| csFOR
+	| csFORCE
+	| csGOTO
+	| csIF
+	| csIFEQ
+	| csIFNE
+	| csIFLE
+	| csIFLT
+	| csIFGE
+	| csIFGT
+	| csIN
+	| csITER
+	| csKFLD
+	| csKLIST
+	| csLEAVE
+	| csLEAVESR
+	| csLOOKUP
+	| csMHHZO
+	| csMHLZO
+	| csMLHZO
+	| csMLLZO
+	| csMONITOR
+	| csMOVE
+	| csMOVEA
+	| csMOVEL
+	| csMULT
+	| csMVR
+	| csNEXT
+	| csOCCUR
+	| csON_ERROR
+	| csOPEN
+	| csOREQ
+	| csORNE
+	| csORLE
+	| csORLT
+	| csORGE
+	| csORGT
+	| csOTHER
+	| csOUT
+	| csPARM
+	| csPLIST
+	| csPOST
+	| csREAD
+	| csREADC
+	| csREADE
+	| csREADP
+	| csREADPE
+	| csREALLOC
+	| csREL
+	| csRESET
+	| csRETURN
+	| csROLBK
+	| csSCAN
+	| csSELECT
+	| csSETGT
+	| csSETLL
+	| csSETOFF
+	| csSETON
+	| csSHTDN
+	| csSORTA
+	| csSQRT
+	| csSUB
+	| csSUBDUR
+	| csSUBST
+	| csTAG
+	| csTEST
+	| csTESTB
+	| csTESTN
+	| csTESTZ
+	| csTIME
+	| csUNLOCK
+	| csUPDATE
+	| csWHEN
+	| csWHENEQ
+	| csWHENNE
+	| csWHENLE
+	| csWHENLT
+	| csWHENGE
+	| csWHENGT
+	| csWRITE
+	| csXFOOT
+	| csXLATE
+	| csXML_INTO
+	| csXML_SAX
+	| csZ_ADD
+	| csZ_SUB
 	|(operation=CS_OperationAndExtender
 	operationExtender=cs_operationExtender?
 	cspec_fixed_standard_parts);
@@ -234,6 +385,24 @@ csALLOC:
 csANDxx:
 	operation=OP_ANDxx
 	cspec_fixed_standard_parts;
+csANDEQ:
+	operation=OP_ANDEQ
+	cspec_fixed_standard_parts;
+csANDNE:
+	operation=OP_ANDNE
+	cspec_fixed_standard_parts;
+csANDLE:
+	operation=OP_ANDLE
+	cspec_fixed_standard_parts;
+csANDLT:
+	operation=OP_ANDLT
+	cspec_fixed_standard_parts;
+csANDGE:
+	operation=OP_ANDGE
+	cspec_fixed_standard_parts;
+csANDGT:
+	operation=OP_ANDGT
+	cspec_fixed_standard_parts;
 csBEGSR:
 	operation=OP_BEGSR
 	cspec_fixed_standard_parts;
@@ -246,6 +415,24 @@ csBITON:
 csCABxx:
 	operation=OP_CABxx
 	cspec_fixed_standard_parts;
+csCABEQ:
+	operation=OP_CABEQ
+	cspec_fixed_standard_parts;
+csCABNE:
+	operation=OP_CABNE
+	cspec_fixed_standard_parts;
+csCABLE:
+	operation=OP_CABLE
+	cspec_fixed_standard_parts;
+csCABLT:
+	operation=OP_CABLT
+	cspec_fixed_standard_parts;
+csCABGE:
+	operation=OP_CABGE
+	cspec_fixed_standard_parts;
+csCABGT:
+	operation=OP_CABGT
+	cspec_fixed_standard_parts;
 csCALL:
 	operation=OP_CALL
 	operationExtender=cs_operationExtender? 
@@ -254,7 +441,487 @@ csCALLB:
 	operation=OP_CALLB
 	operationExtender=cs_operationExtender? 
 	cspec_fixed_standard_parts;
-	
+csCALLP:
+	operation=OP_CALLP
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csCASEQ:
+	operation=OP_CASEQ
+	cspec_fixed_standard_parts;
+csCASNE:
+	operation=OP_CASNE
+	cspec_fixed_standard_parts;
+csCASLE:
+	operation=OP_CASLE
+	cspec_fixed_standard_parts;
+csCASLT:
+	operation=OP_CASLT
+	cspec_fixed_standard_parts;
+csCASGE:
+	operation=OP_CASGE
+	cspec_fixed_standard_parts;
+csCASGT:
+	operation=OP_CASGT
+	cspec_fixed_standard_parts;
+csCAT:
+	operation=OP_CAT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csCHAIN:
+	operation=OP_CHAIN
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csCHECK:
+	operation=OP_CHECK
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csCHECKR:
+	operation=OP_CHECKR
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csCLEAR:
+	operation=OP_CLEAR
+	cspec_fixed_standard_parts;
+csCLOSE:
+	operation=OP_CLOSE
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csCOMMIT:
+	operation=OP_COMMIT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csCOMP:
+	operation=OP_COMP
+	cspec_fixed_standard_parts;
+csDEALLOC:
+	operation=OP_DEALLOC
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csDEFINE:
+	operation=OP_DEFINE
+	cspec_fixed_standard_parts;
+csDELETE:
+	operation=OP_DELETE
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csDIV:
+	operation=OP_DIV
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csDO:
+	operation=OP_DO
+	cspec_fixed_standard_parts;
+csDOU:
+	operation=OP_DOU
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csDOUEQ:
+	operation=OP_DOUEQ
+	cspec_fixed_standard_parts;
+csDOUNE:
+	operation=OP_DOUNE
+	cspec_fixed_standard_parts;
+csDOULE:
+	operation=OP_DOULE
+	cspec_fixed_standard_parts;
+csDOULT:
+	operation=OP_DOULT
+	cspec_fixed_standard_parts;
+csDOUGE:
+	operation=OP_DOUGE
+	cspec_fixed_standard_parts;
+csDOUGT:
+	operation=OP_DOUGT
+	cspec_fixed_standard_parts;
+csDOW:
+	operation=OP_DOW
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csDOWEQ:
+	operation=OP_DOWEQ
+	cspec_fixed_standard_parts;
+csDOWNE:
+	operation=OP_DOWNE
+	cspec_fixed_standard_parts;
+csDOWLE:
+	operation=OP_DOWLE
+	cspec_fixed_standard_parts;
+csDOWLT:
+	operation=OP_DOWLT
+	cspec_fixed_standard_parts;
+csDOWGE:
+	operation=OP_DOWGE
+	cspec_fixed_standard_parts;
+csDOWGT:
+	operation=OP_DOWGT
+	cspec_fixed_standard_parts;
+csDSPLY:
+	operation=OP_DSPLY
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csDUMP:
+	operation=OP_DUMP
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csELSE:
+	operation=OP_ELSE
+	cspec_fixed_standard_parts;
+csELSEIF:
+	operation=OP_ELSEIF
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csEND:
+	operation=OP_END
+	cspec_fixed_standard_parts;
+csENDCS:
+	operation=OP_ENDCS
+	cspec_fixed_standard_parts;
+csENDDO:
+	operation=OP_ENDDO
+	cspec_fixed_standard_parts;
+csENDFOR:
+	operation=OP_ENDFOR
+	cspec_fixed_standard_parts;
+csENDIF:
+	operation=OP_ENDIF
+	cspec_fixed_standard_parts;
+csENDMON:
+	operation=OP_ENDMON
+	cspec_fixed_standard_parts;
+csENDSL:
+	operation=OP_ENDSL
+	cspec_fixed_standard_parts;
+csENDSR:
+	operation=OP_ENDSR
+	cspec_fixed_standard_parts;
+csEVAL:
+	operation=OP_EVAL
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csEVAL_CORR:
+	operation=OP_EVAL_CORR
+	cspec_fixed_standard_parts;
+csEVALR:
+	operation=OP_EVALR
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csEXCEPT:
+	operation=OP_EXCEPT
+	cspec_fixed_standard_parts;
+csEXFMT:
+	operation=OP_EXFMT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csEXSR:
+	operation=OP_EXSR
+	cspec_fixed_standard_parts;
+csEXTRCT:
+	operation=OP_EXTRCT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csFEOD:
+	operation=OP_FEOD
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csFOR:
+	operation=OP_FOR
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csFORCE:
+	operation=OP_FORCE
+	cspec_fixed_standard_parts;
+csGOTO:
+	operation=OP_GOTO
+	cspec_fixed_standard_parts;
+csIF:
+	operation=OP_IF
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csIFEQ:
+	operation=OP_IFEQ
+	cspec_fixed_standard_parts;
+csIFNE:
+	operation=OP_IFNE
+	cspec_fixed_standard_parts;
+csIFLE:
+	operation=OP_IFLE
+	cspec_fixed_standard_parts;
+csIFLT:
+	operation=OP_IFLT
+	cspec_fixed_standard_parts;
+csIFGE:
+	operation=OP_IFGE
+	cspec_fixed_standard_parts;
+csIFGT:
+	operation=OP_IFGT
+	cspec_fixed_standard_parts;
+csIN:
+	operation=OP_IN
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csITER:
+	operation=OP_ITER
+	cspec_fixed_standard_parts;
+csKFLD:
+	operation=OP_KFLD
+	cspec_fixed_standard_parts;
+csKLIST:
+	operation=OP_KLIST
+	cspec_fixed_standard_parts;
+csLEAVE:
+	operation=OP_LEAVE
+	cspec_fixed_standard_parts;
+csLEAVESR:
+	operation=OP_LEAVESR
+	cspec_fixed_standard_parts;
+csLOOKUP:
+	operation=OP_LOOKUP
+	cspec_fixed_standard_parts;
+csMHHZO:
+	operation=OP_MHHZO
+	cspec_fixed_standard_parts;
+csMHLZO:
+	operation=OP_MHLZO
+	cspec_fixed_standard_parts;
+csMLHZO:
+	operation=OP_MLHZO
+	cspec_fixed_standard_parts;
+csMLLZO:
+	operation=OP_MLLZO
+	cspec_fixed_standard_parts;
+csMONITOR:
+	operation=OP_MONITOR
+	cspec_fixed_standard_parts;
+csMOVE:
+	operation=OP_MOVE
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csMOVEA:
+	operation=OP_MOVEA
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csMOVEL:
+	operation=OP_MOVEL
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csMULT:
+	operation=OP_MULT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csMVR:
+	operation=OP_MVR
+	cspec_fixed_standard_parts;
+csNEXT:
+	operation=OP_NEXT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csOCCUR:
+	operation=OP_OCCUR
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csON_ERROR:
+	operation=OP_ON_ERROR
+	cspec_fixed_standard_parts;
+csOPEN:
+	operation=OP_OPEN
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csOREQ:
+	operation=OP_OREQ
+	cspec_fixed_standard_parts;
+csORNE:
+	operation=OP_ORNE
+	cspec_fixed_standard_parts;
+csORLE:
+	operation=OP_ORLE
+	cspec_fixed_standard_parts;
+csORLT:
+	operation=OP_ORLT
+	cspec_fixed_standard_parts;
+csORGE:
+	operation=OP_ORGE
+	cspec_fixed_standard_parts;
+csORGT:
+	operation=OP_ORGT
+	cspec_fixed_standard_parts;
+csOTHER:
+	operation=OP_OTHER
+	cspec_fixed_standard_parts;
+csOUT:
+	operation=OP_OUT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csPARM:
+	operation=OP_PARM
+	cspec_fixed_standard_parts;
+csPLIST:
+	operation=OP_PLIST
+	cspec_fixed_standard_parts;
+csPOST:
+	operation=OP_POST
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csREAD:
+	operation=OP_READ
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csREADC:
+	operation=OP_READC
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csREADE:
+	operation=OP_READE
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csREADP:
+	operation=OP_READP
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csREADPE:
+	operation=OP_READPE
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csREALLOC:
+	operation=OP_REALLOC
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csREL:
+	operation=OP_REL
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csRESET:
+	operation=OP_RESET
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csRETURN:
+	operation=OP_RETURN
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csROLBK:
+	operation=OP_ROLBK
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csSCAN:
+	operation=OP_SCAN
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csSELECT:
+	operation=OP_SELECT
+	cspec_fixed_standard_parts;
+csSETGT:
+	operation=OP_SETGT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csSETLL:
+	operation=OP_SETLL
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csSETOFF:
+	operation=OP_SETOFF
+	cspec_fixed_standard_parts;
+csSETON:
+	operation=OP_SETON
+	cspec_fixed_standard_parts;
+csSHTDN:
+	operation=OP_SHTDN
+	cspec_fixed_standard_parts;
+csSORTA:
+	operation=OP_SORTA
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csSQRT:
+	operation=OP_SQRT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csSUB:
+	operation=OP_SUB
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csSUBDUR:
+	operation=OP_SUBDUR
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csSUBST:
+	operation=OP_SUBST
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csTAG:
+	operation=OP_TAG
+	cspec_fixed_standard_parts;
+csTEST:
+	operation=OP_TEST
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csTESTB:
+	operation=OP_TESTB
+	cspec_fixed_standard_parts;
+csTESTN:
+	operation=OP_TESTN
+	cspec_fixed_standard_parts;
+csTESTZ:
+	operation=OP_TESTZ
+	cspec_fixed_standard_parts;
+csTIME:
+	operation=OP_TIME
+	cspec_fixed_standard_parts;
+csUNLOCK:
+	operation=OP_UNLOCK
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csUPDATE:
+	operation=OP_UPDATE
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csWHEN:
+	operation=OP_WHEN
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csWHENEQ:
+	operation=OP_WHENEQ
+	cspec_fixed_standard_parts;
+csWHENNE:
+	operation=OP_WHENNE
+	cspec_fixed_standard_parts;
+csWHENLE:
+	operation=OP_WHENLE
+	cspec_fixed_standard_parts;
+csWHENLT:
+	operation=OP_WHENLT
+	cspec_fixed_standard_parts;
+csWHENGE:
+	operation=OP_WHENGE
+	cspec_fixed_standard_parts;
+csWHENGT:
+	operation=OP_WHENGT
+	cspec_fixed_standard_parts;
+csWRITE:
+	operation=OP_WRITE
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csXFOOT:
+	operation=OP_XFOOT
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csXLATE:
+	operation=OP_XLATE
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csXML_INTO:
+	operation=OP_XML_INTO
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csXML_SAX:
+	operation=OP_XML_SAX
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csZ_ADD:
+	operation=OP_Z_ADD
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
+csZ_SUB:
+	operation=OP_Z_SUB
+	operationExtender=cs_operationExtender? 
+	cspec_fixed_standard_parts;
 			
 cs_operationExtender:
   OPEN_PAREN

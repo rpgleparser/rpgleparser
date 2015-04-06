@@ -4,17 +4,184 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.antlr.v4.runtime.CommonToken;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Vocabulary;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.lang3.StringUtils;
-import org.rpgleparser.RpgLexer;
+import org.rpgleparser.*;
+import org.rpgleparser.RpgParser.CsACQContext;
+import org.rpgleparser.RpgParser.CsADDContext;
+import org.rpgleparser.RpgParser.CsADDDURContext;
+import org.rpgleparser.RpgParser.CsALLOCContext;
+import org.rpgleparser.RpgParser.CsANDEQContext;
+import org.rpgleparser.RpgParser.CsANDGEContext;
+import org.rpgleparser.RpgParser.CsANDGTContext;
+import org.rpgleparser.RpgParser.CsANDLEContext;
+import org.rpgleparser.RpgParser.CsANDLTContext;
+import org.rpgleparser.RpgParser.CsANDNEContext;
+import org.rpgleparser.RpgParser.CsANDxxContext;
+import org.rpgleparser.RpgParser.CsBEGSRContext;
+import org.rpgleparser.RpgParser.CsBITOFFContext;
+import org.rpgleparser.RpgParser.CsBITONContext;
+import org.rpgleparser.RpgParser.CsCABEQContext;
+import org.rpgleparser.RpgParser.CsCABGEContext;
+import org.rpgleparser.RpgParser.CsCABGTContext;
+import org.rpgleparser.RpgParser.CsCABLEContext;
+import org.rpgleparser.RpgParser.CsCABLTContext;
+import org.rpgleparser.RpgParser.CsCABNEContext;
+import org.rpgleparser.RpgParser.CsCABxxContext;
+import org.rpgleparser.RpgParser.CsCALLBContext;
+import org.rpgleparser.RpgParser.CsCALLContext;
+import org.rpgleparser.RpgParser.CsCASEQContext;
+import org.rpgleparser.RpgParser.CsCASGEContext;
+import org.rpgleparser.RpgParser.CsCASGTContext;
+import org.rpgleparser.RpgParser.CsCASLEContext;
+import org.rpgleparser.RpgParser.CsCASLTContext;
+import org.rpgleparser.RpgParser.CsCASNEContext;
+import org.rpgleparser.RpgParser.CsCATContext;
+import org.rpgleparser.RpgParser.CsCHAINContext;
+import org.rpgleparser.RpgParser.CsCHECKContext;
+import org.rpgleparser.RpgParser.CsCHECKRContext;
+import org.rpgleparser.RpgParser.CsCLEARContext;
+import org.rpgleparser.RpgParser.CsCLOSEContext;
+import org.rpgleparser.RpgParser.CsCOMMITContext;
+import org.rpgleparser.RpgParser.CsCOMPContext;
+import org.rpgleparser.RpgParser.CsDEALLOCContext;
+import org.rpgleparser.RpgParser.CsDEFINEContext;
+import org.rpgleparser.RpgParser.CsDELETEContext;
+import org.rpgleparser.RpgParser.CsDIVContext;
+import org.rpgleparser.RpgParser.CsDOContext;
+import org.rpgleparser.RpgParser.CsDOUContext;
+import org.rpgleparser.RpgParser.CsDOUEQContext;
+import org.rpgleparser.RpgParser.CsDOUGEContext;
+import org.rpgleparser.RpgParser.CsDOUGTContext;
+import org.rpgleparser.RpgParser.CsDOULEContext;
+import org.rpgleparser.RpgParser.CsDOULTContext;
+import org.rpgleparser.RpgParser.CsDOUNEContext;
+import org.rpgleparser.RpgParser.CsDOWContext;
+import org.rpgleparser.RpgParser.CsDOWEQContext;
+import org.rpgleparser.RpgParser.CsDOWGEContext;
+import org.rpgleparser.RpgParser.CsDOWGTContext;
+import org.rpgleparser.RpgParser.CsDOWLEContext;
+import org.rpgleparser.RpgParser.CsDOWLTContext;
+import org.rpgleparser.RpgParser.CsDOWNEContext;
+import org.rpgleparser.RpgParser.CsDSPLYContext;
+import org.rpgleparser.RpgParser.CsDUMPContext;
+import org.rpgleparser.RpgParser.CsELSEContext;
+import org.rpgleparser.RpgParser.CsELSEIFContext;
+import org.rpgleparser.RpgParser.CsENDCSContext;
+import org.rpgleparser.RpgParser.CsENDContext;
+import org.rpgleparser.RpgParser.CsENDDOContext;
+import org.rpgleparser.RpgParser.CsENDFORContext;
+import org.rpgleparser.RpgParser.CsENDIFContext;
+import org.rpgleparser.RpgParser.CsENDMONContext;
+import org.rpgleparser.RpgParser.CsENDSLContext;
+import org.rpgleparser.RpgParser.CsENDSRContext;
+import org.rpgleparser.RpgParser.CsEVALContext;
+import org.rpgleparser.RpgParser.CsEVALRContext;
+import org.rpgleparser.RpgParser.CsEVAL_CORRContext;
+import org.rpgleparser.RpgParser.CsEXCEPTContext;
+import org.rpgleparser.RpgParser.CsEXFMTContext;
+import org.rpgleparser.RpgParser.CsEXSRContext;
+import org.rpgleparser.RpgParser.CsEXTRCTContext;
+import org.rpgleparser.RpgParser.CsFEODContext;
+import org.rpgleparser.RpgParser.CsFORCEContext;
+import org.rpgleparser.RpgParser.CsFORContext;
+import org.rpgleparser.RpgParser.CsGOTOContext;
+import org.rpgleparser.RpgParser.CsIFContext;
+import org.rpgleparser.RpgParser.CsIFEQContext;
+import org.rpgleparser.RpgParser.CsIFGEContext;
+import org.rpgleparser.RpgParser.CsIFGTContext;
+import org.rpgleparser.RpgParser.CsIFLEContext;
+import org.rpgleparser.RpgParser.CsIFLTContext;
+import org.rpgleparser.RpgParser.CsIFNEContext;
+import org.rpgleparser.RpgParser.CsINContext;
+import org.rpgleparser.RpgParser.CsITERContext;
+import org.rpgleparser.RpgParser.CsKFLDContext;
+import org.rpgleparser.RpgParser.CsKLISTContext;
+import org.rpgleparser.RpgParser.CsLEAVEContext;
+import org.rpgleparser.RpgParser.CsLEAVESRContext;
+import org.rpgleparser.RpgParser.CsLOOKUPContext;
+import org.rpgleparser.RpgParser.CsMHHZOContext;
+import org.rpgleparser.RpgParser.CsMHLZOContext;
+import org.rpgleparser.RpgParser.CsMLHZOContext;
+import org.rpgleparser.RpgParser.CsMLLZOContext;
+import org.rpgleparser.RpgParser.CsMONITORContext;
+import org.rpgleparser.RpgParser.CsMOVEAContext;
+import org.rpgleparser.RpgParser.CsMOVEContext;
+import org.rpgleparser.RpgParser.CsMOVELContext;
+import org.rpgleparser.RpgParser.CsMULTContext;
+import org.rpgleparser.RpgParser.CsMVRContext;
+import org.rpgleparser.RpgParser.CsNEXTContext;
+import org.rpgleparser.RpgParser.CsOCCURContext;
+import org.rpgleparser.RpgParser.CsON_ERRORContext;
+import org.rpgleparser.RpgParser.CsOPENContext;
+import org.rpgleparser.RpgParser.CsOREQContext;
+import org.rpgleparser.RpgParser.CsORGEContext;
+import org.rpgleparser.RpgParser.CsORGTContext;
+import org.rpgleparser.RpgParser.CsORLEContext;
+import org.rpgleparser.RpgParser.CsORLTContext;
+import org.rpgleparser.RpgParser.CsORNEContext;
+import org.rpgleparser.RpgParser.CsOTHERContext;
+import org.rpgleparser.RpgParser.CsOUTContext;
+import org.rpgleparser.RpgParser.CsPARMContext;
+import org.rpgleparser.RpgParser.CsPLISTContext;
+import org.rpgleparser.RpgParser.CsPOSTContext;
+import org.rpgleparser.RpgParser.CsREADCContext;
+import org.rpgleparser.RpgParser.CsREADContext;
+import org.rpgleparser.RpgParser.CsREADEContext;
+import org.rpgleparser.RpgParser.CsREADPContext;
+import org.rpgleparser.RpgParser.CsREADPEContext;
+import org.rpgleparser.RpgParser.CsREALLOCContext;
+import org.rpgleparser.RpgParser.CsRELContext;
+import org.rpgleparser.RpgParser.CsRESETContext;
+import org.rpgleparser.RpgParser.CsRETURNContext;
+import org.rpgleparser.RpgParser.CsROLBKContext;
+import org.rpgleparser.RpgParser.CsSCANContext;
+import org.rpgleparser.RpgParser.CsSELECTContext;
+import org.rpgleparser.RpgParser.CsSETGTContext;
+import org.rpgleparser.RpgParser.CsSETLLContext;
+import org.rpgleparser.RpgParser.CsSETOFFContext;
+import org.rpgleparser.RpgParser.CsSETONContext;
+import org.rpgleparser.RpgParser.CsSHTDNContext;
+import org.rpgleparser.RpgParser.CsSORTAContext;
+import org.rpgleparser.RpgParser.CsSQRTContext;
+import org.rpgleparser.RpgParser.CsSUBContext;
+import org.rpgleparser.RpgParser.CsSUBDURContext;
+import org.rpgleparser.RpgParser.CsSUBSTContext;
+import org.rpgleparser.RpgParser.CsTAGContext;
+import org.rpgleparser.RpgParser.CsTESTBContext;
+import org.rpgleparser.RpgParser.CsTESTContext;
+import org.rpgleparser.RpgParser.CsTESTNContext;
+import org.rpgleparser.RpgParser.CsTESTZContext;
+import org.rpgleparser.RpgParser.CsTIMEContext;
+import org.rpgleparser.RpgParser.CsUNLOCKContext;
+import org.rpgleparser.RpgParser.CsUPDATEContext;
+import org.rpgleparser.RpgParser.CsWHENContext;
+import org.rpgleparser.RpgParser.CsWHENEQContext;
+import org.rpgleparser.RpgParser.CsWHENGEContext;
+import org.rpgleparser.RpgParser.CsWHENGTContext;
+import org.rpgleparser.RpgParser.CsWHENLEContext;
+import org.rpgleparser.RpgParser.CsWHENLTContext;
+import org.rpgleparser.RpgParser.CsWHENNEContext;
+import org.rpgleparser.RpgParser.CsWRITEContext;
+import org.rpgleparser.RpgParser.CsXFOOTContext;
+import org.rpgleparser.RpgParser.CsXLATEContext;
+import org.rpgleparser.RpgParser.CsXML_INTOContext;
+import org.rpgleparser.RpgParser.CsXML_SAXContext;
+import org.rpgleparser.RpgParser.CsZ_ADDContext;
+import org.rpgleparser.RpgParser.CsZ_SUBContext;
 import org.rpgleparser.RpgParser.Cspec_fixedContext;
+import org.rpgleparser.RpgParser.Cspec_fixed_sqlContext;
+import org.rpgleparser.RpgParser.Cspec_fixed_standardContext;
+import org.rpgleparser.RpgParser.Cspec_fixed_standard_partsContext;
 import org.rpgleparser.RpgParser.Cspec_fixed_x2Context;
-import org.rpgleparser.RpgParserBaseListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FreeFormatConverter extends RpgParserBaseListener {
+import examples.loggingListener.LoggingListener;
+
+public class FreeFormatConverter extends LoggingListener {
 	/**
 	 * Logger for this class
 	 */
@@ -1815,11 +1982,17 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 	@Override
 	public void exitCspec_fixed(Cspec_fixedContext ctx) {
 		if (logger.isDebugEnabled()) {
-			//			logger.debug("exitCspec_fixed(Cspec_fixedContext) - start"); //$NON-NLS-1$
+			logger.debug("exitOp_pec_fixed(Cspec_fixedContext) - start"); //$NON-NLS-1$
 			logger.debug(ctx.getText());
 		}
-		List<CommonToken> myList = new ArrayList<CommonToken>();
-		fillTokenList(ctx, myList);
+		debugContext(ctx);
+
+		super.exitCspec_fixed(ctx);
+
+	}
+
+	private void debugContext(ParserRuleContext ctx) {
+		List<CommonToken> myList = getTheTokens(ctx);
 		for (int i = 0; i < myList.size(); i++) {
 			CommonToken ct = myList.get(i);
 			if (ct.getType() == RpgLexer.CS_OperationAndExtender) {
@@ -1833,19 +2006,22 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 				}
 			}
 		}
-//		for (CommonToken ct : myList) {
-//			System.err.println(voc.getDisplayName(ct.getType()) + "\t"
-//					+ ct.getText());
-//		}
+		for (CommonToken ct : myList) {
+			System.err.println(voc.getDisplayName(ct.getType()) + "\t"
+					+ ct.getText());
+		}
+	}
 
-		super.exitCspec_fixed(ctx);
-
+	private List<CommonToken> getTheTokens(ParserRuleContext ctx) {
+		List<CommonToken> myList = new ArrayList<CommonToken>();
+		fillTokenList(ctx, myList);
+		return myList;
 	}
 
 	@Override
 	public void exitCspec_fixed_x2(Cspec_fixed_x2Context ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitCspec_fixed_x2(Cspec_fixed_x2Context) - start"); //$NON-NLS-1$
+			logger.debug("exitOp_pec_fixed_x2(Cspec_fixed_x2Context) - start"); //$NON-NLS-1$
 			logger.debug(ctx.getText());
 		}
 
@@ -1874,7 +2050,7 @@ public class FreeFormatConverter extends RpgParserBaseListener {
 		super.exitCspec_fixed_x2(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitCspec_fixed_x2(Cspec_fixed_x2Context) - end"); //$NON-NLS-1$
+			logger.debug("exitOp_pec_fixed_x2(Cspec_fixed_x2Context) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -1922,6 +2098,37 @@ public class FreeFormatConverter extends RpgParserBaseListener {
     public void setSpacesToIndent(int spacesToIndent) {
 		this.spacesToIndent = spacesToIndent;
 	}
+    
+    private int getOpCodeIndex(List<? extends CommonToken> myList){
+    	int result = 0;
+		for (int i = 0; i < myList.size(); i++) {
+			CommonToken ct = myList.get(i);
+			if (ct.getType() == RpgLexer.CS_OperationAndExtender) {
+				result = i;
+			}
+		}
+		return result;
+    }
 
+	@Override
+	public void exitCsZ_ADD(CsZ_ADDContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsZ_ADD(CsZ_ADDContext) - start"); //$NON-NLS-1$
+		}
+
+		// TODO Auto-generated method stub
+		super.exitCsZ_ADD(ctx);
+		ParserRuleContext pctx = ctx.getParent();
+		List<CommonToken> myList = getTheTokens(pctx);
+		int opCodeIndex = getOpCodeIndex(myList);
+		CommonToken factor2 = myList.get(opCodeIndex + 1);
+		CommonToken result = myList.get(opCodeIndex + 2);
+		doZ_ADD(factor2, result, length, decpos, high, low, equal);
+		debugContext(pctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsZ_ADD(CsZ_ADDContext) - end"); //$NON-NLS-1$
+		}
+	}
 
 }
