@@ -35,7 +35,7 @@ public class Fixed2FreeTest {
 	 */
 	public static  void main(String[] args){
 		try {
-			FileReader fr = new FileReader("/Users/doulos1_2000/Documents/workspace/rpgleparserexercise/src/test/resources/INR034.RPGLE");
+			FileReader fr = new FileReader("/Users/doulos1_2000/Documents/rpgleparser/src/test/resources/org/rpgleparser/integration/INR034.RPGLE");
 			ANTLRInputStream aStream = new ANTLRInputStream(fr);
 			RpgLexer lexer = new RpgLexer(aStream);
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
