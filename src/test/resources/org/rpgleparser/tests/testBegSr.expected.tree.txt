@@ -1,0 +1,32 @@
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier X))
+    (function
+      (functionName (free_identifier Int))
+      (args ( (expression (number 10)) ))
+    )
+    ;
+  )
+  (free
+    (baseExpression
+      (op (op_begsr BEGSR (identifier (free_identifier SomeSubRoutine))))
+    )
+    ;
+  )
+  (free
+    (baseExpression
+      (op
+        (op_eval
+          (assignmentExpression
+            (expression (identifier (free_identifier X)))
+            =
+            (expression (number 1234))
+          )
+        )
+      )
+    )
+    ;
+  )
+  (free (baseExpression (op (op_endsr ENDSR))) ;)
+)

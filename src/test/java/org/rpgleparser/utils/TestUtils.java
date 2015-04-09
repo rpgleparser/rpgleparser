@@ -100,7 +100,7 @@ public class TestUtils {
         return tokenList;
     }
 
-    private static RpgParser initialiseParser(String inputString, List<String> errors) {
+    public static RpgParser initialiseParser(String inputString, List<String> errors) {
         ANTLRInputStream input = new ANTLRInputStream(inputString);
         RpgLexer lexer = new RpgLexer(input);
         vocabulary = lexer.getVocabulary();
@@ -183,22 +183,26 @@ public class TestUtils {
         assertParsedTokens(paddedInput, expectedTokens);
     }
 
-    public static void expectTreeForSourceLines(String input, String stringTree) {
+    public static void expectTreeForSourceLines(String input, String expectedTree) {
         String paddedInput = TestUtils.padSourceLines(input, false);
-        assertTree(paddedInput, stringTree);
+        assertTree(paddedInput, expectedTree);
     }
 
-    public static void expectTreeForFreeSnippet(String input, String stringTree) {
+    public static void expectTreeForFreeSnippet(String input, String expectedTree) {
         String paddedInput = TestUtils.padSourceLines(input, true);
-        assertTree(paddedInput, stringTree);
+        assertTree(paddedInput, expectedTree);
     }
 
-    private static void assertTree(String paddedInput, String stringTree) {
+    public static void assertTree(String paddedInput, String expectedTree) {
         List<String> errors = new ArrayList<String>();
         RpgParser parser = initialiseParser(paddedInput, errors);
         ParseTree parseTree = parser.r();
         assertThat(errors, is(empty()));
-        assertEquals("The parse trees do not match", stringTree, parseTree.toStringTree(parser));
+        if(expectedTree.contains("\n")){
+        	assertEquals("The parse trees do not match", expectedTree, TreeUtils.printTree(parseTree, parser));
+        }else{//compare with flat tree
+        	assertEquals("The parse trees do not match", expectedTree, parseTree.toStringTree(parser));
+        }
     }
 
     private static void assertParsedTokens(String paddedInput, String[] expectedTokens) {

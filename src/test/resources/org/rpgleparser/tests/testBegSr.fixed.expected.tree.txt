@@ -1,0 +1,46 @@
+(r
+  (cspec_fixed
+    C
+    (cs_controlLevel '  ')
+    (onOffIndicatorsFlag ' ')
+    (cs_indicators '  ')
+    (factor '              ')
+    (cspec_fixed_standard
+      (csBEGSR
+        BEGSR
+        (cspec_fixed_standard_parts
+          (factor (factorContent SUBRT1))
+          (resultType '              ')
+          '     '
+          '  '
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          \r\n
+        )
+      )
+    )
+  )
+  (cspec_fixed
+    C
+    (cs_controlLevel '  ')
+    (onOffIndicatorsFlag ' ')
+    (cs_indicators '  ')
+    (factor '              ')
+    (cspec_fixed_standard
+      (csENDSR
+        ENDSR
+        (cspec_fixed_standard_parts
+          (factor (factorContent SUBRT1))
+          (resultType '              ')
+          '     '
+          '  '
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          \r\n
+        )
+      )
+    )
+  )
+)
