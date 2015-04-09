@@ -1,3 +1,49 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <X>
+ID                       <Int>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+OP_EXSR                  <EXSR>
+ID                       <SUBRT1>
+FREE_SEMI                <;>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_BEGSR                 <BEGSR>
+CS_FactorContent         <SUBRT1>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+ID                       <X>
+'='                      <=>
+NUMBER                   <1234>
+FREE_SEMI                <;>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDSR                 <ENDSR>
+CS_FactorContent         <SUBRT1>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
 (r
   (dspec
     DCL-S
@@ -71,3 +117,4 @@
     )
   )
 )
+/*======*/
