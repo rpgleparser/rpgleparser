@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
+import org.antlr.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CommonToken;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.Vocabulary;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.lang3.StringUtils;
@@ -175,7 +178,13 @@ import org.rpgleparser.RpgParser.CsZ_ADDContext;
 import org.rpgleparser.RpgParser.CsZ_SUBContext;
 import org.rpgleparser.RpgParser.Cspec_fixedContext;
 import org.rpgleparser.RpgParser.Cspec_fixed_x2Context;
+import org.rpgleparser.RpgParser.Dspec_fixedContext;
 import org.rpgleparser.RpgParser.FreeContext;
+import org.rpgleparser.RpgParser.Fspec_fixedContext;
+import org.rpgleparser.RpgParser.Hspec_fixedContext;
+import org.rpgleparser.RpgParser.Ispec_fixedContext;
+import org.rpgleparser.RpgParser.Ospec_fixedContext;
+import org.rpgleparser.RpgParser.Pspec_fixedContext;
 import org.rpgleparser.RpgParser.Star_commentsContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -234,9 +243,12 @@ public class FreeFormatConverter extends LoggingListener {
 	private Vocabulary voc;
 	private String workString;
 	private Stack<String> structuredOps = new Stack<String>();
+	private CommonTokenStream ts;
+	private String currentSpec = "H";
 
-	public FreeFormatConverter(RpgLexer lex) {
+	public FreeFormatConverter(RpgLexer lex, CommonTokenStream toks) {
 		voc = lex.getVocabulary();
+		ts = toks;
 	}
 
 	public List<String> collectOutput() {
@@ -1058,7 +1070,7 @@ public class FreeFormatConverter extends LoggingListener {
 	private void doDO(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken comment) {
 		String factor1s;
-		if (!factor1.getText().trim().isEmpty()) {
+		if (factor1.getText().trim().length() == 0) {
 			factor1s = "1";
 		} else {
 			factor1s = factor1.getText().trim();
@@ -1331,44 +1343,44 @@ public class FreeFormatConverter extends LoggingListener {
 	}
 
 	private void doENDDO(CommonToken factor2, CommonToken comment) {
+		setIndentLevel(--indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDDO;";
 		cspecs.add(workString);
 		structuredOps.pop();
-		setIndentLevel(--indentLevel);
 
 	}
 
 	private void doENDFOR(CommonToken comment) {
+		setIndentLevel(--indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDFOR;";
 		cspecs.add(workString);
 		structuredOps.pop();
-		setIndentLevel(--indentLevel);
 	}
 
 	private void doENDIF(CommonToken comment) {
+		setIndentLevel(--indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDIF;";
 		cspecs.add(workString);
 		structuredOps.pop();
-		setIndentLevel(--indentLevel);
 	}
 
 	private void doENDMON(CommonToken comment) {
+		setIndentLevel(--indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDMON;";
 		cspecs.add(workString);
 		structuredOps.pop();
-		setIndentLevel(--indentLevel);
 	}
 
 	private void doENDSL(CommonToken comment) {
+		setIndentLevel(--indentLevel);
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + "ENDSL;";
 		cspecs.add(workString);
 		structuredOps.pop();
-		setIndentLevel(--indentLevel);
 
 	}
 
@@ -1388,10 +1400,8 @@ public class FreeFormatConverter extends LoggingListener {
 
 	private void doEVAL(CommonToken factor2, CommonToken comment) {
 		boolean eolComment = false;
-		workString = factor2.getText();
-		if (!eolComment) {
-			workString += ";";
-		}
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + factor2.getText() + doEOLComment(comment);
 		cspecs.add(workString);
 	}
 
@@ -3701,6 +3711,7 @@ public class FreeFormatConverter extends LoggingListener {
 			logger.debug("exitOp_pec_fixed(Cspec_fixedContext) - start"); //$NON-NLS-1$
 			logger.debug(ctx.getText());
 		}
+		currentSpec = "C";
 		debugContext(ctx);
 
 		super.exitCspec_fixed(ctx);
@@ -4538,13 +4549,32 @@ public class FreeFormatConverter extends LoggingListener {
 
 	@Override
 	public void exitStar_comments(Star_commentsContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitStar_comments(ctx);
+		int start = ctx.getStart().getTokenIndex();
+		List<Token> theList  = ts.getHiddenTokensToRight(start);
+		String prependStuff = StringUtils.repeat(' ', ctx.getStart().getCharPositionInLine());
+		workString = prependStuff;
+		workString += ctx.getText();
+		for (Token ct : theList){
+			workString += ct.getText();
+		}
+		if (currentSpec.equals("H")){
+			hspecs.add(workString);
+		} else if (currentSpec.equals("F")){
+			fspecs.add(workString);
+		} else if (currentSpec.equals("D")){
+			dspecs.add(workString);
+		} else if (currentSpec.equals("C") || currentSpec.equals("P")){
+			cspecs.add(workString);
+		}  else if (currentSpec.equals("O")){
+			ospecs.add(workString);
+		}
 	}
 
 	@Override
 	public void exitCspec_fixed_x2(Cspec_fixed_x2Context ctx) {
 		super.exitCspec_fixed_x2(ctx);
+		currentSpec = "C";
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFieldsX2(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4564,6 +4594,51 @@ public class FreeFormatConverter extends LoggingListener {
 		}else if (curOpCode.equalsIgnoreCase("EVAL_CORR")){
 			doEVAL_CORR(factor2, null);
 		}
+
+	}
+
+	@Override
+	public void exitDspec_fixed(Dspec_fixedContext ctx) {
+		// TODO Auto-generated method stub
+		super.exitDspec_fixed(ctx);
+		currentSpec = "D";
+	}
+
+	@Override
+	public void exitFspec_fixed(Fspec_fixedContext ctx) {
+		// TODO Auto-generated method stub
+		super.exitFspec_fixed(ctx);
+		currentSpec = "F";
+	}
+
+	@Override
+	public void exitHspec_fixed(Hspec_fixedContext ctx) {
+		// TODO Auto-generated method stub
+		super.exitHspec_fixed(ctx);
+		currentSpec = "H";
+	}
+
+	@Override
+	public void exitIspec_fixed(Ispec_fixedContext ctx) {
+		// TODO Auto-generated method stub
+		super.exitIspec_fixed(ctx);
+		currentSpec = "I";
+
+	}
+
+	@Override
+	public void exitOspec_fixed(Ospec_fixedContext ctx) {
+		// TODO Auto-generated method stub
+		super.exitOspec_fixed(ctx);
+		currentSpec = "O";
+
+	}
+
+	@Override
+	public void exitPspec_fixed(Pspec_fixedContext ctx) {
+		// TODO Auto-generated method stub
+		super.exitPspec_fixed(ctx);
+		currentSpec = "P";
 
 	}
 
