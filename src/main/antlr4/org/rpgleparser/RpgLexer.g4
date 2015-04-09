@@ -282,9 +282,9 @@ FREE_COMMENTS: {getCharPositionInLine()>=7}? [ ]*? '//' -> pushMode(FIXED_Commen
 FREE_WS: {getCharPositionInLine()>5}? [ \t]+ -> skip;
 FREE_CONTINUATION : {_modeStack.peek()!=FIXED_CalcSpec}? '...' WS* NEWLINE -> type(CONTINUATION);
 C_FREE_CONTINUATION_DOTS : {_modeStack.peek()==FIXED_CalcSpec}? '...' WS* NEWLINE 
-	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'C' ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
+	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
 C_FREE_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'C' ~[*] '                            ' -> skip;
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> skip;
 FREE_LEAD_WS5 :  {getCharPositionInLine()==0}? '     ' -> skip;
 FREE_LEAD_WS5_Comments :  {getCharPositionInLine()==0}?~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] -> channel(HIDDEN);
 FREE_FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> skip;
