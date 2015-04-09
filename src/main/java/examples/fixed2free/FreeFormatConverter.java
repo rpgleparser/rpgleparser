@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-import org.antlr.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -311,8 +310,75 @@ public class FreeFormatConverter extends LoggingListener {
 	}
 
 	private void doADDDUR(CommonToken factor1, CommonToken factor2,
-			CommonToken result, CommonToken comment) {
-		// TODO Auto-generated method stub
+			CommonToken result, CommonToken low, CommonToken comment) {
+		String fullFactor2 = factor2.getText();
+		String factor1s = factor1.getText().trim();
+		String[] factor2Parts = fullFactor2.split(":");
+		boolean ER = low.getText().trim().length() > 0;
+		String duration;
+		String durCode;
+		String bif=null;
+		if (factor2Parts.length == 2){
+			duration = factor2Parts[0];
+			durCode = factor2Parts[1];
+			if (durCode.equalsIgnoreCase("*D") || durCode.equalsIgnoreCase("*DAYS")){
+				bif = "%DAYS";
+			} else if (durCode.equalsIgnoreCase("*M") || durCode.equalsIgnoreCase("*MONTHS")){
+				bif = "%MONTHS";
+			} else if (durCode.equalsIgnoreCase("*Y") || durCode.equalsIgnoreCase("*YEARS")){
+				bif = "%YEARS";
+			} else if (durCode.equalsIgnoreCase("*H") || durCode.equalsIgnoreCase("*HOURS")){
+				bif = "%HOURS";
+			} else if (durCode.equalsIgnoreCase("*MN") || durCode.equalsIgnoreCase("*MINUTES")){
+				bif = "%MINUTES";
+			} else if (durCode.equalsIgnoreCase("*S") || durCode.equalsIgnoreCase("*SECONDS")){
+				bif = "%SECONDS";
+			} else if (durCode.equalsIgnoreCase("*MS") || durCode.equalsIgnoreCase("*MSECONDS")){
+				bif = "%MSECONDS";
+			}
+			
+			if (bif != null){
+				// Use a monitor group if an error indicator was used
+				if (ER){
+					workString = StringUtils.repeat(' ',
+							7 + (indentLevel * spacesToIndent))
+							+ "MONITOR;";
+					cspecs.add(workString);
+					workString = StringUtils.repeat(' ',
+							7 + ((indentLevel + 1) * spacesToIndent))
+							+ "*IN" + low.getText().trim() + " = *OFF;";
+					cspecs.add(workString);
+				}
+				if (factor1s.length() == 0){
+					workString = StringUtils.repeat(' ',
+							7 + ((indentLevel + 1) * spacesToIndent))
+							+ result.getText().trim()
+							+ " += " + bif + "(" + duration + ")" + doEOLComment(comment);
+					cspecs.add(workString);
+				} else {
+					workString = StringUtils.repeat(' ',
+							7 + ((indentLevel +1) * spacesToIndent))
+							+ result.getText().trim()
+							+ " = " + factor1.getText().trim() + " + " + bif + "(" + duration + ")" + doEOLComment(comment);
+				}
+				
+				if (ER){
+					workString = StringUtils.repeat(' ',
+							7 + (indentLevel * spacesToIndent))
+							+ "ON-ERROR;";
+					cspecs.add(workString);
+					workString = StringUtils.repeat(' ',
+							7 + ((indentLevel + 1) * spacesToIndent))
+							+ "*IN" + low.getText().trim() + " = *ON;";
+					cspecs.add(workString);
+					workString = StringUtils.repeat(' ',
+							7 + (indentLevel * spacesToIndent))
+							+ "ENDMON;";
+					cspecs.add(workString);
+				}
+				
+			}
+		}
 
 	}
 
@@ -850,7 +916,36 @@ public class FreeFormatConverter extends LoggingListener {
 
 	private void doCAT(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken comment) {
-		// TODO Auto-generated method stub
+		String factor2s = factor2.getText().trim();
+		boolean F1F = factor1.getText().trim().length() > 0;
+		int spacesToPad = 0;
+		if (factor2s.contains(":")){
+			String[] parts = factor2s.split(":");
+			if (parts.length == 2){
+				spacesToPad = Integer.parseInt(parts[1]);
+				factor2s = parts[0];
+			}
+		}
+		
+		if (F1F){
+			workString = StringUtils.repeat(" ",
+					7 + ((indentLevel + 1) * spacesToIndent))
+					+ result.getText().trim() + " = " + factor1.getText().trim() + " + ";
+			if (spacesToPad > 0){
+				workString += "\"" + StringUtils.repeat(' ', spacesToPad) + "\"";
+			}
+			workString += factor2.getText().trim() + doEOLComment(comment);
+		} else {
+			workString = StringUtils.repeat(" ",
+					7 + ((indentLevel + 1) * spacesToIndent))
+					+ result.getText().trim() + " += " + factor2.getText().trim();
+			if (spacesToPad > 0){
+				workString += "+ \"" + StringUtils.repeat(' ', spacesToPad) + "\"";
+			}
+			workString += doEOLComment(comment);
+		}
+
+		
 
 	}
 
@@ -1320,8 +1415,6 @@ public class FreeFormatConverter extends LoggingListener {
 	}
 
 	private void doEND(CommonToken factor2, CommonToken comment) {
-		// FIXME Got to keep a stack of structured operations and then emit the
-		// right ENDxx opcode
 		String theOp = structuredOps.peek();
 		if (theOp.equalsIgnoreCase("DO")) {
 			doENDDO(factor2, comment);
@@ -1399,7 +1492,6 @@ public class FreeFormatConverter extends LoggingListener {
 	}
 
 	private void doEVAL(CommonToken factor2, CommonToken comment) {
-		boolean eolComment = false;
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + factor2.getText() + doEOLComment(comment);
 		cspecs.add(workString);
@@ -2058,9 +2150,76 @@ public class FreeFormatConverter extends LoggingListener {
 	}
 
 	private void doSUBDUR(CommonToken factor1, CommonToken factor2,
-			CommonToken result, CommonToken length, CommonToken decpos,
+			CommonToken result, CommonToken low,
 			CommonToken comment) {
-		// TODO Auto-generated method stub
+		String fullFactor2 = factor2.getText();
+		String factor1s = factor1.getText().trim();
+		String[] factor2Parts = fullFactor2.split(":");
+		boolean ER = low.getText().trim().length() > 0;
+		String duration;
+		String durCode;
+		String bif=null;
+		if (factor2Parts.length == 2){
+			duration = factor2Parts[0];
+			durCode = factor2Parts[1];
+			if (durCode.equalsIgnoreCase("*D") || durCode.equalsIgnoreCase("*DAYS")){
+				bif = "%DAYS";
+			} else if (durCode.equalsIgnoreCase("*M") || durCode.equalsIgnoreCase("*MONTHS")){
+				bif = "%MONTHS";
+			} else if (durCode.equalsIgnoreCase("*Y") || durCode.equalsIgnoreCase("*YEARS")){
+				bif = "%YEARS";
+			} else if (durCode.equalsIgnoreCase("*H") || durCode.equalsIgnoreCase("*HOURS")){
+				bif = "%HOURS";
+			} else if (durCode.equalsIgnoreCase("*MN") || durCode.equalsIgnoreCase("*MINUTES")){
+				bif = "%MINUTES";
+			} else if (durCode.equalsIgnoreCase("*S") || durCode.equalsIgnoreCase("*SECONDS")){
+				bif = "%SECONDS";
+			} else if (durCode.equalsIgnoreCase("*MS") || durCode.equalsIgnoreCase("*MSECONDS")){
+				bif = "%MSECONDS";
+			}
+			
+			if (bif != null){
+				// Use a monitor group if an error indicator was used
+				if (ER){
+					workString = StringUtils.repeat(' ',
+							7 + (indentLevel * spacesToIndent))
+							+ "MONITOR;";
+					cspecs.add(workString);
+					workString = StringUtils.repeat(' ',
+							7 + ((indentLevel + 1) * spacesToIndent))
+							+ "*IN" + low.getText().trim() + " = *OFF;";
+					cspecs.add(workString);
+				}
+				if (factor1s.length() == 0){
+					workString = StringUtils.repeat(' ',
+							7 + ((indentLevel + 1) * spacesToIndent))
+							+ result.getText().trim()
+							+ " += " + bif + "(" + duration + ")" + doEOLComment(comment);
+					cspecs.add(workString);
+				} else {
+					workString = StringUtils.repeat(' ',
+							7 + ((indentLevel +1) * spacesToIndent))
+							+ result.getText().trim()
+							+ " = " + factor1.getText().trim() + " + " + bif + "(" + duration + ")" + doEOLComment(comment);
+				}
+				
+				if (ER){
+					workString = StringUtils.repeat(' ',
+							7 + (indentLevel * spacesToIndent))
+							+ "ON-ERROR;";
+					cspecs.add(workString);
+					workString = StringUtils.repeat(' ',
+							7 + ((indentLevel + 1) * spacesToIndent))
+							+ "*IN" + low.getText().trim() + " = *ON;";
+					cspecs.add(workString);
+					workString = StringUtils.repeat(' ',
+							7 + (indentLevel * spacesToIndent))
+							+ "ENDMON;";
+					cspecs.add(workString);
+				}
+				
+			}
+		}
 
 	}
 
@@ -2331,8 +2490,9 @@ public class FreeFormatConverter extends LoggingListener {
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
+		CommonToken low = temp.get(LOW);
 		CommonToken comment = temp.get(COMMENT);
-		doADDDUR(factor1, factor2, result, comment);
+		doADDDUR(factor1, factor2, result, low, comment);
 	}
 
 	@Override
@@ -2414,7 +2574,6 @@ public class FreeFormatConverter extends LoggingListener {
 
 	@Override
 	public void exitCsBEGSR(CsBEGSRContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitCsBEGSR(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
@@ -2555,7 +2714,6 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doCABNE(factor1, factor2, result, high, low, equal, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -2763,7 +2921,6 @@ public class FreeFormatConverter extends LoggingListener {
 
 	@Override
 	public void exitCsCLOSE(CsCLOSEContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitCsCLOSE(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
@@ -2811,7 +2968,6 @@ public class FreeFormatConverter extends LoggingListener {
 
 	@Override
 	public void exitCsDEFINE(CsDEFINEContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitCsDEFINE(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
@@ -2944,7 +3100,6 @@ public class FreeFormatConverter extends LoggingListener {
 
 	@Override
 	public void exitCsDOW(CsDOWContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitCsDOW(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
@@ -3363,7 +3518,6 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doKFLD(result, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -3378,7 +3532,6 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doKLIST(factor1, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -4000,10 +4153,9 @@ public class FreeFormatConverter extends LoggingListener {
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
-		CommonToken length = temp.get(LENGTH);
-		CommonToken decpos = temp.get(DESC_POS);
+		CommonToken low = temp.get(LOW);
 		CommonToken comment = temp.get(COMMENT);
-		doSUBDUR(factor1, factor2, result, length, decpos, comment);
+		doSUBDUR(factor1, factor2, result, low, comment);
 	}
 
 	@Override
@@ -4599,45 +4751,48 @@ public class FreeFormatConverter extends LoggingListener {
 
 	@Override
 	public void exitDspec_fixed(Dspec_fixedContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitDspec_fixed(ctx);
+		dspecs.add("     " + ctx.getText());
+
 		currentSpec = "D";
 	}
 
 	@Override
 	public void exitFspec_fixed(Fspec_fixedContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitFspec_fixed(ctx);
+		fspecs.add("     " + ctx.getText());
+
 		currentSpec = "F";
 	}
 
 	@Override
 	public void exitHspec_fixed(Hspec_fixedContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitHspec_fixed(ctx);
+		hspecs.add("     " + ctx.getText());
+
 		currentSpec = "H";
 	}
 
 	@Override
 	public void exitIspec_fixed(Ispec_fixedContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitIspec_fixed(ctx);
+		ispecs.add("     " + ctx.getText());
 		currentSpec = "I";
 
 	}
 
 	@Override
 	public void exitOspec_fixed(Ospec_fixedContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitOspec_fixed(ctx);
+		ospecs.add("     " + ctx.getText());
 		currentSpec = "O";
 
 	}
 
 	@Override
 	public void exitPspec_fixed(Pspec_fixedContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitPspec_fixed(ctx);
+		cspecs.add("     " + ctx.getText());
 		currentSpec = "P";
 
 	}
