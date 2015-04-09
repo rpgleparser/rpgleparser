@@ -43,7 +43,7 @@ public class Fixed2FreeTest {
 			ParserRuleContext tree = parser.r(); // parse
 			 
 			ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
-			FreeFormatConverter extractor = new FreeFormatConverter(lexer);
+			FreeFormatConverter extractor = new FreeFormatConverter(lexer, tokens);
 			walker.walk(extractor, tree); // initiate walk of tree with listener
 			List<String> results =extractor.collectOutput();
 			for (String a : results){
