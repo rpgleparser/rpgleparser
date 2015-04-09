@@ -1,3 +1,21 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <X>
+ID                       <Int>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+OP_BEGSR                 <BEGSR>
+ID                       <SomeSubRoutine>
+FREE_SEMI                <;>
+ID                       <X>
+'='                      <=>
+NUMBER                   <1234>
+FREE_SEMI                <;>
+OP_ENDSR                 <ENDSR>
+FREE_SEMI                <;>
+/*===TREE===*/
 (r
   (dspec
     DCL-S
@@ -30,3 +48,4 @@
   )
   (free (baseExpression (op (op_endsr ENDSR))) ;)
 )
+/*======*/

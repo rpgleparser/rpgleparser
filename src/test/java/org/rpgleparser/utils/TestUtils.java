@@ -61,9 +61,13 @@ public class TestUtils {
     }
     
     public static void printTokens(List<? extends Token> tokens){
-    	for (Token token:tokens){ // A token from a ParseTree object
+    	System.out.println(getTokenString(tokens,vocabulary));
+    	
+    }
+    public static String getTokenString(List<? extends Token> tokens,Vocabulary vocabulary){
+    	StringBuilder sb = new StringBuilder();
+		for (Token token:tokens){ // A token from a ParseTree object
     		String displayName = vocabulary.getDisplayName(token.getType());
-    		StringBuilder sb = new StringBuilder();
     		sb.append(displayName);
     		if(displayName.length()<25){
     			sb.append("                         ".substring(displayName.length(),25));
@@ -71,8 +75,9 @@ public class TestUtils {
     		sb.append('<');
     		sb.append(token.getText());
     		sb.append('>');
-    		System.out.println(sb.toString() );
+    		sb.append("\r\n");
     	}
+		return sb.toString().trim();
     }
     public static void printTokens(String inputString, Boolean isFreeSnippet){
     	if(isFreeSnippet != null){
@@ -101,7 +106,12 @@ public class TestUtils {
     }
 
     public static RpgParser initialiseParser(String inputString, List<String> errors) {
-        ANTLRInputStream input = new ANTLRInputStream(inputString);
+        ANTLRInputStream input;
+//		try {
+//			input = new ANTLRInputStream(new BufferedReader80(inputString));
+//		} catch (IOException e) {
+			input = new ANTLRInputStream(inputString);
+//		}
         RpgLexer lexer = new RpgLexer(input);
         vocabulary = lexer.getVocabulary();
         TokenStream tokens = new CommonTokenStream(lexer);
@@ -234,7 +244,7 @@ public class TestUtils {
         return stringTokens.substring(1) + "\n" + tokenNames.substring(1);
     }
 
-    private static class ErrorListener implements ANTLRErrorListener {
+    public static class ErrorListener implements ANTLRErrorListener {
 
         private final List<String> errors;
         private final RpgLexer lexer;
