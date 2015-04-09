@@ -31,7 +31,7 @@ endSource*
 ;
 endSource: endSourceHead endSourceLine*;
 endSourceHead: END_SOURCE ;
-endSourceLine: EOS_Text EOL;
+endSourceLine: EOS_Text (EOL|EOF);
 
 star_comments: COMMENT_SPEC_FIXED ;//comments COMMENTS_EOL;
 free_comments: COMMENTS comments COMMENTS_EOL;
@@ -60,7 +60,7 @@ ctl_opt:  H_SPEC (identifier | expression)* FREE_SEMI ;
 
 
 dspec_fixed: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE FROM_POSITION TO_POSITION
-	DATA_TYPE DECIMAL_POSITIONS RESERVED KEYWORDS EOL;
+	DATA_TYPE DECIMAL_POSITIONS RESERVED KEYWORDS (EOL|EOF);
 ds_name: CONTINUATION_NAME* NAME;
 
 ospec_fixed: OS_FIXED (((OS_RecordName 
@@ -127,7 +127,7 @@ os_fixed_pgmfield:
 pspec_fixed: PS_FIXED ps_name (PS_BEGIN | PS_END) PS_KEYWORDS;
 ps_name: PS_CONTINUATION_NAME* PS_NAME;
  
-//dspec_continuation:	DS_FIXED CONTINUATION_NAME EOL;
+//dspec_continuation:	DS_FIXED CONTINUATION_NAME (EOL|EOF);
 fspec:  FS_FreeFile filename  
 	fs_expression*; 
 filename: ID; 
@@ -361,7 +361,7 @@ cspec_fixed_standard_parts:
 	hi=resultIndicator 
 	lo=resultIndicator
 	eq=resultIndicator 
-	cs_fixed_comments? EOL;	
+	cs_fixed_comments? (EOL|EOF);	
 
 /*
  * Fixed op codes 
@@ -938,8 +938,14 @@ resultType:
    CS_FactorContent | CS_BlankFactor;
 cs_fixed_comments:CS_Comments;		
 //cs_fixed_x2: CS_OperationAndExtendedFactor2 C2_FACTOR2_CONT* C2_FACTOR2 C_EOL;
-cspec_fixed_x2: CS_OperationAndExtendedFactor2 c_free C_FREE_NEWLINE;
+cspec_fixed_x2: csOperationAndExtendedFactor2 c_free C_FREE_NEWLINE;
 
+csOperationAndExtendedFactor2:
+	operation=OP_EVAL
+	|operation=OP_IF
+	|operation=OP_CALLP operationExtender=cs_operationExtender?
+	|operation=OP_DOW
+	|operation=OP_ELSEIF;
 
 ispec_fixed: IS_FIXED 
 	((IS_FileName

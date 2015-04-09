@@ -815,7 +815,8 @@ CS_FactorColon: ({(getCharPositionInLine()>11 && getCharPositionInLine()<24)
 			|| (getCharPositionInLine()>35 && getCharPositionInLine()<48)
 			|| (getCharPositionInLine()>49 && getCharPositionInLine()<62)
 }?
-		[:]) -> type(COLON);//pushMode(FIXED_CalcSpec_2PartFactor), 
+		[:]) -> type(COLON);//pushMode(FIXED_CalcSpec_2PartFactor),
+		/* 
 CS_OperationAndExtendedFactor2: {getCharPositionInLine()==25}? 
 	(OP_EVAL '      ' 
 		| OP_IF '        '  
@@ -824,6 +825,7 @@ CS_OperationAndExtendedFactor2: {getCharPositionInLine()==25}?
 		| OP_DOW'       '
 		| OP_ELSEIF'    '
 	) -> pushMode(FREE);
+	*/
 CS_OperationAndExtender_Blank:  
    {getCharPositionInLine()==25}?'          ';
 CS_OperationAndExtender_WS:
@@ -851,6 +853,7 @@ CS_Operation_CABGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}?
 CS_Operation_CABGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABGT-> type(OP_CABGT);
 CS_Operation_CALL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALL -> type(OP_CALL);
 CS_Operation_CALLB: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALLB -> type(OP_CALLB);
+CS_Operation_CALLP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALLP -> type(OP_CALLP),pushMode(FREE);
 CS_Operation_CASEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASEQ-> type(OP_CASEQ);
 CS_Operation_CASNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASNE-> type(OP_CASNE);
 CS_Operation_CASLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASLE-> type(OP_CASLE);
@@ -876,7 +879,7 @@ CS_Operation_DOUNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}?
 CS_Operation_DOULE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOULE-> type(OP_DOULE);
 CS_Operation_DOULT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOULT-> type(OP_DOULT);
 CS_Operation_DOUGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOUGE-> type(OP_DOUGE);
-CS_Operation_DOW: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOW-> type(OP_DOW);
+CS_Operation_DOW: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOW-> type(OP_DOW),pushMode(FREE);
 CS_Operation_DOWEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWEQ-> type(OP_DOWEQ);
 CS_Operation_DOWNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWNE-> type(OP_DOWNE);
 CS_Operation_DOWLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWLE-> type(OP_DOWLE);
@@ -885,7 +888,7 @@ CS_Operation_DOWGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}?
 CS_Operation_DSPLY: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DSPLY-> type(OP_DSPLY);
 CS_Operation_DUMP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DUMP-> type(OP_DUMP);
 CS_Operation_ELSE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ELSE-> type(OP_ELSE);
-CS_Operation_ELSEIF: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ELSEIF-> type(OP_ELSEIF);
+CS_Operation_ELSEIF: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ELSEIF-> type(OP_ELSEIF),pushMode(FREE);
 CS_Operation_END: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_END-> type(OP_END);
 CS_Operation_ENDCS: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDCS-> type(OP_ENDCS);
 CS_Operation_ENDDO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDDO-> type(OP_ENDDO);
@@ -894,7 +897,7 @@ CS_Operation_ENDIF: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}?
 CS_Operation_ENDMON: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDMON-> type(OP_ENDMON);
 CS_Operation_ENDSL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDSL-> type(OP_ENDSL);
 CS_Operation_ENDSR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDSR-> type(OP_ENDSR);
-CS_Operation_EVAL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EVAL-> type(OP_EVAL);
+CS_Operation_EVAL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EVAL-> type(OP_EVAL),pushMode(FREE);
 CS_Operation_EVALR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EVALR-> type(OP_EVALR);
 CS_Operation_EVAL_CORR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EVAL_CORR-> type(OP_EVAL_CORR);
 CS_Operation_EXCEPT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EXCEPT-> type(OP_EXCEPT);
@@ -905,7 +908,7 @@ CS_Operation_FEOD: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? 
 CS_Operation_FOR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_FOR-> type(OP_FOR);
 CS_Operation_FORCE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_FORCE-> type(OP_FORCE);
 CS_Operation_GOTO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_GOTO-> type(OP_GOTO);
-CS_Operation_IF: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IF-> type(OP_IF);
+CS_Operation_IF: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IF-> type(OP_IF),pushMode(FREE);
 CS_Operation_IFEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IFEQ-> type(OP_IFEQ);
 CS_Operation_IFNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IFNE-> type(OP_IFNE);
 CS_Operation_IFLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IFLE-> type(OP_IFLE);
