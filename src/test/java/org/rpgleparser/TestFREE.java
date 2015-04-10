@@ -572,6 +572,6 @@ public class TestFREE {
         String inputString =
                 "i = 1 + 2;";
         expectTreeForFreeSnippet(inputString,
-                "(r (free (baseExpression (op (op_eval (assignmentExpression (expression (identifier (free_identifier i))) = (expression (expression (number 1)) (arithmeticalOperator +) (expression (number 2))))))) ;))");
+                "(r (statement (free (baseExpression (op (op_eval (assignmentExpression (expression (identifier (free_identifier i))) = (expression (expression (number 1)) (arithmeticalOperator +) (expression (number 2))))))) ;)))");
     }
 }

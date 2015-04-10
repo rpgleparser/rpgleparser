@@ -703,7 +703,7 @@ csITER:
 csKLIST:
 	operation=OP_KLIST
 	cspec_fixed_standard_parts
-	csKFLD+;
+	csKFLD*;
 csKFLD:
 	CS_FIXED
 	BlankIndicator
