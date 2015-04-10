@@ -26,7 +26,7 @@ public class FixedWidthInputStream extends InputStream {
 	public int read(byte[] b, int off, int len) throws IOException {
 		byte tmp [] = new byte[len];
 		
-		int size = pushbackInputStream.read(tmp, off, len);
+		int size = pushbackInputStream.read(tmp, 0, len);
 
 		int currentInPos = 0;
 		int currentOutPos = 0;
@@ -35,23 +35,23 @@ public class FixedWidthInputStream extends InputStream {
 				return size;
 			}
 			while(currentOutPos < len && column++ < numberOfColumns){
-				b[currentOutPos++] = ' ';
+				b[off + currentOutPos++] = ' ';
 			}
 			return currentOutPos;
 		}
 		while(currentInPos < size && currentOutPos < len){
 			if(atEOL){
-				if(column++ < numberOfColumns){
-					b[currentOutPos++] = ' ';
+				if(++column < numberOfColumns){
+					b[off + currentOutPos++] = ' ';
 				}
 				else if(isEOL(tmp[currentInPos])){
-					b[currentOutPos++] = tmp[currentInPos++];
+					b[off + currentOutPos++] = tmp[currentInPos++];
 				}else{
 					column=0;
 					atEOL=false;
 				}
 			}else{
-				b[currentOutPos++] = tmp[currentInPos++]; 
+				b[off + currentOutPos++] = tmp[currentInPos++]; 
 				column++;
 				if(currentInPos < size && isEOL(tmp[currentInPos])){
 					atEOL=true;
@@ -64,8 +64,8 @@ public class FixedWidthInputStream extends InputStream {
 		if(currentOutPos < len){
 			int nextChar = pushbackInputStream.read();
 			if(nextChar <0){
-				while(currentOutPos < len && column++ < numberOfColumns){
-					b[currentOutPos++] = ' ';
+				while(currentOutPos < len && ++column < numberOfColumns){
+					b[off + currentOutPos++] = ' ';
 				}
 			}else{
 				pushbackInputStream.unread(nextChar);

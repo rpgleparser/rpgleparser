@@ -28,9 +28,9 @@ public class FixedWidthBufferedReader extends Reader{
 
 	@Override
 	public int read(char[] b, int off, int len) throws IOException {
-		char tmp [] = new char[b.length];
+		char tmp [] = new char[len];
 		
-		int size = reader.read(tmp, off, len);
+		int size = reader.read(tmp, 0, len);
 		int currentInPos = 0;
 		int currentOutPos = 0;
 		if(size <=0){
@@ -38,23 +38,23 @@ public class FixedWidthBufferedReader extends Reader{
 				return size;
 			}
 			while(currentOutPos < len && column++ < numberOfColumns){
-				b[currentOutPos++] = ' ';
+				b[off + currentOutPos++] = ' ';
 			}
 			return currentOutPos;
 		}
 		while(currentInPos < size && currentOutPos < len){
 			if(atEOL){
-				if(column++ < numberOfColumns){
-					b[currentOutPos++] = ' ';
+				if(++column < numberOfColumns){
+					b[off + currentOutPos++] = ' ';
 				}
 				else if(isEOL(tmp[currentInPos])){
-					b[currentOutPos++] = tmp[currentInPos++];
+					b[off + currentOutPos++] = tmp[currentInPos++];
 				}else{
 					column=0;
 					atEOL=false;
 				}
 			}else{
-				b[currentOutPos++] = tmp[currentInPos++]; 
+				b[off + currentOutPos++] = tmp[currentInPos++]; 
 				column++;
 				if(currentInPos < size && isEOL(tmp[currentInPos])){
 					atEOL=true;
@@ -67,8 +67,8 @@ public class FixedWidthBufferedReader extends Reader{
 		if(currentOutPos < len){
 			int nextChar = reader.read();
 			if(nextChar <0){
-				while(currentOutPos < len && column++ < numberOfColumns){
-					b[currentOutPos++] = ' ';
+				while(currentOutPos < len && ++column < numberOfColumns){
+					b[off + currentOutPos++] = ' ';
 				}
 			}else{
 				reader.unread(nextChar);
