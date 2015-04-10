@@ -289,7 +289,7 @@ public class FreeFormatConverter extends LoggingListener {
 			CommonToken comment) throws RPGFormatException {
 		doResultCheck(result, length, decpos);
 		if (factor1.getType() != RpgLexer.CS_BlankFactor
-				&& ! factor1.getText().trim().isEmpty()) {
+				&& !factor1.getText().trim().isEmpty()) {
 			workString = StringUtils.repeat(' ',
 					7 + (indentLevel * spacesToIndent))
 					+ result.getText().trim()
@@ -317,66 +317,80 @@ public class FreeFormatConverter extends LoggingListener {
 		boolean ER = low.getText().trim().length() > 0;
 		String duration;
 		String durCode;
-		String bif=null;
-		if (factor2Parts.length == 2){
+		String bif = null;
+		if (factor2Parts.length == 2) {
 			duration = factor2Parts[0];
 			durCode = factor2Parts[1];
-			if (durCode.equalsIgnoreCase("*D") || durCode.equalsIgnoreCase("*DAYS")){
+			if (durCode.equalsIgnoreCase("*D")
+					|| durCode.equalsIgnoreCase("*DAYS")) {
 				bif = "%DAYS";
-			} else if (durCode.equalsIgnoreCase("*M") || durCode.equalsIgnoreCase("*MONTHS")){
+			} else if (durCode.equalsIgnoreCase("*M")
+					|| durCode.equalsIgnoreCase("*MONTHS")) {
 				bif = "%MONTHS";
-			} else if (durCode.equalsIgnoreCase("*Y") || durCode.equalsIgnoreCase("*YEARS")){
+			} else if (durCode.equalsIgnoreCase("*Y")
+					|| durCode.equalsIgnoreCase("*YEARS")) {
 				bif = "%YEARS";
-			} else if (durCode.equalsIgnoreCase("*H") || durCode.equalsIgnoreCase("*HOURS")){
+			} else if (durCode.equalsIgnoreCase("*H")
+					|| durCode.equalsIgnoreCase("*HOURS")) {
 				bif = "%HOURS";
-			} else if (durCode.equalsIgnoreCase("*MN") || durCode.equalsIgnoreCase("*MINUTES")){
+			} else if (durCode.equalsIgnoreCase("*MN")
+					|| durCode.equalsIgnoreCase("*MINUTES")) {
 				bif = "%MINUTES";
-			} else if (durCode.equalsIgnoreCase("*S") || durCode.equalsIgnoreCase("*SECONDS")){
+			} else if (durCode.equalsIgnoreCase("*S")
+					|| durCode.equalsIgnoreCase("*SECONDS")) {
 				bif = "%SECONDS";
-			} else if (durCode.equalsIgnoreCase("*MS") || durCode.equalsIgnoreCase("*MSECONDS")){
+			} else if (durCode.equalsIgnoreCase("*MS")
+					|| durCode.equalsIgnoreCase("*MSECONDS")) {
 				bif = "%MSECONDS";
 			}
-			
-			if (bif != null){
+
+			if (bif != null) {
 				// Use a monitor group if an error indicator was used
-				if (ER){
+				if (ER) {
 					workString = StringUtils.repeat(' ',
-							7 + (indentLevel * spacesToIndent))
-							+ "MONITOR;";
+							7 + (indentLevel * spacesToIndent)) + "MONITOR;";
 					cspecs.add(workString);
 					workString = StringUtils.repeat(' ',
 							7 + ((indentLevel + 1) * spacesToIndent))
-							+ "*IN" + low.getText().trim() + " = *OFF;";
+							+ "*IN"
+							+ low.getText().trim() + " = *OFF;";
 					cspecs.add(workString);
 				}
-				if (factor1s.length() == 0){
+				if (factor1s.length() == 0) {
 					workString = StringUtils.repeat(' ',
 							7 + ((indentLevel + 1) * spacesToIndent))
 							+ result.getText().trim()
-							+ " += " + bif + "(" + duration + ")" + doEOLComment(comment);
+							+ " += "
+							+ bif
+							+ "("
+							+ duration + ")" + doEOLComment(comment);
 					cspecs.add(workString);
 				} else {
 					workString = StringUtils.repeat(' ',
-							7 + ((indentLevel +1) * spacesToIndent))
+							7 + ((indentLevel + 1) * spacesToIndent))
 							+ result.getText().trim()
-							+ " = " + factor1.getText().trim() + " + " + bif + "(" + duration + ")" + doEOLComment(comment);
+							+ " = "
+							+ factor1.getText().trim()
+							+ " + "
+							+ bif
+							+ "("
+							+ duration + ")" + doEOLComment(comment);
 				}
-				
-				if (ER){
+
+				if (ER) {
 					workString = StringUtils.repeat(' ',
-							7 + (indentLevel * spacesToIndent))
-							+ "ON-ERROR;";
+							7 + (indentLevel * spacesToIndent)) + "ON-ERROR;";
 					cspecs.add(workString);
 					workString = StringUtils.repeat(' ',
 							7 + ((indentLevel + 1) * spacesToIndent))
-							+ "*IN" + low.getText().trim() + " = *ON;";
+							+ "*IN"
+							+ low.getText().trim() + " = *ON;";
 					cspecs.add(workString);
 					workString = StringUtils.repeat(' ',
-							7 + (indentLevel * spacesToIndent))
-							+ "ENDMON;";
+							7 + (indentLevel * spacesToIndent)) + "ENDMON;";
 					cspecs.add(workString);
 				}
-				
+
 			}
 		}
 
@@ -476,14 +490,82 @@ public class FreeFormatConverter extends LoggingListener {
 
 	private void doBITOFF(CommonToken factor2, CommonToken result,
 			CommonToken comment) {
-		// TODO Auto-generated method stub
+		byte bitmask = (byte) 255;
+		String inputBits = factor2.getText();
 
+		if (inputBits.contains("0")) {
+			bitmask -= 128;
+		}
+		if (inputBits.contains("1")) {
+			bitmask -= 64;
+		}
+		if (inputBits.contains("2")) {
+			bitmask -= 32;
+		}
+		if (inputBits.contains("3")) {
+			bitmask -= 16;
+		}
+		if (inputBits.contains("4")) {
+			bitmask -= 8;
+		}
+		if (inputBits.contains("5")) {
+			bitmask -= 4;
+		}
+		if (inputBits.contains("6")) {
+			bitmask -= 2;
+		}
+		if (inputBits.contains("7")) {
+			bitmask -= 1;
+		}
+		String hexChar = String.format("x", bitmask);
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ "%BITAND("
+				+ factor2.getText().trim()
+				+ " : x'"
+				+ hexChar
+				+ "') "
+				+ doEOLComment(comment);
 	}
 
 	private void doBITON(CommonToken factor2, CommonToken result,
 			CommonToken comment) {
-		// TODO Auto-generated method stub
+		byte bitmask = 0;
+		String inputBits = factor2.getText();
 
+		if (inputBits.contains("0")) {
+			bitmask += 128;
+		}
+		if (inputBits.contains("1")) {
+			bitmask += 64;
+		}
+		if (inputBits.contains("2")) {
+			bitmask += 32;
+		}
+		if (inputBits.contains("3")) {
+			bitmask += 16;
+		}
+		if (inputBits.contains("4")) {
+			bitmask += 8;
+		}
+		if (inputBits.contains("5")) {
+			bitmask += 4;
+		}
+		if (inputBits.contains("6")) {
+			bitmask += 2;
+		}
+		if (inputBits.contains("7")) {
+			bitmask += 1;
+		}
+		String hexChar = String.format("x", bitmask);
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ "%BITOR("
+				+ factor2.getText().trim()
+				+ " : x'"
+				+ hexChar
+				+ "') "
+				+ doEOLComment(comment);
 	}
 
 	private void doCABEQ(CommonToken factor1, CommonToken factor2,
@@ -919,33 +1001,37 @@ public class FreeFormatConverter extends LoggingListener {
 		String factor2s = factor2.getText().trim();
 		boolean F1F = factor1.getText().trim().length() > 0;
 		int spacesToPad = 0;
-		if (factor2s.contains(":")){
+		if (factor2s.contains(":")) {
 			String[] parts = factor2s.split(":");
-			if (parts.length == 2){
+			if (parts.length == 2) {
 				spacesToPad = Integer.parseInt(parts[1]);
 				factor2s = parts[0];
 			}
 		}
-		
-		if (F1F){
+
+		if (F1F) {
 			workString = StringUtils.repeat(" ",
 					7 + ((indentLevel + 1) * spacesToIndent))
-					+ result.getText().trim() + " = " + factor1.getText().trim() + " + ";
-			if (spacesToPad > 0){
-				workString += "\"" + StringUtils.repeat(' ', spacesToPad) + "\"";
+					+ result.getText().trim()
+					+ " = "
+					+ factor1.getText().trim() + " + ";
+			if (spacesToPad > 0) {
+				workString += "\"" + StringUtils.repeat(' ', spacesToPad)
+						+ "\"";
 			}
 			workString += factor2.getText().trim() + doEOLComment(comment);
 		} else {
 			workString = StringUtils.repeat(" ",
 					7 + ((indentLevel + 1) * spacesToIndent))
-					+ result.getText().trim() + " += " + factor2.getText().trim();
-			if (spacesToPad > 0){
-				workString += "+ \"" + StringUtils.repeat(' ', spacesToPad) + "\"";
+					+ result.getText().trim()
+					+ " += "
+					+ factor2.getText().trim();
+			if (spacesToPad > 0) {
+				workString += "+ \"" + StringUtils.repeat(' ', spacesToPad)
+						+ "\"";
 			}
 			workString += doEOLComment(comment);
 		}
-
-		
 
 	}
 
@@ -983,15 +1069,96 @@ public class FreeFormatConverter extends LoggingListener {
 	private void doCHECK(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken low, CommonToken equal,
 			CommonToken comment) {
-		// TODO Auto-generated method stub
+		boolean ER = low.getType() != RpgLexer.BlankIndicator;
+		boolean FD = equal.getType() != RpgLexer.BlankIndicator;
+		String comparitor = factor1.getText().trim();
+		int start = 0;
+		String variable = "";
+		if (factor2.getText().contains(":")) {
+			String[] temp = factor2.getText().split(":");
+			if (temp.length == 2) {
+				variable = temp[0];
+				start = Integer.parseInt(temp[1]);
+			} else {
+				start = 1;
+				variable = temp[0];
+			}
+		} else {
+			start = 1;
+			variable = factor2.getText().trim();
+		}
+		if (start != 1) {
+			workString = StringUtils.repeat(' ',
+					7 + (indentLevel * spacesToIndent))
+					+ result.getText().trim()
+					+ "= %CHECK("
+					+ comparitor
+					+ ':'
+					+ variable + ':' + start + ")" + doEOLComment(comment);
+		} else {
+			workString = StringUtils.repeat(' ',
+					7 + (indentLevel * spacesToIndent))
+					+ result.getText().trim()
+					+ "= %CHECK("
+					+ comparitor
+					+ ':'
+					+ variable + ")" + doEOLComment(comment);
+		}
+		cspecs.add(workString);
+		if (FD){
+			setResultingIndicator(equal, "IF %FOUND = *ON;");
+		}
+		if (ER){
+			setResultingIndicator(equal, "IF %ERROR = *ON;");
+		}
 
 	}
 
 	private void doCHECKR(CommonToken factor1, CommonToken factor2,
 			CommonToken result, CommonToken low, CommonToken equal,
 			CommonToken comment) {
-		// TODO Auto-generated method stub
-
+		boolean ER = low.getType() != RpgLexer.BlankIndicator;
+		boolean FD = equal.getType() != RpgLexer.BlankIndicator;
+		String comparitor = factor1.getText().trim();
+		int start = 0;
+		String variable = "";
+		if (factor2.getText().contains(":")) {
+			String[] temp = factor2.getText().split(":");
+			if (temp.length == 2) {
+				variable = temp[0];
+				start = Integer.parseInt(temp[1]);
+			} else {
+				start = 1;
+				variable = temp[0];
+			}
+		} else {
+			start = 1;
+			variable = factor2.getText().trim();
+		}
+		if (start != 1) {
+			workString = StringUtils.repeat(' ',
+					7 + (indentLevel * spacesToIndent))
+					+ result.getText().trim()
+					+ "= %CHECKR("
+					+ comparitor
+					+ ':'
+					+ variable + ':' + start + ")" + doEOLComment(comment);
+		} else {
+			workString = StringUtils.repeat(' ',
+					7 + (indentLevel * spacesToIndent))
+					+ result.getText().trim()
+					+ "= %CHECKR("
+					+ comparitor
+					+ ':'
+					+ variable + ")" + doEOLComment(comment);
+		}
+		cspecs.add(workString);
+		if (FD){
+			setResultingIndicator(equal, "IF %FOUND = *ON;");
+		}
+		if (ER){
+			setResultingIndicator(equal, "IF %ERROR = *ON;");
+		}
 	}
 
 	private void doCLEAR(CommonToken factor1, CommonToken factor2,
@@ -1493,7 +1660,8 @@ public class FreeFormatConverter extends LoggingListener {
 
 	private void doEVAL(CommonToken factor2, CommonToken comment) {
 		workString = StringUtils
-				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + factor2.getText() + doEOLComment(comment);
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ factor2.getText() + doEOLComment(comment);
 		cspecs.add(workString);
 	}
 
@@ -1545,7 +1713,8 @@ public class FreeFormatConverter extends LoggingListener {
 				+ opCode
 				+ factor2.getText().trim()
 				+ " "
-				+ result.getText().trim() + doEOLComment(comment);
+				+ result.getText().trim()
+				+ doEOLComment(comment);
 		if (ER) {
 			setResultingIndicator(low, "IF %ERROR = *ON;");
 		}
@@ -1559,9 +1728,14 @@ public class FreeFormatConverter extends LoggingListener {
 		cspecs.add(workString);
 	}
 
-	private void doEXTRCT(CommonToken factor2, CommonToken comment) {
-		// TODO Auto-generated method stub
-
+	private void doEXTRCT(CommonToken factor2, CommonToken result, CommonToken low, CommonToken comment) {
+		String results = result.getText().trim();
+		boolean ER = low.getType() != RpgLexer.BlankIndicator;
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent)) 
+				+ results + " = %SUBDT("+ factor2.getText().trim() + ")" + doEOLComment(comment);
+		cspecs.add(workString);
+		setResultingIndicator(low, "IF %ERROR = *ON");
 	}
 
 	private void doFEOD(CommonToken factor2, CommonToken low,
@@ -2150,74 +2324,87 @@ public class FreeFormatConverter extends LoggingListener {
 	}
 
 	private void doSUBDUR(CommonToken factor1, CommonToken factor2,
-			CommonToken result, CommonToken low,
-			CommonToken comment) {
+			CommonToken result, CommonToken low, CommonToken comment) {
 		String fullFactor2 = factor2.getText();
 		String factor1s = factor1.getText().trim();
 		String[] factor2Parts = fullFactor2.split(":");
 		boolean ER = low.getText().trim().length() > 0;
 		String duration;
 		String durCode;
-		String bif=null;
-		if (factor2Parts.length == 2){
+		String bif = null;
+		if (factor2Parts.length == 2) {
 			duration = factor2Parts[0];
 			durCode = factor2Parts[1];
-			if (durCode.equalsIgnoreCase("*D") || durCode.equalsIgnoreCase("*DAYS")){
+			if (durCode.equalsIgnoreCase("*D")
+					|| durCode.equalsIgnoreCase("*DAYS")) {
 				bif = "%DAYS";
-			} else if (durCode.equalsIgnoreCase("*M") || durCode.equalsIgnoreCase("*MONTHS")){
+			} else if (durCode.equalsIgnoreCase("*M")
+					|| durCode.equalsIgnoreCase("*MONTHS")) {
 				bif = "%MONTHS";
-			} else if (durCode.equalsIgnoreCase("*Y") || durCode.equalsIgnoreCase("*YEARS")){
+			} else if (durCode.equalsIgnoreCase("*Y")
+					|| durCode.equalsIgnoreCase("*YEARS")) {
 				bif = "%YEARS";
-			} else if (durCode.equalsIgnoreCase("*H") || durCode.equalsIgnoreCase("*HOURS")){
+			} else if (durCode.equalsIgnoreCase("*H")
+					|| durCode.equalsIgnoreCase("*HOURS")) {
 				bif = "%HOURS";
-			} else if (durCode.equalsIgnoreCase("*MN") || durCode.equalsIgnoreCase("*MINUTES")){
+			} else if (durCode.equalsIgnoreCase("*MN")
+					|| durCode.equalsIgnoreCase("*MINUTES")) {
 				bif = "%MINUTES";
-			} else if (durCode.equalsIgnoreCase("*S") || durCode.equalsIgnoreCase("*SECONDS")){
+			} else if (durCode.equalsIgnoreCase("*S")
+					|| durCode.equalsIgnoreCase("*SECONDS")) {
 				bif = "%SECONDS";
-			} else if (durCode.equalsIgnoreCase("*MS") || durCode.equalsIgnoreCase("*MSECONDS")){
+			} else if (durCode.equalsIgnoreCase("*MS")
+					|| durCode.equalsIgnoreCase("*MSECONDS")) {
 				bif = "%MSECONDS";
 			}
-			
-			if (bif != null){
+
+			if (bif != null) {
 				// Use a monitor group if an error indicator was used
-				if (ER){
+				if (ER) {
 					workString = StringUtils.repeat(' ',
-							7 + (indentLevel * spacesToIndent))
-							+ "MONITOR;";
+							7 + (indentLevel * spacesToIndent)) + "MONITOR;";
 					cspecs.add(workString);
 					workString = StringUtils.repeat(' ',
 							7 + ((indentLevel + 1) * spacesToIndent))
-							+ "*IN" + low.getText().trim() + " = *OFF;";
+							+ "*IN"
+							+ low.getText().trim() + " = *OFF;";
 					cspecs.add(workString);
 				}
-				if (factor1s.length() == 0){
+				if (factor1s.length() == 0) {
 					workString = StringUtils.repeat(' ',
 							7 + ((indentLevel + 1) * spacesToIndent))
 							+ result.getText().trim()
-							+ " += " + bif + "(" + duration + ")" + doEOLComment(comment);
+							+ " += "
+							+ bif
+							+ "("
+							+ duration + ")" + doEOLComment(comment);
 					cspecs.add(workString);
 				} else {
 					workString = StringUtils.repeat(' ',
-							7 + ((indentLevel +1) * spacesToIndent))
+							7 + ((indentLevel + 1) * spacesToIndent))
 							+ result.getText().trim()
-							+ " = " + factor1.getText().trim() + " + " + bif + "(" + duration + ")" + doEOLComment(comment);
+							+ " = "
+							+ factor1.getText().trim()
+							+ " + "
+							+ bif
+							+ "("
+							+ duration + ")" + doEOLComment(comment);
 				}
-				
-				if (ER){
+
+				if (ER) {
 					workString = StringUtils.repeat(' ',
-							7 + (indentLevel * spacesToIndent))
-							+ "ON-ERROR;";
+							7 + (indentLevel * spacesToIndent)) + "ON-ERROR;";
 					cspecs.add(workString);
 					workString = StringUtils.repeat(' ',
 							7 + ((indentLevel + 1) * spacesToIndent))
-							+ "*IN" + low.getText().trim() + " = *ON;";
+							+ "*IN"
+							+ low.getText().trim() + " = *ON;";
 					cspecs.add(workString);
 					workString = StringUtils.repeat(' ',
-							7 + (indentLevel * spacesToIndent))
-							+ "ENDMON;";
+							7 + (indentLevel * spacesToIndent)) + "ENDMON;";
 					cspecs.add(workString);
 				}
-				
+
 			}
 		}
 
@@ -3363,8 +3550,10 @@ public class FreeFormatConverter extends LoggingListener {
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
+		CommonToken result = temp.get(RESULT2);
+		CommonToken low = temp.get(LOW);
 		CommonToken comment = temp.get(COMMENT);
-		doEXTRCT(factor2, comment);
+		doEXTRCT(factor2, result, low, comment);
 	}
 
 	@Override
@@ -4621,25 +4810,25 @@ public class FreeFormatConverter extends LoggingListener {
 				ExtOpCode += ct.getText().trim();
 			} else if (thePos >= 35 && thePos < 80) {
 				// First put the extended opcode into the map
-				if (!ExtOpCode.isEmpty()){
+				if (!ExtOpCode.isEmpty()) {
 					CommonToken work = new CommonToken(
 							RpgLexer.CS_OperationAndExtender, ExtOpCode);
 					result.put(EXT_OP_CODE, work);
 					// Now reset the opCode String
 					ExtOpCode = "";
-					//Truncate the string on the first pass
+					// Truncate the string on the first pass
 					ExtFactor2 = "";
 				}
 
 				// Accumulate the text from the extended factor2
 				ExtFactor2 += ct.getText().trim() + " ";
-			}  else {
+			} else {
 				result.put(voc.getDisplayName(ct.getType()), ct);
 			}
 		}
-		if (! ExtFactor2.isEmpty()){
+		if (!ExtFactor2.isEmpty()) {
 			CommonToken work = new CommonToken(
-					RpgLexer.CS_OperationAndExtendedFactor2, ExtFactor2);
+					RpgLexer.CS_OperationAndExtender, ExtFactor2);
 			result.put(EXT_FACTOR2, work);
 		}
 
@@ -4703,22 +4892,23 @@ public class FreeFormatConverter extends LoggingListener {
 	public void exitStar_comments(Star_commentsContext ctx) {
 		super.exitStar_comments(ctx);
 		int start = ctx.getStart().getTokenIndex();
-		List<Token> theList  = ts.getHiddenTokensToRight(start);
-		String prependStuff = StringUtils.repeat(' ', ctx.getStart().getCharPositionInLine());
+		List<Token> theList = ts.getHiddenTokensToRight(start);
+		String prependStuff = StringUtils.repeat(' ', ctx.getStart()
+				.getCharPositionInLine());
 		workString = prependStuff;
 		workString += ctx.getText();
-		for (Token ct : theList){
+		for (Token ct : theList) {
 			workString += ct.getText();
 		}
-		if (currentSpec.equals("H")){
+		if (currentSpec.equals("H")) {
 			hspecs.add(workString);
-		} else if (currentSpec.equals("F")){
+		} else if (currentSpec.equals("F")) {
 			fspecs.add(workString);
-		} else if (currentSpec.equals("D")){
+		} else if (currentSpec.equals("D")) {
 			dspecs.add(workString);
-		} else if (currentSpec.equals("C") || currentSpec.equals("P")){
+		} else if (currentSpec.equals("C") || currentSpec.equals("P")) {
 			cspecs.add(workString);
-		}  else if (currentSpec.equals("O")){
+		} else if (currentSpec.equals("O")) {
 			ospecs.add(workString);
 		}
 	}
@@ -4732,18 +4922,18 @@ public class FreeFormatConverter extends LoggingListener {
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		String curOpCode = opCode.getText();
-		
-		if (curOpCode.equalsIgnoreCase("IF")){
+
+		if (curOpCode.equalsIgnoreCase("IF")) {
 			doIF(factor2, null);
-		} else if (curOpCode.equalsIgnoreCase("DOW")){
+		} else if (curOpCode.equalsIgnoreCase("DOW")) {
 			doDOW(factor2, null);
-		} else if (curOpCode.equalsIgnoreCase("DOU")){
+		} else if (curOpCode.equalsIgnoreCase("DOU")) {
 			doDOU(factor2, null);
-		} else if (curOpCode.equalsIgnoreCase("EVAL")){
+		} else if (curOpCode.equalsIgnoreCase("EVAL")) {
 			doEVAL(factor2, null);
-		}else if (curOpCode.equalsIgnoreCase("EVALR")){
+		} else if (curOpCode.equalsIgnoreCase("EVALR")) {
 			doEVALR(factor2, null);
-		}else if (curOpCode.equalsIgnoreCase("EVAL_CORR")){
+		} else if (curOpCode.equalsIgnoreCase("EVAL_CORR")) {
 			doEVAL_CORR(factor2, null);
 		}
 
