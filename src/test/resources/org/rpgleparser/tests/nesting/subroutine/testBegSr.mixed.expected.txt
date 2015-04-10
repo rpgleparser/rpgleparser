@@ -1,0 +1,89 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <X>
+ID                       <Int>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+OP_EXSR                  <EXSR>
+ID                       <SUBRT1>
+FREE_SEMI                <;>
+OP_BEGSR                 <BEGSR>
+ID                       <SUBRT1>
+FREE_SEMI                <;>
+ID                       <X>
+'='                      <=>
+NUMBER                   <1234>
+FREE_SEMI                <;>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDSR                 <ENDSR>
+CS_FactorContent         <SUBRT1>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier X))
+    (function
+      (functionName (free_identifier Int))
+      (args ( (expression (number 10)) ))
+    )
+    ;
+  )
+  (statement
+    (free
+      (baseExpression (op (op_exsr EXSR (identifier (free_identifier SUBRT1)))))
+      ;
+    )
+  )
+  (subroutine
+    (begsr (freeBEGSR BEGSR (identifier (free_identifier SUBRT1)) ;))
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (assignmentExpression
+                (expression (identifier (free_identifier X)))
+                =
+                (expression (number 1234))
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (endsr
+      (csENDSR
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
+        ENDSR
+        (cspec_fixed_standard_parts
+          (factor (factorContent SUBRT1))
+          (resultType '              ')
+          '     '
+          '  '
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          <EOF>
+        )
+      )
+    )
+  )
+)
+/*======*/

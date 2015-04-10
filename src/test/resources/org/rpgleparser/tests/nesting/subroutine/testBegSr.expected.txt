@@ -26,26 +26,25 @@ FREE_SEMI                <;>
     )
     ;
   )
-  (free
-    (baseExpression
-      (op (op_begsr BEGSR (identifier (free_identifier SomeSubRoutine))))
-    )
-    ;
-  )
-  (free
-    (baseExpression
-      (op
-        (op_eval
-          (assignmentExpression
-            (expression (identifier (free_identifier X)))
-            =
-            (expression (number 1234))
+  (subroutine
+    (begsr (freeBEGSR BEGSR (identifier (free_identifier SomeSubRoutine)) ;))
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (assignmentExpression
+                (expression (identifier (free_identifier X)))
+                =
+                (expression (number 1234))
+              )
+            )
           )
         )
+        ;
       )
     )
-    ;
+    (endsr (freeENDSR ENDSR ;))
   )
-  (free (baseExpression (op (op_endsr ENDSR))) ;)
 )
 /*======*/
