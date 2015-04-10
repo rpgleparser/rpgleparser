@@ -12,6 +12,7 @@ r: (dspec
 //	| (dspec_continuation* dspec_fixed) 
   	| subroutine 
   	| statement
+  	| procedure
 )*
 endSource*
 ;
@@ -20,7 +21,6 @@ statement:
 	| dcl_c
 	| (dspec_fixed)
   	| ospec_fixed
-  	| procedure
 	| fspec 
 	| fspec_fixed 
 	| cspec_fixed
@@ -55,13 +55,13 @@ dcl_pr:  DS_PrototypeStart (identifier | function)* FREE_SEMI?
 	end_dcl_pr FREE_SEMI;
 dcl_pr_field: ((identifier | function)+ FREE_SEMI );
 end_dcl_pr: DS_PrototypeEnd;
-dcl_pi:  DS_ProcedureStart (identifier | function)* FREE_SEMI?  
+dcl_pi:  DS_ProcedureInterfaceStart (identifier | function)* FREE_SEMI?  
 	dcl_pi_field*
 	end_dcl_pi FREE_SEMI;
 dcl_pi_field: ((identifier | function)+ FREE_SEMI );
-end_dcl_pi: DS_ProcedureEnd;
+end_dcl_pi: DS_ProcedureInterfaceEnd;
 dcl_c:  DS_Constant identifier (identifier | expression) FREE_SEMI ;
-ctl_opt:  H_SPEC (identifier | expression)* FREE_SEMI ;
+ctl_opt: H_SPEC (identifier | expression)* FREE_SEMI ;
 
 
 dspec_fixed: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE FROM_POSITION TO_POSITION
@@ -150,14 +150,22 @@ cspec_fixed: CS_FIXED
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(cspec_fixed_standard|cspec_fixed_x2);
 
+// -------- sub procedures --------  
 procedure:
-psBegin
-statement*
-psEnd;
+beginProcedure
+statements=statement*
+endProcedure;
+
+beginProcedure: psBegin | freeBeginProcedure;
+endProcedure: psEnd | freeEndProcedure;
 
 psBegin: PS_FIXED ps_name PS_BEGIN PS_KEYWORDS;
+freeBeginProcedure:DS_ProcedureStart identifier FREE_SEMI;
+ 
 psEnd: PS_FIXED ps_name PS_END PS_KEYWORDS;
+freeEndProcedure:DS_ProcedureEnd  identifier? FREE_SEMI;
 
+// -------- sub routines --------  
 subroutine:
 begin=begsr
 statement*

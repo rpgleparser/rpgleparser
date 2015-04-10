@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -57,10 +58,6 @@ public class TestFiles {
 		String expectedTree = getTree(expectedFileText);
 		final List<String> errors = new ArrayList<String>();
         final ANTLRInputStream input = new ANTLRInputStream(new FixedWidthBufferedReader(inputString));
-        char b[] = new char[10000];
-        new FixedWidthBufferedReader(inputString).read(b);
-        System.out.println(new String(b).replace('\r','!'));
-        System.out.println();
 		final RpgLexer lexer = new RpgLexer(input);
         final TokenStream tokens = new CommonTokenStream(lexer);
         final RpgParser parser = new RpgParser(tokens);
