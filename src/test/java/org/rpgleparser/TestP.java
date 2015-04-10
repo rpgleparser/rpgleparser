@@ -26,5 +26,18 @@ public class TestP {
         assertThat(errors, is(empty()));
     }
     
+    
+    @Test
+    public void testProcedureInterfaceWithContinuationName1() {
+        String inputString =
+                "     P Function        B  \r\n" +
+                        "     D                 PI                  like(typeQuantity)\r\n" +
+                        "     D  SomeNumber                         like(typeP50u)                 const\r\n";
+        inputString = TestUtils.padSourceLines(inputString, false);
+        List<String> errors = new ArrayList<String>();
+        List<CommonToken> tokenList = TestUtils.getParsedTokens(inputString, errors);
+        assertThat(errors, is(empty()));
+    }
+    
 
 }

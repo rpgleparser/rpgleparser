@@ -20,7 +20,7 @@ statement:
 	| dcl_c
 	| (dspec_fixed)
   	| ospec_fixed
-  	| pspec_fixed
+  	| procedure
 	| fspec 
 	| fspec_fixed 
 	| cspec_fixed
@@ -129,7 +129,7 @@ os_fixed_pgmfield:
 	OS_DataFormat
 	OS_Words;
 	
-pspec_fixed: PS_FIXED ps_name (PS_BEGIN | PS_END) PS_KEYWORDS;
+
 ps_name: PS_CONTINUATION_NAME* PS_NAME;
  
 //dspec_continuation:	DS_FIXED CONTINUATION_NAME (EOL|EOF);
@@ -149,6 +149,14 @@ cspec_fixed: CS_FIXED
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(cspec_fixed_standard|cspec_fixed_x2);
+
+procedure:
+psBegin
+statement*
+psEnd;
+
+psBegin: PS_FIXED ps_name PS_BEGIN PS_KEYWORDS;
+psEnd: PS_FIXED ps_name PS_END PS_KEYWORDS;
 
 subroutine:
 begin=begsr
