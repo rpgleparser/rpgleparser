@@ -10,6 +10,7 @@ import org.rpgleparser.RpgParser.ArithmeticalOperatorContext;
 import org.rpgleparser.RpgParser.AssignmentExpressionContext;
 import org.rpgleparser.RpgParser.AssignmentOperatorContext;
 import org.rpgleparser.RpgParser.BaseExpressionContext;
+import org.rpgleparser.RpgParser.BegsrContext;
 import org.rpgleparser.RpgParser.Blank_lineContext;
 import org.rpgleparser.RpgParser.C_freeContext;
 import org.rpgleparser.RpgParser.CommentsContext;
@@ -208,6 +209,7 @@ import org.rpgleparser.RpgParser.EndSourceLineContext;
 import org.rpgleparser.RpgParser.End_dcl_dsContext;
 import org.rpgleparser.RpgParser.End_dcl_piContext;
 import org.rpgleparser.RpgParser.End_dcl_prContext;
+import org.rpgleparser.RpgParser.EndsrContext;
 import org.rpgleparser.RpgParser.Exec_sqlContext;
 import org.rpgleparser.RpgParser.ExpressionContext;
 import org.rpgleparser.RpgParser.FactorContentContext;
@@ -215,7 +217,9 @@ import org.rpgleparser.RpgParser.FactorContext;
 import org.rpgleparser.RpgParser.FieldIndicatorContext;
 import org.rpgleparser.RpgParser.FieldRecordRelationContext;
 import org.rpgleparser.RpgParser.FilenameContext;
+import org.rpgleparser.RpgParser.FreeBeginProcedureContext;
 import org.rpgleparser.RpgParser.FreeContext;
+import org.rpgleparser.RpgParser.FreeEndProcedureContext;
 import org.rpgleparser.RpgParser.Free_commentsContext;
 import org.rpgleparser.RpgParser.Free_directiveContext;
 import org.rpgleparser.RpgParser.Free_identifierContext;
@@ -247,7 +251,6 @@ import org.rpgleparser.RpgParser.OnOffIndicatorsFlagContext;
 import org.rpgleparser.RpgParser.OpCodeContext;
 import org.rpgleparser.RpgParser.OpContext;
 import org.rpgleparser.RpgParser.Op_acqContext;
-import org.rpgleparser.RpgParser.Op_begsrContext;
 import org.rpgleparser.RpgParser.Op_callpContext;
 import org.rpgleparser.RpgParser.Op_chainContext;
 import org.rpgleparser.RpgParser.Op_clearContext;
@@ -267,7 +270,6 @@ import org.rpgleparser.RpgParser.Op_endforContext;
 import org.rpgleparser.RpgParser.Op_endifContext;
 import org.rpgleparser.RpgParser.Op_endmonContext;
 import org.rpgleparser.RpgParser.Op_endslContext;
-import org.rpgleparser.RpgParser.Op_endsrContext;
 import org.rpgleparser.RpgParser.Op_evalContext;
 import org.rpgleparser.RpgParser.Op_eval_corrContext;
 import org.rpgleparser.RpgParser.Op_evalrContext;
@@ -318,7 +320,6 @@ import org.rpgleparser.RpgParser.Ospec_fixedContext;
 import org.rpgleparser.RpgParser.OutputConditioningIndicatorContext;
 import org.rpgleparser.RpgParser.OutputConditioningOnOffIndicatorContext;
 import org.rpgleparser.RpgParser.Ps_nameContext;
-import org.rpgleparser.RpgParser.Pspec_fixedContext;
 import org.rpgleparser.RpgParser.RContext;
 import org.rpgleparser.RpgParser.RecordIdIndicatorContext;
 import org.rpgleparser.RpgParser.ResultIndicatorContext;
@@ -3535,15 +3536,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void enterOp_begsr(Op_begsrContext ctx) {
+	public void enterBegsr(BegsrContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterOp_begsr(Op_begsrContext) - start"); //$NON-NLS-1$
+			logger.debug("enterBegsr(BegsrContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.enterOp_begsr(ctx);
+		super.enterBegsr(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterOp_begsr(Op_begsrContext) - end"); //$NON-NLS-1$
+			logger.debug("enterBegsr(BegsrContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -3799,15 +3800,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void enterOp_endsr(Op_endsrContext ctx) {
+	public void enterEndsr(EndsrContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterOp_endsr(Op_endsrContext) - start"); //$NON-NLS-1$
+			logger.debug("enterEndsr(EndsrContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.enterOp_endsr(ctx);
+		super.enterEndsr(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterOp_endsr(Op_endsrContext) - end"); //$NON-NLS-1$
+			logger.debug("enterEndsr(EndsrContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -4478,15 +4479,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void enterPspec_fixed(Pspec_fixedContext ctx) {
+	public void enterFreeBeginProcedure(FreeBeginProcedureContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterPspec_fixed(Pspec_fixedContext) - start"); //$NON-NLS-1$
+			logger.debug("enterFreeBeginProcedure(FreeBeginProcedureContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.enterPspec_fixed(ctx);
+		super.enterFreeBeginProcedure(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterPspec_fixed(Pspec_fixedContext) - end"); //$NON-NLS-1$
+			logger.debug("enterFreeBeginProcedure(FreeBeginProcedureContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -7814,15 +7815,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void exitOp_begsr(Op_begsrContext ctx) {
+	public void exitBegsr(BegsrContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitOp_begsr(Op_begsrContext) - start"); //$NON-NLS-1$
+			logger.debug("exitBegsr(BegsrContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.exitOp_begsr(ctx);
+		super.exitBegsr(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitOp_begsr(Op_begsrContext) - end"); //$NON-NLS-1$
+			logger.debug("exitBegsr(BegsrContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -8074,15 +8075,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void exitOp_endsr(Op_endsrContext ctx) {
+	public void exitEndsr(EndsrContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitOp_endsr(Op_endsrContext) - start"); //$NON-NLS-1$
+			logger.debug("exitEndsr(EndsrContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.exitOp_endsr(ctx);
+		super.exitEndsr(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitOp_endsr(Op_endsrContext) - end"); //$NON-NLS-1$
+			logger.debug("exitEndsr(EndsrContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -8753,15 +8754,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void exitPspec_fixed(Pspec_fixedContext ctx) {
+	public void enterFreeEndProcedure(FreeEndProcedureContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitPspec_fixed(Pspec_fixedContext) - start"); //$NON-NLS-1$
+			logger.debug("enterFreeEndProcedure(FreeEndProcedureContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.exitPspec_fixed(ctx);
+		super.enterFreeEndProcedure(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitPspec_fixed(Pspec_fixedContext) - end"); //$NON-NLS-1$
+			logger.debug("enterFreeEndProcedure(FreeEndProcedureContext) - end"); //$NON-NLS-1$
 		}
 	}
 

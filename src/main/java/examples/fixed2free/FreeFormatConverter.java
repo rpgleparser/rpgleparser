@@ -178,12 +178,15 @@ import org.rpgleparser.RpgParser.CsZ_SUBContext;
 import org.rpgleparser.RpgParser.Cspec_fixedContext;
 import org.rpgleparser.RpgParser.Cspec_fixed_x2Context;
 import org.rpgleparser.RpgParser.Dspec_fixedContext;
+import org.rpgleparser.RpgParser.FreeBeginProcedureContext;
 import org.rpgleparser.RpgParser.FreeContext;
+import org.rpgleparser.RpgParser.FreeEndProcedureContext;
 import org.rpgleparser.RpgParser.Fspec_fixedContext;
 import org.rpgleparser.RpgParser.Hspec_fixedContext;
 import org.rpgleparser.RpgParser.Ispec_fixedContext;
 import org.rpgleparser.RpgParser.Ospec_fixedContext;
-import org.rpgleparser.RpgParser.Pspec_fixedContext;
+import org.rpgleparser.RpgParser.PsBeginContext;
+import org.rpgleparser.RpgParser.PsEndContext;
 import org.rpgleparser.RpgParser.Star_commentsContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -4980,8 +4983,16 @@ public class FreeFormatConverter extends LoggingListener {
 	}
 
 	@Override
-	public void exitPspec_fixed(Pspec_fixedContext ctx) {
-		super.exitPspec_fixed(ctx);
+	public void exitPsBegin(PsBeginContext ctx){
+		super.exitPsBegin(ctx);
+		cspecs.add("     " + ctx.getText());
+		currentSpec = "P";
+
+	}
+
+	@Override
+	public void exitPsEnd(PsEndContext ctx){
+		super.exitPsEnd(ctx);
 		cspecs.add("     " + ctx.getText());
 		currentSpec = "P";
 
