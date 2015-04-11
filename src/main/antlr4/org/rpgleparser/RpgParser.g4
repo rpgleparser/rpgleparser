@@ -5,19 +5,25 @@ parser grammar RpgParser;
 options {   tokenVocab = RpgLexer; }
 
 r: (dspec 
-	| dcl_ds
 	| dcl_pr 
 	| dcl_pi
-	| dcl_c
 	| ctl_opt
 //	|dspec_continuation
 //	| (dspec_continuation* dspec_fixed) 
-  	| (dspec_fixed)
+  	| subroutine 
+  	| statement
+  	| procedure
+)*
+endSource*
+;
+statement:
+	dcl_ds
+	| dcl_c
+	| (dspec_fixed)
   	| ospec_fixed
-  	| pspec_fixed
 	| fspec 
 	| fspec_fixed 
-	| cspec_fixed 
+	| cspec_fixed
 	| cspec_fixed_sql
 	| ispec_fixed 
 	| hspec_fixed
@@ -26,8 +32,7 @@ r: (dspec
 	| blank_line 
 	| directive 
 	| free
-)*
-endSource*
+
 ;
 endSource: endSourceHead endSourceLine*;
 endSourceHead: END_SOURCE ;
@@ -50,13 +55,13 @@ dcl_pr:  DS_PrototypeStart (identifier | function)* FREE_SEMI?
 	end_dcl_pr FREE_SEMI;
 dcl_pr_field: ((identifier | function)+ FREE_SEMI );
 end_dcl_pr: DS_PrototypeEnd;
-dcl_pi:  DS_ProcedureStart (identifier | function)* FREE_SEMI?  
+dcl_pi:  DS_ProcedureInterfaceStart (identifier | function)* FREE_SEMI?  
 	dcl_pi_field*
 	end_dcl_pi FREE_SEMI;
 dcl_pi_field: ((identifier | function)+ FREE_SEMI );
-end_dcl_pi: DS_ProcedureEnd;
+end_dcl_pi: DS_ProcedureInterfaceEnd;
 dcl_c:  DS_Constant identifier (identifier | expression) FREE_SEMI ;
-ctl_opt:  H_SPEC (identifier | expression)* FREE_SEMI ;
+ctl_opt: H_SPEC (identifier | expression)* FREE_SEMI ;
 
 
 dspec_fixed: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE FROM_POSITION TO_POSITION
@@ -124,7 +129,7 @@ os_fixed_pgmfield:
 	OS_DataFormat
 	OS_Words;
 	
-pspec_fixed: PS_FIXED ps_name (PS_BEGIN | PS_END) PS_KEYWORDS;
+
 ps_name: PS_CONTINUATION_NAME* PS_NAME;
  
 //dspec_continuation:	DS_FIXED CONTINUATION_NAME (EOL|EOF);
@@ -144,7 +149,57 @@ cspec_fixed: CS_FIXED
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(cspec_fixed_standard|cspec_fixed_x2);
+
+// -------- sub procedures --------  
+procedure:
+beginProcedure
+statements=statement*
+endProcedure;
+
+beginProcedure: psBegin | freeBeginProcedure;
+endProcedure: psEnd | freeEndProcedure;
+
+psBegin: PS_FIXED ps_name PS_BEGIN PS_KEYWORDS;
+freeBeginProcedure:DS_ProcedureStart identifier FREE_SEMI;
+ 
+psEnd: PS_FIXED ps_name PS_END PS_KEYWORDS;
+freeEndProcedure:DS_ProcedureEnd  identifier? FREE_SEMI;
+
+// -------- sub routines --------  
+subroutine:
+begin=begsr
+statement*
+end=endsr
+;
+
+begsr:csBEGSR | freeBEGSR;
+endsr:csENDSR | freeENDSR;
+
+csBEGSR:
+	CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	operation=OP_BEGSR
+	cspec_fixed_standard_parts;
 	
+freeBEGSR:
+	OP_BEGSR identifier
+	FREE_SEMI 
+	free_linecomments? 
+	;	
+
+csENDSR:
+	CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	operation=OP_ENDSR
+	cspec_fixed_standard_parts;
+
+freeENDSR:
+	OP_ENDSR identifier?
+	FREE_SEMI 
+	free_linecomments? 
+	;	
 
 	
 onOffIndicatorsFlag:
@@ -199,7 +254,7 @@ cspec_fixed_standard:
 	| csANDLT
 	| csANDGE
 	| csANDGT
-	| csBEGSR
+	//| csBEGSR
 	| csBITOFF
 	| csBITON
 	| csCABxx
@@ -255,7 +310,7 @@ cspec_fixed_standard:
 	| csENDIF
 	| csENDMON
 	| csENDSL
-	| csENDSR
+	//| csENDSR
 	| csEVAL
 	| csEVAL_CORR
 	| csEVALR
@@ -276,7 +331,6 @@ cspec_fixed_standard:
 	| csIFGT
 	| csIN
 	| csITER
-	| csKFLD
 	| csKLIST
 	| csLEAVE
 	| csLEAVESR
@@ -403,9 +457,9 @@ csANDGE:
 csANDGT:
 	operation=OP_ANDGT
 	cspec_fixed_standard_parts;
-csBEGSR:
-	operation=OP_BEGSR
-	cspec_fixed_standard_parts;
+//csBEGSR:
+//	operation=OP_BEGSR
+//	cspec_fixed_standard_parts;
 csBITOFF:
 	operation=OP_BITOFF
 	cspec_fixed_standard_parts;
@@ -591,9 +645,9 @@ csENDMON:
 csENDSL:
 	operation=OP_ENDSL
 	cspec_fixed_standard_parts;
-csENDSR:
-	operation=OP_ENDSR
-	cspec_fixed_standard_parts;
+//csENDSR:
+//	operation=OP_ENDSR
+//	cspec_fixed_standard_parts;
 csEVAL:
 	operation=OP_EVAL
 	operationExtender=cs_operationExtender? 
@@ -662,11 +716,17 @@ csIN:
 csITER:
 	operation=OP_ITER
 	cspec_fixed_standard_parts;
-csKFLD:
-	operation=OP_KFLD
-	cspec_fixed_standard_parts;
 csKLIST:
 	operation=OP_KLIST
+	cspec_fixed_standard_parts
+	csKFLD*;
+csKFLD:
+	CS_FIXED
+	BlankIndicator
+	BlankFlag 
+	BlankIndicator
+	CS_BlankFactor
+	operation=OP_KFLD
 	cspec_fixed_standard_parts;
 csLEAVE:
 	operation=OP_LEAVE
@@ -1066,7 +1126,7 @@ title_text: (WS | NUMBER | DIR_OtherText);
  
 //------- Auto from here
 op: op_acq 
-	| op_begsr 
+//	| op_begsr 
 	| op_callp 
 	| op_chain 
 	| op_clear 
@@ -1085,7 +1145,7 @@ op: op_acq
 	| op_endif 
 	| op_endmon 
 	| op_endsl 
-	| op_endsr 
+	//| op_endsr 
 	| op_eval 
 	| op_evalr
 	| op_eval_corr 
@@ -1129,7 +1189,7 @@ op: op_acq
 	| op_xml_into 
 	| op_xml_sax;
 op_acq: OP_ACQ OP_E? identifier identifier ;
-op_begsr: OP_BEGSR identifier ;
+//op_begsr: OP_BEGSR identifier ;
 op_callp: (OP_CALLP OP_E? )? identifier OPEN_PAREN (expression (COLON expression )* )? CLOSE_PAREN ;
 op_chain: OP_CHAIN OP_E? search_arg identifier (identifier )? ;
 op_clear: OP_CLEAR (identifier )? (identifier )? expression ;
@@ -1148,7 +1208,7 @@ op_endfor: OP_ENDFOR ;
 op_endif: OP_ENDIF ;
 op_endmon: OP_ENDMON ;
 op_endsl: OP_ENDSL ;
-op_endsr: OP_ENDSR (identifier )? ;
+//op_endsr: OP_ENDSR (identifier )? ;
 op_eval: (OP_EVAL OP_E? )? assignmentExpression ;
 op_evalr: OP_EVALR OP_E? assignmentExpression ;
 op_eval_corr: OP_EVAL_CORR OP_E? assignmentExpression ;

@@ -1,0 +1,262 @@
+/*===TOKENS===*/
+PS_FIXED                 <P>
+PS_NAME                  <>
+PS_BEGIN                 <B>
+PS_KEYWORDS              <                                                        >
+DS_FIXED                 <D>
+NAME                     <Function>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <PI>
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <Term1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <      5>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <VALUE                                                   >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <Term2>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <      5>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <VALUE                                                   >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <Term1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <      5>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <VALUE                                                   >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <Term2>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <      5>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <VALUE                                                   >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <Result>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+ID                       <Result>
+'='                      <=>
+ID                       <Term1>
+EXP                      <**>
+NUMBER                   <2>
+MULT                     <*>
+NUMBER                   <17>
+'+'                      <+>
+ID                       <Term2>
+MULT                     <*>
+NUMBER                   <7>
+'+'                      <+>
+ID                       <Term3>
+FREE_SEMI                <;>
+OP_RETURN                <return>
+ID                       <Result>
+FREE_SEMI                <;>
+PS_FIXED                 <P>
+PS_NAME                  <>
+PS_END                   <E>
+PS_KEYWORDS              <                                                        >
+/*===TREE===*/
+(r
+  (statement
+    (procedure
+      (psBegin
+        P
+        (ps_name )
+        B
+        '                                                        '
+      )
+      (statement
+        (dspec_fixed
+          D
+          (ds_name Function)
+          ' '
+          ' '
+          PI
+          '       '
+          '     10'
+          I
+          ' 0'
+          ' '
+          '                                                        '
+          \r\n
+        )
+      )
+      (statement
+        (dspec_fixed
+          D
+          (ds_name Term1)
+          ' '
+          ' '
+          '  '
+          '       '
+          '      5'
+          I
+          ' 0'
+          ' '
+          'VALUE                                                   '
+          \r\n
+        )
+      )
+      (statement
+        (dspec_fixed
+          D
+          (ds_name Term2)
+          ' '
+          ' '
+          '  '
+          '       '
+          '      5'
+          I
+          ' 0'
+          ' '
+          'VALUE                                                   '
+          \r\n
+        )
+      )
+      (statement
+        (dspec_fixed
+          D
+          (ds_name Term1)
+          ' '
+          ' '
+          '  '
+          '       '
+          '      5'
+          I
+          ' 0'
+          ' '
+          'VALUE                                                   '
+          \r\n
+        )
+      )
+      (statement
+        (dspec_fixed
+          D
+          (ds_name Term2)
+          ' '
+          ' '
+          '  '
+          '       '
+          '      5'
+          I
+          ' 0'
+          ' '
+          'VALUE                                                   '
+          \r\n
+        )
+      )
+      (statement
+        (dspec_fixed
+          D
+          (ds_name Result)
+          ' '
+          ' '
+          'S '
+          '       '
+          '     10'
+          I
+          ' 0'
+          ' '
+          '                                                        '
+          \r\n
+        )
+      )
+      (statement
+        (free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier Result)))
+                  =
+                  (expression
+                    (expression
+                      (expression
+                        (expression
+                          (expression
+                            (expression (identifier (free_identifier Term1)))
+                            (arithmeticalOperator **)
+                            (expression (number 2))
+                          )
+                          (arithmeticalOperator *)
+                          (expression (number 17))
+                        )
+                        (arithmeticalOperator +)
+                        (expression (identifier (free_identifier Term2)))
+                      )
+                      (arithmeticalOperator *)
+                      (expression (number 7))
+                    )
+                    (arithmeticalOperator +)
+                    (expression (identifier (free_identifier Term3)))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+      (statement
+        (free
+          (baseExpression (op (op_return return (identifier (free_identifier Result)))))
+          ;
+        )
+      )
+      (psEnd
+        P
+        (ps_name )
+        E
+        '                                                        '
+      )
+    )
+  )
+)
+/*======*/

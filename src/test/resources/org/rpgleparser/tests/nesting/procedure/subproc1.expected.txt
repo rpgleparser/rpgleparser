@@ -1,0 +1,154 @@
+/*===TOKENS===*/
+H_SPEC                   <ctl-opt>
+ID                       <dftactgrp>
+'('                      <(>
+ID                       <*no>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <dcl-s>
+ID                       <wkAlpha>
+ID                       <char>
+'('                      <(>
+NUMBER                   <7>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <dcl-s>
+ID                       <wkError>
+ID                       <ind>
+FREE_SEMI                <;>
+ID                       <wkAlpha>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <1140214>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <ValidateDate>
+'('                      <(>
+')'                      <)>
+FREE_SEMI                <;>
+DS_ProcedureStart        <dcl-proc>
+ID                       <ValidateDate>
+FREE_SEMI                <;>
+OP_IF                    <if>
+'('                      <(>
+ID                       <%error>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <wkError>
+'='                      <=>
+SPLAT_ON                 <*on>
+FREE_SEMI                <;>
+OP_ELSE                  <else>
+FREE_SEMI                <;>
+ID                       <wkError>
+'='                      <=>
+SPLAT_OFF                <*off>
+FREE_SEMI                <;>
+OP_ENDIF                 <endif>
+FREE_SEMI                <;>
+DS_ProcedureEnd          <end-proc>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (ctl_opt
+    ctl-opt
+    (identifier (free_identifier dftactgrp))
+    (expression ( (expression (identifier (free_identifier *no))) ))
+    ;
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier wkAlpha))
+    (function
+      (functionName (free_identifier char))
+      (args ( (expression (number 7)) ))
+    )
+    ;
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier wkError))
+    (identifier (free_identifier ind))
+    ;
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier wkAlpha)))
+              =
+              (expression (literal ' 1140214 '))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op (op_callp (identifier (free_identifier ValidateDate)) ( )))
+      )
+      ;
+    )
+  )
+  (procedure
+    (beginProcedure
+      (freeBeginProcedure dcl-proc (identifier (free_identifier ValidateDate)) ;)
+    )
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_callp
+              (identifier (free_identifier (op_code if)))
+              (
+              (expression (identifier (free_identifier %error)))
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (assignmentExpression
+                (expression (identifier (free_identifier wkError)))
+                =
+                (expression (identifier (all (symbolicConstants *on))))
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (statement (free (baseExpression (op (op_else else))) ;))
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (assignmentExpression
+                (expression (identifier (free_identifier wkError)))
+                =
+                (expression (identifier (all (symbolicConstants *off))))
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (statement (free (baseExpression (op (op_endif endif))) ;))
+    (endProcedure (freeEndProcedure end-proc ;))
+  )
+)
+/*======*/

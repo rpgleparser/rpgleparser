@@ -13,8 +13,10 @@ public class TestFixedC {
 
     @Test
     public void testKFLD() {
-        String inputString = "     C                   KFLD                    WCREGN";
-        expectTokensForSourceLines(inputString, "C", "", "", "", "", "KFLD", "", "WCREGN", "", "", "", "", "", "");
+        String inputString = "     C     WCKEY1        KLIST\r\n"
+        		 + "     C                   KFLD                    WCREGN";
+        expectTokensForSourceLines(inputString, "C", "", "", "", "WCKEY1", "KLIST", "", "", "", "", "", "", "", "", 
+        		"C", "", "", "", "", "KFLD", "", "WCREGN", "", "", "", "", "", "");
     }
 
 }
