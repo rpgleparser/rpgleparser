@@ -41,84 +41,82 @@ BlankIndicator           <  >
 /*===TREE===*/
 (r
   (statement
-    (cspec_fixed
-      c
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 if)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression
+    (block
+      (ifstatement
+        (beginif
+          c
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          if
+          (c_free
+            (baseExpression
+              (op
+                (op_eval
+                  (assignmentExpression
                     (expression
+                      (expression
+                        (expression (identifier (free_identifier retst)))
+                        =
+                        (expression (number 4))
+                      )
+                      or
                       (expression (identifier (free_identifier retst)))
-                      =
-                      (expression (number 4))
                     )
-                    or
-                    (expression (identifier (free_identifier retst)))
+                    =
+                    (expression (number 2))
                   )
-                  =
-                  (expression (number 2))
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      c
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 eval)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier retst)))
-                  =
-                  (expression (number 1))
-                )
-              )
-            )
-          )
-        )
-        \r\n
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      c
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDIF
-          endif
-          (cspec_fixed_standard_parts
+        (statement
+          (cspec_fixed
+            c
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            <EOF>
+            (cspec_fixed_x2
+              (csOperationAndExtendedFactor2 eval)
+              (c_free
+                (baseExpression
+                  (op
+                    (op_eval
+                      (assignmentExpression
+                        (expression (identifier (free_identifier retst)))
+                        =
+                        (expression (number 1))
+                      )
+                    )
+                  )
+                )
+              )
+              \r\n
+            )
+          )
+        )
+        (endif
+          c
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            endif
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
           )
         )
       )

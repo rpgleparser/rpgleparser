@@ -32,8 +32,9 @@ statement:
 	| blank_line 
 	| directive 
 	| free
-
+	| block
 ;
+
 endSource: endSourceHead endSourceLine*;
 endSourceHead: END_SOURCE ;
 endSourceLine: EOS_Text (EOL|EOF);
@@ -63,6 +64,124 @@ end_dcl_pi: DS_ProcedureInterfaceEnd;
 dcl_c:  DS_Constant identifier (identifier | expression) FREE_SEMI ;
 ctl_opt: H_SPEC (identifier | expression)* FREE_SEMI ;
 
+block:
+	(csIFxx
+	statement*
+	endif)
+	| ((csDOUxx | csDOWxx)
+	statement*
+	enddo)
+	| ifstatement
+;
+
+ifstatement:
+	(beginif
+	statement*
+	endif)
+;
+
+beginif:
+	(CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag 
+	indicators=cs_indicators 
+	factor1=factor 
+	OP_IF 
+	fixedexpression=c_free
+	C_FREE_NEWLINE
+	)
+	| (op_if FREE_SEMI free_linecomments? )
+;
+
+csIFxx:
+CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	 (csIFEQ
+	| csIFNE
+	| csIFLE
+	| csIFLT
+	| csIFGE
+	| csIFGT)
+	andConds=csANDxx*
+	orConds=csORxx*
+;
+csDOUxx:
+CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	 (csDOUEQ
+	| csDOUNE
+	| csDOULE
+	| csDOULT
+	| csDOUGE
+	| csDOUGT)
+	andConds=csANDxx*
+	orConds=csORxx*
+;
+csDOWxx:
+CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	 (csDOWEQ
+	| csDOWNE
+	| csDOWLE
+	| csDOWLT
+	| csDOWGE
+	| csDOWGT)
+	andConds=csANDxx*
+	orConds=csORxx*
+;
+		
+complexCondxx:
+	csANDxx
+	|csORxx
+;
+
+csANDxx:
+CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	(csANDEQ
+	| csANDNE
+	| csANDLE
+	| csANDLT
+	| csANDGE
+	| csANDGT
+	)
+;
+
+csORxx:
+CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	(csOREQ
+	| csORNE
+	| csORLE
+	| csORLT
+	| csORGE
+	| csORGT
+	)
+	andConds=csANDxx*
+;
+	
+endif:
+	(
+	CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	(csEND | csENDIF)
+	)
+	| (op_endif FREE_SEMI free_linecomments? );
+	
+enddo:
+	(
+	CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	(csEND | csENDDO)
+	)
+	| (op_enddo FREE_SEMI free_linecomments? );	
 
 dspec_fixed: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE FROM_POSITION TO_POSITION
 	DATA_TYPE DECIMAL_POSITIONS RESERVED KEYWORDS (EOL|EOF);
@@ -247,7 +366,7 @@ cspec_fixed_standard:
 	| csADD
 	| csADDDUR
 	| csALLOC
-	| csANDxx
+	//| csANDxx
 	| csANDEQ
 	| csANDNE
 	| csANDLE
@@ -286,12 +405,12 @@ cspec_fixed_standard:
 	| csDIV
 	| csDO
 	| csDOU
-	| csDOUEQ
-	| csDOUNE
-	| csDOULE
-	| csDOULT
-	| csDOUGE
-	| csDOUGT
+	//| csDOUEQ
+	//| csDOUNE
+	//| csDOULE
+	//| csDOULT
+	//| csDOUGE
+	//| csDOUGT
 	| csDOW
 	| csDOWEQ
 	| csDOWNE
@@ -307,7 +426,7 @@ cspec_fixed_standard:
 	| csENDCS
 	| csENDDO
 	| csENDFOR
-	| csENDIF
+	//| csENDIF
 	| csENDMON
 	| csENDSL
 	//| csENDSR
@@ -322,13 +441,13 @@ cspec_fixed_standard:
 	| csFOR
 	| csFORCE
 	| csGOTO
-	| csIF
-	| csIFEQ
-	| csIFNE
-	| csIFLE
-	| csIFLT
-	| csIFGE
-	| csIFGT
+	//| csIF
+	//| csIFEQ
+	//| csIFNE
+	//| csIFLE
+	//| csIFLT
+	//| csIFGE
+	//| csIFGT
 	| csIN
 	| csITER
 	| csKLIST
@@ -435,9 +554,6 @@ csADDDUR:
 csALLOC:
 	operation=OP_ALLOC
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
-csANDxx:
-	operation=OP_ANDxx
 	cspec_fixed_standard_parts;
 csANDEQ:
 	operation=OP_ANDEQ
@@ -1002,7 +1118,7 @@ cspec_fixed_x2: csOperationAndExtendedFactor2 c_free C_FREE_NEWLINE;
 
 csOperationAndExtendedFactor2:
 	operation=OP_EVAL
-	|operation=OP_IF
+	//|operation=OP_IF
 	|operation=OP_CALLP operationExtender=cs_operationExtender?
 	|operation=OP_DOW
 	|operation=OP_ELSEIF;
@@ -1142,7 +1258,7 @@ op: op_acq
 	| op_elseif 
 	| op_enddo 
 	| op_endfor 
-	| op_endif 
+	//| op_endif 
 	| op_endmon 
 	| op_endsl 
 	//| op_endsr 
@@ -1155,7 +1271,7 @@ op: op_acq
 	| op_feod 
 	| op_for 
 	| op_force 
-	| op_if 
+	//| op_if 
 	| op_in 
 	| op_iter 
 	| op_leave 

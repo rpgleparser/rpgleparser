@@ -147,7 +147,12 @@ FREE_SEMI                <;>
         ;
       )
     )
-    (statement (free (baseExpression (op (op_endif endif))) ;))
+    (statement
+      (free
+        (baseExpression (expression (identifier (free_identifier (op_code endif)))))
+        ;
+      )
+    )
     (endProcedure (freeEndProcedure end-proc ;))
   )
 )

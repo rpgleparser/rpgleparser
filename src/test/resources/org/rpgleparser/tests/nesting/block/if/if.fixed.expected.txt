@@ -1,0 +1,358 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <IF>
+ID                       <%ERROR>
+'('                      <(>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <IF>
+ID                       <%STATUS>
+'('                      <(>
+ID                       <CUST>
+')'                      <)>
+'='                      <=>
+NUMBER                   <1211>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_OPEN                  <OPEN>
+CS_FactorContent         <CUST>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ELSEIF                <ELSEIF>
+ID                       <%STATUS>
+'('                      <(>
+ID                       <CUST>
+')'                      <)>
+'='                      <=>
+NUMBER                   <1221>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_READ                  <READ>
+'('                      <(>
+CS_OperationAndExtender  <E>
+')'                      <)>
+CS_FactorContent         <CUST>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <CSNAME>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <CCC>
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_UPDATE                <UPDATE>
+'('                      <(>
+CS_OperationAndExtender  <E>
+')'                      <)>
+CS_FactorContent         <CUSTR>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <ENDIF>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <ENDIF>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          IF
+          (c_free
+            (baseExpression (op (op_callp (identifier (free_identifier %ERROR)) ( ))))
+          )
+          \r\n
+        )
+        (statement
+          (block
+            (ifstatement
+              (beginif
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor '              ')
+                IF
+                (c_free
+                  (baseExpression
+                    (op
+                      (op_eval
+                        (assignmentExpression
+                          (expression
+                            (function
+                              (functionName (free_identifier %STATUS))
+                              (args ( (expression (identifier (free_identifier CUST))) ))
+                            )
+                          )
+                          =
+                          (expression (number 1211))
+                        )
+                      )
+                    )
+                  )
+                )
+                \r\n
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_standard
+                    (csOPEN
+                      OPEN
+                      (cspec_fixed_standard_parts
+                        (factor (factorContent CUST))
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \r\n
+                      )
+                    )
+                  )
+                )
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_x2
+                    (csOperationAndExtendedFactor2 ELSEIF)
+                    (c_free
+                      (baseExpression
+                        (op
+                          (op_eval
+                            (assignmentExpression
+                              (expression
+                                (function
+                                  (functionName (free_identifier %STATUS))
+                                  (args ( (expression (identifier (free_identifier CUST))) ))
+                                )
+                              )
+                              =
+                              (expression (number 1221))
+                            )
+                          )
+                        )
+                      )
+                    )
+                    \r\n
+                  )
+                )
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_standard
+                    (csREAD
+                      READ
+                      (cs_operationExtender ( E ))
+                      (cspec_fixed_standard_parts
+                        (factor (factorContent CUST))
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \r\n
+                      )
+                    )
+                  )
+                )
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_x2
+                    (csOperationAndExtendedFactor2 EVAL)
+                    (c_free
+                      (baseExpression
+                        (op
+                          (op_eval
+                            (assignmentExpression
+                              (expression (identifier (free_identifier CSNAME)))
+                              =
+                              (expression (literal ' CCC '))
+                            )
+                          )
+                        )
+                      )
+                    )
+                    \r\n
+                  )
+                )
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_standard
+                    (csUPDATE
+                      UPDATE
+                      (cs_operationExtender ( E ))
+                      (cspec_fixed_standard_parts
+                        (factor (factorContent CUSTR))
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \r\n
+                      )
+                    )
+                  )
+                )
+              )
+              (endif
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor '              ')
+                (csENDIF
+                  ENDIF
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \r\n
+                  )
+                )
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            ENDIF
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
