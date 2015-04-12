@@ -2,7 +2,7 @@
 PS_FIXED                 <P>
 PS_NAME                  <>
 PS_BEGIN                 <B>
-PS_KEYWORDS              <                                                         >
+PS_KEYWORDS              <                                                        >
 DS_FIXED                 <D>
 NAME                     <Function>
 EXTERNAL_DESCRIPTION     < >
@@ -13,7 +13,7 @@ TO_POSITION              <     10>
 DATA_TYPE                <I>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <                                                         >
+KEYWORDS                 <                                                        >
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -26,7 +26,7 @@ TO_POSITION              <      5>
 DATA_TYPE                <I>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <VALUE                                                    >
+KEYWORDS                 <VALUE                                                   >
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -39,7 +39,7 @@ TO_POSITION              <      5>
 DATA_TYPE                <I>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <VALUE                                                    >
+KEYWORDS                 <VALUE                                                   >
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -52,7 +52,7 @@ TO_POSITION              <     10>
 DATA_TYPE                <I>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <                                                         >
+KEYWORDS                 <                                                        >
 EOL                      <
 >
 OP_RETURN                <return>
@@ -61,92 +61,94 @@ FREE_SEMI                <;>
 PS_FIXED                 <P>
 PS_NAME                  <>
 PS_END                   <E>
-PS_KEYWORDS              <                                                         >
+PS_KEYWORDS              <                                                        >
 /*===TREE===*/
 (r
-  (statement
-    (procedure
+  (procedure
+    (beginProcedure
       (psBegin
         P
         (ps_name )
         B
-        '                                                         '
+        '                                                        '
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Function)
-          ' '
-          ' '
-          PI
-          '       '
-          '     10'
-          I
-          ' 0'
-          ' '
-          '                                                         '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Function)
+        ' '
+        ' '
+        PI
+        '       '
+        '     10'
+        I
+        ' 0'
+        ' '
+        '                                                        '
+        \r\n
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Term1)
-          ' '
-          ' '
-          '  '
-          '       '
-          '      5'
-          I
-          ' 0'
-          ' '
-          'VALUE                                                    '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Term1)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      5'
+        I
+        ' 0'
+        ' '
+        'VALUE                                                   '
+        \r\n
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Term2)
-          ' '
-          ' '
-          '  '
-          '       '
-          '      5'
-          I
-          ' 0'
-          ' '
-          'VALUE                                                    '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Term2)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      5'
+        I
+        ' 0'
+        ' '
+        'VALUE                                                   '
+        \r\n
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Result)
-          ' '
-          ' '
-          'S '
-          '       '
-          '     10'
-          I
-          ' 0'
-          ' '
-          '                                                         '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Result)
+        ' '
+        ' '
+        'S '
+        '       '
+        '     10'
+        I
+        ' 0'
+        ' '
+        '                                                        '
+        \r\n
       )
-      (statement
-        (free
-          (baseExpression (op (op_return return (identifier (free_identifier Result)))))
-          ;
-        )
+    )
+    (statement
+      (free
+        (baseExpression (op (op_return return (identifier (free_identifier Result)))))
+        ;
       )
+    )
+    (endProcedure
       (psEnd
         P
         (ps_name )
         E
-        '                                                         '
+        '                                                        '
       )
     )
   )

@@ -104,152 +104,154 @@ PS_END                   <E>
 PS_KEYWORDS              <                                                        >
 /*===TREE===*/
 (r
-  (statement
-    (procedure
+  (procedure
+    (beginProcedure
       (psBegin
         P
         (ps_name )
         B
         '                                                        '
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Function)
-          ' '
-          ' '
-          PI
-          '       '
-          '     10'
-          I
-          ' 0'
-          ' '
-          '                                                        '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Function)
+        ' '
+        ' '
+        PI
+        '       '
+        '     10'
+        I
+        ' 0'
+        ' '
+        '                                                        '
+        \r\n
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Term1)
-          ' '
-          ' '
-          '  '
-          '       '
-          '      5'
-          I
-          ' 0'
-          ' '
-          'VALUE                                                   '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Term1)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      5'
+        I
+        ' 0'
+        ' '
+        'VALUE                                                   '
+        \r\n
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Term2)
-          ' '
-          ' '
-          '  '
-          '       '
-          '      5'
-          I
-          ' 0'
-          ' '
-          'VALUE                                                   '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Term2)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      5'
+        I
+        ' 0'
+        ' '
+        'VALUE                                                   '
+        \r\n
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Term1)
-          ' '
-          ' '
-          '  '
-          '       '
-          '      5'
-          I
-          ' 0'
-          ' '
-          'VALUE                                                   '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Term1)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      5'
+        I
+        ' 0'
+        ' '
+        'VALUE                                                   '
+        \r\n
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Term2)
-          ' '
-          ' '
-          '  '
-          '       '
-          '      5'
-          I
-          ' 0'
-          ' '
-          'VALUE                                                   '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Term2)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      5'
+        I
+        ' 0'
+        ' '
+        'VALUE                                                   '
+        \r\n
       )
-      (statement
-        (dspec_fixed
-          D
-          (ds_name Result)
-          ' '
-          ' '
-          'S '
-          '       '
-          '     10'
-          I
-          ' 0'
-          ' '
-          '                                                        '
-          \r\n
-        )
+    )
+    (statement
+      (dspec_fixed
+        D
+        (ds_name Result)
+        ' '
+        ' '
+        'S '
+        '       '
+        '     10'
+        I
+        ' 0'
+        ' '
+        '                                                        '
+        \r\n
       )
-      (statement
-        (free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier Result)))
-                  =
+    )
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (assignmentExpression
+                (expression (identifier (free_identifier Result)))
+                =
+                (expression
                   (expression
                     (expression
                       (expression
                         (expression
-                          (expression
-                            (expression (identifier (free_identifier Term1)))
-                            (arithmeticalOperator **)
-                            (expression (number 2))
-                          )
-                          (arithmeticalOperator *)
-                          (expression (number 17))
+                          (expression (identifier (free_identifier Term1)))
+                          (arithmeticalOperator **)
+                          (expression (number 2))
                         )
-                        (arithmeticalOperator +)
-                        (expression (identifier (free_identifier Term2)))
+                        (arithmeticalOperator *)
+                        (expression (number 17))
                       )
-                      (arithmeticalOperator *)
-                      (expression (number 7))
+                      (arithmeticalOperator +)
+                      (expression (identifier (free_identifier Term2)))
                     )
-                    (arithmeticalOperator +)
-                    (expression (identifier (free_identifier Term3)))
+                    (arithmeticalOperator *)
+                    (expression (number 7))
                   )
+                  (arithmeticalOperator +)
+                  (expression (identifier (free_identifier Term3)))
                 )
               )
             )
           )
-          ;
         )
+        ;
       )
-      (statement
-        (free
-          (baseExpression (op (op_return return (identifier (free_identifier Result)))))
-          ;
-        )
+    )
+    (statement
+      (free
+        (baseExpression (op (op_return return (identifier (free_identifier Result)))))
+        ;
       )
+    )
+    (endProcedure
       (psEnd
         P
         (ps_name )
