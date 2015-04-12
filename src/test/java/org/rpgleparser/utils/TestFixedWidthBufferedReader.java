@@ -19,8 +19,9 @@ public class TestFixedWidthBufferedReader {
 		char[]b= new char[1000];
 		int size = is.read(b);
 		is.close();
-		assertEquals("xx                                                                                                  \r\n" + 
-				"yy                                                                                                  \r\n" 
+		assertEquals(
+"xx                                                                                                 \r\n" + 
+				"yy                                                                                                 \r\n" 
 				,new String(b,0,size));
 	}
 
@@ -30,8 +31,9 @@ public class TestFixedWidthBufferedReader {
 		char[]b= new char[1000];
 		int size = is.read(b);
 		is.close();
-		assertEquals("xx                                                                                                  \r\n" + 
-				"yy                                                                                                  " 
+		assertEquals(
+"xx                                                                                                 \r\n" + 
+"yy                                                                                                 " 
 				,new String(b,0,size));
 	}
 	
@@ -47,8 +49,9 @@ public class TestFixedWidthBufferedReader {
 		}
 		is.close();
 		
-		assertEquals("xx                                                                                                  \r\n" + 
-				"yy                                                                                                  \r\n" 
+		assertEquals(
+"xx                                                                                                 \r\n" + 
+"yy                                                                                                 \r\n" 
 				,sb.toString());
 	}
 	
