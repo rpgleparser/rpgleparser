@@ -69,9 +69,10 @@ public class TestC {
     @Test
     public void testCSpec_IF() {
         String inputString =
-                "     C                   IF        WHOS = 'G'";
+                "     C                   IF        WHOS = 'G'\r\n"
+		+"     C                   ENDIF";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "", "IF", "WHOS", "=", "'", "G", "'", "");
+        		"C","","","","","IF","WHOS","=","'","G","'","","C","","","","","ENDIF","","","","","","","","");
     }
 
     @Test
@@ -129,9 +130,10 @@ public class TestC {
     @Test
     public void testCSpec_Comments2() {
         String inputString =
-                "     C                   IF        WHOS = 'G'                                   Home office cpy";
+                "     C                   IF        WHOS = 'G'                                   Home office cpy\r\n"
+        		+"     C                   ENDIF";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "", "IF", "WHOS", "=", "'", "G", "'", "");
+        		"C","","","","","IF","WHOS","=","'","G","'","","C","","","","","ENDIF","","","","","","","","");
     }
 
     @Test

@@ -38,10 +38,16 @@ import org.rpgleparser.utils.TestUtils.ErrorListener;
 @RunWith(Parameterized.class)
 public class TestFiles {
 	
-	String sourceFile;
+	File sourceFile;
 	boolean autoReplaceFailed=false;
+	static String singleTestName=null;
+	static{
+		try{
+			singleTestName=ResourceBundle.getBundle("org.rpgleparser.tests.test").getString("RunSingleTest");
+		}catch(Exception e){}
+	}
 	
-	public TestFiles(String sourceFile) {
+	public TestFiles(File sourceFile) {
 		super();
 		this.sourceFile = sourceFile;
 		try{
@@ -51,8 +57,8 @@ public class TestFiles {
 	
 	@Test
 	public void test() throws IOException, URISyntaxException{
-		final String inputString = TestUtils.loadFile(new File("src/test/resources/" + sourceFile));
-		final File expectedFile = new File("src/test/resources/" + sourceFile.replaceAll("\\.rpgle", ".expected.txt"));
+		final String inputString = TestUtils.loadFile(sourceFile);
+		final File expectedFile = new File(sourceFile.getPath().replaceAll("\\.rpgle", ".expected.txt"));
 		final String expectedFileText = expectedFile.exists()?TestUtils.loadFile(expectedFile):null;
 		final String expectedTokens = getTokens(expectedFileText);
 		String expectedTree = getTree(expectedFileText);
@@ -74,11 +80,12 @@ public class TestFiles {
 		
 		final ParseTree parseTree = parser.r();
 		
+		final String actualTree = TreeUtils.printTree(parseTree, parser);
 		if(!errors.isEmpty()){
-			System.out.println("/*===TOKENS===*/\r\n" + actualTokens + "\r\n/*======*/");
+			System.out.println("/*===TOKENS===*/\r\n" + actualTokens + "\r\n");
+			System.out.println("/*===TOKENS===*/\r\n" + actualTree + "\r\n/*======*/");
 		}
 		assertThat(errors, is(empty()));
-		final String actualTree = TreeUtils.printTree(parseTree, parser);
 		
     	if(expectedTree==null || expectedTree.trim().length() == 0){
     		writeExpectFile(expectedFile,actualTokens,actualTree);
@@ -149,22 +156,30 @@ public class TestFiles {
 	@Parameterized.Parameters(name="{index}{0}")
 	public static Collection<Object[]> primeNumbers() throws URISyntaxException, IOException {
 		final ArrayList<Object[]> retval = new ArrayList<Object[]>();
-    	final List<String> listing = new ArrayList<String>();
+    	final List<File> listing = new ArrayList<File>();
     	fillResourceListing(new File("src/test/resources/org/rpgleparser/tests"), listing);
-    	for(String s: listing){
+    	for(File s: listing){
 			retval.add(new Object[]{s});
 		}
 		return retval;
 	}
 	
-    private static void fillResourceListing(File file, List<String> retval)  {
+	private static void fillResourceListing(File file, List<File> retval)  {
     	if(file != null){
     		if(file.isDirectory()){
     			for(File subfile: file.listFiles()){
     				fillResourceListing(subfile, retval);
     			}
     		}else if(file.getName().toLowerCase().endsWith(".rpgle")){
-    			retval.add(file.getPath().replaceAll(".*resources.", "").replace('\\', '/'));
+    			if(singleTestName == null || singleTestName.equals(file.getName())){
+    				retval.add(file);
+    			}
+    			else if(singleTestName.equals("*LAST")){
+    				if(retval.size()==0 || file.lastModified() > retval.get(0).lastModified()){
+    					retval.clear();
+    					retval.add(file);
+    				}
+    			}
     		}
     	}
     }

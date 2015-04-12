@@ -114,9 +114,10 @@ public class TestFREE {
     @Test
     public void testComparison() {
         String inputString =
-                "         if %parms > 2;";
+                "         if %parms > 2;\r\n" 
+        		+"        endif;";
         expectTokensForSourceLines(inputString,
-                "if", "%parms", ">", "2",";");
+                "if", "%parms", ">", "2",";","endif",";");
     }
 
     @Test
@@ -140,22 +141,23 @@ public class TestFREE {
     public void testCompoundIf() {
         String inputString =
                 "       IF ARNTCT = 'B  '\r\n"
-                        + "       OR ARNTCT = 'C  '\r\n" + "       OR ARNTCT = 'D  ';";
+                        + "       OR ARNTCT = 'C  '\r\n" + "       OR ARNTCT = 'D  ';\r\n"
+                		+"       endif;";
         expectTokensForSourceLines(inputString,
                 "IF", "ARNTCT", "=", "'", "B", "'", "OR",
                 "ARNTCT", "=", "'", "C", "'", "OR", "ARNTCT", "=", "'", "D",
-                "'", ";");
+                "'", ";", "endif", ";");
     }
 
     @Test
     public void testCompoundIf2() {
         String inputString =
-                "       IF ARNTCT = 'B' OR ARNTCT = 'C  ' OR ARNTCT = 'D  '\r\n"
-                        + "          ;";
+                "       IF ARNTCT = 'B' OR ARNTCT = 'C  ' OR ARNTCT = 'D  ';\r\n"
+                        + "          ENDIF;";
         expectTokensForSourceLines(inputString,
                 "IF", "ARNTCT", "=", "'", "B", "'", "OR",
                 "ARNTCT", "=", "'", "C", "'", "OR", "ARNTCT", "=", "'", "D",
-                "'", ";");
+                "'", ";","ENDIF",";");
     }
 
     @Test
@@ -283,9 +285,10 @@ public class TestFREE {
     @Test
     public void testKeywordID() {
         String inputString =
-                "IF DELETE = ' ';";
+                "IF DELETE = ' ';\r\n"
+        		+"endif;";
         expectTokensForFreeSnippet(inputString,
-                "IF", "DELETE", "=", "'", "", "'", ";");
+                "IF", "DELETE", "=", "'", "", "'", ";", "endif", ";");
     }
 
     @Test
@@ -316,18 +319,20 @@ public class TestFREE {
     public void testINDExpression() {
         String inputString =
                 "       IF *IN78 = *OFF                                                          // RECORD EXISTS\r\n"
-                        + "          AND MHTRPR = 'N';";
+                        + "          AND MHTRPR = 'N';\r\n"
+                		+ "          endif;";
         expectTokensForFreeSnippet(inputString,
                 "IF", "*IN78", "=", "*OFF", "AND", "MHTRPR",
-                "=", "'", "N", "'", ";");
+                "=", "'", "N", "'", ";","endif",";");
     }
 
     @Test
     public void testFreeWithTailComment() {
         String inputString =
-                "if CovName = 'DWELLING';//CP & CF";
+                "if CovName = 'DWELLING';//CP & CF\r\n"
+        		+"endif;";
         expectTokensForFreeSnippet(inputString,
-                "if", "CovName", "=", "'", "DWELLING", "'", ";");
+                "if", "CovName", "=", "'", "DWELLING", "'", ";", "endif", ";");
     }
 
     @Test
@@ -451,10 +456,11 @@ public class TestFREE {
         String inputString =
                 "           IF SCTRAN = '1'\r\n"
                         + " 1  �        //DLT       SCTRAN    OREQ '3'\r\n"
-                        + "             OR SCTRAN = '6';";
+                        + "             OR SCTRAN = '6';\r\n"
+                        + "       endif;";
         expectTokensForSourceLines(inputString,
                 "IF", "SCTRAN", "=", "'", "1", "'", "OR",
-                "SCTRAN", "=", "'", "6", "'", ";");
+                "SCTRAN", "=", "'", "6", "'", ";", "endif", ";");
     }
 
     @Test
@@ -500,10 +506,11 @@ public class TestFREE {
     @Test
     public void testDateLiteral() {
         String inputString =
-                "IF OVTRDZ = d'0001-01-01';   // ACTIVE";
+                "IF OVTRDZ = d'0001-01-01';   // ACTIVE\r\n"
+        		+"endif;";
         expectTokensForFreeSnippet(inputString,
                 "IF", "OVTRDZ", "=", "d'", "0001-01-01", "'",
-                ";");
+                ";","endif",";");
     }
 
     @Test
@@ -547,12 +554,13 @@ public class TestFREE {
         String inputString =
                 "if BDEBRYR = *zero and ADEBRYR <> *zero or \r\n"
                         + "BDEBMTH = *zero and ADEBMTH <> *zero or \r\n"
-                        + "BDEBDAY = *zero and ADEBDAY <> *zero;";
+                        + "BDEBDAY = *zero and ADEBDAY <> *zero;\r\n" 
+                        + "endif;";
         expectTokensForFreeSnippet(inputString,
                 "if", "BDEBRYR", "=", "*zero", "and",
                 "ADEBRYR", "<>", "*zero", "or", "BDEBMTH", "=", "*zero", "and",
                 "ADEBMTH", "<>", "*zero", "or", "BDEBDAY", "=", "*zero", "and",
-                "ADEBDAY", "<>", "*zero", ";");
+                "ADEBDAY", "<>", "*zero", ";", "endif", ";");
     }
 
     @Test
