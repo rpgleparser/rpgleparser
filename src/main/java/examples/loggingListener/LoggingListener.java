@@ -10,11 +10,16 @@ import org.rpgleparser.RpgParser.ArithmeticalOperatorContext;
 import org.rpgleparser.RpgParser.AssignmentExpressionContext;
 import org.rpgleparser.RpgParser.AssignmentOperatorContext;
 import org.rpgleparser.RpgParser.BaseExpressionContext;
+import org.rpgleparser.RpgParser.BeginProcedureContext;
+import org.rpgleparser.RpgParser.BeginifContext;
+import org.rpgleparser.RpgParser.BeginselectContext;
 import org.rpgleparser.RpgParser.BegsrContext;
 import org.rpgleparser.RpgParser.Blank_lineContext;
+import org.rpgleparser.RpgParser.BlockContext;
 import org.rpgleparser.RpgParser.C_freeContext;
 import org.rpgleparser.RpgParser.CommentsContext;
 import org.rpgleparser.RpgParser.ComparisonOperatorContext;
+import org.rpgleparser.RpgParser.ComplexCondxxContext;
 import org.rpgleparser.RpgParser.ContinuedIdentifierContext;
 import org.rpgleparser.RpgParser.ControlContext;
 import org.rpgleparser.RpgParser.ControlLevelIndicatorContext;
@@ -68,6 +73,7 @@ import org.rpgleparser.RpgParser.CsDOUGTContext;
 import org.rpgleparser.RpgParser.CsDOULEContext;
 import org.rpgleparser.RpgParser.CsDOULTContext;
 import org.rpgleparser.RpgParser.CsDOUNEContext;
+import org.rpgleparser.RpgParser.CsDOUxxContext;
 import org.rpgleparser.RpgParser.CsDOWContext;
 import org.rpgleparser.RpgParser.CsDOWEQContext;
 import org.rpgleparser.RpgParser.CsDOWGEContext;
@@ -75,6 +81,7 @@ import org.rpgleparser.RpgParser.CsDOWGTContext;
 import org.rpgleparser.RpgParser.CsDOWLEContext;
 import org.rpgleparser.RpgParser.CsDOWLTContext;
 import org.rpgleparser.RpgParser.CsDOWNEContext;
+import org.rpgleparser.RpgParser.CsDOWxxContext;
 import org.rpgleparser.RpgParser.CsDSPLYContext;
 import org.rpgleparser.RpgParser.CsDUMPContext;
 import org.rpgleparser.RpgParser.CsELSEContext;
@@ -105,6 +112,7 @@ import org.rpgleparser.RpgParser.CsIFGTContext;
 import org.rpgleparser.RpgParser.CsIFLEContext;
 import org.rpgleparser.RpgParser.CsIFLTContext;
 import org.rpgleparser.RpgParser.CsIFNEContext;
+import org.rpgleparser.RpgParser.CsIFxxContext;
 import org.rpgleparser.RpgParser.CsINContext;
 import org.rpgleparser.RpgParser.CsITERContext;
 import org.rpgleparser.RpgParser.CsKFLDContext;
@@ -132,8 +140,10 @@ import org.rpgleparser.RpgParser.CsORGTContext;
 import org.rpgleparser.RpgParser.CsORLEContext;
 import org.rpgleparser.RpgParser.CsORLTContext;
 import org.rpgleparser.RpgParser.CsORNEContext;
+import org.rpgleparser.RpgParser.CsORxxContext;
 import org.rpgleparser.RpgParser.CsOTHERContext;
 import org.rpgleparser.RpgParser.CsOUTContext;
+import org.rpgleparser.RpgParser.CsOperationAndExtendedFactor2Context;
 import org.rpgleparser.RpgParser.CsPARMContext;
 import org.rpgleparser.RpgParser.CsPLISTContext;
 import org.rpgleparser.RpgParser.CsPOSTContext;
@@ -174,6 +184,7 @@ import org.rpgleparser.RpgParser.CsWHENGTContext;
 import org.rpgleparser.RpgParser.CsWHENLEContext;
 import org.rpgleparser.RpgParser.CsWHENLTContext;
 import org.rpgleparser.RpgParser.CsWHENNEContext;
+import org.rpgleparser.RpgParser.CsWHENxxContext;
 import org.rpgleparser.RpgParser.CsWRITEContext;
 import org.rpgleparser.RpgParser.CsXFOOTContext;
 import org.rpgleparser.RpgParser.CsXLATEContext;
@@ -203,12 +214,16 @@ import org.rpgleparser.RpgParser.DirectiveContext;
 import org.rpgleparser.RpgParser.Ds_nameContext;
 import org.rpgleparser.RpgParser.DspecContext;
 import org.rpgleparser.RpgParser.Dspec_fixedContext;
+import org.rpgleparser.RpgParser.EndProcedureContext;
 import org.rpgleparser.RpgParser.EndSourceContext;
 import org.rpgleparser.RpgParser.EndSourceHeadContext;
 import org.rpgleparser.RpgParser.EndSourceLineContext;
 import org.rpgleparser.RpgParser.End_dcl_dsContext;
 import org.rpgleparser.RpgParser.End_dcl_piContext;
 import org.rpgleparser.RpgParser.End_dcl_prContext;
+import org.rpgleparser.RpgParser.EnddoContext;
+import org.rpgleparser.RpgParser.EndifContext;
+import org.rpgleparser.RpgParser.EndselectContext;
 import org.rpgleparser.RpgParser.EndsrContext;
 import org.rpgleparser.RpgParser.Exec_sqlContext;
 import org.rpgleparser.RpgParser.ExpressionContext;
@@ -217,8 +232,10 @@ import org.rpgleparser.RpgParser.FactorContext;
 import org.rpgleparser.RpgParser.FieldIndicatorContext;
 import org.rpgleparser.RpgParser.FieldRecordRelationContext;
 import org.rpgleparser.RpgParser.FilenameContext;
+import org.rpgleparser.RpgParser.FreeBEGSRContext;
 import org.rpgleparser.RpgParser.FreeBeginProcedureContext;
 import org.rpgleparser.RpgParser.FreeContext;
+import org.rpgleparser.RpgParser.FreeENDSRContext;
 import org.rpgleparser.RpgParser.FreeEndProcedureContext;
 import org.rpgleparser.RpgParser.Free_commentsContext;
 import org.rpgleparser.RpgParser.Free_directiveContext;
@@ -237,6 +254,7 @@ import org.rpgleparser.RpgParser.Hs_parmContext;
 import org.rpgleparser.RpgParser.Hs_stringContext;
 import org.rpgleparser.RpgParser.Hspec_fixedContext;
 import org.rpgleparser.RpgParser.IdentifierContext;
+import org.rpgleparser.RpgParser.IfstatementContext;
 import org.rpgleparser.RpgParser.Indexed_identifierContext;
 import org.rpgleparser.RpgParser.Indicator_exprContext;
 import org.rpgleparser.RpgParser.Is_external_fieldContext;
@@ -317,21 +335,30 @@ import org.rpgleparser.RpgParser.Os_fixed_pgmdesc2Context;
 import org.rpgleparser.RpgParser.Os_fixed_pgmdesc_compoundContext;
 import org.rpgleparser.RpgParser.Os_fixed_pgmfieldContext;
 import org.rpgleparser.RpgParser.Ospec_fixedContext;
+import org.rpgleparser.RpgParser.OtherContext;
 import org.rpgleparser.RpgParser.OutputConditioningIndicatorContext;
 import org.rpgleparser.RpgParser.OutputConditioningOnOffIndicatorContext;
+import org.rpgleparser.RpgParser.ProcedureContext;
+import org.rpgleparser.RpgParser.PsBeginContext;
+import org.rpgleparser.RpgParser.PsEndContext;
 import org.rpgleparser.RpgParser.Ps_nameContext;
 import org.rpgleparser.RpgParser.RContext;
 import org.rpgleparser.RpgParser.RecordIdIndicatorContext;
 import org.rpgleparser.RpgParser.ResultIndicatorContext;
 import org.rpgleparser.RpgParser.ResultTypeContext;
 import org.rpgleparser.RpgParser.Search_argContext;
+import org.rpgleparser.RpgParser.SelectstatementContext;
 import org.rpgleparser.RpgParser.Space_directiveContext;
 import org.rpgleparser.RpgParser.Star_commentsContext;
+import org.rpgleparser.RpgParser.StatementContext;
+import org.rpgleparser.RpgParser.SubroutineContext;
 import org.rpgleparser.RpgParser.SymbolicConstantsContext;
 import org.rpgleparser.RpgParser.Title_directiveContext;
 import org.rpgleparser.RpgParser.Title_textContext;
 import org.rpgleparser.RpgParser.Trailing_wsContext;
 import org.rpgleparser.*;
+import org.rpgleparser.RpgParser.WhenContext;
+import org.rpgleparser.RpgParser.WhenstatementContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -433,6 +460,59 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterBeginif(BeginifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBeginif(BeginifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBeginif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBeginif(BeginifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBeginProcedure(BeginProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBeginProcedure(BeginProcedureContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBeginProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBeginProcedure(BeginProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBeginselect(BeginselectContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBeginselect(BeginselectContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBeginselect(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBeginselect(BeginselectContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBegsr(BegsrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBegsr(BegsrContext) - start"); //$NON-NLS-1$
+		}
+		
+		super.enterBegsr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBegsr(BegsrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+
+	@Override
 	public void enterBlank_line(Blank_lineContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterBlank_line(Blank_lineContext) - start"); //$NON-NLS-1$
@@ -442,6 +522,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterBlank_line(Blank_lineContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBlock(BlockContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBlock(BlockContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBlock(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBlock(BlockContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -484,6 +577,18 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+	@Override
+	public void enterComplexCondxx(ComplexCondxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterComplexCondxx(ComplexCondxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterComplexCondxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterComplexCondxx(ComplexCondxxContext) - end"); //$NON-NLS-1$
+		}
+	}
 
 	@Override
 	public void enterContinuedIdentifier(ContinuedIdentifierContext ctx) {
@@ -602,6 +707,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsADDDUR(CsADDDURContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -679,7 +785,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsANDLE(CsANDLEContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsANDLT(CsANDLTContext ctx) {
@@ -837,6 +942,8 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
+
 	@Override
 	public void enterCsCABxx(CsCABxxContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -863,6 +970,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsCALLB(CsCALLBContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -876,13 +984,14 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsCALLP(CsCALLPContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterCsCALLP(CsCALLPContext) - start"); //$NON-NLS-1$
 		}
 
-		// TODO Auto-generated method stub
+
 		super.enterCsCALLP(ctx);
 
 		if (logger.isDebugEnabled()) {
@@ -931,6 +1040,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsCASLE(CsCASLEContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -944,7 +1054,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsCASLT(CsCASLTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -957,7 +1066,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsCASLT(CsCASLTContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsCASNE(CsCASNEContext ctx) {
@@ -998,8 +1106,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
-
 	@Override
 	public void enterCsCHECK(CsCHECKContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -1012,7 +1118,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsCHECK(CsCHECKContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsCHECKR(CsCHECKRContext ctx) {
@@ -1236,6 +1341,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterCsDOUxx(CsDOUxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsDOUxx(CsDOUxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterCsDOUxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsDOUxx(CsDOUxxContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterCsDOW(CsDOWContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterCsDOW(CsDOWContext) - start"); //$NON-NLS-1$
@@ -1323,6 +1441,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterCsDOWNE(CsDOWNEContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterCsDOWxx(CsDOWxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsDOWxx(CsDOWxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterCsDOWxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsDOWxx(CsDOWxxContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -1717,6 +1848,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterCsIFxx(CsIFxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsIFxx(CsIFxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterCsIFxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsIFxx(CsIFxxContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterCsIN(CsINContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterCsIN(CsINContext) - start"); //$NON-NLS-1$
@@ -1807,6 +1951,8 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
+
 	@Override
 	public void enterCsMHHZO(CsMHHZOContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -1819,6 +1965,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsMHHZO(CsMHHZOContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsMHLZO(CsMHLZOContext ctx) {
@@ -1924,8 +2071,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
-
 	@Override
 	public void enterCsMVR(CsMVRContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -1938,7 +2083,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsMVR(CsMVRContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsNEXT(CsNEXTContext ctx) {
@@ -1989,6 +2133,20 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterCsOPEN(CsOPENContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterCsOperationAndExtendedFactor2(
+			CsOperationAndExtendedFactor2Context ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsOperationAndExtendedFactor2(CsOperationAndExtendedFactor2Context) - start"); //$NON-NLS-1$
+		}
+
+		super.enterCsOperationAndExtendedFactor2(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsOperationAndExtendedFactor2(CsOperationAndExtendedFactor2Context) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -2044,6 +2202,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsORLT(CsORLTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2067,6 +2226,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterCsORNE(CsORNEContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterCsORxx(CsORxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsORxx(CsORxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterCsORxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsORxx(CsORxxContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -2175,7 +2347,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsPLIST(CsPLISTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2227,6 +2398,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsREADC(CsREADCContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsREADE(CsREADEContext ctx) {
@@ -2371,7 +2543,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsSETLL(CsSETLLContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2450,6 +2621,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsSUB(CsSUBContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2462,6 +2634,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsSUB(CsSUBContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsSUBDUR(CsSUBDURContext ctx) {
@@ -2489,6 +2662,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsTAG(CsTAGContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2501,6 +2675,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsTAG(CsTAGContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsTEST(CsTESTContext ctx) {
@@ -2541,6 +2716,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsTESTZ(CsTESTZContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2553,6 +2729,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsTESTZ(CsTESTZContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsTIME(CsTIMEContext ctx) {
@@ -2593,7 +2770,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsWHEN(CsWHENContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2606,7 +2782,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsWHEN(CsWHENContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsWHENEQ(CsWHENEQContext ctx) {
@@ -2634,7 +2809,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsWHENGT(CsWHENGTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2647,7 +2821,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsWHENGT(CsWHENGTContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsWHENLE(CsWHENLEContext ctx) {
@@ -2688,6 +2861,18 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+	@Override
+	public void enterCsWHENxx(CsWHENxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsWHENxx(CsWHENxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterCsWHENxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsWHENxx(CsWHENxxContext) - end"); //$NON-NLS-1$
+		}
+	}
 
 	@Override
 	public void enterCsWRITE(CsWRITEContext ctx) {
@@ -2701,7 +2886,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsWRITE(CsWRITEContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsXFOOT(CsXFOOTContext ctx) {
@@ -2990,6 +3174,58 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterEnddo(EnddoContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEnddo(EnddoContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterEnddo(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEnddo(EnddoContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterEndif(EndifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEndif(EndifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterEndif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEndif(EndifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterEndProcedure(EndProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEndProcedure(EndProcedureContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterEndProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEndProcedure(EndProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterEndselect(EndselectContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEndselect(EndselectContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterEndselect(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEndselect(EndselectContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterEndSource(EndSourceContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterEndSource(EndSourceContext) - start"); //$NON-NLS-1$
@@ -3025,6 +3261,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterEndSourceLine(EndSourceLineContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterEndsr(EndsrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEndsr(EndsrContext) - start"); //$NON-NLS-1$
+		}
+		
+		super.enterEndsr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterEndsr(EndsrContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -3211,6 +3460,58 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterFreeBeginProcedure(FreeBeginProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterFreeBeginProcedure(FreeBeginProcedureContext) - start"); //$NON-NLS-1$
+		}
+		
+		super.enterFreeBeginProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterFreeBeginProcedure(FreeBeginProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterFreeBEGSR(FreeBEGSRContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterFreeBEGSR(FreeBEGSRContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterFreeBEGSR(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterFreeBEGSR(FreeBEGSRContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterFreeEndProcedure(FreeEndProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterFreeEndProcedure(FreeEndProcedureContext) - start"); //$NON-NLS-1$
+		}
+		
+		super.enterFreeEndProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterFreeEndProcedure(FreeEndProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterFreeENDSR(FreeENDSRContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterFreeENDSR(FreeENDSRContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterFreeENDSR(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterFreeENDSR(FreeENDSRContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterFs_expression(Fs_expressionContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterFs_expression(Fs_expressionContext) - start"); //$NON-NLS-1$
@@ -3340,6 +3641,9 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
+
+
 	@Override
 	public void enterHspec_fixed(Hspec_fixedContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -3353,6 +3657,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterIdentifier(IdentifierContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -3363,6 +3668,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterIdentifier(IdentifierContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterIfstatement(IfstatementContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterIfstatement(IfstatementContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterIfstatement(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterIfstatement(IfstatementContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -3536,19 +3854,6 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void enterBegsr(BegsrContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterBegsr(BegsrContext) - start"); //$NON-NLS-1$
-		}
-		
-		super.enterBegsr(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterBegsr(BegsrContext) - end"); //$NON-NLS-1$
-		}
-	}
-
-	@Override
 	public void enterOp_callp(Op_callpContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterOp_callp(Op_callpContext) - start"); //$NON-NLS-1$
@@ -3613,9 +3918,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
-
-
 	@Override
 	public void enterOp_commit(Op_commitContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -3628,7 +3930,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterOp_commit(Op_commitContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterOp_dealloc(Op_deallocContext ctx) {
@@ -3796,19 +4097,6 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterOp_endsl(Op_endslContext) - end"); //$NON-NLS-1$
-		}
-	}
-
-	@Override
-	public void enterEndsr(EndsrContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterEndsr(EndsrContext) - start"); //$NON-NLS-1$
-		}
-		
-		super.enterEndsr(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterEndsr(EndsrContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -4438,6 +4726,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterOther(OtherContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterOther(OtherContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterOther(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterOther(OtherContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterOutputConditioningIndicator(
 			OutputConditioningIndicatorContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -4466,6 +4767,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterProcedure(ProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterProcedure(ProcedureContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterProcedure(ProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterPs_name(Ps_nameContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterPs_name(Ps_nameContext) - start"); //$NON-NLS-1$
@@ -4479,15 +4793,28 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void enterFreeBeginProcedure(FreeBeginProcedureContext ctx) {
+	public void enterPsBegin(PsBeginContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterFreeBeginProcedure(FreeBeginProcedureContext) - start"); //$NON-NLS-1$
+			logger.debug("enterPsBegin(PsBeginContext) - start"); //$NON-NLS-1$
 		}
-		
-		super.enterFreeBeginProcedure(ctx);
+
+		super.enterPsBegin(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterFreeBeginProcedure(FreeBeginProcedureContext) - end"); //$NON-NLS-1$
+			logger.debug("enterPsBegin(PsBeginContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterPsEnd(PsEndContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterPsEnd(PsEndContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterPsEnd(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterPsEnd(PsEndContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -4557,6 +4884,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterSelectstatement(SelectstatementContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterSelectstatement(SelectstatementContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterSelectstatement(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterSelectstatement(SelectstatementContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterSpace_directive(Space_directiveContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterSpace_directive(Space_directiveContext) - start"); //$NON-NLS-1$
@@ -4579,6 +4919,32 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterStar_comments(Star_commentsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterStatement(StatementContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterStatement(StatementContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterStatement(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterStatement(StatementContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterSubroutine(SubroutineContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterSubroutine(SubroutineContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterSubroutine(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterSubroutine(SubroutineContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -4631,6 +4997,32 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterTrailing_ws(Trailing_wsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterWhen(WhenContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterWhen(WhenContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterWhen(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterWhen(WhenContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterWhenstatement(WhenstatementContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterWhenstatement(WhenstatementContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterWhenstatement(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterWhenstatement(WhenstatementContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -4732,6 +5124,58 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitBeginif(BeginifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBeginif(BeginifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBeginif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBeginif(BeginifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBeginProcedure(BeginProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBeginProcedure(BeginProcedureContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBeginProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBeginProcedure(BeginProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBeginselect(BeginselectContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBeginselect(BeginselectContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBeginselect(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBeginselect(BeginselectContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBegsr(BegsrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBegsr(BegsrContext) - start"); //$NON-NLS-1$
+		}
+		
+		super.exitBegsr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBegsr(BegsrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitBlank_line(Blank_lineContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitBlank_line(Blank_lineContext) - start"); //$NON-NLS-1$
@@ -4741,6 +5185,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitBlank_line(Blank_lineContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBlock(BlockContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBlock(BlockContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBlock(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBlock(BlockContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -4780,6 +5237,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitComparisonOperator(ComparisonOperatorContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitComplexCondxx(ComplexCondxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitComplexCondxx(ComplexCondxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitComplexCondxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitComplexCondxx(ComplexCondxxContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -5179,7 +5649,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("exitCsCALLP(CsCALLPContext) - start"); //$NON-NLS-1$
 		}
 
-		// TODO Auto-generated method stub
+
 		super.exitCsCALLP(ctx);
 
 		if (logger.isDebugEnabled()) {
@@ -5526,6 +5996,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitCsDOUxx(CsDOUxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsDOUxx(CsDOUxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitCsDOUxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsDOUxx(CsDOUxxContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitCsDOW(CsDOWContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitCsDOW(CsDOWContext) - start"); //$NON-NLS-1$
@@ -5613,6 +6096,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitCsDOWNE(CsDOWNEContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitCsDOWxx(CsDOWxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsDOWxx(CsDOWxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitCsDOWxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsDOWxx(CsDOWxxContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -6007,6 +6503,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitCsIFxx(CsIFxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsIFxx(CsIFxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitCsIFxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsIFxx(CsIFxxContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitCsIN(CsINContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitCsIN(CsINContext) - start"); //$NON-NLS-1$
@@ -6280,6 +6789,20 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitCsOperationAndExtendedFactor2(
+			CsOperationAndExtendedFactor2Context ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsOperationAndExtendedFactor2(CsOperationAndExtendedFactor2Context) - start"); //$NON-NLS-1$
+		}
+
+		super.exitCsOperationAndExtendedFactor2(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsOperationAndExtendedFactor2(CsOperationAndExtendedFactor2Context) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitCsOREQ(CsOREQContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitCsOREQ(CsOREQContext) - start"); //$NON-NLS-1$
@@ -6354,6 +6877,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitCsORNE(CsORNEContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitCsORxx(CsORxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsORxx(CsORxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitCsORxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsORxx(CsORxxContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -6970,6 +7506,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitCsWHENxx(CsWHENxxContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsWHENxx(CsWHENxxContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitCsWHENxx(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCsWHENxx(CsWHENxxContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitCsWRITE(CsWRITEContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitCsWRITE(CsWRITEContext) - start"); //$NON-NLS-1$
@@ -7269,6 +7818,58 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitEnddo(EnddoContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEnddo(EnddoContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitEnddo(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEnddo(EnddoContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitEndif(EndifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEndif(EndifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitEndif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEndif(EndifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitEndProcedure(EndProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEndProcedure(EndProcedureContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitEndProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEndProcedure(EndProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitEndselect(EndselectContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEndselect(EndselectContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitEndselect(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEndselect(EndselectContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitEndSource(EndSourceContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitEndSource(EndSourceContext) - start"); //$NON-NLS-1$
@@ -7304,6 +7905,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitEndSourceLine(EndSourceLineContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitEndsr(EndsrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEndsr(EndsrContext) - start"); //$NON-NLS-1$
+		}
+		
+		super.exitEndsr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitEndsr(EndsrContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -7490,6 +8104,58 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitFreeBeginProcedure(FreeBeginProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitFreeBeginProcedure(FreeBeginProcedureContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitFreeBeginProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitFreeBeginProcedure(FreeBeginProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitFreeBEGSR(FreeBEGSRContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitFreeBEGSR(FreeBEGSRContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitFreeBEGSR(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitFreeBEGSR(FreeBEGSRContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitFreeEndProcedure(FreeEndProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitFreeEndProcedure(FreeEndProcedureContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitFreeEndProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitFreeEndProcedure(FreeEndProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitFreeENDSR(FreeENDSRContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitFreeENDSR(FreeENDSRContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitFreeENDSR(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitFreeENDSR(FreeENDSRContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitFs_expression(Fs_expressionContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitFs_expression(Fs_expressionContext) - start"); //$NON-NLS-1$
@@ -7642,6 +8308,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitIdentifier(IdentifierContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitIfstatement(IfstatementContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitIfstatement(IfstatementContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitIfstatement(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitIfstatement(IfstatementContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -7811,19 +8490,6 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitOp_acq(Op_acqContext) - end"); //$NON-NLS-1$
-		}
-	}
-
-	@Override
-	public void exitBegsr(BegsrContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitBegsr(BegsrContext) - start"); //$NON-NLS-1$
-		}
-		
-		super.exitBegsr(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitBegsr(BegsrContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -8071,19 +8737,6 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitOp_endsl(Op_endslContext) - end"); //$NON-NLS-1$
-		}
-	}
-
-	@Override
-	public void exitEndsr(EndsrContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitEndsr(EndsrContext) - start"); //$NON-NLS-1$
-		}
-		
-		super.exitEndsr(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitEndsr(EndsrContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -8713,6 +9366,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitOther(OtherContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitOther(OtherContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitOther(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitOther(OtherContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitOutputConditioningIndicator(
 			OutputConditioningIndicatorContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -8741,6 +9407,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitProcedure(ProcedureContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitProcedure(ProcedureContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitProcedure(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitProcedure(ProcedureContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitPs_name(Ps_nameContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitPs_name(Ps_nameContext) - start"); //$NON-NLS-1$
@@ -8754,15 +9433,28 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void enterFreeEndProcedure(FreeEndProcedureContext ctx) {
+	public void exitPsBegin(PsBeginContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterFreeEndProcedure(FreeEndProcedureContext) - start"); //$NON-NLS-1$
+			logger.debug("exitPsBegin(PsBeginContext) - start"); //$NON-NLS-1$
 		}
-		
-		super.enterFreeEndProcedure(ctx);
+
+		super.exitPsBegin(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterFreeEndProcedure(FreeEndProcedureContext) - end"); //$NON-NLS-1$
+			logger.debug("exitPsBegin(PsBeginContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitPsEnd(PsEndContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitPsEnd(PsEndContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitPsEnd(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitPsEnd(PsEndContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -8832,6 +9524,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitSelectstatement(SelectstatementContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitSelectstatement(SelectstatementContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitSelectstatement(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitSelectstatement(SelectstatementContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitSpace_directive(Space_directiveContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitSpace_directive(Space_directiveContext) - start"); //$NON-NLS-1$
@@ -8854,6 +9559,32 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitStar_comments(Star_commentsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitStatement(StatementContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitStatement(StatementContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitStatement(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitStatement(StatementContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitSubroutine(SubroutineContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitSubroutine(SubroutineContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitSubroutine(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitSubroutine(SubroutineContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -8906,6 +9637,32 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitTrailing_ws(Trailing_wsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitWhen(WhenContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitWhen(WhenContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitWhen(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitWhen(WhenContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitWhenstatement(WhenstatementContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitWhenstatement(WhenstatementContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitWhenstatement(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitWhenstatement(WhenstatementContext) - end"); //$NON-NLS-1$
 		}
 	}
 
