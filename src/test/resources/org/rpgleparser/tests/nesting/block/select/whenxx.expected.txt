@@ -1,0 +1,730 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < The following example shows nested SELECT groups.  The employee                            >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < type can be one of 'C' for casual, 'T' for retired, 'R' for                                >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < regular, and 'S' for student.  Depending on the employee type                              >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < (EmpTyp), the number of days off per year (Days) will vary.                                >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SELECT                <SELECT>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <EmpTyp>
+OP_WHENEQ                <WHENEQ>
+CS_FactorContentLiteral  <'C'>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <EmpTyp>
+OP_OREQ                  <OREQ>
+CS_FactorContentLiteral  <'T'>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_Z_ADD                 <Z-ADD>
+CS_FactorContent         <0>
+CS_FactorContent         <Days>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <EmpTyp>
+OP_WHENEQ                <WHENEQ>
+CS_FactorContentLiteral  <'R'>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < When the employee type is 'R', the days off depend also on the                             >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < number of years of employment.  The base number of days is 14.                             >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < For less than 2 years, no extra days are added.  Between 2 and                             >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < 5 years, 5 extra days are added.  Between 6 and 10 years, 10                               >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < extra days are added, and over 10 years, 20 extra days are added.                          >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_Z_ADD                 <Z-ADD>
+CS_FactorContent         <14>
+CS_FactorContent         <Days>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < Nested select group.                                                                       >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SELECT                <SELECT>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <Years>
+OP_WHENLT                <WHENLT>
+CS_FactorContent         <2>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <Years>
+OP_WHENLE                <WHENLE>
+CS_FactorContent         <5>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADD                   <ADD>
+CS_FactorContent         <5>
+CS_FactorContent         <Days>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <Years>
+OP_WHENLE                <WHENLE>
+CS_FactorContent         <10>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADD                   <ADD>
+CS_FactorContent         <10>
+CS_FactorContent         <Days>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_OTHER                 <OTHER>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADD                   <ADD>
+CS_FactorContent         <20>
+CS_FactorContent         <Days>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDSL                 <ENDSL>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            < End of nested select group.                                                                >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <EmpTyp>
+OP_WHENEQ                <WHENEQ>
+CS_FactorContentLiteral  <'S'>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_Z_ADD                 <Z-ADD>
+CS_FactorContent         <5>
+CS_FactorContent         <Days>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDSL                 <ENDSL>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement (star_comments ' *'))
+  (statement (star_comments ' *'))
+  (statement (star_comments ' *'))
+  (statement (star_comments ' *'))
+  (statement (star_comments ' *'))
+  (statement (star_comments ' *'))
+  (statement
+    (block
+      (selectstatement
+        (beginselect
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csSELECT
+            SELECT
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+        )
+        (whenstatement
+          (csWHENxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent EmpTyp))
+            (csWHENEQ
+              WHENEQ
+              (cspec_fixed_standard_parts
+                (factor (factorContent 'C'))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \r\n
+              )
+            )
+            (csORxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent EmpTyp))
+              (csOREQ
+                OREQ
+                (cspec_fixed_standard_parts
+                  (factor (factorContent 'T'))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \r\n
+                )
+              )
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csZ_ADD
+                  Z-ADD
+                  (cspec_fixed_standard_parts
+                    (factor (factorContent 0))
+                    (resultType Days)
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \r\n
+                  )
+                )
+              )
+            )
+          )
+        )
+        (whenstatement
+          (csWHENxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent EmpTyp))
+            (csWHENEQ
+              WHENEQ
+              (cspec_fixed_standard_parts
+                (factor (factorContent 'R'))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \r\n
+              )
+            )
+          )
+          (statement (star_comments ' *'))
+          (statement (star_comments ' *'))
+          (statement (star_comments ' *'))
+          (statement (star_comments ' *'))
+          (statement (star_comments ' *'))
+          (statement (star_comments ' *'))
+          (statement (star_comments ' *'))
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csZ_ADD
+                  Z-ADD
+                  (cspec_fixed_standard_parts
+                    (factor (factorContent 14))
+                    (resultType Days)
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \r\n
+                  )
+                )
+              )
+            )
+          )
+          (statement (star_comments ' *'))
+          (statement
+            (block
+              (selectstatement
+                (beginselect
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (csSELECT
+                    SELECT
+                    (cspec_fixed_standard_parts
+                      (factor '              ')
+                      (resultType '              ')
+                      '     '
+                      '  '
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      \r\n
+                    )
+                  )
+                )
+                (whenstatement
+                  (csWHENxx
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor (factorContent Years))
+                    (csWHENLT
+                      WHENLT
+                      (cspec_fixed_standard_parts
+                        (factor (factorContent 2))
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \r\n
+                      )
+                    )
+                  )
+                )
+                (whenstatement
+                  (csWHENxx
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor (factorContent Years))
+                    (csWHENLE
+                      WHENLE
+                      (cspec_fixed_standard_parts
+                        (factor (factorContent 5))
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \r\n
+                      )
+                    )
+                  )
+                  (statement
+                    (cspec_fixed
+                      C
+                      (cs_controlLevel '  ')
+                      (onOffIndicatorsFlag ' ')
+                      (cs_indicators '  ')
+                      (factor '              ')
+                      (cspec_fixed_standard
+                        (csADD
+                          ADD
+                          (cspec_fixed_standard_parts
+                            (factor (factorContent 5))
+                            (resultType Days)
+                            '     '
+                            '  '
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            \r\n
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+                (whenstatement
+                  (csWHENxx
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor (factorContent Years))
+                    (csWHENLE
+                      WHENLE
+                      (cspec_fixed_standard_parts
+                        (factor (factorContent 10))
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \r\n
+                      )
+                    )
+                  )
+                  (statement
+                    (cspec_fixed
+                      C
+                      (cs_controlLevel '  ')
+                      (onOffIndicatorsFlag ' ')
+                      (cs_indicators '  ')
+                      (factor '              ')
+                      (cspec_fixed_standard
+                        (csADD
+                          ADD
+                          (cspec_fixed_standard_parts
+                            (factor (factorContent 10))
+                            (resultType Days)
+                            '     '
+                            '  '
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            \r\n
+                          )
+                        )
+                      )
+                    )
+                  )
+                  (statement
+                    (cspec_fixed
+                      C
+                      (cs_controlLevel '  ')
+                      (onOffIndicatorsFlag ' ')
+                      (cs_indicators '  ')
+                      (factor '              ')
+                      (cspec_fixed_standard
+                        (csOTHER
+                          OTHER
+                          (cspec_fixed_standard_parts
+                            (factor '              ')
+                            (resultType '              ')
+                            '     '
+                            '  '
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            \r\n
+                          )
+                        )
+                      )
+                    )
+                  )
+                  (statement
+                    (cspec_fixed
+                      C
+                      (cs_controlLevel '  ')
+                      (onOffIndicatorsFlag ' ')
+                      (cs_indicators '  ')
+                      (factor '              ')
+                      (cspec_fixed_standard
+                        (csADD
+                          ADD
+                          (cspec_fixed_standard_parts
+                            (factor (factorContent 20))
+                            (resultType Days)
+                            '     '
+                            '  '
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            \r\n
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+                (endselect
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (csENDSL
+                    ENDSL
+                    (cspec_fixed_standard_parts
+                      (factor '              ')
+                      (resultType '              ')
+                      '     '
+                      '  '
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      \r\n
+                    )
+                  )
+                )
+              )
+            )
+          )
+          (statement (star_comments ' *'))
+        )
+        (whenstatement
+          (csWHENxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent EmpTyp))
+            (csWHENEQ
+              WHENEQ
+              (cspec_fixed_standard_parts
+                (factor (factorContent 'S'))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \r\n
+              )
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csZ_ADD
+                  Z-ADD
+                  (cspec_fixed_standard_parts
+                    (factor (factorContent 5))
+                    (resultType Days)
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \r\n
+                  )
+                )
+              )
+            )
+          )
+        )
+        (endselect
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDSL
+            ENDSL
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

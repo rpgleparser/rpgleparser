@@ -72,6 +72,7 @@ block:
 	statement*
 	enddo)
 	| ifstatement
+	| selectstatement
 ;
 
 ifstatement:
@@ -79,7 +80,75 @@ ifstatement:
 	statement*
 	endif)
 ;
+selectstatement:
+	(beginselect
+		whenstatement+
+		other?
+	endselect)
+;
 
+other:
+	(CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	csOTHER
+	)
+	| (op_other FREE_SEMI free_linecomments? )
+;
+
+beginselect:
+	(CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag 
+	indicators=cs_indicators 
+	factor1=factor 
+	csSELECT
+	)
+	| (op_select FREE_SEMI free_linecomments? )
+;
+
+whenstatement:
+	(csWHENxx
+	| when
+	)
+	statement*
+;
+
+when:
+	(CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag 
+	indicators=cs_indicators 
+	factor1=factor 
+	OP_WHEN 
+	fixedexpression=c_free
+	C_FREE_NEWLINE
+	)
+	| (op_when FREE_SEMI free_linecomments? )
+;
+csWHENxx:
+CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	 (csWHENEQ
+	| csWHENNE
+	| csWHENLE
+	| csWHENLT
+	| csWHENGE
+	| csWHENGT)
+	andConds=csANDxx*
+	orConds=csORxx*
+;
+
+endselect:
+	(
+	CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	(csEND | csENDSL)
+	)
+	| (op_endif FREE_SEMI free_linecomments? );
+	
 beginif:
 	(CS_FIXED
 	cs_controlLevel 
@@ -119,6 +188,7 @@ CS_FIXED
 	andConds=csANDxx*
 	orConds=csORxx*
 ;
+
 csDOWxx:
 CS_FIXED
 	cs_controlLevel 
@@ -490,7 +560,7 @@ cspec_fixed_standard:
 	| csRETURN
 	| csROLBK
 	| csSCAN
-	| csSELECT
+	//| csSELECT
 	| csSETGT
 	| csSETLL
 	| csSETOFF
@@ -509,13 +579,13 @@ cspec_fixed_standard:
 	| csTIME
 	| csUNLOCK
 	| csUPDATE
-	| csWHEN
-	| csWHENEQ
-	| csWHENNE
-	| csWHENLE
-	| csWHENLT
-	| csWHENGE
-	| csWHENGT
+	//| csWHEN
+	//| csWHENEQ
+	//| csWHENNE
+	//| csWHENLE
+	//| csWHENLT
+	//| csWHENGE
+	//| csWHENGT
 	| csWRITE
 	| csXFOOT
 	| csXLATE
@@ -1280,7 +1350,7 @@ op: op_acq
 	| op_next 
 	| op_on_error 
 	| op_open 
-	| op_other 
+	//| op_other 
 	| op_out 
 	| op_post 
 	| op_read 
@@ -1300,7 +1370,7 @@ op: op_acq
 	| op_test 
 	| op_unlock 
 	| op_update 
-	| op_when 
+	//| op_when 
 	| op_write 
 	| op_xml_into 
 	| op_xml_sax;

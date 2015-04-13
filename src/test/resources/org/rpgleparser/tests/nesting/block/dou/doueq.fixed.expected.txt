@@ -1,0 +1,155 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <FLDA>
+OP_DOUEQ                 <DOUEQ>
+CS_FactorContent         <FLDB>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SUB                   <SUB>
+CS_FactorContent         <1>
+CS_FactorContent         <FLDA>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_OPEN                  <OPEN>
+CS_FactorContent         <CUST>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDDO                 <ENDDO>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (csDOUxx
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent FLDA))
+        (csDOUEQ
+          DOUEQ
+          (cspec_fixed_standard_parts
+            (factor (factorContent FLDB))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+      (statement
+        (cspec_fixed
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (cspec_fixed_standard
+            (csSUB
+              SUB
+              (cspec_fixed_standard_parts
+                (factor (factorContent 1))
+                (resultType FLDA)
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \r\n
+              )
+            )
+          )
+        )
+      )
+      (statement
+        (cspec_fixed
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (cspec_fixed_standard
+            (csOPEN
+              OPEN
+              (cspec_fixed_standard_parts
+                (factor (factorContent CUST))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \r\n
+              )
+            )
+          )
+        )
+      )
+      (enddo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
+        (csENDDO
+          ENDDO
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            <EOF>
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
