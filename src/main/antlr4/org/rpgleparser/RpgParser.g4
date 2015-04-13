@@ -81,10 +81,10 @@ ifstatement:
 	endif)
 ;
 selectstatement:
-	(beginselect
+	beginselect
 		whenstatement+
 		other?
-	endselect)
+	endselect
 ;
 
 other:
@@ -120,11 +120,10 @@ when:
 	indicatorsOff=onOffIndicatorsFlag 
 	indicators=cs_indicators 
 	factor1=factor 
-	OP_WHEN 
-	fixedexpression=c_free
-	C_FREE_NEWLINE
+	csWHEN
 	)
 	| (op_when FREE_SEMI free_linecomments? )
+	statement*
 ;
 csWHENxx:
 CS_FIXED
@@ -147,7 +146,7 @@ endselect:
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(csEND | csENDSL)
 	)
-	| (op_endif FREE_SEMI free_linecomments? );
+	| (op_endsl FREE_SEMI free_linecomments? );
 	
 beginif:
 	(CS_FIXED
@@ -1119,9 +1118,9 @@ csUPDATE:
 	operationExtender=cs_operationExtender? 
 	cspec_fixed_standard_parts;
 csWHEN:
-	operation=OP_WHEN
-	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	OP_WHEN 
+	fixedexpression=c_free
+	C_FREE_NEWLINE;
 csWHENEQ:
 	operation=OP_WHENEQ
 	cspec_fixed_standard_parts;
@@ -1363,7 +1362,7 @@ op: op_acq
 	| op_reset2 
 	| op_return 
 	| op_rolbk 
-	| op_select 
+	//| op_select 
 	| op_setgt 
 	| op_setll 
 	| op_sorta 
