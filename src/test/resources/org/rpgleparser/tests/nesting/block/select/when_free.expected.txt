@@ -1,0 +1,365 @@
+/*===TOKENS===*/
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <
+>
+OP_SELECT                <select>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+ID                       <inTrigBuff>
+'.'                      <.>
+ID                       <triggerEvent>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <1>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <event>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <Insert>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <outUserXML>
+'+='                     <+=>
+StringLiteralStart       <'>
+StringContent            <<Event>Insert</Event>>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+ID                       <inTrigBuff>
+'.'                      <.>
+ID                       <triggerEvent>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <2>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <event>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <Delete>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <outUserXML>
+'+='                     <+=>
+StringLiteralStart       <'>
+StringContent            <<Event>Delete</Event>>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+ID                       <inTrigBuff>
+'.'                      <.>
+ID                       <triggerEvent>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <3>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <event>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <Update>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <outUserXML>
+'+='                     <+=>
+StringLiteralStart       <'>
+StringContent            <<Event>Update</Event>>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+ID                       <inTrigBuff>
+'.'                      <.>
+ID                       <triggerEvent>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <4>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <event>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <Read>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <outUserXML>
+'+='                     <+=>
+StringLiteralStart       <'>
+StringContent            <<Event>Read</Event>>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+OP_OTHER                 <other>
+FREE_SEMI                <;>
+ID                       <event>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <Unknown>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <outUserXML>
+'+='                     <+=>
+StringLiteralStart       <'>
+StringContent            <<Event>Unknown</Event>>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+OP_ENDSL                 <endsl>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_FREE                 <end-free>
+EOL                      <
+>
+EMPTY_LINE               <                                                                           >
+COMMENTS_TEXT            <                   >
+/*===TREE===*/
+(r
+  (statement (directive ' /' (free_directive (free_text free)) \n))
+  (statement
+    (block
+      (selectstatement
+        (beginselect (op_select select) ;)
+        (whenstatement
+          (when
+            (op_when
+              when
+              (indicator_expr
+                (expression
+                  (expression
+                    (identifier
+                      (multipart_identifier
+                        (free_identifier inTrigBuff)
+                        .
+                        (free_identifier triggerEvent)
+                      )
+                    )
+                  )
+                  =
+                  (expression (literal ' 1 '))
+                )
+              )
+            )
+            ;
+            (statement
+              (free
+                (baseExpression
+                  (op
+                    (op_eval
+                      (assignmentExpression
+                        (expression (identifier (free_identifier event)))
+                        =
+                        (expression (literal ' Insert '))
+                      )
+                    )
+                  )
+                )
+                ;
+              )
+            )
+            (statement
+              (free
+                (baseExpression
+                  (expression
+                    (expression (identifier (free_identifier outUserXML)))
+                    (assignmentOperator +=)
+                    (expression (literal ' <Event>Insert</Event> '))
+                  )
+                )
+                ;
+              )
+            )
+          )
+        )
+        (whenstatement
+          (when
+            (op_when
+              when
+              (indicator_expr
+                (expression
+                  (expression
+                    (identifier
+                      (multipart_identifier
+                        (free_identifier inTrigBuff)
+                        .
+                        (free_identifier triggerEvent)
+                      )
+                    )
+                  )
+                  =
+                  (expression (literal ' 2 '))
+                )
+              )
+            )
+            ;
+            (statement
+              (free
+                (baseExpression
+                  (op
+                    (op_eval
+                      (assignmentExpression
+                        (expression (identifier (free_identifier event)))
+                        =
+                        (expression (literal ' Delete '))
+                      )
+                    )
+                  )
+                )
+                ;
+              )
+            )
+            (statement
+              (free
+                (baseExpression
+                  (expression
+                    (expression (identifier (free_identifier outUserXML)))
+                    (assignmentOperator +=)
+                    (expression (literal ' <Event>Delete</Event> '))
+                  )
+                )
+                ;
+              )
+            )
+          )
+        )
+        (whenstatement
+          (when
+            (op_when
+              when
+              (indicator_expr
+                (expression
+                  (expression
+                    (identifier
+                      (multipart_identifier
+                        (free_identifier inTrigBuff)
+                        .
+                        (free_identifier triggerEvent)
+                      )
+                    )
+                  )
+                  =
+                  (expression (literal ' 3 '))
+                )
+              )
+            )
+            ;
+            (statement
+              (free
+                (baseExpression
+                  (op
+                    (op_eval
+                      (assignmentExpression
+                        (expression (identifier (free_identifier event)))
+                        =
+                        (expression (literal ' Update '))
+                      )
+                    )
+                  )
+                )
+                ;
+              )
+            )
+            (statement
+              (free
+                (baseExpression
+                  (expression
+                    (expression (identifier (free_identifier outUserXML)))
+                    (assignmentOperator +=)
+                    (expression (literal ' <Event>Update</Event> '))
+                  )
+                )
+                ;
+              )
+            )
+          )
+        )
+        (whenstatement
+          (when
+            (op_when
+              when
+              (indicator_expr
+                (expression
+                  (expression
+                    (identifier
+                      (multipart_identifier
+                        (free_identifier inTrigBuff)
+                        .
+                        (free_identifier triggerEvent)
+                      )
+                    )
+                  )
+                  =
+                  (expression (literal ' 4 '))
+                )
+              )
+            )
+            ;
+            (statement
+              (free
+                (baseExpression
+                  (op
+                    (op_eval
+                      (assignmentExpression
+                        (expression (identifier (free_identifier event)))
+                        =
+                        (expression (literal ' Read '))
+                      )
+                    )
+                  )
+                )
+                ;
+              )
+            )
+            (statement
+              (free
+                (baseExpression
+                  (expression
+                    (expression (identifier (free_identifier outUserXML)))
+                    (assignmentOperator +=)
+                    (expression (literal ' <Event>Read</Event> '))
+                  )
+                )
+                ;
+              )
+            )
+            (statement
+              (free
+                (baseExpression (expression (identifier (free_identifier (op_code other)))))
+                ;
+              )
+            )
+            (statement
+              (free
+                (baseExpression
+                  (op
+                    (op_eval
+                      (assignmentExpression
+                        (expression (identifier (free_identifier event)))
+                        =
+                        (expression (literal ' Unknown '))
+                      )
+                    )
+                  )
+                )
+                ;
+              )
+            )
+            (statement
+              (free
+                (baseExpression
+                  (expression
+                    (expression (identifier (free_identifier outUserXML)))
+                    (assignmentOperator +=)
+                    (expression (literal ' <Event>Unknown</Event> '))
+                  )
+                )
+                ;
+              )
+            )
+          )
+        )
+        (endselect (op_endsl endsl) ;)
+      )
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text end-free)) \n))
+)
+/*======*/
