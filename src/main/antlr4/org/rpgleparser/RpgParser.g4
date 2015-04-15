@@ -1504,6 +1504,266 @@ op_code: OP_ACQ
       | OP_XML_SAX;
 //--------------------------------
 
+bif: bif_abs
+      | bif_addr
+      | bif_alloc
+      | bif_bitand
+      | bif_bitnot
+      | bif_bitor
+      | bif_bitxor
+      | bif_char
+      | bif_check
+      | bif_checkr
+      | bif_date
+      | bif_days
+      | bif_dec
+      | bif_dech
+      | bif_decpos
+      | bif_diff
+      | bif_div
+      | bif_editc
+      | bif_editflt
+      | bif_editw
+      | bif_elem
+      | bif_eof
+      | bif_equal
+      | bif_error
+      | bif_fields
+      | bif_float
+      | bif_found
+      | bif_graph
+      | bif_handler
+      | bif_hours
+      | bif_int
+      | bif_inth
+      | bif_kds
+      | bif_len
+      | bif_lookup
+      | bif_lookuplt
+      | bif_lookuple
+      | bif_lookupgt
+      | bif_lookupge
+      | bif_minutes
+      | bif_months
+      | bif_mseconds
+      | bif_nullind
+      | bif_occur
+      | bif_open
+      | bif_paddr
+      | bif_parms
+      | bif_parmnum
+      | bif_realloc
+      | bif_rem
+      | bif_replace
+      | bif_scan
+      | bif_scanrpl
+      | bif_seconds
+      | bif_shtdn
+      | bif_size
+      | bif_sqrt
+      | bif_status
+      | bif_str
+      | bif_subarr
+      | bif_subdt
+      | bif_subst
+      | bif_this
+      | bif_time
+      | bif_timestamp
+      | bif_tlookup
+      | bif_tlookuplt
+      | bif_tlookuple
+      | bif_tlookupgt
+      | bif_tlookupge
+      | bif_trim
+      | bif_triml
+      | bif_trimr
+      | bif_ucs2
+      | bif_uns
+      | bif_unsh
+      | bif_xfoot
+      | bif_xlate
+      | bif_xml
+      | bif_years;
+      
+      
+optargs: (OPEN_PAREN (expression (COLON expression)*)? CLOSE_PAREN)?;
+
+// TODO 
+bif_charformat: symbolicConstants; //SPLAT_JOBRUN | SPLAT_HMS | SPLAT_ISO | SPLAT_EUR | SPLAT_DMY ..
+bif_dateformat: symbolicConstants;
+bif_timeformat: symbolicConstants;
+bif_diffformat: symbolicConstants;
+bif_editccurrency : SPLAT_ASTFILL | SPLAT_CURSYM | literal;
+bif_lookupargs: OPEN_PAREN expression (COLON expression)? (COLON expression)? (COLON expression)? CLOSE_PAREN;
+bif_subdtargs: symbolicConstants;
+bif_timestampargs : SPLAT_ISO | SPLAT_ISO0 ;
+bif_tlookupargs: OPEN_PAREN expression COLON expression (COLON expression)? CLOSE_PAREN;
+
+
+bif_abs: BIF_ABS OPEN_PAREN expression CLOSE_PAREN;
+bif_addr: BIF_ADDR OPEN_PAREN expression (COLON SPLAT_DATA)? CLOSE_PAREN;
+bif_alloc: BIF_ALLOC OPEN_PAREN expression CLOSE_PAREN;
+bif_bitand: BIF_BITAND OPEN_PAREN expression COLON expression (COLON expression)* CLOSE_PAREN;
+bif_bitnot: BIF_BITNOT OPEN_PAREN expression CLOSE_PAREN;
+bif_bitor: BIF_BITOR OPEN_PAREN expression COLON expression (COLON expression)* CLOSE_PAREN;
+bif_bitxor: BIF_BITXOR OPEN_PAREN expression COLON expression  CLOSE_PAREN;
+bif_char: BIF_CHAR OPEN_PAREN expression (COLON bif_charformat)? CLOSE_PAREN;
+bif_check: BIF_CHECK OPEN_PAREN expression COLON expression (COLON expression)? CLOSE_PAREN;
+bif_checkr: BIF_CHECKR OPEN_PAREN expression COLON expression (COLON expression)? CLOSE_PAREN;
+bif_date: BIF_DATE OPEN_PAREN expression (COLON bif_dateformat)? CLOSE_PAREN;
+bif_days: BIF_DAYS OPEN_PAREN expression CLOSE_PAREN;
+bif_dec: BIF_DEC OPEN_PAREN expression (COLON expression)? (COLON expression)? CLOSE_PAREN;
+bif_dech: BIF_DECH OPEN_PAREN expression COLON expression COLON expression CLOSE_PAREN;
+bif_decpos: BIF_DECPOS OPEN_PAREN expression CLOSE_PAREN;
+bif_diff: BIF_DIFF OPEN_PAREN expression COLON expression COLON bif_diffformat CLOSE_PAREN;
+bif_div: BIF_DIV OPEN_PAREN expression COLON expression CLOSE_PAREN;
+bif_editc: BIF_EDITC OPEN_PAREN expression COLON expression (COLON bif_editccurrency)? CLOSE_PAREN;
+bif_editflt: BIF_EDITFLT OPEN_PAREN expression CLOSE_PAREN;
+bif_editw: BIF_EDITW OPEN_PAREN expression COLON expression CLOSE_PAREN;
+bif_elem: BIF_ELEM OPEN_PAREN expression CLOSE_PAREN;
+bif_eof: BIF_EOF (OPEN_PAREN identifier CLOSE_PAREN)?;
+bif_equal: BIF_EQUAL (OPEN_PAREN identifier CLOSE_PAREN)?;
+bif_error: BIF_ERROR (OPEN_PAREN CLOSE_PAREN)?;
+bif_fields: BIF_FIELDS OPEN_PAREN identifier (COLON identifier)* CLOSE_PAREN;
+bif_float: BIF_FLOAT OPEN_PAREN expression CLOSE_PAREN;
+bif_found: BIF_FOUND (OPEN_PAREN identifier CLOSE_PAREN)?;
+bif_graph: BIF_GRAPH OPEN_PAREN expression (COLON identifier)? CLOSE_PAREN;
+bif_handler: BIF_HANDLER OPEN_PAREN expression COLON expression CLOSE_PAREN;
+bif_hours: BIF_HOURS OPEN_PAREN expression CLOSE_PAREN;
+bif_int: BIF_INT OPEN_PAREN expression CLOSE_PAREN;
+bif_inth: BIF_INTH OPEN_PAREN expression CLOSE_PAREN;
+bif_kds: BIF_KDS OPEN_PAREN expression (COLON expression)? CLOSE_PAREN;
+bif_len: BIF_LEN OPEN_PAREN expression (COLON SPLAT_MAX)? CLOSE_PAREN;
+bif_lookup: BIF_LOOKUP bif_lookupargs;
+bif_lookuplt: BIF_LOOKUPLT bif_lookupargs;
+bif_lookuple: BIF_LOOKUPLE bif_lookupargs;
+bif_lookupgt: BIF_LOOKUPGT bif_lookupargs;
+bif_lookupge: BIF_LOOKUPGE bif_lookupargs;
+bif_minutes: BIF_MINUTES OPEN_PAREN expression CLOSE_PAREN;
+bif_months: BIF_MONTHS OPEN_PAREN expression CLOSE_PAREN;
+bif_mseconds: BIF_MSECONDS OPEN_PAREN expression CLOSE_PAREN;
+bif_nullind: BIF_NULLIND OPEN_PAREN identifier CLOSE_PAREN;
+bif_occur: BIF_OCCUR OPEN_PAREN identifier CLOSE_PAREN;
+bif_open: BIF_OPEN OPEN_PAREN identifier CLOSE_PAREN;
+bif_paddr: BIF_PADDR OPEN_PAREN identifier CLOSE_PAREN;
+bif_parms: BIF_PARMS;
+bif_parmnum: BIF_PARMNUM OPEN_PAREN identifier CLOSE_PAREN;
+bif_realloc: BIF_REALLOC OPEN_PAREN identifier COLON expression CLOSE_PAREN;
+bif_rem: BIF_REM OPEN_PAREN expression COLON expression CLOSE_PAREN;
+bif_replace: BIF_REPLACE OPEN_PAREN expression COLON expression (COLON expression (COLON expression)? )? CLOSE_PAREN;
+bif_scan: BIF_SCAN OPEN_PAREN expression COLON expression (COLON expression )? CLOSE_PAREN;
+bif_scanrpl: BIF_SCANRPL OPEN_PAREN expression COLON expression COLON expression (COLON expression (COLON expression)? )? CLOSE_PAREN;
+bif_seconds: BIF_SECONDS OPEN_PAREN expression CLOSE_PAREN;
+bif_shtdn: BIF_SHTDN;
+bif_size: BIF_SIZE OPEN_PAREN expression (COLON SPLAT_ALL)? CLOSE_PAREN;
+bif_sqrt: BIF_SQRT OPEN_PAREN expression CLOSE_PAREN;
+bif_status: BIF_STATUS (OPEN_PAREN identifier CLOSE_PAREN)?;
+bif_str: BIF_STR OPEN_PAREN expression (COLON expression)? CLOSE_PAREN;
+bif_subarr: BIF_SUBARR OPEN_PAREN expression COLON expression (COLON expression)? CLOSE_PAREN;
+bif_subdt: BIF_SUBDT OPEN_PAREN expression COLON bif_subdtargs CLOSE_PAREN;
+bif_subst: BIF_SUBST OPEN_PAREN expression COLON expression (COLON expression )? CLOSE_PAREN;
+bif_this: BIF_THIS;
+bif_time: BIF_TIME (OPEN_PAREN expression (COLON bif_timeformat)? CLOSE_PAREN)?;
+bif_timestamp: BIF_TIMESTAMP (OPEN_PAREN expression (COLON bif_timestampargs)? CLOSE_PAREN)?;
+bif_tlookup: BIF_TLOOKUP bif_tlookupargs;
+bif_tlookuplt: BIF_TLOOKUPLT bif_tlookupargs;
+bif_tlookuple: BIF_TLOOKUPLE bif_tlookupargs;
+bif_tlookupgt: BIF_TLOOKUPGT bif_tlookupargs;
+bif_tlookupge: BIF_TLOOKUPGE bif_tlookupargs;
+bif_trim: BIF_TRIM OPEN_PAREN expression (COLON expression)? CLOSE_PAREN;
+bif_triml: BIF_TRIML OPEN_PAREN expression (COLON expression)? CLOSE_PAREN;
+bif_trimr: BIF_TRIMR OPEN_PAREN expression (COLON expression)? CLOSE_PAREN;
+bif_ucs2: BIF_UCS2 OPEN_PAREN expression CLOSE_PAREN;
+bif_uns: BIF_UNS OPEN_PAREN expression CLOSE_PAREN;
+bif_unsh: BIF_UNSH OPEN_PAREN expression CLOSE_PAREN;
+bif_xfoot: BIF_XFOOT OPEN_PAREN expression CLOSE_PAREN;
+bif_xlate: BIF_XLATE OPEN_PAREN expression COLON expression COLON expression (COLON expression)? CLOSE_PAREN;
+bif_xml: BIF_XML OPEN_PAREN expression (COLON expression)? CLOSE_PAREN;
+bif_years: BIF_YEARS OPEN_PAREN expression CLOSE_PAREN;
+
+bif_code: BIF_ABS
+	  | BIF_ADDR
+	  | BIF_ALLOC
+	  | BIF_BITAND
+	  | BIF_BITNOT
+	  | BIF_BITOR
+	  | BIF_BITXOR
+	  | BIF_CHAR
+	  | BIF_CHECK
+	  | BIF_CHECKR
+	  | BIF_DATE
+	  | BIF_DAYS
+	  | BIF_DEC
+	  | BIF_DECH
+	  | BIF_DECPOS
+	  | BIF_DIFF
+	  | BIF_DIV
+	  | BIF_EDITC
+	  | BIF_EDITFLT
+	  | BIF_EDITW
+	  | BIF_ELEM
+	  | BIF_EOF
+	  | BIF_EQUAL
+	  | BIF_ERROR
+	  | BIF_FIELDS
+	  | BIF_FLOAT
+	  | BIF_FOUND
+	  | BIF_GRAPH
+	  | BIF_HANDLER
+	  | BIF_HOURS
+	  | BIF_INT
+	  | BIF_INTH
+	  | BIF_KDS
+	  | BIF_LEN
+	  | BIF_LOOKUP
+	  | BIF_LOOKUPLT
+	  | BIF_LOOKUPLE
+	  | BIF_LOOKUPGT
+	  | BIF_LOOKUPGE
+	  | BIF_MINUTES
+	  | BIF_MONTHS
+	  | BIF_MSECONDS
+	  | BIF_NULLIND
+	  | BIF_OCCUR
+	  | BIF_OPEN
+	  | BIF_PADDR
+	  | BIF_PARMS
+	  | BIF_PARMNUM
+	  | BIF_REALLOC
+	  | BIF_REM
+	  | BIF_REPLACE
+	  | BIF_SCAN
+	  | BIF_SCANRPL
+	  | BIF_SECONDS
+	  | BIF_SHTDN
+	  | BIF_SIZE
+	  | BIF_SQRT
+	  | BIF_STATUS
+	  | BIF_STR
+	  | BIF_SUBARR
+	  | BIF_SUBDT
+	  | BIF_SUBST
+	  | BIF_THIS
+	  | BIF_TIME
+	  | BIF_TIMESTAMP
+	  | BIF_TLOOKUP
+	  | BIF_TLOOKUPLT
+	  | BIF_TLOOKUPLE
+	  | BIF_TLOOKUPGT
+	  | BIF_TLOOKUPGE
+	  | BIF_TRIM
+	  | BIF_TRIML
+	  | BIF_TRIMR
+	  | BIF_UCS2
+	  | BIF_UNS
+	  | BIF_UNSH
+	  | BIF_XFOOT
+	  | BIF_XLATE
+	  | BIF_XML
+	  | BIF_YEARS;
+
+
+
 free: ((baseExpression FREE_SEMI free_linecomments? ) | exec_sql); // (NEWLINE |COMMENTS_EOL);
 c_free: (((baseExpression) free_linecomments? ) | exec_sql);
 
@@ -1521,6 +1781,7 @@ expression:
 	| number 
 	| literal  
 	| function 
+	| bif
 	| NOT expression
 	| OPEN_PAREN expression CLOSE_PAREN
 	| expression (assignmentOperator | comparisonOperator) expression
@@ -1579,6 +1840,7 @@ SPLAT_ALL
    | SPLAT_YMD
    | SPLAT_JUL
    | SPLAT_ISO
+   | SPLAT_ISO0
    | SPLAT_USA
    | SPLAT_EUR
    | SPLAT_JIS
@@ -1628,6 +1890,10 @@ SPLAT_ALL
    | SPLAT_HMS
    | SPLAT_INLR
    | SPLAT_INOF
+   | SPLAT_DATA
+   | SPLAT_ASTFILL
+   | SPLAT_CURSYM
+   | SPLAT_MAX
    //Durations
    | SPLAT_D
    | SPLAT_DAYS

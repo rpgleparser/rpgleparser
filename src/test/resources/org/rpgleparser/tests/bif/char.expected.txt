@@ -1,0 +1,448 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <val1>
+'='                      <=>
+BIF_CHAR                 <%CHAR>
+'('                      <(>
+ID                       <FLD1>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <val2>
+'='                      <=>
+BIF_CHAR                 <%CHAR>
+'('                      <(>
+HexLiteralStart          <x'>
+StringContent            <80>
+StringLiteralEnd         <'>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <val3>
+'='                      <=>
+BIF_CHAR                 <%char>
+'('                      <(>
+ID                       <fld>
+COLON                    <:>
+SPLAT_JOBRUN             <*jobrun>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <val4>
+'='                      <=>
+BIF_CHAR                 <%char>
+'('                      <(>
+BIF_STR                  <%str>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+COLON                    <:>
+SPLAT_HMS                <*HMS>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <val5>
+'='                      <=>
+BIF_CHAR                 <%char>
+'('                      <(>
+ID                       <datefld>
+COLON                    <:>
+SPLAT_HMS                <*HMS>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <
+>
+ID                       <val1>
+'='                      <=>
+BIF_CHAR                 <%char>
+'('                      <(>
+ID                       <HEXVAL>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 1                                                        >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <val2>
+'='                      <=>
+BIF_CHAR                 <%CHAR>
+'('                      <(>
+HexLiteralStart          <x'>
+StringContent            <80>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 2                                                         >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <val3>
+'='                      <=>
+BIF_CHAR                 <%Char>
+'('                      <(>
+ID                       <fld>
+COLON                    <:>
+SPLAT_JOBRUN             <*jobrun>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 3                                                   >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <val4>
+'='                      <=>
+BIF_CHAR                 <%char>
+'('                      <(>
+BIF_STR                  <%str>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+COLON                    <:>
+SPLAT_HMS                <*HMS>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 4                                                >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <val5>
+'='                      <=>
+BIF_CHAR                 <%char>
+'('                      <(>
+ID                       <datefld>
+COLON                    <:>
+SPLAT_HMS                <*hms>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 5                                                  >
+COMMENTS_EOL_HIDDEN      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <end-free>
+EOL                      <
+>
+EMPTY_LINE               <                                                                           >
+COMMENTS_TEXT            <                   >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier val1)))
+                  =
+                  (expression
+                    (bif (bif_char %CHAR ( (expression (identifier (free_identifier FLD1))) )))
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier val2)))
+                  =
+                  (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier val3)))
+                  =
+                  (expression
+                    (bif
+                      (bif_char
+                        %char
+                        (
+                        (expression (identifier (free_identifier fld)))
+                        :
+                        (bif_charformat (symbolicConstants *jobrun))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier val4)))
+                  =
+                  (expression
+                    (bif
+                      (bif_char
+                        %char
+                        (
+                        (expression
+                          (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                        )
+                        :
+                        (bif_charformat (symbolicConstants *HMS))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier val5)))
+                  =
+                  (expression
+                    (bif
+                      (bif_char
+                        %char
+                        (
+                        (expression (identifier (free_identifier datefld)))
+                        :
+                        (bif_charformat (symbolicConstants *HMS))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text free)) \r\n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier val1)))
+              =
+              (expression
+                (bif (bif_char %char ( (expression (identifier (free_identifier HEXVAL))) )))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier val2)))
+              =
+              (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier val3)))
+              =
+              (expression
+                (bif
+                  (bif_char
+                    %Char
+                    (
+                    (expression (identifier (free_identifier fld)))
+                    :
+                    (bif_charformat (symbolicConstants *jobrun))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier val4)))
+              =
+              (expression
+                (bif
+                  (bif_char
+                    %char
+                    (
+                    (expression
+                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                    )
+                    :
+                    (bif_charformat (symbolicConstants *HMS))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier val5)))
+              =
+              (expression
+                (bif
+                  (bif_char
+                    %char
+                    (
+                    (expression (identifier (free_identifier datefld)))
+                    :
+                    (bif_charformat (symbolicConstants *hms))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text end-free)) \r\n))
+)
+/*======*/

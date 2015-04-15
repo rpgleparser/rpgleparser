@@ -5,7 +5,7 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_IF                    <IF>
-ID                       <%ERROR>
+BIF_ERROR                <%ERROR>
 '('                      <(>
 ')'                      <)>
 C_FREE_NEWLINE           <
@@ -16,7 +16,7 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_IF                    <IF>
-ID                       <%STATUS>
+BIF_STATUS               <%STATUS>
 '('                      <(>
 ID                       <CUST>
 ')'                      <)>
@@ -45,7 +45,7 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_ELSEIF                <ELSEIF>
-ID                       <%STATUS>
+BIF_STATUS               <%STATUS>
 '('                      <(>
 ID                       <CUST>
 ')'                      <)>
@@ -142,9 +142,7 @@ BlankIndicator           <  >
           (cs_indicators '  ')
           (factor '              ')
           IF
-          (c_free
-            (baseExpression (op (op_callp (identifier (free_identifier %ERROR)) ( ))))
-          )
+          (c_free (baseExpression (expression (bif (bif_error %ERROR ( ))))))
           \r\n
         )
         (statement
@@ -162,12 +160,7 @@ BlankIndicator           <  >
                     (op
                       (op_eval
                         (assignmentExpression
-                          (expression
-                            (function
-                              (functionName (free_identifier %STATUS))
-                              (args ( (expression (identifier (free_identifier CUST))) ))
-                            )
-                          )
+                          (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
                           =
                           (expression (number 1211))
                         )
@@ -215,12 +208,7 @@ BlankIndicator           <  >
                         (op
                           (op_eval
                             (assignmentExpression
-                              (expression
-                                (function
-                                  (functionName (free_identifier %STATUS))
-                                  (args ( (expression (identifier (free_identifier CUST))) ))
-                                )
-                              )
+                              (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
                               =
                               (expression (number 1221))
                             )

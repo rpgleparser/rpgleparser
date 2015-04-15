@@ -1,0 +1,250 @@
+/*===TOKENS===*/
+DS_FIXED                 <D>
+NAME                     <ObjPtr>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <*>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <Inz(%addr(objName))                                     >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <Eval>
+ID                       <ReturnDir>
+'='                      <=>
+ID                       <opendir>
+'('                      <(>
+BIF_ADDR                 <%addr>
+'('                      <(>
+ID                       <FullName>
+')'                      <)>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <
+>
+ID                       <P>
+'='                      <=>
+BIF_ADDR                 <%addr>
+'('                      <(>
+ID                       <subf>
+')'                      <)>
+FREE_SEMI                <;>
+OP_IF                    <if>
+BIF_ADDR                 <%addr>
+'('                      <(>
+ID                       <chatfld>
+')'                      <)>
+'='                      <=>
+BIF_ADDR                 <%ADDR>
+'('                      <(>
+ID                       <SUBF>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <P>
+'='                      <=>
+BIF_ADDR                 <%ADDR>
+'('                      <(>
+ID                       <ARRAY>
+'('                      <(>
+ID                       <X>
+'+'                      <+>
+NUMBER                   <10>
+')'                      <)>
+')'                      <)>
+FREE_SEMI                <;>
+OP_ENDIF                 <endif>
+FREE_SEMI                <;>
+ID                       <prefix_size>
+'='                      <=>
+BIF_ADDR                 <%addr>
+'('                      <(>
+ID                       <fld>
+COLON                    <:>
+SPLAT_DATA               <*data>
+')'                      <)>
+'-'                      <->
+BIF_ADDR                 <%addr>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_FREE                 <end-free>
+EOL                      <
+>
+EMPTY_LINE               <                                                                           >
+COMMENTS_TEXT            <                   >
+/*===TREE===*/
+(r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name ObjPtr)
+      ' '
+      ' '
+      'S '
+      '       '
+      '       '
+      *
+      '  '
+      ' '
+      'Inz(%addr(objName))                                     '
+      \r\n
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 Eval)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier ReturnDir)))
+                  =
+                  (expression
+                    (function
+                      (functionName (free_identifier opendir))
+                      (args
+                        (
+                        (expression
+                          (bif (bif_addr %addr ( (expression (identifier (free_identifier FullName))) )))
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text free)) \r\n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier P)))
+              =
+              (expression
+                (bif (bif_addr %addr ( (expression (identifier (free_identifier subf))) )))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          (op_if
+            if
+            (expression
+              (expression
+                (bif (bif_addr %addr ( (expression (identifier (free_identifier chatfld))) )))
+              )
+              =
+              (expression
+                (bif (bif_addr %ADDR ( (expression (identifier (free_identifier SUBF))) )))
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (free
+            (baseExpression
+              (op
+                (op_eval
+                  (assignmentExpression
+                    (expression (identifier (free_identifier P)))
+                    =
+                    (expression
+                      (bif
+                        (bif_addr
+                          %ADDR
+                          (
+                          (expression
+                            (function
+                              (functionName (free_identifier ARRAY))
+                              (args
+                                (
+                                (expression
+                                  (expression (identifier (free_identifier X)))
+                                  (arithmeticalOperator +)
+                                  (expression (number 10))
+                                )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        (endif (op_endif endif) ;)
+      )
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier prefix_size)))
+              =
+              (expression
+                (expression
+                  (bif
+                    (bif_addr %addr ( (expression (identifier (free_identifier fld))) : *data ))
+                  )
+                )
+                (arithmeticalOperator -)
+                (expression
+                  (bif (bif_addr %addr ( (expression (identifier (free_identifier fld))) )))
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text end-free)) \r\n))
+)
+/*======*/

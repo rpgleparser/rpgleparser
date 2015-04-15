@@ -1,0 +1,384 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <FLDB>
+'='                      <=>
+BIF_ABS                  <%ABS>
+'('                      <(>
+ID                       <f8>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <FLDC>
+'='                      <=>
+BIF_ABS                  <%ABS>
+'('                      <(>
+ID                       <f8-10>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <FLDD>
+'='                      <=>
+BIF_ABS                  <%abs>
+'('                      <(>
+ID                       <f9>
+'+'                      <+>
+NUMBER                   <10>
+'-'                      <->
+NUMBER                   <4>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <FLDe>
+'='                      <=>
+BIF_ABS                  <%Abs>
+'('                      <(>
+ID                       <f9>
+'+'                      <+>
+NUMBER                   <10>
+'-'                      <->
+NUMBER                   <4>
+'+'                      <+>
+NUMBER                   <25>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <
+>
+ID                       <fldb>
+'='                      <=>
+BIF_ABS                  <%abs>
+'('                      <(>
+ID                       <f8>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 1                                                             >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <fldc>
+'='                      <=>
+BIF_ABS                  <%abs>
+'('                      <(>
+ID                       <f9>
+'+'                      <+>
+ID                       <f0>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 2                                                          >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <FLDD>
+'='                      <=>
+BIF_ABS                  <%ABS>
+'('                      <(>
+ID                       <F9-10>
+'+'                      <+>
+NUMBER                   <4>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 3                                                        >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <FLDe>
+'='                      <=>
+BIF_ABS                  <%Abs>
+'('                      <(>
+ID                       <F14>
+MULT_NOSPACE             <*>
+NUMBER                   <25>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 4                                                         >
+COMMENTS_EOL_HIDDEN      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <end-free>
+EOL                      <
+>
+EMPTY_LINE               <                                                                           >
+COMMENTS_TEXT            <                   >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier FLDB)))
+                  =
+                  (expression
+                    (bif (bif_abs %ABS ( (expression (identifier (free_identifier f8))) )))
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier FLDC)))
+                  =
+                  (expression
+                    (bif (bif_abs %ABS ( (expression (identifier (free_identifier f8-10))) )))
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier FLDD)))
+                  =
+                  (expression
+                    (bif
+                      (bif_abs
+                        %abs
+                        (
+                        (expression
+                          (expression
+                            (expression (identifier (free_identifier f9)))
+                            (arithmeticalOperator +)
+                            (expression (number 10))
+                          )
+                          (arithmeticalOperator -)
+                          (expression (number 4))
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier FLDe)))
+                  =
+                  (expression
+                    (bif
+                      (bif_abs
+                        %Abs
+                        (
+                        (expression
+                          (expression
+                            (expression
+                              (expression (identifier (free_identifier f9)))
+                              (arithmeticalOperator +)
+                              (expression (number 10))
+                            )
+                            (arithmeticalOperator -)
+                            (expression (number 4))
+                          )
+                          (arithmeticalOperator +)
+                          (expression (number 25))
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text free)) \r\n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier fldb)))
+              =
+              (expression
+                (bif (bif_abs %abs ( (expression (identifier (free_identifier f8))) )))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier fldc)))
+              =
+              (expression
+                (bif
+                  (bif_abs
+                    %abs
+                    (
+                    (expression
+                      (expression (identifier (free_identifier f9)))
+                      (arithmeticalOperator +)
+                      (expression (identifier (free_identifier f0)))
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier FLDD)))
+              =
+              (expression
+                (bif
+                  (bif_abs
+                    %ABS
+                    (
+                    (expression
+                      (expression (identifier (free_identifier F9-10)))
+                      (arithmeticalOperator +)
+                      (expression (number 4))
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier FLDe)))
+              =
+              (expression
+                (bif
+                  (bif_abs
+                    %Abs
+                    (
+                    (expression
+                      (expression (identifier (free_identifier F14)))
+                      (arithmeticalOperator *)
+                      (expression (number 25))
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text end-free)) \r\n))
+)
+/*======*/

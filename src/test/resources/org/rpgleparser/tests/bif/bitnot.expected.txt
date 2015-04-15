@@ -1,0 +1,360 @@
+/*===TOKENS===*/
+DS_FIXED                 <D>
+NAME                     <VALFLD>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <      4>
+DATA_TYPE                <a>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <Inz(%bitnot(constfld))                                  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <val1>
+'='                      <=>
+BIF_BITNOT               <%BITNOT>
+'('                      <(>
+ID                       <HEXVAL>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <val2>
+'='                      <=>
+BIF_BITNOT               <%BITNOT>
+'('                      <(>
+HexLiteralStart          <x'>
+StringContent            <800F0F>
+StringLiteralEnd         <'>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <val3>
+'='                      <=>
+BIF_BITNOT               <%bitnot>
+'('                      <(>
+HexLiteralStart          <x'>
+StringContent            <10>
+StringLiteralEnd         <'>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <val4>
+'='                      <=>
+BIF_BITNOT               <%BItnot>
+'('                      <(>
+BIF_STR                  <%str>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <
+>
+ID                       <val1>
+'='                      <=>
+BIF_BITNOT               <%bitnot>
+'('                      <(>
+ID                       <HEXVAL>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 1                                                      >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <val2>
+'='                      <=>
+BIF_BITNOT               <%BITNOT>
+'('                      <(>
+HexLiteralStart          <x'>
+StringContent            <80>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 2                                                       >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <val3>
+'='                      <=>
+BIF_BITNOT               <%Bitnot>
+'('                      <(>
+ID                       <hexval>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 3                                                      >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <val4>
+'='                      <=>
+BIF_BITNOT               <%Bitnot>
+'('                      <(>
+BIF_STR                  <%str>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 4                                                   >
+COMMENTS_EOL_HIDDEN      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <end-free>
+EOL                      <
+>
+EMPTY_LINE               <                                                                           >
+COMMENTS_TEXT            <                   >
+/*===TREE===*/
+(r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name VALFLD)
+      ' '
+      ' '
+      'S '
+      '       '
+      '      4'
+      a
+      '  '
+      ' '
+      'Inz(%bitnot(constfld))                                  '
+      \r\n
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier val1)))
+                  =
+                  (expression
+                    (bif
+                      (bif_bitnot %BITNOT ( (expression (identifier (free_identifier HEXVAL))) ))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier val2)))
+                  =
+                  (expression (bif (bif_bitnot %BITNOT ( (expression (literal x' 800F0F ')) ))))
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier val3)))
+                  =
+                  (expression (bif (bif_bitnot %bitnot ( (expression (literal x' 10 ')) ))))
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier val4)))
+                  =
+                  (expression
+                    (bif
+                      (bif_bitnot
+                        %BItnot
+                        (
+                        (expression
+                          (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text free)) \r\n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier val1)))
+              =
+              (expression
+                (bif
+                  (bif_bitnot %bitnot ( (expression (identifier (free_identifier HEXVAL))) ))
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier val2)))
+              =
+              (expression (bif (bif_bitnot %BITNOT ( (expression (literal x' 80 ')) ))))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier val3)))
+              =
+              (expression
+                (bif
+                  (bif_bitnot %Bitnot ( (expression (identifier (free_identifier hexval))) ))
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier val4)))
+              =
+              (expression
+                (bif
+                  (bif_bitnot
+                    %Bitnot
+                    (
+                    (expression
+                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text end-free)) \r\n))
+)
+/*======*/

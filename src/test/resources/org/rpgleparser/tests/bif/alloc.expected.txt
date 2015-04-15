@@ -1,0 +1,393 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <ptr>
+'='                      <=>
+BIF_ALLOC                <%ALLOC>
+'('                      <(>
+NUMBER                   <200>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <ptr2>
+'='                      <=>
+BIF_ALLOC                <%Alloc>
+'('                      <(>
+NUMBER                   <200>
+'+'                      <+>
+NUMBER                   <300>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <ptr3>
+'='                      <=>
+BIF_ALLOC                <%alloc>
+'('                      <(>
+BIF_LEN                  <%len>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <ptr4>
+'='                      <=>
+BIF_ALLOC                <%alloc>
+'('                      <(>
+BIF_INT                  <%int>
+'('                      <(>
+NUMBER                   <101.2>
+')'                      <)>
+'+'                      <+>
+NUMBER                   <10>
+'-'                      <->
+NUMBER                   <4>
+'+'                      <+>
+NUMBER                   <25>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <
+>
+ID                       <ptr1>
+'='                      <=>
+BIF_ALLOC                <%alloc>
+'('                      <(>
+NUMBER                   <200>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 1                                                          >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <ptr2>
+'='                      <=>
+BIF_ALLOC                <%ALLOC>
+'('                      <(>
+NUMBER                   <200>
+'+'                      <+>
+NUMBER                   <300>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 2                                                      >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <ptr3>
+'='                      <=>
+BIF_ALLOC                <%Alloc>
+'('                      <(>
+BIF_LEN                  <%len>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 3                                                    >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <ptr4>
+'='                      <=>
+BIF_ALLOC                <%Alloc>
+'('                      <(>
+BIF_LEN                  <%len>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+MULT_NOSPACE             <*>
+NUMBER                   <25>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 4                                                 >
+COMMENTS_EOL_HIDDEN      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <end-free>
+EOL                      <
+>
+EMPTY_LINE               <                                                                           >
+COMMENTS_TEXT            <                   >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier ptr)))
+                  =
+                  (expression (bif (bif_alloc %ALLOC ( (expression (number 200)) ))))
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier ptr2)))
+                  =
+                  (expression
+                    (bif
+                      (bif_alloc
+                        %Alloc
+                        (
+                        (expression
+                          (expression (number 200))
+                          (arithmeticalOperator +)
+                          (expression (number 300))
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier ptr3)))
+                  =
+                  (expression
+                    (bif
+                      (bif_alloc
+                        %alloc
+                        (
+                        (expression
+                          (bif (bif_len %len ( (expression (identifier (free_identifier fld))) )))
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier ptr4)))
+                  =
+                  (expression
+                    (bif
+                      (bif_alloc
+                        %alloc
+                        (
+                        (expression
+                          (expression
+                            (expression
+                              (expression (bif (bif_int %int ( (expression (number 101.2)) ))))
+                              (arithmeticalOperator +)
+                              (expression (number 10))
+                            )
+                            (arithmeticalOperator -)
+                            (expression (number 4))
+                          )
+                          (arithmeticalOperator +)
+                          (expression (number 25))
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text free)) \r\n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier ptr1)))
+              =
+              (expression (bif (bif_alloc %alloc ( (expression (number 200)) ))))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier ptr2)))
+              =
+              (expression
+                (bif
+                  (bif_alloc
+                    %ALLOC
+                    (
+                    (expression
+                      (expression (number 200))
+                      (arithmeticalOperator +)
+                      (expression (number 300))
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier ptr3)))
+              =
+              (expression
+                (bif
+                  (bif_alloc
+                    %Alloc
+                    (
+                    (expression
+                      (bif (bif_len %len ( (expression (identifier (free_identifier fld))) )))
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier ptr4)))
+              =
+              (expression
+                (bif
+                  (bif_alloc
+                    %Alloc
+                    (
+                    (expression
+                      (expression
+                        (bif (bif_len %len ( (expression (identifier (free_identifier fld))) )))
+                      )
+                      (arithmeticalOperator *)
+                      (expression (number 25))
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text end-free)) \r\n))
+)
+/*======*/

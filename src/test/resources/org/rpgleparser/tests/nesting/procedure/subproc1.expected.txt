@@ -31,7 +31,7 @@ ID                       <ValidateDate>
 FREE_SEMI                <;>
 OP_IF                    <if>
 '('                      <(>
-ID                       <%error>
+BIF_ERROR                <%error>
 ')'                      <)>
 FREE_SEMI                <;>
 ID                       <wkError>
@@ -106,7 +106,7 @@ FREE_SEMI                <;>
             (op_callp
               (identifier (free_identifier (op_code if)))
               (
-              (expression (identifier (free_identifier %error)))
+              (expression (bif (bif_error %error)))
               )
             )
           )

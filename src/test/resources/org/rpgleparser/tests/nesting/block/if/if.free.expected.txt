@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 OP_IF                    <IF>
-ID                       <%ERROR>
+BIF_ERROR                <%ERROR>
 '('                      <(>
 ')'                      <)>
 FREE_SEMI                <;>
@@ -10,7 +10,7 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_IF                    <IF>
-ID                       <%STATUS>
+BIF_STATUS               <%STATUS>
 '('                      <(>
 ID                       <CUST>
 ')'                      <)>
@@ -34,7 +34,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 OP_ELSEIF                <ELSEIF>
-ID                       <%STATUS>
+BIF_STATUS               <%STATUS>
 '('                      <(>
 ID                       <CUST>
 ')'                      <)>
@@ -110,13 +110,7 @@ BlankIndicator           <  >
   (statement
     (block
       (ifstatement
-        (beginif
-          (op_if
-            IF
-            (expression (function (functionName (free_identifier %ERROR)) (args ( ))))
-          )
-          ;
-        )
+        (beginif (op_if IF (expression (bif (bif_error %ERROR ( ))))) ;)
         (statement
           (block
             (ifstatement
@@ -132,12 +126,7 @@ BlankIndicator           <  >
                     (op
                       (op_eval
                         (assignmentExpression
-                          (expression
-                            (function
-                              (functionName (free_identifier %STATUS))
-                              (args ( (expression (identifier (free_identifier CUST))) ))
-                            )
-                          )
+                          (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
                           =
                           (expression (number 1211))
                         )
@@ -179,12 +168,7 @@ BlankIndicator           <  >
                         ELSEIF
                         (indicator_expr
                           (expression
-                            (expression
-                              (function
-                                (functionName (free_identifier %STATUS))
-                                (args ( (expression (identifier (free_identifier CUST))) ))
-                              )
-                            )
+                            (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
                             =
                             (expression (number 1221))
                           )

@@ -67,10 +67,10 @@ public class TestFREE {
     @Test
     public void testBasicFunctionParms() {
         String inputString =
-                "             cmdlength = %len(123:456);     \r\n";
+                "             cmdlength = %len(123:*MAX);     \r\n";
         expectTokensForSourceLines(inputString,
                 "cmdlength", "=", "%len", "(", "123", ":",
-                "456", ")", ";");
+                "*MAX", ")", ";");
     }
 
     @Test

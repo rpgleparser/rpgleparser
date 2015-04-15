@@ -56,7 +56,7 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_WHEN                  <WHEN>
-ID                       <%SUBST>
+BIF_SUBST                <%SUBST>
 '('                      <(>
 ID                       <IDHAND>
 COLON                    <:>
@@ -71,7 +71,7 @@ ID                       <IDSALE>
 '>='                     <>=>
 ID                       <@LOW_MI_DSM>
 AND                      <AND>
-ID                       <%SUBST>
+BIF_SUBST                <%SUBST>
 '('                      <(>
 ID                       <IDSALE>
 COLON                    <:>
@@ -80,7 +80,7 @@ COLON                    <:>
 NUMBER                   <1>
 ')'                      <)>
 '<>'                     <<>>
-ID                       <%SUBST>
+BIF_SUBST                <%SUBST>
 '('                      <(>
 ID                       <@TMREP1>
 COLON                    <:>
@@ -109,7 +109,7 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_WHEN                  <WHEN>
-ID                       <%SUBST>
+BIF_SUBST                <%SUBST>
 '('                      <(>
 ID                       <IDHAND>
 COLON                    <:>
@@ -124,7 +124,7 @@ ID                       <IDSALE>
 '>='                     <>=>
 ID                       <@LOW_MI_DSM>
 AND                      <AND>
-ID                       <%SUBST>
+BIF_SUBST                <%SUBST>
 '('                      <(>
 ID                       <IDSALE>
 COLON                    <:>
@@ -133,7 +133,7 @@ COLON                    <:>
 NUMBER                   <1>
 ')'                      <)>
 '<>'                     <<>>
-ID                       <%SUBST>
+BIF_SUBST                <%SUBST>
 '('                      <(>
 ID                       <@TMREP1>
 COLON                    <:>
@@ -162,7 +162,7 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_WHEN                  <WHEN>
-ID                       <%SUBST>
+BIF_SUBST                <%SUBST>
 '('                      <(>
 ID                       <IDHAND>
 COLON                    <:>
@@ -324,9 +324,9 @@ BlankIndicator           <  >
                     (expression
                       (expression
                         (expression
-                          (function
-                            (functionName (free_identifier %SUBST))
-                            (args
+                          (bif
+                            (bif_subst
+                              %SUBST
                               (
                               (expression (identifier (free_identifier IDHAND)))
                               :
@@ -350,9 +350,9 @@ BlankIndicator           <  >
                     AND
                     (expression
                       (expression
-                        (function
-                          (functionName (free_identifier %SUBST))
-                          (args
+                        (bif
+                          (bif_subst
+                            %SUBST
                             (
                             (expression (identifier (free_identifier IDSALE)))
                             :
@@ -365,9 +365,9 @@ BlankIndicator           <  >
                       )
                       (comparisonOperator <>)
                       (expression
-                        (function
-                          (functionName (free_identifier %SUBST))
-                          (args
+                        (bif
+                          (bif_subst
+                            %SUBST
                             (
                             (expression (identifier (free_identifier @TMREP1)))
                             :
@@ -427,9 +427,9 @@ BlankIndicator           <  >
                     (op_eval
                       (assignmentExpression
                         (expression
-                          (function
-                            (functionName (free_identifier %SUBST))
-                            (args
+                          (bif
+                            (bif_subst
+                              %SUBST
                               (
                               (expression (identifier (free_identifier IDHAND)))
                               :
@@ -454,9 +454,9 @@ BlankIndicator           <  >
                           AND
                           (expression
                             (expression
-                              (function
-                                (functionName (free_identifier %SUBST))
-                                (args
+                              (bif
+                                (bif_subst
+                                  %SUBST
                                   (
                                   (expression (identifier (free_identifier IDSALE)))
                                   :
@@ -469,9 +469,9 @@ BlankIndicator           <  >
                             )
                             (comparisonOperator <>)
                             (expression
-                              (function
-                                (functionName (free_identifier %SUBST))
-                                (args
+                              (bif
+                                (bif_subst
+                                  %SUBST
                                   (
                                   (expression (identifier (free_identifier @TMREP1)))
                                   :
@@ -534,9 +534,9 @@ BlankIndicator           <  >
                     (op_eval
                       (assignmentExpression
                         (expression
-                          (function
-                            (functionName (free_identifier %SUBST))
-                            (args
+                          (bif
+                            (bif_subst
+                              %SUBST
                               (
                               (expression (identifier (free_identifier IDHAND)))
                               :

@@ -1,0 +1,415 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <ison>
+'='                      <=>
+BIF_BITXOR               <%BITXOR>
+'('                      <(>
+ID                       <HEXVAL>
+COLON                    <:>
+ID                       <B0>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <ison>
+'='                      <=>
+BIF_BITXOR               <%BITXOR>
+'('                      <(>
+HexLiteralStart          <x'>
+StringContent            <80>
+StringLiteralEnd         <'>
+COLON                    <:>
+HexLiteralStart          <x'>
+StringContent            <40>
+StringLiteralEnd         <'>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <ison>
+'='                      <=>
+BIF_BITXOR               <%bitxor>
+'('                      <(>
+ID                       <hexval>
+COLON                    <:>
+HexLiteralStart          <x'>
+StringContent            <10>
+StringLiteralEnd         <'>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <ison>
+'='                      <=>
+BIF_BITXOR               <%BItXor>
+'('                      <(>
+BIF_STR                  <%str>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+COLON                    <:>
+HexLiteralStart          <x'>
+StringContent            <0F0F>
+StringLiteralEnd         <'>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <
+>
+ID                       <ison>
+'='                      <=>
+BIF_BITXOR               <%bitxor>
+'('                      <(>
+ID                       <HEXVAL>
+COLON                    <:>
+ID                       <B0>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 1                                                   >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <ison>
+'='                      <=>
+BIF_BITXOR               <%BITXOR>
+'('                      <(>
+HexLiteralStart          <x'>
+StringContent            <80>
+StringLiteralEnd         <'>
+COLON                    <:>
+HexLiteralStart          <X'>
+StringContent            <40>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 2                                                 >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <ison>
+'='                      <=>
+BIF_BITXOR               <%Bitxor>
+'('                      <(>
+ID                       <hexval>
+COLON                    <:>
+HexLiteralStart          <x'>
+StringContent            <01>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 3                                                >
+COMMENTS_EOL_HIDDEN      <
+>
+ID                       <ison>
+'='                      <=>
+BIF_BITXOR               <%Bitxor>
+'('                      <(>
+BIF_STR                  <%str>
+'('                      <(>
+ID                       <fld>
+')'                      <)>
+COLON                    <:>
+HexLiteralStart          <x'>
+StringContent            <0F0F>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+FE_COMMENTS              <//>
+COMMENTS_TEXT_HIDDEN     <comment 4                                           >
+COMMENTS_EOL_HIDDEN      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <end-free>
+EOL                      <
+>
+EMPTY_LINE               <                                                                           >
+COMMENTS_TEXT            <                   >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier ison)))
+                  =
+                  (expression
+                    (bif
+                      (bif_bitxor
+                        %BITXOR
+                        (
+                        (expression (identifier (free_identifier HEXVAL)))
+                        :
+                        (expression (identifier (free_identifier B0)))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier ison)))
+                  =
+                  (expression
+                    (bif
+                      (bif_bitxor
+                        %BITXOR
+                        (
+                        (expression (literal x' 80 '))
+                        :
+                        (expression (literal x' 40 '))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier ison)))
+                  =
+                  (expression
+                    (bif
+                      (bif_bitxor
+                        %bitxor
+                        (
+                        (expression (identifier (free_identifier hexval)))
+                        :
+                        (expression (literal x' 10 '))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_x2
+        (csOperationAndExtendedFactor2 EVAL)
+        (c_free
+          (baseExpression
+            (op
+              (op_eval
+                (assignmentExpression
+                  (expression (identifier (free_identifier ison)))
+                  =
+                  (expression
+                    (bif
+                      (bif_bitxor
+                        %BItXor
+                        (
+                        (expression
+                          (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                        )
+                        :
+                        (expression (literal x' 0F0F '))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        \r\n
+      )
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text free)) \r\n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier ison)))
+              =
+              (expression
+                (bif
+                  (bif_bitxor
+                    %bitxor
+                    (
+                    (expression (identifier (free_identifier HEXVAL)))
+                    :
+                    (expression (identifier (free_identifier B0)))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier ison)))
+              =
+              (expression
+                (bif
+                  (bif_bitxor
+                    %BITXOR
+                    (
+                    (expression (literal x' 80 '))
+                    :
+                    (expression (literal X' 40 '))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier ison)))
+              =
+              (expression
+                (bif
+                  (bif_bitxor
+                    %Bitxor
+                    (
+                    (expression (identifier (free_identifier hexval)))
+                    :
+                    (expression (literal x' 01 '))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier ison)))
+              =
+              (expression
+                (bif
+                  (bif_bitxor
+                    %Bitxor
+                    (
+                    (expression
+                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                    )
+                    :
+                    (expression (literal x' 0F0F '))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (free_directive (free_text end-free)) \r\n))
+)
+/*======*/
