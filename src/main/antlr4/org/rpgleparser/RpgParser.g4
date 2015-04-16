@@ -436,12 +436,12 @@ cspec_fixed_standard:
 	| csADDDUR
 	| csALLOC
 	//| csANDxx
-	| csANDEQ
-	| csANDNE
-	| csANDLE
-	| csANDLT
-	| csANDGE
-	| csANDGT
+	//| csANDEQ
+	//| csANDNE
+	//| csANDLE
+	//| csANDLT
+	//| csANDGE
+	//| csANDGT
 	//| csBEGSR
 	| csBITOFF
 	| csBITON
@@ -537,12 +537,12 @@ cspec_fixed_standard:
 	| csOCCUR
 	| csON_ERROR
 	| csOPEN
-	| csOREQ
-	| csORNE
-	| csORLE
-	| csORLT
-	| csORGE
-	| csORGT
+	//| csOREQ
+	//| csORNE
+	//| csORLE
+	//| csORLT
+	//| csORGE
+	//| csORGT
 	| csOTHER
 	| csOUT
 	| csPARM
