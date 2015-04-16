@@ -11,6 +11,7 @@ import org.rpgleparser.RpgParser.AssignmentExpressionContext;
 import org.rpgleparser.RpgParser.AssignmentOperatorContext;
 import org.rpgleparser.RpgParser.BaseExpressionContext;
 import org.rpgleparser.RpgParser.BeginProcedureContext;
+import org.rpgleparser.RpgParser.Beginfree_directiveContext;
 import org.rpgleparser.RpgParser.BeginifContext;
 import org.rpgleparser.RpgParser.BeginselectContext;
 import org.rpgleparser.RpgParser.BegsrContext;
@@ -238,10 +239,8 @@ import org.rpgleparser.RpgParser.FreeContext;
 import org.rpgleparser.RpgParser.FreeENDSRContext;
 import org.rpgleparser.RpgParser.FreeEndProcedureContext;
 import org.rpgleparser.RpgParser.Free_commentsContext;
-import org.rpgleparser.RpgParser.Free_directiveContext;
 import org.rpgleparser.RpgParser.Free_identifierContext;
 import org.rpgleparser.RpgParser.Free_linecommentsContext;
-import org.rpgleparser.RpgParser.Free_textContext;
 import org.rpgleparser.RpgParser.Fs_expressionContext;
 import org.rpgleparser.RpgParser.Fs_parmContext;
 import org.rpgleparser.RpgParser.Fs_stringContext;
@@ -356,9 +355,9 @@ import org.rpgleparser.RpgParser.SymbolicConstantsContext;
 import org.rpgleparser.RpgParser.Title_directiveContext;
 import org.rpgleparser.RpgParser.Title_textContext;
 import org.rpgleparser.RpgParser.Trailing_wsContext;
-import org.rpgleparser.*;
 import org.rpgleparser.RpgParser.WhenContext;
 import org.rpgleparser.RpgParser.WhenstatementContext;
+import org.rpgleparser.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -3408,15 +3407,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void enterFree_directive(Free_directiveContext ctx) {
+	public void enterBeginfree_directive(Beginfree_directiveContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterFree_directive(Free_directiveContext) - start"); //$NON-NLS-1$
+			logger.debug("enterBeginfree_directive(Beginfree_directiveContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.enterFree_directive(ctx);
+		super.enterBeginfree_directive(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterFree_directive(Free_directiveContext) - end"); //$NON-NLS-1$
+			logger.debug("enterBeginfree_directive(Beginfree_directiveContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -3446,18 +3445,18 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-	@Override
-	public void enterFree_text(Free_textContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterFree_text(Free_textContext) - start"); //$NON-NLS-1$
-		}
-		
-		super.enterFree_text(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterFree_text(Free_textContext) - end"); //$NON-NLS-1$
-		}
-	}
+//	@Override
+//	public void enterFree_text(Free_textContext ctx) {
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("enterFree_text(Free_textContext) - start"); //$NON-NLS-1$
+//		}
+//		
+//		super.enterFree_text(ctx);
+//
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("enterFree_text(Free_textContext) - end"); //$NON-NLS-1$
+//		}
+//	}
 
 	@Override
 	public void enterFreeBeginProcedure(FreeBeginProcedureContext ctx) {
@@ -8051,18 +8050,18 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-	@Override
-	public void exitFree_directive(Free_directiveContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitFree_directive(Free_directiveContext) - start"); //$NON-NLS-1$
-		}
-		
-		super.exitFree_directive(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitFree_directive(Free_directiveContext) - end"); //$NON-NLS-1$
-		}
-	}
+//	@Override
+//	public void exitFree_directive(Free_directiveContext ctx) {
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitFree_directive(Free_directiveContext) - start"); //$NON-NLS-1$
+//		}
+//		
+//		super.exitFree_directive(ctx);
+//
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitFree_directive(Free_directiveContext) - end"); //$NON-NLS-1$
+//		}
+//	}
 
 	@Override
 	public void exitFree_identifier(Free_identifierContext ctx) {
@@ -8091,15 +8090,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void exitFree_text(Free_textContext ctx) {
+	public void exitBeginfree_directive(Beginfree_directiveContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitFree_text(Free_textContext) - start"); //$NON-NLS-1$
+			logger.debug("exitBeginfree_directive(Beginfree_directiveContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.exitFree_text(ctx);
+		super.exitBeginfree_directive(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitFree_text(Free_textContext) - end"); //$NON-NLS-1$
+			logger.debug("exitBeginfree_directive(Beginfree_directiveContext) - end"); //$NON-NLS-1$
 		}
 	}
 
