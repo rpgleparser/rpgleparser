@@ -1197,10 +1197,10 @@ ispec_fixed: IS_FIXED
 	//IS_LogicalRelationship
 		(is_external_rec
 		|is_rec)
-		EOL
+		(EOL|EOF)
 	)
 	| (is_external_field
-		EOL
+		(EOL|EOF)
 	)
 	| (IFD_DATA_ATTR
 		IFD_DATETIME_SEP
@@ -1215,7 +1215,7 @@ ispec_fixed: IS_FIXED
 		fieldIndicator
 		fieldIndicator
 		IFD_COMMENTS?
-		EOL
+		(EOL|EOF)
 	))
 	;
 	
@@ -1276,13 +1276,14 @@ MatchingRecordIndicator
 
 hspec_fixed: HS_FIXED 
 	hs_expression*
-	EOL;
+	(EOL|EOF);
 hs_expression: (ID (OPEN_PAREN (hs_parm (COLON hs_parm)*)? CLOSE_PAREN)?);
 hs_parm: ID | hs_string;
 hs_string: StringLiteralStart (StringContent | StringEscapedQuote )* StringLiteralEnd;
 blank_line: BLANK_LINE;
 directive: DIRECTIVE 
-		(free_directive
+		( beginfree_directive
+		| endfree_directive
 		| title_directive
 		| DIR_EJECT
 		| space_directive
@@ -1298,10 +1299,10 @@ directive: DIRECTIVE
 		| (DIR_ELSEIF WS* DIR_OtherText)
 		| (DIR_ENDIF WS* DIR_OtherText)
 		)
-	EOL;
-free_directive: free_text;
+	(EOL|EOF);
 space_directive: DIR_SPACE (WS NUMBER)?;
-free_text: DIR_FREE;
+beginfree_directive: DIR_FREE;
+endfree_directive: DIR_ENDFREE;
 trailing_ws: DIR_FREE_OTHER_TEXT;
 //title_directive: DIR_TITLE WS title_text WS*;
 //title_directive: DIR_TITLE (WS* DIR_OtherText)?;
