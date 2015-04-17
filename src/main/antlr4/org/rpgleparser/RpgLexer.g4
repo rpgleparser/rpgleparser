@@ -13,7 +13,7 @@ LEAD_WS5_Comments :  {getCharPositionInLine()==0}?~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[
 FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> pushMode(FREE),skip;
     // 6th position asterisk is a comment
 COMMENT_SPEC_FIXED : {getCharPositionInLine()==5}? .'*' -> pushMode(FIXED_CommentMode) ;
-    // X specs
+    // X specs 
 DS_FIXED : {getCharPositionInLine()==5}? [dD] -> pushMode(FIXED_DefSpec) ;
 FS_FIXED : {getCharPositionInLine()==5}? [fF] -> pushMode(FIXED_FileSpec) ;
 OS_FIXED : {getCharPositionInLine()==5}? [oO] -> pushMode(FIXED_OutputSpec) ;
@@ -86,68 +86,68 @@ H_SPEC : [cC] [tT] [lL] '-' [oO][pP][tT];
 FREE_CONT: '...' [ ]* NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n][ ]+ {setText("...");};
 FREE_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN); // skip comments after 80
 EXEC_SQL: [Ee][Xx][Ee][Cc][ ]+[Ss][Qq][Ll]-> pushMode(SQL_MODE) ;
-OP_ACQ: [Aa][Cc][Qq];
+OP_ACQ: [Aa][Cc][Qq] -> pushMode(FreeOpExtender);
 OP_BEGSR: [Bb][Ee][Gg][Ss][Rr];
-OP_CALLP: [Cc][Aa][Ll][Ll][Pp];
-OP_CHAIN: [Cc][Hh][Aa][Ii][Nn];
+OP_CALLP: [Cc][Aa][Ll][Ll][Pp] -> pushMode(FreeOpExtender);
+OP_CHAIN: [Cc][Hh][Aa][Ii][Nn] -> pushMode(FreeOpExtender);
 OP_CLEAR: [Cc][Ll][Ee][Aa][Rr];
-OP_CLOSE: [Cc][Ll][Oo][Ss][Ee];
-OP_COMMIT: [Cc][Oo][Mm][Mm][Ii][Tt];
-OP_DEALLOC: [Dd][Ee][Aa][Ll][Ll][Oo][Cc];
-OP_DELETE: [Dd][Ee][Ll][Ee][Tt][Ee];
-OP_DOU: [Dd][Oo][Uu];
-OP_DOW: [Dd][Oo][Ww];
-OP_DSPLY: [Dd][Ss][Pp][Ll][Yy];
-OP_DUMP: [Dd][Uu][Mm][Pp];
+OP_CLOSE: [Cc][Ll][Oo][Ss][Ee] -> pushMode(FreeOpExtender);
+OP_COMMIT: [Cc][Oo][Mm][Mm][Ii][Tt] -> pushMode(FreeOpExtender);
+OP_DEALLOC: [Dd][Ee][Aa][Ll][Ll][Oo][Cc] -> pushMode(FreeOpExtender);
+OP_DELETE: [Dd][Ee][Ll][Ee][Tt][Ee] -> pushMode(FreeOpExtender);
+OP_DOU: [Dd][Oo][Uu] -> pushMode(FreeOpExtender);
+OP_DOW: [Dd][Oo][Ww] -> pushMode(FreeOpExtender);
+OP_DSPLY: [Dd][Ss][Pp][Ll][Yy] -> pushMode(FreeOpExtender);
+OP_DUMP: [Dd][Uu][Mm][Pp] -> pushMode(FreeOpExtender);
 OP_ELSE: [Ee][Ll][Ss][Ee];
-OP_ELSEIF: [Ee][Ll][Ss][Ee][Ii][Ff];
+OP_ELSEIF: [Ee][Ll][Ss][Ee][Ii][Ff] -> pushMode(FreeOpExtender);
 OP_ENDDO: [Ee][Nn][Dd][Dd][Oo];
 OP_ENDFOR: [Ee][Nn][Dd][Ff][Oo][Rr];
 OP_ENDIF: [Ee][Nn][Dd][Ii][Ff];
 OP_ENDMON: [Ee][Nn][Dd][Mm][Oo][Nn];
 OP_ENDSL: [Ee][Nn][Dd][Ss][Ll];
 OP_ENDSR: [Ee][Nn][Dd][Ss][Rr];
-OP_EVAL: [Ee][Vv][Aa][Ll];
-OP_EVALR: [Ee][Vv][Aa][Ll][Rr];
-OP_EVAL_CORR: [Ee][Vv][Aa][Ll][-][Cc][Oo][Rr][Rr];
+OP_EVAL: [Ee][Vv][Aa][Ll] -> pushMode(FreeOpExtender);
+OP_EVALR: [Ee][Vv][Aa][Ll][Rr] -> pushMode(FreeOpExtender);
+OP_EVAL_CORR: [Ee][Vv][Aa][Ll][-][Cc][Oo][Rr][Rr] -> pushMode(FreeOpExtender);
 OP_EXCEPT: [Ee][Xx][Cc][Ee][Pp][Tt];
-OP_EXFMT: [Ee][Xx][Ff][Mm][Tt];
+OP_EXFMT: [Ee][Xx][Ff][Mm][Tt] -> pushMode(FreeOpExtender);
 OP_EXSR: [Ee][Xx][Ss][Rr];
-OP_FEOD: [Ff][Ee][Oo][Dd];
-OP_FOR: [Ff][Oo][Rr];
+OP_FEOD: [Ff][Ee][Oo][Dd] -> pushMode(FreeOpExtender);
+OP_FOR: [Ff][Oo][Rr] -> pushMode(FreeOpExtender);
 OP_FORCE: [Ff][Oo][Rr][Cc][Ee];
-OP_IF: [Ii][Ff];
-OP_IN: [Ii][Nn];
+OP_IF: [Ii][Ff] -> pushMode(FreeOpExtender);
+OP_IN: [Ii][Nn] -> pushMode(FreeOpExtender);
 OP_ITER: [Ii][Tt][Ee][Rr];
 OP_LEAVE: [Ll][Ee][Aa][Vv][Ee];
 OP_LEAVESR: [Ll][Ee][Aa][Vv][Ee][Ss][Rr];
 OP_MONITOR: [Mm][Oo][Nn][Ii][Tt][Oo][Rr];
-OP_NEXT: [Nn][Ee][Xx][Tt];
+OP_NEXT: [Nn][Ee][Xx][Tt] -> pushMode(FreeOpExtender);
 OP_ON_ERROR: [Oo][Nn][-][Ee][Rr][Rr][Oo][Rr];
-OP_OPEN: [Oo][Pp][Ee][Nn];
+OP_OPEN: [Oo][Pp][Ee][Nn] -> pushMode(FreeOpExtender);
 OP_OTHER: [Oo][Tt][Hh][Ee][Rr];
-OP_OUT: [Oo][Uu][Tt];
-OP_POST: [Pp][Oo][Ss][Tt];
-OP_READ: [Rr][Ee][Aa][Dd];
-OP_READC: [Rr][Ee][Aa][Dd][Cc];
-OP_READE: [Rr][Ee][Aa][Dd][Ee];
-OP_READP: [Rr][Ee][Aa][Dd][Pp];
-OP_READPE: [Rr][Ee][Aa][Dd][Pp][Ee];
-OP_REL: [Rr][Ee][Ll];
-OP_RESET: [Rr][Ee][Ss][Ee][Tt];
-OP_RETURN: [Rr][Ee][Tt][Uu][Rr][Nn];
-OP_ROLBK: [Rr][Oo][Ll][Bb][Kk];
+OP_OUT: [Oo][Uu][Tt] -> pushMode(FreeOpExtender);
+OP_POST: [Pp][Oo][Ss][Tt] -> pushMode(FreeOpExtender);
+OP_READ: [Rr][Ee][Aa][Dd] -> pushMode(FreeOpExtender);
+OP_READC: [Rr][Ee][Aa][Dd][Cc] -> pushMode(FreeOpExtender);
+OP_READE: [Rr][Ee][Aa][Dd][Ee] -> pushMode(FreeOpExtender);
+OP_READP: [Rr][Ee][Aa][Dd][Pp] -> pushMode(FreeOpExtender);
+OP_READPE: [Rr][Ee][Aa][Dd][Pp][Ee] -> pushMode(FreeOpExtender);
+OP_REL: [Rr][Ee][Ll] -> pushMode(FreeOpExtender);
+OP_RESET: [Rr][Ee][Ss][Ee][Tt] -> pushMode(FreeOpExtender);
+OP_RETURN: [Rr][Ee][Tt][Uu][Rr][Nn] -> pushMode(FreeOpExtender);
+OP_ROLBK: [Rr][Oo][Ll][Bb][Kk] -> pushMode(FreeOpExtender);
 OP_SELECT: [Ss][Ee][Ll][Ee][Cc][Tt];
-OP_SETGT: [Ss][Ee][Tt][Gg][Tt];
-OP_SETLL: [Ss][Ee][Tt][Ll][Ll];
-OP_SORTA: [Ss][Oo][Rr][Tt][Aa];
-OP_TEST: [Tt][Ee][Ss][Tt];
-OP_UNLOCK: [Uu][Nn][Ll][Oo][Cc][Kk];
-OP_UPDATE: [Uu][Pp][Dd][Aa][Tt][Ee];
-OP_WHEN: [Ww][Hh][Ee][Nn];
-OP_WRITE: [Ww][Rr][Ii][Tt][Ee];
-OP_XML_INTO: [Xx][Mm][Ll][-][Ii][Nn][Tt][Oo];
-OP_XML_SAX: [Xx][Mm][Ll][-][Ss][Aa][Xx];
+OP_SETGT: [Ss][Ee][Tt][Gg][Tt] -> pushMode(FreeOpExtender);
+OP_SETLL: [Ss][Ee][Tt][Ll][Ll] -> pushMode(FreeOpExtender);
+OP_SORTA: [Ss][Oo][Rr][Tt][Aa] -> pushMode(FreeOpExtender);
+OP_TEST: [Tt][Ee][Ss][Tt] -> pushMode(FreeOpExtender);
+OP_UNLOCK: [Uu][Nn][Ll][Oo][Cc][Kk] -> pushMode(FreeOpExtender);
+OP_UPDATE: [Uu][Pp][Dd][Aa][Tt][Ee] -> pushMode(FreeOpExtender);
+OP_WHEN: [Ww][Hh][Ee][Nn] -> pushMode(FreeOpExtender);
+OP_WRITE: [Ww][Rr][Ii][Tt][Ee] -> pushMode(FreeOpExtender);
+OP_XML_INTO: [Xx][Mm][Ll][-][Ii][Nn][Tt][Oo] -> pushMode(FreeOpExtender);
+OP_XML_SAX: [Xx][Mm][Ll][-][Ss][Aa][Xx] -> pushMode(FreeOpExtender);
 
 // Symbolic Constants
 SPLAT_ALL: '*'[aA][lL][lL];
@@ -258,7 +258,7 @@ LE : '<=' ;
 NE : '<>' ;
 
 //--------------
-OP_E: '(' [aAdDeEhHmMnNpPrRtTzZ][aAdDeEhHmMnNpPrRtTzZ]? ')';
+//OP_E: '(' [aAdDeEhHmMnNpPrRtTzZ][aAdDeEhHmMnNpPrRtTzZ]? ')';
 FREE_OPEN_PAREN: OPEN_PAREN -> type(OPEN_PAREN);
 FREE_CLOSE_PAREN: CLOSE_PAREN -> type(CLOSE_PAREN);
 FREE_DOT: '.';
@@ -1011,6 +1011,16 @@ CS_WhiteSpace : {getCharPositionInLine()>=76}? [ \t]+ -> skip  ; // skip spaces,
 CS_Comments : {getCharPositionInLine()>=80}? ~[\r\n]+  ; // skip spaces, tabs, newlines
 CS_EOL : NEWLINE -> type(EOL),popMode;
 
+mode FreeOpExtender;
+FreeOpExtender_OPEN_PAREN: OPEN_PAREN -> popMode,type(OPEN_PAREN),pushMode(FreeOpExtender2);
+//Deliberate match no char, pop out again
+FreeOpExtender_Any: -> popMode,skip;
+
+mode FreeOpExtender2;
+FreeOpExtender2_CLOSE_PAREN: CLOSE_PAREN -> popMode,type(CLOSE_PAREN);
+FreeOpExtender2_WS: WS -> skip;
+FreeOpExtender_Extender: [a-zA-Z0-9\\-] -> type(CS_OperationAndExtender);
+
 mode OnOffIndicatorMode;
 BlankFlag: [ ] ->popMode,pushMode(IndicatorMode);
 NoFlag: [nN] ->popMode,pushMode(IndicatorMode);
@@ -1068,7 +1078,7 @@ IS_RecordIdCode: {getCharPositionInLine()==22}?  WORD5_WCOLON WORD5_WCOLON WORD5
 		WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON; //TODO better lexing
 IS_WS : {getCharPositionInLine()>=46}? [ \t]+ -> type(WS),skip  ; // skip spaces, tabs
 IS_COMMENTS : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN) ; // skip spaces, tabs, newlines
-IS_EOL : NEWLINE -> type(EOL),popMode;
+IS_EOL : NEWLINE -> type(EOL),popMode; 
 
 mode FIXED_I_EXT_FIELD_SPEC;
 IF_Name: {getCharPositionInLine()==20}? WORD5_WCOLON WORD5_WCOLON ;

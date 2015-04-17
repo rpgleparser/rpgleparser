@@ -10,13 +10,13 @@ public class TestOPCode {
     @Test
     public void testACQ() {
         String inputString = "           ACQ(E) device workstnfile;     \r\n";
-        expectTokensForSourceLines(inputString, "ACQ", "(E)", "device", "workstnfile",";");
+        expectTokensForSourceLines(inputString, "ACQ", "(","E",")", "device", "workstnfile",";");
     }
 
     @Test
     public void testIN() {
         String inputString = "           in(e) *lock Program21;     \r\n";
-        expectTokensForSourceLines(inputString, "in", "(e)", "*lock", "Program21",";");
+        expectTokensForSourceLines(inputString, "in", "(","e",")", "*lock", "Program21",";");
     }
 
     @Test
@@ -68,7 +68,7 @@ public class TestOPCode {
     @Test
     public void testDSPLY() {
         String inputString = "DSPLY(E) 'Unable to write copy to Infosys/Claim survey results';";
-        expectTokensForFreeSnippet(inputString, "DSPLY", "(E)", "'", "Unable to write copy to Infosys/Claim survey results", "'", ";");
+        expectTokensForFreeSnippet(inputString, "DSPLY", "(","E",")", "'", "Unable to write copy to Infosys/Claim survey results", "'", ";");
     }
 
     @Test
