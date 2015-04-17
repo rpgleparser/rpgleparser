@@ -28,6 +28,7 @@ public class TestI {
     @Test
     public void testFieldDesc3() {
         String inputString = "01170IINTAPE    AB  01    2 C5                                                  MPR009";
+        TestUtils.printTokens(inputString, false);
         expectTokensForSourceLines(inputString, "I", "INTAPE", "AB", "", "", "01", "2 C5", "");
     }
 

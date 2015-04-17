@@ -303,6 +303,7 @@ public class TestFREE {
     public void testKeywordID3() {
         String inputString =
                 "TEMP14 = ZLNG(IN);";
+        TestUtils.printTokens(inputString, true);
         expectTokensForFreeSnippet(inputString,
                 "TEMP14", "=", "ZLNG", "(", "IN", ")", ";");
     }
@@ -349,7 +350,7 @@ public class TestFREE {
                 "%SUBST(COPYTO:2:18) = ZCPY(A);";
         expectTokensForFreeSnippet(inputString,
                 "%SUBST", "(", "COPYTO", ":", "2", ":", "18",
-                ")", "=", "ZCPY", "(A)", ";");
+                ")", "=", "ZCPY", "(","A",")", ";");
     }
 
     @Test
@@ -374,7 +375,7 @@ public class TestFREE {
         String inputString =
                 "ZCPY(A);";
         expectTokensForFreeSnippet(inputString,
-                "ZCPY", "(A)", ";");
+                "ZCPY", "(","A",")", ";");
     }
 
     // TODO this should not be an OP_E
@@ -438,7 +439,7 @@ public class TestFREE {
         String inputString =
                 "TEST(De) *iso0 LicIssueDate ;";
         expectTokensForFreeSnippet(inputString,
-                "TEST", "(De)", "*iso0", "LicIssueDate", ";");
+                "TEST", "(","D","e",")", "*iso0", "LicIssueDate", ";");
     }
 
     @Test

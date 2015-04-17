@@ -436,12 +436,12 @@ cspec_fixed_standard:
 	| csADDDUR
 	| csALLOC
 	//| csANDxx
-	| csANDEQ
-	| csANDNE
-	| csANDLE
-	| csANDLT
-	| csANDGE
-	| csANDGT
+	//| csANDEQ
+	//| csANDNE
+	//| csANDLE
+	//| csANDLT
+	//| csANDGE
+	//| csANDGT
 	//| csBEGSR
 	| csBITOFF
 	| csBITON
@@ -537,12 +537,12 @@ cspec_fixed_standard:
 	| csOCCUR
 	| csON_ERROR
 	| csOPEN
-	| csOREQ
-	| csORNE
-	| csORLE
-	| csORLT
-	| csORGE
-	| csORGT
+	//| csOREQ
+	//| csORNE
+	//| csORLE
+	//| csORLT
+	//| csORGE
+	//| csORGT
 	| csOTHER
 	| csOUT
 	| csPARM
@@ -1172,6 +1172,8 @@ cs_operationExtender:
   OPEN_PAREN
   extender=CS_OperationAndExtender
   extender2=CS_OperationAndExtender?
+  extender3=CS_OperationAndExtender?
+  extender4=CS_OperationAndExtender?
   CLOSE_PAREN;	
 factor:
    content=factorContent (COLON (content2=factorContent | constant2=symbolicConstants))? | CS_BlankFactor | constant=symbolicConstants;
@@ -1197,10 +1199,10 @@ ispec_fixed: IS_FIXED
 	//IS_LogicalRelationship
 		(is_external_rec
 		|is_rec)
-		EOL
+		(EOL|EOF)
 	)
 	| (is_external_field
-		EOL
+		(EOL|EOF)
 	)
 	| (IFD_DATA_ATTR
 		IFD_DATETIME_SEP
@@ -1215,7 +1217,7 @@ ispec_fixed: IS_FIXED
 		fieldIndicator
 		fieldIndicator
 		IFD_COMMENTS?
-		EOL
+		(EOL|EOF)
 	))
 	;
 	
@@ -1240,7 +1242,7 @@ fieldIndicator:
 is_external_rec:	
 			IS_ExtRecordReserved
 			resultIndicator
-			WS;
+			WS; 
 is_rec:				
 			IS_Sequence
 			IS_Number
@@ -1276,13 +1278,14 @@ MatchingRecordIndicator
 
 hspec_fixed: HS_FIXED 
 	hs_expression*
-	EOL;
+	(EOL|EOF);
 hs_expression: (ID (OPEN_PAREN (hs_parm (COLON hs_parm)*)? CLOSE_PAREN)?);
 hs_parm: ID | hs_string;
 hs_string: StringLiteralStart (StringContent | StringEscapedQuote )* StringLiteralEnd;
 blank_line: BLANK_LINE;
 directive: DIRECTIVE 
-		(free_directive
+		( beginfree_directive
+		| endfree_directive
 		| title_directive
 		| DIR_EJECT
 		| space_directive
@@ -1298,10 +1301,10 @@ directive: DIRECTIVE
 		| (DIR_ELSEIF WS* DIR_OtherText)
 		| (DIR_ENDIF WS* DIR_OtherText)
 		)
-	EOL;
-free_directive: free_text;
+	(EOL|EOF);
 space_directive: DIR_SPACE (WS NUMBER)?;
-free_text: DIR_FREE;
+beginfree_directive: DIR_FREE;
+endfree_directive: DIR_ENDFREE;
 trailing_ws: DIR_FREE_OTHER_TEXT;
 //title_directive: DIR_TITLE WS title_text WS*;
 //title_directive: DIR_TITLE (WS* DIR_OtherText)?;
@@ -1373,72 +1376,72 @@ op: op_acq
 	| op_write 
 	| op_xml_into 
 	| op_xml_sax;
-op_acq: OP_ACQ OP_E? identifier identifier ;
+op_acq: OP_ACQ cs_operationExtender? identifier identifier ;
 //op_begsr: OP_BEGSR identifier ;
-op_callp: (OP_CALLP OP_E? )? identifier OPEN_PAREN (expression (COLON expression )* )? CLOSE_PAREN ;
-op_chain: OP_CHAIN OP_E? search_arg identifier (identifier )? ;
+op_callp: (OP_CALLP cs_operationExtender? )? identifier OPEN_PAREN (expression (COLON expression )* )? CLOSE_PAREN ;
+op_chain: OP_CHAIN cs_operationExtender? search_arg identifier (identifier )? ;
 op_clear: OP_CLEAR (identifier )? (identifier )? expression ;
-op_close: OP_CLOSE OP_E? identifier ;
-op_commit: OP_COMMIT OP_E? (identifier )? ;
-op_dealloc: OP_DEALLOC OP_E? identifier ;
-op_delete: OP_DELETE OP_E? (search_arg )? identifier ;
-op_dou: OP_DOU OP_E? indicator_expr ;
-op_dow: OP_DOW OP_E? indicator_expr ;
-op_dsply: OP_DSPLY OP_E? (expression (expression (expression )? )? )? ;
-op_dump: OP_DUMP OP_E? (identifier )? ;
+op_close: OP_CLOSE cs_operationExtender? identifier ;
+op_commit: OP_COMMIT cs_operationExtender? (identifier )? ;
+op_dealloc: OP_DEALLOC cs_operationExtender? identifier ;
+op_delete: OP_DELETE cs_operationExtender? (search_arg )? identifier ;
+op_dou: OP_DOU cs_operationExtender? indicator_expr ;
+op_dow: OP_DOW cs_operationExtender? indicator_expr ;
+op_dsply: OP_DSPLY cs_operationExtender? (expression (expression (expression )? )? )? ;
+op_dump: OP_DUMP cs_operationExtender? (identifier )? ;
 op_else: OP_ELSE ;
-op_elseif: OP_ELSEIF OP_E? indicator_expr ;
+op_elseif: OP_ELSEIF cs_operationExtender? indicator_expr ;
 op_enddo: OP_ENDDO ;
 op_endfor: OP_ENDFOR ;
 op_endif: OP_ENDIF ;
 op_endmon: OP_ENDMON ;
 op_endsl: OP_ENDSL ;
 //op_endsr: OP_ENDSR (identifier )? ;
-op_eval: (OP_EVAL OP_E? )? assignmentExpression ;
-op_evalr: OP_EVALR OP_E? assignmentExpression ;
-op_eval_corr: OP_EVAL_CORR OP_E? assignmentExpression ;
+op_eval: (OP_EVAL cs_operationExtender? )? assignmentExpression ;
+op_evalr: OP_EVALR cs_operationExtender? assignmentExpression ;
+op_eval_corr: OP_EVAL_CORR cs_operationExtender? assignmentExpression ;
 op_except: OP_EXCEPT (identifier )? ;
-op_exfmt: OP_EXFMT OP_E? identifier (identifier )? ;
+op_exfmt: OP_EXFMT cs_operationExtender? identifier (identifier )? ;
 op_exsr: OP_EXSR identifier ;
-op_feod: OP_FEOD OP_E? identifier ;
-op_for: OP_FOR OP_E? expression   //For(E) I
+op_feod: OP_FEOD cs_operationExtender? identifier ;
+op_for: OP_FOR cs_operationExtender? expression   //For(E) I
 	(EQUAL expression )? // = 1
 	(FREE_BY expression )?    // By 1
 	((FREE_TO | FREE_DOWNTO) expression )?; // TO 10 ;
 op_force: OP_FORCE identifier ;
-op_if: OP_IF OP_E? expression ;
-op_in: OP_IN OP_E? (identifier )? identifier ;
+op_if: OP_IF cs_operationExtender? expression ;
+op_in: OP_IN cs_operationExtender? (identifier )? identifier ;
 op_iter: OP_ITER ;
 op_leave: OP_LEAVE ;
 op_leavesr: OP_LEAVESR ;
 op_monitor: OP_MONITOR ;
-op_next: OP_NEXT OP_E? identifier identifier ;
+op_next: OP_NEXT cs_operationExtender? identifier identifier ;
 op_on_error: OP_ON_ERROR (identifier (COLON identifier )* )? ;
-op_open: OP_OPEN OP_E? identifier ;
+op_open: OP_OPEN cs_operationExtender? identifier ;
 op_other: OP_OTHER ;
-op_out: OP_OUT OP_E? (identifier )? identifier ;
-op_post: OP_POST OP_E? (identifier )? identifier ;
-op_read: OP_READ OP_E? identifier (identifier )? ;
-op_readc: OP_READC OP_E? identifier (identifier )? ;
-op_reade: OP_READE OP_E? search_arg identifier (identifier )? ;
-op_readp: OP_READP OP_E? identifier (identifier )? ;
-op_readpe: OP_READPE OP_E? search_arg identifier (identifier )? ;
-op_rel: OP_REL OP_E? identifier identifier ;
-op_reset2: OP_RESET OP_E? identifier  OPEN_PAREN MULT_NOSPACE?  CLOSE_PAREN ;
-op_reset: OP_RESET OP_E?  (identifier)? (identifier )? identifier ;
-op_return: OP_RETURN OP_E? identifier? ;
-op_rolbk: OP_ROLBK OP_E? ;
+op_out: OP_OUT cs_operationExtender? (identifier )? identifier ;
+op_post: OP_POST cs_operationExtender? (identifier )? identifier ;
+op_read: OP_READ cs_operationExtender? identifier (identifier )? ;
+op_readc: OP_READC cs_operationExtender? identifier (identifier )? ;
+op_reade: OP_READE cs_operationExtender? search_arg identifier (identifier )? ;
+op_readp: OP_READP cs_operationExtender? identifier (identifier )? ;
+op_readpe: OP_READPE cs_operationExtender? search_arg identifier (identifier )? ;
+op_rel: OP_REL cs_operationExtender? identifier identifier ;
+op_reset2: OP_RESET cs_operationExtender? identifier  OPEN_PAREN MULT_NOSPACE?  CLOSE_PAREN ;
+op_reset: OP_RESET cs_operationExtender?  (identifier)? (identifier )? identifier ;
+op_return: OP_RETURN cs_operationExtender? identifier? ;
+op_rolbk: OP_ROLBK cs_operationExtender? ;
 op_select: OP_SELECT ;
-op_setgt: OP_SETGT OP_E? search_arg identifier ;
-op_setll: OP_SETLL OP_E? search_arg identifier ;
-op_sorta: OP_SORTA OP_E? (identifier | function);
-op_test: OP_TEST OP_E? (identifier )? identifier ;
-op_unlock: OP_UNLOCK OP_E? identifier ;
-op_update: OP_UPDATE OP_E? identifier (identifier function )? ;
-op_when: OP_WHEN OP_E? indicator_expr ;
-op_write: OP_WRITE OP_E? identifier (identifier )? ;
-op_xml_into: OP_XML_INTO OP_E? identifier expression ;
-op_xml_sax: OP_XML_SAX OP_E? identifier identifier ;
+op_setgt: OP_SETGT cs_operationExtender? search_arg identifier ;
+op_setll: OP_SETLL cs_operationExtender? search_arg identifier ;
+op_sorta: OP_SORTA cs_operationExtender? (identifier | function);
+op_test: OP_TEST cs_operationExtender? (identifier )? identifier ;
+op_unlock: OP_UNLOCK cs_operationExtender? identifier ;
+op_update: OP_UPDATE cs_operationExtender? identifier (identifier function )? ;
+op_when: OP_WHEN cs_operationExtender? indicator_expr ;
+op_write: OP_WRITE cs_operationExtender? identifier (identifier )? ;
+op_xml_into: OP_XML_INTO cs_operationExtender? identifier expression ;
+op_xml_sax: OP_XML_SAX cs_operationExtender? identifier identifier ;
 search_arg: expression | args;
 op_code: OP_ACQ
 	  | OP_BEGSR
@@ -1813,7 +1816,7 @@ multipart_identifier: free_identifier (FREE_DOT (free_identifier | indexed_ident
 indexed_identifier: free_identifier OPEN_PAREN expression CLOSE_PAREN;
 opCode: free_identifier;
 number: MINUS? NUMBER ;
-free_identifier: (continuedIdentifier | MULT_NOSPACE? ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
+free_identifier: (continuedIdentifier | MULT_NOSPACE? ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code);//OP_E?
 //free_identifier: (continuedIdentifier | ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
 continuedIdentifier: ID CONTINUATION ID ;
 		
