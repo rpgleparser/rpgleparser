@@ -545,7 +545,7 @@ cspec_fixed_standard:
 	//| csORGT
 	| csOTHER
 	| csOUT
-	| csPARM
+	//| csPARM
 	| csPLIST
 	| csPOST
 	| csREAD
@@ -675,11 +675,13 @@ csCABGT:
 csCALL:
 	operation=OP_CALL
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	cspec_fixed_standard_parts
+	csPARM*;
 csCALLB:
 	operation=OP_CALLB
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	cspec_fixed_standard_parts
+	csPARM*;
 csCALLP:
 	operation=OP_CALLP
 	operationExtender=cs_operationExtender? 
@@ -1003,11 +1005,17 @@ csOUT:
 	operationExtender=cs_operationExtender? 
 	cspec_fixed_standard_parts;
 csPARM:
+	CS_FIXED
+	BlankIndicator
+	BlankFlag 
+	BlankIndicator
+	CS_BlankFactor
 	operation=OP_PARM
 	cspec_fixed_standard_parts;
 csPLIST:
 	operation=OP_PLIST
-	cspec_fixed_standard_parts;
+	cspec_fixed_standard_parts
+	csPARM*;
 csPOST:
 	operation=OP_POST
 	operationExtender=cs_operationExtender? 

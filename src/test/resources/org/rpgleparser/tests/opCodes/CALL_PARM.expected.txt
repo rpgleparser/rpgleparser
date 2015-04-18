@@ -1,0 +1,179 @@
+/*===TOKENS===*/
+LEAD_WS5_Comments        <1.27 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_CALL                  <CALL>
+CS_FactorContentLiteral  <'MSGSFLCL'>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+LEAD_WS5_Comments        <1.28 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <PARM>
+CS_BlankFactor           <              >
+CS_FactorContent         <MSGID>
+CS_FieldLength           <    7>
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+LEAD_WS5_Comments        <1.29 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <PARM>
+CS_BlankFactor           <              >
+CS_FactorContent         <MSGF>
+CS_FieldLength           <   10>
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+LEAD_WS5_Comments        <1.30 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <PARM>
+CS_BlankFactor           <              >
+CS_FactorContent         <MSGDTA>
+CS_FieldLength           <   62>
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+LEAD_WS5_Comments        <1.31 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <PARM>
+CS_BlankFactor           <              >
+CS_FactorContent         <MSGOPT>
+CS_FieldLength           <    1>
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csCALL
+          CALL
+          (cspec_fixed_standard_parts
+            (factor (factorContent 'MSGSFLCL'))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            PARM
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType MSGID)
+              '    7'
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            PARM
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType MSGF)
+              '   10'
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            PARM
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType MSGDTA)
+              '   62'
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            PARM
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType MSGOPT)
+              '    1'
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
