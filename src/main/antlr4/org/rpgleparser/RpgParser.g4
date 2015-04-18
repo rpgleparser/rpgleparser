@@ -1541,11 +1541,19 @@ expression:
 	| NOT expression
 	| OPEN_PAREN expression CLOSE_PAREN
 	| expression (assignmentOperator | comparisonOperator) expression
-	| expression (OR | AND | arithmeticalOperator | EQUAL) expression	
+    |<assoc=right> expression EXP expression
+    | expression (MULT | MULT_NOSPACE) expression
+    | expression DIV expression
+    | expression PLUS expression
+    | expression MINUS expression
+    // expression arithmeticalOperator expression	
+	| expression EQUAL expression	
+	| expression AND expression	
+	| expression OR expression	
 	;
 indicator_expr: expression;
 function: functionName args;
-arithmeticalOperator:PLUS | MINUS | EXP | MULT | MULT_NOSPACE | DIV;
+//arithmeticalOperator:PLUS | MINUS | EXP | MULT | MULT_NOSPACE | DIV;
 comparisonOperator: GT | LT | GE | LE | NE;
 assignmentOperator: CPLUS | CMINUS | CMULT | CDIV ;
 

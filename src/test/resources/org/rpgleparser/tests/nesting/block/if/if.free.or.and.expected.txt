@@ -1,0 +1,117 @@
+/*===TOKENS===*/
+OP_IF                    <IF>
+ID                       <X>
+'='                      <=>
+NUMBER                   <1>
+AND                      <AND>
+ID                       <Y>
+'='                      <=>
+NUMBER                   <2>
+OR                       <OR>
+ID                       <Z>
+'='                      <=>
+NUMBER                   <3>
+AND                      <AND>
+ID                       <Q>
+'='                      <=>
+NUMBER                   <8>
+OR                       <OR>
+ID                       <B>
+'='                      <=>
+NUMBER                   <43>
+FREE_SEMI                <;>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <CSNAME>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <CCC>
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
+OP_ENDIF                 <ENDIF>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          (op_if
+            IF
+            (expression
+              (expression
+                (expression
+                  (expression
+                    (expression (identifier (free_identifier X)))
+                    =
+                    (expression (number 1))
+                  )
+                  AND
+                  (expression
+                    (expression (identifier (free_identifier Y)))
+                    =
+                    (expression (number 2))
+                  )
+                )
+                OR
+                (expression
+                  (expression
+                    (expression (identifier (free_identifier Z)))
+                    =
+                    (expression (number 3))
+                  )
+                  AND
+                  (expression
+                    (expression (identifier (free_identifier Q)))
+                    =
+                    (expression (number 8))
+                  )
+                )
+              )
+              OR
+              (expression
+                (expression (identifier (free_identifier B)))
+                =
+                (expression (number 43))
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_x2
+              (csOperationAndExtendedFactor2 EVAL)
+              (c_free
+                (baseExpression
+                  (op
+                    (op_eval
+                      (assignmentExpression
+                        (expression (identifier (free_identifier CSNAME)))
+                        =
+                        (expression (literal ' CCC '))
+                      )
+                    )
+                  )
+                )
+              )
+              \r\n
+            )
+          )
+        )
+        (endif (op_endif ENDIF) ;)
+      )
+    )
+  )
+)
+/*======*/
