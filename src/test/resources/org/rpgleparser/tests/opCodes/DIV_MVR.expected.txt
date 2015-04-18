@@ -1,0 +1,271 @@
+/*===TOKENS===*/
+LEAD_WS5_Comments        <1.00 >
+DS_FIXED                 <D>
+NAME                     <A>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <      2>
+DATA_TYPE                <P>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <INZ(25)                                   130128        >
+EOL                      <
+>
+LEAD_WS5_Comments        <2.00 >
+DS_FIXED                 <D>
+NAME                     <B>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <      2>
+DATA_TYPE                <P>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <INZ(11)                                   130128        >
+EOL                      <
+>
+LEAD_WS5_Comments        <3.00 >
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                              130128        >
+LEAD_WS5_Comments        <4.00 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <A>
+OP_DIV                   <DIV>
+CS_FactorContent         <B>
+CS_FactorContent         <C>
+CS_FieldLength           <    2>
+CS_DecimalPositions      < 0>
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+CS_Comments              <130128        >
+EOL                      <
+>
+LEAD_WS5_Comments        <5.00 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_MVR                   <MVR>
+CS_BlankFactor           <              >
+CS_FactorContent         <D>
+CS_FieldLength           <    2>
+CS_DecimalPositions      < 0>
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+CS_Comments              <130128        >
+EOL                      <
+>
+LEAD_WS5_Comments        <6.00 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <C>
+OP_DSPLY                 <DSPLY>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+CS_Comments              <130128        >
+EOL                      <
+>
+LEAD_WS5_Comments        <7.00 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <D>
+OP_DSPLY                 <DSPLY>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+CS_Comments              <130128        >
+EOL                      <
+>
+LEAD_WS5_Comments        <8.00 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+LastRecordIndicator      <LR>
+BlankIndicator           <  >
+BlankIndicator           <  >
+CS_Comments              <130128        >
+/*===TREE===*/
+(r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name A)
+      ' '
+      ' '
+      'S '
+      '       '
+      '      2'
+      P
+      ' 0'
+      ' '
+      'INZ(25)                                   130128        '
+      \r\n
+    )
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name B)
+      ' '
+      ' '
+      'S '
+      '       '
+      '      2'
+      P
+      ' 0'
+      ' '
+      'INZ(11)                                   130128        '
+      \r\n
+    )
+  )
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent A))
+      (cspec_fixed_standard
+        (csDIV
+          DIV
+          (cspec_fixed_standard_parts
+            (factor (factorContent B))
+            (resultType C)
+            '    2'
+            ' 0'
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (cs_fixed_comments '130128        ')
+            \r\n
+          )
+          (csMVR
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            MVR
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType D)
+              '    2'
+              ' 0'
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (cs_fixed_comments '130128        ')
+              \r\n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent C))
+      (cspec_fixed_standard
+        (csDSPLY
+          DSPLY
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (cs_fixed_comments '130128        ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent D))
+      (cspec_fixed_standard
+        (csDSPLY
+          DSPLY
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (cs_fixed_comments '130128        ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator LR)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (cs_fixed_comments '130128        ')
+            <EOF>
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

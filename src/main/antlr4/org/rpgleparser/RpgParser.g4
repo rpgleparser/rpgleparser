@@ -532,7 +532,7 @@ cspec_fixed_standard:
 	| csMOVEA
 	| csMOVEL
 	| csMULT
-	| csMVR
+	//| csMVR
 	| csNEXT
 	| csOCCUR
 	| csON_ERROR
@@ -746,7 +746,8 @@ csDELETE:
 csDIV:
 	operation=OP_DIV
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	cspec_fixed_standard_parts
+	csMVR?;
 csDO:
 	operation=OP_DO
 	cspec_fixed_standard_parts;
@@ -954,6 +955,11 @@ csMULT:
 	operationExtender=cs_operationExtender? 
 	cspec_fixed_standard_parts;
 csMVR:
+	CS_FIXED
+	BlankIndicator
+	BlankFlag 
+	BlankIndicator
+	CS_BlankFactor
 	operation=OP_MVR
 	cspec_fixed_standard_parts;
 csNEXT:
