@@ -6,7 +6,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import org.rpgleparser.RpgParser.AllContext;
 import org.rpgleparser.RpgParser.ArgsContext;
 import org.rpgleparser.RpgParser.ArgumentContext;
-import org.rpgleparser.RpgParser.ArithmeticalOperatorContext;
 import org.rpgleparser.RpgParser.AssignmentExpressionContext;
 import org.rpgleparser.RpgParser.AssignmentOperatorContext;
 import org.rpgleparser.RpgParser.BaseExpressionContext;
@@ -407,18 +406,18 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-	@Override
-	public void enterArithmeticalOperator(ArithmeticalOperatorContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterArithmeticalOperator(ArithmeticalOperatorContext) - start"); //$NON-NLS-1$
-		}
-		
-		super.enterArithmeticalOperator(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterArithmeticalOperator(ArithmeticalOperatorContext) - end"); //$NON-NLS-1$
-		}
-	}
+//	@Override
+//	public void enterArithmeticalOperator(ArithmeticalOperatorContext ctx) {
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("enterArithmeticalOperator(ArithmeticalOperatorContext) - start"); //$NON-NLS-1$
+//		}
+//		
+//		super.enterArithmeticalOperator(ctx);
+//
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("enterArithmeticalOperator(ArithmeticalOperatorContext) - end"); //$NON-NLS-1$
+//		}
+//	}
 
 	@Override
 	public void enterAssignmentExpression(AssignmentExpressionContext ctx) {
@@ -5085,18 +5084,18 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-	@Override
-	public void exitArithmeticalOperator(ArithmeticalOperatorContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - start"); //$NON-NLS-1$
-		}
-		
-		super.exitArithmeticalOperator(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - end"); //$NON-NLS-1$
-		}
-	}
+//	@Override
+//	public void exitArithmeticalOperator(ArithmeticalOperatorContext ctx) {
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - start"); //$NON-NLS-1$
+//		}
+//		
+//		super.exitArithmeticalOperator(ctx);
+//
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - end"); //$NON-NLS-1$
+//		}
+//	}
 
 	@Override
 	public void exitAssignmentExpression(AssignmentExpressionContext ctx) {
