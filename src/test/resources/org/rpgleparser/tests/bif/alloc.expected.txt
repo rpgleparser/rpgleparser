@@ -182,11 +182,7 @@ COMMENTS_TEXT            <                   >
                       (bif_alloc
                         %Alloc
                         (
-                        (expression
-                          (expression (number 200))
-                          (arithmeticalOperator +)
-                          (expression (number 300))
-                        )
+                        (expression (expression (number 200)) + (expression (number 300)))
                         )
                       )
                     )
@@ -260,16 +256,12 @@ COMMENTS_TEXT            <                   >
                         (
                         (expression
                           (expression
-                            (expression
-                              (expression (bif (bif_int %int ( (expression (number 101.2)) ))))
-                              (arithmeticalOperator +)
-                              (expression (number 10))
-                            )
-                            (arithmeticalOperator -)
-                            (expression (number 4))
+                            (expression (bif (bif_int %int ( (expression (number 101.2)) ))))
+                            +
+                            (expression (number 10))
                           )
-                          (arithmeticalOperator +)
-                          (expression (number 25))
+                          -
+                          (expression (expression (number 4)) + (expression (number 25)))
                         )
                         )
                       )
@@ -314,11 +306,7 @@ COMMENTS_TEXT            <                   >
                   (bif_alloc
                     %ALLOC
                     (
-                    (expression
-                      (expression (number 200))
-                      (arithmeticalOperator +)
-                      (expression (number 300))
-                    )
+                    (expression (expression (number 200)) + (expression (number 300)))
                     )
                   )
                 )
@@ -374,7 +362,7 @@ COMMENTS_TEXT            <                   >
                       (expression
                         (bif (bif_len %len ( (expression (identifier (free_identifier fld))) )))
                       )
-                      (arithmeticalOperator *)
+                      *
                       (expression (number 25))
                     )
                     )
