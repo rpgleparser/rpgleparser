@@ -14,6 +14,97 @@ import org.rpgleparser.RpgParser.Beginfree_directiveContext;
 import org.rpgleparser.RpgParser.BeginifContext;
 import org.rpgleparser.RpgParser.BeginselectContext;
 import org.rpgleparser.RpgParser.BegsrContext;
+import org.rpgleparser.RpgParser.BifContext;
+import org.rpgleparser.RpgParser.Bif_absContext;
+import org.rpgleparser.RpgParser.Bif_addrContext;
+import org.rpgleparser.RpgParser.Bif_allocContext;
+import org.rpgleparser.RpgParser.Bif_bitandContext;
+import org.rpgleparser.RpgParser.Bif_bitnotContext;
+import org.rpgleparser.RpgParser.Bif_bitorContext;
+import org.rpgleparser.RpgParser.Bif_bitxorContext;
+import org.rpgleparser.RpgParser.Bif_charContext;
+import org.rpgleparser.RpgParser.Bif_charformatContext;
+import org.rpgleparser.RpgParser.Bif_checkContext;
+import org.rpgleparser.RpgParser.Bif_checkrContext;
+import org.rpgleparser.RpgParser.Bif_codeContext;
+import org.rpgleparser.RpgParser.Bif_dateContext;
+import org.rpgleparser.RpgParser.Bif_dateformatContext;
+import org.rpgleparser.RpgParser.Bif_daysContext;
+import org.rpgleparser.RpgParser.Bif_decContext;
+import org.rpgleparser.RpgParser.Bif_dechContext;
+import org.rpgleparser.RpgParser.Bif_decposContext;
+import org.rpgleparser.RpgParser.Bif_diffContext;
+import org.rpgleparser.RpgParser.Bif_diffformatContext;
+import org.rpgleparser.RpgParser.Bif_divContext;
+import org.rpgleparser.RpgParser.Bif_editcContext;
+import org.rpgleparser.RpgParser.Bif_editccurrencyContext;
+import org.rpgleparser.RpgParser.Bif_editfltContext;
+import org.rpgleparser.RpgParser.Bif_editwContext;
+import org.rpgleparser.RpgParser.Bif_elemContext;
+import org.rpgleparser.RpgParser.Bif_eofContext;
+import org.rpgleparser.RpgParser.Bif_equalContext;
+import org.rpgleparser.RpgParser.Bif_errorContext;
+import org.rpgleparser.RpgParser.Bif_fieldsContext;
+import org.rpgleparser.RpgParser.Bif_floatContext;
+import org.rpgleparser.RpgParser.Bif_foundContext;
+import org.rpgleparser.RpgParser.Bif_graphContext;
+import org.rpgleparser.RpgParser.Bif_handlerContext;
+import org.rpgleparser.RpgParser.Bif_hoursContext;
+import org.rpgleparser.RpgParser.Bif_intContext;
+import org.rpgleparser.RpgParser.Bif_inthContext;
+import org.rpgleparser.RpgParser.Bif_kdsContext;
+import org.rpgleparser.RpgParser.Bif_lenContext;
+import org.rpgleparser.RpgParser.Bif_lookupContext;
+import org.rpgleparser.RpgParser.Bif_lookupargsContext;
+import org.rpgleparser.RpgParser.Bif_lookupgeContext;
+import org.rpgleparser.RpgParser.Bif_lookupgtContext;
+import org.rpgleparser.RpgParser.Bif_lookupleContext;
+import org.rpgleparser.RpgParser.Bif_lookupltContext;
+import org.rpgleparser.RpgParser.Bif_minutesContext;
+import org.rpgleparser.RpgParser.Bif_monthsContext;
+import org.rpgleparser.RpgParser.Bif_msecondsContext;
+import org.rpgleparser.RpgParser.Bif_nullindContext;
+import org.rpgleparser.RpgParser.Bif_occurContext;
+import org.rpgleparser.RpgParser.Bif_openContext;
+import org.rpgleparser.RpgParser.Bif_paddrContext;
+import org.rpgleparser.RpgParser.Bif_parmnumContext;
+import org.rpgleparser.RpgParser.Bif_parmsContext;
+import org.rpgleparser.RpgParser.Bif_reallocContext;
+import org.rpgleparser.RpgParser.Bif_remContext;
+import org.rpgleparser.RpgParser.Bif_replaceContext;
+import org.rpgleparser.RpgParser.Bif_scanContext;
+import org.rpgleparser.RpgParser.Bif_scanrplContext;
+import org.rpgleparser.RpgParser.Bif_secondsContext;
+import org.rpgleparser.RpgParser.Bif_shtdnContext;
+import org.rpgleparser.RpgParser.Bif_sizeContext;
+import org.rpgleparser.RpgParser.Bif_sqrtContext;
+import org.rpgleparser.RpgParser.Bif_statusContext;
+import org.rpgleparser.RpgParser.Bif_strContext;
+import org.rpgleparser.RpgParser.Bif_subarrContext;
+import org.rpgleparser.RpgParser.Bif_subdtContext;
+import org.rpgleparser.RpgParser.Bif_subdtargsContext;
+import org.rpgleparser.RpgParser.Bif_substContext;
+import org.rpgleparser.RpgParser.Bif_thisContext;
+import org.rpgleparser.RpgParser.Bif_timeContext;
+import org.rpgleparser.RpgParser.Bif_timeformatContext;
+import org.rpgleparser.RpgParser.Bif_timestampContext;
+import org.rpgleparser.RpgParser.Bif_timestampargsContext;
+import org.rpgleparser.RpgParser.Bif_tlookupContext;
+import org.rpgleparser.RpgParser.Bif_tlookupargsContext;
+import org.rpgleparser.RpgParser.Bif_tlookupgeContext;
+import org.rpgleparser.RpgParser.Bif_tlookupgtContext;
+import org.rpgleparser.RpgParser.Bif_tlookupleContext;
+import org.rpgleparser.RpgParser.Bif_tlookupltContext;
+import org.rpgleparser.RpgParser.Bif_trimContext;
+import org.rpgleparser.RpgParser.Bif_trimlContext;
+import org.rpgleparser.RpgParser.Bif_trimrContext;
+import org.rpgleparser.RpgParser.Bif_ucs2Context;
+import org.rpgleparser.RpgParser.Bif_unsContext;
+import org.rpgleparser.RpgParser.Bif_unshContext;
+import org.rpgleparser.RpgParser.Bif_xfootContext;
+import org.rpgleparser.RpgParser.Bif_xlateContext;
+import org.rpgleparser.RpgParser.Bif_xmlContext;
+import org.rpgleparser.RpgParser.Bif_yearsContext;
 import org.rpgleparser.RpgParser.Blank_lineContext;
 import org.rpgleparser.RpgParser.BlockContext;
 import org.rpgleparser.RpgParser.C_freeContext;
@@ -329,6 +420,7 @@ import org.rpgleparser.RpgParser.Op_whenContext;
 import org.rpgleparser.RpgParser.Op_writeContext;
 import org.rpgleparser.RpgParser.Op_xml_intoContext;
 import org.rpgleparser.RpgParser.Op_xml_saxContext;
+import org.rpgleparser.RpgParser.OptargsContext;
 import org.rpgleparser.RpgParser.Os_fixed_pgmdesc1Context;
 import org.rpgleparser.RpgParser.Os_fixed_pgmdesc2Context;
 import org.rpgleparser.RpgParser.Os_fixed_pgmdesc_compoundContext;
@@ -525,6 +617,1197 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterBif(BifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif(BifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif(BifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_abs(Bif_absContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_abs(Bif_absContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_abs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_abs(Bif_absContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_addr(Bif_addrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_addr(Bif_addrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_addr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_addr(Bif_addrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_alloc(Bif_allocContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_alloc(Bif_allocContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_alloc(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_alloc(Bif_allocContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_bitand(Bif_bitandContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_bitand(Bif_bitandContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_bitand(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_bitand(Bif_bitandContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_bitnot(Bif_bitnotContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_bitnot(Bif_bitnotContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_bitnot(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_bitnot(Bif_bitnotContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_bitor(Bif_bitorContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_bitor(Bif_bitorContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_bitor(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_bitor(Bif_bitorContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_bitxor(Bif_bitxorContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_bitxor(Bif_bitxorContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_bitxor(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_bitxor(Bif_bitxorContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_char(Bif_charContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_char(Bif_charContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_char(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_char(Bif_charContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_charformat(Bif_charformatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_charformat(Bif_charformatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_charformat(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_charformat(Bif_charformatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_check(Bif_checkContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_check(Bif_checkContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_check(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_check(Bif_checkContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_checkr(Bif_checkrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_checkr(Bif_checkrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_checkr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_checkr(Bif_checkrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_code(Bif_codeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_code(Bif_codeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_code(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_code(Bif_codeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_date(Bif_dateContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_date(Bif_dateContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_date(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_date(Bif_dateContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+
+	@Override
+	public void enterBif_dateformat(Bif_dateformatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_dateformat(Bif_dateformatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_dateformat(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_dateformat(Bif_dateformatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_days(Bif_daysContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_days(Bif_daysContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_days(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_days(Bif_daysContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_dec(Bif_decContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_dec(Bif_decContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_dec(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_dec(Bif_decContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_dech(Bif_dechContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_dech(Bif_dechContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_dech(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_dech(Bif_dechContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_decpos(Bif_decposContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_decpos(Bif_decposContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_decpos(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_decpos(Bif_decposContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_diff(Bif_diffContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_diff(Bif_diffContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_diff(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_diff(Bif_diffContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_diffformat(Bif_diffformatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_diffformat(Bif_diffformatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_diffformat(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_diffformat(Bif_diffformatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_div(Bif_divContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_div(Bif_divContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_div(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_div(Bif_divContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_editc(Bif_editcContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_editc(Bif_editcContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_editc(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_editc(Bif_editcContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_editccurrency(Bif_editccurrencyContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_editccurrency(Bif_editccurrencyContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_editccurrency(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_editccurrency(Bif_editccurrencyContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_editflt(Bif_editfltContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_editflt(Bif_editfltContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_editflt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_editflt(Bif_editfltContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_editw(Bif_editwContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_editw(Bif_editwContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_editw(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_editw(Bif_editwContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_elem(Bif_elemContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_elem(Bif_elemContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_elem(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_elem(Bif_elemContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_eof(Bif_eofContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_eof(Bif_eofContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_eof(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_eof(Bif_eofContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_equal(Bif_equalContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_equal(Bif_equalContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_equal(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_equal(Bif_equalContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_error(Bif_errorContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_error(Bif_errorContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_error(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_error(Bif_errorContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_fields(Bif_fieldsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_fields(Bif_fieldsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_fields(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_fields(Bif_fieldsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_float(Bif_floatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_float(Bif_floatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_float(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_float(Bif_floatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+
+
+	@Override
+	public void enterBif_found(Bif_foundContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_found(Bif_foundContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_found(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_found(Bif_foundContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_graph(Bif_graphContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_graph(Bif_graphContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_graph(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_graph(Bif_graphContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+
+	@Override
+	public void enterBif_handler(Bif_handlerContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_handler(Bif_handlerContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_handler(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_handler(Bif_handlerContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+
+	@Override
+	public void enterBif_hours(Bif_hoursContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_hours(Bif_hoursContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_hours(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_hours(Bif_hoursContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_int(Bif_intContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_int(Bif_intContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_int(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_int(Bif_intContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_inth(Bif_inthContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_inth(Bif_inthContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_inth(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_inth(Bif_inthContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+
+
+	@Override
+	public void enterBif_kds(Bif_kdsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_kds(Bif_kdsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_kds(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_kds(Bif_kdsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+
+	@Override
+	public void enterBif_len(Bif_lenContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_len(Bif_lenContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_len(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_len(Bif_lenContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_lookup(Bif_lookupContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookup(Bif_lookupContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_lookup(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookup(Bif_lookupContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_lookupargs(Bif_lookupargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookupargs(Bif_lookupargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_lookupargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookupargs(Bif_lookupargsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_lookupge(Bif_lookupgeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookupge(Bif_lookupgeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_lookupge(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookupge(Bif_lookupgeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_lookupgt(Bif_lookupgtContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookupgt(Bif_lookupgtContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_lookupgt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookupgt(Bif_lookupgtContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_lookuple(Bif_lookupleContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookuple(Bif_lookupleContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_lookuple(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookuple(Bif_lookupleContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_lookuplt(Bif_lookupltContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookuplt(Bif_lookupltContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_lookuplt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_lookuplt(Bif_lookupltContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_minutes(Bif_minutesContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_minutes(Bif_minutesContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_minutes(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_minutes(Bif_minutesContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_months(Bif_monthsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_months(Bif_monthsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_months(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_months(Bif_monthsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_mseconds(Bif_msecondsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_mseconds(Bif_msecondsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_mseconds(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_mseconds(Bif_msecondsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_nullind(Bif_nullindContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_nullind(Bif_nullindContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_nullind(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_nullind(Bif_nullindContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_occur(Bif_occurContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_occur(Bif_occurContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_occur(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_occur(Bif_occurContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_open(Bif_openContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_open(Bif_openContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_open(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_open(Bif_openContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_paddr(Bif_paddrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_paddr(Bif_paddrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_paddr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_paddr(Bif_paddrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_parmnum(Bif_parmnumContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_parmnum(Bif_parmnumContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_parmnum(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_parmnum(Bif_parmnumContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_parms(Bif_parmsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_parms(Bif_parmsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_parms(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_parms(Bif_parmsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_realloc(Bif_reallocContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_realloc(Bif_reallocContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_realloc(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_realloc(Bif_reallocContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_rem(Bif_remContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_rem(Bif_remContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_rem(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_rem(Bif_remContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_replace(Bif_replaceContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_replace(Bif_replaceContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_replace(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_replace(Bif_replaceContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_scan(Bif_scanContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_scan(Bif_scanContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_scan(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_scan(Bif_scanContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_scanrpl(Bif_scanrplContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_scanrpl(Bif_scanrplContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_scanrpl(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_scanrpl(Bif_scanrplContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_seconds(Bif_secondsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_seconds(Bif_secondsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_seconds(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_seconds(Bif_secondsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_shtdn(Bif_shtdnContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_shtdn(Bif_shtdnContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_shtdn(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_shtdn(Bif_shtdnContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_size(Bif_sizeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_size(Bif_sizeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_size(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_size(Bif_sizeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_sqrt(Bif_sqrtContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_sqrt(Bif_sqrtContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_sqrt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_sqrt(Bif_sqrtContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_status(Bif_statusContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_status(Bif_statusContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_status(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_status(Bif_statusContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_str(Bif_strContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_str(Bif_strContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_str(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_str(Bif_strContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_subarr(Bif_subarrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_subarr(Bif_subarrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_subarr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_subarr(Bif_subarrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_subdt(Bif_subdtContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_subdt(Bif_subdtContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_subdt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_subdt(Bif_subdtContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_subdtargs(Bif_subdtargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_subdtargs(Bif_subdtargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_subdtargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_subdtargs(Bif_subdtargsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_subst(Bif_substContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_subst(Bif_substContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_subst(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_subst(Bif_substContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_this(Bif_thisContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_this(Bif_thisContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_this(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_this(Bif_thisContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_time(Bif_timeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_time(Bif_timeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_time(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_time(Bif_timeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_timeformat(Bif_timeformatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_timeformat(Bif_timeformatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_timeformat(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_timeformat(Bif_timeformatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_timestamp(Bif_timestampContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_timestamp(Bif_timestampContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_timestamp(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_timestamp(Bif_timestampContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_timestampargs(Bif_timestampargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_timestampargs(Bif_timestampargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_timestampargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_timestampargs(Bif_timestampargsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_tlookup(Bif_tlookupContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookup(Bif_tlookupContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_tlookup(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookup(Bif_tlookupContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_tlookupargs(Bif_tlookupargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookupargs(Bif_tlookupargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_tlookupargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookupargs(Bif_tlookupargsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_tlookupge(Bif_tlookupgeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookupge(Bif_tlookupgeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_tlookupge(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookupge(Bif_tlookupgeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_tlookupgt(Bif_tlookupgtContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookupgt(Bif_tlookupgtContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_tlookupgt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookupgt(Bif_tlookupgtContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_tlookuple(Bif_tlookupleContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookuple(Bif_tlookupleContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_tlookuple(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookuple(Bif_tlookupleContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_tlookuplt(Bif_tlookupltContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookuplt(Bif_tlookupltContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_tlookuplt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_tlookuplt(Bif_tlookupltContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_trim(Bif_trimContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_trim(Bif_trimContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_trim(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_trim(Bif_trimContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_triml(Bif_trimlContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_triml(Bif_trimlContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_triml(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_triml(Bif_trimlContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_trimr(Bif_trimrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_trimr(Bif_trimrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_trimr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_trimr(Bif_trimrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_ucs2(Bif_ucs2Context ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_ucs2(Bif_ucs2Context) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_ucs2(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_ucs2(Bif_ucs2Context) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_uns(Bif_unsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_uns(Bif_unsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_uns(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_uns(Bif_unsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_unsh(Bif_unshContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_unsh(Bif_unshContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_unsh(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_unsh(Bif_unshContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_xfoot(Bif_xfootContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_xfoot(Bif_xfootContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_xfoot(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_xfoot(Bif_xfootContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_xlate(Bif_xlateContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_xlate(Bif_xlateContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_xlate(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_xlate(Bif_xlateContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_xml(Bif_xmlContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_xml(Bif_xmlContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_xml(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_xml(Bif_xmlContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterBif_years(Bif_yearsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_years(Bif_yearsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterBif_years(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterBif_years(Bif_yearsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterBlank_line(Blank_lineContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterBlank_line(Blank_lineContext) - start"); //$NON-NLS-1$
@@ -706,7 +1989,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsADD(CsADDContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -759,6 +2041,8 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
+
 	@Override
 	public void enterCsANDGE(CsANDGEContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -771,6 +2055,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsANDGE(CsANDGEContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsANDGT(CsANDGTContext ctx) {
@@ -941,8 +2226,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
-
 	@Override
 	public void enterCsCABNE(CsCABNEContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -969,7 +2252,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsCALL(CsCALLContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -982,7 +2264,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsCALL(CsCALLContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsCALLB(CsCALLBContext ctx) {
@@ -1011,6 +2292,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsCASEQ(CsCASEQContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -1024,8 +2306,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
-
 	@Override
 	public void enterCsCASGE(CsCASGEContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -1038,7 +2318,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsCASGE(CsCASGEContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsCASGT(CsCASGTContext ctx) {
@@ -1208,6 +2487,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsDEALLOC(CsDEALLOCContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsDEFINE(CsDEFINEContext ctx) {
@@ -1430,6 +2710,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsDOWLT(CsDOWLTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -1442,6 +2723,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsDOWLT(CsDOWLTContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsDOWNE(CsDOWNEContext ctx) {
@@ -1469,6 +2751,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsDSPLY(CsDSPLYContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -1481,6 +2764,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsDSPLY(CsDSPLYContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsDUMP(CsDUMPContext ctx) {
@@ -1521,6 +2805,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsEND(CsENDContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -1533,6 +2818,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsEND(CsENDContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsENDCS(CsENDCSContext ctx) {
@@ -1950,8 +3236,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
-
 	@Override
 	public void enterCsLOOKUP(CsLOOKUPContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -1964,7 +3248,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsLOOKUP(CsLOOKUPContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsMHHZO(CsMHHZOContext ctx) {
@@ -2201,7 +3484,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsORLE(CsORLEContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2253,6 +3535,19 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsORxx(CsORxxContext) - end"); //$NON-NLS-1$
 		}
 	}
+
+//	@Override
+//	public void enterFree_text(Free_textContext ctx) {
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("enterFree_text(Free_textContext) - start"); //$NON-NLS-1$
+//		}
+//		
+//		super.enterFree_text(ctx);
+//
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("enterFree_text(Free_textContext) - end"); //$NON-NLS-1$
+//		}
+//	}
 
 	@Override
 	public void enterCsOTHER(CsOTHERContext ctx) {
@@ -2398,7 +3693,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsREADC(CsREADCContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2438,6 +3732,9 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
+
+
 	@Override
 	public void enterCsREADPE(CsREADPEContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2450,6 +3747,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsREADPE(CsREADPEContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsREALLOC(CsREALLOCContext ctx) {
@@ -2620,7 +3918,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsSQRT(CsSQRTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2633,7 +3930,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsSQRT(CsSQRTContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsSUB(CsSUBContext ctx) {
@@ -2661,7 +3957,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsSUBST(CsSUBSTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2674,7 +3969,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsSUBST(CsSUBSTContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsTAG(CsTAGContext ctx) {
@@ -2715,7 +4009,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsTESTN(CsTESTNContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2728,7 +4021,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsTESTN(CsTESTNContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsTESTZ(CsTESTZContext ctx) {
@@ -3204,7 +4496,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterEndfree_directive(Endfree_directiveContext) - start"); //$NON-NLS-1$
 		}
 
-		// TODO Auto-generated method stub
+
 		super.enterEndfree_directive(ctx);
 
 		if (logger.isDebugEnabled()) {
@@ -3446,19 +4738,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-//	@Override
-//	public void enterFree_text(Free_textContext ctx) {
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("enterFree_text(Free_textContext) - start"); //$NON-NLS-1$
-//		}
-//		
-//		super.enterFree_text(ctx);
-//
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("enterFree_text(Free_textContext) - end"); //$NON-NLS-1$
-//		}
-//	}
-
 	@Override
 	public void enterFree_linecomments(Free_linecommentsContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -3641,9 +4920,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
-
-
 	@Override
 	public void enterHs_string(Hs_stringContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -3656,7 +4932,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterHs_string(Hs_stringContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterHspec_fixed(Hspec_fixedContext ctx) {
@@ -3904,6 +5179,19 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterOp_clear(Op_clearContext) - end"); //$NON-NLS-1$
 		}
 	}
+
+//	@Override
+//	public void exitArithmeticalOperator(ArithmeticalOperatorContext ctx) {
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - start"); //$NON-NLS-1$
+//		}
+//		
+//		super.exitArithmeticalOperator(ctx);
+//
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - end"); //$NON-NLS-1$
+//		}
+//	}
 
 	@Override
 	public void enterOp_close(Op_closeContext ctx) {
@@ -4673,6 +5961,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterOptargs(OptargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterOptargs(OptargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterOptargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterOptargs(OptargsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterOs_fixed_pgmdesc_compound(
 			Os_fixed_pgmdesc_compoundContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -5084,19 +6385,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-//	@Override
-//	public void exitArithmeticalOperator(ArithmeticalOperatorContext ctx) {
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - start"); //$NON-NLS-1$
-//		}
-//		
-//		super.exitArithmeticalOperator(ctx);
-//
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - end"); //$NON-NLS-1$
-//		}
-//	}
-
 	@Override
 	public void exitAssignmentExpression(AssignmentExpressionContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -5198,6 +6486,1189 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitBegsr(BegsrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif(BifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif(BifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif(BifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_abs(Bif_absContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_abs(Bif_absContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_abs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_abs(Bif_absContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_addr(Bif_addrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_addr(Bif_addrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_addr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_addr(Bif_addrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_alloc(Bif_allocContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_alloc(Bif_allocContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_alloc(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_alloc(Bif_allocContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_bitand(Bif_bitandContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_bitand(Bif_bitandContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_bitand(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_bitand(Bif_bitandContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_bitnot(Bif_bitnotContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_bitnot(Bif_bitnotContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_bitnot(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_bitnot(Bif_bitnotContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_bitor(Bif_bitorContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_bitor(Bif_bitorContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_bitor(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_bitor(Bif_bitorContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_bitxor(Bif_bitxorContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_bitxor(Bif_bitxorContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_bitxor(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_bitxor(Bif_bitxorContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_char(Bif_charContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_char(Bif_charContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_char(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_char(Bif_charContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_charformat(Bif_charformatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_charformat(Bif_charformatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_charformat(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_charformat(Bif_charformatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_check(Bif_checkContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_check(Bif_checkContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_check(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_check(Bif_checkContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_checkr(Bif_checkrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_checkr(Bif_checkrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_checkr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_checkr(Bif_checkrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_code(Bif_codeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_code(Bif_codeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_code(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_code(Bif_codeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_date(Bif_dateContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_date(Bif_dateContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_date(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_date(Bif_dateContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_dateformat(Bif_dateformatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_dateformat(Bif_dateformatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_dateformat(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_dateformat(Bif_dateformatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_days(Bif_daysContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_days(Bif_daysContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_days(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_days(Bif_daysContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_dec(Bif_decContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_dec(Bif_decContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_dec(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_dec(Bif_decContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_dech(Bif_dechContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_dech(Bif_dechContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_dech(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_dech(Bif_dechContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_decpos(Bif_decposContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_decpos(Bif_decposContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_decpos(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_decpos(Bif_decposContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_diff(Bif_diffContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_diff(Bif_diffContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_diff(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_diff(Bif_diffContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_diffformat(Bif_diffformatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_diffformat(Bif_diffformatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_diffformat(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_diffformat(Bif_diffformatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_div(Bif_divContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_div(Bif_divContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_div(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_div(Bif_divContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_editc(Bif_editcContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editc(Bif_editcContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_editc(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editc(Bif_editcContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_editccurrency(Bif_editccurrencyContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editccurrency(Bif_editccurrencyContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_editccurrency(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editccurrency(Bif_editccurrencyContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_editflt(Bif_editfltContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editflt(Bif_editfltContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_editflt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editflt(Bif_editfltContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_editw(Bif_editwContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editw(Bif_editwContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_editw(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editw(Bif_editwContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_elem(Bif_elemContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_elem(Bif_elemContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_elem(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_elem(Bif_elemContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_eof(Bif_eofContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_eof(Bif_eofContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_eof(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_eof(Bif_eofContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_equal(Bif_equalContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_equal(Bif_equalContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_equal(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_equal(Bif_equalContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_error(Bif_errorContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_error(Bif_errorContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_error(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_error(Bif_errorContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_fields(Bif_fieldsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_fields(Bif_fieldsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_fields(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_fields(Bif_fieldsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_float(Bif_floatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_float(Bif_floatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_float(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_float(Bif_floatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_found(Bif_foundContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_found(Bif_foundContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_found(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_found(Bif_foundContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_graph(Bif_graphContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_graph(Bif_graphContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_graph(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_graph(Bif_graphContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_handler(Bif_handlerContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_handler(Bif_handlerContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_handler(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_handler(Bif_handlerContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_hours(Bif_hoursContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_hours(Bif_hoursContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_hours(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_hours(Bif_hoursContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_int(Bif_intContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_int(Bif_intContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_int(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_int(Bif_intContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_inth(Bif_inthContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_inth(Bif_inthContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_inth(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_inth(Bif_inthContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_kds(Bif_kdsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_kds(Bif_kdsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_kds(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_kds(Bif_kdsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_len(Bif_lenContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_len(Bif_lenContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_len(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_len(Bif_lenContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_lookup(Bif_lookupContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookup(Bif_lookupContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_lookup(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookup(Bif_lookupContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_lookupargs(Bif_lookupargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookupargs(Bif_lookupargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_lookupargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookupargs(Bif_lookupargsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_lookupge(Bif_lookupgeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookupge(Bif_lookupgeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_lookupge(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookupge(Bif_lookupgeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_lookupgt(Bif_lookupgtContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookupgt(Bif_lookupgtContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_lookupgt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookupgt(Bif_lookupgtContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_lookuple(Bif_lookupleContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookuple(Bif_lookupleContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_lookuple(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookuple(Bif_lookupleContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_lookuplt(Bif_lookupltContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookuplt(Bif_lookupltContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_lookuplt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_lookuplt(Bif_lookupltContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_minutes(Bif_minutesContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_minutes(Bif_minutesContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_minutes(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_minutes(Bif_minutesContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_months(Bif_monthsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_months(Bif_monthsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_months(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_months(Bif_monthsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_mseconds(Bif_msecondsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_mseconds(Bif_msecondsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_mseconds(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_mseconds(Bif_msecondsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_nullind(Bif_nullindContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_nullind(Bif_nullindContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_nullind(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_nullind(Bif_nullindContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_occur(Bif_occurContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_occur(Bif_occurContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_occur(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_occur(Bif_occurContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_open(Bif_openContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_open(Bif_openContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_open(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_open(Bif_openContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_paddr(Bif_paddrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_paddr(Bif_paddrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_paddr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_paddr(Bif_paddrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_parmnum(Bif_parmnumContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_parmnum(Bif_parmnumContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_parmnum(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_parmnum(Bif_parmnumContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_parms(Bif_parmsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_parms(Bif_parmsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_parms(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_parms(Bif_parmsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_realloc(Bif_reallocContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_realloc(Bif_reallocContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_realloc(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_realloc(Bif_reallocContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_rem(Bif_remContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_rem(Bif_remContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_rem(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_rem(Bif_remContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_replace(Bif_replaceContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_replace(Bif_replaceContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_replace(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_replace(Bif_replaceContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_scan(Bif_scanContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_scan(Bif_scanContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_scan(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_scan(Bif_scanContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_scanrpl(Bif_scanrplContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_scanrpl(Bif_scanrplContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_scanrpl(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_scanrpl(Bif_scanrplContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_seconds(Bif_secondsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_seconds(Bif_secondsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_seconds(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_seconds(Bif_secondsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_shtdn(Bif_shtdnContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_shtdn(Bif_shtdnContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_shtdn(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_shtdn(Bif_shtdnContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_size(Bif_sizeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_size(Bif_sizeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_size(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_size(Bif_sizeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_sqrt(Bif_sqrtContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_sqrt(Bif_sqrtContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_sqrt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_sqrt(Bif_sqrtContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_status(Bif_statusContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_status(Bif_statusContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_status(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_status(Bif_statusContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_str(Bif_strContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_str(Bif_strContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_str(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_str(Bif_strContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_subarr(Bif_subarrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_subarr(Bif_subarrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_subarr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_subarr(Bif_subarrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_subdt(Bif_subdtContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_subdt(Bif_subdtContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_subdt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_subdt(Bif_subdtContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_subdtargs(Bif_subdtargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_subdtargs(Bif_subdtargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_subdtargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_subdtargs(Bif_subdtargsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_subst(Bif_substContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_subst(Bif_substContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_subst(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_subst(Bif_substContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_this(Bif_thisContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_this(Bif_thisContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_this(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_this(Bif_thisContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_time(Bif_timeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_time(Bif_timeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_time(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_time(Bif_timeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_timeformat(Bif_timeformatContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_timeformat(Bif_timeformatContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_timeformat(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_timeformat(Bif_timeformatContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_timestamp(Bif_timestampContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_timestamp(Bif_timestampContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_timestamp(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_timestamp(Bif_timestampContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_timestampargs(Bif_timestampargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_timestampargs(Bif_timestampargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_timestampargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_timestampargs(Bif_timestampargsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_tlookup(Bif_tlookupContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookup(Bif_tlookupContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_tlookup(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookup(Bif_tlookupContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_tlookupargs(Bif_tlookupargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookupargs(Bif_tlookupargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_tlookupargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookupargs(Bif_tlookupargsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_tlookupge(Bif_tlookupgeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookupge(Bif_tlookupgeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_tlookupge(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookupge(Bif_tlookupgeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_tlookupgt(Bif_tlookupgtContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookupgt(Bif_tlookupgtContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_tlookupgt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookupgt(Bif_tlookupgtContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_tlookuple(Bif_tlookupleContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookuple(Bif_tlookupleContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_tlookuple(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookuple(Bif_tlookupleContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_tlookuplt(Bif_tlookupltContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookuplt(Bif_tlookupltContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_tlookuplt(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_tlookuplt(Bif_tlookupltContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_trim(Bif_trimContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_trim(Bif_trimContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_trim(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_trim(Bif_trimContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_triml(Bif_trimlContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_triml(Bif_trimlContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_triml(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_triml(Bif_trimlContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_trimr(Bif_trimrContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_trimr(Bif_trimrContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_trimr(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_trimr(Bif_trimrContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_ucs2(Bif_ucs2Context ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_ucs2(Bif_ucs2Context) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_ucs2(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_ucs2(Bif_ucs2Context) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_uns(Bif_unsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_uns(Bif_unsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_uns(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_uns(Bif_unsContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_unsh(Bif_unshContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_unsh(Bif_unshContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_unsh(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_unsh(Bif_unshContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_xfoot(Bif_xfootContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_xfoot(Bif_xfootContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_xfoot(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_xfoot(Bif_xfootContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_xlate(Bif_xlateContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_xlate(Bif_xlateContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_xlate(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_xlate(Bif_xlateContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_xml(Bif_xmlContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_xml(Bif_xmlContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_xml(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_xml(Bif_xmlContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitBif_years(Bif_yearsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_years(Bif_yearsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_years(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_years(Bif_yearsContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -5668,6 +8139,19 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("exitCsCALLB(CsCALLBContext) - end"); //$NON-NLS-1$
 		}
 	}
+
+//	@Override
+//	public void exitFree_directive(Free_directiveContext ctx) {
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitFree_directive(Free_directiveContext) - start"); //$NON-NLS-1$
+//		}
+//		
+//		super.exitFree_directive(ctx);
+//
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitFree_directive(Free_directiveContext) - end"); //$NON-NLS-1$
+//		}
+//	}
 
 	@Override
 	public void exitCsCALLP(CsCALLPContext ctx) {
@@ -7862,7 +10346,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("exitEndfree_directive(Endfree_directiveContext) - start"); //$NON-NLS-1$
 		}
 
-		// TODO Auto-generated method stub
+
 		super.exitEndfree_directive(ctx);
 
 		if (logger.isDebugEnabled()) {
@@ -8051,19 +10535,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("exitFieldRecordRelation(FieldRecordRelationContext) - end"); //$NON-NLS-1$
 		}
 	}
-
-//	@Override
-//	public void exitFree_directive(Free_directiveContext ctx) {
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("exitFree_directive(Free_directiveContext) - start"); //$NON-NLS-1$
-//		}
-//		
-//		super.exitFree_directive(ctx);
-//
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("exitFree_directive(Free_directiveContext) - end"); //$NON-NLS-1$
-//		}
-//	}
 
 	@Override
 	public void exitFilename(FilenameContext ctx) {
@@ -9323,6 +11794,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitOpCode(OpCodeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitOptargs(OptargsContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitOptargs(OptargsContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitOptargs(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitOptargs(OptargsContext) - end"); //$NON-NLS-1$
 		}
 	}
 
