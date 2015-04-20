@@ -1,0 +1,174 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_ENTRY              <*ENTRY>
+OP_PLIST                 <PLIST>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <PARM>
+CS_BlankFactor           <              >
+CS_FactorContent         <OLDLIB1>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <PARM>
+CS_BlankFactor           <              >
+CS_FactorContent         <NEWLIB1>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <PARM>
+CS_BlankFactor           <              >
+CS_FactorContent         <OLDLIB2>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <PARM>
+CS_BlankFactor           <              >
+CS_FactorContent         <NEWLIB2>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *ENTRY))
+      (cspec_fixed_standard
+        (csPLIST
+          PLIST
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            PARM
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType OLDLIB1)
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            PARM
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType NEWLIB1)
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            PARM
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType OLDLIB2)
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            PARM
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType NEWLIB2)
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

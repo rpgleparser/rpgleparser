@@ -532,7 +532,7 @@ cspec_fixed_standard:
 	| csMOVEA
 	| csMOVEL
 	| csMULT
-	| csMVR
+	//| csMVR
 	| csNEXT
 	| csOCCUR
 	| csON_ERROR
@@ -545,7 +545,7 @@ cspec_fixed_standard:
 	//| csORGT
 	| csOTHER
 	| csOUT
-	| csPARM
+	//| csPARM
 	| csPLIST
 	| csPOST
 	| csREAD
@@ -675,11 +675,13 @@ csCABGT:
 csCALL:
 	operation=OP_CALL
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	cspec_fixed_standard_parts
+	csPARM*;
 csCALLB:
 	operation=OP_CALLB
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	cspec_fixed_standard_parts
+	csPARM*;
 csCALLP:
 	operation=OP_CALLP
 	operationExtender=cs_operationExtender? 
@@ -746,7 +748,8 @@ csDELETE:
 csDIV:
 	operation=OP_DIV
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	cspec_fixed_standard_parts
+	csMVR?;
 csDO:
 	operation=OP_DO
 	cspec_fixed_standard_parts;
@@ -954,6 +957,11 @@ csMULT:
 	operationExtender=cs_operationExtender? 
 	cspec_fixed_standard_parts;
 csMVR:
+	CS_FIXED
+	BlankIndicator
+	BlankFlag 
+	BlankIndicator
+	CS_BlankFactor
 	operation=OP_MVR
 	cspec_fixed_standard_parts;
 csNEXT:
@@ -997,11 +1005,17 @@ csOUT:
 	operationExtender=cs_operationExtender? 
 	cspec_fixed_standard_parts;
 csPARM:
+	CS_FIXED
+	BlankIndicator
+	BlankFlag 
+	BlankIndicator
+	CS_BlankFactor
 	operation=OP_PARM
 	cspec_fixed_standard_parts;
 csPLIST:
 	operation=OP_PLIST
-	cspec_fixed_standard_parts;
+	cspec_fixed_standard_parts
+	csPARM*;
 csPOST:
 	operation=OP_POST
 	operationExtender=cs_operationExtender? 
@@ -1788,11 +1802,19 @@ expression:
 	| NOT expression
 	| OPEN_PAREN expression CLOSE_PAREN
 	| expression (assignmentOperator | comparisonOperator) expression
-	| expression (OR | AND | arithmeticalOperator | EQUAL) expression	
+    |<assoc=right> expression EXP expression
+    | expression (MULT | MULT_NOSPACE) expression
+    | expression DIV expression
+    | expression PLUS expression
+    | expression MINUS expression
+    // expression arithmeticalOperator expression	
+	| expression EQUAL expression	
+	| expression AND expression	
+	| expression OR expression	
 	;
 indicator_expr: expression;
 function: functionName args;
-arithmeticalOperator:PLUS | MINUS | EXP | MULT | MULT_NOSPACE | DIV;
+//arithmeticalOperator:PLUS | MINUS | EXP | MULT | MULT_NOSPACE | DIV;
 comparisonOperator: GT | LT | GE | LE | NE;
 assignmentOperator: CPLUS | CMINUS | CMULT | CDIV ;
 

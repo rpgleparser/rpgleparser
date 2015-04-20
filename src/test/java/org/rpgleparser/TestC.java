@@ -119,13 +119,14 @@ public class TestC {
                 ":AmountOS)", "C/End-Exec");
     }
 
-    @Test
-    public void testCSpec_Comments() {
-        String inputString =
-                "     C                   PARM                    POLNBR                         POLICY NUMBER\r\n";
-        expectTokensForSourceLines(inputString,
-                "C", "", "", "", "", "PARM", "", "POLNBR", "", "", "", "", "","POLICY NUMBER", "");
-    }
+    //Remove test, PARM must be preceded by CALL,CALLB or PLIST
+//    @Test
+//    public void testCSpec_Comments() {
+//        String inputString =
+//                "     C                   PARM                    POLNBR                         POLICY NUMBER\r\n";
+//        expectTokensForSourceLines(inputString,
+//                "C", "", "", "", "", "PARM", "", "POLNBR", "", "", "", "", "","POLICY NUMBER", "");
+//    }
 
     @Test
     public void testCSpec_Comments2() {
