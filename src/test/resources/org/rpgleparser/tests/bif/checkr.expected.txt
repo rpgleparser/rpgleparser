@@ -7,9 +7,11 @@ CS_BlankFactor           <              >
 OP_EVAL                  <EVAL>
 ID                       <val1>
 '='                      <=>
-BIF_CHAR                 <%CHAR>
+BIF_CHECKR               <%CHECKR>
 '('                      <(>
 ID                       <FLD1>
+COLON                    <:>
+ID                       <FLD2>
 ')'                      <)>
 C_FREE_NEWLINE           <
 >
@@ -21,10 +23,14 @@ CS_BlankFactor           <              >
 OP_EVAL                  <EVAL>
 ID                       <val2>
 '='                      <=>
-BIF_CHAR                 <%CHAR>
+BIF_CHECKR               <%CHECKR>
 '('                      <(>
-HexLiteralStart          <x'>
-StringContent            <80>
+StringLiteralStart       <'>
+StringContent            <delim>
+StringLiteralEnd         <'>
+COLON                    <:>
+StringLiteralStart       <'>
+StringContent            <mystring>
 StringLiteralEnd         <'>
 ')'                      <)>
 C_FREE_NEWLINE           <
@@ -37,11 +43,13 @@ CS_BlankFactor           <              >
 OP_EVAL                  <EVAL>
 ID                       <val3>
 '='                      <=>
-BIF_CHAR                 <%char>
+BIF_CHECKR               <%checkr>
 '('                      <(>
-ID                       <fld>
+ID                       <delim>
 COLON                    <:>
-SPLAT_JOBRUN             <*jobrun>
+StringLiteralStart       <'>
+StringContent            <thestirng>
+StringLiteralEnd         <'>
 ')'                      <)>
 C_FREE_NEWLINE           <
 >
@@ -53,30 +61,16 @@ CS_BlankFactor           <              >
 OP_EVAL                  <EVAL>
 ID                       <val4>
 '='                      <=>
-BIF_CHAR                 <%char>
+BIF_CHECKR               <%checkr>
 '('                      <(>
 BIF_STR                  <%str>
 '('                      <(>
 ID                       <fld>
 ')'                      <)>
 COLON                    <:>
-SPLAT_HMS                <*HMS>
-')'                      <)>
-C_FREE_NEWLINE           <
->
-CS_FIXED                 <C>
-BlankIndicator           <  >
-BlankFlag                < >
-BlankIndicator           <  >
-CS_BlankFactor           <              >
-OP_EVAL                  <EVAL>
-ID                       <val5>
-'='                      <=>
-BIF_CHAR                 <%char>
-'('                      <(>
-ID                       <datefld>
+ID                       <mystringfld>
 COLON                    <:>
-SPLAT_HMS                <*HMS>
+NUMBER                   <5>
 ')'                      <)>
 C_FREE_NEWLINE           <
 >
@@ -86,68 +80,65 @@ EOL                      <
 >
 ID                       <val1>
 '='                      <=>
-BIF_CHAR                 <%char>
+BIF_CHECKR               <%checkr>
 '('                      <(>
-ID                       <HEXVAL>
+ID                       <fld1>
+COLON                    <:>
+ID                       <FLD2>
 ')'                      <)>
 FREE_SEMI                <;>
 FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 1                                                        >
+COMMENTS_TEXT_HIDDEN     <comment 1                                                   >
 COMMENTS_EOL_HIDDEN      <
 >
 ID                       <val2>
 '='                      <=>
-BIF_CHAR                 <%CHAR>
+BIF_CHECKR               <%CHECKR>
 '('                      <(>
-HexLiteralStart          <x'>
-StringContent            <80>
+StringLiteralStart       <'>
+StringContent            <,;>
+StringLiteralEnd         <'>
+COLON                    <:>
+StringLiteralStart       <'>
+StringContent            <dfsdf,;>
 StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
 FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 2                                                         >
+COMMENTS_TEXT_HIDDEN     <comment 2                                              >
 COMMENTS_EOL_HIDDEN      <
 >
 ID                       <val3>
 '='                      <=>
-BIF_CHAR                 <%Char>
+BIF_CHECKR               <%Checkr>
 '('                      <(>
-ID                       <fld>
+ID                       <delim>
 COLON                    <:>
-SPLAT_JOBRUN             <*jobrun>
+StringLiteralStart       <'>
+StringContent            <thersting>
+StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
 FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 3                                                   >
+COMMENTS_TEXT_HIDDEN     <comment 3                                           >
 COMMENTS_EOL_HIDDEN      <
 >
 ID                       <val4>
 '='                      <=>
-BIF_CHAR                 <%char>
+BIF_CHECKR               <%Checkr>
 '('                      <(>
 BIF_STR                  <%str>
 '('                      <(>
 ID                       <fld>
 ')'                      <)>
 COLON                    <:>
-SPLAT_HMS                <*HMS>
-')'                      <)>
-FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 4                                                >
-COMMENTS_EOL_HIDDEN      <
->
-ID                       <val5>
-'='                      <=>
-BIF_CHAR                 <%char>
-'('                      <(>
-ID                       <datefld>
+ID                       <mystringfld>
 COLON                    <:>
-SPLAT_HMS                <*hms>
+NUMBER                   <5>
 ')'                      <)>
 FREE_SEMI                <;>
 FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 5                                                  >
+COMMENTS_TEXT_HIDDEN     <comment 4                                     >
 COMMENTS_EOL_HIDDEN      <
 >
 DIRECTIVE                < />
@@ -175,7 +166,16 @@ COMMENTS_TEXT            <                   >
                   (expression (identifier (free_identifier val1)))
                   =
                   (expression
-                    (bif (bif_char %CHAR ( (expression (identifier (free_identifier FLD1))) )))
+                    (bif
+                      (bif_checkr
+                        %CHECKR
+                        (
+                        (expression (identifier (free_identifier FLD1)))
+                        :
+                        (expression (identifier (free_identifier FLD2)))
+                        )
+                      )
+                    )
                   )
                 )
               )
@@ -202,7 +202,18 @@ COMMENTS_TEXT            <                   >
                 (assignmentExpression
                   (expression (identifier (free_identifier val2)))
                   =
-                  (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
+                  (expression
+                    (bif
+                      (bif_checkr
+                        %CHECKR
+                        (
+                        (expression (literal ' delim '))
+                        :
+                        (expression (literal ' mystring '))
+                        )
+                      )
+                    )
+                  )
                 )
               )
             )
@@ -230,12 +241,12 @@ COMMENTS_TEXT            <                   >
                   =
                   (expression
                     (bif
-                      (bif_char
-                        %char
+                      (bif_checkr
+                        %checkr
                         (
-                        (expression (identifier (free_identifier fld)))
+                        (expression (identifier (free_identifier delim)))
                         :
-                        (bif_charformat (symbolicConstants *jobrun))
+                        (expression (literal ' thestirng '))
                         )
                       )
                     )
@@ -267,51 +278,16 @@ COMMENTS_TEXT            <                   >
                   =
                   (expression
                     (bif
-                      (bif_char
-                        %char
+                      (bif_checkr
+                        %checkr
                         (
                         (expression
                           (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
                         )
                         :
-                        (bif_charformat (symbolicConstants *HMS))
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-        \r\n
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val5)))
-                  =
-                  (expression
-                    (bif
-                      (bif_char
-                        %char
-                        (
-                        (expression (identifier (free_identifier datefld)))
+                        (expression (identifier (free_identifier mystringfld)))
                         :
-                        (bif_charformat (symbolicConstants *HMS))
+                        (expression (number 5))
                         )
                       )
                     )
@@ -335,7 +311,16 @@ COMMENTS_TEXT            <                   >
               (expression (identifier (free_identifier val1)))
               =
               (expression
-                (bif (bif_char %char ( (expression (identifier (free_identifier HEXVAL))) )))
+                (bif
+                  (bif_checkr
+                    %checkr
+                    (
+                    (expression (identifier (free_identifier fld1)))
+                    :
+                    (expression (identifier (free_identifier FLD2)))
+                    )
+                  )
+                )
               )
             )
           )
@@ -352,7 +337,18 @@ COMMENTS_TEXT            <                   >
             (assignmentExpression
               (expression (identifier (free_identifier val2)))
               =
-              (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
+              (expression
+                (bif
+                  (bif_checkr
+                    %CHECKR
+                    (
+                    (expression (literal ' ,; '))
+                    :
+                    (expression (literal ' dfsdf,; '))
+                    )
+                  )
+                )
+              )
             )
           )
         )
@@ -370,12 +366,12 @@ COMMENTS_TEXT            <                   >
               =
               (expression
                 (bif
-                  (bif_char
-                    %Char
+                  (bif_checkr
+                    %Checkr
                     (
-                    (expression (identifier (free_identifier fld)))
+                    (expression (identifier (free_identifier delim)))
                     :
-                    (bif_charformat (symbolicConstants *jobrun))
+                    (expression (literal ' thersting '))
                     )
                   )
                 )
@@ -397,41 +393,16 @@ COMMENTS_TEXT            <                   >
               =
               (expression
                 (bif
-                  (bif_char
-                    %char
+                  (bif_checkr
+                    %Checkr
                     (
                     (expression
                       (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
                     )
                     :
-                    (bif_charformat (symbolicConstants *HMS))
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_eval
-            (assignmentExpression
-              (expression (identifier (free_identifier val5)))
-              =
-              (expression
-                (bif
-                  (bif_char
-                    %char
-                    (
-                    (expression (identifier (free_identifier datefld)))
+                    (expression (identifier (free_identifier mystringfld)))
                     :
-                    (bif_charformat (symbolicConstants *hms))
+                    (expression (number 5))
                     )
                   )
                 )

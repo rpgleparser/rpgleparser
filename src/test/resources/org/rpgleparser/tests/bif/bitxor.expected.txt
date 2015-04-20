@@ -142,7 +142,7 @@ COMMENTS_TEXT_HIDDEN     <comment 4                                           >
 COMMENTS_EOL_HIDDEN      <
 >
 DIRECTIVE                < />
-DIR_FREE                 <end-free>
+DIR_ENDFREE              <end-free>
 EOL                      <
 >
 EMPTY_LINE               <                                                                           >
@@ -299,7 +299,7 @@ COMMENTS_TEXT            <                   >
       )
     )
   )
-  (statement (directive ' /' (free_directive (free_text free)) \r\n))
+  (statement (directive ' /' (beginfree_directive free) \r\n))
   (statement
     (free
       (baseExpression
@@ -410,6 +410,6 @@ COMMENTS_TEXT            <                   >
       ;
     )
   )
-  (statement (directive ' /' (free_directive (free_text end-free)) \r\n))
+  (statement (directive ' /' (endfree_directive end-free) \r\n))
 )
 /*======*/
