@@ -945,7 +945,7 @@ CS_Operation_CABGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}?
 CS_Operation_CABGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABGT-> type(OP_CABGT);
 CS_Operation_CALL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALL -> type(OP_CALL);
 CS_Operation_CALLB: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALLB -> type(OP_CALLB);
-CS_Operation_CALLP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALLP -> type(OP_CALLP),pushMode(FREE);
+CS_Operation_CALLP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALLP -> type(OP_CALLP),pushMode(FREE),pushMode(FixedOpExtender);
 CS_Operation_CASEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASEQ-> type(OP_CASEQ);
 CS_Operation_CASNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASNE-> type(OP_CASNE);
 CS_Operation_CASLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASLE-> type(OP_CASLE);
@@ -1086,19 +1086,31 @@ CS_Operation_Z_SUB: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}?
 
 
 CS_OperationAndExtender:  
-   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[a-zA-Z0-9\\-])+
-   {setText(getText().trim());};
+   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[a-zA-Z0-9\\-])+;
 CS_OperationExtenderOpen: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?OPEN_PAREN -> type(OPEN_PAREN);
 CS_OperationExtenderClose: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?CLOSE_PAREN 
   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}? ' ')*
   {setText(getText().trim());}
   -> type(CLOSE_PAREN);
+  
 CS_FieldLength: {getCharPositionInLine()==63}? [ 0-9][ 0-9][ 0-9][ 0-9][ 0-9];
 CS_DecimalPositions: {getCharPositionInLine()==68}? [ 0-9][ 0-9]
 	-> pushMode(IndicatorMode),pushMode(IndicatorMode),pushMode(IndicatorMode); // 3 Indicators in a row
 CS_WhiteSpace : {getCharPositionInLine()>=76}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
 CS_Comments : {getCharPositionInLine()>=80}? ~[\r\n]+  ; // skip spaces, tabs, newlines
 CS_EOL : NEWLINE -> type(EOL),popMode;
+
+mode FixedOpExtender;
+CS_FixedOperationAndExtender_WS:
+	({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[ ])+ -> skip;	
+CS_FixedOperationAndExtender:  
+   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[a-zA-Z0-9\\-])+ -> type(CS_OperationAndExtender);
+CS_FixedOperationExtenderOpen: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?OPEN_PAREN -> type(OPEN_PAREN);
+CS_FixedOperationExtenderClose: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?CLOSE_PAREN 
+  ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}? ' ')*
+  {setText(getText().trim());}
+  -> type(CLOSE_PAREN);
+CS_FixedOperationExtenderReturn: {getCharPositionInLine()==35}? ->skip,popMode;
 
 mode FreeOpExtender;
 FreeOpExtender_OPEN_PAREN: OPEN_PAREN -> popMode,type(OPEN_PAREN),pushMode(FreeOpExtender2);
