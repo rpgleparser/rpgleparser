@@ -197,7 +197,7 @@ COMMENTS_TEXT            <                   >
                                 (
                                 (expression
                                   (expression (identifier (free_identifier X)))
-                                  (arithmeticalOperator +)
+                                  +
                                   (expression (number 10))
                                 )
                                 )
@@ -233,7 +233,7 @@ COMMENTS_TEXT            <                   >
                     (bif_addr %addr ( (expression (identifier (free_identifier fld))) : *data ))
                   )
                 )
-                (arithmeticalOperator -)
+                -
                 (expression
                   (bif (bif_addr %addr ( (expression (identifier (free_identifier fld))) )))
                 )

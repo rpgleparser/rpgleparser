@@ -207,10 +207,10 @@ COMMENTS_TEXT            <                   >
                         (expression
                           (expression
                             (expression (identifier (free_identifier f9)))
-                            (arithmeticalOperator +)
+                            +
                             (expression (number 10))
                           )
-                          (arithmeticalOperator -)
+                          -
                           (expression (number 4))
                         )
                         )
@@ -249,16 +249,12 @@ COMMENTS_TEXT            <                   >
                         (
                         (expression
                           (expression
-                            (expression
-                              (expression (identifier (free_identifier f9)))
-                              (arithmeticalOperator +)
-                              (expression (number 10))
-                            )
-                            (arithmeticalOperator -)
-                            (expression (number 4))
+                            (expression (identifier (free_identifier f9)))
+                            +
+                            (expression (number 10))
                           )
-                          (arithmeticalOperator +)
-                          (expression (number 25))
+                          -
+                          (expression (expression (number 4)) + (expression (number 25)))
                         )
                         )
                       )
@@ -307,7 +303,7 @@ COMMENTS_TEXT            <                   >
                     (
                     (expression
                       (expression (identifier (free_identifier f9)))
-                      (arithmeticalOperator +)
+                      +
                       (expression (identifier (free_identifier f0)))
                     )
                     )
@@ -336,7 +332,7 @@ COMMENTS_TEXT            <                   >
                     (
                     (expression
                       (expression (identifier (free_identifier F9-10)))
-                      (arithmeticalOperator +)
+                      +
                       (expression (number 4))
                     )
                     )
@@ -365,7 +361,7 @@ COMMENTS_TEXT            <                   >
                     (
                     (expression
                       (expression (identifier (free_identifier F14)))
-                      (arithmeticalOperator *)
+                      *
                       (expression (number 25))
                     )
                     )
