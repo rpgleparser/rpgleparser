@@ -251,23 +251,23 @@ BlankIndicator           <  >
                           (expression
                             (expression
                               (expression
-                                (expression
-                                  (expression
-                                    (expression (identifier (free_identifier IDCCA1)))
-                                    =
-                                    (expression (identifier (free_identifier @PRIME1)))
-                                  )
-                                  OR
-                                  (expression (identifier (free_identifier IDCCA1)))
-                                )
+                                (expression (identifier (free_identifier IDCCA1)))
+                                =
+                                (expression (identifier (free_identifier @PRIME1)))
+                              )
+                              OR
+                              (expression
+                                (expression (identifier (free_identifier IDCCA1)))
                                 =
                                 (expression (identifier (free_identifier @PRIME2)))
                               )
-                              OR
-                              (expression (identifier (free_identifier IDCCA1)))
                             )
-                            =
-                            (expression (identifier (free_identifier @PRIME3)))
+                            OR
+                            (expression
+                              (expression (identifier (free_identifier IDCCA1)))
+                              =
+                              (expression (identifier (free_identifier @PRIME3)))
+                            )
                           )
                           OR
                           (expression (identifier (free_identifier IDCCA1)))

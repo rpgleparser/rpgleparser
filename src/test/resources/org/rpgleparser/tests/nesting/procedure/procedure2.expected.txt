@@ -221,21 +221,21 @@ PS_KEYWORDS              <                                                      
                   (expression
                     (expression
                       (expression
-                        (expression
-                          (expression (identifier (free_identifier Term1)))
-                          (arithmeticalOperator **)
-                          (expression (number 2))
-                        )
-                        (arithmeticalOperator *)
-                        (expression (number 17))
+                        (expression (identifier (free_identifier Term1)))
+                        **
+                        (expression (number 2))
                       )
-                      (arithmeticalOperator +)
-                      (expression (identifier (free_identifier Term2)))
+                      *
+                      (expression (number 17))
                     )
-                    (arithmeticalOperator *)
-                    (expression (number 7))
+                    +
+                    (expression
+                      (expression (identifier (free_identifier Term2)))
+                      *
+                      (expression (number 7))
+                    )
                   )
-                  (arithmeticalOperator +)
+                  +
                   (expression (identifier (free_identifier Term3)))
                 )
               )
