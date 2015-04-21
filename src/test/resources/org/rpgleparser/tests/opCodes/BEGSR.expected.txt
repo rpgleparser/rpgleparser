@@ -82,6 +82,66 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
+CS_FactorContent         <P3>
+OP_BEGSR                 <BEGSR>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <TAG>
+OP_ENDSR                 <ENDSR>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <P3>
+OP_BEGSR                 <BEGSR>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDSR                 <ENDSR>
+CS_FactorContent         <RETPT>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_SETON                 <SETON>
 CS_BlankFactor           <              >
@@ -194,6 +254,90 @@ EOL                      <
         ENDSR
         (cspec_fixed_standard_parts
           (factor '              ')
+          (resultType '              ')
+          '     '
+          '  '
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          \n
+        )
+      )
+    )
+  )
+  (subroutine
+    (begsr
+      (csBEGSR
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent P3))
+        BEGSR
+        (cspec_fixed_standard_parts
+          (factor '              ')
+          (resultType '              ')
+          '     '
+          '  '
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          \n
+        )
+      )
+    )
+    (endsr
+      (csENDSR
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent TAG))
+        ENDSR
+        (cspec_fixed_standard_parts
+          (factor '              ')
+          (resultType '              ')
+          '     '
+          '  '
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          \n
+        )
+      )
+    )
+  )
+  (subroutine
+    (begsr
+      (csBEGSR
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent P3))
+        BEGSR
+        (cspec_fixed_standard_parts
+          (factor '              ')
+          (resultType '              ')
+          '     '
+          '  '
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          (resultIndicator '  ')
+          \n
+        )
+      )
+    )
+    (endsr
+      (csENDSR
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
+        ENDSR
+        (cspec_fixed_standard_parts
+          (factor (factorContent RETPT))
           (resultType '              ')
           '     '
           '  '

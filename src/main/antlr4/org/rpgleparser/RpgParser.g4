@@ -1816,7 +1816,7 @@ indicator_expr: expression;
 function: functionName args;
 //arithmeticalOperator:PLUS | MINUS | EXP | MULT | MULT_NOSPACE | DIV;
 comparisonOperator: GT | LT | GE | LE | NE;
-assignmentOperator: CPLUS | CMINUS | CMULT | CDIV ;
+assignmentOperator: CPLUS | CMINUS | CMULT | CDIV | CEXP ;
 
 /*--------------- what words 
 assignment: expression EQUAL indicator_expr;

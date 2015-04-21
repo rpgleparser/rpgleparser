@@ -337,6 +337,7 @@ CPLUS : '+=' ;
 CMINUS : '-=' ;
 CMULT : '*=' ;
 CDIV : '/=' ;
+CEXP : '**=' ;
 
 // Comparison Operators
 GT : '>' ;

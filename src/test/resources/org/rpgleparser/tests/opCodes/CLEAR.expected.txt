@@ -1,0 +1,336 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       <C*>
+COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_ENTRY              <*Entry>
+OP_PLIST                 <PList>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_CLEAR                 <CLEAR>
+CS_BlankFactor           <              >
+CS_FactorContent         <MYDS>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_CLEAR                 <CLEAR>
+SPLAT_ALL                <*ALL>
+CS_FactorContent         <MYTABLE>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_NOKEY              <*NOKEY>
+OP_CLEAR                 <Clear>
+SPLAT_ALL                <*ALL>
+CS_FactorContent         <MYTABLE>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_NOKEY              <*NOKEY>
+OP_CLEAR                 <clear>
+CS_BlankFactor           <              >
+CS_FactorContent         <MYTABLE>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <Free>
+EOL                      <
+>
+OP_CLEAR                 <clear>
+ID                       <ds1>
+FREE_SEMI                <;>
+OP_CLEAR                 <clear>
+SPLAT_INDICATOR          <*in01>
+FREE_SEMI                <;>
+OP_CLEAR                 <clear>
+SPLAT_ALL                <*ALL>
+ID                       <MODS>
+FREE_SEMI                <;>
+OP_CLEAR                 <clear>
+SPLAT_NOKEY              <*nokey>
+ID                       <mytable>
+FREE_SEMI                <;>
+OP_CLEAR                 <clear>
+SPLAT_NOKEY              <*NOKEY>
+SPLAT_ALL                <*all>
+ID                       <mytable>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+LastRecordIndicator      <LR>
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement (star_comments C*))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *Entry))
+      (cspec_fixed_standard
+        (csPLIST
+          PList
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csCLEAR
+          CLEAR
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType MYDS)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csCLEAR
+          CLEAR
+          (cspec_fixed_standard_parts
+            (factor (symbolicConstants *ALL))
+            (resultType MYTABLE)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *NOKEY))
+      (cspec_fixed_standard
+        (csCLEAR
+          Clear
+          (cspec_fixed_standard_parts
+            (factor (symbolicConstants *ALL))
+            (resultType MYTABLE)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *NOKEY))
+      (cspec_fixed_standard
+        (csCLEAR
+          clear
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType MYTABLE)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement
+    (free
+      (baseExpression
+        (op (op_clear clear (expression (identifier (free_identifier ds1)))))
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op (op_clear clear (expression (identifier (all (symbolicConstants *in01))))))
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_clear
+            clear
+            (identifier (all (symbolicConstants *ALL)))
+            (expression (identifier (free_identifier MODS)))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_clear
+            clear
+            (identifier (all (symbolicConstants *nokey)))
+            (expression (identifier (free_identifier mytable)))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_clear
+            clear
+            (identifier (all (symbolicConstants *NOKEY)))
+            (identifier (all (symbolicConstants *all)))
+            (expression (identifier (free_identifier mytable)))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator LR)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

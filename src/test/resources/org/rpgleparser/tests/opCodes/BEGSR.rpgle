@@ -5,4 +5,8 @@
      C                   endsr
      C     P2            BEGSR
      C                   ENDSR
+     C     P3            BEGSR
+     C     TAG           ENDSR
+     C     P3            BEGSR
+     C                   ENDSR     RETPT
      C                   SETON                                        LR  

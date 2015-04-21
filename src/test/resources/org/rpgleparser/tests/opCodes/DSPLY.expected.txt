@@ -1,0 +1,462 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       <C*>
+COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_ENTRY              <*Entry>
+OP_PLIST                 <PList>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContentLiteral  <'msg'>
+OP_DSPLY                 <DSPLY>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContentLiteral  <'msg'>
+OP_DSPLY                 <Dsply>
+CS_FactorContent         <MSGQ>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContentLiteral  <'msg'>
+OP_DSPLY                 <Dsply>
+CS_FactorContent         <MSGQ>
+CS_FactorContent         <RESULT>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <MSGFLD>
+OP_DSPLY                 <Dsply>
+CS_FactorContent         <MSGQ>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+GeneralIndicator         <99>
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContentLiteral  <'msg'>
+OP_DSPLY                 <Dsply>
+'('                      <(>
+CS_OperationAndExtender  <e>
+')'                      <)>
+CS_FactorContent         <QSYSOPR>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <MSGFLD>
+OP_DSPLY                 <Dsply>
+SPLAT_EXT                <*EXT>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <Free>
+EOL                      <
+>
+OP_DSPLY                 <dsply>
+StringLiteralStart       <'>
+StringContent            <msg>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+OP_DSPLY                 <dsply>
+ID                       <msg>
+StringLiteralStart       <'>
+StringLiteralEnd         <'>
+ID                       <result>
+FREE_SEMI                <;>
+OP_DSPLY                 <dsply>
+ID                       <msg>
+ID                       <qsysopr>
+FREE_SEMI                <;>
+OP_DSPLY                 <dsply>
+'('                      <(>
+CS_OperationAndExtender  <e>
+')'                      <)>
+ID                       <*MUSR001>
+SPLAT_EXT                <*EXT>
+FREE_SEMI                <;>
+OP_DSPLY                 <dsply>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <Length =>
+StringLiteralEnd         <'>
+'+'                      <+>
+BIF_CHAR                 <%char>
+'('                      <(>
+BIF_LEN                  <%len>
+'('                      <(>
+ID                       <str>
+')'                      <)>
+')'                      <)>
+'+'                      <+>
+StringLiteralStart       <'>
+StringContent            <bytes>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+LastRecordIndicator      <LR>
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement (star_comments C*))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *Entry))
+      (cspec_fixed_standard
+        (csPLIST
+          PList
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent 'msg'))
+      (cspec_fixed_standard
+        (csDSPLY
+          DSPLY
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent 'msg'))
+      (cspec_fixed_standard
+        (csDSPLY
+          Dsply
+          (cspec_fixed_standard_parts
+            (factor (factorContent MSGQ))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent 'msg'))
+      (cspec_fixed_standard
+        (csDSPLY
+          Dsply
+          (cspec_fixed_standard_parts
+            (factor (factorContent MSGQ))
+            (resultType RESULT)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent MSGFLD))
+      (cspec_fixed_standard
+        (csDSPLY
+          Dsply
+          (cspec_fixed_standard_parts
+            (factor (factorContent MSGQ))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator 99)
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent 'msg'))
+      (cspec_fixed_standard
+        (csDSPLY
+          Dsply
+          (cs_operationExtender ( e ))
+          (cspec_fixed_standard_parts
+            (factor (factorContent QSYSOPR))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent MSGFLD))
+      (cspec_fixed_standard
+        (csDSPLY
+          Dsply
+          (cspec_fixed_standard_parts
+            (factor (symbolicConstants *EXT))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement
+    (free (baseExpression (op (op_dsply dsply (expression (literal ' msg '))))) ;)
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_dsply
+            dsply
+            (expression (identifier (free_identifier msg)))
+            (expression (literal ' '))
+            (expression (identifier (free_identifier result)))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_dsply
+            dsply
+            (expression (identifier (free_identifier msg)))
+            (expression (identifier (free_identifier qsysopr)))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_dsply
+            dsply
+            (cs_operationExtender ( e ))
+            (expression (identifier (free_identifier *MUSR001)))
+            (expression (identifier (all (symbolicConstants *EXT))))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_callp
+            (identifier (free_identifier (op_code dsply)))
+            (
+            (expression
+              (expression
+                (expression (literal ' Length = '))
+                +
+                (expression
+                  (bif
+                    (bif_char
+                      %char
+                      (
+                      (expression
+                        (bif (bif_len %len ( (expression (identifier (free_identifier str))) )))
+                      )
+                      )
+                    )
+                  )
+                )
+              )
+              +
+              (expression (literal ' bytes '))
+            )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator LR)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
