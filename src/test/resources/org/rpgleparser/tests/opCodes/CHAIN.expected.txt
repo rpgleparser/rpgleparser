@@ -1,0 +1,458 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       <C*>
+COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_ENTRY              <*Entry>
+OP_PLIST                 <PList>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <Parm>
+CS_BlankFactor           <              >
+CS_FactorContent         <w_RtnValue>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <KEY>
+OP_CHAIN                 <CHAIN>
+CS_FactorContent         <INFILE>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContentLiteral  <'QPADEV0'>
+OP_CHAIN                 <CHAIN>
+CS_FactorContent         <INFILE>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContentLiteral  <'QPADEV0'>
+OP_CHAIN                 <chain>
+CS_FactorContent         <INFILE>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+GeneralIndicator         <99>
+GeneralIndicator         <98>
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <KEYLST>
+OP_CHAIN                 <CHAIN>
+'('                      <(>
+CS_OperationAndExtender  <e>
+')'                      <)>
+CS_FactorContent         <INFILE>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <KEYLST>
+OP_CHAIN                 <CHAIN>
+'('                      <(>
+CS_OperationAndExtender  <Ne>
+')'                      <)>
+CS_FactorContent         <INFILE>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <Free>
+EOL                      <
+>
+OP_CHAIN                 <chain>
+ID                       <key>
+ID                       <infile>
+FREE_SEMI                <;>
+OP_CHAIN                 <chain>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <abc>
+StringLiteralEnd         <'>
+COLON                    <:>
+StringLiteralStart       <'>
+StringContent            <def>
+StringLiteralEnd         <'>
+')'                      <)>
+ID                       <custrec>
+FREE_SEMI                <;>
+OP_CHAIN                 <chain>
+'('                      <(>
+CS_OperationAndExtender  <e>
+')'                      <)>
+'('                      <(>
+BIF_XLATE                <%xlate>
+'('                      <(>
+ID                       <custname>
+COLON                    <:>
+ID                       <LO>
+COLON                    <:>
+ID                       <HI>
+')'                      <)>
+COLON                    <:>
+ID                       <code>
+')'                      <)>
+ID                       <custrec>
+FREE_SEMI                <;>
+OP_CHAIN                 <chain>
+'('                      <(>
+CS_OperationAndExtender  <n>
+CS_OperationAndExtender  <e>
+')'                      <)>
+ID                       <custrec>
+ID                       <custrecDS>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+LastRecordIndicator      <LR>
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement (star_comments C*))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *Entry))
+      (cspec_fixed_standard
+        (csPLIST
+          PList
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            Parm
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType w_RtnValue)
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent KEY))
+      (cspec_fixed_standard
+        (csCHAIN
+          CHAIN
+          (cspec_fixed_standard_parts
+            (factor (factorContent INFILE))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent 'QPADEV0'))
+      (cspec_fixed_standard
+        (csCHAIN
+          CHAIN
+          (cspec_fixed_standard_parts
+            (factor (factorContent INFILE))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent 'QPADEV0'))
+      (cspec_fixed_standard
+        (csCHAIN
+          chain
+          (cspec_fixed_standard_parts
+            (factor (factorContent INFILE))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator 99)
+            (resultIndicator 98)
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent KEYLST))
+      (cspec_fixed_standard
+        (csCHAIN
+          CHAIN
+          (cs_operationExtender ( e ))
+          (cspec_fixed_standard_parts
+            (factor (factorContent INFILE))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent KEYLST))
+      (cspec_fixed_standard
+        (csCHAIN
+          CHAIN
+          (cs_operationExtender ( Ne ))
+          (cspec_fixed_standard_parts
+            (factor (factorContent INFILE))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_chain
+            chain
+            (search_arg (expression (identifier (free_identifier key))))
+            (identifier (free_identifier infile))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_chain
+            chain
+            (search_arg
+              (args ( (expression (literal ' abc ')) : (expression (literal ' def ')) ))
+            )
+            (identifier (free_identifier custrec))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_chain
+            chain
+            (cs_operationExtender ( e ))
+            (search_arg
+              (args
+                (
+                (expression
+                  (bif
+                    (bif_xlate
+                      %xlate
+                      (
+                      (expression (identifier (free_identifier custname)))
+                      :
+                      (expression (identifier (free_identifier LO)))
+                      :
+                      (expression (identifier (free_identifier HI)))
+                      )
+                    )
+                  )
+                )
+                :
+                (expression (identifier (free_identifier code)))
+                )
+              )
+            )
+            (identifier (free_identifier custrec))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_chain
+            chain
+            (cs_operationExtender ( n e ))
+            (search_arg (expression (identifier (free_identifier custrec))))
+            (identifier (free_identifier custrecDS))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \r\n))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator LR)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
