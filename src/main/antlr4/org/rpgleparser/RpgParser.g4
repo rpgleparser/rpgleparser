@@ -1193,7 +1193,7 @@ factor:
    content=factorContent (COLON (content2=factorContent | constant2=symbolicConstants))? | CS_BlankFactor | constant=symbolicConstants;
    
 factorContent:
-CS_FactorContent | CS_FactorContentLiteral;
+CS_FactorContent | literal;
 
 resultType:	
    CS_FactorContent | CS_BlankFactor;
@@ -1829,7 +1829,7 @@ function: functionName args;
 //---------------*/
 args: OPEN_PAREN (expression (COLON expression)*)? CLOSE_PAREN;
 literal: (StringLiteralStart|HexLiteralStart|DateLiteralStart|TimeLiteralStart|TimeStampLiteralStart|UCS2LiteralStart|GraphicLiteralStart) 
-	(StringContent | StringEscapedQuote | PlusOrMinus)* StringLiteralEnd;
+	content=(StringContent | StringEscapedQuote | PlusOrMinus)* StringLiteralEnd;
 identifier: free_identifier (FREE_CONT free_identifier)? |multipart_identifier | all;
 all: symbolicConstants literal?;
 //assignIdentifier: multipart_identifier;

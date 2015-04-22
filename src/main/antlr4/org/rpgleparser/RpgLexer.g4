@@ -581,6 +581,29 @@ FREE_STRING_CONTINUATION: {_modeStack.peek()!=FIXED_CalcSpec}? '+' [ ]* NEWLINE 
 FREE_STRING_CONTINUATION_MINUS: {_modeStack.peek()!=FIXED_CalcSpec}? '-' [ ]* NEWLINE '       ' -> skip;
 PlusOrMinus: [+-];
 
+mode InFactorStringMode;
+InFactor_StringContent:({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
+}?
+		~[\r\n'])+ -> type(StringContent);
+		
+InFactor_StringEscapedQuote: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
+}?
+		[']['] -> type(StringEscapedQuote);
+		
+InFactor_StringLiteralEnd: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
+}?
+		['] -> type(StringLiteralEnd),popMode;
+
+InFactor_EndFactor: {(getCharPositionInLine()==25)
+			|| (getCharPositionInLine()==49)
+			|| (getCharPositionInLine()==61)
+}? -> skip,popMode;
 
 // -----------------  ---------------------
 mode FIXED_CommentMode;
@@ -881,28 +904,54 @@ CS_FactorWs2: ({(getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 		
 /*
  * This rather awkward token, matches a literal. including whitespace literals
- */		
-CS_FactorContentLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
+ */
+ CS_FactorContentHexLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
+}?
+		[xX]['] -> type(HexLiteralStart),pushMode(InFactorStringMode);
+		
+ CS_FactorContentDateLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
+}?
+		[dD]['] -> type(DateLiteralStart),pushMode(InFactorStringMode);
+		
+ CS_FactorContentTimeLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
+}?
+		[tT]['] -> type(TimeLiteralStart),pushMode(InFactorStringMode);
+		
+ CS_FactorContentGraphicLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
+}?
+		[gG]['] -> type(GraphicLiteralStart),pushMode(InFactorStringMode);
+		
+ CS_FactorContentUCS2Literal: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
+			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
+			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
+}?
+		[uU]['] -> type(UCS2LiteralStart),pushMode(InFactorStringMode);
+		
+ CS_FactorContentStringLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
 			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 }?
-		'\''
-({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
-}?
-		~[\r\n'\''])*
-({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
-}?
-		'\'')
-;		
+		['] -> type(UCS2LiteralStart),pushMode(InFactorStringMode);
+// 		
+//CS_FactorContentLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
+//			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
+//			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
+//}?
+//		['] -> type(UCS2LiteralStart),pushMode(InFactorStringMode);
+		
 CS_FactorContent: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
 			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 }?
-		~[\r\n :])+;
+		~[\r\n'\'' :])+;
 CS_FactorColon: ({(getCharPositionInLine()>11 && getCharPositionInLine()<24)
 			|| (getCharPositionInLine()>35 && getCharPositionInLine()<48)
 			|| (getCharPositionInLine()>49 && getCharPositionInLine()<62)
