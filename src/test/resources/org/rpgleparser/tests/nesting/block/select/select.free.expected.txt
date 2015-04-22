@@ -20,19 +20,19 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_WHEN                  <WHEN>
-ID                       <IDCCA1>
+ID                       <IDCCA1Z>
 '='                      <=>
 ID                       <@PRIME1>
 OR                       <OR>
-ID                       <IDCCA1>
+ID                       <IDCCA1B>
 '='                      <=>
 ID                       <@PRIME2>
 OR                       <OR>
-ID                       <IDCCA1>
+ID                       <IDCCA1X>
 '='                      <=>
 ID                       <@PRIME3>
 OR                       <OR>
-ID                       <IDCCA1>
+ID                       <IDCCA1C>
 '='                      <=>
 ID                       <@PRIME4>
 C_FREE_NEWLINE           <
@@ -243,39 +243,33 @@ BlankIndicator           <  >
             (csWHEN
               WHEN
               (c_free
-                (baseExpression
-                  (op
-                    (op_eval
-                      (assignmentExpression
-                        (expression
-                          (expression
-                            (expression
-                              (expression
-                                (expression (identifier (free_identifier IDCCA1)))
-                                =
-                                (expression (identifier (free_identifier @PRIME1)))
-                              )
-                              OR
-                              (expression
-                                (expression (identifier (free_identifier IDCCA1)))
-                                =
-                                (expression (identifier (free_identifier @PRIME2)))
-                              )
-                            )
-                            OR
-                            (expression
-                              (expression (identifier (free_identifier IDCCA1)))
-                              =
-                              (expression (identifier (free_identifier @PRIME3)))
-                            )
-                          )
-                          OR
-                          (expression (identifier (free_identifier IDCCA1)))
-                        )
+                (expression
+                  (expression
+                    (expression
+                      (expression
+                        (expression (identifier (free_identifier IDCCA1Z)))
                         =
-                        (expression (identifier (free_identifier @PRIME4)))
+                        (expression (identifier (free_identifier @PRIME1)))
+                      )
+                      OR
+                      (expression
+                        (expression (identifier (free_identifier IDCCA1B)))
+                        =
+                        (expression (identifier (free_identifier @PRIME2)))
                       )
                     )
+                    OR
+                    (expression
+                      (expression (identifier (free_identifier IDCCA1X)))
+                      =
+                      (expression (identifier (free_identifier @PRIME3)))
+                    )
+                  )
+                  OR
+                  (expression
+                    (expression (identifier (free_identifier IDCCA1C)))
+                    =
+                    (expression (identifier (free_identifier @PRIME4)))
                   )
                 )
               )
@@ -289,22 +283,18 @@ BlankIndicator           <  >
               (onOffIndicatorsFlag ' ')
               (cs_indicators '  ')
               (factor '              ')
-              (cspec_fixed_x2
-                (csOperationAndExtendedFactor2 EVAL)
-                (c_free
-                  (baseExpression
-                    (op
-                      (op_eval
-                        (assignmentExpression
-                          (expression (identifier (free_identifier TYPE)))
-                          =
-                          (expression (literal ' 2 '))
-                        )
-                      )
+              (cspec_fixed_standard
+                (csEVAL
+                  EVAL
+                  (c_free
+                    (expression
+                      (expression (identifier (free_identifier TYPE)))
+                      =
+                      (expression (literal ' 2 '))
                     )
                   )
+                  \r\n
                 )
-                \r\n
               )
             )
           )
@@ -319,42 +309,15 @@ BlankIndicator           <  >
             (csWHEN
               WHEN
               (c_free
-                (baseExpression
+                (expression
                   (expression
-                    (expression
-                      (expression
-                        (expression
-                          (bif
-                            (bif_subst
-                              %SUBST
-                              (
-                              (expression (identifier (free_identifier IDHAND)))
-                              :
-                              (expression (number 1))
-                              :
-                              (expression (number 1))
-                              )
-                            )
-                          )
-                        )
-                        (comparisonOperator <>)
-                        (expression (identifier (free_identifier @THANDLER)))
-                      )
-                      AND
-                      (expression
-                        (expression (identifier (free_identifier IDSALE)))
-                        (comparisonOperator >=)
-                        (expression (identifier (free_identifier @LOW_MI_DSM)))
-                      )
-                    )
-                    AND
                     (expression
                       (expression
                         (bif
                           (bif_subst
                             %SUBST
                             (
-                            (expression (identifier (free_identifier IDSALE)))
+                            (expression (identifier (free_identifier IDHAND)))
                             :
                             (expression (number 1))
                             :
@@ -364,17 +327,139 @@ BlankIndicator           <  >
                         )
                       )
                       (comparisonOperator <>)
+                      (expression (identifier (free_identifier @THANDLER)))
+                    )
+                    AND
+                    (expression
+                      (expression (identifier (free_identifier IDSALE)))
+                      (comparisonOperator >=)
+                      (expression (identifier (free_identifier @LOW_MI_DSM)))
+                    )
+                  )
+                  AND
+                  (expression
+                    (expression
+                      (bif
+                        (bif_subst
+                          %SUBST
+                          (
+                          (expression (identifier (free_identifier IDSALE)))
+                          :
+                          (expression (number 1))
+                          :
+                          (expression (number 1))
+                          )
+                        )
+                      )
+                    )
+                    (comparisonOperator <>)
+                    (expression
+                      (bif
+                        (bif_subst
+                          %SUBST
+                          (
+                          (expression (identifier (free_identifier @TMREP1)))
+                          :
+                          (expression (number 1))
+                          :
+                          (expression (number 1))
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              \r\n
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csEVAL
+                  EVAL
+                  (c_free
+                    (expression
+                      (expression (identifier (free_identifier TYPE)))
+                      =
+                      (expression (literal ' 3 '))
+                    )
+                  )
+                  \r\n
+                )
+              )
+            )
+          )
+        )
+        (whenstatement
+          (when
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (csWHEN
+              WHEN
+              (c_free
+                (expression
+                  (expression
+                    (expression
                       (expression
                         (bif
                           (bif_subst
                             %SUBST
                             (
-                            (expression (identifier (free_identifier @TMREP1)))
+                            (expression (identifier (free_identifier IDHAND)))
                             :
                             (expression (number 1))
                             :
                             (expression (number 1))
                             )
+                          )
+                        )
+                      )
+                      =
+                      (expression (identifier (free_identifier @THANDLER)))
+                    )
+                    AND
+                    (expression
+                      (expression (identifier (free_identifier IDSALE)))
+                      (comparisonOperator >=)
+                      (expression (identifier (free_identifier @LOW_MI_DSM)))
+                    )
+                  )
+                  AND
+                  (expression
+                    (expression
+                      (bif
+                        (bif_subst
+                          %SUBST
+                          (
+                          (expression (identifier (free_identifier IDSALE)))
+                          :
+                          (expression (number 1))
+                          :
+                          (expression (number 1))
+                          )
+                        )
+                      )
+                    )
+                    (comparisonOperator <>)
+                    (expression
+                      (bif
+                        (bif_subst
+                          %SUBST
+                          (
+                          (expression (identifier (free_identifier @TMREP1)))
+                          :
+                          (expression (number 1))
+                          :
+                          (expression (number 1))
                           )
                         )
                       )
@@ -392,22 +477,18 @@ BlankIndicator           <  >
               (onOffIndicatorsFlag ' ')
               (cs_indicators '  ')
               (factor '              ')
-              (cspec_fixed_x2
-                (csOperationAndExtendedFactor2 EVAL)
-                (c_free
-                  (baseExpression
-                    (op
-                      (op_eval
-                        (assignmentExpression
-                          (expression (identifier (free_identifier TYPE)))
-                          =
-                          (expression (literal ' 3 '))
-                        )
-                      )
+              (cspec_fixed_standard
+                (csEVAL
+                  EVAL
+                  (c_free
+                    (expression
+                      (expression (identifier (free_identifier TYPE)))
+                      =
+                      (expression (literal ' 4 '))
                     )
                   )
+                  \r\n
                 )
-                \r\n
               )
             )
           )
@@ -422,70 +503,38 @@ BlankIndicator           <  >
             (csWHEN
               WHEN
               (c_free
-                (baseExpression
-                  (op
-                    (op_eval
-                      (assignmentExpression
-                        (expression
-                          (bif
-                            (bif_subst
-                              %SUBST
-                              (
-                              (expression (identifier (free_identifier IDHAND)))
-                              :
-                              (expression (number 1))
-                              :
-                              (expression (number 1))
-                              )
-                            )
-                          )
-                        )
-                        =
-                        (expression
-                          (expression
-                            (expression (identifier (free_identifier @THANDLER)))
-                            AND
-                            (expression
-                              (expression (identifier (free_identifier IDSALE)))
-                              (comparisonOperator >=)
-                              (expression (identifier (free_identifier @LOW_MI_DSM)))
-                            )
-                          )
-                          AND
-                          (expression
-                            (expression
-                              (bif
-                                (bif_subst
-                                  %SUBST
-                                  (
-                                  (expression (identifier (free_identifier IDSALE)))
-                                  :
-                                  (expression (number 1))
-                                  :
-                                  (expression (number 1))
-                                  )
-                                )
-                              )
-                            )
-                            (comparisonOperator <>)
-                            (expression
-                              (bif
-                                (bif_subst
-                                  %SUBST
-                                  (
-                                  (expression (identifier (free_identifier @TMREP1)))
-                                  :
-                                  (expression (number 1))
-                                  :
-                                  (expression (number 1))
-                                  )
-                                )
-                              )
+                (expression
+                  (expression
+                    (expression
+                      (expression
+                        (bif
+                          (bif_subst
+                            %SUBST
+                            (
+                            (expression (identifier (free_identifier IDHAND)))
+                            :
+                            (expression (number 1))
+                            :
+                            (expression (number 1))
                             )
                           )
                         )
                       )
+                      =
+                      (expression (identifier (free_identifier @THANDLER)))
                     )
+                    AND
+                    (expression
+                      (expression (identifier (free_identifier IDSALE)))
+                      (comparisonOperator >=)
+                      (expression (identifier (free_identifier @TMREP1)))
+                    )
+                  )
+                  AND
+                  (expression
+                    (expression (identifier (free_identifier IDSALE)))
+                    (comparisonOperator <=)
+                    (expression (identifier (free_identifier @TMREP2)))
                   )
                 )
               )
@@ -499,103 +548,18 @@ BlankIndicator           <  >
               (onOffIndicatorsFlag ' ')
               (cs_indicators '  ')
               (factor '              ')
-              (cspec_fixed_x2
-                (csOperationAndExtendedFactor2 EVAL)
-                (c_free
-                  (baseExpression
-                    (op
-                      (op_eval
-                        (assignmentExpression
-                          (expression (identifier (free_identifier TYPE)))
-                          =
-                          (expression (literal ' 4 '))
-                        )
-                      )
+              (cspec_fixed_standard
+                (csEVAL
+                  EVAL
+                  (c_free
+                    (expression
+                      (expression (identifier (free_identifier TYPE)))
+                      =
+                      (expression (literal ' 5 '))
                     )
                   )
+                  \r\n
                 )
-                \r\n
-              )
-            )
-          )
-        )
-        (whenstatement
-          (when
-            C
-            (cs_controlLevel '  ')
-            (onOffIndicatorsFlag ' ')
-            (cs_indicators '  ')
-            (factor '              ')
-            (csWHEN
-              WHEN
-              (c_free
-                (baseExpression
-                  (op
-                    (op_eval
-                      (assignmentExpression
-                        (expression
-                          (bif
-                            (bif_subst
-                              %SUBST
-                              (
-                              (expression (identifier (free_identifier IDHAND)))
-                              :
-                              (expression (number 1))
-                              :
-                              (expression (number 1))
-                              )
-                            )
-                          )
-                        )
-                        =
-                        (expression
-                          (expression
-                            (expression (identifier (free_identifier @THANDLER)))
-                            AND
-                            (expression
-                              (expression (identifier (free_identifier IDSALE)))
-                              (comparisonOperator >=)
-                              (expression (identifier (free_identifier @TMREP1)))
-                            )
-                          )
-                          AND
-                          (expression
-                            (expression (identifier (free_identifier IDSALE)))
-                            (comparisonOperator <=)
-                            (expression (identifier (free_identifier @TMREP2)))
-                          )
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-              \r\n
-            )
-          )
-          (statement
-            (cspec_fixed
-              C
-              (cs_controlLevel '  ')
-              (onOffIndicatorsFlag ' ')
-              (cs_indicators '  ')
-              (factor '              ')
-              (cspec_fixed_x2
-                (csOperationAndExtendedFactor2 EVAL)
-                (c_free
-                  (baseExpression
-                    (op
-                      (op_eval
-                        (assignmentExpression
-                          (expression (identifier (free_identifier TYPE)))
-                          =
-                          (expression (literal ' 5 '))
-                        )
-                      )
-                    )
-                  )
-                )
-                \r\n
               )
             )
           )

@@ -36,12 +36,10 @@ BlankIndicator           <  >
           (factor '              ')
           IF
           (c_free
-            (baseExpression
-              (expression
-                (expression (identifier (free_identifier theDogIsHungry)))
-                or
-                (expression (identifier (free_identifier theDogIsDead)))
-              )
+            (expression
+              (expression (identifier (free_identifier theDogIsHungry)))
+              or
+              (expression (identifier (free_identifier theDogIsDead)))
             )
           )
           \r\n

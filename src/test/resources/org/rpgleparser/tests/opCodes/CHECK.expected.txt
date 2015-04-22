@@ -39,7 +39,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <' '>
+StringLiteralStart       <'>
+StringContent            < >
+StringLiteralEnd         <'>
 OP_CHECK                 <Check>
 CS_FactorContent         <String>
 CS_FactorContent         <num>
@@ -54,7 +56,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <' '>
+StringLiteralStart       <'>
+StringContent            < >
+StringLiteralEnd         <'>
 OP_CHECK                 <Check>
 CS_FactorContent         <String>
 CS_FactorContent         <num>
@@ -69,7 +73,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <' '>
+StringLiteralStart       <'>
+StringContent            < >
+StringLiteralEnd         <'>
 OP_CHECK                 <Check>
 CS_FactorContent         <String>
 CS_FactorContent         <num>
@@ -84,7 +90,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <G'0A'>
+GraphicLiteralStart      <G'>
+StringContent            <0A>
+StringLiteralEnd         <'>
 OP_CHECK                 <check>
 CS_FactorContent         <String>
 CS_FactorContent         <num>
@@ -170,7 +178,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent ' '))
+      (factor (factorContent (literal ' ' ' ')))
       (cspec_fixed_standard
         (csCHECK
           Check
@@ -194,7 +202,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent ' '))
+      (factor (factorContent (literal ' ' ' ')))
       (cspec_fixed_standard
         (csCHECK
           Check
@@ -218,7 +226,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent ' '))
+      (factor (factorContent (literal ' ' ' ')))
       (cspec_fixed_standard
         (csCHECK
           Check
@@ -242,7 +250,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent G'0A'))
+      (factor (factorContent (literal G' 0A ')))
       (cspec_fixed_standard
         (csCHECK
           check

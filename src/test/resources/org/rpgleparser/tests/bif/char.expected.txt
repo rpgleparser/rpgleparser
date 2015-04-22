@@ -165,24 +165,20 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val1)))
-                  =
-                  (expression
-                    (bif (bif_char %CHAR ( (expression (identifier (free_identifier FLD1))) )))
-                  )
-                )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier val1)))
+              =
+              (expression
+                (bif (bif_char %CHAR ( (expression (identifier (free_identifier FLD1))) )))
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -193,22 +189,18 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val2)))
-                  =
-                  (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
-                )
-              )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier val2)))
+              =
+              (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -219,33 +211,29 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val3)))
-                  =
-                  (expression
-                    (bif
-                      (bif_char
-                        %char
-                        (
-                        (expression (identifier (free_identifier fld)))
-                        :
-                        (bif_charformat (symbolicConstants *jobrun))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier val3)))
+              =
+              (expression
+                (bif
+                  (bif_char
+                    %char
+                    (
+                    (expression (identifier (free_identifier fld)))
+                    :
+                    (bif_charformat (symbolicConstants *jobrun))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -256,35 +244,31 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val4)))
-                  =
-                  (expression
-                    (bif
-                      (bif_char
-                        %char
-                        (
-                        (expression
-                          (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
-                        )
-                        :
-                        (bif_charformat (symbolicConstants *HMS))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier val4)))
+              =
+              (expression
+                (bif
+                  (bif_char
+                    %char
+                    (
+                    (expression
+                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                    )
+                    :
+                    (bif_charformat (symbolicConstants *HMS))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -295,33 +279,29 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val5)))
-                  =
-                  (expression
-                    (bif
-                      (bif_char
-                        %char
-                        (
-                        (expression (identifier (free_identifier datefld)))
-                        :
-                        (bif_charformat (symbolicConstants *HMS))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier val5)))
+              =
+              (expression
+                (bif
+                  (bif_char
+                    %char
+                    (
+                    (expression (identifier (free_identifier datefld)))
+                    :
+                    (bif_charformat (symbolicConstants *HMS))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )

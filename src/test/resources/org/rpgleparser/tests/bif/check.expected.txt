@@ -156,33 +156,29 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val1)))
-                  =
-                  (expression
-                    (bif
-                      (bif_check
-                        %CHECK
-                        (
-                        (expression (identifier (free_identifier FLD1)))
-                        :
-                        (expression (identifier (free_identifier FLD2)))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier val1)))
+              =
+              (expression
+                (bif
+                  (bif_check
+                    %CHECK
+                    (
+                    (expression (identifier (free_identifier FLD1)))
+                    :
+                    (expression (identifier (free_identifier FLD2)))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -193,33 +189,29 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val2)))
-                  =
-                  (expression
-                    (bif
-                      (bif_check
-                        %CHECK
-                        (
-                        (expression (literal ' delim '))
-                        :
-                        (expression (literal ' mystring '))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier val2)))
+              =
+              (expression
+                (bif
+                  (bif_check
+                    %CHECK
+                    (
+                    (expression (literal ' delim '))
+                    :
+                    (expression (literal ' mystring '))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -230,33 +222,29 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val3)))
-                  =
-                  (expression
-                    (bif
-                      (bif_check
-                        %check
-                        (
-                        (expression (identifier (free_identifier delim)))
-                        :
-                        (expression (literal ' thestirng '))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier val3)))
+              =
+              (expression
+                (bif
+                  (bif_check
+                    %check
+                    (
+                    (expression (identifier (free_identifier delim)))
+                    :
+                    (expression (literal ' thestirng '))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -267,37 +255,33 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier val4)))
-                  =
-                  (expression
-                    (bif
-                      (bif_check
-                        %check
-                        (
-                        (expression
-                          (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
-                        )
-                        :
-                        (expression (identifier (free_identifier mystringfld)))
-                        :
-                        (expression (number 5))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier val4)))
+              =
+              (expression
+                (bif
+                  (bif_check
+                    %check
+                    (
+                    (expression
+                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                    )
+                    :
+                    (expression (identifier (free_identifier mystringfld)))
+                    :
+                    (expression (number 5))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )

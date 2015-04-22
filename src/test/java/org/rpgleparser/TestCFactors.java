@@ -28,14 +28,14 @@ public class TestCFactors {
     	String inputString = 
     			"     C                   MOVE      ' '           PSLFLG            1\r\n";
     	expectTokensForSourceLines(inputString,
-    			"C","","","","","MOVE","' '","PSLFLG","1","","","","","");
+    			"C","","","","","MOVE","'"," ","'","PSLFLG","1","","","","","");
     }
     @Test
     public void testMove2(){
     	String inputString = 
     			"     C                   MOVE      '  '          PSLFLG            2\r\n";
     	expectTokensForSourceLines(inputString,
-    			"C","","","","","MOVE","'  '","PSLFLG","2","","","","","");
+    			"C","","","","","MOVE","'","  ","'","PSLFLG","2","","","","","");
     }
     @Test
     public void testMoveSymConst(){
@@ -50,7 +50,7 @@ public class TestCFactors {
     	String inputString = 
     			"     C                   MOVE      'C'           PSLFLG            1\r\n";
     	expectTokensForSourceLines(inputString,
-    			"C","","","","","MOVE","'C'","PSLFLG","1","","","","","");
+    			"C","","","","","MOVE","'","C","'","PSLFLG","1","","","","","");
 
     }
 

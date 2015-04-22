@@ -1,6 +1,6 @@
      C                   SELECT
-     C                   WHEN      IDCCA1 = @PRIME1 OR IDCCA1 = @PRIME2 OR
-     C                             IDCCA1 = @PRIME3 OR IDCCA1 = @PRIME4
+     C                   WHEN      IDCCA1Z = @PRIME1 OR IDCCA1B = @PRIME2 OR
+     C                             IDCCA1X = @PRIME3 OR IDCCA1C = @PRIME4
      C                   EVAL      TYPE = '2'
 
      C                   WHEN      %SUBST(IDHAND:1:1) <> @THANDLER AND

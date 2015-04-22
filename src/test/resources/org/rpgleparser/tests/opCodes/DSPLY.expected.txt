@@ -22,7 +22,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'msg'>
+StringLiteralStart       <'>
+StringContent            <msg>
+StringLiteralEnd         <'>
 OP_DSPLY                 <DSPLY>
 CS_BlankFactor           <              >
 CS_BlankFactor           <              >
@@ -37,7 +39,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'msg'>
+StringLiteralStart       <'>
+StringContent            <msg>
+StringLiteralEnd         <'>
 OP_DSPLY                 <Dsply>
 CS_FactorContent         <MSGQ>
 CS_BlankFactor           <              >
@@ -52,7 +56,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'msg'>
+StringLiteralStart       <'>
+StringContent            <msg>
+StringLiteralEnd         <'>
 OP_DSPLY                 <Dsply>
 CS_FactorContent         <MSGQ>
 CS_FactorContent         <RESULT>
@@ -82,7 +88,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'msg'>
+StringLiteralStart       <'>
+StringContent            <msg>
+StringLiteralEnd         <'>
 OP_DSPLY                 <Dsply>
 '('                      <(>
 CS_OperationAndExtender  <e>
@@ -211,7 +219,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'msg'))
+      (factor (factorContent (literal ' msg ')))
       (cspec_fixed_standard
         (csDSPLY
           DSPLY
@@ -235,7 +243,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'msg'))
+      (factor (factorContent (literal ' msg ')))
       (cspec_fixed_standard
         (csDSPLY
           Dsply
@@ -259,7 +267,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'msg'))
+      (factor (factorContent (literal ' msg ')))
       (cspec_fixed_standard
         (csDSPLY
           Dsply
@@ -307,7 +315,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'msg'))
+      (factor (factorContent (literal ' msg ')))
       (cspec_fixed_standard
         (csDSPLY
           Dsply

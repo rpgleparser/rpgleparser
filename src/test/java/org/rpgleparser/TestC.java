@@ -88,7 +88,7 @@ public class TestC {
         String inputString =
                 "     C                   MOVEL     'P'           B8BATX\r\n";
         expectTokensForSourceLines(inputString,
-                "C", "", "", "", "", "MOVEL", "'P'", "B8BATX","","","","","","\r\n");
+                "C", "", "", "", "", "MOVEL", "'","P","'", "B8BATX","","","","","","\r\n");
     }
 
     @Test

@@ -142,7 +142,7 @@ BlankIndicator           <  >
           (cs_indicators '  ')
           (factor '              ')
           IF
-          (c_free (baseExpression (expression (bif (bif_error %ERROR ( ))))))
+          (c_free (expression (bif (bif_error %ERROR ( )))))
           \r\n
         )
         (statement
@@ -156,16 +156,10 @@ BlankIndicator           <  >
                 (factor '              ')
                 IF
                 (c_free
-                  (baseExpression
-                    (op
-                      (op_eval
-                        (assignmentExpression
-                          (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
-                          =
-                          (expression (number 1211))
-                        )
-                      )
-                    )
+                  (expression
+                    (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
+                    =
+                    (expression (number 1211))
                   )
                 )
                 \r\n
@@ -204,16 +198,10 @@ BlankIndicator           <  >
                   (cspec_fixed_x2
                     (csOperationAndExtendedFactor2 ELSEIF)
                     (c_free
-                      (baseExpression
-                        (op
-                          (op_eval
-                            (assignmentExpression
-                              (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
-                              =
-                              (expression (number 1221))
-                            )
-                          )
-                        )
+                      (expression
+                        (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
+                        =
+                        (expression (number 1221))
                       )
                     )
                     \r\n
@@ -252,22 +240,18 @@ BlankIndicator           <  >
                   (onOffIndicatorsFlag ' ')
                   (cs_indicators '  ')
                   (factor '              ')
-                  (cspec_fixed_x2
-                    (csOperationAndExtendedFactor2 EVAL)
-                    (c_free
-                      (baseExpression
-                        (op
-                          (op_eval
-                            (assignmentExpression
-                              (expression (identifier (free_identifier CSNAME)))
-                              =
-                              (expression (literal ' CCC '))
-                            )
-                          )
+                  (cspec_fixed_standard
+                    (csEVAL
+                      EVAL
+                      (c_free
+                        (expression
+                          (expression (identifier (free_identifier CSNAME)))
+                          =
+                          (expression (literal ' CCC '))
                         )
                       )
+                      \r\n
                     )
-                    \r\n
                   )
                 )
               )

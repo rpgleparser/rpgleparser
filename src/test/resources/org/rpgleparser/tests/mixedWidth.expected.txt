@@ -51,23 +51,17 @@ BlankIndicator           <  >
           (factor '              ')
           if
           (c_free
-            (baseExpression
-              (op
-                (op_eval
-                  (assignmentExpression
-                    (expression
-                      (expression
-                        (expression (identifier (free_identifier retst)))
-                        =
-                        (expression (number 4))
-                      )
-                      or
-                      (expression (identifier (free_identifier retst)))
-                    )
-                    =
-                    (expression (number 2))
-                  )
-                )
+            (expression
+              (expression
+                (expression (identifier (free_identifier retst)))
+                =
+                (expression (number 4))
+              )
+              or
+              (expression
+                (expression (identifier (free_identifier retst)))
+                =
+                (expression (number 2))
               )
             )
           )
@@ -80,22 +74,18 @@ BlankIndicator           <  >
             (onOffIndicatorsFlag ' ')
             (cs_indicators '  ')
             (factor '              ')
-            (cspec_fixed_x2
-              (csOperationAndExtendedFactor2 eval)
-              (c_free
-                (baseExpression
-                  (op
-                    (op_eval
-                      (assignmentExpression
-                        (expression (identifier (free_identifier retst)))
-                        =
-                        (expression (number 1))
-                      )
-                    )
+            (cspec_fixed_standard
+              (csEVAL
+                eval
+                (c_free
+                  (expression
+                    (expression (identifier (free_identifier retst)))
+                    =
+                    (expression (number 1))
                   )
                 )
+                \r\n
               )
-              \r\n
             )
           )
         )

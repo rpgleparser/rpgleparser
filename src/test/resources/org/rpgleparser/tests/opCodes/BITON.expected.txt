@@ -24,7 +24,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_BITON                 <BITON>
-CS_FactorContentLiteral  <'046'>
+StringLiteralStart       <'>
+StringContent            <046>
+StringLiteralEnd         <'>
 CS_FactorContent         <Field>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -102,7 +104,7 @@ EOL                      <
         (csBITON
           BITON
           (cspec_fixed_standard_parts
-            (factor (factorContent '046'))
+            (factor (factorContent (literal ' 046 ')))
             (resultType Field)
             '     '
             '  '

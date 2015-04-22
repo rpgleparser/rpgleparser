@@ -90,22 +90,18 @@ FREE_SEMI                <;>
             (onOffIndicatorsFlag ' ')
             (cs_indicators '  ')
             (factor '              ')
-            (cspec_fixed_x2
-              (csOperationAndExtendedFactor2 EVAL)
-              (c_free
-                (baseExpression
-                  (op
-                    (op_eval
-                      (assignmentExpression
-                        (expression (identifier (free_identifier CSNAME)))
-                        =
-                        (expression (literal ' CCC '))
-                      )
-                    )
+            (cspec_fixed_standard
+              (csEVAL
+                EVAL
+                (c_free
+                  (expression
+                    (expression (identifier (free_identifier CSNAME)))
+                    =
+                    (expression (literal ' CCC '))
                   )
                 )
+                \r\n
               )
-              \r\n
             )
           )
         )

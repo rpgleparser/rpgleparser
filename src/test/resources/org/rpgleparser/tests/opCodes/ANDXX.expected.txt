@@ -24,7 +24,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <XX>
 OP_IFEQ                  <IFEQ>
-CS_FactorContentLiteral  <'A'>
+StringLiteralStart       <'>
+StringContent            <A>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -39,7 +41,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <YY>
 OP_ANDEQ                 <ANDEQ>
-CS_FactorContentLiteral  <'B'>
+StringLiteralStart       <'>
+StringContent            <B>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -71,7 +75,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <XX>
 OP_IFEQ                  <ifeq>
-CS_FactorContentLiteral  <'A'>
+StringLiteralStart       <'>
+StringContent            <A>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -86,7 +92,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <YY>
 OP_ANDGT                 <ANDGT>
-CS_FactorContentLiteral  <'B'>
+StringLiteralStart       <'>
+StringContent            <B>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -101,7 +109,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <ZZ>
 OP_ANDLT                 <ANDLT>
-CS_FactorContentLiteral  <'C'>
+StringLiteralStart       <'>
+StringContent            <C>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -148,7 +158,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <XX>
 OP_IFEQ                  <ifeq>
-CS_FactorContentLiteral  <'A'>
+StringLiteralStart       <'>
+StringContent            <A>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -163,7 +175,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <YY>
 OP_ANDGE                 <ANDGE>
-CS_FactorContentLiteral  <'B'>
+StringLiteralStart       <'>
+StringContent            <B>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -178,7 +192,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <ZZ>
 OP_ANDLT                 <ANDLT>
-CS_FactorContentLiteral  <'C'>
+StringLiteralStart       <'>
+StringContent            <C>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -271,7 +287,7 @@ EOL                      <
         (csIFEQ
           IFEQ
           (cspec_fixed_standard_parts
-            (factor (factorContent 'A'))
+            (factor (factorContent (literal ' A ')))
             (resultType '              ')
             '     '
             '  '
@@ -290,7 +306,7 @@ EOL                      <
           (csANDEQ
             ANDEQ
             (cspec_fixed_standard_parts
-              (factor (factorContent 'B'))
+              (factor (factorContent (literal ' B ')))
               (resultType '              ')
               '     '
               '  '
@@ -336,7 +352,7 @@ EOL                      <
         (csIFEQ
           ifeq
           (cspec_fixed_standard_parts
-            (factor (factorContent 'A'))
+            (factor (factorContent (literal ' A ')))
             (resultType '              ')
             '     '
             '  '
@@ -355,7 +371,7 @@ EOL                      <
           (csANDGT
             ANDGT
             (cspec_fixed_standard_parts
-              (factor (factorContent 'B'))
+              (factor (factorContent (literal ' B ')))
               (resultType '              ')
               '     '
               '  '
@@ -375,7 +391,7 @@ EOL                      <
           (csANDLT
             ANDLT
             (cspec_fixed_standard_parts
-              (factor (factorContent 'C'))
+              (factor (factorContent (literal ' C ')))
               (resultType '              ')
               '     '
               '  '
@@ -441,7 +457,7 @@ EOL                      <
         (csIFEQ
           ifeq
           (cspec_fixed_standard_parts
-            (factor (factorContent 'A'))
+            (factor (factorContent (literal ' A ')))
             (resultType '              ')
             '     '
             '  '
@@ -460,7 +476,7 @@ EOL                      <
           (csANDGE
             ANDGE
             (cspec_fixed_standard_parts
-              (factor (factorContent 'B'))
+              (factor (factorContent (literal ' B ')))
               (resultType '              ')
               '     '
               '  '
@@ -480,7 +496,7 @@ EOL                      <
           (csANDLT
             ANDLT
             (cspec_fixed_standard_parts
-              (factor (factorContent 'C'))
+              (factor (factorContent (literal ' C ')))
               (resultType '              ')
               '     '
               '  '

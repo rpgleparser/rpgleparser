@@ -54,7 +54,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'lit'>
+StringLiteralStart       <'>
+StringContent            <lit>
+StringLiteralEnd         <'>
 OP_CAT                   <cat>
 CS_FactorContent         <Fl3>
 COLON                    <:>
@@ -71,7 +73,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'lit'>
+StringLiteralStart       <'>
+StringContent            <lit>
+StringLiteralEnd         <'>
 OP_CAT                   <cat>
 CS_FactorContent         <Fl3>
 COLON                    <:>
@@ -88,7 +92,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'lit'>
+StringLiteralStart       <'>
+StringContent            <lit>
+StringLiteralEnd         <'>
 OP_CAT                   <cat>
 '('                      <(>
 CS_OperationAndExtender  <p>
@@ -108,7 +114,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'lit'>
+StringLiteralStart       <'>
+StringContent            <lit>
+StringLiteralEnd         <'>
 OP_CAT                   <cat>
 '('                      <(>
 CS_OperationAndExtender  <p>
@@ -221,7 +229,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'lit'))
+      (factor (factorContent (literal ' lit ')))
       (cspec_fixed_standard
         (csCAT
           cat
@@ -245,7 +253,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'lit'))
+      (factor (factorContent (literal ' lit ')))
       (cspec_fixed_standard
         (csCAT
           cat
@@ -269,7 +277,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'lit'))
+      (factor (factorContent (literal ' lit ')))
       (cspec_fixed_standard
         (csCAT
           cat
@@ -294,7 +302,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'lit'))
+      (factor (factorContent (literal ' lit ')))
       (cspec_fixed_standard
         (csCAT
           cat

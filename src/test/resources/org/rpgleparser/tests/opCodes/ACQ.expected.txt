@@ -37,7 +37,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'QPADEV0'>
+StringLiteralStart       <'>
+StringContent            <QPADEV0>
+StringLiteralEnd         <'>
 OP_ACQ                   <ACQ>
 '('                      <(>
 CS_OperationAndExtender  <e>
@@ -55,7 +57,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'QPADEV0'>
+StringLiteralStart       <'>
+StringContent            <QPADEV0>
+StringLiteralEnd         <'>
 OP_ACQ                   <acq>
 CS_FactorContent         <ORCH01DSPF>
 CS_BlankFactor           <              >
@@ -70,7 +74,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContentLiteral  <'QPADEV0'>
+StringLiteralStart       <'>
+StringContent            <QPADEV0>
+StringLiteralEnd         <'>
 OP_ACQ                   <acq>
 CS_FactorContent         <ORCH01DSPF>
 CS_BlankFactor           <              >
@@ -169,7 +175,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'QPADEV0'))
+      (factor (factorContent (literal ' QPADEV0 ')))
       (cspec_fixed_standard
         (csACQ
           ACQ
@@ -194,7 +200,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'QPADEV0'))
+      (factor (factorContent (literal ' QPADEV0 ')))
       (cspec_fixed_standard
         (csACQ
           acq
@@ -218,7 +224,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent 'QPADEV0'))
+      (factor (factorContent (literal ' QPADEV0 ')))
       (cspec_fixed_standard
         (csACQ
           acq

@@ -134,24 +134,20 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier FLDB)))
-                  =
-                  (expression
-                    (bif (bif_abs %ABS ( (expression (identifier (free_identifier f8))) )))
-                  )
-                )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier FLDB)))
+              =
+              (expression
+                (bif (bif_abs %ABS ( (expression (identifier (free_identifier f8))) )))
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -162,24 +158,20 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier FLDC)))
-                  =
-                  (expression
-                    (bif (bif_abs %ABS ( (expression (identifier (free_identifier f8-10))) )))
-                  )
-                )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier FLDC)))
+              =
+              (expression
+                (bif (bif_abs %ABS ( (expression (identifier (free_identifier f8-10))) )))
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -190,39 +182,35 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier FLDD)))
-                  =
-                  (expression
-                    (bif
-                      (bif_abs
-                        %abs
-                        (
-                        (expression
-                          (expression
-                            (expression (identifier (free_identifier f9)))
-                            +
-                            (expression (number 10))
-                          )
-                          -
-                          (expression (number 4))
-                        )
-                        )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier FLDD)))
+              =
+              (expression
+                (bif
+                  (bif_abs
+                    %abs
+                    (
+                    (expression
+                      (expression
+                        (expression (identifier (free_identifier f9)))
+                        +
+                        (expression (number 10))
                       )
+                      -
+                      (expression (number 4))
+                    )
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -233,39 +221,35 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier FLDe)))
-                  =
-                  (expression
-                    (bif
-                      (bif_abs
-                        %Abs
-                        (
-                        (expression
-                          (expression
-                            (expression (identifier (free_identifier f9)))
-                            +
-                            (expression (number 10))
-                          )
-                          -
-                          (expression (expression (number 4)) + (expression (number 25)))
-                        )
-                        )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier FLDe)))
+              =
+              (expression
+                (bif
+                  (bif_abs
+                    %Abs
+                    (
+                    (expression
+                      (expression
+                        (expression (identifier (free_identifier f9)))
+                        +
+                        (expression (number 10))
                       )
+                      -
+                      (expression (expression (number 4)) + (expression (number 25)))
+                    )
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )

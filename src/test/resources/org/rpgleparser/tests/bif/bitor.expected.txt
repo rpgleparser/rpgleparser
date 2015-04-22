@@ -160,33 +160,29 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier ison)))
-                  =
-                  (expression
-                    (bif
-                      (bif_bitor
-                        %BITOR
-                        (
-                        (expression (identifier (free_identifier HEXVAL)))
-                        :
-                        (expression (identifier (free_identifier B0)))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier ison)))
+              =
+              (expression
+                (bif
+                  (bif_bitor
+                    %BITOR
+                    (
+                    (expression (identifier (free_identifier HEXVAL)))
+                    :
+                    (expression (identifier (free_identifier B0)))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -197,33 +193,29 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier ison)))
-                  =
-                  (expression
-                    (bif
-                      (bif_bitor
-                        %BITOR
-                        (
-                        (expression (literal x' 80 '))
-                        :
-                        (expression (literal x' 40 '))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier ison)))
+              =
+              (expression
+                (bif
+                  (bif_bitor
+                    %BITOR
+                    (
+                    (expression (literal x' 80 '))
+                    :
+                    (expression (literal x' 40 '))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -234,33 +226,29 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier ison)))
-                  =
-                  (expression
-                    (bif
-                      (bif_bitor
-                        %bitor
-                        (
-                        (expression (identifier (free_identifier hexval)))
-                        :
-                        (expression (literal x' 10 '))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier ison)))
+              =
+              (expression
+                (bif
+                  (bif_bitor
+                    %bitor
+                    (
+                    (expression (identifier (free_identifier hexval)))
+                    :
+                    (expression (literal x' 10 '))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )
@@ -271,37 +259,33 @@ COMMENTS_TEXT            <                   >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_x2
-        (csOperationAndExtendedFactor2 EVAL)
-        (c_free
-          (baseExpression
-            (op
-              (op_eval
-                (assignmentExpression
-                  (expression (identifier (free_identifier ison)))
-                  =
-                  (expression
-                    (bif
-                      (bif_bitor
-                        %BItor
-                        (
-                        (expression
-                          (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
-                        )
-                        :
-                        (expression (identifier (free_identifier bitval)))
-                        :
-                        (expression (literal x' 0F0F '))
-                        )
-                      )
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier ison)))
+              =
+              (expression
+                (bif
+                  (bif_bitor
+                    %BItor
+                    (
+                    (expression
+                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                    )
+                    :
+                    (expression (identifier (free_identifier bitval)))
+                    :
+                    (expression (literal x' 0F0F '))
                     )
                   )
                 )
               )
             )
           )
+          \r\n
         )
-        \r\n
       )
     )
   )

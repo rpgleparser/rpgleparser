@@ -6,7 +6,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_CALL                  <CALL>
-CS_FactorContentLiteral  <'MSGSFLCL'>
+StringLiteralStart       <'>
+StringContent            <MSGSFLCL>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -90,7 +92,7 @@ BlankIndicator           <  >
         (csCALL
           CALL
           (cspec_fixed_standard_parts
-            (factor (factorContent 'MSGSFLCL'))
+            (factor (factorContent (literal ' MSGSFLCL ')))
             (resultType '              ')
             '     '
             '  '

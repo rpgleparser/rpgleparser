@@ -75,7 +75,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-UCS2LiteralStart         <'>
+StringLiteralStart       <'>
 StringContent            <98/05/30>
 StringLiteralEnd         <'>
 OP_ADDDUR                <adddur>

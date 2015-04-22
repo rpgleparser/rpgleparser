@@ -32,7 +32,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <EmpTyp>
 OP_WHENEQ                <WHENEQ>
-CS_FactorContentLiteral  <'C'>
+StringLiteralStart       <'>
+StringContent            <C>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -47,7 +49,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <EmpTyp>
 OP_OREQ                  <OREQ>
-CS_FactorContentLiteral  <'T'>
+StringLiteralStart       <'>
+StringContent            <T>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -77,7 +81,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <EmpTyp>
 OP_WHENEQ                <WHENEQ>
-CS_FactorContentLiteral  <'R'>
+StringLiteralStart       <'>
+StringContent            <R>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -260,7 +266,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <EmpTyp>
 OP_WHENEQ                <WHENEQ>
-CS_FactorContentLiteral  <'S'>
+StringLiteralStart       <'>
+StringContent            <S>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -338,7 +346,7 @@ BlankIndicator           <  >
             (csWHENEQ
               WHENEQ
               (cspec_fixed_standard_parts
-                (factor (factorContent 'C'))
+                (factor (factorContent (literal ' C ')))
                 (resultType '              ')
                 '     '
                 '  '
@@ -357,7 +365,7 @@ BlankIndicator           <  >
               (csOREQ
                 OREQ
                 (cspec_fixed_standard_parts
-                  (factor (factorContent 'T'))
+                  (factor (factorContent (literal ' T ')))
                   (resultType '              ')
                   '     '
                   '  '
@@ -404,7 +412,7 @@ BlankIndicator           <  >
             (csWHENEQ
               WHENEQ
               (cspec_fixed_standard_parts
-                (factor (factorContent 'R'))
+                (factor (factorContent (literal ' R ')))
                 (resultType '              ')
                 '     '
                 '  '
@@ -667,7 +675,7 @@ BlankIndicator           <  >
             (csWHENEQ
               WHENEQ
               (cspec_fixed_standard_parts
-                (factor (factorContent 'S'))
+                (factor (factorContent (literal ' S ')))
                 (resultType '              ')
                 '     '
                 '  '

@@ -24,7 +24,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_CALL                  <CALL>
-CS_FactorContentLiteral  <'PROGRA'>
+StringLiteralStart       <'>
+StringContent            <PROGRA>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -54,7 +56,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_CALL                  <call>
-CS_FactorContentLiteral  <'PROGRA'>
+StringLiteralStart       <'>
+StringContent            <PROGRA>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -87,7 +91,9 @@ OP_CALL                  <CALL>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-CS_FactorContentLiteral  <'PROGRA'>
+StringLiteralStart       <'>
+StringContent            <PROGRA>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -117,7 +123,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_CALL                  <CALL>
-CS_FactorContentLiteral  <'PROGRA'>
+StringLiteralStart       <'>
+StringContent            <PROGRA>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -147,7 +155,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_CALL                  <CALL>
-CS_FactorContentLiteral  <'PROGRA'>
+StringLiteralStart       <'>
+StringContent            <PROGRA>
+StringLiteralEnd         <'>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -177,7 +187,9 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_CALL                  <CALL>
-CS_FactorContentLiteral  <'PROGRA'>
+StringLiteralStart       <'>
+StringContent            <PROGRA>
+StringLiteralEnd         <'>
 CS_FactorContent         <PLIST>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -195,7 +207,9 @@ OP_CALL                  <Call>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-CS_FactorContentLiteral  <'PROGRA'>
+StringLiteralStart       <'>
+StringContent            <PROGRA>
+StringLiteralEnd         <'>
 CS_FactorContent         <PLIST>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -260,7 +274,7 @@ EOL                      <
         (csCALL
           CALL
           (cspec_fixed_standard_parts
-            (factor (factorContent 'PROGRA'))
+            (factor (factorContent (literal ' PROGRA ')))
             (resultType '              ')
             '     '
             '  '
@@ -302,7 +316,7 @@ EOL                      <
         (csCALL
           call
           (cspec_fixed_standard_parts
-            (factor (factorContent 'PROGRA'))
+            (factor (factorContent (literal ' PROGRA ')))
             (resultType '              ')
             '     '
             '  '
@@ -345,7 +359,7 @@ EOL                      <
           CALL
           (cs_operationExtender ( e ))
           (cspec_fixed_standard_parts
-            (factor (factorContent 'PROGRA'))
+            (factor (factorContent (literal ' PROGRA ')))
             (resultType '              ')
             '     '
             '  '
@@ -387,7 +401,7 @@ EOL                      <
         (csCALL
           CALL
           (cspec_fixed_standard_parts
-            (factor (factorContent 'PROGRA'))
+            (factor (factorContent (literal ' PROGRA ')))
             (resultType '              ')
             '     '
             '  '
@@ -429,7 +443,7 @@ EOL                      <
         (csCALL
           CALL
           (cspec_fixed_standard_parts
-            (factor (factorContent 'PROGRA'))
+            (factor (factorContent (literal ' PROGRA ')))
             (resultType '              ')
             '     '
             '  '
@@ -471,7 +485,7 @@ EOL                      <
         (csCALL
           CALL
           (cspec_fixed_standard_parts
-            (factor (factorContent 'PROGRA'))
+            (factor (factorContent (literal ' PROGRA ')))
             (resultType PLIST)
             '     '
             '  '
@@ -496,7 +510,7 @@ EOL                      <
           Call
           (cs_operationExtender ( e ))
           (cspec_fixed_standard_parts
-            (factor (factorContent 'PROGRA'))
+            (factor (factorContent (literal ' PROGRA ')))
             (resultType PLIST)
             '     '
             '  '

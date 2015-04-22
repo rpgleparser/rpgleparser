@@ -939,7 +939,7 @@ CS_FactorWs2: ({(getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
 			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 }?
-		['] -> type(UCS2LiteralStart),pushMode(InFactorStringMode);
+		['] -> type(StringLiteralStart),pushMode(InFactorStringMode);
 // 		
 //CS_FactorContentLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 //			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
@@ -1152,14 +1152,20 @@ CS_EOL : NEWLINE -> type(EOL),popMode;
 mode FixedOpExtender;
 CS_FixedOperationAndExtender_WS:
 	({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[ ])+ -> skip;	
-CS_FixedOperationAndExtender:  
+CS_FixedOperationExtenderOpen: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?OPEN_PAREN -> type(OPEN_PAREN),popMode,pushMode(FixedOpExtender2);
+CS_FixedOperationExtenderReturn: {getCharPositionInLine()>=25 && getCharPositionInLine()<=35}? ->skip,popMode;
+
+mode FixedOpExtender2;
+CS_FixedOperationAndExtender2_WS:
+	({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[ ])+ -> skip;	
+CS_FixedOperationAndExtender2:  
    ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[a-zA-Z0-9\\-])+ -> type(CS_OperationAndExtender);
-CS_FixedOperationExtenderOpen: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?OPEN_PAREN -> type(OPEN_PAREN);
-CS_FixedOperationExtenderClose: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?CLOSE_PAREN 
+CS_FixedOperationExtender2Close: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?CLOSE_PAREN 
   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}? ' ')*
   {setText(getText().trim());}
   -> type(CLOSE_PAREN);
-CS_FixedOperationExtenderReturn: {getCharPositionInLine()==35}? ->skip,popMode;
+CS_FixedOperationExtender2Return: {getCharPositionInLine()==35}? ->skip,popMode;
+
 
 mode FreeOpExtender;
 FreeOpExtender_OPEN_PAREN: OPEN_PAREN -> popMode,type(OPEN_PAREN),pushMode(FreeOpExtender2);

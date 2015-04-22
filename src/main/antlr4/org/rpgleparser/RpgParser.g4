@@ -685,7 +685,7 @@ csCALLB:
 csCALLP:
 	operation=OP_CALLP
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csCASEQ:
 	operation=OP_CASEQ
 	cspec_fixed_standard_parts;
@@ -756,7 +756,7 @@ csDO:
 csDOU:
 	operation=OP_DOU
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csDOUEQ:
 	operation=OP_DOUEQ
 	cspec_fixed_standard_parts;
@@ -778,7 +778,7 @@ csDOUGT:
 csDOW:
 	operation=OP_DOW
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csDOWEQ:
 	operation=OP_DOWEQ
 	cspec_fixed_standard_parts;
@@ -839,14 +839,14 @@ csENDSL:
 csEVAL:
 	operation=OP_EVAL
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csEVAL_CORR:
 	operation=OP_EVAL_CORR
 	cspec_fixed_standard_parts;
 csEVALR:
 	operation=OP_EVALR
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csEXCEPT:
 	operation=OP_EXCEPT
 	cspec_fixed_standard_parts;
@@ -868,7 +868,7 @@ csFEOD:
 csFOR:
 	operation=OP_FOR
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csFORCE:
 	operation=OP_FORCE
 	cspec_fixed_standard_parts;
@@ -878,7 +878,7 @@ csGOTO:
 csIF:
 	operation=OP_IF
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csIFEQ:
 	operation=OP_IFEQ
 	cspec_fixed_standard_parts;
@@ -974,7 +974,7 @@ csOCCUR:
 	cspec_fixed_standard_parts;
 csON_ERROR:
 	operation=OP_ON_ERROR
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csOPEN:
 	operation=OP_OPEN
 	operationExtender=cs_operationExtender? 
@@ -1055,7 +1055,7 @@ csRESET:
 csRETURN:
 	operation=OP_RETURN
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csROLBK:
 	operation=OP_ROLBK
 	operationExtender=cs_operationExtender? 
@@ -1133,8 +1133,7 @@ csUPDATE:
 	cspec_fixed_standard_parts;
 csWHEN:
 	OP_WHEN 
-	fixedexpression=c_free
-	C_FREE_NEWLINE;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csWHENEQ:
 	operation=OP_WHENEQ
 	cspec_fixed_standard_parts;
@@ -1190,7 +1189,7 @@ cs_operationExtender:
   extender4=CS_OperationAndExtender?
   CLOSE_PAREN;	
 factor:
-   content=factorContent (COLON (content2=factorContent | constant2=symbolicConstants))? | CS_BlankFactor | constant=symbolicConstants;
+   content=factorContent (COLON (content2=factorContent | constant2=symbolicConstants))? | CS_BlankFactor | constant=symbolicConstants literal?;
    
 factorContent:
 CS_FactorContent | literal;
@@ -1199,7 +1198,7 @@ resultType:
    CS_FactorContent | CS_BlankFactor;
 cs_fixed_comments:CS_Comments;		
 //cs_fixed_x2: CS_OperationAndExtendedFactor2 C2_FACTOR2_CONT* C2_FACTOR2 C_EOL;
-cspec_fixed_x2: csOperationAndExtendedFactor2 c_free C_FREE_NEWLINE;
+cspec_fixed_x2: csOperationAndExtendedFactor2 fixedexpression=c_free C_FREE_NEWLINE;
 
 csOperationAndExtendedFactor2:
 	operation=OP_EVAL
@@ -1782,15 +1781,15 @@ bif_code: BIF_ABS
 
 
 free: ((baseExpression FREE_SEMI free_linecomments? ) | exec_sql); // (NEWLINE |COMMENTS_EOL);
-c_free: (((baseExpression) free_linecomments? ) | exec_sql);
+c_free: (((expression) free_linecomments? ) | exec_sql);
 
 control: opCode indicator_expr;
 exec_sql: EXEC_SQL WORDS+ SEMI ;
 //sql_quoted: SINGLE_QTE (WORDS | SEMI | DOUBLE_QTE) * SINGLE_QTE ;
 //sql_quoted2: DOUBLE_QTE (WORDS | SEMI |SINGLE_QTE)* DOUBLE_QTE ;
 
-//--------------- 
-baseExpression: op | assignmentExpression | expression;
+//---------------  
+baseExpression: op | expression;
 assignmentExpression: expression EQUAL expression;
 expression: 
 	// op | // should drop op I think? 
@@ -1801,7 +1800,7 @@ expression:
 	| bif
 	| NOT expression
 	| OPEN_PAREN expression CLOSE_PAREN
-	| expression (assignmentOperator | comparisonOperator) expression
+	| expression (assignmentOperator | comparisonOperator | EQUAL) expression
     |<assoc=right> expression EXP expression
     | expression (MULT | MULT_NOSPACE) expression
     | expression DIV expression
