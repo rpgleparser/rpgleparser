@@ -1,11 +1,16 @@
 package examples.fixed2free;
 
+/**
+ * This class is used to hold the information about a scope. It was made a class 
+ * for type safety. Right now there is not a lot to it though.
+ * @author Eric Wilson
+ *
+ */
 public class Scope {
 	private String key;
 	private String description;
 	public Scope(String scopeIdentifier) {
 		this.key = scopeIdentifier;
-		// TODO Auto-generated constructor stub
 	}
 	public String getKey() {
 		return key;

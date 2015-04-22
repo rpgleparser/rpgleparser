@@ -1,6 +1,9 @@
 package examples.fixed2free;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SymbolTable {
@@ -9,17 +12,18 @@ public class SymbolTable {
 
 	/**
 	 * Get a scope instance for a given scope identifier
-	 * The Global scope should us the Scope.GLOBAL constant as it's identifer
+	 * The Global scope should us the Scope.GLOBAL constant as it's identifier
+	 * Side effect:
 	 * If the scope does not exist then one will be created and that will be returned
 	 * @param scopeIdentifier
 	 * @return 
 	 */
-	public Scope getAScope(String scopeIdentifer){
+	public Scope getAScope(String scopeIdentifier){
 		Scope result = null;
-		result = scopes.get(scopeIdentifer);
+		result = scopes.get(scopeIdentifier);
 		if (result == null){
-			result = new Scope(scopeIdentifer);
-			scopes.put(scopeIdentifer, result);
+			result = new Scope(scopeIdentifier);
+			scopes.put(scopeIdentifier, result);
 			symbolTable.put(result, new HashMap<String, Symbol>());
 		}
 		return result;
@@ -32,7 +36,7 @@ public class SymbolTable {
 	public void addSymbolToScope(Scope aScope, Symbol aSymbol){
 		Map<String, Symbol>temp = symbolTable.get(aScope);
 		if (temp == null){
-			// throw somesort of exception?
+			// throw some sort of exception?
 		} else {
 			if (temp.containsKey(aSymbol.getName())){
 				// Do nothing
@@ -40,5 +44,15 @@ public class SymbolTable {
 				temp.put(aSymbol.getName(), aSymbol);
 			}
 		}
+	}
+	public Collection<Symbol> getAllSymbolsFromScope(Scope aScope){
+		Map<String, Symbol>temp = symbolTable.get(aScope);
+		Collection<Symbol> result = temp.values();
+		return result;
+	}
+	public List<Scope> getAllScopes() {
+		List<Scope> result = new ArrayList<Scope>();
+		result.addAll(scopes.values());
+		return result;
 	}
 }
