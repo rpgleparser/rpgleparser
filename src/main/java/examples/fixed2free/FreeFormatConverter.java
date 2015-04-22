@@ -1,5 +1,11 @@
 package examples.fixed2free;
-
+/**
+ * This class conforms to the ANTLR listener interface and will attempt to convert
+ * a fixed format RPG program to a free format program.
+ * This class serves for example purposes and may not meet your needs
+ * 
+ * @author Eric Wilson
+ */
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -2605,7 +2611,6 @@ public class FreeFormatConverter extends LoggingListener {
 			CommonToken low, CommonToken equal, CommonToken comment)
 			throws RPGFormatException {
 		doResultCheck(result, length, decpos);
-		boolean ef = opCode.getText().toUpperCase().contains("(E)");
 		boolean ER = low.getText().trim().length() > 0;
 		String[] factor1parts = factor1.getText().split(":");
 		String[] factor2parts = factor2.getText().split(":");
@@ -2624,6 +2629,9 @@ public class FreeFormatConverter extends LoggingListener {
 		workString = StringUtils
 				.repeat(" ", 7 + (indentLevel * spacesToIndent)) + partB;
 		cspecs.add(workString);
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
 	}
 
 	private void doSELECT(CommonToken comment) {
@@ -2636,17 +2644,52 @@ public class FreeFormatConverter extends LoggingListener {
 		setIndentLevel(++indentLevel);
 	}
 
-	private void doSETGT(CommonToken factor1, CommonToken factor2,
+	private void doSETGT(CommonToken factor1, CommonToken opCode, CommonToken factor2,
 			CommonToken high, CommonToken low, CommonToken comment) {
-		// TODO Auto-generated method stub
+		boolean ER = low.getText().trim().length() > 0;
+		boolean NR = high.getText().trim().length() > 0;
+		boolean ef = opCode.getText().toUpperCase().contains("(E)");
+		String theOp = "SETGT ";
+		if (ER || ef){
+			theOp = "SETGT(E) ";
+		}
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ theOp + factor1.getText().trim() + " " + factor2.getText().trim() + doEOLComment(comment);
+		cspecs.add(workString);
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
+		if (NR){
+			setResultingIndicator(high, "IF %FOUND = *OFF;");
+		}
 
 	}
 
-	private void doSETLL(CommonToken factor1, CommonToken factor2,
+	private void doSETLL(CommonToken factor1, CommonToken opCode, CommonToken factor2,
 			CommonToken high, CommonToken low, CommonToken equal,
 			CommonToken comment) {
-		// TODO Auto-generated method stub
-
+		boolean ER = low.getText().trim().length() > 0;
+		boolean NR = high.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		boolean ef = opCode.getText().toUpperCase().contains("(E)");
+		String theOp = "SETLL ";
+		if (ER || ef){
+			theOp = "SETLL(E) ";
+		}
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ theOp + factor1.getText().trim() + " " + factor2.getText().trim() + doEOLComment(comment);
+		cspecs.add(workString);
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
+		if (NR){
+			setResultingIndicator(high, "IF %FOUND = *OFF;");
+		}
+		if (EQ){
+			setResultingIndicator(equal, "IF %EQUAL = *ON;");
+		}
 	}
 
 	private void doSETOFF(CommonToken high, CommonToken low, CommonToken equal,
@@ -2702,29 +2745,64 @@ public class FreeFormatConverter extends LoggingListener {
 	}
 
 	private void doSHTDN(CommonToken high, CommonToken comment) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils.repeat(" ",
+				7 + (indentLevel * spacesToIndent))
+				+ "*IN" + high.getText().trim() + " = %SHTDN" + doEOLComment(comment);	
+		cspecs.add(workString);
 	}
 
-	private void doSORTA(CommonToken factor2, CommonToken comment) {
-		// TODO Auto-generated method stub
-
+	private void doSORTA(CommonToken opCode, CommonToken factor2, CommonToken comment) {
+		workString = StringUtils.repeat(" ",
+				7 + (indentLevel * spacesToIndent)) + opCode.getText().trim()
+				+ " " + factor2.getText().trim() + doEOLComment(comment);
+		cspecs.add(workString);
 	}
 
-	private void doSQRT(CommonToken factor2, CommonToken result,
-			CommonToken length, CommonToken decpos, CommonToken comment)
-			throws RPGFormatException {
+	private void doSQRT(CommonToken opCode, CommonToken factor2, CommonToken result,
+			CommonToken length, CommonToken decpos, CommonToken comment) throws RPGFormatException{
 		doResultCheck(result, length, decpos);
-		// TODO Auto-generated method stub
-
+		boolean HA = opCode.getText().toUpperCase().contains("(H)");
+		workString = StringUtils.repeat(" ",
+				7 + (indentLevel * spacesToIndent));
+		if (HA){
+			workString += "EVAL(H) ";
+		}
+		workString += result.getText().trim() + " %SQRT(" + factor2.getText().trim() + ")" + doEOLComment(comment);
+		cspecs.add(workString);
 	}
 
-	private void doSUB(CommonToken factor1, CommonToken factor2,
+	private void doSUB(CommonToken factor1, CommonToken opCode, CommonToken factor2,
 			CommonToken result, CommonToken length, CommonToken decpos,
 			CommonToken high, CommonToken low, CommonToken equal,
 			CommonToken comment) throws RPGFormatException {
 		doResultCheck(result, length, decpos);
-		// TODO Auto-generated method stub
+		boolean HA = opCode.getText().toUpperCase().contains("(H)");
+		boolean F1F = factor1.getText().trim().length() > 0;
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		workString = StringUtils.repeat(" ",
+				7 + (indentLevel * spacesToIndent));
+		if (HA){
+			workString += "EVAL(H) ";
+		}
+		
+		if (F1F){
+			workString += result.getText().trim() + " = " + factor1.getText().trim() + " - " + factor2.getText().trim() + doEOLComment(comment);
+		} else {
+			workString += result.getText().trim() + " -= " + factor2.getText().trim() + doEOLComment(comment); 
+		}
+		cspecs.add(workString);
+		
+		if (HI){
+			setResultingIndicator(high, "IF " + result.getText().trim() + " > 0;");
+		}
+		if (LO){
+			setResultingIndicator(high, "IF " + result.getText().trim() + " < 0;");
+		}
+		if (EQ){
+			setResultingIndicator(high, "IF " + result.getText().trim() + " = 0;");
+		}
 
 	}
 
@@ -2819,8 +2897,39 @@ public class FreeFormatConverter extends LoggingListener {
 			CommonToken result, CommonToken length, CommonToken decpos,
 			CommonToken low, CommonToken comment) throws RPGFormatException {
 		doResultCheck(result, length, decpos);
-		// TODO Auto-generated method stub
+		boolean ER = low.getText().trim().length() > 0;
+		boolean F1F = factor1.getText().trim().length() > 0;
+		String[] f2parts = factor2.getText().split("(");
+		boolean pf = false;
+		boolean ef = false;
+		if (f2parts.length > 1){
+			pf = f2parts[1].contains("P");
+			ef = f2parts[1].contains("E");
+		}
+		workString = StringUtils.repeat(" ",
+				7 + (indentLevel * spacesToIndent));
 
+		if (ef || pf || ER){
+			workString += "EVAL(";
+			if (ef || ER){
+				workString += "E";
+			}
+			if (pf){
+				workString += "P";
+			}
+			workString += ") ";
+		}
+		workString += result.getText().trim() + " = ";
+		if (f2parts.length > 1){
+			workString += "%SUBST(" + f2parts[0].trim() + " : " + f2parts[1].trim();
+		} else {
+			workString += "%SUBST(" + f2parts[0].trim() + " : 1";
+		}
+		if (F1F){
+			workString += " : " + factor1.getText().trim();
+		}
+		workString += ")" + doEOLComment(comment);
+		cspecs.add(workString);
 	}
 
 	private void doTAG(CommonToken factor1, CommonToken comment)
@@ -2838,47 +2947,166 @@ public class FreeFormatConverter extends LoggingListener {
 		cspecs.add("       /FREE");
 	}
 
-	private void doTEST(CommonToken factor1, CommonToken result,
+	private void doTEST(CommonToken factor1, CommonToken opCode, CommonToken result,
 			CommonToken low, CommonToken comment) {
-		// TODO Auto-generated method stub
-
+		boolean ER = low.getText().trim().length() > 0;
+		boolean F1F = factor1.getText().trim().length() > 0;
+		String[] opCodeParts = opCode.getText().toUpperCase().split("(");
+		boolean ef = false;
+		boolean df = false;
+		boolean tf = false;
+		boolean zf = false;
+		if (opCodeParts.length > 1){
+			ef = opCodeParts[1].contains("E");
+			df = opCodeParts[1].contains("E");
+			tf = opCodeParts[1].contains("E");
+			zf = opCodeParts[1].contains("E");
+		} 
+		workString = StringUtils.repeat(" ",
+				7 + (indentLevel * spacesToIndent));
+		if (ER || ef || df || tf || zf){
+			workString += "TEST(";
+			if (ER || ef){
+				workString += "E";
+			}
+			if (df){
+				workString += "D";
+			}
+			if (tf){
+				workString += "T";
+			}
+			if (zf){
+				workString += "Z";
+			}
+			workString += ") ";
+		} else {
+			workString += "TEST ";
+		}
+		if (F1F){
+			workString += factor1.getText().trim(); 
+		}
+		workString += result.getText().trim() + doEOLComment(comment);
+		cspecs.add(workString);
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
 	}
 
 	private void doTESTB(CommonToken factor2, CommonToken result,
 			CommonToken high, CommonToken low, CommonToken equal,
-			CommonToken comment) {
-		// TODO Auto-generated method stub
+			CommonToken comment) throws RPGFormatException {
+		byte bitmask = 0;
+		boolean HI = high.getText().trim().length() > 0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		String inputBits = factor2.getText();
+
+		if (inputBits.contains("0")) {
+			bitmask += 128;
+		}
+		if (inputBits.contains("1")) {
+			bitmask += 64;
+		}
+		if (inputBits.contains("2")) {
+			bitmask += 32;
+		}
+		if (inputBits.contains("3")) {
+			bitmask += 16;
+		}
+		if (inputBits.contains("4")) {
+			bitmask += 8;
+		}
+		if (inputBits.contains("5")) {
+			bitmask += 4;
+		}
+		if (inputBits.contains("6")) {
+			bitmask += 2;
+		}
+		if (inputBits.contains("7")) {
+			bitmask += 1;
+		}
+		String hexChar = String.format("x", bitmask);
+		dspecs.add(RPGSpecs.formatDSpec("TEMPCHAR", "", "", "S", "", "1", "A", "", "INZ", "For TESTB"));
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+  "TEMPCHAR = %BITAND("
+				+ factor2.getText().trim()
+				+ " : x'"
+				+ hexChar
+				+ "') "
+				+ doEOLComment(comment);
+		cspecs.add(workString);
+		if (HI){
+			setResultingIndicator(high, "IF TEMPCHAR = x'00';");
+		}
+		if (LO){
+			setResultingIndicator(high, "IF TEMPCHAR > x'00';");
+		}
+		if (EQ){
+			setResultingIndicator(high, "IF TEMPCHAR = x'" + hexChar + "';");
+		}
 
 	}
 
 	private void doTESTN(CommonToken result, CommonToken high, CommonToken low,
 			CommonToken equal, CommonToken comment) {
-		// TODO Auto-generated method stub
+		// FIXME Should I break out of free form and do this as it stands
+		// FIXME or should I set up a monitor group and try to move it to 
+		// FIXME a numeric field and monitor for a non-numeric error
 
 	}
 
 	private void doTESTZ(CommonToken result, CommonToken high, CommonToken low,
 			CommonToken equal, CommonToken comment) {
-		// TODO Auto-generated method stub
+		// FIXME Sounds ugly, will do later
 
 	}
 
 	private void doTIME(CommonToken result, CommonToken length,
 			CommonToken decpos, CommonToken comment) throws RPGFormatException {
 		doResultCheck(result, length, decpos);
-		// TODO Auto-generated method stub
+		// FIXME Need to know the data type of the result field... 
+		// FIXME Most likely will have to construct a symbol table
 
 	}
 
-	private void doUNLOCK(CommonToken factor2, CommonToken low,
+	private void doUNLOCK(CommonToken opCode, CommonToken factor2, CommonToken low,
 			CommonToken comment) {
-		// TODO Auto-generated method stub
-
+		boolean ER = low.getText().trim().length() > 0;
+		boolean ef = opCode.getText().toUpperCase().contains("(E)");
+		String theOp = "UNLOCK ";
+		if (ER || ef){
+			theOp = "UNLOCK(E) ";
+		}
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ theOp + factor2.getText().trim() + doEOLComment(comment);
+		cspecs.add(workString);
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
+				
 	}
 
-	private void doUPDATE(CommonToken factor2, CommonToken result,
+	private void doUPDATE(CommonToken opCode, CommonToken factor2, CommonToken result,
 			CommonToken low, CommonToken comment) {
-		// TODO Auto-generated method stub
+		boolean ER = low.getText().trim().length() > 0;
+		boolean ef = opCode.getText().toUpperCase().contains("(E)");
+		boolean rf = result.getText().trim().length() > 0;
+		String theOp = "UPDATE ";
+		if (ER || ef){
+			theOp = "UPDATE(E) ";
+		}
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ theOp + factor2.getText().trim();
+		if (rf){
+			workString += " " + result.getText().trim();
+		}
+		workString += doEOLComment(comment);
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
 
 	}
 
@@ -2962,37 +3190,105 @@ public class FreeFormatConverter extends LoggingListener {
 		cspecs.add(workString);
 	}
 
-	private void doWRITE(CommonToken factor2, CommonToken result,
+	private void doWRITE(CommonToken opCode, CommonToken factor2, CommonToken result,
 			CommonToken low, CommonToken equal, CommonToken comment) {
-		// TODO Auto-generated method stub
+		boolean ER = low.getText().trim().length() > 0;
+		boolean EQ = low.getText().trim().length() > 0;
+		boolean ef = opCode.getText().toUpperCase().contains("(E)");
+		boolean rf = result.getText().trim().length() > 0;
+		String theOp = "WRITE ";
+		if (ER || ef){
+			theOp = "WRITE(E) ";
+		}
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ theOp + factor2.getText().trim();
+		if (rf){
+			workString += " " + result.getText().trim();
+		}
+		workString += doEOLComment(comment);
+		cspecs.add(workString);
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
+		if (EQ){
+			setResultingIndicator(low, "IF %EOF = *ON;");
+		}
 
 	}
 
-	private void doXFOOT(CommonToken factor2, CommonToken result,
+	private void doXFOOT(CommonToken opCode, CommonToken factor2, CommonToken result,
 			CommonToken length, CommonToken decpos, CommonToken high,
 			CommonToken low, CommonToken equal, CommonToken comment)
 			throws RPGFormatException {
 		doResultCheck(result, length, decpos);
-		// TODO Auto-generated method stub
-
+		boolean HA = opCode.getText().toUpperCase().contains("(H)");
+		boolean HI = high.getText().trim().length() >0;
+		boolean LO = low.getText().trim().length() > 0;
+		boolean EQ = equal.getText().trim().length() > 0;
+		
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent));
+		if (HA){
+			workString += "EVAL(H) ";
+		}
+		workString += result.getText().trim() + " = %XFOOT(" + factor2.getText().trim() + ")" + doEOLComment(comment);
+		cspecs.add(workString);
+		if (HI){
+			setResultingIndicator(high, "IF " + result.getText().trim() + " > 0;");
+		}
+		if (LO){
+			setResultingIndicator(high, "IF " + result.getText().trim() + " < 0;");
+		}
+		if (EQ){
+			setResultingIndicator(high, "IF " + result.getText().trim() + " = 0;");
+		}
 	}
 
-	private void doXLATE(CommonToken factor1, CommonToken factor2,
+	private void doXLATE(CommonToken factor1, CommonToken opCode, CommonToken factor2,
 			CommonToken result, CommonToken length, CommonToken decpos,
 			CommonToken low, CommonToken comment) throws RPGFormatException {
 		doResultCheck(result, length, decpos);
-		// TODO Auto-generated method stub
+		boolean ER = low.getText().trim().length() > 0;
+		String[] opParts = opCode.getText().split("(");
+		boolean ef = false;
+		boolean pf = false;
+		if (opParts.length > 1){
+			ef = opParts[1].contains("E");
+			pf = opParts[1].contains("P");
+		}		
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent));
 
+		if (ef || ER || pf){
+			workString += "EVAL(";
+			if (ef || ER){
+				workString += "E";
+			}
+			if (pf){
+				workString += "P";
+			}
+			workString += ") ";
+		}
+		workString += result.getText().trim() + " = %XLATE(" + factor1.getText().trim() + " : " + factor2.getText().trim() + ")" + doEOLComment(comment);
+		cspecs.add(workString);
+		if (ER){
+			setResultingIndicator(low, "IF %ERROR = *ON;");
+		}
 	}
 
 	private void doXML_INTO(CommonToken factor2, CommonToken comment) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ "XML-INTO " + factor2.getText().trim() + doEOLComment(comment);
+		cspecs.add(workString);
 	}
 
 	private void doXML_SAX(CommonToken factor2, CommonToken comment) {
-		// TODO Auto-generated method stub
-
+		workString = StringUtils
+				.repeat(" ", 7 + (indentLevel * spacesToIndent))
+				+ "XML-SAX " + factor2.getText().trim() + doEOLComment(comment);
+		cspecs.add(workString);
 	}
 
 	private void doZ_ADD(CommonToken factor2, CommonToken result,
@@ -3072,7 +3368,7 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doADD(factor1, factor2, result, length, decpos, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4138,8 +4434,19 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsKFLD(CsKFLDContext ctx) {
 		super.exitCsKFLD(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
-		Map<String, CommonToken> temp = getFields(pctx);
+		// Don't do the KFLD stuff in here anymore since it is being handled in the KLIST
+//		ParserRuleContext pctx = getCSpec(ctx);
+//		Map<String, CommonToken> temp = getFields(pctx);
+//		CommonToken result = temp.get(EXT_RESULT);
+//		CommonToken comment = temp.get(COMMENT);
+//		try {
+//			doKFLD(result, comment);
+//		} catch (RPGFormatException e) {
+//			e.printStackTrace();
+//		}
+	}
+	public void doCsKFLD(CsKFLDContext ctx) {
+		Map<String, CommonToken> temp = getFields(ctx);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken comment = temp.get(COMMENT);
 		try {
@@ -4152,12 +4459,19 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsKLIST(CsKLISTContext ctx) {
 		super.exitCsKLIST(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		Cspec_fixedContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);
+		CommonToken factor1 = (CommonToken)pctx.factor1.start;
 		Map<String, CommonToken> temp = getFields(pctx);
-		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken comment = temp.get(COMMENT);
 		try {
 			doKLIST(factor1, comment);
+			for (ParseTree ct : ctx.children){
+				if (ct instanceof RpgParser.CsKFLDContext){
+					CsKFLDContext temp2 = (CsKFLDContext) ct;
+					doCsKFLD(temp2);
+				}
+				
+			}
 		} catch (RPGFormatException e) {
 			e.printStackTrace();
 		}
@@ -4208,7 +4522,7 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doMHHZO(factor2, result, length, decpos, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4226,7 +4540,7 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doMHLZO(factor2, result, length, decpos, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4244,7 +4558,7 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doMLHZO(factor2, result, length, decpos, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4262,7 +4576,7 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doMLLZO(factor2, result, length, decpos, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4295,7 +4609,7 @@ public class FreeFormatConverter extends LoggingListener {
 			doMOVE(factor1, opCode, factor2, result, length, decpos, high, low,
 					equal, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4335,7 +4649,7 @@ public class FreeFormatConverter extends LoggingListener {
 			doMOVEL(factor1, opCode, factor2, result, length, decpos, high,
 					low, equal, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4359,7 +4673,7 @@ public class FreeFormatConverter extends LoggingListener {
 			doMULT(factor1, opCode, factor2, result, length, decpos, high, low,
 					equal, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4386,7 +4700,7 @@ public class FreeFormatConverter extends LoggingListener {
 			doMVR(result, length, decpos, high, low, equal, comment, dfactor1,
 					dfactor2, dresult);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4538,8 +4852,20 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsPARM(CsPARMContext ctx) {
 		super.exitCsPARM(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
-		Map<String, CommonToken> temp = getFields(pctx);
+		// Don't do this in here anymore, it is being done in the PLIST
+//		ParserRuleContext pctx = getCSpec(ctx);
+//		Map<String, CommonToken> temp = getFields(pctx);
+//		CommonToken comment = temp.get(COMMENT);
+//		CommonToken result = temp.get(EXT_RESULT);
+//		try {
+//			doPARM(result, comment);
+//		} catch (RPGFormatException e) {
+//			e.printStackTrace();
+//		}
+	}
+	private void doCsPARM(CsPARMContext ctx) {
+		super.exitCsPARM(ctx);
+		Map<String, CommonToken> temp = getFields(ctx);
 		CommonToken comment = temp.get(COMMENT);
 		CommonToken result = temp.get(EXT_RESULT);
 		try {
@@ -4565,11 +4891,17 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsPLIST(CsPLISTContext ctx) {
 		super.exitCsPLIST(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		Cspec_fixedContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);
+		CommonToken factor1 = (CommonToken) pctx.factor1.start;
 		Map<String, CommonToken> temp = getFields(pctx);
-		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken comment = temp.get(COMMENT);
 		doPLIST(factor1, comment);
+		for (ParseTree ct : ctx.children){
+			if (ct instanceof RpgParser.CsPARMContext){
+				CsPARMContext temp2 = (CsPARMContext)ct;
+				doCsPARM(temp2);
+			}
+		}
 	}
 
 	@Override
@@ -4738,7 +5070,7 @@ public class FreeFormatConverter extends LoggingListener {
 			doSCAN(factor1, opCode, factor2, result, length, decpos, low, equal,
 					comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4758,11 +5090,12 @@ public class FreeFormatConverter extends LoggingListener {
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken high = temp.get(HIGH);
 		CommonToken low = temp.get(LOW);
 		CommonToken comment = temp.get(COMMENT);
-		doSETGT(factor1, factor2, high, low, comment);
+		doSETGT(factor1, opCode, factor2, high, low, comment);
 	}
 
 	@Override
@@ -4771,12 +5104,13 @@ public class FreeFormatConverter extends LoggingListener {
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken high = temp.get(HIGH);
 		CommonToken low = temp.get(LOW);
 		CommonToken equal = temp.get(EQUAL);
 		CommonToken comment = temp.get(COMMENT);
-		doSETLL(factor1, factor2, high, low, equal, comment);
+		doSETLL(factor1, opCode, factor2, high, low, equal, comment);
 	}
 
 	@Override
@@ -4818,9 +5152,10 @@ public class FreeFormatConverter extends LoggingListener {
 		super.exitCsSORTA(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
-		doSORTA(factor2, comment);
+		doSORTA(opCode, factor2, comment);
 	}
 
 	@Override
@@ -4828,15 +5163,16 @@ public class FreeFormatConverter extends LoggingListener {
 		super.exitCsSQRT(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken length = temp.get(LENGTH);
 		CommonToken decpos = temp.get(DEC_POS);
 		CommonToken comment = temp.get(COMMENT);
 		try {
-			doSQRT(factor2, result, length, decpos, comment);
+			doSQRT(opCode, factor2, result, length, decpos, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4847,6 +5183,7 @@ public class FreeFormatConverter extends LoggingListener {
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken length = temp.get(LENGTH);
@@ -4856,10 +5193,10 @@ public class FreeFormatConverter extends LoggingListener {
 		CommonToken equal = temp.get(EQUAL);
 		CommonToken comment = temp.get(COMMENT);
 		try {
-			doSUB(factor1, factor2, result, length, decpos, high, low, equal,
+			doSUB(factor1, opCode, factor2, result, length, decpos, high, low, equal,
 					comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4892,7 +5229,7 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doSUBST(factor1, factor2, result, length, decpos, low, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4917,10 +5254,11 @@ public class FreeFormatConverter extends LoggingListener {
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken low = temp.get(LOW);
 		CommonToken comment = temp.get(COMMENT);
-		doTEST(factor1, result, low, comment);
+		doTEST(factor1, opCode, result, low, comment);
 	}
 
 	@Override
@@ -4934,7 +5272,11 @@ public class FreeFormatConverter extends LoggingListener {
 		CommonToken low = temp.get(LOW);
 		CommonToken equal = temp.get(EQUAL);
 		CommonToken comment = temp.get(COMMENT);
-		doTESTB(factor2, result, high, low, equal, comment);
+		try {
+			doTESTB(factor2, result, high, low, equal, comment);
+		} catch (RPGFormatException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -4975,7 +5317,7 @@ public class FreeFormatConverter extends LoggingListener {
 		try {
 			doTIME(result, length, decpos, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -4985,10 +5327,11 @@ public class FreeFormatConverter extends LoggingListener {
 		super.exitCsUNLOCK(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken low = temp.get(LOW);
 		CommonToken comment = temp.get(COMMENT);
-		doUNLOCK(factor2, low, comment);
+		doUNLOCK(opCode, factor2, low, comment);
 	}
 
 	@Override
@@ -4996,11 +5339,12 @@ public class FreeFormatConverter extends LoggingListener {
 		super.exitCsUPDATE(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken low = temp.get(LOW);
 		CommonToken comment = temp.get(COMMENT);
-		doUPDATE(factor2, result, low, comment);
+		doUPDATE(opCode, factor2, result, low, comment);
 	}
 
 	@Override
@@ -5084,19 +5428,22 @@ public class FreeFormatConverter extends LoggingListener {
 		super.exitCsWRITE(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken low = temp.get(LOW);
 		CommonToken equal = temp.get(EQUAL);
 		CommonToken comment = temp.get(COMMENT);
-		doWRITE(factor2, result, low, equal, comment);
+		doWRITE(opCode, factor2, result, low, equal, comment);
 	}
+
 
 	@Override
 	public void exitCsXFOOT(CsXFOOTContext ctx) {
 		super.exitCsXFOOT(ctx);
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken length = temp.get(LENGTH);
@@ -5106,9 +5453,9 @@ public class FreeFormatConverter extends LoggingListener {
 		CommonToken equal = temp.get(EQUAL);
 		CommonToken comment = temp.get(COMMENT);
 		try {
-			doXFOOT(factor2, result, length, decpos, high, low, equal, comment);
+			doXFOOT(opCode, factor2, result, length, decpos, high, low, equal, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -5119,6 +5466,7 @@ public class FreeFormatConverter extends LoggingListener {
 		ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
+		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken length = temp.get(LENGTH);
@@ -5126,9 +5474,8 @@ public class FreeFormatConverter extends LoggingListener {
 		CommonToken low = temp.get(LOW);
 		CommonToken comment = temp.get(COMMENT);
 		try {
-			doXLATE(factor1, factor2, result, length, decpos, low, comment);
+			doXLATE(factor1, opCode, factor2, result, length, decpos, low, comment);
 		} catch (RPGFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
