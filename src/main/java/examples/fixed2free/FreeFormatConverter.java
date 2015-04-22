@@ -2958,9 +2958,9 @@ public class FreeFormatConverter extends LoggingListener {
 		boolean zf = false;
 		if (opCodeParts.length > 1){
 			ef = opCodeParts[1].contains("E");
-			df = opCodeParts[1].contains("E");
-			tf = opCodeParts[1].contains("E");
-			zf = opCodeParts[1].contains("E");
+			df = opCodeParts[1].contains("D");
+			tf = opCodeParts[1].contains("T");
+			zf = opCodeParts[1].contains("Z");
 		} 
 		workString = StringUtils.repeat(" ",
 				7 + (indentLevel * spacesToIndent));
