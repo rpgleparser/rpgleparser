@@ -23,9 +23,9 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
-OP_IN                    <IN>
+OP_RESET                 <RESET>
+CS_BlankFactor           <              >
 CS_FactorContent         <MYDS>
-CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -38,27 +38,9 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
-CS_BlankFactor           <              >
-CS_FieldLength           <     >
-CS_DecimalPositions      <  >
-BlankIndicator           <  >
-GeneralIndicator         <99>
-BlankIndicator           <  >
-EOL                      <
->
-CS_FIXED                 <C>
-BlankIndicator           <  >
-BlankFlag                < >
-BlankIndicator           <  >
-CS_BlankFactor           <              >
-OP_IN                    <IN>
-'('                      <(>
-CS_OperationAndExtender  <e>
-')'                      <)>
-CS_FactorContent         <MYDS>
-CS_BlankFactor           <              >
+OP_RESET                 <RESET>
+SPLAT_ALL                <*ALL>
+CS_FactorContent         <MYTABLE>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -70,14 +52,29 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <*LOCK>
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
-CS_BlankFactor           <              >
+SPLAT_NOKEY              <*NOKEY>
+OP_RESET                 <Reset>
+SPLAT_ALL                <*ALL>
+CS_FactorContent         <MYTABLE>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
-GeneralIndicator         <99>
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_NOKEY              <*NOKEY>
+OP_RESET                 <reset>
+CS_BlankFactor           <              >
+CS_FactorContent         <MYTABLE>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
@@ -85,28 +82,24 @@ DIRECTIVE                < />
 DIR_FREE                 <Free>
 EOL                      <
 >
-OP_IN                    <in>
-ID                       <myds>
+OP_RESET                 <reset>
+ID                       <ds1>
 FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_DTAARA             <*dtaara>
+OP_RESET                 <reset>
+SPLAT_INDICATOR          <*in01>
 FREE_SEMI                <;>
-OP_IN                    <in>
-'('                      <(>
-CS_OperationAndExtender  <e>
-')'                      <)>
-SPLAT_DTAARA             <*dtaara>
+OP_RESET                 <reset>
+SPLAT_ALL                <*ALL>
+ID                       <MODS>
 FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
+OP_RESET                 <reset>
+SPLAT_NOKEY              <*nokey>
+ID                       <mytable>
 FREE_SEMI                <;>
-OP_IN                    <in>
-'('                      <(>
-CS_OperationAndExtender  <e>
-')'                      <)>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
+OP_RESET                 <reset>
+SPLAT_NOKEY              <*NOKEY>
+SPLAT_ALL                <*all>
+ID                       <mytable>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
@@ -165,11 +158,11 @@ EOL                      <
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          IN
+        (csRESET
+          RESET
           (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
-            (resultType '              ')
+            (factor '              ')
+            (resultType MYDS)
             '     '
             '  '
             (resultIndicator '  ')
@@ -189,36 +182,11 @@ EOL                      <
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          in
+        (csRESET
+          RESET
           (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator 99)
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csIN
-          IN
-          (cs_operationExtender ( e ))
-          (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
-            (resultType '              ')
+            (factor (symbolicConstants *ALL))
+            (resultType MYTABLE)
             '     '
             '  '
             (resultIndicator '  ')
@@ -236,17 +204,41 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *LOCK))
+      (factor (symbolicConstants *NOKEY))
       (cspec_fixed_standard
-        (csIN
-          in
+        (csRESET
+          Reset
           (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
-            (resultType '              ')
+            (factor (symbolicConstants *ALL))
+            (resultType MYTABLE)
             '     '
             '  '
             (resultIndicator '  ')
-            (resultIndicator 99)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *NOKEY))
+      (cspec_fixed_standard
+        (csRESET
+          reset
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType MYTABLE)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
             (resultIndicator '  ')
             \n
           )
@@ -256,11 +248,16 @@ EOL                      <
   )
   (statement (directive ' /' (beginfree_directive Free) \n))
   (statement
-    (free (baseExpression (op (op_in in (identifier (free_identifier myds))))) ;)
+    (free
+      (baseExpression (op (op_reset reset (identifier (free_identifier ds1)))))
+      ;
+    )
   )
   (statement
     (free
-      (baseExpression (op (op_in in (identifier (all (symbolicConstants *dtaara))))))
+      (baseExpression
+        (op (op_reset reset (identifier (all (symbolicConstants *in01)))))
+      )
       ;
     )
   )
@@ -268,10 +265,10 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_in
-            in
-            (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *dtaara)))
+          (op_reset
+            reset
+            (identifier (all (symbolicConstants *ALL)))
+            (identifier (free_identifier MODS))
           )
         )
       )
@@ -282,10 +279,10 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_in
-            in
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
+          (op_reset
+            reset
+            (identifier (all (symbolicConstants *nokey)))
+            (identifier (free_identifier mytable))
           )
         )
       )
@@ -296,11 +293,11 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_in
-            in
-            (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
+          (op_reset
+            reset
+            (identifier (all (symbolicConstants *NOKEY)))
+            (identifier (all (symbolicConstants *all)))
+            (identifier (free_identifier mytable))
           )
         )
       )

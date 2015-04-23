@@ -306,6 +306,8 @@ SPLAT_DATA: '*'[dD][aA][tT][aA];
 SPLAT_ASTFILL: '*'[aA][sS][tT][fF][iI][lL];
 SPLAT_CURSYM: '*'[cC][uU][rR][sS][yY][mM];
 SPLAT_MAX: '*'[mM][aA][xX];
+SPLAT_LOCK: '*'[lL][oO][cC][kK];
+SPLAT_PROGRAM: '*'[pP][rR][oO][gG][rR][aA][mM];
 
 // Reserved Words
 UDATE : [uU] [dD] [aA] [tT] [eE] ;

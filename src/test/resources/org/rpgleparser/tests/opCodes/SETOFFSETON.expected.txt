@@ -16,6 +16,21 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <Parm>
+CS_BlankFactor           <              >
+CS_FactorContent         <w_RtnValue>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
 COMMENT_SPEC_FIXED       < *>
 COMMENTS_TEXT            <                                                                                            >
 CS_FIXED                 <C>
@@ -23,12 +38,12 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
-OP_IN                    <IN>
-CS_FactorContent         <MYDS>
+OP_SETOFF                <SETOFF>
+CS_BlankFactor           <              >
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
-BlankIndicator           <  >
+GeneralIndicator         <97>
 BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
@@ -38,14 +53,14 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
+OP_SETOFF                <Setoff>
+CS_BlankFactor           <              >
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
-BlankIndicator           <  >
+GeneralIndicator         <97>
+GeneralIndicator         <98>
 GeneralIndicator         <99>
-BlankIndicator           <  >
 EOL                      <
 >
 CS_FIXED                 <C>
@@ -53,66 +68,62 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
-OP_IN                    <IN>
-'('                      <(>
-CS_OperationAndExtender  <e>
-')'                      <)>
-CS_FactorContent         <MYDS>
+OP_SETOFF                <setoff>
+CS_BlankFactor           <              >
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
-BlankIndicator           <  >
-BlankIndicator           <  >
-EOL                      <
->
-CS_FIXED                 <C>
-BlankIndicator           <  >
-BlankFlag                < >
-BlankIndicator           <  >
-CS_FactorContent         <*LOCK>
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
-CS_BlankFactor           <              >
-CS_FieldLength           <     >
-CS_DecimalPositions      <  >
-BlankIndicator           <  >
+GeneralIndicator         <98>
 GeneralIndicator         <99>
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+GeneralIndicator         <97>
+BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
-DIRECTIVE                < />
-DIR_FREE                 <Free>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <Seton>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+GeneralIndicator         <97>
+GeneralIndicator         <98>
+GeneralIndicator         <99>
 EOL                      <
 >
-OP_IN                    <in>
-ID                       <myds>
-FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_DTAARA             <*dtaara>
-FREE_SEMI                <;>
-OP_IN                    <in>
-'('                      <(>
-CS_OperationAndExtender  <e>
-')'                      <)>
-SPLAT_DTAARA             <*dtaara>
-FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
-FREE_SEMI                <;>
-OP_IN                    <in>
-'('                      <(>
-CS_OperationAndExtender  <e>
-')'                      <)>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
-FREE_SEMI                <;>
-DIRECTIVE                < />
-DIR_ENDFREE              <end-free>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <seton>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+GeneralIndicator         <98>
+GeneralIndicator         <99>
 EOL                      <
 >
-COMMENT_SPEC_FIXED       < *>
+COMMENT_SPEC_FIXED       <C*>
 COMMENTS_TEXT            <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -152,6 +163,24 @@ EOL                      <
             (resultIndicator '  ')
             \r\n
           )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            Parm
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType w_RtnValue)
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
         )
       )
     )
@@ -165,14 +194,14 @@ EOL                      <
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          IN
+        (csSETOFF
+          SETOFF
           (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
+            (factor '              ')
             (resultType '              ')
             '     '
             '  '
-            (resultIndicator '  ')
+            (resultIndicator 97)
             (resultIndicator '  ')
             (resultIndicator '  ')
             \n
@@ -189,15 +218,63 @@ EOL                      <
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          in
+        (csSETOFF
+          Setoff
           (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator 97)
+            (resultIndicator 98)
+            (resultIndicator 99)
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETOFF
+          setoff
+          (cspec_fixed_standard_parts
+            (factor '              ')
             (resultType '              ')
             '     '
             '  '
             (resultIndicator '  ')
+            (resultIndicator 98)
             (resultIndicator 99)
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator 97)
+            (resultIndicator '  ')
             (resultIndicator '  ')
             \n
           )
@@ -213,17 +290,16 @@ EOL                      <
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          IN
-          (cs_operationExtender ( e ))
+        (csSETON
+          Seton
           (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
+            (factor '              ')
             (resultType '              ')
             '     '
             '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
+            (resultIndicator 97)
+            (resultIndicator 98)
+            (resultIndicator 99)
             \n
           )
         )
@@ -236,79 +312,25 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *LOCK))
+      (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          in
+        (csSETON
+          seton
           (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
+            (factor '              ')
             (resultType '              ')
             '     '
             '  '
             (resultIndicator '  ')
+            (resultIndicator 98)
             (resultIndicator 99)
-            (resultIndicator '  ')
             \n
           )
         )
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \n))
-  (statement
-    (free (baseExpression (op (op_in in (identifier (free_identifier myds))))) ;)
-  )
-  (statement
-    (free
-      (baseExpression (op (op_in in (identifier (all (symbolicConstants *dtaara))))))
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_in
-            in
-            (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *dtaara)))
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_in
-            in
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_in
-            in
-            (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement (directive ' /' (endfree_directive end-free) \n))
-  (statement (star_comments ' *'))
+  (statement (star_comments C*))
   (statement
     (cspec_fixed
       C

@@ -22,25 +22,12 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
-OP_IN                    <IN>
-CS_FactorContent         <MYDS>
-CS_BlankFactor           <              >
-CS_FieldLength           <     >
-CS_DecimalPositions      <  >
-BlankIndicator           <  >
-BlankIndicator           <  >
-BlankIndicator           <  >
-EOL                      <
->
-CS_FIXED                 <C>
-BlankIndicator           <  >
-BlankFlag                < >
-BlankIndicator           <  >
-CS_BlankFactor           <              >
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
-CS_BlankFactor           <              >
+CS_FactorContent         <2>
+OP_SUBST                 <SUBST>
+StringLiteralStart       <'>
+StringContent            <XXABC>
+StringLiteralEnd         <'>
+CS_FactorContent         <RES>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -52,13 +39,14 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
-OP_IN                    <IN>
-'('                      <(>
-CS_OperationAndExtender  <e>
-')'                      <)>
-CS_FactorContent         <MYDS>
-CS_BlankFactor           <              >
+CS_FactorContent         <FLD>
+COLON                    <:>
+CS_FactorContent         <2>
+OP_SUBST                 <SUBST>
+CS_FactorContent         <FLD>
+COLON                    <:>
+CS_FactorContent         <3>
+CS_FactorContent         <RES>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -70,46 +58,37 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <*LOCK>
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
-CS_BlankFactor           <              >
+CS_FactorContent         <FLD>
+OP_SUBST                 <subst>
+CS_FactorContent         <XX>
+COLON                    <:>
+CS_FactorContent         <2>
+CS_FactorContent         <RES>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
-GeneralIndicator         <99>
+BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
-DIRECTIVE                < />
-DIR_FREE                 <Free>
-EOL                      <
->
-OP_IN                    <in>
-ID                       <myds>
-FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_DTAARA             <*dtaara>
-FREE_SEMI                <;>
-OP_IN                    <in>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <FLD>
+OP_SUBST                 <Subst>
 '('                      <(>
-CS_OperationAndExtender  <e>
+CS_OperationAndExtender  <P>
 ')'                      <)>
-SPLAT_DTAARA             <*dtaara>
-FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
-FREE_SEMI                <;>
-OP_IN                    <in>
-'('                      <(>
-CS_OperationAndExtender  <e>
-')'                      <)>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
-FREE_SEMI                <;>
-DIRECTIVE                < />
-DIR_ENDFREE              <end-free>
+CS_FactorContent         <XX>
+COLON                    <:>
+CS_FactorContent         <2>
+CS_FactorContent         <RES>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
@@ -163,37 +142,13 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor '              ')
+      (factor (factorContent 2))
       (cspec_fixed_standard
-        (csIN
-          IN
+        (csSUBST
+          SUBST
           (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csIN
-          in
-          (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
-            (resultType '              ')
+            (factor (factorContent (literal ' XXABC ')))
+            (resultType RES)
             '     '
             '  '
             (resultIndicator '  ')
@@ -211,14 +166,13 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor '              ')
+      (factor (factorContent FLD) : (factorContent 2))
       (cspec_fixed_standard
-        (csIN
-          IN
-          (cs_operationExtender ( e ))
+        (csSUBST
+          SUBST
           (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
-            (resultType '              ')
+            (factor (factorContent FLD) : (factorContent 3))
+            (resultType RES)
             '     '
             '  '
             (resultIndicator '  ')
@@ -236,17 +190,17 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *LOCK))
+      (factor (factorContent FLD))
       (cspec_fixed_standard
-        (csIN
-          in
+        (csSUBST
+          subst
           (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
-            (resultType '              ')
+            (factor (factorContent XX) : (factorContent 2))
+            (resultType RES)
             '     '
             '  '
             (resultIndicator '  ')
-            (resultIndicator 99)
+            (resultIndicator '  ')
             (resultIndicator '  ')
             \n
           )
@@ -254,60 +208,31 @@ EOL                      <
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \n))
   (statement
-    (free (baseExpression (op (op_in in (identifier (free_identifier myds))))) ;)
-  )
-  (statement
-    (free
-      (baseExpression (op (op_in in (identifier (all (symbolicConstants *dtaara))))))
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_in
-            in
-            (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *dtaara)))
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent FLD))
+      (cspec_fixed_standard
+        (csSUBST
+          Subst
+          (cs_operationExtender ( P ))
+          (cspec_fixed_standard_parts
+            (factor (factorContent XX) : (factorContent 2))
+            (resultType RES)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
           )
         )
       )
-      ;
     )
   )
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_in
-            in
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_in
-            in
-            (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement (directive ' /' (endfree_directive end-free) \n))
   (statement (star_comments ' *'))
   (statement
     (cspec_fixed

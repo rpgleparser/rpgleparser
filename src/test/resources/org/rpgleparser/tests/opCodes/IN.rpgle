@@ -10,7 +10,7 @@
           in *dtaara;
           in(e) *dtaara;
           in *lock myara;
-          
+          in(e) *lock myara;
       /end-free
       *
      C                   SETON                                        LR  

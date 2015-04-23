@@ -23,8 +23,8 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
-OP_IN                    <IN>
-CS_FactorContent         <MYDS>
+OP_READC                 <READC>
+CS_FactorContent         <MYFILE>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -38,14 +38,14 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
+OP_READC                 <readc>
+CS_FactorContent         <myfile>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
 GeneralIndicator         <99>
-BlankIndicator           <  >
+GeneralIndicator         <98>
 EOL                      <
 >
 CS_FIXED                 <C>
@@ -53,11 +53,11 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
-OP_IN                    <IN>
+OP_READC                 <readc>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-CS_FactorContent         <MYDS>
+CS_FactorContent         <myfile>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -70,43 +70,70 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <*LOCK>
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
+CS_BlankFactor           <              >
+OP_READC                 <READC>
+CS_FactorContent         <myfile>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
 GeneralIndicator         <99>
 BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_READC                 <readc>
+CS_FactorContent         <myfile>
+CS_FactorContent         <myds>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_READC                 <readc>
+CS_FactorContent         <myfile>
+CS_FactorContent         <myds>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+GeneralIndicator         <98>
+GeneralIndicator         <99>
 EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <Free>
 EOL                      <
 >
-OP_IN                    <in>
+OP_READC                 <READC>
+ID                       <myfile>
+FREE_SEMI                <;>
+OP_READC                 <READC>
+'('                      <(>
+CS_OperationAndExtender  <e>
+')'                      <)>
+ID                       <myfile>
+FREE_SEMI                <;>
+OP_READC                 <READC>
+ID                       <myfile>
 ID                       <myds>
 FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_DTAARA             <*dtaara>
-FREE_SEMI                <;>
-OP_IN                    <in>
+OP_READC                 <readc>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-SPLAT_DTAARA             <*dtaara>
-FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
-FREE_SEMI                <;>
-OP_IN                    <in>
-'('                      <(>
-CS_OperationAndExtender  <e>
-')'                      <)>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
+ID                       <myfile>
+ID                       <myds>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
@@ -165,10 +192,10 @@ EOL                      <
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          IN
+        (csREADC
+          READC
           (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
+            (factor (factorContent MYFILE))
             (resultType '              ')
             '     '
             '  '
@@ -189,16 +216,16 @@ EOL                      <
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          in
+        (csREADC
+          readc
           (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
+            (factor (factorContent myfile))
             (resultType '              ')
             '     '
             '  '
             (resultIndicator '  ')
             (resultIndicator 99)
-            (resultIndicator '  ')
+            (resultIndicator 98)
             \n
           )
         )
@@ -213,11 +240,11 @@ EOL                      <
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          IN
+        (csREADC
+          readc
           (cs_operationExtender ( e ))
           (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
+            (factor (factorContent myfile))
             (resultType '              ')
             '     '
             '  '
@@ -236,18 +263,66 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *LOCK))
+      (factor '              ')
       (cspec_fixed_standard
-        (csIN
-          in
+        (csREADC
+          READC
           (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
+            (factor (factorContent myfile))
             (resultType '              ')
             '     '
             '  '
             (resultIndicator '  ')
             (resultIndicator 99)
             (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csREADC
+          readc
+          (cspec_fixed_standard_parts
+            (factor (factorContent myfile))
+            (resultType myds)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csREADC
+          readc
+          (cspec_fixed_standard_parts
+            (factor (factorContent myfile))
+            (resultType myds)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator 98)
+            (resultIndicator 99)
             \n
           )
         )
@@ -256,11 +331,8 @@ EOL                      <
   )
   (statement (directive ' /' (beginfree_directive Free) \n))
   (statement
-    (free (baseExpression (op (op_in in (identifier (free_identifier myds))))) ;)
-  )
-  (statement
     (free
-      (baseExpression (op (op_in in (identifier (all (symbolicConstants *dtaara))))))
+      (baseExpression (op (op_readc READC (identifier (free_identifier myfile)))))
       ;
     )
   )
@@ -268,10 +340,10 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_in
-            in
+          (op_readc
+            READC
             (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *dtaara)))
+            (identifier (free_identifier myfile))
           )
         )
       )
@@ -282,10 +354,10 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_in
-            in
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
+          (op_readc
+            READC
+            (identifier (free_identifier myfile))
+            (identifier (free_identifier myds))
           )
         )
       )
@@ -296,11 +368,11 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_in
-            in
+          (op_readc
+            readc
             (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
+            (identifier (free_identifier myfile))
+            (identifier (free_identifier myds))
           )
         )
       )

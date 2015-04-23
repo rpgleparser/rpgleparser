@@ -16,15 +16,30 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <Parm>
+CS_BlankFactor           <              >
+CS_FactorContent         <w_RtnValue>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
 COMMENT_SPEC_FIXED       < *>
 COMMENTS_TEXT            <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
-OP_IN                    <IN>
-CS_FactorContent         <MYDS>
+CS_FactorContent         <KEY>
+OP_SETGT                 <SETGT>
+CS_FactorContent         <INFILE>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -37,14 +52,33 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
+StringLiteralStart       <'>
+StringContent            <QPADEV0>
+StringLiteralEnd         <'>
+OP_SETGT                 <Setgt>
+CS_FactorContent         <INFILE>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+StringLiteralStart       <'>
+StringContent            <QPADEV0>
+StringLiteralEnd         <'>
+OP_SETGT                 <setGT>
+CS_FactorContent         <INFILE>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
 GeneralIndicator         <99>
+GeneralIndicator         <98>
 BlankIndicator           <  >
 EOL                      <
 >
@@ -52,12 +86,12 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
-OP_IN                    <IN>
+CS_FactorContent         <KEYLST>
+OP_SETGT                 <SETGT>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-CS_FactorContent         <MYDS>
+CS_FactorContent         <INFILE>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -70,14 +104,14 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <*LOCK>
-OP_IN                    <in>
-SPLAT_DTAARA             <*DTAARA>
+SPLAT_HIVAL              <*HIVAL>
+OP_SETGT                 <SETGT>
+CS_FactorContent         <INFILE>
 CS_BlankFactor           <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
-GeneralIndicator         <99>
+BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
@@ -85,35 +119,51 @@ DIRECTIVE                < />
 DIR_FREE                 <Free>
 EOL                      <
 >
-OP_IN                    <in>
-ID                       <myds>
+OP_SETGT                 <setgt>
+ID                       <key>
+ID                       <infile>
 FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_DTAARA             <*dtaara>
+OP_SETGT                 <Setgt>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <abc>
+StringLiteralEnd         <'>
+COLON                    <:>
+StringLiteralStart       <'>
+StringContent            <def>
+StringLiteralEnd         <'>
+')'                      <)>
+ID                       <custrec>
 FREE_SEMI                <;>
-OP_IN                    <in>
+OP_SETGT                 <setgt>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-SPLAT_DTAARA             <*dtaara>
+'('                      <(>
+BIF_XLATE                <%xlate>
+'('                      <(>
+ID                       <custname>
+COLON                    <:>
+ID                       <LO>
+COLON                    <:>
+ID                       <HI>
+')'                      <)>
+COLON                    <:>
+ID                       <code>
+')'                      <)>
+ID                       <custrec>
 FREE_SEMI                <;>
-OP_IN                    <in>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
-FREE_SEMI                <;>
-OP_IN                    <in>
+OP_SETGT                 <SETGT>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-SPLAT_LOCK               <*lock>
-ID                       <myara>
+ID                       <custrec>
+ID                       <custrecDS>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
 >
-COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -152,6 +202,24 @@ EOL                      <
             (resultIndicator '  ')
             \r\n
           )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            '              '
+            Parm
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType w_RtnValue)
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
         )
       )
     )
@@ -163,12 +231,12 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor '              ')
+      (factor (factorContent KEY))
       (cspec_fixed_standard
-        (csIN
-          IN
+        (csSETGT
+          SETGT
           (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
+            (factor (factorContent INFILE))
             (resultType '              ')
             '     '
             '  '
@@ -187,17 +255,41 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor '              ')
+      (factor (factorContent (literal ' QPADEV0 ')))
       (cspec_fixed_standard
-        (csIN
-          in
+        (csSETGT
+          Setgt
           (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
+            (factor (factorContent INFILE))
             (resultType '              ')
             '     '
             '  '
             (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent (literal ' QPADEV0 ')))
+      (cspec_fixed_standard
+        (csSETGT
+          setGT
+          (cspec_fixed_standard_parts
+            (factor (factorContent INFILE))
+            (resultType '              ')
+            '     '
+            '  '
             (resultIndicator 99)
+            (resultIndicator 98)
             (resultIndicator '  ')
             \n
           )
@@ -211,13 +303,13 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor '              ')
+      (factor (factorContent KEYLST))
       (cspec_fixed_standard
-        (csIN
-          IN
+        (csSETGT
+          SETGT
           (cs_operationExtender ( e ))
           (cspec_fixed_standard_parts
-            (factor (factorContent MYDS))
+            (factor (factorContent INFILE))
             (resultType '              ')
             '     '
             '  '
@@ -236,17 +328,17 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *LOCK))
+      (factor (symbolicConstants *HIVAL))
       (cspec_fixed_standard
-        (csIN
-          in
+        (csSETGT
+          SETGT
           (cspec_fixed_standard_parts
-            (factor (symbolicConstants *DTAARA))
+            (factor (factorContent INFILE))
             (resultType '              ')
             '     '
             '  '
             (resultIndicator '  ')
-            (resultIndicator 99)
+            (resultIndicator '  ')
             (resultIndicator '  ')
             \n
           )
@@ -256,11 +348,16 @@ EOL                      <
   )
   (statement (directive ' /' (beginfree_directive Free) \n))
   (statement
-    (free (baseExpression (op (op_in in (identifier (free_identifier myds))))) ;)
-  )
-  (statement
     (free
-      (baseExpression (op (op_in in (identifier (all (symbolicConstants *dtaara))))))
+      (baseExpression
+        (op
+          (op_setgt
+            setgt
+            (search_arg (expression (identifier (free_identifier key))))
+            (identifier (free_identifier infile))
+          )
+        )
+      )
       ;
     )
   )
@@ -268,10 +365,48 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_in
-            in
+          (op_setgt
+            Setgt
+            (search_arg
+              (args ( (expression (literal ' abc ')) : (expression (literal ' def ')) ))
+            )
+            (identifier (free_identifier custrec))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_setgt
+            setgt
             (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *dtaara)))
+            (search_arg
+              (args
+                (
+                (expression
+                  (bif
+                    (bif_xlate
+                      %xlate
+                      (
+                      (expression (identifier (free_identifier custname)))
+                      :
+                      (expression (identifier (free_identifier LO)))
+                      :
+                      (expression (identifier (free_identifier HI)))
+                      )
+                    )
+                  )
+                )
+                :
+                (expression (identifier (free_identifier code)))
+                )
+              )
+            )
+            (identifier (free_identifier custrec))
           )
         )
       )
@@ -282,33 +417,18 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_in
-            in
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_in
-            in
+          (op_setgt
+            SETGT
             (cs_operationExtender ( e ))
-            (identifier (all (symbolicConstants *lock)))
-            (identifier (free_identifier myara))
+            (search_arg (expression (identifier (free_identifier custrec))))
+            (identifier (free_identifier custrecDS))
           )
         )
       )
       ;
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \n))
-  (statement (star_comments ' *'))
+  (statement (directive ' /' (endfree_directive end-free) \r\n))
   (statement
     (cspec_fixed
       C
