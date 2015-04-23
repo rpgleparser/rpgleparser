@@ -73,6 +73,7 @@ block:
 	enddo)
 	| ifstatement
 	| selectstatement
+	| forstatement
 ;
 
 ifstatement:
@@ -97,6 +98,8 @@ other:
 	)
 	| (op_other FREE_SEMI free_linecomments? )
 ;
+
+
 
 beginselect:
 	(CS_FIXED
@@ -261,6 +264,22 @@ CS_FIXED
 	)
 	andConds=csANDxx*
 ;
+
+forstatement:
+    beginfor
+        statement*
+    endfor
+;
+
+beginfor:
+    (CS_FIXED
+    cs_controlLevel 
+    indicatorsOff=onOffIndicatorsFlag 
+    indicators=cs_indicators 
+    factor1=factor
+    csFOR)
+    | (op_for FREE_SEMI free_linecomments? )
+    ;
 	
 endif:
 	(
@@ -279,6 +298,16 @@ enddo:
 	(csEND | csENDDO)
 	)
 	| (op_enddo FREE_SEMI free_linecomments? );	
+	
+
+endfor:
+    (
+    CS_FIXED
+    cs_controlLevel 
+    indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+    (csEND | csENDFOR)
+    )
+    | (op_endfor FREE_SEMI free_linecomments? ); 
 
 dspec_fixed: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE FROM_POSITION TO_POSITION
 	DATA_TYPE DECIMAL_POSITIONS RESERVED KEYWORDS (EOL|EOF);
@@ -522,7 +551,7 @@ cspec_fixed_standard:
 	| csEND
 	| csENDCS
 	| csENDDO
-	| csENDFOR
+	//| csENDFOR
 	//| csENDIF
 	| csENDMON
 	| csENDSL
@@ -535,7 +564,7 @@ cspec_fixed_standard:
 	| csEXSR
 	| csEXTRCT
 	| csFEOD
-	| csFOR
+	//| csFOR
 	| csFORCE
 	| csGOTO
 	//| csIF
@@ -894,7 +923,7 @@ csFEOD:
 	operationExtender=cs_operationExtender? 
 	cspec_fixed_standard_parts;
 csFOR:
-	operation=OP_FOR operationExtender=cs_operationExtender? identifier   //For(E) I
+	operation=OP_FOR operationExtender=cs_operationExtender? expression   //For(E) I
     (EQUAL expression )? // = 1
     (FREE_BY expression )?    // By 1
     ((FREE_TO | FREE_DOWNTO) expression )?; // TO 10 ;
