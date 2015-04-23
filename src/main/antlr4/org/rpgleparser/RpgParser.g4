@@ -78,6 +78,8 @@ block:
 ifstatement:
 	(beginif
 	statement*
+	(elseifstmt statement*)?
+	(elsestmt statement*)?
 	endif)
 ;
 selectstatement:
@@ -154,11 +156,37 @@ beginif:
 	indicatorsOff=onOffIndicatorsFlag 
 	indicators=cs_indicators 
 	factor1=factor 
-	OP_IF 
+	OP_IF cs_operationExtender?
 	fixedexpression=c_free
 	C_FREE_NEWLINE
 	)
 	| (op_if FREE_SEMI free_linecomments? )
+;
+
+elseifstmt:
+    (CS_FIXED
+    cs_controlLevel 
+    indicatorsOff=onOffIndicatorsFlag 
+    indicators=cs_indicators 
+    factor1=factor 
+    OP_ELSEIF cs_operationExtender?
+    fixedexpression=c_free
+    C_FREE_NEWLINE
+    )
+    | (op_if FREE_SEMI free_linecomments? )
+;
+
+elsestmt:
+    (CS_FIXED
+    cs_controlLevel 
+    indicatorsOff=onOffIndicatorsFlag 
+    indicators=cs_indicators 
+    factor1=factor 
+    OP_ELSEIF 
+    fixedexpression=c_free
+    C_FREE_NEWLINE
+    )
+    | (op_if FREE_SEMI free_linecomments? )
 ;
 
 csIFxx:

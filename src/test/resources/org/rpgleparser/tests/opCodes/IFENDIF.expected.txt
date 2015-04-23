@@ -1,0 +1,669 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       <C*>
+COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_ENTRY              <*Entry>
+OP_PLIST                 <PList>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <IF>
+ID                       <A>
+'>'                      <>>
+NUMBER                   <10>
+AND                      <AND>
+SPLAT_INDICATOR          <*IN20>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ELSE                  <ELSE>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <ENDIF>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <IF>
+ID                       <A>
+'>'                      <>>
+NUMBER                   <10>
+AND                      <AND>
+ID                       <y>
+'='                      <=>
+NUMBER                   <5>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ELSEIF                <ELSEIF>
+ID                       <B>
+'<'                      <<>
+NUMBER                   <5>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ELSE                  <ELSE>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <ENDIF>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <if>
+'('                      <(>
+CS_OperationAndExtender  <M>
+')'                      <)>
+ID                       <A>
+'>'                      <>>
+NUMBER                   <10>
+AND                      <AND>
+SPLAT_INDICATOR          <*IN(20)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ELSEIF                <elseif>
+ID                       <B>
+'<'                      <<>
+NUMBER                   <5>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ELSE                  <else>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <endif>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <Free>
+EOL                      <
+>
+OP_IF                    <if>
+ID                       <a>
+'>'                      <>>
+NUMBER                   <10>
+AND                      <and>
+SPLAT_INDICATOR          <*in(30)>
+FREE_SEMI                <;>
+OP_ENDIF                 <endif>
+FREE_SEMI                <;>
+OP_IF                    <IF>
+ID                       <B>
+'<'                      <<>
+BIF_LEN                  <%len>
+'('                      <(>
+ID                       <str>
+')'                      <)>
+OR                       <or>
+ID                       <c>
+'='                      <=>
+NUMBER                   <5>
+FREE_SEMI                <;>
+OP_ELSEIF                <elseif>
+ID                       <keypress>
+'='                      <=>
+ID                       <exitkey>
+FREE_SEMI                <;>
+OP_ELSE                  <else>
+FREE_SEMI                <;>
+OP_ENDIF                 <endif>
+FREE_SEMI                <;>
+OP_IF                    <if>
+'('                      <(>
+CS_OperationAndExtender  <m>
+')'                      <)>
+ID                       <a>
+'>'                      <>>
+NUMBER                   <5>
+FREE_SEMI                <;>
+OP_ELSEIF                <elseif>
+'('                      <(>
+CS_OperationAndExtender  <r>
+')'                      <)>
+ID                       <b>
+'='                      <=>
+NUMBER                   <4>
+FREE_SEMI                <;>
+OP_ENDIF                 <endif>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+LastRecordIndicator      <LR>
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement (star_comments C*))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *Entry))
+      (cspec_fixed_standard
+        (csPLIST
+          PList
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement (star_comments ' *'))
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          IF
+          (c_free
+            (expression
+              (expression
+                (expression (identifier (free_identifier A)))
+                (comparisonOperator >)
+                (expression (number 10))
+              )
+              AND
+              (expression (identifier (all (symbolicConstants *IN20))))
+            )
+          )
+          \n
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csELSE
+                ELSE
+                (cspec_fixed_standard_parts
+                  (factor '              ')
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            ENDIF
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          IF
+          (c_free
+            (expression
+              (expression
+                (expression (identifier (free_identifier A)))
+                (comparisonOperator >)
+                (expression (number 10))
+              )
+              AND
+              (expression
+                (expression (identifier (free_identifier y)))
+                =
+                (expression (number 5))
+              )
+            )
+          )
+          \n
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_x2
+              (csOperationAndExtendedFactor2 ELSEIF)
+              (c_free
+                (expression
+                  (expression (identifier (free_identifier B)))
+                  (comparisonOperator <)
+                  (expression (number 5))
+                )
+              )
+              \n
+            )
+          )
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csELSE
+                ELSE
+                (cspec_fixed_standard_parts
+                  (factor '              ')
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            ENDIF
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          if
+          (cs_operationExtender ( M ))
+          (c_free
+            (expression
+              (expression
+                (expression (identifier (free_identifier A)))
+                (comparisonOperator >)
+                (expression (number 10))
+              )
+              AND
+              (expression (identifier (all (symbolicConstants *IN(20)))))
+            )
+          )
+          \n
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_x2
+              (csOperationAndExtendedFactor2 elseif)
+              (c_free
+                (expression
+                  (expression (identifier (free_identifier B)))
+                  (comparisonOperator <)
+                  (expression (number 5))
+                )
+              )
+              \n
+            )
+          )
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csELSE
+                else
+                (cspec_fixed_standard_parts
+                  (factor '              ')
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            endif
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          (op_if
+            if
+            (expression
+              (expression
+                (expression (identifier (free_identifier a)))
+                (comparisonOperator >)
+                (expression (number 10))
+              )
+              and
+              (expression (identifier (all (symbolicConstants *in(30)))))
+            )
+          )
+          ;
+        )
+        (statement
+          (free
+            (baseExpression (expression (identifier (free_identifier (op_code endif)))))
+            ;
+          )
+        )
+        (statement
+          (block
+            (ifstatement
+              (beginif
+                (op_if
+                  IF
+                  (expression
+                    (expression
+                      (expression (identifier (free_identifier B)))
+                      (comparisonOperator <)
+                      (expression
+                        (bif (bif_len %len ( (expression (identifier (free_identifier str))) )))
+                      )
+                    )
+                    or
+                    (expression
+                      (expression (identifier (free_identifier c)))
+                      =
+                      (expression (number 5))
+                    )
+                  )
+                )
+                ;
+              )
+              (statement
+                (free
+                  (baseExpression
+                    (op
+                      (op_elseif
+                        elseif
+                        (indicator_expr
+                          (expression
+                            (expression (identifier (free_identifier keypress)))
+                            =
+                            (expression (identifier (free_identifier exitkey)))
+                          )
+                        )
+                      )
+                    )
+                  )
+                  ;
+                )
+              )
+              (statement (free (baseExpression (op (op_else else))) ;))
+              (endif (op_endif endif) ;)
+            )
+          )
+        )
+        (elseifstmt
+          (op_if
+            if
+            (cs_operationExtender ( m ))
+            (expression
+              (expression (identifier (free_identifier a)))
+              (comparisonOperator >)
+              (expression (number 5))
+            )
+          )
+          ;
+        )
+        (statement
+          (free
+            (baseExpression
+              (op
+                (op_elseif
+                  elseif
+                  (cs_operationExtender ( r ))
+                  (indicator_expr
+                    (expression
+                      (expression (identifier (free_identifier b)))
+                      =
+                      (expression (number 4))
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        (endif (op_endif endif) ;)
+      )
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator LR)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
