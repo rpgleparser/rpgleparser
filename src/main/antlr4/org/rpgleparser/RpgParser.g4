@@ -842,7 +842,7 @@ csEVAL:
 	fixedexpression=c_free C_FREE_NEWLINE;
 csEVAL_CORR:
 	operation=OP_EVAL_CORR
-	cspec_fixed_standard_parts;
+	lhsexpression=identifier EQUAL rhsexpression=identifier ;
 csEVALR:
 	operation=OP_EVALR
 	operationExtender=cs_operationExtender? 
@@ -866,9 +866,10 @@ csFEOD:
 	operationExtender=cs_operationExtender? 
 	cspec_fixed_standard_parts;
 csFOR:
-	operation=OP_FOR
-	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	operation=OP_FOR operationExtender=cs_operationExtender? identifier   //For(E) I
+    (EQUAL expression )? // = 1
+    (FREE_BY expression )?    // By 1
+    ((FREE_TO | FREE_DOWNTO) expression )?; // TO 10 ;
 csFORCE:
 	operation=OP_FORCE
 	cspec_fixed_standard_parts;
@@ -1133,6 +1134,7 @@ csUPDATE:
 	cspec_fixed_standard_parts;
 csWHEN:
 	OP_WHEN 
+	operationExtender=cs_operationExtender? 
 	fixedexpression=c_free C_FREE_NEWLINE;
 csWHENEQ:
 	operation=OP_WHENEQ
@@ -1428,21 +1430,21 @@ op_iter: OP_ITER ;
 op_leave: OP_LEAVE ;
 op_leavesr: OP_LEAVESR ;
 op_monitor: OP_MONITOR ;
-op_next: OP_NEXT cs_operationExtender? identifier identifier ;
+op_next: OP_NEXT cs_operationExtender? (literal | identifier) identifier ;
 op_on_error: OP_ON_ERROR (identifier (COLON identifier )* )? ;
 op_open: OP_OPEN cs_operationExtender? identifier ;
 op_other: OP_OTHER ;
 op_out: OP_OUT cs_operationExtender? (identifier )? identifier ;
-op_post: OP_POST cs_operationExtender? (identifier )? identifier ;
+op_post: OP_POST cs_operationExtender? (literal | identifier)? identifier ;
 op_read: OP_READ cs_operationExtender? identifier (identifier )? ;
 op_readc: OP_READC cs_operationExtender? identifier (identifier )? ;
 op_reade: OP_READE cs_operationExtender? search_arg identifier (identifier )? ;
 op_readp: OP_READP cs_operationExtender? identifier (identifier )? ;
 op_readpe: OP_READPE cs_operationExtender? search_arg identifier (identifier )? ;
-op_rel: OP_REL cs_operationExtender? identifier identifier ;
+op_rel: OP_REL cs_operationExtender? (literal | identifier) identifier ;
 op_reset2: OP_RESET cs_operationExtender? identifier  OPEN_PAREN MULT_NOSPACE?  CLOSE_PAREN ;
 op_reset: OP_RESET cs_operationExtender?  (identifier)? (identifier )? identifier ;
-op_return: OP_RETURN cs_operationExtender? identifier? ;
+op_return: OP_RETURN cs_operationExtender? (literal | identifier)? ;
 op_rolbk: OP_ROLBK cs_operationExtender? ;
 op_select: OP_SELECT ;
 op_setgt: OP_SETGT cs_operationExtender? search_arg identifier ;
