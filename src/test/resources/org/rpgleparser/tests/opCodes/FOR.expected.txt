@@ -1,0 +1,380 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_FOR                   <FOR>
+ID                       <X>
+'='                      <=>
+NUMBER                   <1>
+FREE_TO                  <to>
+NUMBER                   <10>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDFOR                <ENDFOR>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_FOR                   <For>
+ID                       <X1>
+'='                      <=>
+NUMBER                   <1>
+FREE_BY                  <by>
+NUMBER                   <1>
+FREE_TO                  <to>
+NUMBER                   <10>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDFOR                <endfor>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_FOR                   <For>
+ID                       <X1>
+'='                      <=>
+NUMBER                   <10>
+FREE_DOWNTO              <downto>
+NUMBER                   <1>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDFOR                <Endfor>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_FOR                   <FOR>
+ID                       <X>
+'='                      <=>
+NUMBER                   <10>
+FREE_BY                  <by>
+NUMBER                   <1>
+FREE_DOWNTO              <downto>
+NUMBER                   <1>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDFOR                <endfor>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_FOR                   <for>
+ID                       <X1>
+'='                      <=>
+BIF_LEN                  <%len>
+'('                      <(>
+ID                       <str>
+')'                      <)>
+FREE_BY                  <by>
+NUMBER                   <1>
+FREE_DOWNTO              <downto>
+NUMBER                   <1>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDFOR                <endfor>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (forstatement
+        (beginfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csFOR
+            FOR
+            (expression
+              (expression (identifier (free_identifier X)))
+              =
+              (expression (number 1))
+            )
+            to
+            (expression (number 10))
+            \r\n
+          )
+        )
+        (endfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDFOR
+            ENDFOR
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (block
+      (forstatement
+        (beginfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csFOR
+            For
+            (expression
+              (expression (identifier (free_identifier X1)))
+              =
+              (expression (number 1))
+            )
+            by
+            (expression (number 1))
+            to
+            (expression (number 10))
+            \r\n
+          )
+        )
+        (endfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDFOR
+            endfor
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (block
+      (forstatement
+        (beginfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csFOR
+            For
+            (expression
+              (expression (identifier (free_identifier X1)))
+              =
+              (expression (number 10))
+            )
+            downto
+            (expression (number 1))
+            \r\n
+          )
+        )
+        (endfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDFOR
+            Endfor
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (block
+      (forstatement
+        (beginfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csFOR
+            FOR
+            (expression
+              (expression (identifier (free_identifier X)))
+              =
+              (expression (number 10))
+            )
+            by
+            (expression (number 1))
+            downto
+            (expression (number 1))
+            \r\n
+          )
+        )
+        (endfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDFOR
+            endfor
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (block
+      (forstatement
+        (beginfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csFOR
+            for
+            (expression
+              (expression (identifier (free_identifier X1)))
+              =
+              (expression
+                (bif (bif_len %len ( (expression (identifier (free_identifier str))) )))
+              )
+            )
+            by
+            (expression (number 1))
+            downto
+            (expression (number 1))
+            \r\n
+          )
+        )
+        (endfor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDFOR
+            endfor
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
