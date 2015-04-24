@@ -34,9 +34,10 @@ BlankIndicator           <  >
   (dspec
     DCL-S
     (identifier (free_identifier X))
-    (function
-      (functionName (free_identifier Int))
-      (args ( (expression (number 10)) ))
+    (identifier
+      (multipart_identifier
+        (indexed_identifier (free_identifier Int) ( (expression (number 10)) ))
+      )
     )
     ;
   )

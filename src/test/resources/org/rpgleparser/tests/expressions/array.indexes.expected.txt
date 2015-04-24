@@ -1,0 +1,84 @@
+/*===TOKENS===*/
+ID                       <arr>
+'('                      <(>
+ARRAY_REPEAT             <*>
+')'                      <)>
+'='                      <=>
+ID                       <field2>
+MULT                     <*>
+ID                       <filed3>
+FREE_SEMI                <;>
+ID                       <cust>
+'('                      <(>
+ID                       <custom>
+')'                      <)>
+'.'                      <.>
+ID                       <account>
+'('                      <(>
+ID                       <accum>
+')'                      <)>
+'.'                      <.>
+ID                       <balance>
+'-='                     <-=>
+NUMBER                   <24>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression
+                (identifier
+                  (multipart_identifier (indexed_identifier (free_identifier arr) ( * )))
+                )
+              )
+              =
+              (expression
+                (expression (identifier (free_identifier field2)))
+                *
+                (expression (identifier (free_identifier filed3)))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (expression
+          (expression
+            (identifier
+              (multipart_identifier
+                (indexed_identifier
+                  (free_identifier cust)
+                  (
+                  (expression (identifier (free_identifier custom)))
+                  )
+                )
+                .
+                (indexed_identifier
+                  (free_identifier account)
+                  (
+                  (expression (identifier (free_identifier accum)))
+                  )
+                )
+                .
+                (free_identifier balance)
+              )
+            )
+          )
+          (assignmentOperator -=)
+          (expression (number 24))
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/

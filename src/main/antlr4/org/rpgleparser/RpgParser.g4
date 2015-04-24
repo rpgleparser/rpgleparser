@@ -1853,11 +1853,11 @@ exec_sql: EXEC_SQL WORDS+ SEMI ;
 baseExpression: op | expression;
 assignmentExpression: expression EQUAL expression;
 expression: 
-	// op | // should drop op I think? 
-	identifier 
+	// op | // should drop op I think?
+	function 
+	| identifier 
 	| number 
 	| literal  
-	| function 
 	| bif
 	| NOT expression
 	| OPEN_PAREN expression CLOSE_PAREN
@@ -1894,8 +1894,8 @@ identifier: free_identifier (FREE_CONT free_identifier)? |multipart_identifier |
 all: symbolicConstants literal?;
 //assignIdentifier: multipart_identifier;
 functionName: free_identifier;
-multipart_identifier: free_identifier (FREE_DOT (free_identifier | indexed_identifier))*;
-indexed_identifier: free_identifier OPEN_PAREN expression CLOSE_PAREN;
+multipart_identifier: (free_identifier | indexed_identifier) (FREE_DOT (free_identifier | indexed_identifier))*;
+indexed_identifier: free_identifier OPEN_PAREN (expression | ARRAY_REPEAT) CLOSE_PAREN;
 opCode: free_identifier;
 number: MINUS? NUMBER ;
 free_identifier: (continuedIdentifier | MULT_NOSPACE? ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code);//OP_E?
