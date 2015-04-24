@@ -1,0 +1,74 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_RETURN                <RETURN>
+'('                      <(>
+CS_OperationAndExtender  <H>
+')'                      <)>
+ID                       <MYVAR>
+'+'                      <+>
+NUMBER                   <10>
+C_FREE_NEWLINE           <
+>
+OP_RETURN                <return>
+'('                      <(>
+CS_OperationAndExtender  <h>
+')'                      <)>
+'('                      <(>
+ID                       <myvar>
+'+'                      <+>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csRETURN
+          RETURN
+          (cs_operationExtender ( H ))
+          (c_free
+            (expression
+              (expression (identifier (free_identifier MYVAR)))
+              +
+              (expression (number 10))
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_return
+            return
+            (cs_operationExtender ( h ))
+            (expression
+              (
+              (expression
+                (expression (identifier (free_identifier myvar)))
+                +
+                (expression (number 10))
+              )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/

@@ -1501,7 +1501,7 @@ op_readpe: OP_READPE cs_operationExtender? search_arg identifier (identifier )? 
 op_rel: OP_REL cs_operationExtender? (literal | identifier) identifier ;
 op_reset2: OP_RESET cs_operationExtender? identifier  OPEN_PAREN MULT_NOSPACE?  CLOSE_PAREN ;
 op_reset: OP_RESET cs_operationExtender?  (identifier)? (identifier )? identifier ;
-op_return: OP_RETURN cs_operationExtender? (literal | identifier)? ;
+op_return: OP_RETURN cs_operationExtender? expression? ;
 op_rolbk: OP_ROLBK cs_operationExtender? ;
 op_select: OP_SELECT ;
 op_setgt: OP_SETGT cs_operationExtender? search_arg identifier ;
