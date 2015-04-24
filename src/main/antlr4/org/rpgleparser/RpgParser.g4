@@ -1067,7 +1067,7 @@ csPARM:
 	BlankIndicator
 	BlankFlag 
 	BlankIndicator
-	CS_BlankFactor
+	factor1=factor
 	operation=OP_PARM
 	cspec_fixed_standard_parts;
 csPLIST:
