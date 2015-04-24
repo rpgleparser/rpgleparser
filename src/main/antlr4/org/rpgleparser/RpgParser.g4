@@ -23,6 +23,7 @@ statement:
   	| ospec_fixed
 	| fspec 
 	| fspec_fixed 
+	| block
 	| cspec_fixed
 	| cspec_fixed_sql
 	| ispec_fixed 
@@ -32,7 +33,6 @@ statement:
 	| blank_line 
 	| directive 
 	| free
-	| block
 ;
 
 endSource: endSourceHead endSourceLine*;
@@ -66,11 +66,13 @@ ctl_opt: H_SPEC (identifier | expression)* FREE_SEMI ;
 
 block:
 	(csIFxx
-	statement*
-	endif)
+		statement*
+		endif
+	)
 	| ((csDOUxx | csDOWxx)
-	statement*
-	enddo)
+		statement*
+		enddo
+	)
 	| ifstatement
 	| selectstatement
 	| forstatement
