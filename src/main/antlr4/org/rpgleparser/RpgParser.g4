@@ -1115,7 +1115,7 @@ csRESET:
 csRETURN:
 	operation=OP_RETURN
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free? C_FREE_NEWLINE;
 csROLBK:
 	operation=OP_ROLBK
 	operationExtender=cs_operationExtender? 

@@ -59,9 +59,10 @@ FREE_SEMI                <;>
   (dspec
     dcl-s
     (identifier (free_identifier wkAlpha))
-    (function
-      (functionName (free_identifier char))
-      (args ( (expression (number 7)) ))
+    (identifier
+      (multipart_identifier
+        (indexed_identifier (free_identifier char) ( (expression (number 7)) ))
+      )
     )
     ;
   )
