@@ -100,57 +100,44 @@ FREE_SEMI                <;>
       (freeBeginProcedure dcl-proc (identifier (free_identifier ValidateDate)) ;)
     )
     (statement
-      (free
-        (baseExpression
-          (op
-            (op_callp
-              (identifier (free_identifier (op_code if)))
-              (
-              (expression (bif (bif_error %error)))
+      (block
+        (ifstatement
+          (beginif (op_if if (expression ( (expression (bif (bif_error %error))) ))) ;)
+          (statement
+            (free
+              (baseExpression
+                (op
+                  (op_eval
+                    (assignmentExpression
+                      (expression (identifier (free_identifier wkError)))
+                      =
+                      (expression (identifier (all (symbolicConstants *on))))
+                    )
+                  )
+                )
               )
+              ;
             )
           )
-        )
-        ;
-      )
-    )
-    (statement
-      (free
-        (baseExpression
-          (op
-            (op_eval
-              (assignmentExpression
-                (expression (identifier (free_identifier wkError)))
-                =
-                (expression (identifier (all (symbolicConstants *on))))
+          (statement (free (baseExpression (op (op_else else))) ;))
+          (statement
+            (free
+              (baseExpression
+                (op
+                  (op_eval
+                    (assignmentExpression
+                      (expression (identifier (free_identifier wkError)))
+                      =
+                      (expression (identifier (all (symbolicConstants *off))))
+                    )
+                  )
+                )
               )
+              ;
             )
           )
+          (endif (op_endif endif) ;)
         )
-        ;
-      )
-    )
-    (statement (free (baseExpression (op (op_else else))) ;))
-    (statement
-      (free
-        (baseExpression
-          (op
-            (op_eval
-              (assignmentExpression
-                (expression (identifier (free_identifier wkError)))
-                =
-                (expression (identifier (all (symbolicConstants *off))))
-              )
-            )
-          )
-        )
-        ;
-      )
-    )
-    (statement
-      (free
-        (baseExpression (expression (identifier (free_identifier (op_code endif)))))
-        ;
       )
     )
     (endProcedure (freeEndProcedure end-proc ;))

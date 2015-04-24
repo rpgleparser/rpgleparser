@@ -106,7 +106,7 @@ EOL                      <
             '  '
             ' '
             '  '
-            '              '
+            (factor '              ')
             Parm
             (cspec_fixed_standard_parts
               (factor '              ')

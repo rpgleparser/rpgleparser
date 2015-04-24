@@ -288,7 +288,7 @@ EOL                      <
             '  '
             ' '
             '  '
-            '              '
+            (factor '              ')
             parm
             (cspec_fixed_standard_parts
               (factor '              ')
@@ -330,7 +330,7 @@ EOL                      <
             '  '
             ' '
             '  '
-            '              '
+            (factor '              ')
             parm
             (cspec_fixed_standard_parts
               (factor '              ')
@@ -373,7 +373,7 @@ EOL                      <
             '  '
             ' '
             '  '
-            '              '
+            (factor '              ')
             parm
             (cspec_fixed_standard_parts
               (factor '              ')
@@ -415,7 +415,7 @@ EOL                      <
             '  '
             ' '
             '  '
-            '              '
+            (factor '              ')
             parm
             (cspec_fixed_standard_parts
               (factor '              ')
@@ -457,7 +457,7 @@ EOL                      <
             '  '
             ' '
             '  '
-            '              '
+            (factor '              ')
             parm
             (cspec_fixed_standard_parts
               (factor '              ')

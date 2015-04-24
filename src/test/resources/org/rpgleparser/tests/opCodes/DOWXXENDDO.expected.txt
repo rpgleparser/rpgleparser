@@ -364,13 +364,13 @@ EOL                      <
   )
   (statement (star_comments ' *'))
   (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (symbolicConstants *in01))
-      (cspec_fixed_standard
+    (block
+      (csDOWxx
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (symbolicConstants *in01))
         (csDOWEQ
           DOWEQ
           (cspec_fixed_standard_parts
@@ -385,444 +385,428 @@ EOL                      <
           )
         )
       )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          ENDDO
-          (cspec_fixed_standard_parts
+      (statement
+        (cspec_fixed
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (cspec_fixed_standard
+            (csENDDO
+              ENDDO
+              (cspec_fixed_standard_parts
+                (factor '              ')
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \n
+              )
+            )
+          )
+        )
+      )
+      (statement
+        (block
+          (csDOWxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent fld01))
+            (csDOWEQ
+              doweq
+              (cspec_fixed_standard_parts
+                (factor (factorContent fld02))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \n
+              )
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csENDDO
+                  enddo
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (symbolicConstants *in01))
+              (cspec_fixed_standard
+                DOWGT
+                (cspec_fixed_standard_parts
+                  (factor (symbolicConstants *OFF))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csENDDO
+                  ENDDO
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent fld01))
+              (cspec_fixed_standard
+                dowgt
+                (cspec_fixed_standard_parts
+                  (factor (factorContent fld02))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csENDDO
+                  enddo
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
+            )
+          )
+          (statement
+            (block
+              (csDOWxx
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor (symbolicConstants *in01))
+                (csDOWGE
+                  DOWGE
+                  (cspec_fixed_standard_parts
+                    (factor (symbolicConstants *OFF))
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_standard
+                    (csENDDO
+                      ENDDO
+                      (cspec_fixed_standard_parts
+                        (factor '              ')
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \n
+                      )
+                    )
+                  )
+                )
+              )
+              (statement
+                (block
+                  (csDOWxx
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor (factorContent fld01))
+                    (csDOWGE
+                      dowge
+                      (cspec_fixed_standard_parts
+                        (factor (factorContent fld02))
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \n
+                      )
+                    )
+                  )
+                  (statement
+                    (cspec_fixed
+                      C
+                      (cs_controlLevel '  ')
+                      (onOffIndicatorsFlag ' ')
+                      (cs_indicators '  ')
+                      (factor '              ')
+                      (cspec_fixed_standard
+                        (csENDDO
+                          enddo
+                          (cspec_fixed_standard_parts
+                            (factor '              ')
+                            (resultType '              ')
+                            '     '
+                            '  '
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            \n
+                          )
+                        )
+                      )
+                    )
+                  )
+                  (statement
+                    (cspec_fixed
+                      C
+                      (cs_controlLevel '  ')
+                      (onOffIndicatorsFlag ' ')
+                      (cs_indicators '  ')
+                      (factor (symbolicConstants *in01))
+                      (cspec_fixed_standard
+                        (csDOWLT
+                          DOWLT
+                          (cspec_fixed_standard_parts
+                            (factor (symbolicConstants *OFF))
+                            (resultType '              ')
+                            '     '
+                            '  '
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            \n
+                          )
+                        )
+                      )
+                    )
+                  )
+                  (enddo
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor '              ')
+                    (csENDDO
+                      ENDDO
+                      (cspec_fixed_standard_parts
+                        (factor '              ')
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \n
+                      )
+                    )
+                  )
+                )
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor (factorContent fld01))
+                  (cspec_fixed_standard
+                    (csDOWLT
+                      dowlt
+                      (cspec_fixed_standard_parts
+                        (factor (factorContent fld02))
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \n
+                      )
+                    )
+                  )
+                )
+              )
+              (enddo
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor '              ')
+                (csENDDO
+                  enddo
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (symbolicConstants *in01))
+              (cspec_fixed_standard
+                (csDOWLE
+                  DOWLE
+                  (cspec_fixed_standard_parts
+                    (factor (symbolicConstants *OFF))
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
+            )
+          )
+          (enddo
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
+            (csENDDO
+              ENDDO
+              (cspec_fixed_standard_parts
+                (factor '              ')
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \n
+              )
+            )
           )
         )
       )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent fld01))
-      (cspec_fixed_standard
-        (csDOWEQ
-          doweq
-          (cspec_fixed_standard_parts
-            (factor (factorContent fld02))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
+      (statement
+        (cspec_fixed
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor (factorContent fld01))
+          (cspec_fixed_standard
+            (csDOWLE
+              dowle
+              (cspec_fixed_standard_parts
+                (factor (factorContent fld02))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \n
+              )
+            )
           )
         )
       )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          enddo
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (symbolicConstants *in01))
-      (cspec_fixed_standard
-        DOWGT
-        (cspec_fixed_standard_parts
-          (factor (symbolicConstants *OFF))
-          (resultType '              ')
-          '     '
-          '  '
-          (resultIndicator '  ')
-          (resultIndicator '  ')
-          (resultIndicator '  ')
-          \n
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          ENDDO
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent fld01))
-      (cspec_fixed_standard
-        dowgt
-        (cspec_fixed_standard_parts
-          (factor (factorContent fld02))
-          (resultType '              ')
-          '     '
-          '  '
-          (resultIndicator '  ')
-          (resultIndicator '  ')
-          (resultIndicator '  ')
-          \n
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          enddo
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (symbolicConstants *in01))
-      (cspec_fixed_standard
-        (csDOWGE
-          DOWGE
-          (cspec_fixed_standard_parts
-            (factor (symbolicConstants *OFF))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          ENDDO
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent fld01))
-      (cspec_fixed_standard
-        (csDOWGE
-          dowge
-          (cspec_fixed_standard_parts
-            (factor (factorContent fld02))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          enddo
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (symbolicConstants *in01))
-      (cspec_fixed_standard
-        (csDOWLT
-          DOWLT
-          (cspec_fixed_standard_parts
-            (factor (symbolicConstants *OFF))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          ENDDO
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent fld01))
-      (cspec_fixed_standard
-        (csDOWLT
-          dowlt
-          (cspec_fixed_standard_parts
-            (factor (factorContent fld02))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          enddo
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (symbolicConstants *in01))
-      (cspec_fixed_standard
-        (csDOWLE
-          DOWLE
-          (cspec_fixed_standard_parts
-            (factor (symbolicConstants *OFF))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          ENDDO
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent fld01))
-      (cspec_fixed_standard
-        (csDOWLE
-          dowle
-          (cspec_fixed_standard_parts
-            (factor (factorContent fld02))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
+      (enddo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
         (csENDDO
           enddo
           (cspec_fixed_standard_parts
