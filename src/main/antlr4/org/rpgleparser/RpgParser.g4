@@ -901,7 +901,7 @@ csEVAL:
 	fixedexpression=c_free C_FREE_NEWLINE;
 csEVAL_CORR:
 	operation=OP_EVAL_CORR
-	lhsexpression=identifier EQUAL rhsexpression=identifier ;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csEVALR:
 	operation=OP_EVALR
 	operationExtender=cs_operationExtender? 
@@ -1147,7 +1147,7 @@ csSHTDN:
 csSORTA:
 	operation=OP_SORTA
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csSQRT:
 	operation=OP_SQRT
 	operationExtender=cs_operationExtender? 
@@ -1228,11 +1228,11 @@ csXLATE:
 csXML_INTO:
 	operation=OP_XML_INTO
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csXML_SAX:
 	operation=OP_XML_SAX
 	operationExtender=cs_operationExtender? 
-	cspec_fixed_standard_parts;
+	fixedexpression=c_free C_FREE_NEWLINE;
 csZ_ADD:
 	operation=OP_Z_ADD
 	operationExtender=cs_operationExtender? 

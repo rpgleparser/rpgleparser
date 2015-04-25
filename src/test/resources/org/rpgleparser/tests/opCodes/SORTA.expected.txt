@@ -1,0 +1,470 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       <C*>
+COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_ENTRY              <*Entry>
+OP_PLIST                 <PList>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_PARM                  <Parm>
+CS_BlankFactor           <              >
+CS_FactorContent         <w_RtnValue>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SORTA                 <SORTA>
+ID                       <ARR>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SORTA                 <SORTA>
+'('                      <(>
+CS_OperationAndExtender  <D>
+')'                      <)>
+ID                       <ARR>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SORTA                 <SORTA>
+'('                      <(>
+CS_OperationAndExtender  <A>
+')'                      <)>
+ID                       <ARR>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SORTA                 <SORTA>
+BIF_SUBARR               <%SUBARR>
+'('                      <(>
+ID                       <ARR>
+COLON                    <:>
+NUMBER                   <1>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SORTA                 <SORTA>
+BIF_SUBARR               <%SUBARR>
+'('                      <(>
+ID                       <ARR>
+COLON                    <:>
+NUMBER                   <1>
+COLON                    <:>
+NUMBER                   <2>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <Free>
+EOL                      <
+>
+OP_SORTA                 <sorta>
+ID                       <arr>
+FREE_SEMI                <;>
+OP_SORTA                 <SORTA>
+'('                      <(>
+CS_OperationAndExtender  <D>
+')'                      <)>
+ID                       <arr>
+FREE_SEMI                <;>
+OP_SORTA                 <sorta>
+'('                      <(>
+CS_OperationAndExtender  <a>
+')'                      <)>
+ID                       <arr>
+FREE_SEMI                <;>
+OP_SORTA                 <sorta>
+BIF_SUBARR               <%subarr>
+'('                      <(>
+ID                       <arr>
+COLON                    <:>
+NUMBER                   <1>
+COLON                    <:>
+ID                       <len>
+')'                      <)>
+FREE_SEMI                <;>
+OP_SORTA                 <sorta>
+'('                      <(>
+CS_OperationAndExtender  <d>
+')'                      <)>
+BIF_SUBARR               <%subarr>
+'('                      <(>
+ID                       <arr>
+COLON                    <:>
+NUMBER                   <1>
+COLON                    <:>
+ID                       <len>
+')'                      <)>
+FREE_SEMI                <;>
+OP_SORTA                 <sorta>
+'('                      <(>
+CS_OperationAndExtender  <d>
+')'                      <)>
+BIF_SUBARR               <%subarr>
+'('                      <(>
+ID                       <emp>
+'('                      <(>
+ARRAY_REPEAT             <*>
+')'                      <)>
+'.'                      <.>
+ID                       <salary>
+COLON                    <:>
+NUMBER                   <1>
+COLON                    <:>
+ID                       <numemp>
+')'                      <)>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+LastRecordIndicator      <LR>
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement (star_comments C*))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *Entry))
+      (cspec_fixed_standard
+        (csPLIST
+          PList
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+          (csPARM
+            C
+            '  '
+            ' '
+            '  '
+            (factor '              ')
+            Parm
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType w_RtnValue)
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSORTA SORTA (c_free (expression (identifier (free_identifier ARR)))) \n)
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSORTA
+          SORTA
+          (cs_operationExtender ( D ))
+          (c_free (expression (identifier (free_identifier ARR))))
+          \n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSORTA
+          SORTA
+          (cs_operationExtender ( A ))
+          (c_free (expression (identifier (free_identifier ARR))))
+          \n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSORTA
+          SORTA
+          (c_free
+            (expression
+              (bif
+                (bif_subarr
+                  %SUBARR
+                  (
+                  (expression (identifier (free_identifier ARR)))
+                  :
+                  (expression (number 1))
+                  )
+                )
+              )
+            )
+          )
+          \n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSORTA
+          SORTA
+          (c_free
+            (expression
+              (bif
+                (bif_subarr
+                  %SUBARR
+                  (
+                  (expression (identifier (free_identifier ARR)))
+                  :
+                  (expression (number 1))
+                  :
+                  (expression (number 2))
+                  )
+                )
+              )
+            )
+          )
+          \n
+        )
+      )
+    )
+  )
+  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement
+    (free
+      (baseExpression (op (op_sorta sorta (identifier (free_identifier arr)))))
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_sorta
+            SORTA
+            (cs_operationExtender ( D ))
+            (identifier (free_identifier arr))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_sorta
+            sorta
+            (cs_operationExtender ( a ))
+            (identifier (free_identifier arr))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_sorta
+            sorta
+            (bif_subarr
+              %subarr
+              (
+              (expression (identifier (free_identifier arr)))
+              :
+              (expression (number 1))
+              :
+              (expression (identifier (free_identifier len)))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_sorta
+            sorta
+            (cs_operationExtender ( d ))
+            (bif_subarr
+              %subarr
+              (
+              (expression (identifier (free_identifier arr)))
+              :
+              (expression (number 1))
+              :
+              (expression (identifier (free_identifier len)))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_sorta
+            sorta
+            (cs_operationExtender ( d ))
+            (bif_subarr
+              %subarr
+              (
+              (expression
+                (identifier
+                  (multipart_identifier
+                    (indexed_identifier (free_identifier emp) ( * ))
+                    .
+                    (free_identifier salary)
+                  )
+                )
+              )
+              :
+              (expression (number 1))
+              :
+              (expression (identifier (free_identifier numemp)))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator LR)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

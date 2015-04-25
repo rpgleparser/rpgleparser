@@ -1,0 +1,238 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       <C*>
+COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_ENTRY              <*Entry>
+OP_PLIST                 <PList>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL_CORR             <EVAL-CORR>
+ID                       <x>
+'='                      <=>
+ID                       <y>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL_CORR             <Eval-corr>
+ID                       <fld01>
+'='                      <=>
+ID                       <fld02>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <Free>
+EOL                      <
+>
+OP_EVAL_CORR             <EVAL-CORR>
+ID                       <x>
+'='                      <=>
+ID                       <y>
+FREE_SEMI                <;>
+OP_EVAL_CORR             <eval-corr>
+ID                       <fldds>
+'='                      <=>
+ID                       <fld2ds>
+FREE_SEMI                <;>
+OP_EVAL_CORR             <Eval-corr>
+'('                      <(>
+CS_OperationAndExtender  <h>
+')'                      <)>
+ID                       <ds01>
+'='                      <=>
+ID                       <ds02>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+LastRecordIndicator      <LR>
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement (star_comments C*))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *Entry))
+      (cspec_fixed_standard
+        (csPLIST
+          PList
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL_CORR
+          EVAL-CORR
+          (c_free
+            (expression
+              (expression (identifier (free_identifier x)))
+              =
+              (expression (identifier (free_identifier y)))
+            )
+          )
+          \n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL_CORR
+          Eval-corr
+          (c_free
+            (expression
+              (expression (identifier (free_identifier fld01)))
+              =
+              (expression (identifier (free_identifier fld02)))
+            )
+          )
+          \n
+        )
+      )
+    )
+  )
+  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval_corr
+            EVAL-CORR
+            (assignmentExpression
+              (expression (identifier (free_identifier x)))
+              =
+              (expression (identifier (free_identifier y)))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval_corr
+            eval-corr
+            (assignmentExpression
+              (expression (identifier (free_identifier fldds)))
+              =
+              (expression (identifier (free_identifier fld2ds)))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval_corr
+            Eval-corr
+            (cs_operationExtender ( h ))
+            (assignmentExpression
+              (expression (identifier (free_identifier ds01)))
+              =
+              (expression (identifier (free_identifier ds02)))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator LR)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
