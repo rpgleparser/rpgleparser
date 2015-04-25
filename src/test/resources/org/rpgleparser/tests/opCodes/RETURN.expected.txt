@@ -1,4 +1,62 @@
 /*===TOKENS===*/
+COMMENT_SPEC_FIXED       <C*>
+COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_ENTRY              <*Entry>
+OP_PLIST                 <PList>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_RETURN                <RETURN>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_RETURN                <RETURN>
+ID                       <MYDS>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_RETURN                <RETURN>
+ID                       <MYVAR>
+'+'                      <+>
+NUMBER                   <10>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_RETURN                <Return>
+DateLiteralStart         <D'>
+StringContent            <1995-10-01>
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -13,6 +71,27 @@ ID                       <MYVAR>
 NUMBER                   <10>
 C_FREE_NEWLINE           <
 >
+DIRECTIVE                < />
+DIR_FREE                 <Free>
+EOL                      <
+>
+OP_RETURN                <return>
+FREE_SEMI                <;>
+OP_RETURN                <return>
+ID                       <myds>
+FREE_SEMI                <;>
+OP_RETURN                <return>
+'('                      <(>
+ID                       <myvar>
+'+'                      <+>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+OP_RETURN                <return>
+DateLiteralStart         <D'>
+StringContent            <1995-10-01>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
 OP_RETURN                <return>
 '('                      <(>
 CS_OperationAndExtender  <h>
@@ -23,8 +102,113 @@ ID                       <myvar>
 NUMBER                   <10>
 ')'                      <)>
 FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+LastRecordIndicator      <LR>
+BlankIndicator           <  >
+BlankIndicator           <  >
 /*===TREE===*/
 (r
+  (statement (star_comments C*))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *Entry))
+      (cspec_fixed_standard
+        (csPLIST
+          PList
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard (csRETURN RETURN \r\n))
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csRETURN
+          RETURN
+          (c_free (expression (identifier (free_identifier MYDS))))
+          \r\n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csRETURN
+          RETURN
+          (c_free
+            (expression
+              (expression (identifier (free_identifier MYVAR)))
+              +
+              (expression (number 10))
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csRETURN Return (c_free (expression (literal D' 1995-10-01 '))) \r\n)
+      )
+    )
+  )
   (statement
     (cspec_fixed
       C
@@ -48,6 +232,41 @@ FREE_SEMI                <;>
       )
     )
   )
+  (statement (directive ' /' (beginfree_directive Free) \r\n))
+  (statement (free (baseExpression (op (op_return return))) ;))
+  (statement
+    (free
+      (baseExpression
+        (op (op_return return (expression (identifier (free_identifier myds)))))
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_callp
+            (identifier (free_identifier (op_code return)))
+            (
+            (expression
+              (expression (identifier (free_identifier myvar)))
+              +
+              (expression (number 10))
+            )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression (op (op_return return (expression (literal D' 1995-10-01 ')))))
+      ;
+    )
+  )
   (statement
     (free
       (baseExpression
@@ -68,6 +287,32 @@ FREE_SEMI                <;>
         )
       )
       ;
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \r\n))
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator LR)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            <EOF>
+          )
+        )
+      )
     )
   )
 )
