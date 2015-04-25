@@ -87,8 +87,12 @@ ifstatement:
 ;
 selectstatement:
 	beginselect
-		whenstatement+
-		other?
+	(
+	   (  
+		whenstatement*
+		other
+		)|
+		whenstatement*)
 	endselect
 ;
 

@@ -1,0 +1,168 @@
+/*===TOKENS===*/
+OP_SELECT                <select>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+NOT                      <not>
+'('                      <(>
+SPLAT_INDICATOR          <*in01>
+')'                      <)>
+AND                      <and>
+'('                      <(>
+ID                       <fld>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <xx>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+ID                       <%sst>
+'('                      <(>
+ID                       <a>
+COLON                    <:>
+'('                      <(>
+ID                       <x>
+'+'                      <+>
+NUMBER                   <4>
+')'                      <)>
+COLON                    <:>
+NUMBER                   <3>
+')'                      <)>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <ABC>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+'('                      <(>
+CS_OperationAndExtender  <m>
+')'                      <)>
+'('                      <(>
+'('                      <(>
+ID                       <Y>
+'>'                      <>>
+NUMBER                   <2>
+')'                      <)>
+AND                      <and>
+'('                      <(>
+ID                       <X>
+'<'                      <<>
+NUMBER                   <5>
+')'                      <)>
+')'                      <)>
+FREE_SEMI                <;>
+OP_OTHER                 <other>
+FREE_SEMI                <;>
+OP_ENDSL                 <endsl>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (selectstatement
+        (beginselect (op_select select) ;)
+        (whenstatement
+          (when
+            (op_when
+              when
+              (indicator_expr
+                (expression
+                  (expression
+                    not
+                    (expression ( (expression (identifier (all (symbolicConstants *in01)))) ))
+                  )
+                  and
+                  (expression
+                    (
+                    (expression
+                      (expression (identifier (free_identifier fld)))
+                      =
+                      (expression (literal ' xx '))
+                    )
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        (whenstatement
+          (when
+            (op_when
+              when
+              (indicator_expr
+                (expression
+                  (expression
+                    (function
+                      (functionName (free_identifier %sst))
+                      (args
+                        (
+                        (expression (identifier (free_identifier a)))
+                        :
+                        (expression
+                          (
+                          (expression
+                            (expression (identifier (free_identifier x)))
+                            +
+                            (expression (number 4))
+                          )
+                          )
+                        )
+                        :
+                        (expression (number 3))
+                        )
+                      )
+                    )
+                  )
+                  =
+                  (expression (literal ' ABC '))
+                )
+              )
+            )
+            ;
+          )
+        )
+        (whenstatement
+          (when
+            (op_when
+              when
+              (cs_operationExtender ( m ))
+              (indicator_expr
+                (expression
+                  (
+                  (expression
+                    (expression
+                      (
+                      (expression
+                        (expression (identifier (free_identifier Y)))
+                        (comparisonOperator >)
+                        (expression (number 2))
+                      )
+                      )
+                    )
+                    and
+                    (expression
+                      (
+                      (expression
+                        (expression (identifier (free_identifier X)))
+                        (comparisonOperator <)
+                        (expression (number 5))
+                      )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        (other (op_other other) ;)
+        (endselect (op_endsl endsl) ;)
+      )
+    )
+  )
+)
+/*======*/
