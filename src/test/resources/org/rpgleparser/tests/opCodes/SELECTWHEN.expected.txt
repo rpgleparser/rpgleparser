@@ -1,0 +1,878 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       <C*>
+COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_ENTRY              <*Entry>
+OP_PLIST                 <PList>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SELECT                <SELECT>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_WHEN                  <WHEN>
+ID                       <C>
+'='                      <=>
+NUMBER                   <1>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_OTHER                 <OTHER>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDSL                 <ENDSL>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SELECT                <select>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_WHEN                  <when>
+'('                      <(>
+CS_OperationAndExtender  <m>
+')'                      <)>
+'('                      <(>
+ID                       <Y>
+'>'                      <>>
+NUMBER                   <2>
+')'                      <)>
+AND                      <and>
+'('                      <(>
+ID                       <X>
+'<'                      <<>
+NUMBER                   <5>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_WHEN                  <when>
+ID                       <*INKC>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_OTHER                 <other>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDSL                 <endsl>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SELECT                <select>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_WHEN                  <when>
+NOT                      <not>
+'('                      <(>
+SPLAT_INDICATOR          <*in01>
+')'                      <)>
+AND                      <and>
+'('                      <(>
+ID                       <fld>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <xx>
+StringLiteralEnd         <'>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_WHEN                  <when>
+ID                       <%sst>
+'('                      <(>
+ID                       <a>
+COLON                    <:>
+'('                      <(>
+ID                       <x>
+'+'                      <+>
+NUMBER                   <4>
+')'                      <)>
+COLON                    <:>
+NUMBER                   <3>
+')'                      <)>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <ABC>
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_OTHER                 <other>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDSL                 <endsl>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <Free>
+EOL                      <
+>
+OP_SELECT                <SELECT>
+FREE_SEMI                <;>
+OP_WHEN                  <WHEN>
+ID                       <c>
+'='                      <=>
+NUMBER                   <1>
+FREE_SEMI                <;>
+OP_ENDSL                 <ENDSL>
+FREE_SEMI                <;>
+OP_SELECT                <select>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+NOT                      <not>
+'('                      <(>
+SPLAT_INDICATOR          <*in01>
+')'                      <)>
+AND                      <and>
+'('                      <(>
+ID                       <fld>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <xx>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+ID                       <%sst>
+'('                      <(>
+ID                       <a>
+COLON                    <:>
+'('                      <(>
+ID                       <x>
+'+'                      <+>
+NUMBER                   <4>
+')'                      <)>
+COLON                    <:>
+NUMBER                   <3>
+')'                      <)>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <ABC>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+'('                      <(>
+CS_OperationAndExtender  <m>
+')'                      <)>
+'('                      <(>
+'('                      <(>
+ID                       <Y>
+'>'                      <>>
+NUMBER                   <2>
+')'                      <)>
+AND                      <and>
+'('                      <(>
+ID                       <X>
+'<'                      <<>
+NUMBER                   <5>
+')'                      <)>
+')'                      <)>
+FREE_SEMI                <;>
+OP_OTHER                 <other>
+FREE_SEMI                <;>
+OP_ENDSL                 <endsl>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+COMMENTS_TEXT            <                                                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+LastRecordIndicator      <LR>
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement (star_comments C*))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *Entry))
+      (cspec_fixed_standard
+        (csPLIST
+          PList
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement (star_comments ' *'))
+  (statement
+    (block
+      (selectstatement
+        (beginselect
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csSELECT
+            SELECT
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+        (whenstatement
+          (when
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (csWHEN
+              WHEN
+              (c_free
+                (expression
+                  (expression (identifier (free_identifier C)))
+                  =
+                  (expression (number 1))
+                )
+              )
+              \n
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csOTHER
+                  OTHER
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csENDSL
+                  ENDSL
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
+            )
+          )
+          (statement
+            (block
+              (selectstatement
+                (beginselect
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (csSELECT
+                    select
+                    (cspec_fixed_standard_parts
+                      (factor '              ')
+                      (resultType '              ')
+                      '     '
+                      '  '
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      \n
+                    )
+                  )
+                )
+                (whenstatement
+                  (when
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor '              ')
+                    (csWHEN
+                      when
+                      (cs_operationExtender ( m ))
+                      (c_free
+                        (expression
+                          (expression
+                            (
+                            (expression
+                              (expression (identifier (free_identifier Y)))
+                              (comparisonOperator >)
+                              (expression (number 2))
+                            )
+                            )
+                          )
+                          and
+                          (expression
+                            (
+                            (expression
+                              (expression (identifier (free_identifier X)))
+                              (comparisonOperator <)
+                              (expression (number 5))
+                            )
+                            )
+                          )
+                        )
+                      )
+                      \n
+                    )
+                  )
+                )
+                (whenstatement
+                  (when
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor '              ')
+                    (csWHEN when (c_free (expression (identifier (free_identifier *INKC)))) \n)
+                  )
+                  (statement
+                    (cspec_fixed
+                      C
+                      (cs_controlLevel '  ')
+                      (onOffIndicatorsFlag ' ')
+                      (cs_indicators '  ')
+                      (factor '              ')
+                      (cspec_fixed_standard
+                        (csOTHER
+                          other
+                          (cspec_fixed_standard_parts
+                            (factor '              ')
+                            (resultType '              ')
+                            '     '
+                            '  '
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            \n
+                          )
+                        )
+                      )
+                    )
+                  )
+                  (statement
+                    (cspec_fixed
+                      C
+                      (cs_controlLevel '  ')
+                      (onOffIndicatorsFlag ' ')
+                      (cs_indicators '  ')
+                      (factor '              ')
+                      (cspec_fixed_standard
+                        (csENDSL
+                          endsl
+                          (cspec_fixed_standard_parts
+                            (factor '              ')
+                            (resultType '              ')
+                            '     '
+                            '  '
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            \n
+                          )
+                        )
+                      )
+                    )
+                  )
+                  (statement
+                    (block
+                      (selectstatement
+                        (beginselect
+                          C
+                          (cs_controlLevel '  ')
+                          (onOffIndicatorsFlag ' ')
+                          (cs_indicators '  ')
+                          (factor '              ')
+                          (csSELECT
+                            select
+                            (cspec_fixed_standard_parts
+                              (factor '              ')
+                              (resultType '              ')
+                              '     '
+                              '  '
+                              (resultIndicator '  ')
+                              (resultIndicator '  ')
+                              (resultIndicator '  ')
+                              \n
+                            )
+                          )
+                        )
+                        (whenstatement
+                          (when
+                            C
+                            (cs_controlLevel '  ')
+                            (onOffIndicatorsFlag ' ')
+                            (cs_indicators '  ')
+                            (factor '              ')
+                            (csWHEN
+                              when
+                              (c_free
+                                (expression
+                                  (expression
+                                    not
+                                    (expression ( (expression (identifier (all (symbolicConstants *in01)))) ))
+                                  )
+                                  and
+                                  (expression
+                                    (
+                                    (expression
+                                      (expression (identifier (free_identifier fld)))
+                                      =
+                                      (expression (literal ' xx '))
+                                    )
+                                    )
+                                  )
+                                )
+                              )
+                              \n
+                            )
+                          )
+                        )
+                        (whenstatement
+                          (when
+                            C
+                            (cs_controlLevel '  ')
+                            (onOffIndicatorsFlag ' ')
+                            (cs_indicators '  ')
+                            (factor '              ')
+                            (csWHEN
+                              when
+                              (c_free
+                                (expression
+                                  (expression
+                                    (function
+                                      (functionName (free_identifier %sst))
+                                      (args
+                                        (
+                                        (expression (identifier (free_identifier a)))
+                                        :
+                                        (expression
+                                          (
+                                          (expression
+                                            (expression (identifier (free_identifier x)))
+                                            +
+                                            (expression (number 4))
+                                          )
+                                          )
+                                        )
+                                        :
+                                        (expression (number 3))
+                                        )
+                                      )
+                                    )
+                                  )
+                                  =
+                                  (expression (literal ' ABC '))
+                                )
+                              )
+                              \n
+                            )
+                          )
+                          (statement
+                            (cspec_fixed
+                              C
+                              (cs_controlLevel '  ')
+                              (onOffIndicatorsFlag ' ')
+                              (cs_indicators '  ')
+                              (factor '              ')
+                              (cspec_fixed_standard
+                                (csOTHER
+                                  other
+                                  (cspec_fixed_standard_parts
+                                    (factor '              ')
+                                    (resultType '              ')
+                                    '     '
+                                    '  '
+                                    (resultIndicator '  ')
+                                    (resultIndicator '  ')
+                                    (resultIndicator '  ')
+                                    \n
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                        (endselect
+                          C
+                          (cs_controlLevel '  ')
+                          (onOffIndicatorsFlag ' ')
+                          (cs_indicators '  ')
+                          (factor '              ')
+                          (csENDSL
+                            endsl
+                            (cspec_fixed_standard_parts
+                              (factor '              ')
+                              (resultType '              ')
+                              '     '
+                              '  '
+                              (resultIndicator '  ')
+                              (resultIndicator '  ')
+                              (resultIndicator '  ')
+                              \n
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  (statement (directive ' /' (beginfree_directive Free) \n))
+                  (statement
+                    (free
+                      (baseExpression (expression (identifier (free_identifier (op_code SELECT)))))
+                      ;
+                    )
+                  )
+                )
+                (whenstatement
+                  (when
+                    (op_when
+                      WHEN
+                      (indicator_expr
+                        (expression
+                          (expression (identifier (free_identifier c)))
+                          =
+                          (expression (number 1))
+                        )
+                      )
+                    )
+                    ;
+                  )
+                )
+                (endselect (op_endsl ENDSL) ;)
+              )
+            )
+          )
+          (statement
+            (free
+              (baseExpression (expression (identifier (free_identifier (op_code select)))))
+              ;
+            )
+          )
+        )
+        (whenstatement
+          (when
+            (op_when
+              when
+              (indicator_expr
+                (expression
+                  (expression
+                    not
+                    (expression ( (expression (identifier (all (symbolicConstants *in01)))) ))
+                  )
+                  and
+                  (expression
+                    (
+                    (expression
+                      (expression (identifier (free_identifier fld)))
+                      =
+                      (expression (literal ' xx '))
+                    )
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        (whenstatement
+          (when
+            (op_when
+              when
+              (indicator_expr
+                (expression
+                  (expression
+                    (function
+                      (functionName (free_identifier %sst))
+                      (args
+                        (
+                        (expression (identifier (free_identifier a)))
+                        :
+                        (expression
+                          (
+                          (expression
+                            (expression (identifier (free_identifier x)))
+                            +
+                            (expression (number 4))
+                          )
+                          )
+                        )
+                        :
+                        (expression (number 3))
+                        )
+                      )
+                    )
+                  )
+                  =
+                  (expression (literal ' ABC '))
+                )
+              )
+            )
+            ;
+          )
+        )
+        (whenstatement
+          (when
+            (op_when
+              when
+              (cs_operationExtender ( m ))
+              (indicator_expr
+                (expression
+                  (
+                  (expression
+                    (expression
+                      (
+                      (expression
+                        (expression (identifier (free_identifier Y)))
+                        (comparisonOperator >)
+                        (expression (number 2))
+                      )
+                      )
+                    )
+                    and
+                    (expression
+                      (
+                      (expression
+                        (expression (identifier (free_identifier X)))
+                        (comparisonOperator <)
+                        (expression (number 5))
+                      )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+            ;
+            (statement
+              (free
+                (baseExpression (expression (identifier (free_identifier (op_code other)))))
+                ;
+              )
+            )
+          )
+        )
+        (endselect (op_endsl endsl) ;)
+      )
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (star_comments ' *'))
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator LR)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
