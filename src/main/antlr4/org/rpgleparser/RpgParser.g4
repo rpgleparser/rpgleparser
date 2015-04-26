@@ -45,7 +45,8 @@ free_linecomments: COMMENTS comments;
 comments: COMMENTS_TEXT; 
 //just_comments: COMMENTS COMMENTS_TEXT COMMENTS_EOL;
 
-dspec:  DS_Standalone identifier (identifier|function)* FREE_SEMI free_linecomments?;
+dspec:  DS_Standalone name=identifier datatype? FREE_SEMI free_linecomments?;
+datatype: identifier args?; 
 dcl_ds:  DS_DataStructureStart (identifier | function)* FREE_SEMI?  
 	dcl_ds_field*
 	end_dcl_ds FREE_SEMI;
@@ -1906,7 +1907,6 @@ free_identifier: (continuedIdentifier | MULT_NOSPACE? ID | NOT | FREE_BY | FREE_
 //free_identifier: (continuedIdentifier | ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
 continuedIdentifier: ID CONTINUATION ID ;
 		
-datatype: ID OPEN_PAREN NUMBER CLOSE_PAREN SEMI;
 argument: ID;
 
 symbolicConstants:

@@ -1,0 +1,67 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <duedate>
+ID                       <DATE>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <displayDate>
+ID                       <DATE>
+'('                      <(>
+SPLAT_YMD                <*YMD>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <startTime>
+ID                       <TIME>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <displayTime>
+ID                       <TIME>
+'('                      <(>
+SPLAT_USA                <*USA>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <start>
+ID                       <TIMESTAMP>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier duedate))
+    (datatype (identifier (free_identifier DATE)))
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier displayDate))
+    (datatype
+      (identifier (free_identifier DATE))
+      (args ( (expression (identifier (all (symbolicConstants *YMD)))) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier startTime))
+    (datatype (identifier (free_identifier TIME)))
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier displayTime))
+    (datatype
+      (identifier (free_identifier TIME))
+      (args ( (expression (identifier (all (symbolicConstants *USA)))) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier start))
+    (datatype (identifier (free_identifier TIMESTAMP)))
+    ;
+  )
+)
+/*======*/

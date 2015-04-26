@@ -1,0 +1,37 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <firstName>
+ID                       <UCS2>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <filePath>
+ID                       <VARUCS2>
+'('                      <(>
+NUMBER                   <5000>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier firstName))
+    (datatype
+      (identifier (free_identifier UCS2))
+      (args ( (expression (number 10)) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier filePath))
+    (datatype
+      (identifier (free_identifier VARUCS2))
+      (args ( (expression (number 5000)) ))
+    )
+    ;
+  )
+)
+/*======*/

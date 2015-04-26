@@ -1,0 +1,55 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <library>
+ID                       <CHAR>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <libfilembr>
+ID                       <VARCHAR>
+'('                      <(>
+NUMBER                   <33>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <cmdparm>
+ID                       <VARCHAR>
+'('                      <(>
+NUMBER                   <10>
+COLON                    <:>
+NUMBER                   <4>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier library))
+    (datatype
+      (identifier (free_identifier CHAR))
+      (args ( (expression (number 10)) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier libfilembr))
+    (datatype
+      (identifier (free_identifier VARCHAR))
+      (args ( (expression (number 33)) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier cmdparm))
+    (datatype
+      (identifier (free_identifier VARCHAR))
+      (args ( (expression (number 10)) : (expression (number 4)) ))
+    )
+    ;
+  )
+)
+/*======*/

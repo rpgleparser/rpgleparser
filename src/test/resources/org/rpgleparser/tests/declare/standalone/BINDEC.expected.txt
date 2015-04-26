@@ -1,0 +1,39 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <numRecords>
+ID                       <BINDEC>
+'('                      <(>
+NUMBER                   <9>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <bonus>
+ID                       <BINDEC>
+'('                      <(>
+NUMBER                   <9>
+COLON                    <:>
+NUMBER                   <2>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier numRecords))
+    (datatype
+      (identifier (free_identifier BINDEC))
+      (args ( (expression (number 9)) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier bonus))
+    (datatype
+      (identifier (free_identifier BINDEC))
+      (args ( (expression (number 9)) : (expression (number 2)) ))
+    )
+    ;
+  )
+)
+/*======*/

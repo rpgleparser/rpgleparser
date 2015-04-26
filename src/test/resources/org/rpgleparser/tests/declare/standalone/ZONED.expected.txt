@@ -1,0 +1,39 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <numRecords>
+ID                       <ZONED>
+'('                      <(>
+NUMBER                   <5>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <salary>
+ID                       <ZONED>
+'('                      <(>
+NUMBER                   <15>
+COLON                    <:>
+NUMBER                   <2>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier numRecords))
+    (datatype
+      (identifier (free_identifier ZONED))
+      (args ( (expression (number 5)) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier salary))
+    (datatype
+      (identifier (free_identifier ZONED))
+      (args ( (expression (number 15)) : (expression (number 2)) ))
+    )
+    ;
+  )
+)
+/*======*/

@@ -1,0 +1,200 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       <D*>
+COMMENTS_TEXT            < fixed-form declarations                                                                    >
+DS_FIXED                 <D>
+NAME                     <string>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      <S>
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <     50>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <VARYING                                                 >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <date>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      <S>
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <D>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <DATFMT(*MDY)                                            >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <obj>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      <S>
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <O>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <CLASS(*JAVA:'MyClass')                                  >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <ptr>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      <S>
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <*>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <PROCPTR                                                 >
+EOL                      <
+>
+COMMENTS                 <    //>
+COMMENTS_TEXT            < free-form declarations                                                                 >
+DS_Standalone            <DCL-S>
+ID                       <string>
+ID                       <VARCHAR>
+'('                      <(>
+NUMBER                   <50>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <date>
+ID                       <DATE>
+'('                      <(>
+SPLAT_MDY                <*MDY>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <obj>
+ID                       <OBJECT>
+'('                      <(>
+ID                       <*JAVA>
+COLON                    <:>
+StringLiteralStart       <'>
+StringContent            <MyClass>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <ptr>
+ID                       <POINTER>
+'('                      <(>
+ID                       <*PROC>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement (star_comments D*))
+  (statement
+    (dspec_fixed
+      D
+      (ds_name string)
+      ' '
+      S
+      '  '
+      '       '
+      '     50'
+      A
+      '  '
+      ' '
+      'VARYING                                                 '
+      \r\n
+    )
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name date)
+      ' '
+      S
+      '  '
+      '       '
+      '       '
+      D
+      '  '
+      ' '
+      'DATFMT(*MDY)                                            '
+      \r\n
+    )
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name obj)
+      ' '
+      S
+      '  '
+      '       '
+      '       '
+      O
+      '  '
+      ' '
+      'CLASS(*JAVA:'MyClass')                                  '
+      \r\n
+    )
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name ptr)
+      ' '
+      S
+      '  '
+      '       '
+      '       '
+      *
+      '  '
+      ' '
+      'PROCPTR                                                 '
+      \r\n
+    )
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier string))
+    (datatype
+      (identifier (free_identifier VARCHAR))
+      (args ( (expression (number 50)) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier date))
+    (datatype
+      (identifier (free_identifier DATE))
+      (args ( (expression (identifier (all (symbolicConstants *MDY)))) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier obj))
+    (datatype
+      (identifier (free_identifier OBJECT))
+      (args
+        (
+        (expression (identifier (free_identifier *JAVA)))
+        :
+        (expression (literal ' MyClass '))
+        )
+      )
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier ptr))
+    (datatype
+      (identifier (free_identifier POINTER))
+      (args ( (expression (identifier (free_identifier *PROC))) ))
+    )
+    ;
+  )
+)
+/*======*/

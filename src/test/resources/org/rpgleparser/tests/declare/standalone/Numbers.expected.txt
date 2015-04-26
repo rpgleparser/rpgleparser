@@ -1,0 +1,53 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <index>
+ID                       <INT>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <count>
+ID                       <UNS>
+'('                      <(>
+NUMBER                   <20>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <variance>
+ID                       <FLOAT>
+'('                      <(>
+NUMBER                   <8>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier index))
+    (datatype
+      (identifier (free_identifier INT))
+      (args ( (expression (number 10)) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier count))
+    (datatype
+      (identifier (free_identifier UNS))
+      (args ( (expression (number 20)) ))
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier variance))
+    (datatype
+      (identifier (free_identifier FLOAT))
+      (args ( (expression (number 8)) ))
+    )
+    ;
+  )
+)
+/*======*/

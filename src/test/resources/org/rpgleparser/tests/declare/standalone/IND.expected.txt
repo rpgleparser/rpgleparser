@@ -1,0 +1,15 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <isValid>
+ID                       <IND>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier isValid))
+    (datatype (identifier (free_identifier IND)))
+    ;
+  )
+)
+/*======*/

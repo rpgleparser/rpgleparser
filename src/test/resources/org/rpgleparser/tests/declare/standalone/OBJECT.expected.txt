@@ -1,0 +1,31 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <obj>
+ID                       <OBJECT>
+'('                      <(>
+ID                       <*JAVA>
+COLON                    <:>
+StringLiteralStart       <'>
+StringContent            <Cls>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier obj))
+    (datatype
+      (identifier (free_identifier OBJECT))
+      (args
+        (
+        (expression (identifier (free_identifier *JAVA)))
+        :
+        (expression (literal ' Cls '))
+        )
+      )
+    )
+    ;
+  )
+)
+/*======*/

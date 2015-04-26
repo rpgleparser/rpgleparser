@@ -1,0 +1,31 @@
+/*===TOKENS===*/
+DS_Standalone            <DCL-S>
+ID                       <pUserspace>
+ID                       <POINTER>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <pProc>
+ID                       <POINTER>
+'('                      <(>
+ID                       <*PROC>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier pUserspace))
+    (datatype (identifier (free_identifier POINTER)))
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier pProc))
+    (datatype
+      (identifier (free_identifier POINTER))
+      (args ( (expression (identifier (free_identifier *PROC))) ))
+    )
+    ;
+  )
+)
+/*======*/
