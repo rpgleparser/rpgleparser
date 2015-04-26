@@ -516,204 +516,193 @@ EOL                      <
                     (factor '              ')
                     (csWHEN when (c_free (expression (identifier (free_identifier *INKC)))) \n)
                   )
-                  (statement
-                    (cspec_fixed
-                      C
-                      (cs_controlLevel '  ')
-                      (onOffIndicatorsFlag ' ')
-                      (cs_indicators '  ')
+                )
+                (other
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (csOTHER
+                    other
+                    (cspec_fixed_standard_parts
                       (factor '              ')
-                      (cspec_fixed_standard
-                        (csOTHER
-                          other
-                          (cspec_fixed_standard_parts
-                            (factor '              ')
-                            (resultType '              ')
-                            '     '
-                            '  '
-                            (resultIndicator '  ')
-                            (resultIndicator '  ')
-                            (resultIndicator '  ')
-                            \n
-                          )
-                        )
-                      )
-                    )
-                  )
-                  (statement
-                    (cspec_fixed
-                      C
-                      (cs_controlLevel '  ')
-                      (onOffIndicatorsFlag ' ')
-                      (cs_indicators '  ')
-                      (factor '              ')
-                      (cspec_fixed_standard
-                        (csENDSL
-                          endsl
-                          (cspec_fixed_standard_parts
-                            (factor '              ')
-                            (resultType '              ')
-                            '     '
-                            '  '
-                            (resultIndicator '  ')
-                            (resultIndicator '  ')
-                            (resultIndicator '  ')
-                            \n
-                          )
-                        )
-                      )
-                    )
-                  )
-                  (statement
-                    (block
-                      (selectstatement
-                        (beginselect
-                          C
-                          (cs_controlLevel '  ')
-                          (onOffIndicatorsFlag ' ')
-                          (cs_indicators '  ')
-                          (factor '              ')
-                          (csSELECT
-                            select
-                            (cspec_fixed_standard_parts
-                              (factor '              ')
-                              (resultType '              ')
-                              '     '
-                              '  '
-                              (resultIndicator '  ')
-                              (resultIndicator '  ')
-                              (resultIndicator '  ')
-                              \n
-                            )
-                          )
-                        )
-                        (whenstatement
-                          (when
-                            C
-                            (cs_controlLevel '  ')
-                            (onOffIndicatorsFlag ' ')
-                            (cs_indicators '  ')
-                            (factor '              ')
-                            (csWHEN
-                              when
-                              (c_free
-                                (expression
-                                  (expression
-                                    not
-                                    (expression ( (expression (identifier (all (symbolicConstants *in01)))) ))
-                                  )
-                                  and
-                                  (expression
-                                    (
-                                    (expression
-                                      (expression (identifier (free_identifier fld)))
-                                      =
-                                      (expression (literal ' xx '))
-                                    )
-                                    )
-                                  )
-                                )
-                              )
-                              \n
-                            )
-                          )
-                        )
-                        (whenstatement
-                          (when
-                            C
-                            (cs_controlLevel '  ')
-                            (onOffIndicatorsFlag ' ')
-                            (cs_indicators '  ')
-                            (factor '              ')
-                            (csWHEN
-                              when
-                              (c_free
-                                (expression
-                                  (expression
-                                    (function
-                                      (functionName (free_identifier %sst))
-                                      (args
-                                        (
-                                        (expression (identifier (free_identifier a)))
-                                        :
-                                        (expression
-                                          (
-                                          (expression
-                                            (expression (identifier (free_identifier x)))
-                                            +
-                                            (expression (number 4))
-                                          )
-                                          )
-                                        )
-                                        :
-                                        (expression (number 3))
-                                        )
-                                      )
-                                    )
-                                  )
-                                  =
-                                  (expression (literal ' ABC '))
-                                )
-                              )
-                              \n
-                            )
-                          )
-                          (statement
-                            (cspec_fixed
-                              C
-                              (cs_controlLevel '  ')
-                              (onOffIndicatorsFlag ' ')
-                              (cs_indicators '  ')
-                              (factor '              ')
-                              (cspec_fixed_standard
-                                (csOTHER
-                                  other
-                                  (cspec_fixed_standard_parts
-                                    (factor '              ')
-                                    (resultType '              ')
-                                    '     '
-                                    '  '
-                                    (resultIndicator '  ')
-                                    (resultIndicator '  ')
-                                    (resultIndicator '  ')
-                                    \n
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                        (endselect
-                          C
-                          (cs_controlLevel '  ')
-                          (onOffIndicatorsFlag ' ')
-                          (cs_indicators '  ')
-                          (factor '              ')
-                          (csENDSL
-                            endsl
-                            (cspec_fixed_standard_parts
-                              (factor '              ')
-                              (resultType '              ')
-                              '     '
-                              '  '
-                              (resultIndicator '  ')
-                              (resultIndicator '  ')
-                              (resultIndicator '  ')
-                              \n
-                            )
-                          )
-                        )
-                      )
-                    )
-                  )
-                  (statement (directive ' /' (beginfree_directive Free) \n))
-                  (statement
-                    (free
-                      (baseExpression (expression (identifier (free_identifier (op_code SELECT)))))
-                      ;
+                      (resultType '              ')
+                      '     '
+                      '  '
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      \n
                     )
                   )
                 )
+                (endselect
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (csENDSL
+                    endsl
+                    (cspec_fixed_standard_parts
+                      (factor '              ')
+                      (resultType '              ')
+                      '     '
+                      '  '
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      \n
+                    )
+                  )
+                )
+              )
+            )
+          )
+          (statement
+            (block
+              (selectstatement
+                (beginselect
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (csSELECT
+                    select
+                    (cspec_fixed_standard_parts
+                      (factor '              ')
+                      (resultType '              ')
+                      '     '
+                      '  '
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      \n
+                    )
+                  )
+                )
+                (whenstatement
+                  (when
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor '              ')
+                    (csWHEN
+                      when
+                      (c_free
+                        (expression
+                          (expression
+                            not
+                            (expression ( (expression (identifier (all (symbolicConstants *in01)))) ))
+                          )
+                          and
+                          (expression
+                            (
+                            (expression
+                              (expression (identifier (free_identifier fld)))
+                              =
+                              (expression (literal ' xx '))
+                            )
+                            )
+                          )
+                        )
+                      )
+                      \n
+                    )
+                  )
+                )
+                (whenstatement
+                  (when
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor '              ')
+                    (csWHEN
+                      when
+                      (c_free
+                        (expression
+                          (expression
+                            (function
+                              (functionName (free_identifier %sst))
+                              (args
+                                (
+                                (expression (identifier (free_identifier a)))
+                                :
+                                (expression
+                                  (
+                                  (expression
+                                    (expression (identifier (free_identifier x)))
+                                    +
+                                    (expression (number 4))
+                                  )
+                                  )
+                                )
+                                :
+                                (expression (number 3))
+                                )
+                              )
+                            )
+                          )
+                          =
+                          (expression (literal ' ABC '))
+                        )
+                      )
+                      \n
+                    )
+                  )
+                )
+                (other
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (csOTHER
+                    other
+                    (cspec_fixed_standard_parts
+                      (factor '              ')
+                      (resultType '              ')
+                      '     '
+                      '  '
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      \n
+                    )
+                  )
+                )
+                (endselect
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (csENDSL
+                    endsl
+                    (cspec_fixed_standard_parts
+                      (factor '              ')
+                      (resultType '              ')
+                      '     '
+                      '  '
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      (resultIndicator '  ')
+                      \n
+                    )
+                  )
+                )
+              )
+            )
+          )
+          (statement (directive ' /' (beginfree_directive Free) \n))
+          (statement
+            (block
+              (selectstatement
+                (beginselect (op_select SELECT) ;)
                 (whenstatement
                   (when
                     (op_when
@@ -836,14 +825,9 @@ EOL                      <
               )
             )
             ;
-            (statement
-              (free
-                (baseExpression (expression (identifier (free_identifier (op_code other)))))
-                ;
-              )
-            )
           )
         )
+        (other (op_other other) ;)
         (endselect (op_endsl endsl) ;)
       )
     )
