@@ -45,7 +45,7 @@ free_linecomments: COMMENTS comments;
 comments: COMMENTS_TEXT; 
 //just_comments: COMMENTS COMMENTS_TEXT COMMENTS_EOL;
 
-dspec:  DS_Standalone name=identifier datatype? FREE_SEMI free_linecomments?;
+dspec:  DS_Standalone name=identifier datatype? (identifier|function)* FREE_SEMI free_linecomments?;
 datatype: identifier args?; 
 dcl_ds:  DS_DataStructureStart (identifier | function)* FREE_SEMI?  
 	dcl_ds_field*
