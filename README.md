@@ -11,3 +11,5 @@
 [David Gregory](https://github.com/DavidGregory084)
 
 [Eric Wilson](https://github.com/TheEricWilson)
+
+[Daniel Goodwin](https://github.com/danielgoodwin)
