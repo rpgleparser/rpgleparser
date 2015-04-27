@@ -1,0 +1,54 @@
+/*===TOKENS===*/
+HIDDEN:COMMENTS          <   //>
+HIDDEN:COMMENTS_TEXT     < Define using the LIKE keyword                                                           >
+DS_Standalone            <DCL-S>
+ID                       <cust_index>
+KEYWORD_LIKE             <LIKE>
+'('                      <(>
+ID                       <index>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:COMMENTS          <   //>
+HIDDEN:COMMENTS_TEXT     <Specify length adjustment with LIKE keyword                                              >
+DS_Standalone            <DCL-S>
+ID                       <big_index>
+KEYWORD_LIKE             <LIKE>
+'('                      <(>
+ID                       <index>
+COLON                    <:>
+'+'                      <+>
+NUMBER                   <6>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    DCL-S
+    (identifier (free_identifier (idOrKeyword cust_index)))
+    (keyword
+      (keyword_like
+        LIKE
+        (
+        (simpleExpression (identifier (free_identifier (idOrKeyword index))))
+        )
+      )
+    )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier (idOrKeyword big_index)))
+    (keyword
+      (keyword_like
+        LIKE
+        (
+        (simpleExpression (identifier (free_identifier (idOrKeyword index))))
+        :
+        (like_lengthAdjustment (sign +) (number 6))
+        )
+      )
+    )
+    ;
+  )
+)
+/*======*/

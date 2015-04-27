@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -32,7 +32,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -102,8 +102,8 @@ OP_ACQ                   <acq>
 ID                       <qpadev1>
 ID                       <orch01dspf>
 FREE_SEMI                <;>
-COMMENTS                 <     //>
-COMMENTS_TEXT            <comments                                                                               >
+HIDDEN:COMMENTS          <     //>
+HIDDEN:COMMENTS_TEXT     <comments                                                                               >
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
@@ -250,8 +250,8 @@ EOL                      <
           (op_acq
             ACQ
             (cs_operationExtender ( e ))
-            (identifier (free_identifier qpadev0))
-            (identifier (free_identifier ORCH01DSPF))
+            (identifier (free_identifier (idOrKeyword qpadev0)))
+            (identifier (free_identifier (idOrKeyword ORCH01DSPF)))
           )
         )
       )
@@ -264,8 +264,8 @@ EOL                      <
         (op
           (op_acq
             acq
-            (identifier (free_identifier qpadev1))
-            (identifier (free_identifier orch01dspf))
+            (identifier (free_identifier (idOrKeyword qpadev1)))
+            (identifier (free_identifier (idOrKeyword orch01dspf)))
           )
         )
       )

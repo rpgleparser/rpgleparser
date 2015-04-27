@@ -140,7 +140,12 @@ PS_KEYWORDS              <                                                      
     (statement
       (free
         (baseExpression
-          (op (op_return return (expression (identifier (free_identifier Result)))))
+          (op
+            (op_return
+              return
+              (expression (identifier (free_identifier (idOrKeyword Result))))
+            )
+          )
         )
         ;
       )

@@ -89,9 +89,9 @@ COLON                    <:>
 ID                       <B0>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 1                                                   >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 1                                                   >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <ison>
 '='                      <=>
@@ -106,9 +106,9 @@ StringContent            <40>
 StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 2                                                 >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 2                                                 >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <ison>
 '='                      <=>
@@ -121,9 +121,9 @@ StringContent            <01>
 StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 3                                                >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 3                                                >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <ison>
 '='                      <=>
@@ -141,16 +141,16 @@ StringContent            <0F0F>
 StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 4                                    >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 4                                    >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
 >
-EMPTY_LINE               <                                                                           >
-COMMENTS_TEXT            <                   >
+HIDDEN:EMPTY_LINE        <                                                                           >
+HIDDEN:COMMENTS_TEXT     <                   >
 /*===TREE===*/
 (r
   (statement
@@ -165,16 +165,16 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier ison)))
+              (expression (identifier (free_identifier (idOrKeyword ison))))
               =
               (expression
                 (bif
                   (bif_bitand
                     %BITAND
                     (
-                    (expression (identifier (free_identifier HEXVAL)))
+                    (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
                     :
-                    (expression (identifier (free_identifier B0)))
+                    (expression (identifier (free_identifier (idOrKeyword B0))))
                     )
                   )
                 )
@@ -198,7 +198,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier ison)))
+              (expression (identifier (free_identifier (idOrKeyword ison))))
               =
               (expression
                 (bif
@@ -231,14 +231,14 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier ison)))
+              (expression (identifier (free_identifier (idOrKeyword ison))))
               =
               (expression
                 (bif
                   (bif_bitand
                     %bitand
                     (
-                    (expression (identifier (free_identifier hexval)))
+                    (expression (identifier (free_identifier (idOrKeyword hexval))))
                     :
                     (expression (literal x' 10 '))
                     )
@@ -264,7 +264,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier ison)))
+              (expression (identifier (free_identifier (idOrKeyword ison))))
               =
               (expression
                 (bif
@@ -272,10 +272,17 @@ COMMENTS_TEXT            <                   >
                     %BItand
                     (
                     (expression
-                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_str
+                          %str
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     :
-                    (expression (identifier (free_identifier bitval)))
+                    (expression (identifier (free_identifier (idOrKeyword bitval))))
                     :
                     (expression (literal x' 0F0F '))
                     )
@@ -296,16 +303,16 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier ison)))
+              (expression (identifier (free_identifier (idOrKeyword ison))))
               =
               (expression
                 (bif
                   (bif_bitand
                     %bitand
                     (
-                    (expression (identifier (free_identifier HEXVAL)))
+                    (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
                     :
-                    (expression (identifier (free_identifier B0)))
+                    (expression (identifier (free_identifier (idOrKeyword B0))))
                     )
                   )
                 )
@@ -323,7 +330,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier ison)))
+              (expression (identifier (free_identifier (idOrKeyword ison))))
               =
               (expression
                 (bif
@@ -350,14 +357,14 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier ison)))
+              (expression (identifier (free_identifier (idOrKeyword ison))))
               =
               (expression
                 (bif
                   (bif_bitand
                     %Bitand
                     (
-                    (expression (identifier (free_identifier hexval)))
+                    (expression (identifier (free_identifier (idOrKeyword hexval))))
                     :
                     (expression (literal x' 01 '))
                     )
@@ -377,7 +384,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier ison)))
+              (expression (identifier (free_identifier (idOrKeyword ison))))
               =
               (expression
                 (bif
@@ -385,10 +392,17 @@ COMMENTS_TEXT            <                   >
                     %Bitand
                     (
                     (expression
-                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_str
+                          %str
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     :
-                    (expression (identifier (free_identifier bitval)))
+                    (expression (identifier (free_identifier (idOrKeyword bitval))))
                     :
                     (expression (literal x' 0F0F '))
                     )

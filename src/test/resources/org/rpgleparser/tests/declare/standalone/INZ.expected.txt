@@ -1,0 +1,175 @@
+/*===TOKENS===*/
+DS_Standalone            <dcl-s>
+ID                       <a>
+CHAR                     <char>
+'('                      <(>
+NUMBER                   <1>
+')'                      <)>
+KEYWORD_INZ              <INZ>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <A>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <dcl-s>
+ID                       <b>
+CHAR                     <char>
+'('                      <(>
+NUMBER                   <1>
+')'                      <)>
+KEYWORD_INZ              <INZ>
+'('                      <(>
+SPLAT_SYS                <*SYS>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <dcl-s>
+ID                       <c>
+CHAR                     <char>
+'('                      <(>
+NUMBER                   <1>
+')'                      <)>
+KEYWORD_INZ              <INZ>
+'('                      <(>
+SPLAT_JOB                <*JOB>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <dcl-s>
+ID                       <d>
+CHAR                     <char>
+'('                      <(>
+NUMBER                   <1>
+')'                      <)>
+KEYWORD_INZ              <INZ>
+'('                      <(>
+SPLAT_EXTDFT             <*EXTDFT>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <dcl-s>
+ID                       <e>
+CHAR                     <char>
+'('                      <(>
+NUMBER                   <1>
+')'                      <)>
+KEYWORD_INZ              <INZ>
+'('                      <(>
+SPLAT_NULL               <*NULL>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <dcl-s>
+ID                       <f>
+CHAR                     <char>
+'('                      <(>
+NUMBER                   <1>
+')'                      <)>
+KEYWORD_INZ              <INZ>
+'('                      <(>
+SPLAT_USER               <*USER>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <dcl-s>
+ID                       <g>
+CHAR                     <char>
+'('                      <(>
+NUMBER                   <1>
+')'                      <)>
+KEYWORD_INZ              <INZ>
+'('                      <(>
+ID                       <*LIKEDS>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword a)))
+    (datatype (datatypeName char) (args ( (expression (number 1)) )))
+    (keyword (keyword_inz INZ ( (simpleExpression (literal ' A ')) )))
+    ;
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword b)))
+    (datatype (datatypeName char) (args ( (expression (number 1)) )))
+    (keyword
+      (keyword_inz
+        INZ
+        (
+        (simpleExpression (identifier (all (symbolicConstants *SYS))))
+        )
+      )
+    )
+    ;
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword c)))
+    (datatype (datatypeName char) (args ( (expression (number 1)) )))
+    (keyword
+      (keyword_inz
+        INZ
+        (
+        (simpleExpression (identifier (all (symbolicConstants *JOB))))
+        )
+      )
+    )
+    ;
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword d)))
+    (datatype (datatypeName char) (args ( (expression (number 1)) )))
+    (keyword
+      (keyword_inz
+        INZ
+        (
+        (simpleExpression (identifier (all (symbolicConstants *EXTDFT))))
+        )
+      )
+    )
+    ;
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword e)))
+    (datatype (datatypeName char) (args ( (expression (number 1)) )))
+    (keyword
+      (keyword_inz
+        INZ
+        (
+        (simpleExpression (identifier (all (symbolicConstants *NULL))))
+        )
+      )
+    )
+    ;
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword f)))
+    (datatype (datatypeName char) (args ( (expression (number 1)) )))
+    (keyword
+      (keyword_inz
+        INZ
+        (
+        (simpleExpression (identifier (all (symbolicConstants *USER))))
+        )
+      )
+    )
+    ;
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword g)))
+    (datatype (datatypeName char) (args ( (expression (number 1)) )))
+    (keyword
+      (keyword_inz
+        INZ
+        (
+        (simpleExpression (identifier (free_identifier (idOrKeyword *LIKEDS))))
+        )
+      )
+    )
+    ;
+  )
+)
+/*======*/

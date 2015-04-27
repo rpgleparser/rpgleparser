@@ -83,8 +83,8 @@ DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
 >
-EMPTY_LINE               <                                                                           >
-COMMENTS_TEXT            <                   >
+HIDDEN:EMPTY_LINE        <                                                                           >
+HIDDEN:COMMENTS_TEXT     <                   >
 /*===TREE===*/
 (r
   (statement
@@ -115,15 +115,22 @@ COMMENTS_TEXT            <                   >
           Eval
           (c_free
             (expression
-              (expression (identifier (free_identifier ReturnDir)))
+              (expression (identifier (free_identifier (idOrKeyword ReturnDir))))
               =
               (expression
                 (function
-                  (functionName (free_identifier opendir))
+                  (functionName (free_identifier (idOrKeyword opendir)))
                   (args
                     (
                     (expression
-                      (bif (bif_addr %addr ( (expression (identifier (free_identifier FullName))) )))
+                      (bif
+                        (bif_addr
+                          %addr
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword FullName))))
+                          )
+                        )
+                      )
                     )
                     )
                   )
@@ -143,10 +150,17 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier P)))
+              (expression (identifier (free_identifier (idOrKeyword P))))
               =
               (expression
-                (bif (bif_addr %addr ( (expression (identifier (free_identifier subf))) )))
+                (bif
+                  (bif_addr
+                    %addr
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword subf))))
+                    )
+                  )
+                )
               )
             )
           )
@@ -163,11 +177,25 @@ COMMENTS_TEXT            <                   >
             if
             (expression
               (expression
-                (bif (bif_addr %addr ( (expression (identifier (free_identifier chatfld))) )))
+                (bif
+                  (bif_addr
+                    %addr
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword chatfld))))
+                    )
+                  )
+                )
               )
               =
               (expression
-                (bif (bif_addr %ADDR ( (expression (identifier (free_identifier SUBF))) )))
+                (bif
+                  (bif_addr
+                    %ADDR
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword SUBF))))
+                    )
+                  )
+                )
               )
             )
           )
@@ -179,7 +207,7 @@ COMMENTS_TEXT            <                   >
               (op
                 (op_eval
                   (assignmentExpression
-                    (expression (identifier (free_identifier P)))
+                    (expression (identifier (free_identifier (idOrKeyword P))))
                     =
                     (expression
                       (bif
@@ -188,11 +216,11 @@ COMMENTS_TEXT            <                   >
                           (
                           (expression
                             (function
-                              (functionName (free_identifier ARRAY))
+                              (functionName (free_identifier (idOrKeyword ARRAY)))
                               (args
                                 (
                                 (expression
-                                  (expression (identifier (free_identifier X)))
+                                  (expression (identifier (free_identifier (idOrKeyword X))))
                                   +
                                   (expression (number 10))
                                 )
@@ -221,17 +249,31 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier prefix_size)))
+              (expression (identifier (free_identifier (idOrKeyword prefix_size))))
               =
               (expression
                 (expression
                   (bif
-                    (bif_addr %addr ( (expression (identifier (free_identifier fld))) : *data ))
+                    (bif_addr
+                      %addr
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword fld))))
+                      :
+                      *data
+                      )
+                    )
                   )
                 )
                 -
                 (expression
-                  (bif (bif_addr %addr ( (expression (identifier (free_identifier fld))) )))
+                  (bif
+                    (bif_addr
+                      %addr
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword fld))))
+                      )
+                    )
+                  )
                 )
               )
             )

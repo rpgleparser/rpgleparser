@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -67,7 +67,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -123,9 +123,9 @@ EOL                      <
           EVAL-CORR
           (c_free
             (expression
-              (expression (identifier (free_identifier x)))
+              (expression (identifier (free_identifier (idOrKeyword x))))
               =
-              (expression (identifier (free_identifier y)))
+              (expression (identifier (free_identifier (idOrKeyword y))))
             )
           )
           \n
@@ -145,9 +145,9 @@ EOL                      <
           Eval-corr
           (c_free
             (expression
-              (expression (identifier (free_identifier fld01)))
+              (expression (identifier (free_identifier (idOrKeyword fld01))))
               =
-              (expression (identifier (free_identifier fld02)))
+              (expression (identifier (free_identifier (idOrKeyword fld02))))
             )
           )
           \n
@@ -163,9 +163,9 @@ EOL                      <
           (op_eval_corr
             EVAL-CORR
             (assignmentExpression
-              (expression (identifier (free_identifier x)))
+              (expression (identifier (free_identifier (idOrKeyword x))))
               =
-              (expression (identifier (free_identifier y)))
+              (expression (identifier (free_identifier (idOrKeyword y))))
             )
           )
         )
@@ -180,9 +180,9 @@ EOL                      <
           (op_eval_corr
             eval-corr
             (assignmentExpression
-              (expression (identifier (free_identifier fldds)))
+              (expression (identifier (free_identifier (idOrKeyword fldds))))
               =
-              (expression (identifier (free_identifier fld2ds)))
+              (expression (identifier (free_identifier (idOrKeyword fld2ds))))
             )
           )
         )
@@ -198,9 +198,9 @@ EOL                      <
             Eval-corr
             (cs_operationExtender ( h ))
             (assignmentExpression
-              (expression (identifier (free_identifier ds01)))
+              (expression (identifier (free_identifier (idOrKeyword ds01))))
               =
-              (expression (identifier (free_identifier ds02)))
+              (expression (identifier (free_identifier (idOrKeyword ds02))))
             )
           )
         )

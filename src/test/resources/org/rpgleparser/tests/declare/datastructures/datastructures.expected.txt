@@ -1,0 +1,126 @@
+/*===TOKENS===*/
+HIDDEN:COMMENTS          <  //>
+HIDDEN:COMMENTS_TEXT     < Program described data structure                                                         >
+DS_DataStructureStart    <DCL-DS>
+ID                       <data_str_1>
+FREE_SEMI                <;>
+ID                       <emp_name>
+CHAR                     <CHAR>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <first_name>
+CHAR                     <CHAR>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <salary>
+PACKED                   <PACKED>
+'('                      <(>
+NUMBER                   <8>
+COLON                    <:>
+NUMBER                   <2>
+')'                      <)>
+FREE_SEMI                <;>
+DS_DataStructureEnd      <END-DS>
+FREE_SEMI                <;>
+HIDDEN:COMMENTS          <  //>
+HIDDEN:COMMENTS_TEXT     < Program described data structure                                                         >
+DS_DataStructureStart    <DCL-DS>
+ID                       <data_str_2>
+FREE_SEMI                <;>
+KEYWORD_VALUE            <value>
+VARCHAR                  <VARCHAR>
+'('                      <(>
+NUMBER                   <4>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <index>
+INT                      <INT>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+DS_DataStructureEnd      <END-DS>
+ID                       <data_str_2>
+FREE_SEMI                <;>
+HIDDEN:COMMENTS          <  //>
+HIDDEN:COMMENTS_TEXT     <Unnamed data structure                                                                    >
+DS_DataStructureStart    <DCL-DS>
+MULT_NOSPACE             <*>
+ID                       <N>
+FREE_SEMI                <;>
+ID                       <item>
+VARCHAR                  <VARCHAR>
+'('                      <(>
+NUMBER                   <40>
+')'                      <)>
+FREE_SEMI                <;>
+DS_DataStructureEnd      <END-DS>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (dcl_ds
+      DCL-DS
+      (identifier (free_identifier (idOrKeyword data_str_1)))
+      ;
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword emp_name)))
+        (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
+        ;
+      )
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword first_name)))
+        (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
+        ;
+      )
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword salary)))
+        (datatype
+          (datatypeName PACKED)
+          (args ( (expression (number 8)) : (expression (number 2)) ))
+        )
+        ;
+      )
+      (end_dcl_ds END-DS)
+      ;
+    )
+  )
+  (statement
+    (dcl_ds
+      DCL-DS
+      (identifier (free_identifier (idOrKeyword data_str_2)))
+      ;
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword value)))
+        (datatype (datatypeName VARCHAR) (args ( (expression (number 4)) )))
+        ;
+      )
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword index)))
+        (datatype (datatypeName INT) (args ( (expression (number 10)) )))
+        ;
+      )
+      (end_dcl_ds END-DS (identifier (free_identifier (idOrKeyword data_str_2))))
+      ;
+    )
+  )
+  (statement
+    (dcl_ds
+      DCL-DS
+      (identifier (free_identifier * (idOrKeyword N)))
+      ;
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword item)))
+        (datatype (datatypeName VARCHAR) (args ( (expression (number 40)) )))
+        ;
+      )
+      (end_dcl_ds END-DS)
+      ;
+    )
+  )
+)
+/*======*/

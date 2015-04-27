@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -313,7 +313,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -391,7 +391,7 @@ EOL                      <
               WHEN
               (c_free
                 (expression
-                  (expression (identifier (free_identifier C)))
+                  (expression (identifier (free_identifier (idOrKeyword C))))
                   =
                   (expression (number 1))
                 )
@@ -485,7 +485,7 @@ EOL                      <
                           (expression
                             (
                             (expression
-                              (expression (identifier (free_identifier Y)))
+                              (expression (identifier (free_identifier (idOrKeyword Y))))
                               (comparisonOperator >)
                               (expression (number 2))
                             )
@@ -495,7 +495,7 @@ EOL                      <
                           (expression
                             (
                             (expression
-                              (expression (identifier (free_identifier X)))
+                              (expression (identifier (free_identifier (idOrKeyword X))))
                               (comparisonOperator <)
                               (expression (number 5))
                             )
@@ -514,7 +514,11 @@ EOL                      <
                     (onOffIndicatorsFlag ' ')
                     (cs_indicators '  ')
                     (factor '              ')
-                    (csWHEN when (c_free (expression (identifier (free_identifier *INKC)))) \n)
+                    (csWHEN
+                      when
+                      (c_free (expression (identifier (free_identifier (idOrKeyword *INKC)))))
+                      \n
+                    )
                   )
                 )
                 (other
@@ -602,7 +606,7 @@ EOL                      <
                           (expression
                             (
                             (expression
-                              (expression (identifier (free_identifier fld)))
+                              (expression (identifier (free_identifier (idOrKeyword fld))))
                               =
                               (expression (literal ' xx '))
                             )
@@ -627,15 +631,15 @@ EOL                      <
                         (expression
                           (expression
                             (function
-                              (functionName (free_identifier %sst))
+                              (functionName (free_identifier (idOrKeyword %sst)))
                               (args
                                 (
-                                (expression (identifier (free_identifier a)))
+                                (expression (identifier (free_identifier (idOrKeyword a))))
                                 :
                                 (expression
                                   (
                                   (expression
-                                    (expression (identifier (free_identifier x)))
+                                    (expression (identifier (free_identifier (idOrKeyword x))))
                                     +
                                     (expression (number 4))
                                   )
@@ -709,7 +713,7 @@ EOL                      <
                       WHEN
                       (indicator_expr
                         (expression
-                          (expression (identifier (free_identifier c)))
+                          (expression (identifier (free_identifier (idOrKeyword c))))
                           =
                           (expression (number 1))
                         )
@@ -743,7 +747,7 @@ EOL                      <
                   (expression
                     (
                     (expression
-                      (expression (identifier (free_identifier fld)))
+                      (expression (identifier (free_identifier (idOrKeyword fld))))
                       =
                       (expression (literal ' xx '))
                     )
@@ -763,15 +767,15 @@ EOL                      <
                 (expression
                   (expression
                     (function
-                      (functionName (free_identifier %sst))
+                      (functionName (free_identifier (idOrKeyword %sst)))
                       (args
                         (
-                        (expression (identifier (free_identifier a)))
+                        (expression (identifier (free_identifier (idOrKeyword a))))
                         :
                         (expression
                           (
                           (expression
-                            (expression (identifier (free_identifier x)))
+                            (expression (identifier (free_identifier (idOrKeyword x))))
                             +
                             (expression (number 4))
                           )
@@ -803,7 +807,7 @@ EOL                      <
                     (expression
                       (
                       (expression
-                        (expression (identifier (free_identifier Y)))
+                        (expression (identifier (free_identifier (idOrKeyword Y))))
                         (comparisonOperator >)
                         (expression (number 2))
                       )
@@ -813,7 +817,7 @@ EOL                      <
                     (expression
                       (
                       (expression
-                        (expression (identifier (free_identifier X)))
+                        (expression (identifier (free_identifier (idOrKeyword X))))
                         (comparisonOperator <)
                         (expression (number 5))
                       )

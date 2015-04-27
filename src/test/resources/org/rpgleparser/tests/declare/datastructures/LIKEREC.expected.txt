@@ -1,0 +1,27 @@
+/*===TOKENS===*/
+HIDDEN:COMMENTS          <  //>
+HIDDEN:COMMENTS_TEXT     <D CurrentRec      ds                  likerec(CusRec)                                     >
+DS_DataStructureStart    <DCL-DS>
+ID                       <custoutput>
+KEYWORD_LIKEREC          <LIKEREC>
+'('                      <(>
+ID                       <custrec>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (dcl_ds
+      DCL-DS
+      (identifier (free_identifier (idOrKeyword custoutput)))
+      (keyword_likerec
+        LIKEREC
+        (
+        (simpleExpression (identifier (free_identifier (idOrKeyword custrec))))
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/

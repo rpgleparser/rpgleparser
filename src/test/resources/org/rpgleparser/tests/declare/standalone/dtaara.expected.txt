@@ -1,0 +1,56 @@
+/*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <01   >
+DS_FIXED                 <D>
+NAME                     <TestDa1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <dtaara('TESTDA')                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <02   >
+DS_Standalone            <dcl-s>
+ID                       <TestDa1>
+CHAR                     <char>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+KEYWORD_DTAARA           <dtaara>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <TESTDA>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name TestDa1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '     10'
+      ' '
+      '  '
+      ' '
+      'dtaara('TESTDA')                                        '
+      \r\n
+    )
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword TestDa1)))
+    (datatype (datatypeName char) (args ( (expression (number 10)) )))
+    (keyword (keyword_dtaara dtaara ( (literal ' TESTDA ') )))
+    ;
+  )
+)
+/*======*/

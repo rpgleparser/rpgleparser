@@ -1,14 +1,36 @@
 /*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <01   >
+DS_FIXED                 <D>
+NAME                     <Bin1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <      5>
+DATA_TYPE                <B>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <02   >
+DS_Standalone            <dcl-s>
+ID                       <Bin1>
+BINDEC                   <bindec>
+'('                      <(>
+NUMBER                   <5>
+')'                      <)>
+FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <numRecords>
-ID                       <BINDEC>
+BINDEC                   <BINDEC>
 '('                      <(>
 NUMBER                   <9>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <bonus>
-ID                       <BINDEC>
+BINDEC                   <BINDEC>
 '('                      <(>
 NUMBER                   <9>
 COLON                    <:>
@@ -17,20 +39,39 @@ NUMBER                   <2>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
-  (dspec
-    DCL-S
-    (identifier (free_identifier numRecords))
-    (datatype
-      (identifier (free_identifier BINDEC))
-      (args ( (expression (number 9)) ))
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Bin1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '      5'
+      B
+      ' 0'
+      ' '
+      '                                                        '
+      \r\n
     )
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Bin1)))
+    (datatype (datatypeName bindec) (args ( (expression (number 5)) )))
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier bonus))
+    (identifier (free_identifier (idOrKeyword numRecords)))
+    (datatype (datatypeName BINDEC) (args ( (expression (number 9)) )))
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier (idOrKeyword bonus)))
     (datatype
-      (identifier (free_identifier BINDEC))
+      (datatypeName BINDEC)
       (args ( (expression (number 9)) : (expression (number 2)) ))
     )
     ;

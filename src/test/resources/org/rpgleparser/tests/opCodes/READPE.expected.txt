@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -234,14 +234,14 @@ DIR_FREE                 <Free>
 EOL                      <
 >
 OP_READPE                <READPE>
-ID                       <*key>
+SPLAT_KEY                <*key>
 ID                       <myfile>
 FREE_SEMI                <;>
 OP_READPE                <READPE>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-ID                       <*KEY>
+SPLAT_KEY                <*KEY>
 ID                       <myfile>
 FREE_SEMI                <;>
 OP_READPE                <readpe>
@@ -281,7 +281,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -648,8 +648,8 @@ EOL                      <
         (op
           (op_readpe
             READPE
-            (search_arg (expression (identifier (free_identifier *key))))
-            (identifier (free_identifier myfile))
+            (search_arg (expression (identifier (all (symbolicConstants *key)))))
+            (identifier (free_identifier (idOrKeyword myfile)))
           )
         )
       )
@@ -663,8 +663,8 @@ EOL                      <
           (op_readpe
             READPE
             (cs_operationExtender ( e ))
-            (search_arg (expression (identifier (free_identifier *KEY))))
-            (identifier (free_identifier myfile))
+            (search_arg (expression (identifier (all (symbolicConstants *KEY)))))
+            (identifier (free_identifier (idOrKeyword myfile)))
           )
         )
       )
@@ -681,7 +681,7 @@ EOL                      <
             (search_arg
               (args ( (expression (literal ' abc ')) : (expression (literal ' def ')) ))
             )
-            (identifier (free_identifier myfile))
+            (identifier (free_identifier (idOrKeyword myfile)))
           )
         )
       )
@@ -695,8 +695,8 @@ EOL                      <
           (op_readpe
             READPE
             (search_arg (expression (literal ' KEY ')))
-            (identifier (free_identifier myfile))
-            (identifier (free_identifier myds))
+            (identifier (free_identifier (idOrKeyword myfile)))
+            (identifier (free_identifier (idOrKeyword myds)))
           )
         )
       )
@@ -711,8 +711,8 @@ EOL                      <
             readpe
             (cs_operationExtender ( e ))
             (search_arg (expression (literal ' KEY ')))
-            (identifier (free_identifier myfile))
-            (identifier (free_identifier myds))
+            (identifier (free_identifier (idOrKeyword myfile)))
+            (identifier (free_identifier (idOrKeyword myds)))
           )
         )
       )

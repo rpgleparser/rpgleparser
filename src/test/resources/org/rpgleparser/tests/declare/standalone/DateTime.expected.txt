@@ -1,66 +1,66 @@
 /*===TOKENS===*/
 DS_Standalone            <DCL-S>
 ID                       <duedate>
-ID                       <DATE>
+DATE_                    <DATE>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <displayDate>
-ID                       <DATE>
+DATE_                    <DATE>
 '('                      <(>
 SPLAT_YMD                <*YMD>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <startTime>
-ID                       <TIME>
+TIME                     <TIME>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <displayTime>
-ID                       <TIME>
+TIME                     <TIME>
 '('                      <(>
 SPLAT_USA                <*USA>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <start>
-ID                       <TIMESTAMP>
+TIMESTAMP                <TIMESTAMP>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (dspec
     DCL-S
-    (identifier (free_identifier duedate))
-    (datatype (identifier (free_identifier DATE)))
+    (identifier (free_identifier (idOrKeyword duedate)))
+    (datatype (datatypeName DATE))
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier displayDate))
+    (identifier (free_identifier (idOrKeyword displayDate)))
     (datatype
-      (identifier (free_identifier DATE))
+      (datatypeName DATE)
       (args ( (expression (identifier (all (symbolicConstants *YMD)))) ))
     )
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier startTime))
-    (datatype (identifier (free_identifier TIME)))
+    (identifier (free_identifier (idOrKeyword startTime)))
+    (datatype (datatypeName TIME))
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier displayTime))
+    (identifier (free_identifier (idOrKeyword displayTime)))
     (datatype
-      (identifier (free_identifier TIME))
+      (datatypeName TIME)
       (args ( (expression (identifier (all (symbolicConstants *USA)))) ))
     )
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier start))
-    (datatype (identifier (free_identifier TIMESTAMP)))
+    (identifier (free_identifier (idOrKeyword start)))
+    (datatype (datatypeName TIMESTAMP))
     ;
   )
 )

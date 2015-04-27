@@ -465,28 +465,6 @@ public class TestFREE {
     }
 
     @Test
-    public void testPR() {
-        String inputString =
-                "    DCL-PR CLR014 EXTPGM;\r\n"
-                        + "    TRNSDT_ LIKE(TRNSDT);\r\n"
-                        + "    END-PR;";
-        expectTokensForFreeSnippet(inputString,
-                "DCL-PR", "CLR014", "EXTPGM", ";", "TRNSDT_",
-                "LIKE", "(", "TRNSDT", ")", ";", "END-PR", ";");
-    }
-
-    @Test
-    public void testPI() {
-        String inputString =
-                "    DCL-PI CLR014;\r\n"
-                        + "TRNSDT PACKED(7);\r\n"
-                        + "END-PI;";
-        expectTokensForFreeSnippet(inputString,
-                "DCL-PI", "CLR014", ";", "TRNSDT", "PACKED",
-                "(", "7", ")", ";", "END-PI", ";");
-    }
-
-    @Test
     public void testConstant() {
         String inputString =
                 "DCL-C CRLF CONST(X'0d25');";

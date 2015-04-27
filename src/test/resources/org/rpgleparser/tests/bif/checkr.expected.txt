@@ -87,9 +87,9 @@ COLON                    <:>
 ID                       <FLD2>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 1                                                   >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 1                                                   >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val2>
 '='                      <=>
@@ -104,9 +104,9 @@ StringContent            <dfsdf,;>
 StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 2                                              >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 2                                              >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val3>
 '='                      <=>
@@ -119,9 +119,9 @@ StringContent            <thersting>
 StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 3                                           >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 3                                           >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val4>
 '='                      <=>
@@ -137,16 +137,16 @@ COLON                    <:>
 NUMBER                   <5>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 4                                     >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 4                                     >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
 >
-EMPTY_LINE               <                                                                           >
-COMMENTS_TEXT            <                   >
+HIDDEN:EMPTY_LINE        <                                                                           >
+HIDDEN:COMMENTS_TEXT     <                   >
 /*===TREE===*/
 (r
   (statement
@@ -161,16 +161,16 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val1)))
+              (expression (identifier (free_identifier (idOrKeyword val1))))
               =
               (expression
                 (bif
                   (bif_checkr
                     %CHECKR
                     (
-                    (expression (identifier (free_identifier FLD1)))
+                    (expression (identifier (free_identifier (idOrKeyword FLD1))))
                     :
-                    (expression (identifier (free_identifier FLD2)))
+                    (expression (identifier (free_identifier (idOrKeyword FLD2))))
                     )
                   )
                 )
@@ -194,7 +194,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val2)))
+              (expression (identifier (free_identifier (idOrKeyword val2))))
               =
               (expression
                 (bif
@@ -227,14 +227,14 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val3)))
+              (expression (identifier (free_identifier (idOrKeyword val3))))
               =
               (expression
                 (bif
                   (bif_checkr
                     %checkr
                     (
-                    (expression (identifier (free_identifier delim)))
+                    (expression (identifier (free_identifier (idOrKeyword delim))))
                     :
                     (expression (literal ' thestirng '))
                     )
@@ -260,7 +260,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val4)))
+              (expression (identifier (free_identifier (idOrKeyword val4))))
               =
               (expression
                 (bif
@@ -268,10 +268,17 @@ COMMENTS_TEXT            <                   >
                     %checkr
                     (
                     (expression
-                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_str
+                          %str
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     :
-                    (expression (identifier (free_identifier mystringfld)))
+                    (expression (identifier (free_identifier (idOrKeyword mystringfld))))
                     :
                     (expression (number 5))
                     )
@@ -292,16 +299,16 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val1)))
+              (expression (identifier (free_identifier (idOrKeyword val1))))
               =
               (expression
                 (bif
                   (bif_checkr
                     %checkr
                     (
-                    (expression (identifier (free_identifier fld1)))
+                    (expression (identifier (free_identifier (idOrKeyword fld1))))
                     :
-                    (expression (identifier (free_identifier FLD2)))
+                    (expression (identifier (free_identifier (idOrKeyword FLD2))))
                     )
                   )
                 )
@@ -319,7 +326,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val2)))
+              (expression (identifier (free_identifier (idOrKeyword val2))))
               =
               (expression
                 (bif
@@ -346,14 +353,14 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val3)))
+              (expression (identifier (free_identifier (idOrKeyword val3))))
               =
               (expression
                 (bif
                   (bif_checkr
                     %Checkr
                     (
-                    (expression (identifier (free_identifier delim)))
+                    (expression (identifier (free_identifier (idOrKeyword delim))))
                     :
                     (expression (literal ' thersting '))
                     )
@@ -373,7 +380,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val4)))
+              (expression (identifier (free_identifier (idOrKeyword val4))))
               =
               (expression
                 (bif
@@ -381,10 +388,17 @@ COMMENTS_TEXT            <                   >
                     %Checkr
                     (
                     (expression
-                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_str
+                          %str
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     :
-                    (expression (identifier (free_identifier mystringfld)))
+                    (expression (identifier (free_identifier (idOrKeyword mystringfld))))
                     :
                     (expression (number 5))
                     )

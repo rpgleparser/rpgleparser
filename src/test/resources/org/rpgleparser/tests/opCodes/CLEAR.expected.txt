@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -106,7 +106,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -250,7 +250,9 @@ EOL                      <
   (statement
     (free
       (baseExpression
-        (op (op_clear clear (expression (identifier (free_identifier ds1)))))
+        (op
+          (op_clear clear (expression (identifier (free_identifier (idOrKeyword ds1)))))
+        )
       )
       ;
     )
@@ -270,7 +272,7 @@ EOL                      <
           (op_clear
             clear
             (identifier (all (symbolicConstants *ALL)))
-            (expression (identifier (free_identifier MODS)))
+            (expression (identifier (free_identifier (idOrKeyword MODS))))
           )
         )
       )
@@ -284,7 +286,7 @@ EOL                      <
           (op_clear
             clear
             (identifier (all (symbolicConstants *nokey)))
-            (expression (identifier (free_identifier mytable)))
+            (expression (identifier (free_identifier (idOrKeyword mytable))))
           )
         )
       )
@@ -299,7 +301,7 @@ EOL                      <
             clear
             (identifier (all (symbolicConstants *NOKEY)))
             (identifier (all (symbolicConstants *all)))
-            (expression (identifier (free_identifier mytable)))
+            (expression (identifier (free_identifier (idOrKeyword mytable))))
           )
         )
       )

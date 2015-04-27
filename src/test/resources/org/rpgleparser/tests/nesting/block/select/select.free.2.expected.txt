@@ -75,7 +75,7 @@ FREE_SEMI                <;>
                   (expression
                     (
                     (expression
-                      (expression (identifier (free_identifier fld)))
+                      (expression (identifier (free_identifier (idOrKeyword fld))))
                       =
                       (expression (literal ' xx '))
                     )
@@ -95,15 +95,15 @@ FREE_SEMI                <;>
                 (expression
                   (expression
                     (function
-                      (functionName (free_identifier %sst))
+                      (functionName (free_identifier (idOrKeyword %sst)))
                       (args
                         (
-                        (expression (identifier (free_identifier a)))
+                        (expression (identifier (free_identifier (idOrKeyword a))))
                         :
                         (expression
                           (
                           (expression
-                            (expression (identifier (free_identifier x)))
+                            (expression (identifier (free_identifier (idOrKeyword x))))
                             +
                             (expression (number 4))
                           )
@@ -135,7 +135,7 @@ FREE_SEMI                <;>
                     (expression
                       (
                       (expression
-                        (expression (identifier (free_identifier Y)))
+                        (expression (identifier (free_identifier (idOrKeyword Y))))
                         (comparisonOperator >)
                         (expression (number 2))
                       )
@@ -145,7 +145,7 @@ FREE_SEMI                <;>
                     (expression
                       (
                       (expression
-                        (expression (identifier (free_identifier X)))
+                        (expression (identifier (free_identifier (idOrKeyword X))))
                         (comparisonOperator <)
                         (expression (number 5))
                       )

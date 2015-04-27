@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -32,7 +32,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -358,8 +358,8 @@ EOL                      <
         (op
           (op_chain
             chain
-            (search_arg (expression (identifier (free_identifier key))))
-            (identifier (free_identifier infile))
+            (search_arg (expression (identifier (free_identifier (idOrKeyword key)))))
+            (identifier (free_identifier (idOrKeyword infile)))
           )
         )
       )
@@ -375,7 +375,7 @@ EOL                      <
             (search_arg
               (args ( (expression (literal ' abc ')) : (expression (literal ' def ')) ))
             )
-            (identifier (free_identifier custrec))
+            (identifier (free_identifier (idOrKeyword custrec)))
           )
         )
       )
@@ -397,21 +397,21 @@ EOL                      <
                     (bif_xlate
                       %xlate
                       (
-                      (expression (identifier (free_identifier custname)))
+                      (expression (identifier (free_identifier (idOrKeyword custname))))
                       :
-                      (expression (identifier (free_identifier LO)))
+                      (expression (identifier (free_identifier (idOrKeyword LO))))
                       :
-                      (expression (identifier (free_identifier HI)))
+                      (expression (identifier (free_identifier (idOrKeyword HI))))
                       )
                     )
                   )
                 )
                 :
-                (expression (identifier (free_identifier code)))
+                (expression (identifier (free_identifier (idOrKeyword code))))
                 )
               )
             )
-            (identifier (free_identifier custrec))
+            (identifier (free_identifier (idOrKeyword custrec)))
           )
         )
       )
@@ -425,8 +425,8 @@ EOL                      <
           (op_chain
             chain
             (cs_operationExtender ( n e ))
-            (search_arg (expression (identifier (free_identifier custrec))))
-            (identifier (free_identifier custrecDS))
+            (search_arg (expression (identifier (free_identifier (idOrKeyword custrec)))))
+            (identifier (free_identifier (idOrKeyword custrecDS)))
           )
         )
       )

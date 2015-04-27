@@ -32,14 +32,16 @@ FREE_SEMI                <;>
             (assignmentExpression
               (expression
                 (identifier
-                  (multipart_identifier (indexed_identifier (free_identifier arr) ( * )))
+                  (multipart_identifier
+                    (indexed_identifier (free_identifier (idOrKeyword arr)) ( * ))
+                  )
                 )
               )
               =
               (expression
-                (expression (identifier (free_identifier field2)))
+                (expression (identifier (free_identifier (idOrKeyword field2))))
                 *
-                (expression (identifier (free_identifier filed3)))
+                (expression (identifier (free_identifier (idOrKeyword filed3))))
               )
             )
           )
@@ -56,20 +58,20 @@ FREE_SEMI                <;>
             (identifier
               (multipart_identifier
                 (indexed_identifier
-                  (free_identifier cust)
+                  (free_identifier (idOrKeyword cust))
                   (
-                  (expression (identifier (free_identifier custom)))
+                  (expression (identifier (free_identifier (idOrKeyword custom))))
                   )
                 )
                 .
                 (indexed_identifier
-                  (free_identifier account)
+                  (free_identifier (idOrKeyword account))
                   (
-                  (expression (identifier (free_identifier accum)))
+                  (expression (identifier (free_identifier (idOrKeyword accum))))
                   )
                 )
                 .
-                (free_identifier balance)
+                (free_identifier (idOrKeyword balance))
               )
             )
           )

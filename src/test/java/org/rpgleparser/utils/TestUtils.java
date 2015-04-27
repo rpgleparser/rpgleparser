@@ -68,6 +68,9 @@ public class TestUtils {
     	StringBuilder sb = new StringBuilder();
 		for (Token token:tokens){ // A token from a ParseTree object
     		String displayName = vocabulary.getDisplayName(token.getType());
+    		if(token.getChannel()==1){
+    			displayName="HIDDEN:" + displayName ;	
+    		}
     		sb.append(displayName);
     		if(displayName.length()<25){
     			sb.append("                         ".substring(displayName.length(),25));

@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -130,7 +130,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -186,8 +186,8 @@ EOL                      <
         (c_free
           (expression
             (function
-              (functionName (free_identifier proc1))
-              (args ( (expression (identifier (free_identifier parm1))) ))
+              (functionName (free_identifier (idOrKeyword proc1)))
+              (args ( (expression (identifier (free_identifier (idOrKeyword parm1)))) ))
             )
           )
         )
@@ -207,12 +207,12 @@ EOL                      <
         (c_free
           (expression
             (function
-              (functionName (free_identifier proc2))
+              (functionName (free_identifier (idOrKeyword proc2)))
               (args
                 (
-                (expression (identifier (free_identifier parm1)))
+                (expression (identifier (free_identifier (idOrKeyword parm1))))
                 :
-                (expression (identifier (free_identifier parm2)))
+                (expression (identifier (free_identifier (idOrKeyword parm2))))
                 )
               )
             )
@@ -234,12 +234,12 @@ EOL                      <
         (c_free
           (expression
             (function
-              (functionName (free_identifier proc2))
+              (functionName (free_identifier (idOrKeyword proc2)))
               (args
                 (
-                (expression (identifier (free_identifier parm1)))
+                (expression (identifier (free_identifier (idOrKeyword parm1))))
                 :
-                (expression (identifier (free_identifier parm2)))
+                (expression (identifier (free_identifier (idOrKeyword parm2))))
                 )
               )
             )
@@ -261,14 +261,14 @@ EOL                      <
         (c_free
           (expression
             (function
-              (functionName (free_identifier proc3))
+              (functionName (free_identifier (idOrKeyword proc3)))
               (args
                 (
                 (expression
                   (expression
                     (function
-                      (functionName (free_identifier arr))
-                      (args ( (expression (identifier (free_identifier x))) ))
+                      (functionName (free_identifier (idOrKeyword arr)))
+                      (args ( (expression (identifier (free_identifier (idOrKeyword x)))) ))
                     )
                   )
                   +
@@ -290,9 +290,9 @@ EOL                      <
         (op
           (op_callp
             callp
-            (identifier (free_identifier proc1))
+            (identifier (free_identifier (idOrKeyword proc1)))
             (
-            (expression (identifier (free_identifier parm1)))
+            (expression (identifier (free_identifier (idOrKeyword parm1))))
             )
           )
         )
@@ -307,11 +307,11 @@ EOL                      <
           (op_callp
             CALLP
             (cs_operationExtender ( e ))
-            (identifier (free_identifier proc1))
+            (identifier (free_identifier (idOrKeyword proc1)))
             (
-            (expression (identifier (free_identifier parm1)))
+            (expression (identifier (free_identifier (idOrKeyword parm1))))
             :
-            (expression (identifier (free_identifier parm2)))
+            (expression (identifier (free_identifier (idOrKeyword parm2))))
             )
           )
         )
@@ -324,11 +324,11 @@ EOL                      <
       (baseExpression
         (op
           (op_callp
-            (identifier (free_identifier proc3))
+            (identifier (free_identifier (idOrKeyword proc3)))
             (
             (expression (literal ' parm1 '))
             :
-            (expression (identifier (free_identifier parm2)))
+            (expression (identifier (free_identifier (idOrKeyword parm2))))
             )
           )
         )
@@ -341,11 +341,13 @@ EOL                      <
       (baseExpression
         (op
           (op_callp
-            (identifier (free_identifier proc4))
+            (identifier (free_identifier (idOrKeyword proc4)))
             (
             (expression
               (expression
-                (bif (bif_len %len ( (expression (identifier (free_identifier xx))) )))
+                (bif
+                  (bif_len %len ( (expression (identifier (free_identifier (idOrKeyword xx)))) ))
+                )
               )
               +
               (expression (number 5))

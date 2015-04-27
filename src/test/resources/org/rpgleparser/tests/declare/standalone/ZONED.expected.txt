@@ -1,14 +1,38 @@
 /*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <01   >
+DS_FIXED                 <D>
+NAME                     <Signed1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <      7>
+DATA_TYPE                <S>
+DECIMAL_POSITIONS        < 2>
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <02   >
+DS_Standalone            <dcl-s>
+ID                       <Signed1>
+ZONED                    <zoned>
+'('                      <(>
+NUMBER                   <7>
+COLON                    <:>
+NUMBER                   <2>
+')'                      <)>
+FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <numRecords>
-ID                       <ZONED>
+ZONED                    <ZONED>
 '('                      <(>
 NUMBER                   <5>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <salary>
-ID                       <ZONED>
+ZONED                    <ZONED>
 '('                      <(>
 NUMBER                   <15>
 COLON                    <:>
@@ -17,20 +41,42 @@ NUMBER                   <2>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Signed1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '      7'
+      S
+      ' 2'
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
   (dspec
-    DCL-S
-    (identifier (free_identifier numRecords))
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Signed1)))
     (datatype
-      (identifier (free_identifier ZONED))
-      (args ( (expression (number 5)) ))
+      (datatypeName zoned)
+      (args ( (expression (number 7)) : (expression (number 2)) ))
     )
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier salary))
+    (identifier (free_identifier (idOrKeyword numRecords)))
+    (datatype (datatypeName ZONED) (args ( (expression (number 5)) )))
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier (idOrKeyword salary)))
     (datatype
-      (identifier (free_identifier ZONED))
+      (datatypeName ZONED)
       (args ( (expression (number 15)) : (expression (number 2)) ))
     )
     ;

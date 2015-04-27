@@ -45,25 +45,161 @@ free_linecomments: COMMENTS comments;
 comments: COMMENTS_TEXT; 
 //just_comments: COMMENTS COMMENTS_TEXT COMMENTS_EOL;
 
-dspec:  DS_Standalone name=identifier datatype? (identifier|function)* FREE_SEMI free_linecomments?;
-datatype: identifier args?; 
-dcl_ds:  DS_DataStructureStart (identifier | function)* FREE_SEMI?  
-	dcl_ds_field*
-	end_dcl_ds FREE_SEMI;
-dcl_ds_field: ((identifier | function)+ FREE_SEMI );
-end_dcl_ds: DS_DataStructureEnd;
-dcl_pr:  DS_PrototypeStart (identifier | function)* FREE_SEMI?  
+dspec:  DS_Standalone name=identifier datatype? 
+    (keyword+)? FREE_SEMI free_linecomments?;
+datatype: datatypeName args?; 
+keyword:
+     keyword_alias
+   | keyword_align
+   | keyword_alt
+   | keyword_altseq
+   | keyword_ascend
+   | keyword_based
+   | keyword_ccsid
+   | keyword_class
+   | keyword_const
+   | keyword_ctdata
+   | keyword_datfmt
+   | keyword_descend
+   | keyword_dim
+   | keyword_dtaara
+   | keyword_export
+   | keyword_ext
+   | keyword_extfld
+   | keyword_extfmt
+   | keyword_extname
+   | keyword_extpgm
+   | keyword_extproc
+   | keyword_fromfile
+   | keyword_import
+   | keyword_inz
+   | keyword_len
+   | keyword_like
+   | keyword_likeds
+   | keyword_likefile
+   | keyword_likerec
+   | keyword_noopt
+   | keyword_occurs
+   | keyword_opdesc
+   | keyword_options
+   | keyword_overlay
+   | keyword_packeven
+   | keyword_perrcd
+   | keyword_prefix
+   | keyword_pos
+   | keyword_procptr
+   | keyword_qualified
+   | keyword_rtnparm
+   | keyword_static
+   | keyword_template
+   | keyword_timfmt
+   | keyword_tofile
+   | keyword_value
+   | keyword_varying;
+   
+keyword_alias : KEYWORD_ALIAS;
+keyword_align : KEYWORD_ALIGN;
+keyword_alt : KEYWORD_ALT OPEN_PAREN array_name=simpleExpression CLOSE_PAREN; 
+keyword_altseq : KEYWORD_ALTSEQ OPEN_PAREN SPLAT_NONE CLOSE_PAREN; 
+keyword_ascend : KEYWORD_ASCEND;
+keyword_based : KEYWORD_BASED OPEN_PAREN basing_pointer_name=simpleExpression CLOSE_PAREN; 
+keyword_ccsid : KEYWORD_CCSID OPEN_PAREN (number | SPLAT_DFT) CLOSE_PAREN; 
+keyword_class : KEYWORD_CLASS OPEN_PAREN SPLAT_JAVA COLON class_name=simpleExpression CLOSE_PAREN;
+keyword_const : KEYWORD_CONST (OPEN_PAREN constant=simpleExpression CLOSE_PAREN)?;
+keyword_ctdata: KEYWORD_CTDATA;
+keyword_datfmt : KEYWORD_DATFMT OPEN_PAREN format=simpleExpression (separator=simpleExpression)? CLOSE_PAREN;  
+keyword_descend : KEYWORD_DESCEND;
+keyword_dim:  KEYWORD_DIM OPEN_PAREN (numeric_constant=number) CLOSE_PAREN;
+keyword_dtaara: KEYWORD_DTAARA (OPEN_PAREN (SPLAT_VAR COLON)? (name=literal | nameVariable=simpleExpression) CLOSE_PAREN)?;
+keyword_export : KEYWORD_EXPORT (OPEN_PAREN external_name=simpleExpression CLOSE_PAREN)?;
+keyword_ext : KEYWORD_EXT;
+keyword_extfld : KEYWORD_EXTFLD OPEN_PAREN field_name=simpleExpression CLOSE_PAREN;
+keyword_extfmt : KEYWORD_EXTFMT OPEN_PAREN code=simpleExpression CLOSE_PAREN;
+keyword_extname : KEYWORD_EXTNAME OPEN_PAREN file_name=simpleExpression (COLON format_name=simpleExpression)? 
+		(COLON (SPLAT_ALL| SPLAT_INPUT | SPLAT_OUTPUT | SPLAT_KEY))? CLOSE_PAREN; 
+keyword_extpgm : KEYWORD_EXTPGM (OPEN_PAREN name=simpleExpression CLOSE_PAREN)?; 
+keyword_extproc : KEYWORD_EXTPROC OPEN_PAREN 
+	((SPLAT_JAVA COLON class_name=simpleExpression COLON)
+	   | (identifier COLON) //TODO *CL|*CWIDEN|*CNOWIDEN|
+     )
+		name=simpleExpression
+		CLOSE_PAREN; 
+keyword_fromfile : KEYWORD_FROMFILE OPEN_PAREN file_name=simpleExpression CLOSE_PAREN; 
+keyword_import : KEYWORD_IMPORT (OPEN_PAREN external_name=simpleExpression CLOSE_PAREN)?; 
+keyword_inz:  KEYWORD_INZ (OPEN_PAREN simpleExpression CLOSE_PAREN)?;
+keyword_len : KEYWORD_LEN OPEN_PAREN length=simpleExpression CLOSE_PAREN;
+keyword_like : KEYWORD_LIKE OPEN_PAREN name=simpleExpression (COLON like_lengthAdjustment)? CLOSE_PAREN;
+keyword_likeds : KEYWORD_LIKEDS OPEN_PAREN data_structure_name=simpleExpression CLOSE_PAREN; 
+keyword_likefile : KEYWORD_LIKEFILE OPEN_PAREN file_name=simpleExpression CLOSE_PAREN; 
+keyword_likerec : KEYWORD_LIKEREC OPEN_PAREN intrecname=simpleExpression 
+	(COLON (SPLAT_ALL | SPLAT_INPUT | SPLAT_OUTPUT | SPLAT_KEY))?
+	CLOSE_PAREN; 
+keyword_noopt : KEYWORD_NOOPT;
+keyword_occurs : KEYWORD_OCCURS OPEN_PAREN (numeric_constant=number | function | identifier) CLOSE_PAREN; 
+keyword_opdesc : KEYWORD_OPDESC;
+keyword_options : KEYWORD_OPTIONS OPEN_PAREN identifier+ CLOSE_PAREN; 
+keyword_overlay : KEYWORD_OVERLAY OPEN_PAREN name=simpleExpression (COLON (SPLAT_NEXT | pos=simpleExpression))? CLOSE_PAREN; 
+keyword_packeven : KEYWORD_PACKEVEN;
+keyword_perrcd : KEYWORD_PERRCD OPEN_PAREN numeric_constant=simpleExpression CLOSE_PAREN;
+keyword_prefix : KEYWORD_PREFIX OPEN_PAREN prefix=simpleExpression (COLON nbr_of_char_replaced=simpleExpression)? CLOSE_PAREN; 
+keyword_pos : KEYWORD_POS OPEN_PAREN numeric_constant=simpleExpression CLOSE_PAREN;
+keyword_procptr : KEYWORD_PROCPTR;
+keyword_qualified : KEYWORD_QUALIFIED;
+keyword_rtnparm : KEYWORD_RTNPARM;
+keyword_static : KEYWORD_STATIC (OPEN_PAREN SPLAT_ALLTHREAD CLOSE_PAREN)?; 
+keyword_template : KEYWORD_TEMPLATE;
+keyword_timfmt : KEYWORD_TIMFMT OPEN_PAREN format=simpleExpression CLOSE_PAREN; //TODO separator
+keyword_tofile : KEYWORD_TOFILE OPEN_PAREN file_name=simpleExpression (separator=simpleExpression)? CLOSE_PAREN; 
+keyword_value : KEYWORD_VALUE;
+keyword_varying : KEYWORD_VARYING (OPEN_PAREN size=simpleExpression CLOSE_PAREN)?;
+
+
+like_lengthAdjustment: sign number;
+sign: PLUS | MINUS;
+
+dcl_ds:  DS_DataStructureStart identifier keyword*    
+	(
+		(
+			(FREE_SEMI dcl_ds_field*)?
+		end_dcl_ds 
+	)
+	 | keyword_likerec
+	 | keyword_likeds)
+	FREE_SEMI;
+dcl_ds_field: DS_SubField? identifier datatype? keyword* FREE_SEMI;
+end_dcl_ds: DS_DataStructureEnd identifier?;
+dcl_pr:  DS_PrototypeStart identifier datatype? keyword* FREE_SEMI?  
 	dcl_pr_field*
 	end_dcl_pr FREE_SEMI;
-dcl_pr_field: ((identifier | function)+ FREE_SEMI );
+dcl_pr_field: DS_Parm? (identifier (datatype | like=keyword_like) FREE_SEMI );
 end_dcl_pr: DS_PrototypeEnd;
-dcl_pi:  DS_ProcedureInterfaceStart (identifier | function)* FREE_SEMI?  
+dcl_pi:  DS_ProcedureInterfaceStart identifier datatype? keyword* FREE_SEMI?  
 	dcl_pi_field*
 	end_dcl_pi FREE_SEMI;
-dcl_pi_field: ((identifier | function)+ FREE_SEMI );
+dcl_pi_field: DS_Parm? identifier (datatype | like=keyword_like) FREE_SEMI;
 end_dcl_pi: DS_ProcedureInterfaceEnd;
 dcl_c:  DS_Constant identifier (identifier | expression) FREE_SEMI ;
 ctl_opt: H_SPEC (identifier | expression)* FREE_SEMI ;
+
+datatypeName:
+  CHAR
+  | DATE_
+  | VARCHAR
+  | UCS2
+  | VARUCS2
+  | GRAPH
+  | VARGRAPH
+  | IND
+  | PACKED
+  | ZONED
+  | BINDEC
+  | INT
+  | UNS
+  | FLOAT
+  | TIME
+  | TIMESTAMP
+  | POINTER
+  | OBJECT;
 
 block:
 	(csIFxx
@@ -1321,14 +1457,13 @@ fieldIndicator:
 is_external_rec:	
 			IS_ExtRecordReserved
 			resultIndicator
-			WS; 
+			WS?; 
 is_rec:				
 			IS_Sequence
 			IS_Number
 			IS_Option
 			recordIdIndicator
-			IS_RecordIdCode
-			WS?;
+			IS_RecordIdCode;
 recordIdIndicator:
 	GeneralIndicator
   | HaltIndicator
@@ -1857,6 +1992,12 @@ exec_sql: EXEC_SQL WORDS+ SEMI ;
 //---------------  
 baseExpression: op | expression;
 assignmentExpression: expression EQUAL expression;
+simpleExpression:
+	bif
+	| identifier 
+	| number 
+	| literal; 
+
 expression: 
 	// op | // should drop op I think?
 	function 
@@ -1903,9 +2044,59 @@ multipart_identifier: (free_identifier | indexed_identifier) (FREE_DOT (free_ide
 indexed_identifier: free_identifier OPEN_PAREN (expression | ARRAY_REPEAT) CLOSE_PAREN;
 opCode: free_identifier;
 number: MINUS? NUMBER ;
-free_identifier: (continuedIdentifier | MULT_NOSPACE? ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code);//OP_E?
+free_identifier: (continuedIdentifier | MULT_NOSPACE? idOrKeyword | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code);//OP_E?
 //free_identifier: (continuedIdentifier | ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
-continuedIdentifier: ID CONTINUATION ID ;
+continuedIdentifier: idOrKeyword CONTINUATION idOrKeyword ;
+idOrKeyword:
+     ID
+   | KEYWORD_ALIAS
+   | KEYWORD_ALIGN
+   | KEYWORD_ALT
+   | KEYWORD_ALTSEQ
+   | KEYWORD_ASCEND
+   | KEYWORD_BASED
+   | KEYWORD_CCSID
+   | KEYWORD_CLASS
+   | KEYWORD_CONST
+   | KEYWORD_CTDATA
+   | KEYWORD_DATFMT
+   | KEYWORD_DESCEND
+   | KEYWORD_DIM
+   | KEYWORD_DTAARA
+   | KEYWORD_EXPORT
+   | KEYWORD_EXT
+   | KEYWORD_EXTFLD
+   | KEYWORD_EXTFMT
+   | KEYWORD_EXTNAME
+   | KEYWORD_EXTPGM
+   | KEYWORD_EXTPROC
+   | KEYWORD_FROMFILE
+   | KEYWORD_IMPORT
+   | KEYWORD_INZ
+   | KEYWORD_LEN
+   | KEYWORD_LIKE
+   | KEYWORD_LIKEDS
+   | KEYWORD_LIKEFILE
+   | KEYWORD_LIKEREC
+   | KEYWORD_NOOPT
+   | KEYWORD_OCCURS
+   | KEYWORD_OPDESC
+   | KEYWORD_OPTIONS
+   | KEYWORD_OVERLAY
+   | KEYWORD_PACKEVEN
+   | KEYWORD_PERRCD
+   | KEYWORD_PREFIX
+   | KEYWORD_POS
+   | KEYWORD_PROCPTR
+   | KEYWORD_QUALIFIED
+   | KEYWORD_RTNPARM
+   | KEYWORD_STATIC
+   | KEYWORD_TEMPLATE
+   | KEYWORD_TIMFMT
+   | KEYWORD_TOFILE
+   | KEYWORD_VALUE
+   | KEYWORD_VARYING
+   |datatypeName;
 		
 argument: ID;
 
@@ -1918,6 +2109,7 @@ SPLAT_ALL
    | SPLAT_VRM
    | SPLAT_ALLG
    | SPLAT_ALLU
+   | SPLAT_ALLTHREAD
    | SPLAT_ALLX
    | SPLAT_BLANKS
    | SPLAT_CANCL
@@ -1926,13 +2118,19 @@ SPLAT_ALL
    | SPLAT_CDMY
    | SPLAT_MDY
    | SPLAT_DMY
+   | SPLAT_DFT
    | SPLAT_YMD
    | SPLAT_JUL
+   | SPLAT_INPUT
+   | SPLAT_OUTPUT
    | SPLAT_ISO
    | SPLAT_ISO0
+   | SPLAT_KEY
+   | SPLAT_NEXT
    | SPLAT_USA
    | SPLAT_EUR
    | SPLAT_JIS
+   | SPLAT_JAVA
    | SPLAT_DATE
    | SPLAT_DAY
    | SPlAT_DETC

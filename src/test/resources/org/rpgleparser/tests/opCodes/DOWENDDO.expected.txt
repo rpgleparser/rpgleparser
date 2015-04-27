@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -171,7 +171,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -369,9 +369,9 @@ EOL                      <
               (expression
                 (
                 (expression
-                  (expression (identifier (free_identifier fld2)))
+                  (expression (identifier (free_identifier (idOrKeyword fld2))))
                   (comparisonOperator >)
-                  (expression (identifier (free_identifier fld3)))
+                  (expression (identifier (free_identifier (idOrKeyword fld3))))
                 )
                 )
               )
@@ -411,7 +411,12 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_dow DOW (indicator_expr (expression (identifier (free_identifier *inkc)))))
+          (op_dow
+            DOW
+            (indicator_expr
+              (expression (identifier (free_identifier (idOrKeyword *inkc))))
+            )
+          )
         )
       )
       ;
@@ -431,9 +436,9 @@ EOL                      <
                 (expression
                   (
                   (expression
-                    (expression (identifier (free_identifier fld2)))
+                    (expression (identifier (free_identifier (idOrKeyword fld2))))
                     (comparisonOperator >)
-                    (expression (identifier (free_identifier fld3)))
+                    (expression (identifier (free_identifier (idOrKeyword fld3))))
                   )
                   )
                 )
@@ -454,7 +459,7 @@ EOL                      <
             Dow
             (indicator_expr
               (expression
-                (expression (identifier (free_identifier *inkc)))
+                (expression (identifier (free_identifier (idOrKeyword *inkc))))
                 =
                 (expression (identifier (all (symbolicConstants *off))))
               )
@@ -475,7 +480,7 @@ EOL                      <
             (cs_operationExtender ( r ))
             (indicator_expr
               (expression
-                (expression (identifier (free_identifier *inkc)))
+                (expression (identifier (free_identifier (idOrKeyword *inkc))))
                 =
                 (expression (identifier (all (symbolicConstants *off))))
               )

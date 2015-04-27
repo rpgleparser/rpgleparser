@@ -1,21 +1,85 @@
 /*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <01   >
+DS_FIXED                 <D>
+NAME                     <Alpha1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <02   >
+DS_Standalone            <dcl-s>
+ID                       <Alpha1>
+CHAR                     <char>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <03   >
+DS_FIXED                 <D>
+NAME                     <Alpha2>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <like(Alpha1)                                            >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <  inz(*all'*')                                          >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <04   >
+DS_Standalone            <dcl-s>
+ID                       <Alpha2>
+KEYWORD_LIKE             <like>
+'('                      <(>
+ID                       <Alpha1>
+')'                      <)>
+KEYWORD_INZ              <inz>
+'('                      <(>
+SPLAT_ALL                <*all>
+StringLiteralStart       <'>
+StringContent            <*>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <library>
-ID                       <CHAR>
+CHAR                     <CHAR>
 '('                      <(>
 NUMBER                   <10>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <libfilembr>
-ID                       <VARCHAR>
+VARCHAR                  <VARCHAR>
 '('                      <(>
 NUMBER                   <33>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <cmdparm>
-ID                       <VARCHAR>
+VARCHAR                  <VARCHAR>
 '('                      <(>
 NUMBER                   <10>
 COLON                    <:>
@@ -24,29 +88,98 @@ NUMBER                   <4>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Alpha1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '     10'
+      A
+      '  '
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
   (dspec
-    DCL-S
-    (identifier (free_identifier library))
-    (datatype
-      (identifier (free_identifier CHAR))
-      (args ( (expression (number 10)) ))
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Alpha1)))
+    (datatype (datatypeName char) (args ( (expression (number 10)) )))
+    ;
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Alpha2)
+      ' '
+      ' '
+      'S '
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      'like(Alpha1)                                            '
+      \r\n
+    )
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name )
+      ' '
+      ' '
+      '  '
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      '  inz(*all'*')                                          '
+      \r\n
+    )
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Alpha2)))
+    (keyword
+      (keyword_like
+        like
+        (
+        (simpleExpression (identifier (free_identifier (idOrKeyword Alpha1))))
+        )
+      )
+    )
+    (keyword
+      (keyword_inz
+        inz
+        (
+        (simpleExpression (identifier (all (symbolicConstants *all) (literal ' * '))))
+        )
+      )
     )
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier libfilembr))
-    (datatype
-      (identifier (free_identifier VARCHAR))
-      (args ( (expression (number 33)) ))
-    )
+    (identifier (free_identifier (idOrKeyword library)))
+    (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier cmdparm))
+    (identifier (free_identifier (idOrKeyword libfilembr)))
+    (datatype (datatypeName VARCHAR) (args ( (expression (number 33)) )))
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier (idOrKeyword cmdparm)))
     (datatype
-      (identifier (free_identifier VARCHAR))
+      (datatypeName VARCHAR)
       (args ( (expression (number 10)) : (expression (number 4)) ))
     )
     ;

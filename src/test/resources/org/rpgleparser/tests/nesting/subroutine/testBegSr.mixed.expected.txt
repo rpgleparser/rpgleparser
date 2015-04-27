@@ -1,7 +1,7 @@
 /*===TOKENS===*/
 DS_Standalone            <DCL-S>
 ID                       <X>
-ID                       <Int>
+INT                      <Int>
 '('                      <(>
 NUMBER                   <10>
 ')'                      <)>
@@ -33,28 +33,27 @@ BlankIndicator           <  >
 (r
   (dspec
     DCL-S
-    (identifier (free_identifier X))
-    (datatype
-      (identifier (free_identifier Int))
-      (args ( (expression (number 10)) ))
-    )
+    (identifier (free_identifier (idOrKeyword X)))
+    (datatype (datatypeName Int) (args ( (expression (number 10)) )))
     ;
   )
   (statement
     (free
-      (baseExpression (op (op_exsr EXSR (identifier (free_identifier SUBRT1)))))
+      (baseExpression
+        (op (op_exsr EXSR (identifier (free_identifier (idOrKeyword SUBRT1)))))
+      )
       ;
     )
   )
   (subroutine
-    (begsr (freeBEGSR BEGSR (identifier (free_identifier SUBRT1)) ;))
+    (begsr (freeBEGSR BEGSR (identifier (free_identifier (idOrKeyword SUBRT1))) ;))
     (statement
       (free
         (baseExpression
           (op
             (op_eval
               (assignmentExpression
-                (expression (identifier (free_identifier X)))
+                (expression (identifier (free_identifier (idOrKeyword X))))
                 =
                 (expression (number 1234))
               )

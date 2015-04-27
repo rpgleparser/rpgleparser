@@ -1,0 +1,232 @@
+/*===TOKENS===*/
+HIDDEN:COMMENTS          <     //>
+HIDDEN:COMMENTS_TEXT     <D* fixed-form declaration                                                              >
+DS_FIXED                 <D>
+NAME                     <myds>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <DS>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <subf1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <  >
+FROM_POSITION            <     11>
+TO_POSITION              <     15>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <subf2>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <     5P>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <2 >
+RESERVED                 < >
+KEYWORDS                 <OVERLAY(myds)                                           >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <subf3>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <OVERLAY(myds:100)                                       >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <subf4>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <  >
+FROM_POSITION            <       >
+TO_POSITION              <     15>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <OVERLAY(myds:*NEXT)                                     >
+EOL                      <
+>
+HIDDEN:COMMENTS          <      //>
+HIDDEN:COMMENTS_TEXT     <free-form declaration                                                                 >
+DS_DataStructureStart    <DCL-DS>
+ID                       <myds>
+FREE_SEMI                <;>
+ID                       <subf1>
+CHAR                     <CHAR>
+'('                      <(>
+NUMBER                   <5>
+')'                      <)>
+KEYWORD_POS              <POS>
+'('                      <(>
+NUMBER                   <11>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <subf2>
+PACKED                   <PACKED>
+'('                      <(>
+NUMBER                   <5>
+COLON                    <:>
+NUMBER                   <2>
+')'                      <)>
+KEYWORD_POS              <POS>
+'('                      <(>
+NUMBER                   <1>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <subf3>
+CHAR                     <CHAR>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+KEYWORD_POS              <POS>
+'('                      <(>
+NUMBER                   <100>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <subf4>
+CHAR                     <CHAR>
+'('                      <(>
+NUMBER                   <15>
+')'                      <)>
+FREE_SEMI                <;>
+DS_DataStructureEnd      <END-DS>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name myds)
+      ' '
+      ' '
+      DS
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name subf1)
+      ' '
+      ' '
+      '  '
+      '     11'
+      '     15'
+      A
+      '  '
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name subf2)
+      ' '
+      ' '
+      '  '
+      '       '
+      '     5P'
+      ' '
+      '2 '
+      ' '
+      'OVERLAY(myds)                                           '
+      \r\n
+    )
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name subf3)
+      ' '
+      ' '
+      '  '
+      '       '
+      '     10'
+      A
+      '  '
+      ' '
+      'OVERLAY(myds:100)                                       '
+      \r\n
+    )
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name subf4)
+      ' '
+      ' '
+      '  '
+      '       '
+      '     15'
+      A
+      '  '
+      ' '
+      'OVERLAY(myds:*NEXT)                                     '
+      \r\n
+    )
+  )
+  (statement
+    (dcl_ds
+      DCL-DS
+      (identifier (free_identifier (idOrKeyword myds)))
+      ;
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword subf1)))
+        (datatype (datatypeName CHAR) (args ( (expression (number 5)) )))
+        (keyword (keyword_pos POS ( (simpleExpression (number 11)) )))
+        ;
+      )
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword subf2)))
+        (datatype
+          (datatypeName PACKED)
+          (args ( (expression (number 5)) : (expression (number 2)) ))
+        )
+        (keyword (keyword_pos POS ( (simpleExpression (number 1)) )))
+        ;
+      )
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword subf3)))
+        (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
+        (keyword (keyword_pos POS ( (simpleExpression (number 100)) )))
+        ;
+      )
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword subf4)))
+        (datatype (datatypeName CHAR) (args ( (expression (number 15)) )))
+        ;
+      )
+      (end_dcl_ds END-DS)
+      ;
+    )
+  )
+)
+/*======*/

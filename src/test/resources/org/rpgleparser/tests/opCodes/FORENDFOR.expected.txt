@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -211,7 +211,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -265,7 +265,7 @@ BlankIndicator           <  >
           (csFOR
             FOR
             (expression
-              (expression (identifier (free_identifier X)))
+              (expression (identifier (free_identifier (idOrKeyword X))))
               =
               (expression (number 1))
             )
@@ -309,7 +309,7 @@ BlankIndicator           <  >
           (csFOR
             For
             (expression
-              (expression (identifier (free_identifier X1)))
+              (expression (identifier (free_identifier (idOrKeyword X1))))
               =
               (expression (number 1))
             )
@@ -355,7 +355,7 @@ BlankIndicator           <  >
           (csFOR
             For
             (expression
-              (expression (identifier (free_identifier X1)))
+              (expression (identifier (free_identifier (idOrKeyword X1))))
               =
               (expression (number 10))
             )
@@ -399,7 +399,7 @@ BlankIndicator           <  >
           (csFOR
             FOR
             (expression
-              (expression (identifier (free_identifier X)))
+              (expression (identifier (free_identifier (idOrKeyword X))))
               =
               (expression (number 10))
             )
@@ -445,10 +445,17 @@ BlankIndicator           <  >
           (csFOR
             for
             (expression
-              (expression (identifier (free_identifier X1)))
+              (expression (identifier (free_identifier (idOrKeyword X1))))
               =
               (expression
-                (bif (bif_len %len ( (expression (identifier (free_identifier str))) )))
+                (bif
+                  (bif_len
+                    %len
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword str))))
+                    )
+                  )
+                )
               )
             )
             by
@@ -489,12 +496,12 @@ BlankIndicator           <  >
           (op_for
             for
             (expression
-              (expression (identifier (free_identifier i)))
+              (expression (identifier (free_identifier (idOrKeyword i))))
               =
               (expression (number 1))
             )
             to
-            (expression (identifier (free_identifier n)))
+            (expression (identifier (free_identifier (idOrKeyword n))))
           )
           ;
         )
@@ -506,10 +513,17 @@ BlankIndicator           <  >
                 (op_for
                   FOR
                   (expression
-                    (expression (identifier (free_identifier i)))
+                    (expression (identifier (free_identifier (idOrKeyword i))))
                     =
                     (expression
-                      (bif (bif_len %len ( (expression (identifier (free_identifier field))) )))
+                      (bif
+                        (bif_len
+                          %len
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword field))))
+                          )
+                        )
+                      )
                     )
                   )
                   downto
@@ -528,15 +542,22 @@ BlankIndicator           <  >
                 (op_for
                   for
                   (expression
-                    (expression (identifier (free_identifier i)))
+                    (expression (identifier (free_identifier (idOrKeyword i))))
                     =
                     (expression (number 1))
                   )
                   by
-                  (expression (identifier (free_identifier incr)))
+                  (expression (identifier (free_identifier (idOrKeyword incr))))
                   to
                   (expression
-                    (bif (bif_len %len ( (expression (identifier (free_identifier fld))) )))
+                    (bif
+                      (bif_len
+                        %len
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword fld))))
+                        )
+                      )
+                    )
                   )
                 )
               )

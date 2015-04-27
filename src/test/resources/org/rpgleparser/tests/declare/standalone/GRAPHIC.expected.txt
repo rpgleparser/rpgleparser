@@ -1,14 +1,14 @@
 /*===TOKENS===*/
 DS_Standalone            <DCL-S>
 ID                       <firstName>
-ID                       <GRAPH>
+GRAPH                    <GRAPH>
 '('                      <(>
 NUMBER                   <20>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <fullName>
-ID                       <VARGRAPH>
+VARGRAPH                 <VARGRAPH>
 '('                      <(>
 NUMBER                   <50>
 ')'                      <)>
@@ -17,20 +17,14 @@ FREE_SEMI                <;>
 (r
   (dspec
     DCL-S
-    (identifier (free_identifier firstName))
-    (datatype
-      (identifier (free_identifier GRAPH))
-      (args ( (expression (number 20)) ))
-    )
+    (identifier (free_identifier (idOrKeyword firstName)))
+    (datatype (datatypeName GRAPH) (args ( (expression (number 20)) )))
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier fullName))
-    (datatype
-      (identifier (free_identifier VARGRAPH))
-      (args ( (expression (number 50)) ))
-    )
+    (identifier (free_identifier (idOrKeyword fullName)))
+    (datatype (datatypeName VARGRAPH) (args ( (expression (number 50)) )))
     ;
   )
 )

@@ -247,29 +247,29 @@ BlankIndicator           <  >
                   (expression
                     (expression
                       (expression
-                        (expression (identifier (free_identifier IDCCA1Z)))
+                        (expression (identifier (free_identifier (idOrKeyword IDCCA1Z))))
                         =
-                        (expression (identifier (free_identifier @PRIME1)))
+                        (expression (identifier (free_identifier (idOrKeyword @PRIME1))))
                       )
                       OR
                       (expression
-                        (expression (identifier (free_identifier IDCCA1B)))
+                        (expression (identifier (free_identifier (idOrKeyword IDCCA1B))))
                         =
-                        (expression (identifier (free_identifier @PRIME2)))
+                        (expression (identifier (free_identifier (idOrKeyword @PRIME2))))
                       )
                     )
                     OR
                     (expression
-                      (expression (identifier (free_identifier IDCCA1X)))
+                      (expression (identifier (free_identifier (idOrKeyword IDCCA1X))))
                       =
-                      (expression (identifier (free_identifier @PRIME3)))
+                      (expression (identifier (free_identifier (idOrKeyword @PRIME3))))
                     )
                   )
                   OR
                   (expression
-                    (expression (identifier (free_identifier IDCCA1C)))
+                    (expression (identifier (free_identifier (idOrKeyword IDCCA1C))))
                     =
-                    (expression (identifier (free_identifier @PRIME4)))
+                    (expression (identifier (free_identifier (idOrKeyword @PRIME4))))
                   )
                 )
               )
@@ -288,7 +288,7 @@ BlankIndicator           <  >
                   EVAL
                   (c_free
                     (expression
-                      (expression (identifier (free_identifier TYPE)))
+                      (expression (identifier (free_identifier (idOrKeyword TYPE))))
                       =
                       (expression (literal ' 2 '))
                     )
@@ -317,7 +317,7 @@ BlankIndicator           <  >
                           (bif_subst
                             %SUBST
                             (
-                            (expression (identifier (free_identifier IDHAND)))
+                            (expression (identifier (free_identifier (idOrKeyword IDHAND))))
                             :
                             (expression (number 1))
                             :
@@ -327,13 +327,13 @@ BlankIndicator           <  >
                         )
                       )
                       (comparisonOperator <>)
-                      (expression (identifier (free_identifier @THANDLER)))
+                      (expression (identifier (free_identifier (idOrKeyword @THANDLER))))
                     )
                     AND
                     (expression
-                      (expression (identifier (free_identifier IDSALE)))
+                      (expression (identifier (free_identifier (idOrKeyword IDSALE))))
                       (comparisonOperator >=)
-                      (expression (identifier (free_identifier @LOW_MI_DSM)))
+                      (expression (identifier (free_identifier (idOrKeyword @LOW_MI_DSM))))
                     )
                   )
                   AND
@@ -343,7 +343,7 @@ BlankIndicator           <  >
                         (bif_subst
                           %SUBST
                           (
-                          (expression (identifier (free_identifier IDSALE)))
+                          (expression (identifier (free_identifier (idOrKeyword IDSALE))))
                           :
                           (expression (number 1))
                           :
@@ -358,7 +358,7 @@ BlankIndicator           <  >
                         (bif_subst
                           %SUBST
                           (
-                          (expression (identifier (free_identifier @TMREP1)))
+                          (expression (identifier (free_identifier (idOrKeyword @TMREP1))))
                           :
                           (expression (number 1))
                           :
@@ -385,7 +385,7 @@ BlankIndicator           <  >
                   EVAL
                   (c_free
                     (expression
-                      (expression (identifier (free_identifier TYPE)))
+                      (expression (identifier (free_identifier (idOrKeyword TYPE))))
                       =
                       (expression (literal ' 3 '))
                     )
@@ -414,7 +414,7 @@ BlankIndicator           <  >
                           (bif_subst
                             %SUBST
                             (
-                            (expression (identifier (free_identifier IDHAND)))
+                            (expression (identifier (free_identifier (idOrKeyword IDHAND))))
                             :
                             (expression (number 1))
                             :
@@ -424,13 +424,13 @@ BlankIndicator           <  >
                         )
                       )
                       =
-                      (expression (identifier (free_identifier @THANDLER)))
+                      (expression (identifier (free_identifier (idOrKeyword @THANDLER))))
                     )
                     AND
                     (expression
-                      (expression (identifier (free_identifier IDSALE)))
+                      (expression (identifier (free_identifier (idOrKeyword IDSALE))))
                       (comparisonOperator >=)
-                      (expression (identifier (free_identifier @LOW_MI_DSM)))
+                      (expression (identifier (free_identifier (idOrKeyword @LOW_MI_DSM))))
                     )
                   )
                   AND
@@ -440,7 +440,7 @@ BlankIndicator           <  >
                         (bif_subst
                           %SUBST
                           (
-                          (expression (identifier (free_identifier IDSALE)))
+                          (expression (identifier (free_identifier (idOrKeyword IDSALE))))
                           :
                           (expression (number 1))
                           :
@@ -455,7 +455,7 @@ BlankIndicator           <  >
                         (bif_subst
                           %SUBST
                           (
-                          (expression (identifier (free_identifier @TMREP1)))
+                          (expression (identifier (free_identifier (idOrKeyword @TMREP1))))
                           :
                           (expression (number 1))
                           :
@@ -482,7 +482,7 @@ BlankIndicator           <  >
                   EVAL
                   (c_free
                     (expression
-                      (expression (identifier (free_identifier TYPE)))
+                      (expression (identifier (free_identifier (idOrKeyword TYPE))))
                       =
                       (expression (literal ' 4 '))
                     )
@@ -511,7 +511,7 @@ BlankIndicator           <  >
                           (bif_subst
                             %SUBST
                             (
-                            (expression (identifier (free_identifier IDHAND)))
+                            (expression (identifier (free_identifier (idOrKeyword IDHAND))))
                             :
                             (expression (number 1))
                             :
@@ -521,20 +521,20 @@ BlankIndicator           <  >
                         )
                       )
                       =
-                      (expression (identifier (free_identifier @THANDLER)))
+                      (expression (identifier (free_identifier (idOrKeyword @THANDLER))))
                     )
                     AND
                     (expression
-                      (expression (identifier (free_identifier IDSALE)))
+                      (expression (identifier (free_identifier (idOrKeyword IDSALE))))
                       (comparisonOperator >=)
-                      (expression (identifier (free_identifier @TMREP1)))
+                      (expression (identifier (free_identifier (idOrKeyword @TMREP1))))
                     )
                   )
                   AND
                   (expression
-                    (expression (identifier (free_identifier IDSALE)))
+                    (expression (identifier (free_identifier (idOrKeyword IDSALE))))
                     (comparisonOperator <=)
-                    (expression (identifier (free_identifier @TMREP2)))
+                    (expression (identifier (free_identifier (idOrKeyword @TMREP2))))
                   )
                 )
               )
@@ -553,7 +553,7 @@ BlankIndicator           <  >
                   EVAL
                   (c_free
                     (expression
-                      (expression (identifier (free_identifier TYPE)))
+                      (expression (identifier (free_identifier (idOrKeyword TYPE))))
                       =
                       (expression (literal ' 5 '))
                     )

@@ -86,9 +86,9 @@ BIF_BITNOT               <%bitnot>
 ID                       <HEXVAL>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 1                                                      >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 1                                                      >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val2>
 '='                      <=>
@@ -99,9 +99,9 @@ StringContent            <80>
 StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 2                                                       >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 2                                                       >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val3>
 '='                      <=>
@@ -110,9 +110,9 @@ BIF_BITNOT               <%Bitnot>
 ID                       <hexval>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 3                                                      >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 3                                                      >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val4>
 '='                      <=>
@@ -124,16 +124,16 @@ ID                       <fld>
 ')'                      <)>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 4                                                   >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 4                                                   >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
 >
-EMPTY_LINE               <                                                                           >
-COMMENTS_TEXT            <                   >
+HIDDEN:EMPTY_LINE        <                                                                           >
+HIDDEN:COMMENTS_TEXT     <                   >
 /*===TREE===*/
 (r
   (statement
@@ -164,11 +164,16 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val1)))
+              (expression (identifier (free_identifier (idOrKeyword val1))))
               =
               (expression
                 (bif
-                  (bif_bitnot %BITNOT ( (expression (identifier (free_identifier HEXVAL))) ))
+                  (bif_bitnot
+                    %BITNOT
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
+                    )
+                  )
                 )
               )
             )
@@ -190,7 +195,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val2)))
+              (expression (identifier (free_identifier (idOrKeyword val2))))
               =
               (expression (bif (bif_bitnot %BITNOT ( (expression (literal x' 800F0F ')) ))))
             )
@@ -212,7 +217,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val3)))
+              (expression (identifier (free_identifier (idOrKeyword val3))))
               =
               (expression (bif (bif_bitnot %bitnot ( (expression (literal x' 10 ')) ))))
             )
@@ -234,7 +239,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val4)))
+              (expression (identifier (free_identifier (idOrKeyword val4))))
               =
               (expression
                 (bif
@@ -242,7 +247,14 @@ COMMENTS_TEXT            <                   >
                     %BItnot
                     (
                     (expression
-                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_str
+                          %str
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     )
                   )
@@ -262,11 +274,16 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val1)))
+              (expression (identifier (free_identifier (idOrKeyword val1))))
               =
               (expression
                 (bif
-                  (bif_bitnot %bitnot ( (expression (identifier (free_identifier HEXVAL))) ))
+                  (bif_bitnot
+                    %bitnot
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
+                    )
+                  )
                 )
               )
             )
@@ -282,7 +299,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val2)))
+              (expression (identifier (free_identifier (idOrKeyword val2))))
               =
               (expression (bif (bif_bitnot %BITNOT ( (expression (literal x' 80 ')) ))))
             )
@@ -298,11 +315,16 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val3)))
+              (expression (identifier (free_identifier (idOrKeyword val3))))
               =
               (expression
                 (bif
-                  (bif_bitnot %Bitnot ( (expression (identifier (free_identifier hexval))) ))
+                  (bif_bitnot
+                    %Bitnot
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword hexval))))
+                    )
+                  )
                 )
               )
             )
@@ -318,7 +340,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val4)))
+              (expression (identifier (free_identifier (idOrKeyword val4))))
               =
               (expression
                 (bif
@@ -326,7 +348,14 @@ COMMENTS_TEXT            <                   >
                     %Bitnot
                     (
                     (expression
-                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_str
+                          %str
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     )
                   )

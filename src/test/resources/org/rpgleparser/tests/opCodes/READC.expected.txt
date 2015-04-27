@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -140,7 +140,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -332,7 +332,9 @@ EOL                      <
   (statement (directive ' /' (beginfree_directive Free) \n))
   (statement
     (free
-      (baseExpression (op (op_readc READC (identifier (free_identifier myfile)))))
+      (baseExpression
+        (op (op_readc READC (identifier (free_identifier (idOrKeyword myfile)))))
+      )
       ;
     )
   )
@@ -343,7 +345,7 @@ EOL                      <
           (op_readc
             READC
             (cs_operationExtender ( e ))
-            (identifier (free_identifier myfile))
+            (identifier (free_identifier (idOrKeyword myfile)))
           )
         )
       )
@@ -356,8 +358,8 @@ EOL                      <
         (op
           (op_readc
             READC
-            (identifier (free_identifier myfile))
-            (identifier (free_identifier myds))
+            (identifier (free_identifier (idOrKeyword myfile)))
+            (identifier (free_identifier (idOrKeyword myds)))
           )
         )
       )
@@ -371,8 +373,8 @@ EOL                      <
           (op_readc
             readc
             (cs_operationExtender ( e ))
-            (identifier (free_identifier myfile))
-            (identifier (free_identifier myds))
+            (identifier (free_identifier (idOrKeyword myfile)))
+            (identifier (free_identifier (idOrKeyword myds)))
           )
         )
       )

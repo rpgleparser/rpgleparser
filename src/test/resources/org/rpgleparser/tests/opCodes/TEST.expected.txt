@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -329,7 +329,7 @@ EOL                      <
             TEST
             (cs_operationExtender ( Z ))
             (identifier (all (symbolicConstants *ISO0)))
-            (identifier (free_identifier TFLD))
+            (identifier (free_identifier (idOrKeyword TFLD)))
           )
         )
       )
@@ -343,8 +343,8 @@ EOL                      <
           (op_test
             Test
             (cs_operationExtender ( d ))
-            (identifier (free_identifier *MDY0))
-            (identifier (free_identifier dfld))
+            (identifier (free_identifier (idOrKeyword *MDY0)))
+            (identifier (free_identifier (idOrKeyword dfld)))
           )
         )
       )
@@ -355,7 +355,11 @@ EOL                      <
     (free
       (baseExpression
         (op
-          (op_test test (cs_operationExtender ( e )) (identifier (free_identifier dfld)))
+          (op_test
+            test
+            (cs_operationExtender ( e ))
+            (identifier (free_identifier (idOrKeyword dfld)))
+          )
         )
       )
       ;
@@ -369,7 +373,7 @@ EOL                      <
             Test
             (cs_operationExtender ( e t ))
             (identifier (all (symbolicConstants *usa)))
-            (identifier (free_identifier dfld))
+            (identifier (free_identifier (idOrKeyword dfld)))
           )
         )
       )
@@ -384,7 +388,7 @@ EOL                      <
             test
             (cs_operationExtender ( D E ))
             (identifier (all (symbolicConstants *LONGJUL)))
-            (identifier (free_identifier dfld))
+            (identifier (free_identifier (idOrKeyword dfld)))
           )
         )
       )

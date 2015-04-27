@@ -37,9 +37,9 @@ BlankIndicator           <  >
           IF
           (c_free
             (expression
-              (expression (identifier (free_identifier theDogIsHungry)))
+              (expression (identifier (free_identifier (idOrKeyword theDogIsHungry))))
               or
-              (expression (identifier (free_identifier theDogIsDead)))
+              (expression (identifier (free_identifier (idOrKeyword theDogIsDead))))
             )
           )
           \r\n

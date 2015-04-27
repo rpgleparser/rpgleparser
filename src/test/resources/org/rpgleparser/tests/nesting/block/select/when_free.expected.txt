@@ -109,8 +109,8 @@ DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
 >
-EMPTY_LINE               <                                                                           >
-COMMENTS_TEXT            <                   >
+HIDDEN:EMPTY_LINE        <                                                                           >
+HIDDEN:COMMENTS_TEXT     <                   >
 /*===TREE===*/
 (r
   (statement (directive ' /' (beginfree_directive free) \n))
@@ -127,9 +127,9 @@ COMMENTS_TEXT            <                   >
                   (expression
                     (identifier
                       (multipart_identifier
-                        (free_identifier inTrigBuff)
+                        (free_identifier (idOrKeyword inTrigBuff))
                         .
-                        (free_identifier triggerEvent)
+                        (free_identifier (idOrKeyword triggerEvent))
                       )
                     )
                   )
@@ -145,7 +145,7 @@ COMMENTS_TEXT            <                   >
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier event)))
+                        (expression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Insert '))
                       )
@@ -159,7 +159,7 @@ COMMENTS_TEXT            <                   >
               (free
                 (baseExpression
                   (expression
-                    (expression (identifier (free_identifier outUserXML)))
+                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
                     (assignmentOperator +=)
                     (expression (literal ' <Event>Insert</Event> '))
                   )
@@ -178,9 +178,9 @@ COMMENTS_TEXT            <                   >
                   (expression
                     (identifier
                       (multipart_identifier
-                        (free_identifier inTrigBuff)
+                        (free_identifier (idOrKeyword inTrigBuff))
                         .
-                        (free_identifier triggerEvent)
+                        (free_identifier (idOrKeyword triggerEvent))
                       )
                     )
                   )
@@ -196,7 +196,7 @@ COMMENTS_TEXT            <                   >
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier event)))
+                        (expression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Delete '))
                       )
@@ -210,7 +210,7 @@ COMMENTS_TEXT            <                   >
               (free
                 (baseExpression
                   (expression
-                    (expression (identifier (free_identifier outUserXML)))
+                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
                     (assignmentOperator +=)
                     (expression (literal ' <Event>Delete</Event> '))
                   )
@@ -229,9 +229,9 @@ COMMENTS_TEXT            <                   >
                   (expression
                     (identifier
                       (multipart_identifier
-                        (free_identifier inTrigBuff)
+                        (free_identifier (idOrKeyword inTrigBuff))
                         .
-                        (free_identifier triggerEvent)
+                        (free_identifier (idOrKeyword triggerEvent))
                       )
                     )
                   )
@@ -247,7 +247,7 @@ COMMENTS_TEXT            <                   >
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier event)))
+                        (expression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Update '))
                       )
@@ -261,7 +261,7 @@ COMMENTS_TEXT            <                   >
               (free
                 (baseExpression
                   (expression
-                    (expression (identifier (free_identifier outUserXML)))
+                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
                     (assignmentOperator +=)
                     (expression (literal ' <Event>Update</Event> '))
                   )
@@ -280,9 +280,9 @@ COMMENTS_TEXT            <                   >
                   (expression
                     (identifier
                       (multipart_identifier
-                        (free_identifier inTrigBuff)
+                        (free_identifier (idOrKeyword inTrigBuff))
                         .
-                        (free_identifier triggerEvent)
+                        (free_identifier (idOrKeyword triggerEvent))
                       )
                     )
                   )
@@ -298,7 +298,7 @@ COMMENTS_TEXT            <                   >
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier event)))
+                        (expression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Read '))
                       )
@@ -312,7 +312,7 @@ COMMENTS_TEXT            <                   >
               (free
                 (baseExpression
                   (expression
-                    (expression (identifier (free_identifier outUserXML)))
+                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
                     (assignmentOperator +=)
                     (expression (literal ' <Event>Read</Event> '))
                   )
@@ -332,7 +332,7 @@ COMMENTS_TEXT            <                   >
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier event)))
+                        (expression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Unknown '))
                       )
@@ -346,7 +346,7 @@ COMMENTS_TEXT            <                   >
               (free
                 (baseExpression
                   (expression
-                    (expression (identifier (free_identifier outUserXML)))
+                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
                     (assignmentOperator +=)
                     (expression (literal ' <Event>Unknown</Event> '))
                   )

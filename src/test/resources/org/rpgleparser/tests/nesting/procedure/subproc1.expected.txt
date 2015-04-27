@@ -7,14 +7,14 @@ ID                       <*no>
 FREE_SEMI                <;>
 DS_Standalone            <dcl-s>
 ID                       <wkAlpha>
-ID                       <char>
+CHAR                     <char>
 '('                      <(>
 NUMBER                   <7>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <dcl-s>
 ID                       <wkError>
-ID                       <ind>
+IND                      <ind>
 FREE_SEMI                <;>
 ID                       <wkAlpha>
 '='                      <=>
@@ -52,23 +52,20 @@ FREE_SEMI                <;>
 (r
   (ctl_opt
     ctl-opt
-    (identifier (free_identifier dftactgrp))
-    (expression ( (expression (identifier (free_identifier *no))) ))
+    (identifier (free_identifier (idOrKeyword dftactgrp)))
+    (expression ( (expression (identifier (free_identifier (idOrKeyword *no)))) ))
     ;
   )
   (dspec
     dcl-s
-    (identifier (free_identifier wkAlpha))
-    (datatype
-      (identifier (free_identifier char))
-      (args ( (expression (number 7)) ))
-    )
+    (identifier (free_identifier (idOrKeyword wkAlpha)))
+    (datatype (datatypeName char) (args ( (expression (number 7)) )))
     ;
   )
   (dspec
     dcl-s
-    (identifier (free_identifier wkError))
-    (datatype (identifier (free_identifier ind)))
+    (identifier (free_identifier (idOrKeyword wkError)))
+    (datatype (datatypeName ind))
     ;
   )
   (statement
@@ -77,7 +74,7 @@ FREE_SEMI                <;>
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier wkAlpha)))
+              (expression (identifier (free_identifier (idOrKeyword wkAlpha))))
               =
               (expression (literal ' 1140214 '))
             )
@@ -90,14 +87,18 @@ FREE_SEMI                <;>
   (statement
     (free
       (baseExpression
-        (op (op_callp (identifier (free_identifier ValidateDate)) ( )))
+        (op (op_callp (identifier (free_identifier (idOrKeyword ValidateDate))) ( )))
       )
       ;
     )
   )
   (procedure
     (beginProcedure
-      (freeBeginProcedure dcl-proc (identifier (free_identifier ValidateDate)) ;)
+      (freeBeginProcedure
+        dcl-proc
+        (identifier (free_identifier (idOrKeyword ValidateDate)))
+        ;
+      )
     )
     (statement
       (block
@@ -109,7 +110,7 @@ FREE_SEMI                <;>
                 (op
                   (op_eval
                     (assignmentExpression
-                      (expression (identifier (free_identifier wkError)))
+                      (expression (identifier (free_identifier (idOrKeyword wkError))))
                       =
                       (expression (identifier (all (symbolicConstants *on))))
                     )
@@ -126,7 +127,7 @@ FREE_SEMI                <;>
                 (op
                   (op_eval
                     (assignmentExpression
-                      (expression (identifier (free_identifier wkError)))
+                      (expression (identifier (free_identifier (idOrKeyword wkError))))
                       =
                       (expression (identifier (all (symbolicConstants *off))))
                     )

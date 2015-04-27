@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -115,7 +115,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -171,9 +171,9 @@ EOL                      <
           EVALR
           (c_free
             (expression
-              (expression (identifier (free_identifier x)))
+              (expression (identifier (free_identifier (idOrKeyword x))))
               =
-              (expression (identifier (free_identifier y)))
+              (expression (identifier (free_identifier (idOrKeyword y))))
             )
           )
           \n
@@ -193,14 +193,14 @@ EOL                      <
           EvalR
           (c_free
             (expression
-              (expression (identifier (free_identifier result)))
+              (expression (identifier (free_identifier (idOrKeyword result))))
               =
               (expression
                 (bif
                   (bif_subst
                     %subst
                     (
-                    (expression (identifier (free_identifier fld01)))
+                    (expression (identifier (free_identifier (idOrKeyword fld01))))
                     :
                     (expression (number 1))
                     :
@@ -234,7 +234,7 @@ EOL                      <
                   (bif_subst
                     %subst
                     (
-                    (expression (identifier (free_identifier name)))
+                    (expression (identifier (free_identifier (idOrKeyword name))))
                     :
                     (expression (number 1))
                     :
@@ -260,7 +260,7 @@ EOL                      <
           (op_evalr
             EVALR
             (assignmentExpression
-              (expression (identifier (free_identifier name)))
+              (expression (identifier (free_identifier (idOrKeyword name))))
               =
               (expression (literal ' XXXXXX '))
             )
@@ -277,14 +277,14 @@ EOL                      <
           (op_evalr
             evalr
             (assignmentExpression
-              (expression (identifier (free_identifier result)))
+              (expression (identifier (free_identifier (idOrKeyword result))))
               =
               (expression
                 (bif
                   (bif_subst
                     %subst
                     (
-                    (expression (identifier (free_identifier fld01)))
+                    (expression (identifier (free_identifier (idOrKeyword fld01))))
                     :
                     (expression (number 1))
                     :
@@ -313,7 +313,7 @@ EOL                      <
                   (bif_subst
                     %subst
                     (
-                    (expression (identifier (free_identifier name)))
+                    (expression (identifier (free_identifier (idOrKeyword name))))
                     :
                     (expression (number 1))
                     :

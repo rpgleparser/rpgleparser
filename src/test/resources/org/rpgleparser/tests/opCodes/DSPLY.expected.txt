@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -169,7 +169,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -368,9 +368,9 @@ EOL                      <
         (op
           (op_dsply
             dsply
-            (expression (identifier (free_identifier msg)))
+            (expression (identifier (free_identifier (idOrKeyword msg))))
             (expression (literal ' '))
-            (expression (identifier (free_identifier result)))
+            (expression (identifier (free_identifier (idOrKeyword result))))
           )
         )
       )
@@ -383,8 +383,8 @@ EOL                      <
         (op
           (op_dsply
             dsply
-            (expression (identifier (free_identifier msg)))
-            (expression (identifier (free_identifier qsysopr)))
+            (expression (identifier (free_identifier (idOrKeyword msg))))
+            (expression (identifier (free_identifier (idOrKeyword qsysopr))))
           )
         )
       )
@@ -398,7 +398,7 @@ EOL                      <
           (op_dsply
             dsply
             (cs_operationExtender ( e ))
-            (expression (identifier (free_identifier *MUSR001)))
+            (expression (identifier (free_identifier (idOrKeyword *MUSR001))))
             (expression (identifier (all (symbolicConstants *EXT))))
           )
         )
@@ -423,7 +423,14 @@ EOL                      <
                       %char
                       (
                       (expression
-                        (bif (bif_len %len ( (expression (identifier (free_identifier str))) )))
+                        (bif
+                          (bif_len
+                            %len
+                            (
+                            (expression (identifier (free_identifier (idOrKeyword str))))
+                            )
+                          )
+                        )
                       )
                       )
                     )

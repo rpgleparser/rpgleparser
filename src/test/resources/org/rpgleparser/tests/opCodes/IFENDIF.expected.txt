@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -231,7 +231,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -288,7 +288,7 @@ EOL                      <
           (c_free
             (expression
               (expression
-                (expression (identifier (free_identifier A)))
+                (expression (identifier (free_identifier (idOrKeyword A))))
                 (comparisonOperator >)
                 (expression (number 10))
               )
@@ -358,13 +358,13 @@ EOL                      <
           (c_free
             (expression
               (expression
-                (expression (identifier (free_identifier A)))
+                (expression (identifier (free_identifier (idOrKeyword A))))
                 (comparisonOperator >)
                 (expression (number 10))
               )
               AND
               (expression
-                (expression (identifier (free_identifier y)))
+                (expression (identifier (free_identifier (idOrKeyword y))))
                 =
                 (expression (number 5))
               )
@@ -383,7 +383,7 @@ EOL                      <
               (csOperationAndExtendedFactor2 ELSEIF)
               (c_free
                 (expression
-                  (expression (identifier (free_identifier B)))
+                  (expression (identifier (free_identifier (idOrKeyword B))))
                   (comparisonOperator <)
                   (expression (number 5))
                 )
@@ -453,7 +453,7 @@ EOL                      <
           (c_free
             (expression
               (expression
-                (expression (identifier (free_identifier A)))
+                (expression (identifier (free_identifier (idOrKeyword A))))
                 (comparisonOperator >)
                 (expression (number 10))
               )
@@ -474,7 +474,7 @@ EOL                      <
               (csOperationAndExtendedFactor2 elseif)
               (c_free
                 (expression
-                  (expression (identifier (free_identifier B)))
+                  (expression (identifier (free_identifier (idOrKeyword B))))
                   (comparisonOperator <)
                   (expression (number 5))
                 )
@@ -539,7 +539,7 @@ EOL                      <
             if
             (expression
               (expression
-                (expression (identifier (free_identifier a)))
+                (expression (identifier (free_identifier (idOrKeyword a))))
                 (comparisonOperator >)
                 (expression (number 10))
               )
@@ -563,15 +563,22 @@ EOL                      <
                   IF
                   (expression
                     (expression
-                      (expression (identifier (free_identifier B)))
+                      (expression (identifier (free_identifier (idOrKeyword B))))
                       (comparisonOperator <)
                       (expression
-                        (bif (bif_len %len ( (expression (identifier (free_identifier str))) )))
+                        (bif
+                          (bif_len
+                            %len
+                            (
+                            (expression (identifier (free_identifier (idOrKeyword str))))
+                            )
+                          )
+                        )
                       )
                     )
                     or
                     (expression
-                      (expression (identifier (free_identifier c)))
+                      (expression (identifier (free_identifier (idOrKeyword c))))
                       =
                       (expression (number 5))
                     )
@@ -587,9 +594,9 @@ EOL                      <
                         elseif
                         (indicator_expr
                           (expression
-                            (expression (identifier (free_identifier keypress)))
+                            (expression (identifier (free_identifier (idOrKeyword keypress))))
                             =
-                            (expression (identifier (free_identifier exitkey)))
+                            (expression (identifier (free_identifier (idOrKeyword exitkey))))
                           )
                         )
                       )
@@ -608,7 +615,7 @@ EOL                      <
             if
             (cs_operationExtender ( m ))
             (expression
-              (expression (identifier (free_identifier a)))
+              (expression (identifier (free_identifier (idOrKeyword a))))
               (comparisonOperator >)
               (expression (number 5))
             )
@@ -624,7 +631,7 @@ EOL                      <
                   (cs_operationExtender ( r ))
                   (indicator_expr
                     (expression
-                      (expression (identifier (free_identifier b)))
+                      (expression (identifier (free_identifier (idOrKeyword b))))
                       =
                       (expression (number 4))
                     )

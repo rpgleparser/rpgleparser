@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -120,7 +120,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -266,16 +266,12 @@ EOL                      <
   (statement
     (free
       (baseExpression
-        (op (op_next NEXT (literal ' dev1 ') (identifier (free_identifier myfile))))
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
         (op
-          (op_next Next (literal ' qpadev0 ') (identifier (free_identifier filename)))
+          (op_next
+            NEXT
+            (literal ' dev1 ')
+            (identifier (free_identifier (idOrKeyword myfile)))
+          )
         )
       )
       ;
@@ -286,10 +282,9 @@ EOL                      <
       (baseExpression
         (op
           (op_next
-            next
-            (cs_operationExtender ( e ))
-            (identifier (free_identifier devvar))
-            (identifier (free_identifier myfile))
+            Next
+            (literal ' qpadev0 ')
+            (identifier (free_identifier (idOrKeyword filename)))
           )
         )
       )
@@ -302,8 +297,23 @@ EOL                      <
         (op
           (op_next
             next
-            (identifier (free_identifier devvar))
-            (identifier (free_identifier file2))
+            (cs_operationExtender ( e ))
+            (identifier (free_identifier (idOrKeyword devvar)))
+            (identifier (free_identifier (idOrKeyword myfile)))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_next
+            next
+            (identifier (free_identifier (idOrKeyword devvar)))
+            (identifier (free_identifier (idOrKeyword file2)))
           )
         )
       )

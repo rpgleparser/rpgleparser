@@ -1,0 +1,134 @@
+/*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <01   >
+DS_FIXED                 <D>
+NAME                     <Date1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <D>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <datfmt(*iso)                                            >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <02   >
+DS_Standalone            <dcl-s>
+ID                       <Date1>
+DATE_                    <date>
+'('                      <(>
+SPLAT_ISO                <*iso>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <03   >
+DS_FIXED                 <D>
+NAME                     <Time1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <T>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <04   >
+DS_Standalone            <dcl-s>
+ID                       <Time1>
+TIME                     <time>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <05   >
+DS_FIXED                 <D>
+NAME                     <TimeStamp1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <Z>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <06   >
+DS_Standalone            <dcl-s>
+ID                       <TimeStamp1>
+TIMESTAMP                <timestamp>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Date1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '       '
+      D
+      '  '
+      ' '
+      'datfmt(*iso)                                            '
+      \r\n
+    )
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Date1)))
+    (datatype
+      (datatypeName date)
+      (args ( (expression (identifier (all (symbolicConstants *iso)))) ))
+    )
+    ;
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Time1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '       '
+      T
+      '  '
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Time1)))
+    (datatype (datatypeName time))
+    ;
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name TimeStamp1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '       '
+      Z
+      '  '
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword TimeStamp1)))
+    (datatype (datatypeName timestamp))
+    ;
+  )
+)
+/*======*/

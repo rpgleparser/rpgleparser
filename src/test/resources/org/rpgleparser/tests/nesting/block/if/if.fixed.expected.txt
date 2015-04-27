@@ -157,7 +157,11 @@ BlankIndicator           <  >
                 IF
                 (c_free
                   (expression
-                    (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
+                    (expression
+                      (bif
+                        (bif_status %STATUS ( (identifier (free_identifier (idOrKeyword CUST))) ))
+                      )
+                    )
                     =
                     (expression (number 1211))
                   )
@@ -199,7 +203,11 @@ BlankIndicator           <  >
                     (csOperationAndExtendedFactor2 ELSEIF)
                     (c_free
                       (expression
-                        (expression (bif (bif_status %STATUS ( (identifier (free_identifier CUST)) ))))
+                        (expression
+                          (bif
+                            (bif_status %STATUS ( (identifier (free_identifier (idOrKeyword CUST))) ))
+                          )
+                        )
                         =
                         (expression (number 1221))
                       )
@@ -245,7 +253,7 @@ BlankIndicator           <  >
                       EVAL
                       (c_free
                         (expression
-                          (expression (identifier (free_identifier CSNAME)))
+                          (expression (identifier (free_identifier (idOrKeyword CSNAME))))
                           =
                           (expression (literal ' CCC '))
                         )

@@ -1,0 +1,54 @@
+/*===TOKENS===*/
+DS_DataStructureStart    <DCL-DS>
+ID                       <PRT_DS>
+KEYWORD_LEN              <LEN>
+'('                      <(>
+NUMBER                   <132>
+')'                      <)>
+DS_DataStructureEnd      <END-DS>
+FREE_SEMI                <;>
+HIDDEN:COMMENTS          <  //>
+HIDDEN:COMMENTS_TEXT     <Two equivalent data structures (END-DS)                                                   >
+DS_DataStructureStart    <DCL-DS>
+ID                       <myrecord>
+KEYWORD_EXT              <EXT>
+FREE_SEMI                <;>
+DS_DataStructureEnd      <END-DS>
+FREE_SEMI                <;>
+DS_DataStructureStart    <DCL-DS>
+ID                       <myrecord>
+KEYWORD_EXT              <EXT>
+DS_DataStructureEnd      <END-DS>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (dcl_ds
+      DCL-DS
+      (identifier (free_identifier (idOrKeyword PRT_DS)))
+      (keyword (keyword_len LEN ( (simpleExpression (number 132)) )))
+      (end_dcl_ds END-DS)
+      ;
+    )
+  )
+  (statement
+    (dcl_ds
+      DCL-DS
+      (identifier (free_identifier (idOrKeyword myrecord)))
+      (keyword (keyword_ext EXT))
+      ;
+      (end_dcl_ds END-DS)
+      ;
+    )
+  )
+  (statement
+    (dcl_ds
+      DCL-DS
+      (identifier (free_identifier (idOrKeyword myrecord)))
+      (keyword (keyword_ext EXT))
+      (end_dcl_ds END-DS)
+      ;
+    )
+  )
+)
+/*======*/

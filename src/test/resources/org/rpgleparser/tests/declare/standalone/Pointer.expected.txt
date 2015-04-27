@@ -1,29 +1,70 @@
 /*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <01   >
+DS_FIXED                 <D>
+NAME                     <Pointer1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <*>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <02   >
+DS_Standalone            <dcl-s>
+ID                       <Pointer1>
+POINTER                  <pointer>
+FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <pUserspace>
-ID                       <POINTER>
+POINTER                  <POINTER>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <pProc>
-ID                       <POINTER>
+POINTER                  <POINTER>
 '('                      <(>
 ID                       <*PROC>
 ')'                      <)>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Pointer1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '       '
+      *
+      '  '
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
   (dspec
-    DCL-S
-    (identifier (free_identifier pUserspace))
-    (datatype (identifier (free_identifier POINTER)))
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Pointer1)))
+    (datatype (datatypeName pointer))
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier pProc))
+    (identifier (free_identifier (idOrKeyword pUserspace)))
+    (datatype (datatypeName POINTER))
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier (idOrKeyword pProc)))
     (datatype
-      (identifier (free_identifier POINTER))
-      (args ( (expression (identifier (free_identifier *PROC))) ))
+      (datatypeName POINTER)
+      (args ( (expression (identifier (free_identifier (idOrKeyword *PROC)))) ))
     )
     ;
   )

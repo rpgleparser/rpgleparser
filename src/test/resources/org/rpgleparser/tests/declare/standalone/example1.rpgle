@@ -9,3 +9,4 @@
          DCL-S date DATE(*MDY); 
          DCL-S obj OBJECT(*JAVA:'MyClass'); 
          DCL-S ptr POINTER(*PROC);
+         DCL-S first_name CHAR(10) INZ('John');

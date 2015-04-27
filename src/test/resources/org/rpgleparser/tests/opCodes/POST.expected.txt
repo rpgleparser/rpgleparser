@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -173,7 +173,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -413,7 +413,9 @@ EOL                      <
   (statement (directive ' /' (beginfree_directive Free) \n))
   (statement
     (free
-      (baseExpression (op (op_post POST (identifier (free_identifier myfile)))))
+      (baseExpression
+        (op (op_post POST (identifier (free_identifier (idOrKeyword myfile)))))
+      )
       ;
     )
   )
@@ -424,17 +426,9 @@ EOL                      <
           (op_post
             POST
             (cs_operationExtender ( e ))
-            (identifier (free_identifier myfile))
+            (identifier (free_identifier (idOrKeyword myfile)))
           )
         )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (op (op_post post (literal ' dev ') (identifier (free_identifier myfile))))
       )
       ;
     )
@@ -445,8 +439,22 @@ EOL                      <
         (op
           (op_post
             post
-            (identifier (free_identifier devfld))
-            (identifier (free_identifier myfile))
+            (literal ' dev ')
+            (identifier (free_identifier (idOrKeyword myfile)))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_post
+            post
+            (identifier (free_identifier (idOrKeyword devfld)))
+            (identifier (free_identifier (idOrKeyword myfile)))
           )
         )
       )

@@ -1,14 +1,60 @@
 /*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <01   >
+DS_FIXED                 <D>
+NAME                     <Packed1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <      7>
+DATA_TYPE                <P>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <02   >
+DS_Standalone            <dcl-s>
+ID                       <Packed1>
+PACKED                   <packed>
+'('                      <(>
+NUMBER                   <7>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <03   >
+DS_FIXED                 <D>
+NAME                     <Packed2>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <      5>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        < 2>
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <04   >
+DS_Standalone            <dcl-s>
+ID                       <Packed2>
+PACKED                   <packed>
+'('                      <(>
+NUMBER                   <5>
+COLON                    <:>
+NUMBER                   <2>
+')'                      <)>
+FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <numRecords>
-ID                       <PACKED>
+PACKED                   <PACKED>
 '('                      <(>
 NUMBER                   <5>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <salary>
-ID                       <PACKED>
+PACKED                   <PACKED>
 '('                      <(>
 NUMBER                   <15>
 COLON                    <:>
@@ -17,20 +63,64 @@ NUMBER                   <2>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Packed1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '      7'
+      P
+      ' 0'
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
   (dspec
-    DCL-S
-    (identifier (free_identifier numRecords))
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Packed1)))
+    (datatype (datatypeName packed) (args ( (expression (number 7)) )))
+    ;
+  )
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Packed2)
+      ' '
+      ' '
+      'S '
+      '       '
+      '      5'
+      ' '
+      ' 2'
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
+  (dspec
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Packed2)))
     (datatype
-      (identifier (free_identifier PACKED))
-      (args ( (expression (number 5)) ))
+      (datatypeName packed)
+      (args ( (expression (number 5)) : (expression (number 2)) ))
     )
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier salary))
+    (identifier (free_identifier (idOrKeyword numRecords)))
+    (datatype (datatypeName PACKED) (args ( (expression (number 5)) )))
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier (idOrKeyword salary)))
     (datatype
-      (identifier (free_identifier PACKED))
+      (datatypeName PACKED)
       (args ( (expression (number 15)) : (expression (number 2)) ))
     )
     ;

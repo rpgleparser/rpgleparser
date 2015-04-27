@@ -160,7 +160,7 @@ BlankIndicator           <  >
           (csFOR
             FOR
             (expression
-              (expression (identifier (free_identifier X)))
+              (expression (identifier (free_identifier (idOrKeyword X))))
               =
               (expression (number 1))
             )
@@ -204,7 +204,7 @@ BlankIndicator           <  >
           (csFOR
             For
             (expression
-              (expression (identifier (free_identifier X1)))
+              (expression (identifier (free_identifier (idOrKeyword X1))))
               =
               (expression (number 1))
             )
@@ -250,7 +250,7 @@ BlankIndicator           <  >
           (csFOR
             For
             (expression
-              (expression (identifier (free_identifier X1)))
+              (expression (identifier (free_identifier (idOrKeyword X1))))
               =
               (expression (number 10))
             )
@@ -294,7 +294,7 @@ BlankIndicator           <  >
           (csFOR
             FOR
             (expression
-              (expression (identifier (free_identifier X)))
+              (expression (identifier (free_identifier (idOrKeyword X))))
               =
               (expression (number 10))
             )
@@ -340,10 +340,17 @@ BlankIndicator           <  >
           (csFOR
             for
             (expression
-              (expression (identifier (free_identifier X1)))
+              (expression (identifier (free_identifier (idOrKeyword X1))))
               =
               (expression
-                (bif (bif_len %len ( (expression (identifier (free_identifier str))) )))
+                (bif
+                  (bif_len
+                    %len
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword str))))
+                    )
+                  )
+                )
               )
             )
             by

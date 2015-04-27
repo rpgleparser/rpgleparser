@@ -62,7 +62,7 @@ EOL                      <
           (op
             (op_eval
               (assignmentExpression
-                (expression (identifier (free_identifier X)))
+                (expression (identifier (free_identifier (idOrKeyword X))))
                 =
                 (expression (number 1234))
               )

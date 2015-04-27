@@ -53,13 +53,13 @@ BlankIndicator           <  >
           (c_free
             (expression
               (expression
-                (expression (identifier (free_identifier retst)))
+                (expression (identifier (free_identifier (idOrKeyword retst))))
                 =
                 (expression (number 4))
               )
               or
               (expression
-                (expression (identifier (free_identifier retst)))
+                (expression (identifier (free_identifier (idOrKeyword retst))))
                 =
                 (expression (number 2))
               )
@@ -79,7 +79,7 @@ BlankIndicator           <  >
                 eval
                 (c_free
                   (expression
-                    (expression (identifier (free_identifier retst)))
+                    (expression (identifier (free_identifier (idOrKeyword retst))))
                     =
                     (expression (number 1))
                   )

@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -98,10 +98,10 @@ BIF_LEN                  <%len>
 ID                       <fld4>
 ')'                      <)>
 FREE_SEMI                <;>
-COMMENTS                 <     //>
-COMMENTS_TEXT            < Not dealing with following case yet                                                   >
-COMMENTS                 <     //>
-COMMENTS_TEXT            <arr(*) = field2 * filed3;                                                              >
+HIDDEN:COMMENTS          <     //>
+HIDDEN:COMMENTS_TEXT     < Not dealing with following case yet                                                   >
+HIDDEN:COMMENTS          <     //>
+HIDDEN:COMMENTS_TEXT     <arr(*) = field2 * filed3;                                                              >
 ID                       <ptr>
 '='                      <=>
 BIF_ADDR                 <%addr>
@@ -159,7 +159,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -215,9 +215,9 @@ EOL                      <
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier x)))
+              (expression (identifier (free_identifier (idOrKeyword x))))
               =
-              (expression (identifier (free_identifier y)))
+              (expression (identifier (free_identifier (idOrKeyword y))))
             )
           )
           \n
@@ -238,17 +238,17 @@ EOL                      <
           (c_free
             (expression
               (expression
-                (expression (identifier (free_identifier result)))
+                (expression (identifier (free_identifier (idOrKeyword result))))
                 =
-                (expression (identifier (free_identifier fld1)))
+                (expression (identifier (free_identifier (idOrKeyword fld1))))
               )
               +
               (expression
                 (
                 (expression
-                  (expression (identifier (free_identifier fld2)))
+                  (expression (identifier (free_identifier (idOrKeyword fld2))))
                   -
-                  (expression (identifier (free_identifier fld3)))
+                  (expression (identifier (free_identifier (idOrKeyword fld3))))
                 )
                 )
               )
@@ -273,13 +273,20 @@ EOL                      <
           (c_free
             (expression
               (expression
-                (expression (identifier (free_identifier result)))
+                (expression (identifier (free_identifier (idOrKeyword result))))
                 =
-                (expression (identifier (free_identifier fld1)))
+                (expression (identifier (free_identifier (idOrKeyword fld1))))
               )
               +
               (expression
-                (bif (bif_len %len ( (expression (identifier (free_identifier fld4))) )))
+                (bif
+                  (bif_len
+                    %len
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword fld4))))
+                    )
+                  )
+                )
               )
             )
           )
@@ -296,9 +303,9 @@ EOL                      <
           (op_eval
             EVAL
             (assignmentExpression
-              (expression (identifier (free_identifier x)))
+              (expression (identifier (free_identifier (idOrKeyword x))))
               =
-              (expression (identifier (free_identifier y)))
+              (expression (identifier (free_identifier (idOrKeyword y))))
             )
           )
         )
@@ -313,17 +320,17 @@ EOL                      <
           (op_eval
             eval
             (assignmentExpression
-              (expression (identifier (free_identifier result)))
+              (expression (identifier (free_identifier (idOrKeyword result))))
               =
               (expression
-                (expression (identifier (free_identifier fld1)))
+                (expression (identifier (free_identifier (idOrKeyword fld1))))
                 +
                 (expression
                   (
                   (expression
-                    (expression (identifier (free_identifier fld2)))
+                    (expression (identifier (free_identifier (idOrKeyword fld2))))
                     -
-                    (expression (identifier (free_identifier fld3)))
+                    (expression (identifier (free_identifier (idOrKeyword fld3))))
                   )
                   )
                 )
@@ -343,13 +350,20 @@ EOL                      <
             eval
             (cs_operationExtender ( h ))
             (assignmentExpression
-              (expression (identifier (free_identifier result)))
+              (expression (identifier (free_identifier (idOrKeyword result))))
               =
               (expression
-                (expression (identifier (free_identifier fld1)))
+                (expression (identifier (free_identifier (idOrKeyword fld1))))
                 +
                 (expression
-                  (bif (bif_len %len ( (expression (identifier (free_identifier fld4))) )))
+                  (bif
+                    (bif_len
+                      %len
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword fld4))))
+                      )
+                    )
+                  )
                 )
               )
             )
@@ -365,10 +379,17 @@ EOL                      <
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier ptr)))
+              (expression (identifier (free_identifier (idOrKeyword ptr))))
               =
               (expression
-                (bif (bif_addr %addr ( (expression (identifier (free_identifier foeld))) )))
+                (bif
+                  (bif_addr
+                    %addr
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword foeld))))
+                    )
+                  )
+                )
               )
             )
           )
@@ -381,7 +402,7 @@ EOL                      <
     (free
       (baseExpression
         (expression
-          (expression (identifier (free_identifier fld3)))
+          (expression (identifier (free_identifier (idOrKeyword fld3))))
           (assignmentOperator +=)
           (expression (number 5))
         )
@@ -393,7 +414,7 @@ EOL                      <
     (free
       (baseExpression
         (expression
-          (expression (identifier (free_identifier fld4)))
+          (expression (identifier (free_identifier (idOrKeyword fld4))))
           (assignmentOperator -=)
           (expression (number 6))
         )
@@ -405,7 +426,7 @@ EOL                      <
     (free
       (baseExpression
         (expression
-          (expression (identifier (free_identifier fld7)))
+          (expression (identifier (free_identifier (idOrKeyword fld7))))
           (assignmentOperator /=)
           (expression (number 10))
         )
@@ -417,7 +438,7 @@ EOL                      <
     (free
       (baseExpression
         (expression
-          (expression (identifier (free_identifier fld8)))
+          (expression (identifier (free_identifier (idOrKeyword fld8))))
           (assignmentOperator *=)
           (expression
             (
@@ -433,7 +454,7 @@ EOL                      <
     (free
       (baseExpression
         (expression
-          (expression (identifier (free_identifier fld9)))
+          (expression (identifier (free_identifier (idOrKeyword fld9))))
           (assignmentOperator **=)
           (expression
             (
@@ -441,7 +462,14 @@ EOL                      <
               (expression (number 6))
               +
               (expression
-                (bif (bif_len %len ( (expression (identifier (free_identifier fleid))) )))
+                (bif
+                  (bif_len
+                    %len
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword fleid))))
+                    )
+                  )
+                )
               )
             )
             )
@@ -459,20 +487,20 @@ EOL                      <
             (identifier
               (multipart_identifier
                 (indexed_identifier
-                  (free_identifier cust)
+                  (free_identifier (idOrKeyword cust))
                   (
-                  (expression (identifier (free_identifier custom)))
+                  (expression (identifier (free_identifier (idOrKeyword custom))))
                   )
                 )
                 .
                 (indexed_identifier
-                  (free_identifier account)
+                  (free_identifier (idOrKeyword account))
                   (
-                  (expression (identifier (free_identifier accum)))
+                  (expression (identifier (free_identifier (idOrKeyword accum))))
                   )
                 )
                 .
-                (free_identifier balance)
+                (free_identifier (idOrKeyword balance))
               )
             )
           )

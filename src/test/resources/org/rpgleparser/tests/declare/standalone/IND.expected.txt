@@ -1,14 +1,45 @@
 /*===TOKENS===*/
-DS_Standalone            <DCL-S>
-ID                       <isValid>
-ID                       <IND>
+HIDDEN:LEAD_WS5_Comments <01   >
+DS_FIXED                 <D>
+NAME                     <Ind1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <S >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <N>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORDS                 <                                                        >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <02   >
+DS_Standalone            <dcl-s>
+ID                       <Ind1>
+IND                      <ind>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name Ind1)
+      ' '
+      ' '
+      'S '
+      '       '
+      '       '
+      N
+      '  '
+      ' '
+      '                                                        '
+      \r\n
+    )
+  )
   (dspec
-    DCL-S
-    (identifier (free_identifier isValid))
-    (datatype (identifier (free_identifier IND)))
+    dcl-s
+    (identifier (free_identifier (idOrKeyword Ind1)))
+    (datatype (datatypeName ind))
     ;
   )
 )

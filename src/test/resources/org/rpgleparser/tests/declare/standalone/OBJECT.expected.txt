@@ -1,9 +1,9 @@
 /*===TOKENS===*/
 DS_Standalone            <DCL-S>
 ID                       <obj>
-ID                       <OBJECT>
+OBJECT                   <OBJECT>
 '('                      <(>
-ID                       <*JAVA>
+SPLAT_JAVA               <*JAVA>
 COLON                    <:>
 StringLiteralStart       <'>
 StringContent            <Cls>
@@ -14,12 +14,12 @@ FREE_SEMI                <;>
 (r
   (dspec
     DCL-S
-    (identifier (free_identifier obj))
+    (identifier (free_identifier (idOrKeyword obj)))
     (datatype
-      (identifier (free_identifier OBJECT))
+      (datatypeName OBJECT)
       (args
         (
-        (expression (identifier (free_identifier *JAVA)))
+        (expression (identifier (all (symbolicConstants *JAVA))))
         :
         (expression (literal ' Cls '))
         )

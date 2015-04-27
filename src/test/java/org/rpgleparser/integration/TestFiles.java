@@ -73,7 +73,7 @@ public class TestFiles {
         parser.addErrorListener(errorListener);
         
 		final String actualTokens = printTokens(lexer);
-		if(expectedTokens != null && expectedTokens.trim().length()>0){
+		if(expectedTokens != null && expectedTokens.trim().length()>0 && !autoReplaceFailed){
 			assertEquals("Token lists do not match",expectedTokens,actualTokens);
 		}
 		lexer.reset();

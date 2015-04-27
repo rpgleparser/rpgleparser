@@ -80,9 +80,9 @@ BIF_ALLOC                <%alloc>
 NUMBER                   <200>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 1                                                          >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 1                                                          >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <ptr2>
 '='                      <=>
@@ -93,9 +93,9 @@ NUMBER                   <200>
 NUMBER                   <300>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 2                                                      >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 2                                                      >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <ptr3>
 '='                      <=>
@@ -107,9 +107,9 @@ ID                       <fld>
 ')'                      <)>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 3                                                    >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 3                                                    >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <ptr4>
 '='                      <=>
@@ -123,16 +123,16 @@ MULT_NOSPACE             <*>
 NUMBER                   <25>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 4                                                 >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 4                                                 >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
 >
-EMPTY_LINE               <                                                                           >
-COMMENTS_TEXT            <                   >
+HIDDEN:EMPTY_LINE        <                                                                           >
+HIDDEN:COMMENTS_TEXT     <                   >
 /*===TREE===*/
 (r
   (statement
@@ -147,7 +147,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier ptr)))
+              (expression (identifier (free_identifier (idOrKeyword ptr))))
               =
               (expression (bif (bif_alloc %ALLOC ( (expression (number 200)) ))))
             )
@@ -169,7 +169,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier ptr2)))
+              (expression (identifier (free_identifier (idOrKeyword ptr2))))
               =
               (expression
                 (bif
@@ -200,7 +200,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier ptr3)))
+              (expression (identifier (free_identifier (idOrKeyword ptr3))))
               =
               (expression
                 (bif
@@ -208,7 +208,14 @@ COMMENTS_TEXT            <                   >
                     %alloc
                     (
                     (expression
-                      (bif (bif_len %len ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_len
+                          %len
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     )
                   )
@@ -233,7 +240,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier ptr4)))
+              (expression (identifier (free_identifier (idOrKeyword ptr4))))
               =
               (expression
                 (bif
@@ -267,7 +274,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier ptr1)))
+              (expression (identifier (free_identifier (idOrKeyword ptr1))))
               =
               (expression (bif (bif_alloc %alloc ( (expression (number 200)) ))))
             )
@@ -283,7 +290,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier ptr2)))
+              (expression (identifier (free_identifier (idOrKeyword ptr2))))
               =
               (expression
                 (bif
@@ -308,7 +315,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier ptr3)))
+              (expression (identifier (free_identifier (idOrKeyword ptr3))))
               =
               (expression
                 (bif
@@ -316,7 +323,14 @@ COMMENTS_TEXT            <                   >
                     %Alloc
                     (
                     (expression
-                      (bif (bif_len %len ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_len
+                          %len
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     )
                   )
@@ -335,7 +349,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier ptr4)))
+              (expression (identifier (free_identifier (idOrKeyword ptr4))))
               =
               (expression
                 (bif
@@ -344,7 +358,14 @@ COMMENTS_TEXT            <                   >
                     (
                     (expression
                       (expression
-                        (bif (bif_len %len ( (expression (identifier (free_identifier fld))) )))
+                        (bif
+                          (bif_len
+                            %len
+                            (
+                            (expression (identifier (free_identifier (idOrKeyword fld))))
+                            )
+                          )
+                        )
                       )
                       *
                       (expression (number 25))

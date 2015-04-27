@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <D*>
-COMMENTS_TEXT            < fixed-form declarations                                                                    >
+HIDDEN:COMMENTS_TEXT     < fixed-form declarations                                                                    >
 DS_FIXED                 <D>
 NAME                     <string>
 EXTERNAL_DESCRIPTION     < >
@@ -53,27 +53,27 @@ RESERVED                 < >
 KEYWORDS                 <PROCPTR                                                 >
 EOL                      <
 >
-COMMENTS                 <    //>
-COMMENTS_TEXT            < free-form declarations                                                                 >
+HIDDEN:COMMENTS          <    //>
+HIDDEN:COMMENTS_TEXT     < free-form declarations                                                                 >
 DS_Standalone            <DCL-S>
 ID                       <string>
-ID                       <VARCHAR>
+VARCHAR                  <VARCHAR>
 '('                      <(>
 NUMBER                   <50>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
-ID                       <date>
-ID                       <DATE>
+DATE_                    <date>
+DATE_                    <DATE>
 '('                      <(>
 SPLAT_MDY                <*MDY>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <obj>
-ID                       <OBJECT>
+OBJECT                   <OBJECT>
 '('                      <(>
-ID                       <*JAVA>
+SPLAT_JAVA               <*JAVA>
 COLON                    <:>
 StringLiteralStart       <'>
 StringContent            <MyClass>
@@ -82,9 +82,22 @@ StringLiteralEnd         <'>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
 ID                       <ptr>
-ID                       <POINTER>
+POINTER                  <POINTER>
 '('                      <(>
 ID                       <*PROC>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Standalone            <DCL-S>
+ID                       <first_name>
+CHAR                     <CHAR>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+KEYWORD_INZ              <INZ>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <John>
+StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
 /*===TREE===*/
@@ -156,30 +169,27 @@ FREE_SEMI                <;>
   )
   (dspec
     DCL-S
-    (identifier (free_identifier string))
-    (datatype
-      (identifier (free_identifier VARCHAR))
-      (args ( (expression (number 50)) ))
-    )
+    (identifier (free_identifier (idOrKeyword string)))
+    (datatype (datatypeName VARCHAR) (args ( (expression (number 50)) )))
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier date))
+    (identifier (free_identifier (idOrKeyword (datatypeName date))))
     (datatype
-      (identifier (free_identifier DATE))
+      (datatypeName DATE)
       (args ( (expression (identifier (all (symbolicConstants *MDY)))) ))
     )
     ;
   )
   (dspec
     DCL-S
-    (identifier (free_identifier obj))
+    (identifier (free_identifier (idOrKeyword obj)))
     (datatype
-      (identifier (free_identifier OBJECT))
+      (datatypeName OBJECT)
       (args
         (
-        (expression (identifier (free_identifier *JAVA)))
+        (expression (identifier (all (symbolicConstants *JAVA))))
         :
         (expression (literal ' MyClass '))
         )
@@ -189,11 +199,18 @@ FREE_SEMI                <;>
   )
   (dspec
     DCL-S
-    (identifier (free_identifier ptr))
+    (identifier (free_identifier (idOrKeyword ptr)))
     (datatype
-      (identifier (free_identifier POINTER))
-      (args ( (expression (identifier (free_identifier *PROC))) ))
+      (datatypeName POINTER)
+      (args ( (expression (identifier (free_identifier (idOrKeyword *PROC)))) ))
     )
+    ;
+  )
+  (dspec
+    DCL-S
+    (identifier (free_identifier (idOrKeyword first_name)))
+    (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
+    (keyword (keyword_inz INZ ( (simpleExpression (literal ' John ')) )))
     ;
   )
 )

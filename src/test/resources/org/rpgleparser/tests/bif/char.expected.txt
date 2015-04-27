@@ -91,9 +91,9 @@ BIF_CHAR                 <%char>
 ID                       <HEXVAL>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 1                                                        >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 1                                                        >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val2>
 '='                      <=>
@@ -104,9 +104,9 @@ StringContent            <80>
 StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 2                                                         >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 2                                                         >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val3>
 '='                      <=>
@@ -117,9 +117,9 @@ COLON                    <:>
 SPLAT_JOBRUN             <*jobrun>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 3                                                   >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 3                                                   >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val4>
 '='                      <=>
@@ -133,9 +133,9 @@ COLON                    <:>
 SPLAT_HMS                <*HMS>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 4                                                >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 4                                                >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val5>
 '='                      <=>
@@ -146,16 +146,16 @@ COLON                    <:>
 SPLAT_HMS                <*hms>
 ')'                      <)>
 FREE_SEMI                <;>
-FE_COMMENTS              <//>
-COMMENTS_TEXT_HIDDEN     <comment 5                                                  >
-COMMENTS_EOL_HIDDEN      <
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment 5                                                  >
+HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
 >
-EMPTY_LINE               <                                                                           >
-COMMENTS_TEXT            <                   >
+HIDDEN:EMPTY_LINE        <                                                                           >
+HIDDEN:COMMENTS_TEXT     <                   >
 /*===TREE===*/
 (r
   (statement
@@ -170,10 +170,17 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val1)))
+              (expression (identifier (free_identifier (idOrKeyword val1))))
               =
               (expression
-                (bif (bif_char %CHAR ( (expression (identifier (free_identifier FLD1))) )))
+                (bif
+                  (bif_char
+                    %CHAR
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword FLD1))))
+                    )
+                  )
+                )
               )
             )
           )
@@ -194,7 +201,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val2)))
+              (expression (identifier (free_identifier (idOrKeyword val2))))
               =
               (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
             )
@@ -216,14 +223,14 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val3)))
+              (expression (identifier (free_identifier (idOrKeyword val3))))
               =
               (expression
                 (bif
                   (bif_char
                     %char
                     (
-                    (expression (identifier (free_identifier fld)))
+                    (expression (identifier (free_identifier (idOrKeyword fld))))
                     :
                     (bif_charformat (symbolicConstants *jobrun))
                     )
@@ -249,7 +256,7 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val4)))
+              (expression (identifier (free_identifier (idOrKeyword val4))))
               =
               (expression
                 (bif
@@ -257,7 +264,14 @@ COMMENTS_TEXT            <                   >
                     %char
                     (
                     (expression
-                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_str
+                          %str
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     :
                     (bif_charformat (symbolicConstants *HMS))
@@ -284,14 +298,14 @@ COMMENTS_TEXT            <                   >
           EVAL
           (c_free
             (expression
-              (expression (identifier (free_identifier val5)))
+              (expression (identifier (free_identifier (idOrKeyword val5))))
               =
               (expression
                 (bif
                   (bif_char
                     %char
                     (
-                    (expression (identifier (free_identifier datefld)))
+                    (expression (identifier (free_identifier (idOrKeyword datefld))))
                     :
                     (bif_charformat (symbolicConstants *HMS))
                     )
@@ -312,10 +326,17 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val1)))
+              (expression (identifier (free_identifier (idOrKeyword val1))))
               =
               (expression
-                (bif (bif_char %char ( (expression (identifier (free_identifier HEXVAL))) )))
+                (bif
+                  (bif_char
+                    %char
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
+                    )
+                  )
+                )
               )
             )
           )
@@ -330,7 +351,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val2)))
+              (expression (identifier (free_identifier (idOrKeyword val2))))
               =
               (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
             )
@@ -346,14 +367,14 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val3)))
+              (expression (identifier (free_identifier (idOrKeyword val3))))
               =
               (expression
                 (bif
                   (bif_char
                     %Char
                     (
-                    (expression (identifier (free_identifier fld)))
+                    (expression (identifier (free_identifier (idOrKeyword fld))))
                     :
                     (bif_charformat (symbolicConstants *jobrun))
                     )
@@ -373,7 +394,7 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val4)))
+              (expression (identifier (free_identifier (idOrKeyword val4))))
               =
               (expression
                 (bif
@@ -381,7 +402,14 @@ COMMENTS_TEXT            <                   >
                     %char
                     (
                     (expression
-                      (bif (bif_str %str ( (expression (identifier (free_identifier fld))) )))
+                      (bif
+                        (bif_str
+                          %str
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fld))))
+                          )
+                        )
+                      )
                     )
                     :
                     (bif_charformat (symbolicConstants *HMS))
@@ -402,14 +430,14 @@ COMMENTS_TEXT            <                   >
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier val5)))
+              (expression (identifier (free_identifier (idOrKeyword val5))))
               =
               (expression
                 (bif
                   (bif_char
                     %char
                     (
-                    (expression (identifier (free_identifier datefld)))
+                    (expression (identifier (free_identifier (idOrKeyword datefld))))
                     :
                     (bif_charformat (symbolicConstants *hms))
                     )

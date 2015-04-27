@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       <C*>
-COMMENTS_TEXT            <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -32,7 +32,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -122,7 +122,7 @@ ID                       <arr>
 COLON                    <:>
 NUMBER                   <1>
 COLON                    <:>
-ID                       <len>
+KEYWORD_LEN              <len>
 ')'                      <)>
 FREE_SEMI                <;>
 OP_SORTA                 <sorta>
@@ -135,7 +135,7 @@ ID                       <arr>
 COLON                    <:>
 NUMBER                   <1>
 COLON                    <:>
-ID                       <len>
+KEYWORD_LEN              <len>
 ')'                      <)>
 FREE_SEMI                <;>
 OP_SORTA                 <sorta>
@@ -161,7 +161,7 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                                            >
+HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -231,7 +231,11 @@ EOL                      <
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csSORTA SORTA (c_free (expression (identifier (free_identifier ARR)))) \n)
+        (csSORTA
+          SORTA
+          (c_free (expression (identifier (free_identifier (idOrKeyword ARR)))))
+          \n
+        )
       )
     )
   )
@@ -246,7 +250,7 @@ EOL                      <
         (csSORTA
           SORTA
           (cs_operationExtender ( D ))
-          (c_free (expression (identifier (free_identifier ARR))))
+          (c_free (expression (identifier (free_identifier (idOrKeyword ARR)))))
           \n
         )
       )
@@ -263,7 +267,7 @@ EOL                      <
         (csSORTA
           SORTA
           (cs_operationExtender ( A ))
-          (c_free (expression (identifier (free_identifier ARR))))
+          (c_free (expression (identifier (free_identifier (idOrKeyword ARR)))))
           \n
         )
       )
@@ -285,7 +289,7 @@ EOL                      <
                 (bif_subarr
                   %SUBARR
                   (
-                  (expression (identifier (free_identifier ARR)))
+                  (expression (identifier (free_identifier (idOrKeyword ARR))))
                   :
                   (expression (number 1))
                   )
@@ -314,7 +318,7 @@ EOL                      <
                 (bif_subarr
                   %SUBARR
                   (
-                  (expression (identifier (free_identifier ARR)))
+                  (expression (identifier (free_identifier (idOrKeyword ARR))))
                   :
                   (expression (number 1))
                   :
@@ -332,7 +336,9 @@ EOL                      <
   (statement (directive ' /' (beginfree_directive Free) \n))
   (statement
     (free
-      (baseExpression (op (op_sorta sorta (identifier (free_identifier arr)))))
+      (baseExpression
+        (op (op_sorta sorta (identifier (free_identifier (idOrKeyword arr)))))
+      )
       ;
     )
   )
@@ -343,7 +349,7 @@ EOL                      <
           (op_sorta
             SORTA
             (cs_operationExtender ( D ))
-            (identifier (free_identifier arr))
+            (identifier (free_identifier (idOrKeyword arr)))
           )
         )
       )
@@ -357,7 +363,7 @@ EOL                      <
           (op_sorta
             sorta
             (cs_operationExtender ( a ))
-            (identifier (free_identifier arr))
+            (identifier (free_identifier (idOrKeyword arr)))
           )
         )
       )
@@ -373,11 +379,11 @@ EOL                      <
             (bif_subarr
               %subarr
               (
-              (expression (identifier (free_identifier arr)))
+              (expression (identifier (free_identifier (idOrKeyword arr))))
               :
               (expression (number 1))
               :
-              (expression (identifier (free_identifier len)))
+              (expression (identifier (free_identifier (idOrKeyword len))))
               )
             )
           )
@@ -396,11 +402,11 @@ EOL                      <
             (bif_subarr
               %subarr
               (
-              (expression (identifier (free_identifier arr)))
+              (expression (identifier (free_identifier (idOrKeyword arr))))
               :
               (expression (number 1))
               :
-              (expression (identifier (free_identifier len)))
+              (expression (identifier (free_identifier (idOrKeyword len))))
               )
             )
           )
@@ -422,16 +428,16 @@ EOL                      <
               (expression
                 (identifier
                   (multipart_identifier
-                    (indexed_identifier (free_identifier emp) ( * ))
+                    (indexed_identifier (free_identifier (idOrKeyword emp)) ( * ))
                     .
-                    (free_identifier salary)
+                    (free_identifier (idOrKeyword salary))
                   )
                 )
               )
               :
               (expression (number 1))
               :
-              (expression (identifier (free_identifier numemp)))
+              (expression (identifier (free_identifier (idOrKeyword numemp))))
               )
             )
           )

@@ -47,13 +47,13 @@ FREE_SEMI                <;>
               (expression
                 (expression
                   (expression
-                    (expression (identifier (free_identifier X)))
+                    (expression (identifier (free_identifier (idOrKeyword X))))
                     =
                     (expression (number 1))
                   )
                   AND
                   (expression
-                    (expression (identifier (free_identifier Y)))
+                    (expression (identifier (free_identifier (idOrKeyword Y))))
                     =
                     (expression (number 2))
                   )
@@ -61,13 +61,13 @@ FREE_SEMI                <;>
                 OR
                 (expression
                   (expression
-                    (expression (identifier (free_identifier Z)))
+                    (expression (identifier (free_identifier (idOrKeyword Z))))
                     =
                     (expression (number 3))
                   )
                   AND
                   (expression
-                    (expression (identifier (free_identifier Q)))
+                    (expression (identifier (free_identifier (idOrKeyword Q))))
                     =
                     (expression (number 8))
                   )
@@ -75,7 +75,7 @@ FREE_SEMI                <;>
               )
               OR
               (expression
-                (expression (identifier (free_identifier B)))
+                (expression (identifier (free_identifier (idOrKeyword B))))
                 =
                 (expression (number 43))
               )
@@ -95,7 +95,7 @@ FREE_SEMI                <;>
                 EVAL
                 (c_free
                   (expression
-                    (expression (identifier (free_identifier CSNAME)))
+                    (expression (identifier (free_identifier (idOrKeyword CSNAME))))
                     =
                     (expression (literal ' CCC '))
                   )
