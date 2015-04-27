@@ -73,8 +73,13 @@ public class TestFiles {
         parser.addErrorListener(errorListener);
         
 		final String actualTokens = printTokens(lexer);
-		if(expectedTokens != null && expectedTokens.trim().length()>0 && !autoReplaceFailed){
-			assertEquals("Token lists do not match",expectedTokens,actualTokens);
+		boolean rewriteExpectFile=false;
+		if(expectedTokens != null && expectedTokens.trim().length()>0 ){
+			if(autoReplaceFailed){
+				rewriteExpectFile=true;
+			}else{
+				assertEquals("Token lists do not match",expectedTokens,actualTokens);
+			}
 		}
 		lexer.reset();
 		
@@ -87,7 +92,7 @@ public class TestFiles {
 		}
 		assertThat(errors, is(empty()));
 		
-    	if(expectedTree==null || expectedTree.trim().length() == 0){
+    	if(expectedTree==null || expectedTree.trim().length() == 0||rewriteExpectFile){
     		writeExpectFile(expectedFile,actualTokens,actualTree);
     		System.out.println("Tree written to " + expectedFile);
 		}else{

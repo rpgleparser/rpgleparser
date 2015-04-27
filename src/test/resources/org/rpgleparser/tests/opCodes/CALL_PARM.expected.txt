@@ -1,5 +1,5 @@
 /*===TOKENS===*/
-LEAD_WS5_Comments        <1.27 >
+HIDDEN:LEAD_WS5_Comments <1.27 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -17,7 +17,7 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
-LEAD_WS5_Comments        <1.28 >
+HIDDEN:LEAD_WS5_Comments <1.28 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -33,7 +33,7 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
-LEAD_WS5_Comments        <1.29 >
+HIDDEN:LEAD_WS5_Comments <1.29 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -49,7 +49,7 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
-LEAD_WS5_Comments        <1.30 >
+HIDDEN:LEAD_WS5_Comments <1.30 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -65,7 +65,7 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
-LEAD_WS5_Comments        <1.31 >
+HIDDEN:LEAD_WS5_Comments <1.31 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >

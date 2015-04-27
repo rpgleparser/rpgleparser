@@ -1,5 +1,5 @@
 /*===TOKENS===*/
-LEAD_WS5_Comments        <1.00 >
+HIDDEN:LEAD_WS5_Comments <1.00 >
 DS_FIXED                 <D>
 NAME                     <A>
 EXTERNAL_DESCRIPTION     < >
@@ -13,7 +13,7 @@ RESERVED                 < >
 KEYWORDS                 <INZ(25)                                   130128        >
 EOL                      <
 >
-LEAD_WS5_Comments        <2.00 >
+HIDDEN:LEAD_WS5_Comments <2.00 >
 DS_FIXED                 <D>
 NAME                     <B>
 EXTERNAL_DESCRIPTION     < >
@@ -27,10 +27,10 @@ RESERVED                 < >
 KEYWORDS                 <INZ(11)                                   130128        >
 EOL                      <
 >
-LEAD_WS5_Comments        <3.00 >
+HIDDEN:LEAD_WS5_Comments <3.00 >
 COMMENT_SPEC_FIXED       < *>
-COMMENTS_TEXT            <                                                                              130128        >
-LEAD_WS5_Comments        <4.00 >
+HIDDEN:COMMENTS_TEXT     <                                                                              130128        >
+HIDDEN:LEAD_WS5_Comments <4.00 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -47,7 +47,7 @@ BlankIndicator           <  >
 CS_Comments              <130128        >
 EOL                      <
 >
-LEAD_WS5_Comments        <5.00 >
+HIDDEN:LEAD_WS5_Comments <5.00 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -64,7 +64,7 @@ BlankIndicator           <  >
 CS_Comments              <130128        >
 EOL                      <
 >
-LEAD_WS5_Comments        <6.00 >
+HIDDEN:LEAD_WS5_Comments <6.00 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -81,7 +81,7 @@ BlankIndicator           <  >
 CS_Comments              <130128        >
 EOL                      <
 >
-LEAD_WS5_Comments        <7.00 >
+HIDDEN:LEAD_WS5_Comments <7.00 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -98,7 +98,7 @@ BlankIndicator           <  >
 CS_Comments              <130128        >
 EOL                      <
 >
-LEAD_WS5_Comments        <8.00 >
+HIDDEN:LEAD_WS5_Comments <8.00 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
