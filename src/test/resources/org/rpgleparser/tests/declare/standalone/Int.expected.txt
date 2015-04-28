@@ -10,7 +10,6 @@ TO_POSITION              <      3>
 DATA_TYPE                <I>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <02   >
@@ -32,7 +31,6 @@ TO_POSITION              <      3>
 DATA_TYPE                <U>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <04   >
@@ -54,7 +52,6 @@ TO_POSITION              <      8>
 DATA_TYPE                <F>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <06   >
@@ -68,20 +65,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
-      D
-      (ds_name Int1)
-      ' '
-      ' '
-      'S '
-      '       '
-      '      3'
-      I
-      ' 0'
-      ' '
-      '                                                        '
-      \r\n
-    )
+    (dspec_fixed D (ds_name Int1) ' ' ' ' 'S ' '       ' '      3' I ' 0' ' ' \r\n)
   )
   (dspec
     dcl-s
@@ -90,20 +74,7 @@ FREE_SEMI                <;>
     ;
   )
   (statement
-    (dspec_fixed
-      D
-      (ds_name Uns1)
-      ' '
-      ' '
-      'S '
-      '       '
-      '      3'
-      U
-      ' 0'
-      ' '
-      '                                                        '
-      \r\n
-    )
+    (dspec_fixed D (ds_name Uns1) ' ' ' ' 'S ' '       ' '      3' U ' 0' ' ' \r\n)
   )
   (dspec
     dcl-s
@@ -123,7 +94,6 @@ FREE_SEMI                <;>
       F
       '  '
       ' '
-      '                                                        '
       \r\n
     )
   )

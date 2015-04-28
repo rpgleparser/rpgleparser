@@ -10,7 +10,12 @@ TO_POSITION              <     10>
 DATA_TYPE                < >
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <dtaara('TESTDA')                                        >
+KEYWORD_DTAARA           <dtaara>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <TESTDA>
+StringLiteralEnd         <'>
+')'                      <)>
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <02   >
@@ -41,7 +46,7 @@ FREE_SEMI                <;>
       ' '
       '  '
       ' '
-      'dtaara('TESTDA')                                        '
+      (keyword (keyword_dtaara dtaara ( (literal ' TESTDA ') )))
       \r\n
     )
   )

@@ -82,7 +82,7 @@ public class SymbolTableBuilder extends LoggingListener {
 		String dataStructureName = ctx.ds_name().getText().trim();
 		String externalDescription = ctx.EXTERNAL_DESCRIPTION().getText().trim();
 		String fromPosition = ctx.FROM_POSITION().getText().trim();
-		String keywords = ctx.KEYWORDS().getText().trim();
+		String keywords = null;//ctx.KEYWORDS().getText().trim(); //todo
 		String toPosition = ctx.TO_POSITION().getText().trim();
 		Symbol theSym = new Symbol();
 		// Definition type

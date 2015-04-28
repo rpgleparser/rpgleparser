@@ -10,7 +10,6 @@ TO_POSITION              <       >
 DATA_TYPE                <N>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <02   >
@@ -21,20 +20,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
-      D
-      (ds_name Ind1)
-      ' '
-      ' '
-      'S '
-      '       '
-      '       '
-      N
-      '  '
-      ' '
-      '                                                        '
-      \r\n
-    )
+    (dspec_fixed D (ds_name Ind1) ' ' ' ' 'S ' '       ' '       ' N '  ' ' ' \r\n)
   )
   (dspec
     dcl-s

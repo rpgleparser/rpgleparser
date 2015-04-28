@@ -10,7 +10,11 @@ TO_POSITION              <      2>
 DATA_TYPE                <P>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <INZ(25)                                   130128        >
+KEYWORD_INZ              <INZ>
+'('                      <(>
+NUMBER                   <25>
+')'                      <)>
+HIDDEN:FREE_COMMENTS80   <130128        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <2.00 >
@@ -24,7 +28,11 @@ TO_POSITION              <      2>
 DATA_TYPE                <P>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <INZ(11)                                   130128        >
+KEYWORD_INZ              <INZ>
+'('                      <(>
+NUMBER                   <11>
+')'                      <)>
+HIDDEN:FREE_COMMENTS80   <130128        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <3.00 >
@@ -127,7 +135,7 @@ CS_Comments              <130128        >
       P
       ' 0'
       ' '
-      'INZ(25)                                   130128        '
+      (keyword (keyword_inz INZ ( (simpleExpression (number 25)) )))
       \r\n
     )
   )
@@ -143,7 +151,7 @@ CS_Comments              <130128        >
       P
       ' 0'
       ' '
-      'INZ(11)                                   130128        '
+      (keyword (keyword_inz INZ ( (simpleExpression (number 11)) )))
       \r\n
     )
   )

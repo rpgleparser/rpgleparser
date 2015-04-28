@@ -13,7 +13,6 @@ TO_POSITION              <     10>
 DATA_TYPE                <I>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -26,7 +25,7 @@ TO_POSITION              <      5>
 DATA_TYPE                <I>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <VALUE                                                   >
+KEYWORD_VALUE            <VALUE>
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -39,7 +38,7 @@ TO_POSITION              <      5>
 DATA_TYPE                <I>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <VALUE                                                   >
+KEYWORD_VALUE            <VALUE>
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -52,7 +51,6 @@ TO_POSITION              <     10>
 DATA_TYPE                <I>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 OP_RETURN                <return>
@@ -85,7 +83,6 @@ PS_KEYWORDS              <                                                      
         I
         ' 0'
         ' '
-        '                                                        '
         \r\n
       )
     )
@@ -101,7 +98,7 @@ PS_KEYWORDS              <                                                      
         I
         ' 0'
         ' '
-        'VALUE                                                   '
+        (keyword (keyword_value VALUE))
         \r\n
       )
     )
@@ -117,7 +114,7 @@ PS_KEYWORDS              <                                                      
         I
         ' 0'
         ' '
-        'VALUE                                                   '
+        (keyword (keyword_value VALUE))
         \r\n
       )
     )
@@ -133,7 +130,6 @@ PS_KEYWORDS              <                                                      
         I
         ' 0'
         ' '
-        '                                                        '
         \r\n
       )
     )

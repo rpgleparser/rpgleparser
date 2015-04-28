@@ -11,7 +11,6 @@ TO_POSITION              <       >
 DATA_TYPE                < >
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -24,7 +23,6 @@ TO_POSITION              <     15>
 DATA_TYPE                <A>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -37,7 +35,10 @@ TO_POSITION              <     5P>
 DATA_TYPE                < >
 DECIMAL_POSITIONS        <2 >
 RESERVED                 < >
-KEYWORDS                 <OVERLAY(myds)                                           >
+KEYWORD_OVERLAY          <OVERLAY>
+'('                      <(>
+ID                       <myds>
+')'                      <)>
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -50,7 +51,12 @@ TO_POSITION              <     10>
 DATA_TYPE                <A>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <OVERLAY(myds:100)                                       >
+KEYWORD_OVERLAY          <OVERLAY>
+'('                      <(>
+ID                       <myds>
+COLON                    <:>
+NUMBER                   <100>
+')'                      <)>
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -63,7 +69,12 @@ TO_POSITION              <     15>
 DATA_TYPE                <A>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <OVERLAY(myds:*NEXT)                                     >
+KEYWORD_OVERLAY          <OVERLAY>
+'('                      <(>
+ID                       <myds>
+COLON                    <:>
+SPLAT_NEXT               <*NEXT>
+')'                      <)>
 EOL                      <
 >
 HIDDEN:COMMENTS          <      //>
@@ -114,20 +125,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
-      D
-      (ds_name myds)
-      ' '
-      ' '
-      DS
-      '       '
-      '       '
-      ' '
-      '  '
-      ' '
-      '                                                        '
-      \r\n
-    )
+    (dspec_fixed D (ds_name myds) ' ' ' ' DS '       ' '       ' ' ' '  ' ' ' \r\n)
   )
   (statement
     (dspec_fixed
@@ -141,7 +139,6 @@ FREE_SEMI                <;>
       A
       '  '
       ' '
-      '                                                        '
       \r\n
     )
   )
@@ -157,7 +154,14 @@ FREE_SEMI                <;>
       ' '
       '2 '
       ' '
-      'OVERLAY(myds)                                           '
+      (keyword
+        (keyword_overlay
+          OVERLAY
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword myds))))
+          )
+        )
+      )
       \r\n
     )
   )
@@ -173,7 +177,16 @@ FREE_SEMI                <;>
       A
       '  '
       ' '
-      'OVERLAY(myds:100)                                       '
+      (keyword
+        (keyword_overlay
+          OVERLAY
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword myds))))
+          :
+          (simpleExpression (number 100))
+          )
+        )
+      )
       \r\n
     )
   )
@@ -189,7 +202,16 @@ FREE_SEMI                <;>
       A
       '  '
       ' '
-      'OVERLAY(myds:*NEXT)                                     '
+      (keyword
+        (keyword_overlay
+          OVERLAY
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword myds))))
+          :
+          *NEXT
+          )
+        )
+      )
       \r\n
     )
   )

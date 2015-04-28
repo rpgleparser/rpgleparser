@@ -464,6 +464,7 @@ FREE_LEAD_WS5_Comments :  {getCharPositionInLine()==0}?~[\r\n]~[\r\n]~[\r\n]~[\r
 FREE_FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> skip;
 	
 C_FREE_NEWLINE: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE -> popMode,popMode;
+D_FREE_NEWLINE: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE -> type(EOL),popMode,popMode;
 FREE_NEWLINE: {_modeStack.peek()!=FIXED_CalcSpec}? NEWLINE -> skip;
 FREE_SEMI: SEMI -> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
 
@@ -723,13 +724,14 @@ CONTINUATION : '...' ;
 NAME : {getCharPositionInLine()==6}? WORD5 WORD5 WORD5 {setText(getText().trim());};
 EXTERNAL_DESCRIPTION: {getCharPositionInLine()==21}? [eE ];
 DATA_STRUCTURE_TYPE: {getCharPositionInLine()==22}? [sSuU ];
+DEF_TYPE_C: {getCharPositionInLine()==23}? [cC][ ];
 DEF_TYPE: {getCharPositionInLine()==23}? [a-zA-Z0-9 ][a-zA-Z0-9 ];
 FROM_POSITION: {getCharPositionInLine()==25}? WORD5 [a-zA-Z0-9 ][a-zA-Z0-9 ];
 TO_POSITION: {getCharPositionInLine()==32}? WORD5[a-zA-Z0-9 ][a-zA-Z0-9 ];
 DATA_TYPE: {getCharPositionInLine()==39}? [a-zA-Z\* ];
 DECIMAL_POSITIONS: {getCharPositionInLine()==40}? [0-9 ][0-9 ];
-RESERVED : {getCharPositionInLine()==42}? ' ' ;
-KEYWORDS : {getCharPositionInLine()==43}? ~[\r\n]+ ;
+RESERVED : {getCharPositionInLine()==42}? ' ' -> pushMode(FREE);
+//KEYWORDS : {getCharPositionInLine()==43}? ~[\r\n]+ ;
 D_WS : {getCharPositionInLine()>=80}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
 D_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN); // skip comments after 80
 EOL : NEWLINE ->  popMode;

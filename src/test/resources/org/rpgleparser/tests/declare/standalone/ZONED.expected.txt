@@ -10,7 +10,6 @@ TO_POSITION              <      7>
 DATA_TYPE                <S>
 DECIMAL_POSITIONS        < 2>
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <02   >
@@ -53,7 +52,6 @@ FREE_SEMI                <;>
       S
       ' 2'
       ' '
-      '                                                        '
       \r\n
     )
   )

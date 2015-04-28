@@ -10,7 +10,11 @@ TO_POSITION              <      7>
 DATA_TYPE                < >
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <dim(3) ctdata                                           >
+KEYWORD_DIM              <dim>
+'('                      <(>
+NUMBER                   <3>
+')'                      <)>
+KEYWORD_CTDATA           <ctdata>
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <02   >
@@ -40,7 +44,8 @@ FREE_SEMI                <;>
       ' '
       '  '
       ' '
-      'dim(3) ctdata                                           '
+      (keyword (keyword_dim dim ( (number 3) )))
+      (keyword (keyword_ctdata ctdata))
       \r\n
     )
   )

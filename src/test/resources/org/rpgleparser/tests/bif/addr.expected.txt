@@ -9,7 +9,13 @@ TO_POSITION              <       >
 DATA_TYPE                <*>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <Inz(%addr(objName))                                     >
+KEYWORD_INZ              <Inz>
+'('                      <(>
+BIF_ADDR                 <%addr>
+'('                      <(>
+ID                       <objName>
+')'                      <)>
+')'                      <)>
 EOL                      <
 >
 CS_FIXED                 <C>
@@ -99,7 +105,23 @@ HIDDEN:COMMENTS_TEXT     <                   >
       *
       '  '
       ' '
-      'Inz(%addr(objName))                                     '
+      (keyword
+        (keyword_inz
+          Inz
+          (
+          (simpleExpression
+            (bif
+              (bif_addr
+                %addr
+                (
+                (expression (identifier (free_identifier (idOrKeyword objName))))
+                )
+              )
+            )
+          )
+          )
+        )
+      )
       \r\n
     )
   )

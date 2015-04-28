@@ -1,6 +1,20 @@
 /*===TOKENS===*/
-HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     <D CurrentRec      ds                  likerec(CusRec)                                     >
+DS_FIXED                 <D>
+NAME                     <CurrentRec>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE                 <ds>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_LIKEREC          <likerec>
+'('                      <(>
+ID                       <CusRec>
+')'                      <)>
+EOL                      <
+>
 DS_DataStructureStart    <DCL-DS>
 ID                       <custoutput>
 KEYWORD_LIKEREC          <LIKEREC>
@@ -10,6 +24,29 @@ ID                       <custrec>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
+  (statement
+    (dspec_fixed
+      D
+      (ds_name CurrentRec)
+      ' '
+      ' '
+      ds
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (keyword
+        (keyword_likerec
+          likerec
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword CusRec))))
+          )
+        )
+      )
+      \r\n
+    )
+  )
   (statement
     (dcl_ds
       DCL-DS

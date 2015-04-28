@@ -11,7 +11,7 @@ TO_POSITION              <     50>
 DATA_TYPE                <A>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <VARYING                                                 >
+KEYWORD_VARYING          <VARYING>
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -24,7 +24,10 @@ TO_POSITION              <       >
 DATA_TYPE                <D>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <DATFMT(*MDY)                                            >
+KEYWORD_DATFMT           <DATFMT>
+'('                      <(>
+SPLAT_MDY                <*MDY>
+')'                      <)>
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -37,7 +40,14 @@ TO_POSITION              <       >
 DATA_TYPE                <O>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <CLASS(*JAVA:'MyClass')                                  >
+KEYWORD_CLASS            <CLASS>
+'('                      <(>
+SPLAT_JAVA               <*JAVA>
+COLON                    <:>
+StringLiteralStart       <'>
+StringContent            <MyClass>
+StringLiteralEnd         <'>
+')'                      <)>
 EOL                      <
 >
 DS_FIXED                 <D>
@@ -50,7 +60,7 @@ TO_POSITION              <       >
 DATA_TYPE                <*>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <PROCPTR                                                 >
+KEYWORD_PROCPTR          <PROCPTR>
 EOL                      <
 >
 HIDDEN:COMMENTS          <    //>
@@ -115,7 +125,7 @@ FREE_SEMI                <;>
       A
       '  '
       ' '
-      'VARYING                                                 '
+      (keyword (keyword_varying VARYING))
       \r\n
     )
   )
@@ -131,7 +141,14 @@ FREE_SEMI                <;>
       D
       '  '
       ' '
-      'DATFMT(*MDY)                                            '
+      (keyword
+        (keyword_datfmt
+          DATFMT
+          (
+          (simpleExpression (identifier (all (symbolicConstants *MDY))))
+          )
+        )
+      )
       \r\n
     )
   )
@@ -147,7 +164,9 @@ FREE_SEMI                <;>
       O
       '  '
       ' '
-      'CLASS(*JAVA:'MyClass')                                  '
+      (keyword
+        (keyword_class CLASS ( *JAVA : (simpleExpression (literal ' MyClass ')) ))
+      )
       \r\n
     )
   )
@@ -163,7 +182,7 @@ FREE_SEMI                <;>
       *
       '  '
       ' '
-      'PROCPTR                                                 '
+      (keyword (keyword_procptr PROCPTR))
       \r\n
     )
   )

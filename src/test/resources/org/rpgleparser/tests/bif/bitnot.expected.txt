@@ -9,7 +9,13 @@ TO_POSITION              <      4>
 DATA_TYPE                <a>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <Inz(%bitnot(constfld))                                  >
+KEYWORD_INZ              <Inz>
+'('                      <(>
+BIF_BITNOT               <%bitnot>
+'('                      <(>
+ID                       <constfld>
+')'                      <)>
+')'                      <)>
 EOL                      <
 >
 CS_FIXED                 <C>
@@ -148,7 +154,23 @@ HIDDEN:COMMENTS_TEXT     <                   >
       a
       '  '
       ' '
-      'Inz(%bitnot(constfld))                                  '
+      (keyword
+        (keyword_inz
+          Inz
+          (
+          (simpleExpression
+            (bif
+              (bif_bitnot
+                %bitnot
+                (
+                (expression (identifier (free_identifier (idOrKeyword constfld))))
+                )
+              )
+            )
+          )
+          )
+        )
+      )
       \r\n
     )
   )

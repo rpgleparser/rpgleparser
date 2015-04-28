@@ -10,7 +10,10 @@ TO_POSITION              <       >
 DATA_TYPE                <D>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <datfmt(*iso)                                            >
+KEYWORD_DATFMT           <datfmt>
+'('                      <(>
+SPLAT_ISO                <*iso>
+')'                      <)>
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <02   >
@@ -32,7 +35,6 @@ TO_POSITION              <       >
 DATA_TYPE                <T>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <04   >
@@ -51,7 +53,6 @@ TO_POSITION              <       >
 DATA_TYPE                <Z>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <                                                        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <06   >
@@ -73,7 +74,14 @@ FREE_SEMI                <;>
       D
       '  '
       ' '
-      'datfmt(*iso)                                            '
+      (keyword
+        (keyword_datfmt
+          datfmt
+          (
+          (simpleExpression (identifier (all (symbolicConstants *iso))))
+          )
+        )
+      )
       \r\n
     )
   )
@@ -98,7 +106,6 @@ FREE_SEMI                <;>
       T
       '  '
       ' '
-      '                                                        '
       \r\n
     )
   )
@@ -120,7 +127,6 @@ FREE_SEMI                <;>
       Z
       '  '
       ' '
-      '                                                        '
       \r\n
     )
   )

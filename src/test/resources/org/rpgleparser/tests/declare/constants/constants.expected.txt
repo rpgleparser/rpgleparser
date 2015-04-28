@@ -4,13 +4,18 @@ DS_FIXED                 <D>
 NAME                     <Constant1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <C >
+DEF_TYPE_C               <C >
 FROM_POSITION            <       >
 TO_POSITION              <       >
 DATA_TYPE                < >
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <const('ABCDEFG')                                        >
+KEYWORD_CONST            <const>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <ABCDEFG>
+StringLiteralEnd         <'>
+')'                      <)>
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <02   >
@@ -18,13 +23,15 @@ DS_FIXED                 <D>
 NAME                     <Constant2>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <C >
+DEF_TYPE_C               <C >
 FROM_POSITION            <       >
 TO_POSITION              <       >
 DATA_TYPE                < >
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
-KEYWORDS                 <'ABCDEFG'                                               >
+StringLiteralStart       <'>
+StringContent            <ABCDEFG>
+StringLiteralEnd         <'>
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <03   >
@@ -47,7 +54,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
+    (dcl_c
       D
       (ds_name Constant1)
       ' '
@@ -58,12 +65,12 @@ FREE_SEMI                <;>
       ' '
       '  '
       ' '
-      'const('ABCDEFG')                                        '
+      (keyword_const const ( (simpleExpression (literal ' ABCDEFG ')) ))
       \r\n
     )
   )
   (statement
-    (dspec_fixed
+    (dcl_c
       D
       (ds_name Constant2)
       ' '
@@ -74,7 +81,7 @@ FREE_SEMI                <;>
       ' '
       '  '
       ' '
-      ''ABCDEFG'                                               '
+      (literal ' ABCDEFG ')
       \r\n
     )
   )
@@ -82,16 +89,7 @@ FREE_SEMI                <;>
     (dcl_c
       dcl-c
       (identifier (free_identifier (idOrKeyword Constant1)))
-      (identifier
-        (multipart_identifier
-          (indexed_identifier
-            (free_identifier (idOrKeyword const))
-            (
-            (expression (literal ' ABCDEFG '))
-            )
-          )
-        )
-      )
+      (keyword_const const ( (simpleExpression (literal ' ABCDEFG ')) ))
       ;
     )
   )
@@ -99,7 +97,7 @@ FREE_SEMI                <;>
     (dcl_c
       dcl-c
       (identifier (free_identifier (idOrKeyword Constant2)))
-      (expression (literal ' ABCDEFG '))
+      (literal ' ABCDEFG ')
       ;
     )
   )
