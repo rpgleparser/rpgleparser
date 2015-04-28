@@ -3,7 +3,7 @@ DS_FIXED                 <D>
 NAME                     <VALFLD>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      4>
 DATA_TYPE                <a>
@@ -143,7 +143,7 @@ HIDDEN:COMMENTS_TEXT     <                   >
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
+    (dspec
       D
       (ds_name VALFLD)
       ' '

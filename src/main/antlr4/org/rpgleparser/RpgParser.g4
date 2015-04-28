@@ -4,8 +4,7 @@ parser grammar RpgParser;
 
 options {   tokenVocab = RpgLexer; }
 
-r: (dspec 
-	| dcl_pr 
+r: (dcl_pr 
 	| dcl_pi
 	| ctl_opt
 //	|dspec_continuation
@@ -17,7 +16,8 @@ r: (dspec
 endSource*
 ;
 statement:
-	dcl_ds
+	dspec 
+	| dcl_ds
 	| dcl_c
 	| (dspec_fixed)
   	| ospec_fixed
@@ -45,8 +45,16 @@ free_linecomments: COMMENTS comments;
 comments: COMMENTS_TEXT; 
 //just_comments: COMMENTS COMMENTS_TEXT COMMENTS_EOL;
 
-dspec:  DS_Standalone name=identifier datatype? 
-    (keyword+)? FREE_SEMI free_linecomments?;
+dspec:  
+	(DS_Standalone name=identifier datatype? 
+    		(keyword+)? FREE_SEMI free_linecomments?
+    )
+    | (
+	DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_S FROM_POSITION TO_POSITION
+		DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF)
+    )
+    ;
+    
 datatype: datatypeName args?; 
 keyword:
      keyword_alias
@@ -157,25 +165,39 @@ keyword_varying : KEYWORD_VARYING (OPEN_PAREN size=simpleExpression CLOSE_PAREN)
 like_lengthAdjustment: sign number;
 sign: PLUS | MINUS;
 
-dcl_ds:  DS_DataStructureStart identifier keyword*    
-	(
+dcl_ds:  (DS_DataStructureStart identifier keyword*    
 		(
-			(FREE_SEMI dcl_ds_field*)?
-		end_dcl_ds 
-	)
-	 | keyword_likerec
-	 | keyword_likeds)
-	FREE_SEMI;
+			(
+				(FREE_SEMI dcl_ds_field*)?
+			end_dcl_ds 
+		)
+		 | keyword_likerec
+		 | keyword_likeds)
+		FREE_SEMI
+	) |
+	(
+			DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_DS FROM_POSITION TO_POSITION
+		DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF)
+		parm_fixed*
+		
+	);
 dcl_ds_field: DS_SubField? identifier datatype? keyword* FREE_SEMI;
 end_dcl_ds: DS_DataStructureEnd identifier?;
-dcl_pr:  DS_PrototypeStart identifier datatype? keyword* FREE_SEMI?  
+dcl_pr:  (DS_PrototypeStart identifier datatype? keyword* FREE_SEMI?  
 	dcl_pr_field*
-	end_dcl_pr FREE_SEMI;
+	dcl_pi?
+	end_dcl_pr FREE_SEMI)
+	| (prBegin
+	  parm_fixed*
+	);
 dcl_pr_field: DS_Parm? (identifier (datatype | like=keyword_like) keyword* FREE_SEMI );
 end_dcl_pr: DS_PrototypeEnd;
-dcl_pi:  DS_ProcedureInterfaceStart identifier datatype? keyword* FREE_SEMI?  
+dcl_pi:  (DS_ProcedureInterfaceStart identifier datatype? keyword* FREE_SEMI?  
 	dcl_pi_field*
-	end_dcl_pi FREE_SEMI;
+	end_dcl_pi FREE_SEMI)
+	| (piBegin
+		parm_fixed*
+	);
 dcl_pi_field: DS_Parm? identifier (datatype | like=keyword_like) FREE_SEMI;
 end_dcl_pi: DS_ProcedureInterfaceEnd;
 dcl_c:  (DS_Constant name=identifier (keyword_const | literal)? FREE_SEMI) 
@@ -545,9 +567,17 @@ cspec_fixed: CS_FIXED
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(cspec_fixed_standard|cspec_fixed_x2);
 
+// -------- interfaces --------  
+piBegin: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_PI FROM_POSITION TO_POSITION
+	DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF);
+
+parm_fixed: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_BLANK FROM_POSITION TO_POSITION
+	DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF);
+ 
 // -------- sub procedures --------  
 procedure:
 beginProcedure
+dcl_pi?
 statements=statement*
 endProcedure;
 
@@ -559,6 +589,9 @@ freeBeginProcedure:DS_ProcedureStart identifier FREE_SEMI;
  
 psEnd: PS_FIXED ps_name PS_END PS_KEYWORDS;
 freeEndProcedure:DS_ProcedureEnd  identifier? FREE_SEMI;
+
+prBegin: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_PR FROM_POSITION TO_POSITION
+	DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF);
 
 // -------- sub routines --------  
 subroutine:

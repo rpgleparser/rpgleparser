@@ -1,8 +1,8 @@
      D* fixed-form declarations
-     D string         S              50A   VARYING     
-     D date           S                D   DATFMT(*MDY) 
-     D obj            S                O   CLASS(*JAVA:'MyClass') 
-     D ptr            S                *   PROCPTR 
+     D string          S             50A   VARYING     
+     D date            S               D   DATFMT(*MDY) 
+     D obj             S               O   CLASS(*JAVA:'MyClass') 
+     D ptr             S               *   PROCPTR 
     
          // free-form declarations 
          DCL-S string VARCHAR(50); 

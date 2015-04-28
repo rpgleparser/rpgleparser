@@ -17,11 +17,13 @@ OP_ENDSR                 <ENDSR>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword X)))
-    (datatype (datatypeName Int) (args ( (expression (number 10)) )))
-    ;
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword X)))
+      (datatype (datatypeName Int) (args ( (expression (number 10)) )))
+      ;
+    )
   )
   (subroutine
     (begsr

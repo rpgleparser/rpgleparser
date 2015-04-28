@@ -4,7 +4,7 @@ DS_FIXED                 <D>
 NAME                     <Table1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      7>
 DATA_TYPE                < >
@@ -33,7 +33,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
+    (dspec
       D
       (ds_name Table1)
       ' '
@@ -49,13 +49,15 @@ FREE_SEMI                <;>
       \r\n
     )
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword TabTable1)))
-    (datatype (datatypeName char) (args ( (expression (number 7)) )))
-    (keyword (keyword_dim dim ( (number 3) )))
-    (keyword (keyword_ctdata ctdata))
-    ;
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword TabTable1)))
+      (datatype (datatypeName char) (args ( (expression (number 7)) )))
+      (keyword (keyword_dim dim ( (number 3) )))
+      (keyword (keyword_ctdata ctdata))
+      ;
+    )
   )
 )
 /*======*/

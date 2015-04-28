@@ -80,96 +80,110 @@ ID                       <*LIKEDS>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword a)))
-    (datatype (datatypeName char) (args ( (expression (number 1)) )))
-    (keyword (keyword_inz INZ ( (simpleExpression (literal ' A ')) )))
-    ;
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword a)))
+      (datatype (datatypeName char) (args ( (expression (number 1)) )))
+      (keyword (keyword_inz INZ ( (simpleExpression (literal ' A ')) )))
+      ;
+    )
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword b)))
-    (datatype (datatypeName char) (args ( (expression (number 1)) )))
-    (keyword
-      (keyword_inz
-        INZ
-        (
-        (simpleExpression (identifier (all (symbolicConstants *SYS))))
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword b)))
+      (datatype (datatypeName char) (args ( (expression (number 1)) )))
+      (keyword
+        (keyword_inz
+          INZ
+          (
+          (simpleExpression (identifier (all (symbolicConstants *SYS))))
+          )
         )
       )
+      ;
     )
-    ;
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword c)))
-    (datatype (datatypeName char) (args ( (expression (number 1)) )))
-    (keyword
-      (keyword_inz
-        INZ
-        (
-        (simpleExpression (identifier (all (symbolicConstants *JOB))))
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword c)))
+      (datatype (datatypeName char) (args ( (expression (number 1)) )))
+      (keyword
+        (keyword_inz
+          INZ
+          (
+          (simpleExpression (identifier (all (symbolicConstants *JOB))))
+          )
         )
       )
+      ;
     )
-    ;
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword d)))
-    (datatype (datatypeName char) (args ( (expression (number 1)) )))
-    (keyword
-      (keyword_inz
-        INZ
-        (
-        (simpleExpression (identifier (all (symbolicConstants *EXTDFT))))
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword d)))
+      (datatype (datatypeName char) (args ( (expression (number 1)) )))
+      (keyword
+        (keyword_inz
+          INZ
+          (
+          (simpleExpression (identifier (all (symbolicConstants *EXTDFT))))
+          )
         )
       )
+      ;
     )
-    ;
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword e)))
-    (datatype (datatypeName char) (args ( (expression (number 1)) )))
-    (keyword
-      (keyword_inz
-        INZ
-        (
-        (simpleExpression (identifier (all (symbolicConstants *NULL))))
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword e)))
+      (datatype (datatypeName char) (args ( (expression (number 1)) )))
+      (keyword
+        (keyword_inz
+          INZ
+          (
+          (simpleExpression (identifier (all (symbolicConstants *NULL))))
+          )
         )
       )
+      ;
     )
-    ;
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword f)))
-    (datatype (datatypeName char) (args ( (expression (number 1)) )))
-    (keyword
-      (keyword_inz
-        INZ
-        (
-        (simpleExpression (identifier (all (symbolicConstants *USER))))
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword f)))
+      (datatype (datatypeName char) (args ( (expression (number 1)) )))
+      (keyword
+        (keyword_inz
+          INZ
+          (
+          (simpleExpression (identifier (all (symbolicConstants *USER))))
+          )
         )
       )
+      ;
     )
-    ;
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword g)))
-    (datatype (datatypeName char) (args ( (expression (number 1)) )))
-    (keyword
-      (keyword_inz
-        INZ
-        (
-        (simpleExpression (identifier (free_identifier (idOrKeyword *LIKEDS))))
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword g)))
+      (datatype (datatypeName char) (args ( (expression (number 1)) )))
+      (keyword
+        (keyword_inz
+          INZ
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword *LIKEDS))))
+          )
         )
       )
+      ;
     )
-    ;
   )
 )
 /*======*/

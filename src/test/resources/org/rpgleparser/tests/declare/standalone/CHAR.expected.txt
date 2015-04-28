@@ -4,7 +4,7 @@ DS_FIXED                 <D>
 NAME                     <Alpha1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <     10>
 DATA_TYPE                <A>
@@ -25,7 +25,7 @@ DS_FIXED                 <D>
 NAME                     <Alpha2>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <       >
 DATA_TYPE                < >
@@ -35,18 +35,6 @@ KEYWORD_LIKE             <like>
 '('                      <(>
 ID                       <Alpha1>
 ')'                      <)>
-EOL                      <
->
-DS_FIXED                 <D>
-NAME                     <>
-EXTERNAL_DESCRIPTION     < >
-DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <  >
-FROM_POSITION            <       >
-TO_POSITION              <       >
-DATA_TYPE                < >
-DECIMAL_POSITIONS        <  >
-RESERVED                 < >
 KEYWORD_INZ              <inz>
 '('                      <(>
 SPLAT_ALL                <*all>
@@ -97,28 +85,18 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
-      D
-      (ds_name Alpha1)
-      ' '
-      ' '
-      'S '
-      '       '
-      '     10'
-      A
-      '  '
-      ' '
-      \r\n
-    )
-  )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword Alpha1)))
-    (datatype (datatypeName char) (args ( (expression (number 10)) )))
-    ;
+    (dspec D (ds_name Alpha1) ' ' ' ' 'S ' '       ' '     10' A '  ' ' ' \r\n)
   )
   (statement
-    (dspec_fixed
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword Alpha1)))
+      (datatype (datatypeName char) (args ( (expression (number 10)) )))
+      ;
+    )
+  )
+  (statement
+    (dspec
       D
       (ds_name Alpha2)
       ' '
@@ -137,21 +115,6 @@ FREE_SEMI                <;>
           )
         )
       )
-      \r\n
-    )
-  )
-  (statement
-    (dspec_fixed
-      D
-      (ds_name )
-      ' '
-      ' '
-      '  '
-      '       '
-      '       '
-      ' '
-      '  '
-      ' '
       (keyword
         (keyword_inz
           inz
@@ -163,47 +126,55 @@ FREE_SEMI                <;>
       \r\n
     )
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword Alpha2)))
-    (keyword
-      (keyword_like
-        like
-        (
-        (simpleExpression (identifier (free_identifier (idOrKeyword Alpha1))))
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword Alpha2)))
+      (keyword
+        (keyword_like
+          like
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword Alpha1))))
+          )
         )
       )
-    )
-    (keyword
-      (keyword_inz
-        inz
-        (
-        (simpleExpression (identifier (all (symbolicConstants *all) (literal ' * '))))
+      (keyword
+        (keyword_inz
+          inz
+          (
+          (simpleExpression (identifier (all (symbolicConstants *all) (literal ' * '))))
+          )
         )
       )
+      ;
     )
-    ;
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword library)))
-    (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
-    ;
-  )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword libfilembr)))
-    (datatype (datatypeName VARCHAR) (args ( (expression (number 33)) )))
-    ;
-  )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword cmdparm)))
-    (datatype
-      (datatypeName VARCHAR)
-      (args ( (expression (number 10)) : (expression (number 4)) ))
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword library)))
+      (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
+      ;
     )
-    ;
+  )
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword libfilembr)))
+      (datatype (datatypeName VARCHAR) (args ( (expression (number 33)) )))
+      ;
+    )
+  )
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword cmdparm)))
+      (datatype
+        (datatypeName VARCHAR)
+        (args ( (expression (number 10)) : (expression (number 4)) ))
+      )
+      ;
+    )
   )
 )
 /*======*/

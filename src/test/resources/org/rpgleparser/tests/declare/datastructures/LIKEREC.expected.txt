@@ -3,7 +3,7 @@ DS_FIXED                 <D>
 NAME                     <CurrentRec>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <ds>
+DEF_TYPE_DS              <ds>
 FROM_POSITION            <       >
 TO_POSITION              <       >
 DATA_TYPE                < >
@@ -25,7 +25,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
+    (dcl_ds
       D
       (ds_name CurrentRec)
       ' '

@@ -4,7 +4,7 @@ DS_FIXED                 <D>
 NAME                     <Packed1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      7>
 DATA_TYPE                <P>
@@ -25,7 +25,7 @@ DS_FIXED                 <D>
 NAME                     <Packed2>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      5>
 DATA_TYPE                < >
@@ -62,64 +62,48 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
-      D
-      (ds_name Packed1)
-      ' '
-      ' '
-      'S '
-      '       '
-      '      7'
-      P
-      ' 0'
-      ' '
-      \r\n
-    )
-  )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword Packed1)))
-    (datatype (datatypeName packed) (args ( (expression (number 7)) )))
-    ;
+    (dspec D (ds_name Packed1) ' ' ' ' 'S ' '       ' '      7' P ' 0' ' ' \r\n)
   )
   (statement
-    (dspec_fixed
-      D
-      (ds_name Packed2)
-      ' '
-      ' '
-      'S '
-      '       '
-      '      5'
-      ' '
-      ' 2'
-      ' '
-      \r\n
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword Packed1)))
+      (datatype (datatypeName packed) (args ( (expression (number 7)) )))
+      ;
     )
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword Packed2)))
-    (datatype
-      (datatypeName packed)
-      (args ( (expression (number 5)) : (expression (number 2)) ))
-    )
-    ;
+  (statement
+    (dspec D (ds_name Packed2) ' ' ' ' 'S ' '       ' '      5' ' ' ' 2' ' ' \r\n)
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword numRecords)))
-    (datatype (datatypeName PACKED) (args ( (expression (number 5)) )))
-    ;
-  )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword salary)))
-    (datatype
-      (datatypeName PACKED)
-      (args ( (expression (number 15)) : (expression (number 2)) ))
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword Packed2)))
+      (datatype
+        (datatypeName packed)
+        (args ( (expression (number 5)) : (expression (number 2)) ))
+      )
+      ;
     )
-    ;
+  )
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword numRecords)))
+      (datatype (datatypeName PACKED) (args ( (expression (number 5)) )))
+      ;
+    )
+  )
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword salary)))
+      (datatype
+        (datatypeName PACKED)
+        (args ( (expression (number 15)) : (expression (number 2)) ))
+      )
+      ;
+    )
   )
 )
 /*======*/

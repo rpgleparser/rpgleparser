@@ -4,7 +4,7 @@ DS_FIXED                 <D>
 NAME                     <Signed1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      7>
 DATA_TYPE                <S>
@@ -41,43 +41,37 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
-      D
-      (ds_name Signed1)
-      ' '
-      ' '
-      'S '
-      '       '
-      '      7'
-      S
-      ' 2'
-      ' '
-      \r\n
+    (dspec D (ds_name Signed1) ' ' ' ' 'S ' '       ' '      7' S ' 2' ' ' \r\n)
+  )
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword Signed1)))
+      (datatype
+        (datatypeName zoned)
+        (args ( (expression (number 7)) : (expression (number 2)) ))
+      )
+      ;
     )
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword Signed1)))
-    (datatype
-      (datatypeName zoned)
-      (args ( (expression (number 7)) : (expression (number 2)) ))
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword numRecords)))
+      (datatype (datatypeName ZONED) (args ( (expression (number 5)) )))
+      ;
     )
-    ;
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword numRecords)))
-    (datatype (datatypeName ZONED) (args ( (expression (number 5)) )))
-    ;
-  )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword salary)))
-    (datatype
-      (datatypeName ZONED)
-      (args ( (expression (number 15)) : (expression (number 2)) ))
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword salary)))
+      (datatype
+        (datatypeName ZONED)
+        (args ( (expression (number 15)) : (expression (number 2)) ))
+      )
+      ;
     )
-    ;
   )
 )
 /*======*/

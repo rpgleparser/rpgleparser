@@ -14,7 +14,7 @@ FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> pushMode(FREE),skip;
     // 6th position asterisk is a comment
 COMMENT_SPEC_FIXED : {getCharPositionInLine()==5}? .'*' -> pushMode(FIXED_CommentMode) ;
     // X specs 
-DS_FIXED : {getCharPositionInLine()==5}? [dD] -> pushMode(FIXED_DefSpec) ;
+DS_FIXED : {getCharPositionInLine()==5}? [dD] -> pushMode(FIXED_DefSpec) ; 
 FS_FIXED : {getCharPositionInLine()==5}? [fF] -> pushMode(FIXED_FileSpec) ;
 OS_FIXED : {getCharPositionInLine()==5}? [oO] -> pushMode(FIXED_OutputSpec) ;
 CS_FIXED : {getCharPositionInLine()==5}? [cC] -> pushMode(FIXED_CalcSpec),pushMode(OnOffIndicatorMode),pushMode(IndicatorMode) ;
@@ -459,6 +459,8 @@ C_FREE_CONTINUATION_DOTS : {_modeStack.peek()==FIXED_CalcSpec}? '...' WS* NEWLIN
 	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
 C_FREE_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE 
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> skip;
+D_FREE_CONTINUATION: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE 
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                            ' -> skip;
 FREE_LEAD_WS5 :  {getCharPositionInLine()==0}? '     ' -> skip;
 FREE_LEAD_WS5_Comments :  {getCharPositionInLine()==0}?~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] -> channel(HIDDEN);
 FREE_FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> skip;
@@ -725,6 +727,11 @@ NAME : {getCharPositionInLine()==6}? WORD5 WORD5 WORD5 {setText(getText().trim()
 EXTERNAL_DESCRIPTION: {getCharPositionInLine()==21}? [eE ];
 DATA_STRUCTURE_TYPE: {getCharPositionInLine()==22}? [sSuU ];
 DEF_TYPE_C: {getCharPositionInLine()==23}? [cC][ ];
+DEF_TYPE_PI: {getCharPositionInLine()==23}? [pP][iI];
+DEF_TYPE_PR: {getCharPositionInLine()==23}? [pP][rR];
+DEF_TYPE_DS: {getCharPositionInLine()==23}? [dD][sS];
+DEF_TYPE_S: {getCharPositionInLine()==23}? [sS][ ];
+DEF_TYPE_BLANK: {getCharPositionInLine()==23}? [ ][ ];
 DEF_TYPE: {getCharPositionInLine()==23}? [a-zA-Z0-9 ][a-zA-Z0-9 ];
 FROM_POSITION: {getCharPositionInLine()==25}? WORD5 [a-zA-Z0-9 ][a-zA-Z0-9 ];
 TO_POSITION: {getCharPositionInLine()==32}? WORD5[a-zA-Z0-9 ][a-zA-Z0-9 ];

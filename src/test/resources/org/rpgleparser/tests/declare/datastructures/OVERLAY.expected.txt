@@ -5,7 +5,7 @@ DS_FIXED                 <D>
 NAME                     <myds>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <DS>
+DEF_TYPE_DS              <DS>
 FROM_POSITION            <       >
 TO_POSITION              <       >
 DATA_TYPE                < >
@@ -17,7 +17,7 @@ DS_FIXED                 <D>
 NAME                     <subf1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <  >
+DEF_TYPE_BLANK           <  >
 FROM_POSITION            <     11>
 TO_POSITION              <     15>
 DATA_TYPE                <A>
@@ -29,7 +29,7 @@ DS_FIXED                 <D>
 NAME                     <subf2>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <  >
+DEF_TYPE_BLANK           <  >
 FROM_POSITION            <       >
 TO_POSITION              <     5P>
 DATA_TYPE                < >
@@ -45,7 +45,7 @@ DS_FIXED                 <D>
 NAME                     <subf3>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <  >
+DEF_TYPE_BLANK           <  >
 FROM_POSITION            <       >
 TO_POSITION              <     10>
 DATA_TYPE                <A>
@@ -63,7 +63,7 @@ DS_FIXED                 <D>
 NAME                     <subf4>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <  >
+DEF_TYPE_BLANK           <  >
 FROM_POSITION            <       >
 TO_POSITION              <     15>
 DATA_TYPE                <A>
@@ -125,94 +125,86 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed D (ds_name myds) ' ' ' ' DS '       ' '       ' ' ' '  ' ' ' \r\n)
-  )
-  (statement
-    (dspec_fixed
+    (dcl_ds
       D
-      (ds_name subf1)
+      (ds_name myds)
       ' '
       ' '
-      '  '
-      '     11'
-      '     15'
-      A
+      DS
+      '       '
+      '       '
+      ' '
       '  '
       ' '
       \r\n
-    )
-  )
-  (statement
-    (dspec_fixed
-      D
-      (ds_name subf2)
-      ' '
-      ' '
-      '  '
-      '       '
-      '     5P'
-      ' '
-      '2 '
-      ' '
-      (keyword
-        (keyword_overlay
-          OVERLAY
-          (
-          (simpleExpression (identifier (free_identifier (idOrKeyword myds))))
+      (parm_fixed D (ds_name subf1) ' ' ' ' '  ' '     11' '     15' A '  ' ' ' \r\n)
+      (parm_fixed
+        D
+        (ds_name subf2)
+        ' '
+        ' '
+        '  '
+        '       '
+        '     5P'
+        ' '
+        '2 '
+        ' '
+        (keyword
+          (keyword_overlay
+            OVERLAY
+            (
+            (simpleExpression (identifier (free_identifier (idOrKeyword myds))))
+            )
           )
         )
+        \r\n
       )
-      \r\n
-    )
-  )
-  (statement
-    (dspec_fixed
-      D
-      (ds_name subf3)
-      ' '
-      ' '
-      '  '
-      '       '
-      '     10'
-      A
-      '  '
-      ' '
-      (keyword
-        (keyword_overlay
-          OVERLAY
-          (
-          (simpleExpression (identifier (free_identifier (idOrKeyword myds))))
-          :
-          (simpleExpression (number 100))
+      (parm_fixed
+        D
+        (ds_name subf3)
+        ' '
+        ' '
+        '  '
+        '       '
+        '     10'
+        A
+        '  '
+        ' '
+        (keyword
+          (keyword_overlay
+            OVERLAY
+            (
+            (simpleExpression (identifier (free_identifier (idOrKeyword myds))))
+            :
+            (simpleExpression (number 100))
+            )
           )
         )
+        \r\n
       )
-      \r\n
-    )
-  )
-  (statement
-    (dspec_fixed
-      D
-      (ds_name subf4)
-      ' '
-      ' '
-      '  '
-      '       '
-      '     15'
-      A
-      '  '
-      ' '
-      (keyword
-        (keyword_overlay
-          OVERLAY
-          (
-          (simpleExpression (identifier (free_identifier (idOrKeyword myds))))
-          :
-          *NEXT
+      (parm_fixed
+        D
+        (ds_name subf4)
+        ' '
+        ' '
+        '  '
+        '       '
+        '     15'
+        A
+        '  '
+        ' '
+        (keyword
+          (keyword_overlay
+            OVERLAY
+            (
+            (simpleExpression (identifier (free_identifier (idOrKeyword myds))))
+            :
+            *NEXT
+            )
           )
         )
+        \r\n
       )
-      \r\n
     )
   )
   (statement

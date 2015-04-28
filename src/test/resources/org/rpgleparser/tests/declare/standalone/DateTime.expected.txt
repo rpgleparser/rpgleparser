@@ -27,41 +27,51 @@ TIMESTAMP                <TIMESTAMP>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword duedate)))
-    (datatype (datatypeName DATE))
-    ;
-  )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword displayDate)))
-    (datatype
-      (datatypeName DATE)
-      (args ( (expression (identifier (all (symbolicConstants *YMD)))) ))
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword duedate)))
+      (datatype (datatypeName DATE))
+      ;
     )
-    ;
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword startTime)))
-    (datatype (datatypeName TIME))
-    ;
-  )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword displayTime)))
-    (datatype
-      (datatypeName TIME)
-      (args ( (expression (identifier (all (symbolicConstants *USA)))) ))
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword displayDate)))
+      (datatype
+        (datatypeName DATE)
+        (args ( (expression (identifier (all (symbolicConstants *YMD)))) ))
+      )
+      ;
     )
-    ;
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword start)))
-    (datatype (datatypeName TIMESTAMP))
-    ;
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword startTime)))
+      (datatype (datatypeName TIME))
+      ;
+    )
+  )
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword displayTime)))
+      (datatype
+        (datatypeName TIME)
+        (args ( (expression (identifier (all (symbolicConstants *USA)))) ))
+      )
+      ;
+    )
+  )
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword start)))
+      (datatype (datatypeName TIMESTAMP))
+      ;
+    )
   )
 )
 /*======*/

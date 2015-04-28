@@ -12,20 +12,22 @@ StringLiteralEnd         <'>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword obj)))
-    (datatype
-      (datatypeName OBJECT)
-      (args
-        (
-        (expression (identifier (all (symbolicConstants *JAVA))))
-        :
-        (expression (literal ' Cls '))
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword obj)))
+      (datatype
+        (datatypeName OBJECT)
+        (args
+          (
+          (expression (identifier (all (symbolicConstants *JAVA))))
+          :
+          (expression (literal ' Cls '))
+          )
         )
       )
+      ;
     )
-    ;
   )
 )
 /*======*/

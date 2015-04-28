@@ -4,7 +4,7 @@ DS_FIXED                 <D>
 NAME                     <Int1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      3>
 DATA_TYPE                <I>
@@ -25,7 +25,7 @@ DS_FIXED                 <D>
 NAME                     <Uns1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      3>
 DATA_TYPE                <U>
@@ -46,7 +46,7 @@ DS_FIXED                 <D>
 NAME                     <Float1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      8>
 DATA_TYPE                <F>
@@ -65,43 +65,37 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed D (ds_name Int1) ' ' ' ' 'S ' '       ' '      3' I ' 0' ' ' \r\n)
-  )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword Int1)))
-    (datatype (datatypeName int) (args ( (expression (number 3)) )))
-    ;
+    (dspec D (ds_name Int1) ' ' ' ' 'S ' '       ' '      3' I ' 0' ' ' \r\n)
   )
   (statement
-    (dspec_fixed D (ds_name Uns1) ' ' ' ' 'S ' '       ' '      3' U ' 0' ' ' \r\n)
-  )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword Uns1)))
-    (datatype (datatypeName uns) (args ( (expression (number 3)) )))
-    ;
-  )
-  (statement
-    (dspec_fixed
-      D
-      (ds_name Float1)
-      ' '
-      ' '
-      'S '
-      '       '
-      '      8'
-      F
-      '  '
-      ' '
-      \r\n
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword Int1)))
+      (datatype (datatypeName int) (args ( (expression (number 3)) )))
+      ;
     )
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword Float1)))
-    (datatype (datatypeName float) (args ( (expression (number 8)) )))
-    ;
+  (statement
+    (dspec D (ds_name Uns1) ' ' ' ' 'S ' '       ' '      3' U ' 0' ' ' \r\n)
+  )
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword Uns1)))
+      (datatype (datatypeName uns) (args ( (expression (number 3)) )))
+      ;
+    )
+  )
+  (statement
+    (dspec D (ds_name Float1) ' ' ' ' 'S ' '       ' '      8' F '  ' ' ' \r\n)
+  )
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword Float1)))
+      (datatype (datatypeName float) (args ( (expression (number 8)) )))
+      ;
+    )
   )
 )
 /*======*/

@@ -15,17 +15,21 @@ NUMBER                   <5000>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword firstName)))
-    (datatype (datatypeName UCS2) (args ( (expression (number 10)) )))
-    ;
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword firstName)))
+      (datatype (datatypeName UCS2) (args ( (expression (number 10)) )))
+      ;
+    )
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword filePath)))
-    (datatype (datatypeName VARUCS2) (args ( (expression (number 5000)) )))
-    ;
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword filePath)))
+      (datatype (datatypeName VARUCS2) (args ( (expression (number 5000)) )))
+      ;
+    )
   )
 )
 /*======*/

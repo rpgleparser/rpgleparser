@@ -1,0 +1,65 @@
+/*===TOKENS===*/
+DS_FIXED                 <D>
+CONTINUATION_NAME        < CalcNewSweepDate>
+NAME                     <123>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PR              <PR>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_EXTPGM           <EXTPGM>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <MSR173>
+StringLiteralEnd         <'>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+CONTINUATION_NAME        <  Goodville_VehSymbolCd>
+HIDDEN:CE_COMMENTS80     <Pers risk symbol   >
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     17>
+DATA_TYPE                <a>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+/*===TREE===*/
+(r
+  (dcl_pr
+    (prBegin
+      D
+      (ds_name ' CalcNewSweepDate' 123)
+      ' '
+      ' '
+      PR
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (keyword (keyword_extpgm EXTPGM ( (simpleExpression (literal ' MSR173 ')) )))
+      \r\n
+    )
+    (parm_fixed
+      D
+      (ds_name '  Goodville_VehSymbolCd' )
+      ' '
+      ' '
+      '  '
+      '       '
+      '     17'
+      a
+      '  '
+      ' '
+      <EOF>
+    )
+  )
+)
+/*======*/

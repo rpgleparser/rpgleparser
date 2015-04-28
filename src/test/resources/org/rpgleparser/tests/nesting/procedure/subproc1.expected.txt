@@ -56,17 +56,21 @@ FREE_SEMI                <;>
     (expression ( (expression (identifier (free_identifier (idOrKeyword *no)))) ))
     ;
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword wkAlpha)))
-    (datatype (datatypeName char) (args ( (expression (number 7)) )))
-    ;
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword wkAlpha)))
+      (datatype (datatypeName char) (args ( (expression (number 7)) )))
+      ;
+    )
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword wkError)))
-    (datatype (datatypeName ind))
-    ;
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword wkError)))
+      (datatype (datatypeName ind))
+      ;
+    )
   )
   (statement
     (free

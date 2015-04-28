@@ -15,17 +15,21 @@ NUMBER                   <50>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword firstName)))
-    (datatype (datatypeName GRAPH) (args ( (expression (number 20)) )))
-    ;
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword firstName)))
+      (datatype (datatypeName GRAPH) (args ( (expression (number 20)) )))
+      ;
+    )
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword fullName)))
-    (datatype (datatypeName VARGRAPH) (args ( (expression (number 50)) )))
-    ;
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword fullName)))
+      (datatype (datatypeName VARGRAPH) (args ( (expression (number 50)) )))
+      ;
+    )
   )
 )
 /*======*/

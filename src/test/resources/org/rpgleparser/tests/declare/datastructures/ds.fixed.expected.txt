@@ -1,0 +1,62 @@
+/*===TOKENS===*/
+DS_FIXED                 <d>
+NAME                     <program21>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_DS              <ds>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_DTAARA           <DTAARA>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <MYTWENTY1>
+StringLiteralEnd         <'>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <d>
+NAME                     <mytwenty1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     21>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+/*===TREE===*/
+(r
+  (statement
+    (dcl_ds
+      d
+      (ds_name program21)
+      ' '
+      ' '
+      ds
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (keyword (keyword_dtaara DTAARA ( (literal ' MYTWENTY1 ') )))
+      \r\n
+      (parm_fixed
+        d
+        (ds_name mytwenty1)
+        ' '
+        ' '
+        '  '
+        '       '
+        '     21'
+        ' '
+        '  '
+        ' '
+        <EOF>
+      )
+    )
+  )
+)
+/*======*/

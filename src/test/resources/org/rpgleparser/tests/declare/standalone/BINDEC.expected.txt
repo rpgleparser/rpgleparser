@@ -4,7 +4,7 @@ DS_FIXED                 <D>
 NAME                     <Bin1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      5>
 DATA_TYPE                <B>
@@ -39,28 +39,34 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed D (ds_name Bin1) ' ' ' ' 'S ' '       ' '      5' B ' 0' ' ' \r\n)
+    (dspec D (ds_name Bin1) ' ' ' ' 'S ' '       ' '      5' B ' 0' ' ' \r\n)
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword Bin1)))
-    (datatype (datatypeName bindec) (args ( (expression (number 5)) )))
-    ;
-  )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword numRecords)))
-    (datatype (datatypeName BINDEC) (args ( (expression (number 9)) )))
-    ;
-  )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword bonus)))
-    (datatype
-      (datatypeName BINDEC)
-      (args ( (expression (number 9)) : (expression (number 2)) ))
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword Bin1)))
+      (datatype (datatypeName bindec) (args ( (expression (number 5)) )))
+      ;
     )
-    ;
+  )
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword numRecords)))
+      (datatype (datatypeName BINDEC) (args ( (expression (number 9)) )))
+      ;
+    )
+  )
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword bonus)))
+      (datatype
+        (datatypeName BINDEC)
+        (args ( (expression (number 9)) : (expression (number 2)) ))
+      )
+      ;
+    )
   )
 )
 /*======*/

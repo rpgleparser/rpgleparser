@@ -4,7 +4,7 @@ DS_FIXED                 <D>
 NAME                     <A>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      2>
 DATA_TYPE                <P>
@@ -22,7 +22,7 @@ DS_FIXED                 <D>
 NAME                     <B>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <      2>
 DATA_TYPE                <P>
@@ -124,7 +124,7 @@ CS_Comments              <130128        >
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
+    (dspec
       D
       (ds_name A)
       ' '
@@ -140,7 +140,7 @@ CS_Comments              <130128        >
     )
   )
   (statement
-    (dspec_fixed
+    (dspec
       D
       (ds_name B)
       ' '

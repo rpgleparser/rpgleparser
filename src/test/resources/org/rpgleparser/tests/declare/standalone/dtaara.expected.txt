@@ -4,7 +4,7 @@ DS_FIXED                 <D>
 NAME                     <TestDa1>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
-DEF_TYPE                 <S >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <     10>
 DATA_TYPE                < >
@@ -35,7 +35,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec_fixed
+    (dspec
       D
       (ds_name TestDa1)
       ' '
@@ -50,12 +50,14 @@ FREE_SEMI                <;>
       \r\n
     )
   )
-  (dspec
-    dcl-s
-    (identifier (free_identifier (idOrKeyword TestDa1)))
-    (datatype (datatypeName char) (args ( (expression (number 10)) )))
-    (keyword (keyword_dtaara dtaara ( (literal ' TESTDA ') )))
-    ;
+  (statement
+    (dspec
+      dcl-s
+      (identifier (free_identifier (idOrKeyword TestDa1)))
+      (datatype (datatypeName char) (args ( (expression (number 10)) )))
+      (keyword (keyword_dtaara dtaara ( (literal ' TESTDA ') )))
+      ;
+    )
   )
 )
 /*======*/
