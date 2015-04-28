@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.rpgleparser.RpgLexer;
 import org.rpgleparser.RpgParser.Cspec_fixedContext;
 import org.rpgleparser.RpgParser.DirectiveContext;
+import org.rpgleparser.RpgParser.DspecContext;
 import org.rpgleparser.RpgParser.Dspec_fixedContext;
 import org.rpgleparser.RpgParser.Fspec_fixedContext;
 import org.rpgleparser.RpgParser.Hspec_fixedContext;
@@ -19,6 +20,9 @@ import org.rpgleparser.RpgParser.Ispec_fixedContext;
 import org.rpgleparser.RpgParser.Ospec_fixedContext;
 import org.rpgleparser.RpgParser.ProcedureContext;
 
+import examples.fixed2free.integration.ColumnInfo;
+import examples.fixed2free.integration.MockTableInfoProvider;
+import examples.fixed2free.integration.TableInfoProvider;
 import examples.loggingListener.LoggingListener;
 
 public class SymbolTableBuilder extends LoggingListener {
@@ -28,6 +32,7 @@ public class SymbolTableBuilder extends LoggingListener {
 	private SymbolTable st;
 	private CommonTokenStream ts;
 	private Vocabulary voc;
+	private TableInfoProvider tip;
 	
 	public SymbolTableBuilder(RpgLexer lex, CommonTokenStream toks) {
 		voc = lex.getVocabulary();
@@ -35,6 +40,7 @@ public class SymbolTableBuilder extends LoggingListener {
 		st = new SymbolTable();
 		global = st.getAScope(Scope.GLOBAL);
 		currentScope = global;
+		tip = new MockTableInfoProvider();
 	}
 
 	public List<String> collectOutput() {
@@ -71,6 +77,7 @@ public class SymbolTableBuilder extends LoggingListener {
 		super.enterDirective(ctx);
 	}
 
+	
 	@Override
 	public void enterDspec_fixed(Dspec_fixedContext ctx) {
 		super.enterDspec_fixed(ctx);
@@ -89,6 +96,7 @@ public class SymbolTableBuilder extends LoggingListener {
 		setDefinitionType(defType, keywords, theSym);
 		theSym.setName(dataStructureName);
 		theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decimalPositions);
+		theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
 		setLength(fromPosition, toPosition, theSym);
 		setDataType(rpgDataType, theSym, keywords);
 		st.addSymbolToScope(currentScope, theSym);
@@ -99,6 +107,22 @@ public class SymbolTableBuilder extends LoggingListener {
 	public void enterFspec_fixed(Fspec_fixedContext ctx) {
 		super.enterFspec_fixed(ctx);
 		lastSpec = "F";
+		if (ctx.FS_Format().getText().trim().equalsIgnoreCase("E")){
+			String fileName = ctx.FS_RecordName().getText().trim();
+			List<ColumnInfo> temp = tip.getColumns(fileName, "*LIBL");
+			if (temp != null){
+				for (ColumnInfo ci : temp){
+					Symbol theSym = new Symbol();
+					// Definition type
+					theSym.setName(ci.getColumnName());
+					Symbol.sqlAttr2rpg(ci, theSym);
+					theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_EXTERNAL_FILE_DESCRIPTION);
+					st.addSymbolToScope(currentScope, theSym);
+				}
+				
+			}
+		}
+		
 	}
 
 	@Override
@@ -243,5 +267,30 @@ public class SymbolTableBuilder extends LoggingListener {
 		} else {
 			theSym.addAttribute(Symbol.CAT_LENGTH, toPosition);
 		}
+	}
+
+	@Override
+	public void enterDspec(DspecContext ctx) {
+		super.enterDspec(ctx);
+		lastSpec = "D";
+		String dsType = ctx.DATA_STRUCTURE_TYPE().getText().trim();
+		String rpgDataType = ctx.DATA_TYPE().getText().trim();
+		String decimalPositions = ctx.DECIMAL_POSITIONS().getText().trim();
+		String defType = ctx.DEF_TYPE_S().getText().trim();
+		String dataStructureName = ctx.ds_name().getText().trim();
+		String externalDescription = ctx.EXTERNAL_DESCRIPTION().getText().trim();
+		String fromPosition = ctx.FROM_POSITION().getText().trim();
+		String keywords = ctx.keyword().toString();//ctx.KEYWORDS().getText().trim(); //todo
+		String toPosition = ctx.TO_POSITION().getText().trim();
+		Symbol theSym = new Symbol();
+		// Definition type
+		setDefinitionType(defType, keywords, theSym);
+		theSym.setName(dataStructureName);
+		theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decimalPositions);
+		theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
+		setLength(fromPosition, toPosition, theSym);
+		setDataType(rpgDataType, theSym, keywords);
+		st.addSymbolToScope(currentScope, theSym);
+
 	}
 }

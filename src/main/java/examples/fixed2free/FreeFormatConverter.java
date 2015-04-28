@@ -4216,8 +4216,8 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsEVAL(CsEVALContext ctx) {
 		super.exitCsEVAL(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
-		Map<String, CommonToken> temp = getFields(pctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);
+		Map<String, CommonToken> temp = getFieldsX2(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
 		doEVAL(factor2, comment);

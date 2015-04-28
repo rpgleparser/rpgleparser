@@ -3,12 +3,17 @@ package examples.fixed2free;
 import java.util.HashMap;
 import java.util.Map;
 
+import examples.fixed2free.integration.ColumnInfo;
+import examples.fixed2free.integration.TableInfoProvider;
+
 public class Symbol {
 	/** I am using static strings rather than enums because I want the user to be able to 
 	 * extend what is held in the list of symbol attributes.
 	 * The list of symbols that are predefined start with DT_
 	 * 
 	 */
+	private static final String CAT_CCSID = "CCSID";
+
 	public static final String CAT_DATA_TYPE="DATA TYPE";
 	/**
 	 * CAT_DECIMAL_POSITIONS Is an optional attribute that pertains only to Packed and Zoned fields
@@ -67,6 +72,12 @@ public class Symbol {
 	public static final String DT_POINTER="POINTER";
 	public static final String DT_PROC_POINTER= "PROC_PTR";
 	
+	public static final String CAT_SYMBOL_ORIGIN = "SYMBOL_ORIGIN";
+	public static final String SO_EXTERNAL_FILE_DESCRIPTION = "EXTERNAL_FILE";
+	public static final String SO_I_SPECS = "I-SPECS";
+	public static final String SO_D_SPECS = "D-SPECS";
+	public static final String SO_C_SPECS = "C-SPECS";
+	public static final String SO_O_SPECS = "O-SPECS";
 	private Map<String, String>attributes = new HashMap<String, String>();
 	private String name;
 	public void addAttribute(String category, String value) {
@@ -100,6 +111,114 @@ public class Symbol {
 	}
 	public String getAnAttribute(String key) {
 		return attributes.get(key);
+	}
+	public static String sqlDataType2rpg(String dataType) {
+		String result = null;
+		if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_BIGINT)){
+			result = DT_INTEGER;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_INTEGER)){
+			result = DT_INTEGER;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_SMALLINT)){
+			result = DT_INTEGER;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_DECIMAL)){
+			result = DT_PACKED;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_NUMERIC)){
+			result = DT_ZONED;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_DOUBLE)){
+			result = DT_FLOAT;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_FLOAT)){
+			result = DT_FLOAT;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_REAL	)){
+			result = DT_FLOAT;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_CHAR	)){
+			result = DT_ALPHANUM;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_VARCHAR	)){
+			result = DT_ALPHANUM;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_GRAPHIC	)){
+			result = DT_GRAPHIC;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_VARG	)){
+			result = DT_GRAPHIC;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_BINARY	)){
+			result = DT_BINARY;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_VARBIN	)){
+			result = DT_BINARY;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_DATE	)){
+			result = DT_DATE;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_TIME	)){
+			result = DT_TIME;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_TIMESTMP	)){
+			result = DT_TIMESTAMP;
+		} else if (dataType.equalsIgnoreCase(TableInfoProvider.SQL_ROWID	)){
+			result = DT_ALPHANUM;
+		}
+		return result;
+	}
+	public static void sqlAttr2rpg(ColumnInfo col, Symbol sym) {
+		if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_BIGINT)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_INTEGER);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(20));
+			sym.addAttribute(CAT_DECIMAL_POSITIONS, Integer.toString(0));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_INTEGER)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_INTEGER);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(10));
+			sym.addAttribute(CAT_DECIMAL_POSITIONS, Integer.toString(0));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_SMALLINT)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_INTEGER);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(5));
+			sym.addAttribute(CAT_DECIMAL_POSITIONS, Integer.toString(0));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_DECIMAL)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_PACKED);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+			sym.addAttribute(CAT_DECIMAL_POSITIONS, Integer.toString(col.getNumericScale()));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_NUMERIC)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_ZONED);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+			sym.addAttribute(CAT_DECIMAL_POSITIONS, Integer.toString(col.getNumericScale()));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_DOUBLE)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_FLOAT);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_FLOAT)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_FLOAT);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_REAL	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_FLOAT);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_CHAR	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_ALPHANUM);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+			sym.addAttribute(CAT_CCSID, Integer.toString(col.getCCSID()));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_VARCHAR	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_ALPHANUM);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+			sym.addAttribute(CAT_CCSID, Integer.toString(col.getCCSID()));
+			sym.addAttribute(CAT_VARYING_LENGTH, "TRUE");
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_GRAPHIC	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_GRAPHIC);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+			sym.addAttribute(CAT_CCSID, Integer.toString(col.getCCSID()));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_VARG	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_GRAPHIC);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+			sym.addAttribute(CAT_CCSID, Integer.toString(col.getCCSID()));
+			sym.addAttribute(CAT_VARYING_LENGTH, "TRUE");
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_BINARY	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_BINARY);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_VARBIN	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_BINARY);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+			sym.addAttribute(CAT_VARYING_LENGTH, "TRUE");
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_DATE	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_DATE);
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_TIME	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_TIME);
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_TIMESTMP	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_TIMESTAMP);
+		} else if (col.getDataType().equalsIgnoreCase(TableInfoProvider.SQL_ROWID	)){
+			sym.addAttribute(CAT_DATA_TYPE, DT_ALPHANUM);
+			sym.addAttribute(CAT_LENGTH, Integer.toString(col.getLength()));
+			sym.addAttribute(CAT_VARYING_LENGTH, "TRUE");
+		}
 	}
 
 }
