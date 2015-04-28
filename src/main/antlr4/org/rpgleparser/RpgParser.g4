@@ -129,7 +129,7 @@ keyword_extpgm : KEYWORD_EXTPGM (OPEN_PAREN name=simpleExpression CLOSE_PAREN)?;
 keyword_extproc : KEYWORD_EXTPROC OPEN_PAREN 
 	((SPLAT_JAVA COLON class_name=simpleExpression COLON)
 	   | (identifier COLON) //TODO *CL|*CWIDEN|*CNOWIDEN|
-     )
+     )?
 		name=simpleExpression
 		CLOSE_PAREN; 
 keyword_fromfile : KEYWORD_FROMFILE OPEN_PAREN file_name=simpleExpression CLOSE_PAREN; 

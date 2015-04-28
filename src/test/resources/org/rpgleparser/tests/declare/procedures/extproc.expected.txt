@@ -1,0 +1,177 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       < *>
+HIDDEN:COMMENTS_TEXT     <.. 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8 ...+... 9 ...+... 10>
+COMMENT_SPEC_FIXED       <D*>
+HIDDEN:COMMENTS_TEXT     <ame+++++++++++ETDsFrom+++To/L+++IDc.Keywords+++++++++++++++++++++++++++++Comments++++++++++++>
+DS_FIXED                 <D>
+NAME                     <open>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PR              <PR>
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORD_EXTPROC          <ExtProc>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <open>
+StringLiteralEnd         <'>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <filename>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <*>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_VALUE            <Value>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <openflags>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORD_VALUE            <Value>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <mode>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <U>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORD_VALUE            <Value>
+KEYWORD_OPTIONS          <options>
+'('                      <(>
+ID                       <*nopass>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <codepage>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <U>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORD_VALUE            <Value>
+KEYWORD_OPTIONS          <options>
+'('                      <(>
+ID                       <*nopass>
+')'                      <)>
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement (star_comments ' *'))
+  (statement (star_comments D*))
+  (dcl_pr
+    (prBegin
+      D
+      (ds_name open)
+      ' '
+      ' '
+      PR
+      '       '
+      '     10'
+      I
+      ' 0'
+      ' '
+      (keyword (keyword_extproc ExtProc ( (simpleExpression (literal ' open ')) )))
+      \r\n
+    )
+    (parm_fixed
+      D
+      (ds_name filename)
+      ' '
+      ' '
+      '  '
+      '       '
+      '       '
+      *
+      '  '
+      ' '
+      (keyword (keyword_value Value))
+      \r\n
+    )
+    (parm_fixed
+      D
+      (ds_name openflags)
+      ' '
+      ' '
+      '  '
+      '       '
+      '     10'
+      I
+      ' 0'
+      ' '
+      (keyword (keyword_value Value))
+      \r\n
+    )
+    (parm_fixed
+      D
+      (ds_name mode)
+      ' '
+      ' '
+      '  '
+      '       '
+      '     10'
+      U
+      ' 0'
+      ' '
+      (keyword (keyword_value Value))
+      (keyword
+        (keyword_options
+          options
+          (
+          (identifier (free_identifier (idOrKeyword *nopass)))
+          )
+        )
+      )
+      \r\n
+    )
+    (parm_fixed
+      D
+      (ds_name codepage)
+      ' '
+      ' '
+      '  '
+      '       '
+      '     10'
+      U
+      ' 0'
+      ' '
+      (keyword (keyword_value Value))
+      (keyword
+        (keyword_options
+          options
+          (
+          (identifier (free_identifier (idOrKeyword *nopass)))
+          )
+        )
+      )
+      \r\n
+    )
+  )
+)
+/*======*/

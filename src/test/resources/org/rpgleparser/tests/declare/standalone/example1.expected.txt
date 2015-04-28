@@ -4,8 +4,8 @@ HIDDEN:COMMENTS_TEXT     < fixed-form declarations                              
 DS_FIXED                 <D>
 NAME                     <string>
 EXTERNAL_DESCRIPTION     < >
-DATA_STRUCTURE_TYPE      <S>
-DEF_TYPE                 <  >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <     50>
 DATA_TYPE                <A>
@@ -17,8 +17,8 @@ EOL                      <
 DS_FIXED                 <D>
 NAME                     <date>
 EXTERNAL_DESCRIPTION     < >
-DATA_STRUCTURE_TYPE      <S>
-DEF_TYPE                 <  >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <       >
 DATA_TYPE                <D>
@@ -33,8 +33,8 @@ EOL                      <
 DS_FIXED                 <D>
 NAME                     <obj>
 EXTERNAL_DESCRIPTION     < >
-DATA_STRUCTURE_TYPE      <S>
-DEF_TYPE                 <  >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <       >
 DATA_TYPE                <O>
@@ -53,8 +53,8 @@ EOL                      <
 DS_FIXED                 <D>
 NAME                     <ptr>
 EXTERNAL_DESCRIPTION     < >
-DATA_STRUCTURE_TYPE      <S>
-DEF_TYPE                 <  >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
 FROM_POSITION            <       >
 TO_POSITION              <       >
 DATA_TYPE                <*>
@@ -114,12 +114,12 @@ FREE_SEMI                <;>
 (r
   (statement (star_comments D*))
   (statement
-    (dspec_fixed
+    (dspec
       D
       (ds_name string)
       ' '
-      S
-      '  '
+      ' '
+      'S '
       '       '
       '     50'
       A
@@ -130,12 +130,12 @@ FREE_SEMI                <;>
     )
   )
   (statement
-    (dspec_fixed
+    (dspec
       D
       (ds_name date)
       ' '
-      S
-      '  '
+      ' '
+      'S '
       '       '
       '       '
       D
@@ -153,12 +153,12 @@ FREE_SEMI                <;>
     )
   )
   (statement
-    (dspec_fixed
+    (dspec
       D
       (ds_name obj)
       ' '
-      S
-      '  '
+      ' '
+      'S '
       '       '
       '       '
       O
@@ -171,12 +171,12 @@ FREE_SEMI                <;>
     )
   )
   (statement
-    (dspec_fixed
+    (dspec
       D
       (ds_name ptr)
       ' '
-      S
-      '  '
+      ' '
+      'S '
       '       '
       '       '
       *
@@ -186,51 +186,61 @@ FREE_SEMI                <;>
       \r\n
     )
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword string)))
-    (datatype (datatypeName VARCHAR) (args ( (expression (number 50)) )))
-    ;
-  )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword (datatypeName date))))
-    (datatype
-      (datatypeName DATE)
-      (args ( (expression (identifier (all (symbolicConstants *MDY)))) ))
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword string)))
+      (datatype (datatypeName VARCHAR) (args ( (expression (number 50)) )))
+      ;
     )
-    ;
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword obj)))
-    (datatype
-      (datatypeName OBJECT)
-      (args
-        (
-        (expression (identifier (all (symbolicConstants *JAVA))))
-        :
-        (expression (literal ' MyClass '))
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword (datatypeName date))))
+      (datatype
+        (datatypeName DATE)
+        (args ( (expression (identifier (all (symbolicConstants *MDY)))) ))
+      )
+      ;
+    )
+  )
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword obj)))
+      (datatype
+        (datatypeName OBJECT)
+        (args
+          (
+          (expression (identifier (all (symbolicConstants *JAVA))))
+          :
+          (expression (literal ' MyClass '))
+          )
         )
       )
+      ;
     )
-    ;
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword ptr)))
-    (datatype
-      (datatypeName POINTER)
-      (args ( (expression (identifier (free_identifier (idOrKeyword *PROC)))) ))
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword ptr)))
+      (datatype
+        (datatypeName POINTER)
+        (args ( (expression (identifier (free_identifier (idOrKeyword *PROC)))) ))
+      )
+      ;
     )
-    ;
   )
-  (dspec
-    DCL-S
-    (identifier (free_identifier (idOrKeyword first_name)))
-    (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
-    (keyword (keyword_inz INZ ( (simpleExpression (literal ' John ')) )))
-    ;
+  (statement
+    (dspec
+      DCL-S
+      (identifier (free_identifier (idOrKeyword first_name)))
+      (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
+      (keyword (keyword_inz INZ ( (simpleExpression (literal ' John ')) )))
+      ;
+    )
   )
 )
 /*======*/
