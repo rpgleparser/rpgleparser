@@ -1,0 +1,144 @@
+/*===TOKENS===*/
+DS_PrototypeStart        <DCL-PR>
+ID                       <SubProc1>
+VARCHAR                  <VARCHAR>
+'('                      <(>
+NUMBER                   <100>
+')'                      <)>
+KEYWORD_DIM              <DIM>
+'('                      <(>
+NUMBER                   <2>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <varchar1>
+VARCHAR                  <VARCHAR>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+FREE_SEMI                <;>
+ID                       <ucs1>
+UCS2                     <UCS2>
+'('                      <(>
+NUMBER                   <5>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+FREE_SEMI                <;>
+ID                       <varucs1>
+VARUCS2                  <VARUCS2>
+'('                      <(>
+NUMBER                   <5>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+FREE_SEMI                <;>
+ID                       <graph1>
+GRAPH                    <GRAPH>
+'('                      <(>
+NUMBER                   <20>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+FREE_SEMI                <;>
+ID                       <vgraph1>
+VARGRAPH                 <VARGRAPH>
+'('                      <(>
+NUMBER                   <50>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+FREE_SEMI                <;>
+ID                       <packed1>
+PACKED                   <PACKED>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+FREE_SEMI                <;>
+ID                       <binary1>
+BINDEC                   <BINDEC>
+'('                      <(>
+NUMBER                   <2>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+FREE_SEMI                <;>
+ID                       <uns1>
+UNS                      <UNS>
+'('                      <(>
+NUMBER                   <3>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+FREE_SEMI                <;>
+ID                       <float1>
+FLOAT                    <FLOAT>
+'('                      <(>
+NUMBER                   <4>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+FREE_SEMI                <;>
+DS_PrototypeEnd          <END-PR>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dcl_pr
+    DCL-PR
+    (identifier (free_identifier (idOrKeyword SubProc1)))
+    (datatype (datatypeName VARCHAR) (args ( (expression (number 100)) )))
+    (keyword (keyword_dim DIM ( (number 2) )))
+    ;
+    (dcl_pr_field
+      (identifier (free_identifier (idOrKeyword varchar1)))
+      (datatype (datatypeName VARCHAR) (args ( (expression (number 10)) )))
+      (keyword (keyword_const CONST))
+      ;
+    )
+    (dcl_pr_field
+      (identifier (free_identifier (idOrKeyword ucs1)))
+      (datatype (datatypeName UCS2) (args ( (expression (number 5)) )))
+      (keyword (keyword_const CONST))
+      ;
+    )
+    (dcl_pr_field
+      (identifier (free_identifier (idOrKeyword varucs1)))
+      (datatype (datatypeName VARUCS2) (args ( (expression (number 5)) )))
+      (keyword (keyword_const CONST))
+      ;
+    )
+    (dcl_pr_field
+      (identifier (free_identifier (idOrKeyword graph1)))
+      (datatype (datatypeName GRAPH) (args ( (expression (number 20)) )))
+      (keyword (keyword_const CONST))
+      ;
+    )
+    (dcl_pr_field
+      (identifier (free_identifier (idOrKeyword vgraph1)))
+      (datatype (datatypeName VARGRAPH) (args ( (expression (number 50)) )))
+      (keyword (keyword_const CONST))
+      ;
+    )
+    (dcl_pr_field
+      (identifier (free_identifier (idOrKeyword packed1)))
+      (datatype (datatypeName PACKED) (args ( (expression (number 10)) )))
+      (keyword (keyword_const CONST))
+      ;
+    )
+    (dcl_pr_field
+      (identifier (free_identifier (idOrKeyword binary1)))
+      (datatype (datatypeName BINDEC) (args ( (expression (number 2)) )))
+      (keyword (keyword_const CONST))
+      ;
+    )
+    (dcl_pr_field
+      (identifier (free_identifier (idOrKeyword uns1)))
+      (datatype (datatypeName UNS) (args ( (expression (number 3)) )))
+      (keyword (keyword_const CONST))
+      ;
+    )
+    (dcl_pr_field
+      (identifier (free_identifier (idOrKeyword float1)))
+      (datatype (datatypeName FLOAT) (args ( (expression (number 4)) )))
+      (keyword (keyword_const CONST))
+      ;
+    )
+    (end_dcl_pr END-PR)
+    ;
+  )
+)
+/*======*/

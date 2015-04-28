@@ -171,7 +171,7 @@ end_dcl_ds: DS_DataStructureEnd identifier?;
 dcl_pr:  DS_PrototypeStart identifier datatype? keyword* FREE_SEMI?  
 	dcl_pr_field*
 	end_dcl_pr FREE_SEMI;
-dcl_pr_field: DS_Parm? (identifier (datatype | like=keyword_like) FREE_SEMI );
+dcl_pr_field: DS_Parm? (identifier (datatype | like=keyword_like) keyword* FREE_SEMI );
 end_dcl_pr: DS_PrototypeEnd;
 dcl_pi:  DS_ProcedureInterfaceStart identifier datatype? keyword* FREE_SEMI?  
 	dcl_pi_field*

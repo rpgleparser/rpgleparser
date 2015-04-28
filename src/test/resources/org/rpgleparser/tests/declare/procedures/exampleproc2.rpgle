@@ -1,0 +1,11 @@
+       DCL-PR SubProc1 VARCHAR(100) DIM(2); 
+           varchar1    VARCHAR(10) CONST;
+           ucs1        UCS2(5) CONST; 
+           varucs1     VARUCS2(5) CONST; 
+           graph1      GRAPH(20) CONST; 
+           vgraph1     VARGRAPH(50) CONST; 
+           packed1     PACKED(10) CONST; 
+           binary1     BINDEC(2) CONST; 
+           uns1        UNS(3) CONST; 
+           float1      FLOAT(4) CONST; 
+       END-PR;
