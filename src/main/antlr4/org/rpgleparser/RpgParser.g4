@@ -115,7 +115,8 @@ keyword_ccsid : KEYWORD_CCSID OPEN_PAREN (number | SPLAT_DFT) CLOSE_PAREN;
 keyword_class : KEYWORD_CLASS OPEN_PAREN SPLAT_JAVA COLON class_name=simpleExpression CLOSE_PAREN;
 keyword_const : KEYWORD_CONST (OPEN_PAREN constant=simpleExpression CLOSE_PAREN)?;
 keyword_ctdata: KEYWORD_CTDATA;
-keyword_datfmt : KEYWORD_DATFMT OPEN_PAREN format=simpleExpression (separator=simpleExpression)? CLOSE_PAREN;  
+keyword_datfmt : KEYWORD_DATFMT OPEN_PAREN (simpleExpression | symbolicConstants) (dateSeparator)? CLOSE_PAREN;
+dateSeparator : AMPERSAND | MINUS | DIV | FREE_DOT;  
 keyword_descend : KEYWORD_DESCEND;
 keyword_dim:  KEYWORD_DIM OPEN_PAREN (numeric_constant=number) CLOSE_PAREN;
 keyword_dtaara: KEYWORD_DTAARA (OPEN_PAREN (SPLAT_VAR COLON)? (name=literal | nameVariable=simpleExpression) CLOSE_PAREN)?;
@@ -161,6 +162,41 @@ keyword_tofile : KEYWORD_TOFILE OPEN_PAREN file_name=simpleExpression (separator
 keyword_value : KEYWORD_VALUE;
 keyword_varying : KEYWORD_VARYING (OPEN_PAREN size=simpleExpression CLOSE_PAREN)?;
 
+// File spec keywords
+keyword_block: KEYWORD_BLOCK OPEN_PAREN symbolicConstants CLOSE_PAREN;
+keyword_commit: (KEYWORD_COMMIT | OP_COMMIT)(OPEN_PAREN simpleExpression CLOSE_PAREN)?;
+keyword_devid: KEYWORD_DEVID (OPEN_PAREN simpleExpression CLOSE_PAREN);
+keyword_extdesc: KEYWORD_EXTDESC (OPEN_PAREN simpleExpression CLOSE_PAREN);
+keyword_extfile: KEYWORD_EXTFILE (OPEN_PAREN (simpleExpression | symbolicConstants) CLOSE_PAREN);
+keyword_extind: KEYWORD_EXTIND OPEN_PAREN simpleExpression CLOSE_PAREN;
+keyword_extmbr: KEYWORD_EXTMBR OPEN_PAREN simpleExpression CLOSE_PAREN;
+keyword_formlen: KEYWORD_FORMLEN OPEN_PAREN number CLOSE_PAREN;
+keyword_formofl: KEYWORD_FORMOFL OPEN_PAREN number CLOSE_PAREN;
+keyword_ignore: KEYWORD_IGNORE OPEN_PAREN simpleExpression (COLON simpleExpression)* CLOSE_PAREN;
+keyword_include: KEYWORD_INCLUDE OPEN_PAREN simpleExpression (COLON simpleExpression)* CLOSE_PAREN;
+keyword_indds: KEYWORD_INDDS OPEN_PAREN data_structure_name=simpleExpression CLOSE_PAREN;
+keyword_infds: KEYWORD_INFDS OPEN_PAREN simpleExpression CLOSE_PAREN;
+keyword_infsr: KEYWORD_INFSR OPEN_PAREN subr_name=simpleExpression CLOSE_PAREN;
+keyword_keyloc: KEYWORD_KEYLOC OPEN_PAREN number CLOSE_PAREN;
+keyword_maxdev: KEYWORD_MAXDEV OPEN_PAREN symbolicConstants CLOSE_PAREN;
+keyword_oflind: KEYWORD_OFLIND OPEN_PAREN simpleExpression CLOSE_PAREN;
+keyword_pass: KEYWORD_PASS OPEN_PAREN symbolicConstants CLOSE_PAREN;
+keyword_pgmname: KEYWORD_PGMNAME OPEN_PAREN program_name=simpleExpression CLOSE_PAREN;
+keyword_plist:	KEYWORD_PLIST OPEN_PAREN plist_name=simpleExpression CLOSE_PAREN;
+keyword_prtctl:	KEYWORD_PRTCTL OPEN_PAREN data_struct=simpleExpression (COLON symbolicConstants)? CLOSE_PAREN;
+keyword_rafdata: KEYWORD_RAFDATA OPEN_PAREN file_name=simpleExpression CLOSE_PAREN;
+keyword_recno: KEYWORD_RECNO OPEN_PAREN field_name=simpleExpression CLOSE_PAREN;
+keyword_rename: KEYWORD_RENAME OPEN_PAREN ext_format=simpleExpression COLON int_format=simpleExpression CLOSE_PAREN;
+keyword_saveds: KEYWORD_SAVEDS OPEN_PAREN simpleExpression CLOSE_PAREN;
+keyword_saveind: KEYWORD_SAVEIND OPEN_PAREN number CLOSE_PAREN;
+keyword_sfile: KEYWORD_SFILE OPEN_PAREN recformat=simpleExpression COLON rrnfield=simpleExpression CLOSE_PAREN;
+keyword_sln: KEYWORD_SLN OPEN_PAREN number CLOSE_PAREN;
+keyword_usropn: KEYWORD_USROPN;
+keyword_disk: KEYWORD_DISK;
+keyword_workstn: KEYWORD_WORKSTN;
+keyword_printer: KEYWORD_PRINTER;
+keyword_special: KEYWORD_SPECIAL;
+keyword_keyed: KEYWORD_KEYED;
 
 like_lengthAdjustment: sign number;
 sign: PLUS | MINUS;
@@ -551,17 +587,66 @@ ps_name: PS_CONTINUATION_NAME* PS_NAME;
  
 //dspec_continuation:	DS_FIXED CONTINUATION_NAME (EOL|EOF);
 fspec:  FS_FreeFile filename  
-	fs_expression*; 
+	fs_keyword* FREE_SEMI; 
 filename: ID; 
-fs_expression: (ID (OPEN_PAREN (fs_parm (COLON fs_parm)*)? CLOSE_PAREN)?);
+//fs_expression: (ID (OPEN_PAREN (fs_parm (COLON fs_parm)*)? CLOSE_PAREN)?);
 fs_parm: expression | fs_string;
 fs_string: (StringLiteralStart|HexLiteralStart|DateLiteralStart) (StringContent | StringEscapedQuote )* StringLiteralEnd;
 
 
+fs_keyword:
+     keyword_alias
+   | keyword_block 
+   | keyword_commit
+   | keyword_datfmt
+   | keyword_devid
+   | keyword_dim
+   | keyword_dtaara
+   | keyword_extdesc
+   | keyword_extfile
+   | keyword_extind
+   | keyword_extmbr
+   | keyword_formlen
+   | keyword_formofl
+   | keyword_ignore
+   | keyword_include
+   | keyword_indds
+   | keyword_infds
+   | keyword_infsr
+   | keyword_keyloc
+   | keyword_likefile
+   | keyword_maxdev
+   | keyword_oflind
+   | keyword_pass
+   | keyword_pgmname
+   | keyword_plist
+   | keyword_prefix
+   | keyword_prtctl
+   | keyword_qualified
+   | keyword_rafdata
+   | keyword_recno
+   | keyword_rename
+   | keyword_saveds
+   | keyword_saveind
+   | keyword_sfile
+   | keyword_sln
+   | keyword_static
+   | keyword_template
+   | keyword_timfmt
+   | keyword_tofile
+   | keyword_usropn
+   | keyword_value
+   | keyword_varying
+   | keyword_disk
+   | keyword_workstn
+   | keyword_printer
+   | keyword_special
+   | keyword_keyed;
+
 
 fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addution 
 	FS_Sequence FS_Format FS_RecordLength FS_Limits FS_LengthOfKey FS_RecordAddressType FS_Organization FS_Device FS_Reserved 
-	FS_Keywords FS_EOL;	
+	fs_keyword* (EOL|FS_EOL|EOF);	
 cspec_fixed: CS_FIXED
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
@@ -2136,6 +2221,41 @@ idOrKeyword:
    | KEYWORD_TOFILE
    | KEYWORD_VALUE
    | KEYWORD_VARYING
+   //File spec keywords
+   | KEYWORD_BLOCK 
+   | KEYWORD_COMMIT 
+   | KEYWORD_DEVID 
+   | KEYWORD_EXTDESC 
+   | KEYWORD_EXTFILE 
+   | KEYWORD_EXTIND 
+   | KEYWORD_EXTMBR 
+   | KEYWORD_FORMLEN 
+   | KEYWORD_FORMOFL 
+   | KEYWORD_IGNORE 
+   | KEYWORD_INCLUDE 
+   | KEYWORD_INDDS 
+   | KEYWORD_INFDS 
+   | KEYWORD_INFSR 
+   | KEYWORD_KEYLOC 
+   | KEYWORD_MAXDEV 
+   | KEYWORD_OFLIND 
+   | KEYWORD_PASS 
+   | KEYWORD_PGMNAME 
+   | KEYWORD_PLIST 
+   | KEYWORD_PRTCTL 
+   | KEYWORD_RAFDATA 
+   | KEYWORD_RECNO 
+   | KEYWORD_RENAME 
+   | KEYWORD_SAVEDS 
+   | KEYWORD_SAVEIND 
+   | KEYWORD_SFILE 
+   | KEYWORD_SLN 
+   | KEYWORD_USROPN
+   | KEYWORD_DISK
+   | KEYWORD_WORKSTN
+   | KEYWORD_PRINTER
+   | KEYWORD_SPECIAL   
+   | KEYWORD_KEYED
    |datatypeName;
 		
 argument: ID;
@@ -2143,7 +2263,10 @@ argument: ID;
 symbolicConstants:
 SPLAT_ALL
    | SPLAT_NONE
+   | SPLAT_NO
+   | SPLAT_YES
    | SPLAT_ILERPG
+   | SPLAT_COMPAT
    | SPLAT_CRTBNDRPG
    | SPLAT_CRTRPGMOD
    | SPLAT_VRM
@@ -2200,6 +2323,7 @@ SPLAT_ALL
    | SPLAT_NULL
    | SPLAT_OFL
    | SPLAT_ON
+   | SPLAT_ONLY
    | SPLAT_OFF
    | SPLAT_PDA
    | SPLAT_PLACE
@@ -2237,4 +2361,5 @@ SPLAT_ALL
    | SPLAT_SECONDS
    | SPLAT_Y
    | SPLAT_YEARS
+   | SPLAT_EXTDESC
    ;
