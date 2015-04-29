@@ -135,6 +135,8 @@ public class SymbolTableBuilder extends LoggingListener {
 	public void enterIspec_fixed(Ispec_fixedContext ctx) {
 		super.enterIspec_fixed(ctx);
 		lastSpec = "I";
+		//TODO fill in the variables from i-Specs
+		
 	}
 
 	@Override
