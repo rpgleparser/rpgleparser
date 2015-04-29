@@ -713,14 +713,14 @@ cspec_fixed_standard:
 	| csDELETE
 	| csDIV
 	| csDO
-	| csDOU
+	//| csDOU
 	//| csDOUEQ
 	//| csDOUNE
 	//| csDOULE
 	//| csDOULT
 	//| csDOUGE
 	//| csDOUGT
-	| csDOW
+	//| csDOW
 	//| csDOWEQ
 	//| csDOWNE
 	//| csDOWLE

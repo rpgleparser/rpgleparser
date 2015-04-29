@@ -7,10 +7,45 @@ import java.util.List;
 import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.Vocabulary;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.rpgleparser.RpgLexer;
+// Import the contexts related to operators that can have a result field with length & dec pos
+import org.rpgleparser.RpgParser.CsADDContext;
+import org.rpgleparser.RpgParser.CsBITOFFContext;
+import org.rpgleparser.RpgParser.CsBITONContext;
+import org.rpgleparser.RpgParser.CsCATContext;
+import org.rpgleparser.RpgParser.CsCHECKContext;
+import org.rpgleparser.RpgParser.CsCHECKRContext;
+import org.rpgleparser.RpgParser.CsCLEARContext;
+import org.rpgleparser.RpgParser.CsDEFINEContext;
+import org.rpgleparser.RpgParser.CsDIVContext;
+import org.rpgleparser.RpgParser.CsDOContext;
+import org.rpgleparser.RpgParser.CsDSPLYContext;
+import org.rpgleparser.RpgParser.CsEXTRCTContext;
+import org.rpgleparser.RpgParser.CsKFLDContext;
+import org.rpgleparser.RpgParser.CsMHHZOContext;
+import org.rpgleparser.RpgParser.CsMHLZOContext;
+import org.rpgleparser.RpgParser.CsMLHZOContext;
+import org.rpgleparser.RpgParser.CsMLLZOContext;
+import org.rpgleparser.RpgParser.CsMOVEContext;
+import org.rpgleparser.RpgParser.CsMOVELContext;
+import org.rpgleparser.RpgParser.CsMULTContext;
+import org.rpgleparser.RpgParser.CsMVRContext;
+import org.rpgleparser.RpgParser.CsOCCURContext;
+import org.rpgleparser.RpgParser.CsPARMContext;
+import org.rpgleparser.RpgParser.CsRESETContext;
+import org.rpgleparser.RpgParser.CsSCANContext;
+import org.rpgleparser.RpgParser.CsSQRTContext;
+import org.rpgleparser.RpgParser.CsSUBContext;
+import org.rpgleparser.RpgParser.CsSUBSTContext;
+import org.rpgleparser.RpgParser.CsXFOOTContext;
+import org.rpgleparser.RpgParser.CsXLATEContext;
+import org.rpgleparser.RpgParser.CsZ_ADDContext;
+import org.rpgleparser.RpgParser.CsZ_SUBContext;
 import org.rpgleparser.RpgParser.Cspec_fixedContext;
+import org.rpgleparser.RpgParser.Cspec_fixed_standard_partsContext;
 import org.rpgleparser.RpgParser.DirectiveContext;
 import org.rpgleparser.RpgParser.DspecContext;
 import org.rpgleparser.RpgParser.Dspec_fixedContext;
@@ -19,6 +54,7 @@ import org.rpgleparser.RpgParser.Hspec_fixedContext;
 import org.rpgleparser.RpgParser.Ispec_fixedContext;
 import org.rpgleparser.RpgParser.Ospec_fixedContext;
 import org.rpgleparser.RpgParser.ProcedureContext;
+import org.rpgleparser.RpgParser.ResultTypeContext;
 
 import examples.fixed2free.integration.ColumnInfo;
 import examples.fixed2free.integration.MockTableInfoProvider;
@@ -110,6 +146,13 @@ public class SymbolTableBuilder extends LoggingListener {
 		if (ctx.FS_Format().getText().trim().equalsIgnoreCase("E")){
 			String fileName = ctx.FS_RecordName().getText().trim();
 			List<ColumnInfo> temp = tip.getColumns(fileName, "*LIBL");
+			String keywords = ctx.FS_Keywords().getText().toLowerCase();
+			if (keywords.contains("rename(")){
+				int startpos = keywords.indexOf("rename(");
+				int endpos = keywords.indexOf(')', startpos);
+				String tempx = keywords.substring(startpos, endpos);
+				String[] parts = tempx.split("[(:)]");
+			}
 			if (temp != null){
 				for (ColumnInfo ci : temp){
 					Symbol theSym = new Symbol();
@@ -117,6 +160,7 @@ public class SymbolTableBuilder extends LoggingListener {
 					theSym.setName(ci.getColumnName());
 					Symbol.sqlAttr2rpg(ci, theSym);
 					theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_EXTERNAL_FILE_DESCRIPTION);
+					theSym.addAttribute(Symbol.CAT_TABLE_NAME, fileName);
 					st.addSymbolToScope(currentScope, theSym);
 				}
 				
@@ -148,12 +192,12 @@ public class SymbolTableBuilder extends LoggingListener {
 	@Override
 	public void enterProcedure(ProcedureContext ctx) {
 		super.enterProcedure(ctx);
-		debugContext(ctx);
+		currentScope = st.getAScope( ctx.beginProcedure().freeBeginProcedure().DS_ProcedureStart().getText());
+//		debugContext(ctx);
 	}
 
 	@Override
 	public void exitProcedure(ProcedureContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitProcedure(ctx);
 		
 	}
@@ -295,4 +339,229 @@ public class SymbolTableBuilder extends LoggingListener {
 		st.addSymbolToScope(currentScope, theSym);
 
 	}
+
+	@Override
+	public void enterCsADD(CsADDContext ctx) {
+		super.enterCsADD(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsBITOFF(CsBITOFFContext ctx) {
+		super.enterCsBITOFF(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsBITON(CsBITONContext ctx) {
+		super.enterCsBITON(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsCAT(CsCATContext ctx) {
+		super.enterCsCAT(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsCHECK(CsCHECKContext ctx) {
+		super.enterCsCHECK(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsCHECKR(CsCHECKRContext ctx) {
+		super.enterCsCHECKR(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsCLEAR(CsCLEARContext ctx) {
+		super.enterCsCLEAR(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsDEFINE(CsDEFINEContext ctx) {
+		super.enterCsDEFINE(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsDIV(CsDIVContext ctx) {
+		super.enterCsDIV(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsDO(CsDOContext ctx) {
+		super.enterCsDO(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsDSPLY(CsDSPLYContext ctx) {
+		super.enterCsDSPLY(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsEXTRCT(CsEXTRCTContext ctx) {
+		super.enterCsEXTRCT(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsKFLD(CsKFLDContext ctx) {
+		super.enterCsKFLD(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsMHHZO(CsMHHZOContext ctx) {
+		super.enterCsMHHZO(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsMHLZO(CsMHLZOContext ctx) {
+		super.enterCsMHLZO(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsMLHZO(CsMLHZOContext ctx) {
+		super.enterCsMLHZO(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsMLLZO(CsMLLZOContext ctx) {
+		super.enterCsMLLZO(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsMOVE(CsMOVEContext ctx) {
+		super.enterCsMOVE(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsMOVEL(CsMOVELContext ctx) {
+		super.enterCsMOVEL(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsMULT(CsMULTContext ctx) {
+		super.enterCsMULT(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsMVR(CsMVRContext ctx) {
+		super.enterCsMVR(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsOCCUR(CsOCCURContext ctx) {
+		super.enterCsOCCUR(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsPARM(CsPARMContext ctx) {
+		super.enterCsPARM(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsRESET(CsRESETContext ctx) {
+		super.enterCsRESET(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsSCAN(CsSCANContext ctx) {
+		super.enterCsSCAN(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsSQRT(CsSQRTContext ctx) {
+		super.enterCsSQRT(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsSUB(CsSUBContext ctx) {
+		super.enterCsSUB(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsSUBST(CsSUBSTContext ctx) {
+		super.enterCsSUBST(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsXFOOT(CsXFOOTContext ctx) {
+		super.enterCsXFOOT(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsXLATE(CsXLATEContext ctx) {
+		// TODO Auto-generated method stub
+		super.enterCsXLATE(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsZ_ADD(CsZ_ADDContext ctx) {
+		super.enterCsZ_ADD(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	@Override
+	public void enterCsZ_SUB(CsZ_SUBContext ctx) {
+		super.enterCsZ_SUB(ctx);
+		checkResult(ctx.cspec_fixed_standard_parts());
+	}
+
+	private void checkResult(Cspec_fixed_standard_partsContext parts) {
+		if (parts != null){
+			ResultTypeContext result = parts.result;
+			Token length = parts.len;
+			Token decpos = parts.decimalPositions;
+			doResultCheck(result, length, decpos);
+		}
+	}
+	
+	private void doResultCheck(ResultTypeContext result, Token length,
+			Token decpos) {
+		boolean lengthFound = !length.getText().trim().isEmpty();
+		String lengths = length.getText().trim();
+		boolean decimalsFound = !decpos.getText().trim().isEmpty();
+		String decposs = decpos.getText().trim();
+
+		if (lengthFound) {
+			Symbol theSym = new Symbol();
+			theSym.setName(result.getText());
+			theSym.addAttribute(Symbol.CAT_LENGTH, lengths);
+			theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_C_SPECS);
+			if (decimalsFound) {
+				theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decposs);
+				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_PACKED);
+			} else {
+				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
+			}
+			st.addSymbolToScope(currentScope, theSym);
+		}
+	}
+
 }
