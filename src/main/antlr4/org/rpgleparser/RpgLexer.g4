@@ -94,7 +94,7 @@ OP_CALLP: [Cc][Aa][Ll][Ll][Pp] -> pushMode(FreeOpExtender);
 OP_CHAIN: [Cc][Hh][Aa][Ii][Nn] -> pushMode(FreeOpExtender);
 OP_CLEAR: [Cc][Ll][Ee][Aa][Rr];
 OP_CLOSE: [Cc][Ll][Oo][Ss][Ee] -> pushMode(FreeOpExtender);
-OP_COMMIT: [Cc][Oo][Mm][Mm][Ii][Tt] -> pushMode(FreeOpExtender);
+OP_COMMIT: {getCharPositionInLine()<40}? [Cc][Oo][Mm][Mm][Ii][Tt] -> pushMode(FreeOpExtender);
 OP_DEALLOC: [Dd][Ee][Aa][Ll][Ll][Oo][Cc] -> pushMode(FreeOpExtender);
 OP_DELETE: [Dd][Ee][Ll][Ee][Tt][Ee] -> pushMode(FreeOpExtender);
 OP_DOU: [Dd][Oo][Uu] -> pushMode(FreeOpExtender);
@@ -437,6 +437,7 @@ KEYWORD_WORKSTN : [wW][oO][rR][kK][sS][tT][nN];
 KEYWORD_PRINTER : [pP][rR][iI][nN][tT][eE][rR];
 KEYWORD_SPECIAL : [sS][pP][eE][cC][iI][aA][lL];
 KEYWORD_KEYED : [kK][eE][yY][eE][dD];
+KEYWORD_USAGE : [uU][sS][aA][gG][eE];
 // 
 AMPERSAND: '&';
 

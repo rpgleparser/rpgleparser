@@ -1,0 +1,37 @@
+/*===TOKENS===*/
+FS_FreeFile              <DCL-F>
+ID                       <PPI061A>
+KEYWORD_PRINTER          <PRINTER>
+'('                      <(>
+SPLAT_EXT                <*EXT>
+')'                      <)>
+KEYWORD_USAGE            <USAGE>
+'('                      <(>
+SPLAT_OUTPUT             <*OUTPUT>
+')'                      <)>
+KEYWORD_OFLIND           <OFLIND>
+'('                      <(>
+SPLAT_INDICATOR          <*IN09>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (fspec
+      DCL-F
+      (filename PPI061A)
+      (fs_keyword (keyword_printer PRINTER ( (symbolicConstants *EXT) )))
+      (fs_keyword (keyword_usage USAGE ( (symbolicConstants *OUTPUT) )))
+      (fs_keyword
+        (keyword_oflind
+          OFLIND
+          (
+          (simpleExpression (identifier (all (symbolicConstants *IN09))))
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/

@@ -194,9 +194,10 @@ keyword_sln: KEYWORD_SLN OPEN_PAREN number CLOSE_PAREN;
 keyword_usropn: KEYWORD_USROPN;
 keyword_disk: KEYWORD_DISK;
 keyword_workstn: KEYWORD_WORKSTN;
-keyword_printer: KEYWORD_PRINTER;
+keyword_printer: KEYWORD_PRINTER OPEN_PAREN symbolicConstants CLOSE_PAREN;
 keyword_special: KEYWORD_SPECIAL;
 keyword_keyed: KEYWORD_KEYED;
+keyword_usage: KEYWORD_USAGE OPEN_PAREN symbolicConstants (COLON symbolicConstants)* CLOSE_PAREN;
 
 like_lengthAdjustment: sign number;
 sign: PLUS | MINUS;
@@ -657,7 +658,8 @@ fs_keyword:
    | keyword_workstn
    | keyword_printer
    | keyword_special
-   | keyword_keyed;
+   | keyword_keyed
+   | keyword_usage;
 
 
 fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addution 
@@ -2272,6 +2274,7 @@ idOrKeyword:
    | KEYWORD_PRINTER
    | KEYWORD_SPECIAL   
    | KEYWORD_KEYED
+   | KEYWORD_USAGE
    |datatypeName;
 		
 argument: ID;
