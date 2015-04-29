@@ -46,13 +46,23 @@ import org.rpgleparser.RpgParser.CsZ_ADDContext;
 import org.rpgleparser.RpgParser.CsZ_SUBContext;
 import org.rpgleparser.RpgParser.Cspec_fixedContext;
 import org.rpgleparser.RpgParser.Cspec_fixed_standard_partsContext;
+import org.rpgleparser.RpgParser.Dcl_cContext;
+import org.rpgleparser.RpgParser.Dcl_dsContext;
+import org.rpgleparser.RpgParser.Dcl_ds_fieldContext;
+import org.rpgleparser.RpgParser.Dcl_piContext;
+import org.rpgleparser.RpgParser.Dcl_pi_fieldContext;
+import org.rpgleparser.RpgParser.Dcl_prContext;
+import org.rpgleparser.RpgParser.Dcl_pr_fieldContext;
 import org.rpgleparser.RpgParser.DirectiveContext;
+import org.rpgleparser.RpgParser.Ds_nameContext;
 import org.rpgleparser.RpgParser.DspecContext;
 import org.rpgleparser.RpgParser.Dspec_fixedContext;
 import org.rpgleparser.RpgParser.Fspec_fixedContext;
 import org.rpgleparser.RpgParser.Hspec_fixedContext;
 import org.rpgleparser.RpgParser.Ispec_fixedContext;
+import org.rpgleparser.RpgParser.KeywordContext;
 import org.rpgleparser.RpgParser.Ospec_fixedContext;
+import org.rpgleparser.RpgParser.Parm_fixedContext;
 import org.rpgleparser.RpgParser.ProcedureContext;
 import org.rpgleparser.RpgParser.ResultTypeContext;
 
@@ -66,9 +76,9 @@ public class SymbolTableBuilder extends LoggingListener {
 	private Scope global;
 	private String lastSpec = "";
 	private SymbolTable st;
+	private TableInfoProvider tip;
 	private CommonTokenStream ts;
 	private Vocabulary voc;
-	private TableInfoProvider tip;
 	
 	public SymbolTableBuilder(RpgLexer lex, CommonTokenStream toks) {
 		voc = lex.getVocabulary();
@@ -77,6 +87,15 @@ public class SymbolTableBuilder extends LoggingListener {
 		global = st.getAScope(Scope.GLOBAL);
 		currentScope = global;
 		tip = new MockTableInfoProvider();
+	}
+
+	private void checkResult(Cspec_fixed_standard_partsContext parts) {
+		if (parts != null){
+			ResultTypeContext result = parts.result;
+			Token length = parts.len;
+			Token decpos = parts.decimalPositions;
+			doResultCheck(result, length, decpos);
+		}
 	}
 
 	public List<String> collectOutput() {
@@ -102,244 +121,29 @@ public class SymbolTableBuilder extends LoggingListener {
 		}
 	}
 
-	@Override
-	public void enterCspec_fixed(Cspec_fixedContext ctx) {
-		super.enterCspec_fixed(ctx);
-		lastSpec = "C";
-	}
+	private void doResultCheck(ResultTypeContext result, Token length,
+			Token decpos) {
+		boolean lengthFound = !length.getText().trim().isEmpty();
+		String lengths = length.getText().trim();
+		boolean decimalsFound = !decpos.getText().trim().isEmpty();
+		String decposs = decpos.getText().trim();
 
-	@Override
-	public void enterDirective(DirectiveContext ctx) {
-		super.enterDirective(ctx);
+		if (lengthFound) {
+			Symbol theSym = new Symbol();
+			theSym.setName(result.getText());
+			theSym.addAttribute(Symbol.CAT_LENGTH, lengths);
+			theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_C_SPECS);
+			if (decimalsFound) {
+				theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decposs);
+				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_PACKED);
+			} else {
+				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
+			}
+			st.addSymbolToScope(currentScope, theSym);
+		}
 	}
 
 	
-	@Override
-	public void enterDspec_fixed(Dspec_fixedContext ctx) {
-		super.enterDspec_fixed(ctx);
-		lastSpec = "D";
-		String dsType = ctx.DATA_STRUCTURE_TYPE().getText().trim();
-		String rpgDataType = ctx.DATA_TYPE().getText().trim();
-		String decimalPositions = ctx.DECIMAL_POSITIONS().getText().trim();
-		String defType = ctx.DEF_TYPE().getText().trim().trim();
-		String dataStructureName = ctx.ds_name().getText().trim();
-		String externalDescription = ctx.EXTERNAL_DESCRIPTION().getText().trim();
-		String fromPosition = ctx.FROM_POSITION().getText().trim();
-		String keywords = null;//ctx.KEYWORDS().getText().trim(); //todo
-		String toPosition = ctx.TO_POSITION().getText().trim();
-		Symbol theSym = new Symbol();
-		// Definition type
-		setDefinitionType(defType, keywords, theSym);
-		theSym.setName(dataStructureName);
-		theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decimalPositions);
-		theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
-		setLength(fromPosition, toPosition, theSym);
-		setDataType(rpgDataType, theSym, keywords);
-		st.addSymbolToScope(currentScope, theSym);
-		
-	}
-
-	@Override
-	public void enterFspec_fixed(Fspec_fixedContext ctx) {
-		super.enterFspec_fixed(ctx);
-		lastSpec = "F";
-		if (ctx.FS_Format().getText().trim().equalsIgnoreCase("E")){
-			String fileName = ctx.FS_RecordName().getText().trim();
-			List<ColumnInfo> temp = tip.getColumns(fileName, "*LIBL");
-			String keywords = ctx.FS_Keywords().getText().toLowerCase();
-			if (keywords.contains("rename(")){
-				int startpos = keywords.indexOf("rename(");
-				int endpos = keywords.indexOf(')', startpos);
-				String tempx = keywords.substring(startpos, endpos);
-				String[] parts = tempx.split("[(:)]");
-			}
-			if (temp != null){
-				for (ColumnInfo ci : temp){
-					Symbol theSym = new Symbol();
-					// Definition type
-					theSym.setName(ci.getColumnName());
-					Symbol.sqlAttr2rpg(ci, theSym);
-					theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_EXTERNAL_FILE_DESCRIPTION);
-					theSym.addAttribute(Symbol.CAT_TABLE_NAME, fileName);
-					st.addSymbolToScope(currentScope, theSym);
-				}
-				
-			}
-		}
-		
-	}
-
-	@Override
-	public void enterHspec_fixed(Hspec_fixedContext ctx) {
-		super.enterHspec_fixed(ctx);
-		lastSpec = "H";
-	}
-
-	@Override
-	public void enterIspec_fixed(Ispec_fixedContext ctx) {
-		super.enterIspec_fixed(ctx);
-		lastSpec = "I";
-		//TODO fill in the variables from i-Specs
-		
-	}
-
-	@Override
-	public void enterOspec_fixed(Ospec_fixedContext ctx) {
-		super.enterOspec_fixed(ctx);
-		lastSpec = "O";
-	}
-
-	@Override
-	public void enterProcedure(ProcedureContext ctx) {
-		super.enterProcedure(ctx);
-		currentScope = st.getAScope( ctx.beginProcedure().freeBeginProcedure().DS_ProcedureStart().getText());
-//		debugContext(ctx);
-	}
-
-	@Override
-	public void exitProcedure(ProcedureContext ctx) {
-		super.exitProcedure(ctx);
-		
-	}
-	private void fillTokenList(ParseTree parseTree, List<CommonToken> tokenList) {
-		for (int i = 0; i < parseTree.getChildCount(); i++) {
-			ParseTree payload = parseTree.getChild(i);
-
-			if (payload.getPayload() instanceof CommonToken) {
-				tokenList.add((CommonToken) payload.getPayload());
-			} else {
-				fillTokenList(payload, tokenList);
-			}
-
-		}
-	}
-	public SymbolTable getSymbolTable() {
-		return st;
-	}
-
-	private List<CommonToken> getTheTokens(ParserRuleContext ctx) {
-		List<CommonToken> myList = new ArrayList<CommonToken>();
-		fillTokenList(ctx, myList);
-		return myList;
-	}
-
-	private void setDataType(String rpgDataType, Symbol theSym, String keywords) {
-		if (rpgDataType.equalsIgnoreCase("A")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
-		} else if (rpgDataType.equalsIgnoreCase("B")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_BINARY);
-		} else if (rpgDataType.equalsIgnoreCase("C")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_UCS2);
-		} else if (rpgDataType.equalsIgnoreCase("D")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_DATE);
-		} else if (rpgDataType.equalsIgnoreCase("F")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_FLOAT);
-		} else if (rpgDataType.equalsIgnoreCase("G")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_GRAPHIC);
-		} else if (rpgDataType.equalsIgnoreCase("I")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_INTEGER);
-		} else if (rpgDataType.equalsIgnoreCase("N")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_INDICATOR);
-		} else if (rpgDataType.equalsIgnoreCase("O")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_OBJECT);
-		} else if (rpgDataType.equalsIgnoreCase("P")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_PACKED);
-		} else if (rpgDataType.equalsIgnoreCase("S")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ZONED);
-		} else if (rpgDataType.equalsIgnoreCase("T")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_TIME);
-		} else if (rpgDataType.equalsIgnoreCase("U")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_UNSIGNED);
-		} else if (rpgDataType.equalsIgnoreCase("Z")){
-			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_TIMESTAMP);
-		} else if (rpgDataType.equalsIgnoreCase("*")){
-			if (keywords.toUpperCase().contains("%PADDR")){
-				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_PROC_POINTER);
-			} else {
-				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_POINTER);
-			}
-		} else {
-			// If we get here then the type is not specified and we need to use 
-			// the logic from the manual
-			String deftype = theSym.getAnAttribute(Symbol.CAT_DEFINITION_TYPE);
-			String decimals = theSym.getAnAttribute(Symbol.CAT_DECIMAL_POSITIONS);
-			if (deftype.equals(Symbol.DF_SUBFIELD)){
-				if (decimals == null || decimals.isEmpty()){
-					theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
-				} else {
-					theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ZONED);
-				}
-			} else {
-				if (decimals == null || decimals.isEmpty()){
-					theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
-				} else {
-					theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_PACKED);
-				}
-				
-			}
-		}
-
-	}
-
-	private void setDefinitionType(String defType, String keywords,
-			Symbol theSym) {
-		if (defType.equalsIgnoreCase("S")){
-			if (keywords.contains("DIM(")){
-				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_ARRAY);
-			} else {
-				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_STANDALONE);
-			}
-			
-		} else if (defType.equalsIgnoreCase("DS")){
-			if (keywords.contains("DIM(")){
-				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_MULTIPLE_OCCURANCE_DATA_STRUCTURE);
-			} else {
-				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_DATA_STRUCTURE);
-			}
-		} else {
-			// Not a standalone field and not a datastructure so must be a 
-			// data structure subfield
-			theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_SUBFIELD);
-		}
-	}
-
-	private void setLength(String fromPosition, String toPosition, Symbol theSym) {
-		if (fromPosition != null && fromPosition.length() > 0){
-			int fromInt = Integer.parseInt(fromPosition);
-			int toInt = Integer.parseInt(toPosition);
-			int totalLength = toInt - fromInt + 1;
-			String tl = Integer.toString(totalLength);
-			theSym.addAttribute(Symbol.CAT_LENGTH, tl);
-		} else {
-			theSym.addAttribute(Symbol.CAT_LENGTH, toPosition);
-		}
-	}
-
-	@Override
-	public void enterDspec(DspecContext ctx) {
-		super.enterDspec(ctx);
-		lastSpec = "D";
-		String dsType = ctx.DATA_STRUCTURE_TYPE().getText().trim();
-		String rpgDataType = ctx.DATA_TYPE().getText().trim();
-		String decimalPositions = ctx.DECIMAL_POSITIONS().getText().trim();
-		String defType = ctx.DEF_TYPE_S().getText().trim();
-		String dataStructureName = ctx.ds_name().getText().trim();
-		String externalDescription = ctx.EXTERNAL_DESCRIPTION().getText().trim();
-		String fromPosition = ctx.FROM_POSITION().getText().trim();
-		String keywords = ctx.keyword().toString();//ctx.KEYWORDS().getText().trim(); //todo
-		String toPosition = ctx.TO_POSITION().getText().trim();
-		Symbol theSym = new Symbol();
-		// Definition type
-		setDefinitionType(defType, keywords, theSym);
-		theSym.setName(dataStructureName);
-		theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decimalPositions);
-		theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
-		setLength(fromPosition, toPosition, theSym);
-		setDataType(rpgDataType, theSym, keywords);
-		st.addSymbolToScope(currentScope, theSym);
-
-	}
-
 	@Override
 	public void enterCsADD(CsADDContext ctx) {
 		super.enterCsADD(ctx);
@@ -381,13 +185,11 @@ public class SymbolTableBuilder extends LoggingListener {
 		super.enterCsCLEAR(ctx);
 		checkResult(ctx.cspec_fixed_standard_parts());
 	}
-
 	@Override
 	public void enterCsDEFINE(CsDEFINEContext ctx) {
 		super.enterCsDEFINE(ctx);
 		checkResult(ctx.cspec_fixed_standard_parts());
 	}
-
 	@Override
 	public void enterCsDIV(CsDIVContext ctx) {
 		super.enterCsDIV(ctx);
@@ -479,6 +281,12 @@ public class SymbolTableBuilder extends LoggingListener {
 	}
 
 	@Override
+	public void enterCspec_fixed(Cspec_fixedContext ctx) {
+		super.enterCspec_fixed(ctx);
+		lastSpec = "C";
+	}
+
+	@Override
 	public void enterCsRESET(CsRESETContext ctx) {
 		super.enterCsRESET(ctx);
 		checkResult(ctx.cspec_fixed_standard_parts());
@@ -533,35 +341,334 @@ public class SymbolTableBuilder extends LoggingListener {
 		checkResult(ctx.cspec_fixed_standard_parts());
 	}
 
-	private void checkResult(Cspec_fixed_standard_partsContext parts) {
-		if (parts != null){
-			ResultTypeContext result = parts.result;
-			Token length = parts.len;
-			Token decpos = parts.decimalPositions;
-			doResultCheck(result, length, decpos);
+	@Override
+	public void enterDcl_c(Dcl_cContext ctx) {
+		// TODO Auto-generated method stub
+		super.enterDcl_c(ctx);
+	}
+
+	@Override
+	public void enterDcl_ds(Dcl_dsContext ctx) {
+		super.enterDcl_ds(ctx);
+		Symbol theSym = new Symbol();
+		theSym.setName(ctx.ds_name().getText().trim());
+		theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_DATA_STRUCTURE);
+		st.addSymbolToScope(currentScope, theSym);
+	}
+
+	@Override
+	public void enterDcl_ds_field(Dcl_ds_fieldContext ctx) {
+		super.enterDcl_ds_field(ctx);
+		Symbol theSym = new Symbol();
+		theSym.setName(ctx.DS_SubField().getText());
+		List<KeywordContext> garbage =  ctx.keyword();
+		String keywords = "";
+		for (KeywordContext kw : garbage){
+			keywords += kw.getText() + " ";
 		}
+		setDataType(ctx.datatype().getText(), theSym, keywords);
+		st.addSymbolToScope(currentScope, theSym);
+	}
+
+	@Override
+	public void enterDcl_pi(Dcl_piContext ctx) {
+		// TODO Auto-generated method stub
+		super.enterDcl_pi(ctx);
+	}
+
+	@Override
+	public void enterDcl_pi_field(Dcl_pi_fieldContext ctx) {
+		// TODO Auto-generated method stub
+		super.enterDcl_pi_field(ctx);
+	}
+
+	@Override
+	public void enterDcl_pr(Dcl_prContext ctx) {
+		// TODO Auto-generated method stub
+		super.enterDcl_pr(ctx);
+	}
+
+	@Override
+	public void enterDcl_pr_field(Dcl_pr_fieldContext ctx) {
+		// TODO Auto-generated method stub
+		super.enterDcl_pr_field(ctx);
+	}
+
+	@Override
+	public void enterDirective(DirectiveContext ctx) {
+		super.enterDirective(ctx);
+	}
+
+	@Override
+	public void enterDs_name(Ds_nameContext ctx) {
+		// TODO Auto-generated method stub
+		super.enterDs_name(ctx);
+		ParserRuleContext pctx = ctx.getParent();
+		if (pctx instanceof DspecContext){
+			enterDspec((DspecContext)pctx);
+		} else {
+			System.out.println(pctx.getClass().getName());
+		}
+		System.err.println(ctx.getText());
+	}
+
+	@Override
+	public void enterDspec(DspecContext ctx) {
+		super.enterDspec(ctx);
+		lastSpec = "D";
+		String dsType = ctx.DATA_STRUCTURE_TYPE().getText().trim();
+		String rpgDataType = ctx.DATA_TYPE().getText().trim();
+		String decimalPositions = ctx.DECIMAL_POSITIONS().getText().trim();
+		String defType = ctx.DEF_TYPE_S().getText().trim();
+		String dataStructureName = ctx.ds_name().getText().trim();
+		String externalDescription = ctx.EXTERNAL_DESCRIPTION().getText().trim();
+		String fromPosition = ctx.FROM_POSITION().getText().trim();
+		String keywords = ctx.keyword().toString();//ctx.KEYWORDS().getText().trim(); //todo
+		String toPosition = ctx.TO_POSITION().getText().trim();
+		Symbol theSym = new Symbol();
+		// Definition type
+		setDefinitionType(defType, keywords, theSym);
+		theSym.setName(dataStructureName);
+		theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decimalPositions);
+		theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
+		setLength(fromPosition, toPosition, theSym);
+		setDataType(rpgDataType, theSym, keywords);
+		st.addSymbolToScope(currentScope, theSym);
+
+	}
+
+	@Override
+	public void enterDspec_fixed(Dspec_fixedContext ctx) {
+		super.enterDspec_fixed(ctx);
+		lastSpec = "D";
+		String dsType = ctx.DATA_STRUCTURE_TYPE().getText().trim();
+		String rpgDataType = ctx.DATA_TYPE().getText().trim();
+		String decimalPositions = ctx.DECIMAL_POSITIONS().getText().trim();
+		String defType = ctx.DEF_TYPE().getText().trim().trim();
+		String dataStructureName = ctx.ds_name().getText().trim();
+		String externalDescription = ctx.EXTERNAL_DESCRIPTION().getText().trim();
+		String fromPosition = ctx.FROM_POSITION().getText().trim();
+		String keywords = null;//ctx.KEYWORDS().getText().trim(); //todo
+		String toPosition = ctx.TO_POSITION().getText().trim();
+		Symbol theSym = new Symbol();
+		// Definition type
+		setDefinitionType(defType, keywords, theSym);
+		theSym.setName(dataStructureName);
+		theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decimalPositions);
+		theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
+		setLength(fromPosition, toPosition, theSym);
+		setDataType(rpgDataType, theSym, keywords);
+		st.addSymbolToScope(currentScope, theSym);
+		
+	}
+
+	@Override
+	public void enterFspec_fixed(Fspec_fixedContext ctx) {
+		super.enterFspec_fixed(ctx);
+		lastSpec = "F";
+		if (ctx.FS_Format().getText().trim().equalsIgnoreCase("E")){
+			String fileName = ctx.FS_RecordName().getText().trim();
+			List<ColumnInfo> temp = tip.getColumns(fileName, "*LIBL");
+			String keywords = ctx.FS_Keywords().getText().toLowerCase();
+			if (keywords.contains("rename(")){
+				int startpos = keywords.indexOf("rename(");
+				int endpos = keywords.indexOf(')', startpos);
+				String tempx = keywords.substring(startpos, endpos);
+				String[] parts = tempx.split("[(:)]");
+			}
+			if (temp != null){
+				for (ColumnInfo ci : temp){
+					Symbol theSym = new Symbol();
+					// Definition type
+					theSym.setName(ci.getColumnName());
+					Symbol.sqlAttr2rpg(ci, theSym);
+					theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_EXTERNAL_FILE_DESCRIPTION);
+					theSym.addAttribute(Symbol.CAT_TABLE_NAME, fileName);
+					st.addSymbolToScope(currentScope, theSym);
+				}
+				
+			}
+		}
+		
+	}
+
+	@Override
+	public void enterHspec_fixed(Hspec_fixedContext ctx) {
+		super.enterHspec_fixed(ctx);
+		lastSpec = "H";
+	}
+
+	@Override
+	public void enterIspec_fixed(Ispec_fixedContext ctx) {
+		super.enterIspec_fixed(ctx);
+		lastSpec = "I";
+		//TODO fill in the variables from i-Specs
+		
 	}
 	
-	private void doResultCheck(ResultTypeContext result, Token length,
-			Token decpos) {
-		boolean lengthFound = !length.getText().trim().isEmpty();
-		String lengths = length.getText().trim();
-		boolean decimalsFound = !decpos.getText().trim().isEmpty();
-		String decposs = decpos.getText().trim();
+	@Override
+	public void enterOspec_fixed(Ospec_fixedContext ctx) {
+		super.enterOspec_fixed(ctx);
+		lastSpec = "O";
+	}
 
-		if (lengthFound) {
-			Symbol theSym = new Symbol();
-			theSym.setName(result.getText());
-			theSym.addAttribute(Symbol.CAT_LENGTH, lengths);
-			theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_C_SPECS);
-			if (decimalsFound) {
-				theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decposs);
-				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_PACKED);
+	@Override
+	public void enterProcedure(ProcedureContext ctx) {
+		super.enterProcedure(ctx);
+		currentScope = st.getAScope( ctx.beginProcedure().freeBeginProcedure().DS_ProcedureStart().getText());
+//		debugContext(ctx);
+	}
+
+	@Override
+	public void exitProcedure(ProcedureContext ctx) {
+		super.exitProcedure(ctx);
+		
+	}
+
+	private void fillTokenList(ParseTree parseTree, List<CommonToken> tokenList) {
+		for (int i = 0; i < parseTree.getChildCount(); i++) {
+			ParseTree payload = parseTree.getChild(i);
+
+			if (payload.getPayload() instanceof CommonToken) {
+				tokenList.add((CommonToken) payload.getPayload());
+			} else {
+				fillTokenList(payload, tokenList);
+			}
+
+		}
+	}
+
+	public SymbolTable getSymbolTable() {
+		return st;
+	}
+
+	private List<CommonToken> getTheTokens(ParserRuleContext ctx) {
+		List<CommonToken> myList = new ArrayList<CommonToken>();
+		fillTokenList(ctx, myList);
+		return myList;
+	}
+
+	private void setDataType(String rpgDataType, Symbol theSym, String keywords) {
+		if (rpgDataType.equalsIgnoreCase("A")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
+		} else if (rpgDataType.equalsIgnoreCase("B")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_BINARY);
+		} else if (rpgDataType.equalsIgnoreCase("C")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_UCS2);
+		} else if (rpgDataType.equalsIgnoreCase("D")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_DATE);
+		} else if (rpgDataType.equalsIgnoreCase("F")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_FLOAT);
+		} else if (rpgDataType.equalsIgnoreCase("G")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_GRAPHIC);
+		} else if (rpgDataType.equalsIgnoreCase("I")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_INTEGER);
+		} else if (rpgDataType.equalsIgnoreCase("N")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_INDICATOR);
+		} else if (rpgDataType.equalsIgnoreCase("O")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_OBJECT);
+		} else if (rpgDataType.equalsIgnoreCase("P")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_PACKED);
+		} else if (rpgDataType.equalsIgnoreCase("S")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ZONED);
+		} else if (rpgDataType.equalsIgnoreCase("T")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_TIME);
+		} else if (rpgDataType.equalsIgnoreCase("U")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_UNSIGNED);
+		} else if (rpgDataType.equalsIgnoreCase("Z")){
+			theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_TIMESTAMP);
+		} else if (rpgDataType.equalsIgnoreCase("*")){
+			if (keywords.toUpperCase().contains("%PADDR")){
+				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_PROC_POINTER);
+			} else {
+				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_POINTER);
+			}
+		} else {
+			// If we get here then the type is not specified and we need to use 
+			// the logic from the manual
+			String deftype = theSym.getAnAttribute(Symbol.CAT_DEFINITION_TYPE);
+			String decimals = theSym.getAnAttribute(Symbol.CAT_DECIMAL_POSITIONS);
+			if (deftype != null){
+				if (deftype.equals(Symbol.DF_SUBFIELD)){
+					if (decimals == null || decimals.isEmpty()){
+						theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
+					} else {
+						theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ZONED);
+					}
+				} else {
+					if (decimals == null || decimals.isEmpty()){
+						theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
+					} else {
+						theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_PACKED);
+					}
+					
+				}
+				
+			}
+		}
+
+	}
+
+	private void setDefinitionType(String defType, String keywords,
+			Symbol theSym) {
+		if (defType.equalsIgnoreCase("S")){
+			if (keywords.contains("DIM(")){
+				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_ARRAY);
+			} else {
+				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_STANDALONE);
+			}
+			
+		} else if (defType.equalsIgnoreCase("DS")){
+			if (keywords.contains("DIM(")){
+				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_MULTIPLE_OCCURANCE_DATA_STRUCTURE);
+			} else {
+				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_DATA_STRUCTURE);
+			}
+		} else {
+			// Not a standalone field and not a datastructure so must be a 
+			// data structure subfield
+			theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_SUBFIELD);
+		}
+	}
+
+	private void setLength(String fromPosition, String toPosition, Symbol theSym) {
+		if (fromPosition != null && fromPosition.length() > 0){
+			int fromInt = Integer.parseInt(fromPosition.trim());
+			int toInt = Integer.parseInt(toPosition.trim());
+			int totalLength = toInt - fromInt + 1;
+			String tl = Integer.toString(totalLength);
+			theSym.addAttribute(Symbol.CAT_LENGTH, tl);
+		} else {
+			theSym.addAttribute(Symbol.CAT_LENGTH, toPosition);
+		}
+	}
+
+	@Override
+	public void enterParm_fixed(Parm_fixedContext ctx) {
+		super.enterParm_fixed(ctx);
+		Symbol theSym = new Symbol();
+		theSym.setName(ctx.ds_name().getText());
+		List<KeywordContext> garbage =  ctx.keyword();
+		String keywords = "";
+		for (KeywordContext kw : garbage){
+			keywords += kw.getText() + " ";
+		}
+		setLength(ctx.FROM_POSITION().getText(), ctx.TO_POSITION().getText(), theSym);
+		if (ctx.DECIMAL_POSITIONS().getText().trim().length() > 0){
+			theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, ctx.DECIMAL_POSITIONS().getText().trim());
+		}
+		setDataType(ctx.DATA_TYPE().getText(), theSym, keywords);
+		theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
+		if (! theSym.hasAttribute(Symbol.CAT_DATA_TYPE)){
+			if (theSym.hasAttribute(Symbol.CAT_DECIMAL_POSITIONS)){
+				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ZONED);
 			} else {
 				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
 			}
-			st.addSymbolToScope(currentScope, theSym);
-		}
+		} 
+
+		st.addSymbolToScope(currentScope, theSym);
+
 	}
 
 }
