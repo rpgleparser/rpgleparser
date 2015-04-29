@@ -1,0 +1,27 @@
+/*===TOKENS===*/
+FS_FreeFile              <dcl-f>
+ID                       <table1>
+KEYWORD_DEVID            <DEVID>
+'('                      <(>
+ID                       <abc>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (fspec
+      dcl-f
+      (filename table1)
+      (fs_keyword
+        (keyword_devid
+          DEVID
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword abc))))
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/

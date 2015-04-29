@@ -75,7 +75,7 @@ public class TestFiles {
 		final String actualTokens = printTokens(lexer);
 		boolean rewriteExpectFile=false;
 		if(expectedTokens != null && expectedTokens.trim().length()>0 ){
-			if(autoReplaceFailed){
+			if(autoReplaceFailed && !expectedTokens.equals(actualTokens)){
 				rewriteExpectFile=true;
 			}else{
 				assertEquals("Token lists do not match",expectedTokens,actualTokens);

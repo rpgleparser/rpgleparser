@@ -1,0 +1,1 @@
+     FADDROUT   IR   F    3     3 TDISK    TOFILE(OS6MASTR) 

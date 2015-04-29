@@ -1,0 +1,62 @@
+/*===TOKENS===*/
+FS_FIXED                 <F>
+FS_RecordName            <INVOICES  >
+FS_Type                  <O>
+FS_Designation           < >
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <F>
+FS_RecordLength          <  132>
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     < >
+FS_Organization          < >
+FS_Device                <PRINTER>
+FS_Reserved              < >
+KEYWORD_OFLIND           <OFLIND>
+'('                      <(>
+ID                       <OF>
+')'                      <)>
+KEYWORD_FORMLEN          <FORMLEN>
+'('                      <(>
+NUMBER                   <51>
+')'                      <)>
+KEYWORD_FORMOFL          <FORMOFL>
+'('                      <(>
+NUMBER                   <44>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (fspec_fixed
+      F
+      'INVOICES  '
+      O
+      ' '
+      ' '
+      ' '
+      ' '
+      F
+      '  132'
+      ' '
+      '     '
+      ' '
+      ' '
+      PRINTER
+      ' '
+      (fs_keyword
+        (keyword_oflind
+          OFLIND
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword OF))))
+          )
+        )
+      )
+      (fs_keyword (keyword_formlen FORMLEN ( (number 51) )))
+      (fs_keyword (keyword_formofl FORMOFL ( (number 44) )))
+      <EOF>
+    )
+  )
+)
+/*======*/

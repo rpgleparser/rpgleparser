@@ -5,7 +5,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * This class serves as a symbol table for RPG code
+ * RPG does not have any anonymous scopes nor nested local scopes so the design of this 
+ * symbol table is much more simple than one for Java or C++
+ * @author Eric Wilson
+ *
+ */
 public class SymbolTable {
 	private Map<String, Scope>scopes = new HashMap<String, Scope>();
 	private Map<Scope, Map<String, Symbol>>symbolTable = new HashMap<Scope, Map<String, Symbol>>();

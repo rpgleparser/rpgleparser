@@ -1,0 +1,52 @@
+/*===TOKENS===*/
+FS_FIXED                 <F>
+FS_RecordName            <COLMBID   >
+FS_Type                  <U>
+FS_Designation           <F>
+FS_EndOfFile             < >
+FS_Addution              <A>
+FS_Sequence              < >
+FS_Format                <E>
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     <K>
+FS_Organization          < >
+FS_Device                <DISK   >
+FS_Reserved              < >
+KEYWORD_EXTIND           <EXTIND>
+'('                      <(>
+ID                       <U8>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (fspec_fixed
+      F
+      'COLMBID   '
+      U
+      F
+      ' '
+      A
+      ' '
+      E
+      '     '
+      ' '
+      '     '
+      K
+      ' '
+      'DISK   '
+      ' '
+      (fs_keyword
+        (keyword_extind
+          EXTIND
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword U8))))
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/

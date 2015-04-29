@@ -1,0 +1,52 @@
+/*===TOKENS===*/
+FS_FIXED                 <F>
+FS_RecordName            <ALLMBID   >
+FS_Type                  <I>
+FS_Designation           <F>
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <E>
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     <K>
+FS_Organization          < >
+FS_Device                <DISK   >
+FS_Reserved              < >
+KEYWORD_INCLUDE          <INCLUDE>
+'('                      <(>
+ID                       <FORMAT1>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (fspec_fixed
+      F
+      'ALLMBID   '
+      I
+      F
+      ' '
+      ' '
+      ' '
+      E
+      '     '
+      ' '
+      '     '
+      K
+      ' '
+      'DISK   '
+      ' '
+      (fs_keyword
+        (keyword_include
+          INCLUDE
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword FORMAT1))))
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/

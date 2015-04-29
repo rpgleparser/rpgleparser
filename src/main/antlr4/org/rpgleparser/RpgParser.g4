@@ -270,7 +270,7 @@ block:
 		statement*
 		endif
 	)
-	| ((csDOUxx | csDOWxx)
+	| ((csDOUxx | csDOWxx | begindou | begindow)
 		statement*
 		enddo
 	)
@@ -371,6 +371,22 @@ beginif:
 	C_FREE_NEWLINE
 	)
 	| (op_if FREE_SEMI free_linecomments? )
+;
+begindou:
+    (CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	csDOU
+	)
+	| (op_dou FREE_SEMI free_linecomments?)
+;
+begindow:
+    (CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	csDOW
+	)
+	| (op_dow FREE_SEMI free_linecomments?)
 ;
 
 elseifstmt:
@@ -798,14 +814,14 @@ cspec_fixed_standard:
 	| csDELETE
 	| csDIV
 	| csDO
-	| csDOU
+	//| csDOU
 	//| csDOUEQ
 	//| csDOUNE
 	//| csDOULE
 	//| csDOULT
 	//| csDOUGE
 	//| csDOUGT
-	| csDOW
+	//| csDOW
 	//| csDOWEQ
 	//| csDOWNE
 	//| csDOWLE

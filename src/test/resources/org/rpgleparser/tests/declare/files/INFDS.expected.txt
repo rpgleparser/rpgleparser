@@ -1,0 +1,80 @@
+/*===TOKENS===*/
+FS_FIXED                 <F>
+FS_RecordName            <COLMBID   >
+FS_Type                  <U>
+FS_Designation           <F>
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <E>
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     <K>
+FS_Organization          < >
+FS_Device                <DISK   >
+FS_Reserved              < >
+KEYWORD_INFDS            <INFDS>
+'('                      <(>
+ID                       <DSMBID>
+')'                      <)>
+KEYWORD_INFSR            <INFSR>
+'('                      <(>
+ID                       <SUBRER>
+')'                      <)>
+KEYWORD_RENAME           <RENAME>
+'('                      <(>
+ID                       <COPMB1>
+COLON                    <:>
+ID                       <COLMBID1>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (fspec_fixed
+      F
+      'COLMBID   '
+      U
+      F
+      ' '
+      ' '
+      ' '
+      E
+      '     '
+      ' '
+      '     '
+      K
+      ' '
+      'DISK   '
+      ' '
+      (fs_keyword
+        (keyword_infds
+          INFDS
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword DSMBID))))
+          )
+        )
+      )
+      (fs_keyword
+        (keyword_infsr
+          INFSR
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword SUBRER))))
+          )
+        )
+      )
+      (fs_keyword
+        (keyword_rename
+          RENAME
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword COPMB1))))
+          :
+          (simpleExpression (identifier (free_identifier (idOrKeyword COLMBID1))))
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/

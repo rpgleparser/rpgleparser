@@ -1,0 +1,52 @@
+/*===TOKENS===*/
+FS_FIXED                 <F>
+FS_RecordName            <ADDROUT   >
+FS_Type                  <I>
+FS_Designation           <R>
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <F>
+FS_RecordLength          <    3>
+FS_Limits                < >
+FS_LengthOfKey           <    3>
+FS_RecordAddressType     < >
+FS_Organization          <T>
+FS_Device                <DISK   >
+FS_Reserved              < >
+KEYWORD_TOFILE           <TOFILE>
+'('                      <(>
+ID                       <OS6MASTR>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (fspec_fixed
+      F
+      'ADDROUT   '
+      I
+      R
+      ' '
+      ' '
+      ' '
+      F
+      '    3'
+      ' '
+      '    3'
+      ' '
+      T
+      'DISK   '
+      ' '
+      (fs_keyword
+        (keyword_tofile
+          TOFILE
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword OS6MASTR))))
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/

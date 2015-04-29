@@ -216,282 +216,282 @@ EOL                      <
   )
   (statement (star_comments ' *'))
   (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
+    (block
+      (begindow
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
         (csDOW
           DOW
           (c_free (expression (identifier (all (symbolicConstants *IN01)))))
           \n
         )
       )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          ENDDO
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csDOW
-          DOW
-          (c_free
-            (expression
-              (expression (identifier (all (symbolicConstants *IN01))))
-              =
-              (expression (identifier (all (symbolicConstants *OFF))))
-            )
-          )
-          \n
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          ENDDO
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csDOW
-          DOW
-          (cs_operationExtender ( m ))
-          (c_free
-            (expression
-              (expression (identifier (all (symbolicConstants *IN01))))
-              =
-              (expression (identifier (all (symbolicConstants *OFF))))
-            )
-          )
-          \n
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csENDDO
-          ENDDO
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csDOW
-          dow
-          (c_free
-            (expression
-              (expression
-                (expression (identifier (all (symbolicConstants *IN01))))
-                =
-                (expression (identifier (all (symbolicConstants *OFF))))
+      (statement
+        (cspec_fixed
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (cspec_fixed_standard
+            (csENDDO
+              ENDDO
+              (cspec_fixed_standard_parts
+                (factor '              ')
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \n
               )
-              or
-              (expression
-                (
+            )
+          )
+        )
+      )
+      (statement
+        (block
+          (begindow
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (csDOW
+              DOW
+              (c_free
                 (expression
-                  (expression (identifier (free_identifier (idOrKeyword fld2))))
-                  (comparisonOperator >)
-                  (expression (identifier (free_identifier (idOrKeyword fld3))))
+                  (expression (identifier (all (symbolicConstants *IN01))))
+                  =
+                  (expression (identifier (all (symbolicConstants *OFF))))
                 )
+              )
+              \n
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csENDDO
+                  ENDDO
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
                 )
               )
             )
           )
-          \n
-        )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
-        (csEND
-          end
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
-          )
-        )
-      )
-    )
-  )
-  (statement (directive ' /' (beginfree_directive Free) \n))
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_dow
-            DOW
-            (indicator_expr
-              (expression (identifier (free_identifier (idOrKeyword *inkc))))
+          (statement
+            (block
+              (begindow
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor '              ')
+                (csDOW
+                  DOW
+                  (cs_operationExtender ( m ))
+                  (c_free
+                    (expression
+                      (expression (identifier (all (symbolicConstants *IN01))))
+                      =
+                      (expression (identifier (all (symbolicConstants *OFF))))
+                    )
+                  )
+                  \n
+                )
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_standard
+                    (csENDDO
+                      ENDDO
+                      (cspec_fixed_standard_parts
+                        (factor '              ')
+                        (resultType '              ')
+                        '     '
+                        '  '
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        (resultIndicator '  ')
+                        \n
+                      )
+                    )
+                  )
+                )
+              )
+              (statement
+                (block
+                  (begindow
+                    C
+                    (cs_controlLevel '  ')
+                    (onOffIndicatorsFlag ' ')
+                    (cs_indicators '  ')
+                    (factor '              ')
+                    (csDOW
+                      dow
+                      (c_free
+                        (expression
+                          (expression
+                            (expression (identifier (all (symbolicConstants *IN01))))
+                            =
+                            (expression (identifier (all (symbolicConstants *OFF))))
+                          )
+                          or
+                          (expression
+                            (
+                            (expression
+                              (expression (identifier (free_identifier (idOrKeyword fld2))))
+                              (comparisonOperator >)
+                              (expression (identifier (free_identifier (idOrKeyword fld3))))
+                            )
+                            )
+                          )
+                        )
+                      )
+                      \n
+                    )
+                  )
+                  (statement
+                    (cspec_fixed
+                      C
+                      (cs_controlLevel '  ')
+                      (onOffIndicatorsFlag ' ')
+                      (cs_indicators '  ')
+                      (factor '              ')
+                      (cspec_fixed_standard
+                        (csEND
+                          end
+                          (cspec_fixed_standard_parts
+                            (factor '              ')
+                            (resultType '              ')
+                            '     '
+                            '  '
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            (resultIndicator '  ')
+                            \n
+                          )
+                        )
+                      )
+                    )
+                  )
+                  (statement (directive ' /' (beginfree_directive Free) \n))
+                  (statement
+                    (free
+                      (baseExpression
+                        (op
+                          (op_dow
+                            DOW
+                            (indicator_expr
+                              (expression (identifier (free_identifier (idOrKeyword *inkc))))
+                            )
+                          )
+                        )
+                      )
+                      ;
+                    )
+                  )
+                  (enddo (op_enddo ENDDO) ;)
+                )
+              )
+              (statement
+                (free
+                  (baseExpression
+                    (op
+                      (op_dow
+                        dow
+                        (indicator_expr
+                          (expression
+                            (expression (identifier (all (symbolicConstants *in01))))
+                            or
+                            (expression
+                              (
+                              (expression
+                                (expression (identifier (free_identifier (idOrKeyword fld2))))
+                                (comparisonOperator >)
+                                (expression (identifier (free_identifier (idOrKeyword fld3))))
+                              )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  ;
+                )
+              )
+              (enddo (op_enddo enddo) ;)
             )
           )
+          (statement
+            (free
+              (baseExpression
+                (op
+                  (op_dow
+                    Dow
+                    (indicator_expr
+                      (expression
+                        (expression (identifier (free_identifier (idOrKeyword *inkc))))
+                        =
+                        (expression (identifier (all (symbolicConstants *off))))
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+          )
+          (enddo (op_enddo Enddo) ;)
         )
       )
-      ;
-    )
-  )
-  (statement (free (baseExpression (op (op_enddo ENDDO))) ;))
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_dow
-            dow
-            (indicator_expr
-              (expression
-                (expression (identifier (all (symbolicConstants *in01))))
-                or
-                (expression
-                  (
+      (statement
+        (free
+          (baseExpression
+            (op
+              (op_dow
+                dow
+                (cs_operationExtender ( r ))
+                (indicator_expr
                   (expression
-                    (expression (identifier (free_identifier (idOrKeyword fld2))))
-                    (comparisonOperator >)
-                    (expression (identifier (free_identifier (idOrKeyword fld3))))
-                  )
+                    (expression (identifier (free_identifier (idOrKeyword *inkc))))
+                    =
+                    (expression (identifier (all (symbolicConstants *off))))
                   )
                 )
               )
             )
           )
+          ;
         )
       )
-      ;
+      (enddo (op_enddo Enddo) ;)
     )
   )
-  (statement (free (baseExpression (op (op_enddo enddo))) ;))
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_dow
-            Dow
-            (indicator_expr
-              (expression
-                (expression (identifier (free_identifier (idOrKeyword *inkc))))
-                =
-                (expression (identifier (all (symbolicConstants *off))))
-              )
-            )
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement (free (baseExpression (op (op_enddo Enddo))) ;))
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_dow
-            dow
-            (cs_operationExtender ( r ))
-            (indicator_expr
-              (expression
-                (expression (identifier (free_identifier (idOrKeyword *inkc))))
-                =
-                (expression (identifier (all (symbolicConstants *off))))
-              )
-            )
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement (free (baseExpression (op (op_enddo Enddo))) ;))
   (statement (directive ' /' (endfree_directive end-free) \n))
   (statement (star_comments ' *'))
   (statement

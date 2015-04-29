@@ -1,0 +1,234 @@
+/*===TOKENS===*/
+FS_FIXED                 <F>
+FS_RecordName            <file1     >
+FS_Type                  <i>
+FS_Designation           <f>
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <e>
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     < >
+FS_Organization          < >
+FS_Device                <disk   >
+FS_Reserved              < >
+KEYWORD_EXTDESC          <extdesc>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <MYLIB/MYFILE1>
+StringLiteralEnd         <'>
+')'                      <)>
+EOL                      <
+>
+FS_FreeFile              <dcl-f>
+ID                       <filea>
+KEYWORD_EXTDESC          <extdesc>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <MYLIB/MYFILE1>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+FS_FIXED                 <F>
+FS_RecordName            <file2     >
+FS_Type                  <i>
+FS_Designation           <f>
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <e>
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     < >
+FS_Organization          < >
+FS_Device                <disk   >
+FS_Reserved              < >
+KEYWORD_EXTDESC          <extdesc>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <MYLIB/MYFILE2>
+StringLiteralEnd         <'>
+')'                      <)>
+KEYWORD_EXTFILE          <extfile>
+'('                      <(>
+SPLAT_EXTDESC            <*extdesc>
+')'                      <)>
+EOL                      <
+>
+FS_FreeFile              <dcl-f>
+ID                       <fileb>
+KEYWORD_EXTDESC          <extdesc>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <MYLIB/MYFILE2>
+StringLiteralEnd         <'>
+')'                      <)>
+KEYWORD_EXTFILE          <extfile>
+'('                      <(>
+SPLAT_EXTDESC            <*extdesc>
+')'                      <)>
+FREE_SEMI                <;>
+FS_FreeFile              <dcl-f>
+ID                       <filec>
+KEYWORD_EXTDESC          <extdesc>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <MYLIB/MYFILE3>
+StringLiteralEnd         <'>
+')'                      <)>
+KEYWORD_EXTFILE          <extfile>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <MYLIB/MYFILE3>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+FS_FIXED                 <F>
+FS_RecordName            <file3     >
+FS_Type                  <I>
+FS_Designation           <F>
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <F>
+FS_RecordLength          <   10>
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     < >
+FS_Organization          < >
+FS_Device                <DISK   >
+FS_Reserved              < >
+KEYWORD_EXTFILE          <EXTFILE>
+'('                      <(>
+ID                       <filename3>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (fspec_fixed
+      F
+      'file1     '
+      i
+      f
+      ' '
+      ' '
+      ' '
+      e
+      '     '
+      ' '
+      '     '
+      ' '
+      ' '
+      'disk   '
+      ' '
+      (fs_keyword
+        (keyword_extdesc extdesc ( (simpleExpression (literal ' MYLIB/MYFILE1 ')) ))
+      )
+      \r\n
+    )
+  )
+  (statement
+    (fspec
+      dcl-f
+      (filename filea)
+      (fs_keyword
+        (keyword_extdesc extdesc ( (simpleExpression (literal ' MYLIB/MYFILE1 ')) ))
+      )
+      ;
+    )
+  )
+  (statement
+    (fspec_fixed
+      F
+      'file2     '
+      i
+      f
+      ' '
+      ' '
+      ' '
+      e
+      '     '
+      ' '
+      '     '
+      ' '
+      ' '
+      'disk   '
+      ' '
+      (fs_keyword
+        (keyword_extdesc extdesc ( (simpleExpression (literal ' MYLIB/MYFILE2 ')) ))
+      )
+      (fs_keyword
+        (keyword_extfile
+          extfile
+          (
+          (simpleExpression (identifier (all (symbolicConstants *extdesc))))
+          )
+        )
+      )
+      \r\n
+    )
+  )
+  (statement
+    (fspec
+      dcl-f
+      (filename fileb)
+      (fs_keyword
+        (keyword_extdesc extdesc ( (simpleExpression (literal ' MYLIB/MYFILE2 ')) ))
+      )
+      (fs_keyword
+        (keyword_extfile
+          extfile
+          (
+          (simpleExpression (identifier (all (symbolicConstants *extdesc))))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (fspec
+      dcl-f
+      (filename filec)
+      (fs_keyword
+        (keyword_extdesc extdesc ( (simpleExpression (literal ' MYLIB/MYFILE3 ')) ))
+      )
+      (fs_keyword
+        (keyword_extfile extfile ( (simpleExpression (literal ' MYLIB/MYFILE3 ')) ))
+      )
+      ;
+    )
+  )
+  (statement
+    (fspec_fixed
+      F
+      'file3     '
+      I
+      F
+      ' '
+      ' '
+      ' '
+      F
+      '   10'
+      ' '
+      '     '
+      ' '
+      ' '
+      'DISK   '
+      ' '
+      (fs_keyword
+        (keyword_extfile
+          EXTFILE
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword filename3))))
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/

@@ -1,0 +1,77 @@
+/*===TOKENS===*/
+FS_FreeFile              <dcl-f>
+ID                       <table1>
+KEYWORD_DATFMT           <DATFMT>
+'('                      <(>
+SPLAT_YMD                <*YMD>
+'/'                      </>
+')'                      <)>
+FREE_SEMI                <;>
+FS_FreeFile              <dcl-f>
+ID                       <table2>
+KEYWORD_DATFMT           <DATFMT>
+'('                      <(>
+SPLAT_JUL                <*JUL>
+'&'                      <&>
+')'                      <)>
+FREE_SEMI                <;>
+FS_FreeFile              <dcl-f>
+ID                       <table3>
+KEYWORD_DATFMT           <DATFMT>
+'('                      <(>
+SPLAT_YMD                <*YMD>
+'-'                      <->
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (fspec
+      dcl-f
+      (filename table1)
+      (fs_keyword
+        (keyword_datfmt
+          DATFMT
+          (
+          (simpleExpression (identifier (all (symbolicConstants *YMD))))
+          (dateSeparator /)
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (fspec
+      dcl-f
+      (filename table2)
+      (fs_keyword
+        (keyword_datfmt
+          DATFMT
+          (
+          (simpleExpression (identifier (all (symbolicConstants *JUL))))
+          (dateSeparator &)
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (fspec
+      dcl-f
+      (filename table3)
+      (fs_keyword
+        (keyword_datfmt
+          DATFMT
+          (
+          (simpleExpression (identifier (all (symbolicConstants *YMD))))
+          (dateSeparator -)
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/

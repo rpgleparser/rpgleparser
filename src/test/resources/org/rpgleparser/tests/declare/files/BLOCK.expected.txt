@@ -1,0 +1,39 @@
+/*===TOKENS===*/
+FS_FreeFile              <dcl-f>
+ID                       <table1>
+KEYWORD_DISK             <DISK>
+KEYWORD_BLOCK            <BLOCK>
+'('                      <(>
+SPLAT_YES                <*YES>
+')'                      <)>
+FREE_SEMI                <;>
+FS_FreeFile              <dcl-f>
+ID                       <table1>
+KEYWORD_DISK             <DISK>
+KEYWORD_BLOCK            <BLOCK>
+'('                      <(>
+SPLAT_NO                 <*NO>
+')'                      <)>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (fspec
+      dcl-f
+      (filename table1)
+      (fs_keyword (keyword_disk DISK))
+      (fs_keyword (keyword_block BLOCK ( (symbolicConstants *YES) )))
+      ;
+    )
+  )
+  (statement
+    (fspec
+      dcl-f
+      (filename table1)
+      (fs_keyword (keyword_disk DISK))
+      (fs_keyword (keyword_block BLOCK ( (symbolicConstants *NO) )))
+      ;
+    )
+  )
+)
+/*======*/

@@ -1,0 +1,1 @@
+     FCOLMBID   IF   E           K DISK    RENAME(COPMB1:COLMBID1) PREFIX(M2_)      

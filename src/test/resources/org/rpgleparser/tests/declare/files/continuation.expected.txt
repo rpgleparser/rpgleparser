@@ -1,0 +1,111 @@
+/*===TOKENS===*/
+FS_FIXED                 <F>
+FS_RecordName            <INWCTL01  >
+FS_Type                  <I>
+FS_Designation           <F>
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <E>
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     <K>
+FS_Organization          < >
+FS_Device                <DISK   >
+FS_Reserved              < >
+KEYWORD_RENAME           <RENAME>
+'('                      <(>
+ID                       <INWCTLR>
+COLON                    <:>
+ID                       <INWCTLR01>
+')'                      <)>
+EOL                      <
+>
+FS_FIXED                 <F>
+FS_RecordName            <INWCTL02  >
+FS_Type                  <I>
+FS_Designation           <F>
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <E>
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     <K>
+FS_Organization          < >
+FS_Device                <DISK   >
+FS_Reserved              < >
+KEYWORD_QUALIFIED        <QUALIFIED>
+KEYWORD_RENAME           <RENAME>
+'('                      <(>
+ID                       <INWCTLR>
+COLON                    <:>
+ID                       <INWCTLR02>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (fspec_fixed
+      F
+      'INWCTL01  '
+      I
+      F
+      ' '
+      ' '
+      ' '
+      E
+      '     '
+      ' '
+      '     '
+      K
+      ' '
+      'DISK   '
+      ' '
+      (fs_keyword
+        (keyword_rename
+          RENAME
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword INWCTLR))))
+          :
+          (simpleExpression (identifier (free_identifier (idOrKeyword INWCTLR01))))
+          )
+        )
+      )
+      \r\n
+    )
+  )
+  (statement
+    (fspec_fixed
+      F
+      'INWCTL02  '
+      I
+      F
+      ' '
+      ' '
+      ' '
+      E
+      '     '
+      ' '
+      '     '
+      K
+      ' '
+      'DISK   '
+      ' '
+      (fs_keyword (keyword_qualified QUALIFIED))
+      (fs_keyword
+        (keyword_rename
+          RENAME
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword INWCTLR))))
+          :
+          (simpleExpression (identifier (free_identifier (idOrKeyword INWCTLR02))))
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/

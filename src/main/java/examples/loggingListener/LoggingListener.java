@@ -338,7 +338,7 @@ import org.rpgleparser.RpgParser.FreeEndProcedureContext;
 import org.rpgleparser.RpgParser.Free_commentsContext;
 import org.rpgleparser.RpgParser.Free_identifierContext;
 import org.rpgleparser.RpgParser.Free_linecommentsContext;
-import org.rpgleparser.RpgParser.Fs_expressionContext;
+import org.rpgleparser.RpgParser.Fs_keywordContext;
 import org.rpgleparser.RpgParser.Fs_parmContext;
 import org.rpgleparser.RpgParser.Fs_stringContext;
 import org.rpgleparser.RpgParser.FspecContext;
@@ -4937,15 +4937,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void enterFs_expression(Fs_expressionContext ctx) {
+	public void enterFs_keyword(Fs_keywordContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterFs_expression(Fs_expressionContext) - start"); //$NON-NLS-1$
+			logger.debug("enterFs_keyword(Fs_keywordContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.enterFs_expression(ctx);
+		super.enterFs_keyword(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterFs_expression(Fs_expressionContext) - end"); //$NON-NLS-1$
+			logger.debug("enterFs_keyword(Fs_keywordContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -11641,15 +11641,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void exitFs_expression(Fs_expressionContext ctx) {
+	public void exitFs_keyword(Fs_keywordContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitFs_expression(Fs_expressionContext) - start"); //$NON-NLS-1$
+			logger.debug("exitFs_keyword(Fs_keywordContext) - start"); //$NON-NLS-1$
 		}
 		
-		super.exitFs_expression(ctx);
+		super.exitFs_keyword(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitFs_expression(Fs_expressionContext) - end"); //$NON-NLS-1$
+			logger.debug("exitFs_keyword(Fs_keywordContext) - end"); //$NON-NLS-1$
 		}
 	}
 

@@ -1,0 +1,96 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       < *>
+HIDDEN:COMMENTS_TEXT     < The RPG source, using the ALIAS keyword:                                                   >
+FS_FIXED                 <F>
+FS_RecordName            <myfile    >
+FS_Type                  <i>
+FS_Designation           <f>
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                <e>
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     < >
+FS_Organization          < >
+FS_Device                <disk   >
+FS_Reserved              < >
+KEYWORD_ALIAS            <ALIAS>
+KEYWORD_QUALIFIED        <QUALIFIED>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <myDs>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_DS              <ds>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_LIKEREC          <LIKEREC>
+'('                      <(>
+ID                       <myfile>
+'.'                      <.>
+ID                       <custRec>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement (star_comments ' *'))
+  (statement
+    (fspec_fixed
+      F
+      'myfile    '
+      i
+      f
+      ' '
+      ' '
+      ' '
+      e
+      '     '
+      ' '
+      '     '
+      ' '
+      ' '
+      'disk   '
+      ' '
+      (fs_keyword (keyword_alias ALIAS))
+      (fs_keyword (keyword_qualified QUALIFIED))
+      \r\n
+    )
+  )
+  (statement
+    (dcl_ds
+      D
+      (ds_name myDs)
+      ' '
+      ' '
+      ds
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (keyword
+        (keyword_likerec
+          LIKEREC
+          (
+          (simpleExpression
+            (identifier
+              (multipart_identifier
+                (free_identifier (idOrKeyword myfile))
+                .
+                (free_identifier (idOrKeyword custRec))
+              )
+            )
+          )
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/
