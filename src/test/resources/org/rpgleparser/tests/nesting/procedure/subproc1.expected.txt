@@ -2,7 +2,7 @@
 H_SPEC                   <ctl-opt>
 ID                       <dftactgrp>
 '('                      <(>
-ID                       <*no>
+SPLAT_NO                 <*no>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <dcl-s>
@@ -53,7 +53,7 @@ FREE_SEMI                <;>
   (ctl_opt
     ctl-opt
     (identifier (free_identifier (idOrKeyword dftactgrp)))
-    (expression ( (expression (identifier (free_identifier (idOrKeyword *no)))) ))
+    (expression ( (expression (identifier (all (symbolicConstants *no)))) ))
     ;
   )
   (statement

@@ -23,7 +23,9 @@ ID                       <FLDC>
 '='                      <=>
 BIF_ABS                  <%ABS>
 '('                      <(>
-ID                       <f8-10>
+ID                       <f8>
+'-'                      <->
+NUMBER                   <10>
 ')'                      <)>
 C_FREE_NEWLINE           <
 >
@@ -97,7 +99,9 @@ ID                       <FLDD>
 '='                      <=>
 BIF_ABS                  <%ABS>
 '('                      <(>
-ID                       <F9-10>
+ID                       <F9>
+'-'                      <->
+NUMBER                   <10>
 '+'                      <+>
 NUMBER                   <4>
 ')'                      <)>
@@ -172,7 +176,11 @@ HIDDEN:COMMENTS_TEXT     <                   >
                   (bif_abs
                     %ABS
                     (
-                    (expression (identifier (free_identifier (idOrKeyword f8-10))))
+                    (expression
+                      (expression (identifier (free_identifier (idOrKeyword f8))))
+                      -
+                      (expression (number 10))
+                    )
                     )
                   )
                 )
@@ -326,9 +334,9 @@ HIDDEN:COMMENTS_TEXT     <                   >
                     %ABS
                     (
                     (expression
-                      (expression (identifier (free_identifier (idOrKeyword F9-10))))
-                      +
-                      (expression (number 4))
+                      (expression (identifier (free_identifier (idOrKeyword F9))))
+                      -
+                      (expression (expression (number 10)) + (expression (number 4)))
                     )
                     )
                   )

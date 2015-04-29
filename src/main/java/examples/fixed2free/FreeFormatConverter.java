@@ -3346,7 +3346,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsACQ(CsACQContext ctx) {
 		super.exitCsACQ(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3357,7 +3357,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsADD(CsADDContext ctx) {
 		super.exitCsADD(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3376,7 +3376,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsADDDUR(CsADDDURContext ctx) {
 		super.exitCsADDDUR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3389,7 +3389,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsALLOC(CsALLOCContext ctx) {
 		super.exitCsALLOC(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -3472,7 +3472,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsBEGSR(CsBEGSRContext ctx) {
 		super.exitCsBEGSR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.BegsrContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken comment = temp.get(COMMENT);
@@ -3482,7 +3482,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsBITOFF(CsBITOFFContext ctx) {
 		super.exitCsBITOFF(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -3493,7 +3493,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsBITON(CsBITONContext ctx) {
 		super.exitCsBITON(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -3504,7 +3504,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCABEQ(CsCABEQContext ctx) {
 		super.exitCsCABEQ(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3523,7 +3523,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCABGE(CsCABGEContext ctx) {
 		super.exitCsCABGE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3542,7 +3542,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCABGT(CsCABGTContext ctx) {
 		super.exitCsCABGT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3561,7 +3561,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCABLE(CsCABLEContext ctx) {
 		super.exitCsCABLE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3580,7 +3580,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCABLT(CsCABLTContext ctx) {
 		super.exitCsCABLT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3599,7 +3599,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCABNE(CsCABNEContext ctx) {
 		super.exitCsCABNE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3618,7 +3618,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCALL(CsCALLContext ctx) {
 		super.exitCsCALL(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -3631,7 +3631,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCALLB(CsCALLBContext ctx) {
 		super.exitCsCALLB(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -3644,7 +3644,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCALLP(CsCALLPContext ctx) {
 		super.exitCsCALLP(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -3654,7 +3654,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCASEQ(CsCASEQContext ctx) {
 		super.exitCsCASEQ(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3669,7 +3669,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCASGE(CsCASGEContext ctx) {
 		super.exitCsCASGE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3684,7 +3684,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCASGT(CsCASGTContext ctx) {
 		super.exitCsCASGT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3699,7 +3699,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCASLE(CsCASLEContext ctx) {
 		super.exitCsCASLE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3714,7 +3714,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCASLT(CsCASLTContext ctx) {
 		super.exitCsCASLT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3729,7 +3729,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCASNE(CsCASNEContext ctx) {
 		super.exitCsCASNE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3773,7 +3773,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCAT(CsCATContext ctx) {
 		super.exitCsCAT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3785,7 +3785,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCHAIN(CsCHAINContext ctx) {
 		super.exitCsCHAIN(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3799,7 +3799,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCHECK(CsCHECKContext ctx) {
 		super.exitCsCHECK(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3813,7 +3813,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCHECKR(CsCHECKRContext ctx) {
 		super.exitCsCHECKR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3827,7 +3827,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCLEAR(CsCLEARContext ctx) {
 		super.exitCsCLEAR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3839,7 +3839,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCLOSE(CsCLOSEContext ctx) {
 		super.exitCsCLOSE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken low = temp.get(LOW);
@@ -3850,7 +3850,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCOMMIT(CsCOMMITContext ctx) {
 		super.exitCsCOMMIT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken low = temp.get(LOW);
@@ -3861,7 +3861,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsCOMP(CsCOMPContext ctx) {
 		super.exitCsCOMP(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3875,7 +3875,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDEALLOC(CsDEALLOCContext ctx) {
 		super.exitCsDEALLOC(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken low = temp.get(LOW);
@@ -3886,7 +3886,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDEFINE(CsDEFINEContext ctx) {
 		super.exitCsDEFINE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3902,7 +3902,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDELETE(CsDELETEContext ctx) {
 		super.exitCsDELETE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3915,7 +3915,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDIV(CsDIVContext ctx) {
 		super.exitCsDIV(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -3931,7 +3931,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDO(CsDOContext ctx) {
 		super.exitCsDO(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3943,7 +3943,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOU(CsDOUContext ctx) {
 		super.exitCsDOU(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -3953,7 +3953,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOUEQ(CsDOUEQContext ctx) {
 		super.exitCsDOUEQ(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3964,7 +3964,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOUGE(CsDOUGEContext ctx) {
 		super.exitCsDOUGE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3975,7 +3975,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOUGT(CsDOUGTContext ctx) {
 		super.exitCsDOUGT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3986,7 +3986,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOULE(CsDOULEContext ctx) {
 		super.exitCsDOULE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -3997,7 +3997,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOULT(CsDOULTContext ctx) {
 		super.exitCsDOULT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4008,7 +4008,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOUNE(CsDOUNEContext ctx) {
 		super.exitCsDOUNE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4019,7 +4019,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOW(CsDOWContext ctx) {
 		super.exitCsDOW(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4029,7 +4029,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOWEQ(CsDOWEQContext ctx) {
 		super.exitCsDOWEQ(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsDOWxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4040,7 +4040,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOWGE(CsDOWGEContext ctx) {
 		super.exitCsDOWGE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsDOWxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4051,7 +4051,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOWGT(CsDOWGTContext ctx) {
 		super.exitCsDOWGT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsDOWxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4062,7 +4062,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOWLE(CsDOWLEContext ctx) {
 		super.exitCsDOWLE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsDOWxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4073,7 +4073,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOWLT(CsDOWLTContext ctx) {
 		super.exitCsDOWLT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsDOWxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4084,7 +4084,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDOWNE(CsDOWNEContext ctx) {
 		super.exitCsDOWNE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsDOWxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4095,7 +4095,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDSPLY(CsDSPLYContext ctx) {
 		super.exitCsDSPLY(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4108,7 +4108,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsDUMP(CsDUMPContext ctx) {
 		super.exitCsDUMP(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken comment = temp.get(COMMENT);
@@ -4119,7 +4119,6 @@ public class FreeFormatConverter extends LoggingListener {
 	public void exitCsELSE(CsELSEContext ctx) {
 		super.exitCsELSE(ctx);
 		// We do not need the parent context here since else-s are subordinate
-		// ParserRuleContext pctx = getCSpec(ctx);
 		Map<String, CommonToken> temp = getFields(ctx);
 		CommonToken comment = temp.get(COMMENT);
 		doELSE(comment);
@@ -4128,7 +4127,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsELSEIF(CsELSEIFContext ctx) {
 		super.exitCsELSEIF(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4138,8 +4137,9 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsEND(CsENDContext ctx) {
 		super.exitCsEND(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
-		Map<String, CommonToken> temp = getFields(pctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.IfstatementContext.class);
+		//FIXME
+		Map<String, CommonToken> temp = getFields(ctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
 		doEND(factor2, comment);
@@ -4154,7 +4154,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsENDDO(CsENDDOContext ctx) {
 		super.exitCsENDDO(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4164,7 +4164,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsENDFOR(CsENDFORContext ctx) {
 		super.exitCsENDFOR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doENDFOR(comment);
@@ -4173,7 +4173,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsENDIF(CsENDIFContext ctx) {
 		super.exitCsENDIF(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.EndifContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doENDIF(comment);
@@ -4182,7 +4182,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsENDMON(CsENDMONContext ctx) {
 		super.exitCsENDMON(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doENDMON(comment);
@@ -4191,7 +4191,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsENDSL(CsENDSLContext ctx) {
 		super.exitCsENDSL(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doENDSL(comment);
@@ -4226,8 +4226,8 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsEVAL_CORR(CsEVAL_CORRContext ctx) {
 		super.exitCsEVAL_CORR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
-		Map<String, CommonToken> temp = getFields(pctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
+		Map<String, CommonToken> temp = getFieldsX2(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
 		doEVAL_CORR(factor2, comment);
@@ -4236,7 +4236,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsEVALR(CsEVALRContext ctx) {
 		super.exitCsEVALR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4246,7 +4246,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsEXCEPT(CsEXCEPTContext ctx) {
 		super.exitCsEXCEPT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4256,7 +4256,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsEXFMT(CsEXFMTContext ctx) {
 		super.exitCsEXFMT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -4270,7 +4270,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsEXSR(CsEXSRContext ctx) {
 		super.exitCsEXSR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4280,7 +4280,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsEXTRCT(CsEXTRCTContext ctx) {
 		super.exitCsEXTRCT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(RESULT2);
@@ -4292,7 +4292,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsFEOD(CsFEODContext ctx) {
 		super.exitCsFEOD(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken low = temp.get(LOW);
@@ -4303,7 +4303,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsFOR(CsFORContext ctx) {
 		super.exitCsFOR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4313,7 +4313,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsFORCE(CsFORCEContext ctx) {
 		super.exitCsFORCE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4323,7 +4323,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsGOTO(CsGOTOContext ctx) {
 		super.exitCsGOTO(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4337,7 +4337,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsIF(CsIFContext ctx) {
 		super.exitCsIF(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4347,7 +4347,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsIFEQ(CsIFEQContext ctx) {
 		super.exitCsIFEQ(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsIFxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4358,7 +4358,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsIFGE(CsIFGEContext ctx) {
 		super.exitCsIFGE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsIFxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4369,7 +4369,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsIFGT(CsIFGTContext ctx) {
 		super.exitCsIFGT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsIFxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4380,7 +4380,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsIFLE(CsIFLEContext ctx) {
 		super.exitCsIFLE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsIFxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4391,7 +4391,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsIFLT(CsIFLTContext ctx) {
 		super.exitCsIFLT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsIFxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4402,7 +4402,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsIFNE(CsIFNEContext ctx) {
 		super.exitCsIFNE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.CsIFxxContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4413,7 +4413,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsIN(CsINContext ctx) {
 		super.exitCsIN(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4425,7 +4425,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsITER(CsITERContext ctx) {
 		super.exitCsITER(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doITER(comment);
@@ -4435,16 +4435,8 @@ public class FreeFormatConverter extends LoggingListener {
 	public void exitCsKFLD(CsKFLDContext ctx) {
 		super.exitCsKFLD(ctx);
 		// Don't do the KFLD stuff in here anymore since it is being handled in the KLIST
-//		ParserRuleContext pctx = getCSpec(ctx);
-//		Map<String, CommonToken> temp = getFields(pctx);
-//		CommonToken result = temp.get(EXT_RESULT);
-//		CommonToken comment = temp.get(COMMENT);
-//		try {
-//			doKFLD(result, comment);
-//		} catch (RPGFormatException e) {
-//			e.printStackTrace();
-//		}
 	}
+	
 	public void doCsKFLD(CsKFLDContext ctx) {
 		Map<String, CommonToken> temp = getFields(ctx);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -4480,7 +4472,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsLEAVE(CsLEAVEContext ctx) {
 		super.exitCsLEAVE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doLEAVE(comment);
@@ -4489,7 +4481,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsLEAVESR(CsLEAVESRContext ctx) {
 		super.exitCsLEAVESR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doLEAVESR(comment);
@@ -4498,7 +4490,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsLOOKUP(CsLOOKUPContext ctx) {
 		super.exitCsLOOKUP(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4512,7 +4504,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsMHHZO(CsMHHZOContext ctx) {
 		super.exitCsMHHZO(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -4530,7 +4522,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsMHLZO(CsMHLZOContext ctx) {
 		super.exitCsMHLZO(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -4548,7 +4540,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsMLHZO(CsMLHZOContext ctx) {
 		super.exitCsMLHZO(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -4566,7 +4558,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsMLLZO(CsMLLZOContext ctx) {
 		super.exitCsMLLZO(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -4584,7 +4576,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsMONITOR(CsMONITORContext ctx) {
 		super.exitCsMONITOR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doMONITOR(comment);
@@ -4593,7 +4585,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsMOVE(CsMOVEContext ctx) {
 		super.exitCsMOVE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4617,7 +4609,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsMOVEA(CsMOVEAContext ctx) {
 		super.exitCsMOVEA(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -4633,7 +4625,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsMOVEL(CsMOVELContext ctx) {
 		super.exitCsMOVEL(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4657,7 +4649,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsMULT(CsMULTContext ctx) {
 		super.exitCsMULT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4708,7 +4700,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsNEXT(CsNEXTContext ctx) {
 		super.exitCsNEXT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4721,7 +4713,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsOCCUR(CsOCCURContext ctx) {
 		super.exitCsOCCUR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4735,7 +4727,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsON_ERROR(CsON_ERRORContext ctx) {
 		super.exitCsON_ERROR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -4745,7 +4737,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsOPEN(CsOPENContext ctx) {
 		super.exitCsOPEN(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4830,7 +4822,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsOTHER(CsOTHERContext ctx) {
 		super.exitCsOTHER(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doOTHER(comment);
@@ -4839,7 +4831,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsOUT(CsOUTContext ctx) {
 		super.exitCsOUT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4853,7 +4845,7 @@ public class FreeFormatConverter extends LoggingListener {
 	public void exitCsPARM(CsPARMContext ctx) {
 		super.exitCsPARM(ctx);
 		// Don't do this in here anymore, it is being done in the PLIST
-//		ParserRuleContext pctx = getCSpec(ctx);
+//		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 //		Map<String, CommonToken> temp = getFields(pctx);
 //		CommonToken comment = temp.get(COMMENT);
 //		CommonToken result = temp.get(EXT_RESULT);
@@ -4907,7 +4899,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsPOST(CsPOSTContext ctx) {
 		super.exitCsPOST(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4921,7 +4913,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsREAD(CsREADContext ctx) {
 		super.exitCsREAD(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4935,7 +4927,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsREADC(CsREADCContext ctx) {
 		super.exitCsREADC(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4949,7 +4941,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsREADE(CsREADEContext ctx) {
 		super.exitCsREADE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4964,7 +4956,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsREADP(CsREADPContext ctx) {
 		super.exitCsREADP(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -4978,7 +4970,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsREADPE(CsREADPEContext ctx) {
 		super.exitCsREADPE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -4993,7 +4985,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsREALLOC(CsREALLOCContext ctx) {
 		super.exitCsREALLOC(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5006,7 +4998,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsREL(CsRELContext ctx) {
 		super.exitCsREL(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -5019,7 +5011,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsRESET(CsRESETContext ctx) {
 		super.exitCsRESET(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -5033,7 +5025,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsRETURN(CsRETURNContext ctx) {
 		super.exitCsRETURN(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5044,7 +5036,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsROLBK(CsROLBKContext ctx) {
 		super.exitCsROLBK(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken low = temp.get(LOW);
@@ -5055,7 +5047,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSCAN(CsSCANContext ctx) {
 		super.exitCsSCAN(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -5078,7 +5070,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSELECT(CsSELECTContext ctx) {
 		super.exitCsSELECT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken comment = temp.get(COMMENT);
 		doSELECT(comment);
@@ -5087,7 +5079,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSETGT(CsSETGTContext ctx) {
 		super.exitCsSETGT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -5101,7 +5093,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSETLL(CsSETLLContext ctx) {
 		super.exitCsSETLL(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -5116,7 +5108,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSETOFF(CsSETOFFContext ctx) {
 		super.exitCsSETOFF(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken high = temp.get(HIGH);
 		CommonToken low = temp.get(LOW);
@@ -5128,7 +5120,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSETON(CsSETONContext ctx) {
 		super.exitCsSETON(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken high = temp.get(HIGH);
 		CommonToken low = temp.get(LOW);
@@ -5140,7 +5132,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSHTDN(CsSHTDNContext ctx) {
 		super.exitCsSHTDN(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken high = temp.get(HIGH);
 		CommonToken comment = temp.get(COMMENT);
@@ -5150,7 +5142,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSORTA(CsSORTAContext ctx) {
 		super.exitCsSORTA(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5161,7 +5153,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSQRT(CsSQRTContext ctx) {
 		super.exitCsSQRT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5180,7 +5172,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSUB(CsSUBContext ctx) {
 		super.exitCsSUB(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -5204,7 +5196,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSUBDUR(CsSUBDURContext ctx) {
 		super.exitCsSUBDUR(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5217,7 +5209,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsSUBST(CsSUBSTContext ctx) {
 		super.exitCsSUBST(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5237,7 +5229,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsTAG(CsTAGContext ctx) {
 		super.exitCsTAG(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken comment = temp.get(COMMENT);
@@ -5251,7 +5243,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsTEST(CsTESTContext ctx) {
 		super.exitCsTEST(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -5264,7 +5256,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsTESTB(CsTESTBContext ctx) {
 		super.exitCsTESTB(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -5282,7 +5274,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsTESTN(CsTESTNContext ctx) {
 		super.exitCsTESTN(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken high = temp.get(HIGH);
@@ -5295,7 +5287,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsTESTZ(CsTESTZContext ctx) {
 		super.exitCsTESTZ(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken high = temp.get(HIGH);
@@ -5308,7 +5300,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsTIME(CsTIMEContext ctx) {
 		super.exitCsTIME(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken result = temp.get(EXT_RESULT);
 		CommonToken length = temp.get(LENGTH);
@@ -5325,7 +5317,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsUNLOCK(CsUNLOCKContext ctx) {
 		super.exitCsUNLOCK(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5337,7 +5329,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsUPDATE(CsUPDATEContext ctx) {
 		super.exitCsUPDATE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5350,7 +5342,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsWHEN(CsWHENContext ctx) {
 		super.exitCsWHEN(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -5360,7 +5352,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsWHENEQ(CsWHENEQContext ctx) {
 		super.exitCsWHENEQ(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5371,7 +5363,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsWHENGE(CsWHENGEContext ctx) {
 		super.exitCsWHENGE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5382,7 +5374,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsWHENGT(CsWHENGTContext ctx) {
 		super.exitCsWHENGT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5393,7 +5385,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsWHENLE(CsWHENLEContext ctx) {
 		super.exitCsWHENLE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5404,7 +5396,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsWHENLT(CsWHENLTContext ctx) {
 		super.exitCsWHENLT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5415,7 +5407,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsWHENNE(CsWHENNEContext ctx) {
 		super.exitCsWHENNE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5426,7 +5418,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsWRITE(CsWRITEContext ctx) {
 		super.exitCsWRITE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5441,7 +5433,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsXFOOT(CsXFOOTContext ctx) {
 		super.exitCsXFOOT(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5463,7 +5455,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsXLATE(CsXLATEContext ctx) {
 		super.exitCsXLATE(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor1 = temp.get(EXT_FACTOR1);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
@@ -5483,7 +5475,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsXML_INTO(CsXML_INTOContext ctx) {
 		super.exitCsXML_INTO(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -5493,7 +5485,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsXML_SAX(CsXML_SAXContext ctx) {
 		super.exitCsXML_SAX(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken comment = temp.get(COMMENT);
@@ -5507,7 +5499,7 @@ public class FreeFormatConverter extends LoggingListener {
 		}
 
 		super.exitCsZ_ADD(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -5531,7 +5523,7 @@ public class FreeFormatConverter extends LoggingListener {
 	@Override
 	public void exitCsZ_SUB(CsZ_SUBContext ctx) {
 		super.exitCsZ_SUB(ctx);
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);;
 		Map<String, CommonToken> temp = getFields(pctx);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
 		CommonToken result = temp.get(EXT_RESULT);
@@ -5826,7 +5818,7 @@ public class FreeFormatConverter extends LoggingListener {
 		super.exitCspec_fixed_x2(ctx);
 		debugContext(ctx);
 		currentSpec = "C";
-		ParserRuleContext pctx = getCSpec(ctx);
+		ParserRuleContext pctx = getParentSpec(ctx, RpgParser.Cspec_fixedContext.class);
 		Map<String, CommonToken> temp = getFieldsX2(pctx);
 		CommonToken opCode = temp.get(EXT_OP_CODE);
 		CommonToken factor2 = temp.get(EXT_FACTOR2);
@@ -5906,7 +5898,6 @@ public class FreeFormatConverter extends LoggingListener {
 
 	@Override
 	public void exitBeginif(BeginifContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitBeginif(ctx);
 		// ParserRuleContext pctx = getParentSpec(ctx,
 		// RpgParser.IfstatementContext.class);
@@ -5916,14 +5907,12 @@ public class FreeFormatConverter extends LoggingListener {
 
 	@Override
 	public void exitBeginProcedure(BeginProcedureContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitBeginProcedure(ctx);
 		debugContext(ctx);
 	}
 
 	@Override
 	public void exitBeginselect(BeginselectContext ctx) {
-		// TODO Auto-generated method stub
 		super.exitBeginselect(ctx);
 		debugContext(ctx);
 	}

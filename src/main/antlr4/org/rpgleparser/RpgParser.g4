@@ -806,12 +806,12 @@ cspec_fixed_standard:
 	//| csDOUGE
 	//| csDOUGT
 	| csDOW
-	| csDOWEQ
-	| csDOWNE
-	| csDOWLE
-	| csDOWLT
-	| csDOWGE
-	| csDOWGT
+	//| csDOWEQ
+	//| csDOWNE
+	//| csDOWLE
+	//| csDOWLT
+	//| csDOWGE
+	//| csDOWGT
 	| csDSPLY
 	| csDUMP
 	| csELSE

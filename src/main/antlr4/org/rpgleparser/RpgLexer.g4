@@ -35,7 +35,7 @@ CLOSE_PAREN : ')';
 NUMBER : ([0-9]+([.][0-9]*)?) | [.][0-9]+ ;
 SEMI : ';';
 COLON : ':';
-ID : {getCharPositionInLine()>6}?('*'? '*' [a-zA-Z])?[#@%$a-zA-Z] [#@\-$a-zA-Z0-9_]* ;             // match lower-case identifiers
+ID : {getCharPositionInLine()>6}?('*'? '*' [a-zA-Z])?[#@%$a-zA-Z] [#@$a-zA-Z0-9_]* ;             // match lower-case identifiers
 NEWLINE : ('\r' '\n'? | '\n') -> skip;
 WS : {getCharPositionInLine()>5}? [ \t]+ -> skip ; // skip spaces, tabs, NEWLINEs
 
@@ -237,7 +237,10 @@ BIF_YEARS: '%'[yY][eE][aA][rR][sS];
 // Symbolic Constants
 SPLAT_ALL: '*'[aA][lL][lL];
 SPLAT_NONE: '*'[nN][oO][nN][eE];
+SPLAT_YES: '*'[yY][eE][sS];
+SPLAT_NO: '*'[nN][oO];
 SPLAT_ILERPG: '*'[iI][lL][eE][rR][pP][gG];
+SPLAT_COMPAT: '*'[cC][oO][mM][pP][aA][tT];
 SPLAT_CRTBNDRPG: '*'[cC][rR][tT][bB][nN][dD][rR][pP][gG];
 SPLAT_CRTRPGMOD: '*'[cC][rR][tT][rR][pP][gG][mM][oO][dD];
 SPLAT_VRM: '*'[vV][0-9][rR][0-9][mM][0-9];
@@ -294,6 +297,7 @@ SPLAT_NOKEY: '*'[nN][oO][kK][eE][yY];
 SPLAT_NULL: '*'[nN][uU][lL][lL];
 SPLAT_OFL: '*'[oO][fF][lL];
 SPLAT_ON: '*'[oO][nN];
+SPLAT_ONLY: '*'[oO][nN][lL][yY];
 SPLAT_OFF: '*'[oO][fF][fF];
 SPLAT_PDA: '*'[pP][dD][aA];
 SPLAT_PLACE: '*'[pP][lL][aA][cC][eE];
@@ -317,6 +321,7 @@ SPLAT_CURSYM: '*'[cC][uU][rR][sS][yY][mM];
 SPLAT_MAX: '*'[mM][aA][xX];
 SPLAT_LOCK: '*'[lL][oO][cC][kK];
 SPLAT_PROGRAM: '*'[pP][rR][oO][gG][rR][aA][mM];
+SPLAT_EXTDESC: '*'[eE][xX][tT][dD][eE][sS][cC];
 
 // Reserved Words
 UDATE : [uU] [dD] [aA] [tT] [eE] ;
@@ -397,7 +402,43 @@ KEYWORD_TIMFMT : [Tt][Ii][Mm][Ff][Mm][Tt];
 KEYWORD_TOFILE : [Tt][Oo][Ff][Ii][Ll][Ee];
 KEYWORD_VALUE : [Vv][Aa][Ll][Uu][Ee];
 KEYWORD_VARYING : [Vv][Aa][Rr][Yy][Ii][Nn][Gg];
-
+// File spec keywords
+KEYWORD_BLOCK : [bB][lL][oO][cC][kK]; 
+KEYWORD_COMMIT : [cC][oO][mM][mM][iI][tT]; 
+KEYWORD_DEVID : [dD][eE][vV][iI][dD]; 
+KEYWORD_EXTDESC : [eE][xX][tT][dD][eE][sS][cC];
+KEYWORD_EXTFILE  : [eE][xX][tT][fF][iI][lL][eE]; 
+KEYWORD_EXTIND  : [eE][xX][tT][iI][nN][dD]; 
+KEYWORD_EXTMBR  : [eE][xX][tT][mM][bB][rR]; 
+KEYWORD_FORMLEN : [fF][oO][rR][mM][lL][eE][nN];
+KEYWORD_FORMOFL : [fF][oO][rR][mM][oO][fF][lL];
+KEYWORD_IGNORE : [iI][gG][nN][oO][rR][eE];
+KEYWORD_INCLUDE : [iI][nN][cC][lL][uU][dD][eE];
+KEYWORD_INDDS : [iI][nN][dD][dD][sS];
+KEYWORD_INFDS : [iI][nN][fF][dD][sS];
+KEYWORD_INFSR : [iI][nN][fF][sS][rR];
+KEYWORD_KEYLOC : [kK][eE][yY][lL][oO][cC];
+KEYWORD_MAXDEV : [mM][aA][xX][dD][eE][vV];
+KEYWORD_OFLIND : [oO][fF][lL][iI][nN][dD];
+KEYWORD_PASS : [pP][aA][sS][sS];
+KEYWORD_PGMNAME : [pP][gG][mM][nN][aA][mM][eE];
+KEYWORD_PLIST : [pP][lL][iI][sS][tT];
+KEYWORD_PRTCTL : [pP][rR][tT][cC][tT][lL];
+KEYWORD_RAFDATA : [rR][aA][fF][dD][aA][tT][aA];
+KEYWORD_RECNO : [rR][eE][cC][nN][oO];
+KEYWORD_RENAME : [rR][eE][nN][aA][mM][eE];
+KEYWORD_SAVEDS : [sS][aA][vV][eE][dD][sS];
+KEYWORD_SAVEIND : [sS][aA][vV][eE][iI][nN][dD];
+KEYWORD_SFILE : [sS][fF][iI][lL][eE];
+KEYWORD_SLN : [sS][lL][nN];
+KEYWORD_USROPN : [uU][sS][rR][oO][pP][nN];
+KEYWORD_DISK : [dD][iI][sS][kK];
+KEYWORD_WORKSTN : [wW][oO][rR][kK][sS][tT][nN];
+KEYWORD_PRINTER : [pP][rR][iI][nN][tT][eE][rR];
+KEYWORD_SPECIAL : [sS][pP][eE][cC][iI][aA][lL];
+KEYWORD_KEYED : [kK][eE][yY][eE][dD];
+// 
+AMPERSAND: '&';
 
 // Boolean operators
 AND : [aA] [nN] [dD] ;
@@ -461,12 +502,15 @@ C_FREE_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> skip;
 D_FREE_CONTINUATION: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE 
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                            ' -> skip;
+F_FREE_CONTINUATION: {_modeStack.peek() == FIXED_FileSpec}? NEWLINE 
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [fF] ~[*] '                            ' -> skip;
 FREE_LEAD_WS5 :  {getCharPositionInLine()==0}? '     ' -> skip;
 FREE_LEAD_WS5_Comments :  {getCharPositionInLine()==0}?~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] -> channel(HIDDEN);
 FREE_FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> skip;
 	
 C_FREE_NEWLINE: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE -> popMode,popMode;
 D_FREE_NEWLINE: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE -> type(EOL),popMode,popMode;
+F_FREE_NEWLINE: {_modeStack.peek() == FIXED_FileSpec}? NEWLINE -> type(EOL),popMode,popMode;
 FREE_NEWLINE: {_modeStack.peek()!=FIXED_CalcSpec}? NEWLINE -> skip;
 FREE_SEMI: SEMI -> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
 
@@ -766,8 +810,8 @@ FS_LengthOfKey: {getCharPositionInLine()==28}? [0-9 ][0-9 ][0-9 ][0-9 ][0-9 ];
 FS_RecordAddressType: {getCharPositionInLine()==33}? [a-zA-Z ];
 FS_Organization: {getCharPositionInLine()==34}? [a-zA-Z ];
 FS_Device: {getCharPositionInLine()==35}? WORD5 [a-zA-Z ][a-zA-Z ];
-FS_Reserved: {getCharPositionInLine()==42}? [ ];
-FS_Keywords : {getCharPositionInLine()==43}? ~[\r\n]+;
+FS_Reserved: {getCharPositionInLine()==42}? [ ] -> pushMode(FREE);
+//FS_Keywords : {getCharPositionInLine()==43}? ~[\r\n]+;
 FS_WhiteSpace : {getCharPositionInLine()>=80}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
 FS_EOL : NEWLINE -> popMode;
 
