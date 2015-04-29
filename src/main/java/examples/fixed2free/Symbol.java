@@ -219,5 +219,8 @@ public class Symbol {
 		}
 		return sb.toString();
 	}
+	public boolean hasAttribute(String category) {
+		return attributes.containsKey(category);
+	}
 
 }
