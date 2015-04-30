@@ -10,7 +10,7 @@ END_SOURCE : {getCharPositionInLine()==0}? '**'~[\r\n]~[\r\n]~[\r\n]~[\r\n*]~[\r
 LEAD_WS5 :  {getCharPositionInLine()==0}? '     ' -> skip;
 LEAD_WS5_Comments :  {getCharPositionInLine()==0}?~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] -> channel(HIDDEN);
 	//5 position blank means FREE, unless..
-FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> pushMode(FREE),skip;
+FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> pushMode(OpCode),skip;
     // 6th position asterisk is a comment
 COMMENT_SPEC_FIXED : {getCharPositionInLine()==5}? .'*' -> pushMode(FIXED_CommentMode) ;
     // X specs 
@@ -68,8 +68,21 @@ mode EndOfSourceMode;
 EOS_Text : ~[\r\n]+ ;
 EOS_EOL : NEWLINE -> type(EOL); 
 
+
 // -----------------  ---------------------
+mode OpCode;
+OP_WS: {getCharPositionInLine()>5}? [ \t]+ -> skip;
+OP_ACQ: [Aa][Cc][Qq] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_BEGSR: [Bb][Ee][Gg][Ss][Rr] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE);
+OP_CALLP: [Cc][Aa][Ll][Ll][Pp] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_CHAIN: [Cc][Hh][Aa][Ii][Nn] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_CLEAR: [Cc][Ll][Ee][Aa][Rr] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE);
+OP_CLOSE: [Cc][Ll][Oo][Ss][Ee] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_COMMIT: [Cc][Oo][Mm][Mm][Ii][Tt] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_NoSpace: -> skip,mode(FREE),pushMode(FreeOpExtender);
+
 mode FREE;
+//OP_COMMIT: [Cc][Oo][Mm][Mm][Ii][Tt] -> mode(FREE),pushMode(FreeOpExtender);
 DS_Standalone : [dD] [cC] [lL] '-' [sS] ;//-> pushMode(F_SPEC_FREE);
 DS_DataStructureStart : [dD] [cC] [lL] '-' [dD][sS] ;//-> pushMode(F_SPEC_FREE);
 DS_DataStructureEnd : [eE] [nN] [dD] '-' [dD][sS] ;//-> pushMode(F_SPEC_FREE);
@@ -88,13 +101,6 @@ H_SPEC : [cC] [tT] [lL] '-' [oO][pP][tT];
 FREE_CONT: '...' [ ]* NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n][ ]+ {setText("...");};
 FREE_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN); // skip comments after 80
 EXEC_SQL: [Ee][Xx][Ee][Cc][ ]+[Ss][Qq][Ll]-> pushMode(SQL_MODE) ;
-OP_ACQ: [Aa][Cc][Qq] -> pushMode(FreeOpExtender);
-OP_BEGSR: [Bb][Ee][Gg][Ss][Rr];
-OP_CALLP: [Cc][Aa][Ll][Ll][Pp] -> pushMode(FreeOpExtender);
-OP_CHAIN: [Cc][Hh][Aa][Ii][Nn] -> pushMode(FreeOpExtender);
-OP_CLEAR: [Cc][Ll][Ee][Aa][Rr];
-OP_CLOSE: [Cc][Ll][Oo][Ss][Ee] -> pushMode(FreeOpExtender);
-OP_COMMIT: {getCharPositionInLine()<40}? [Cc][Oo][Mm][Mm][Ii][Tt] -> pushMode(FreeOpExtender);
 OP_DEALLOC: [Dd][Ee][Aa][Ll][Ll][Oo][Cc] -> pushMode(FreeOpExtender);
 OP_DELETE: [Dd][Ee][Ll][Ee][Tt][Ee] -> pushMode(FreeOpExtender);
 OP_DOU: [Dd][Oo][Uu] -> pushMode(FreeOpExtender);

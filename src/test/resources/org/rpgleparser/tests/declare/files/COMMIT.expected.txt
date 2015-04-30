@@ -1,0 +1,92 @@
+/*===TOKENS===*/
+FS_FreeFile              <dcl-f>
+ID                       <table1>
+KEYWORD_DISK             <DISK>
+KEYWORD_COMMIT           <COMMIT>
+FREE_SEMI                <;>
+FS_FreeFile              <dcl-f>
+ID                       <table1>
+KEYWORD_DISK             <DISK>
+KEYWORD_KEYED            <keyed>
+KEYWORD_COMMIT           <commit>
+'('                      <(>
+ID                       <always>
+')'                      <)>
+FREE_SEMI                <;>
+FS_FIXED                 <F>
+FS_RecordName            <COLMBID   >
+FS_Type                  <U>
+FS_Designation           <F>
+FS_EndOfFile             < >
+FS_Addution              <A>
+FS_Sequence              < >
+FS_Format                <E>
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     <K>
+FS_Organization          < >
+FS_Device                <DISK   >
+FS_Reserved              < >
+KEYWORD_COMMIT           <COMMIT>
+'('                      <(>
+ID                       <C_COLMBID>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (fspec
+      dcl-f
+      (filename table1)
+      (fs_keyword (keyword_disk DISK))
+      (fs_keyword (keyword_commit COMMIT))
+      ;
+    )
+  )
+  (statement
+    (fspec
+      dcl-f
+      (filename table1)
+      (fs_keyword (keyword_disk DISK))
+      (fs_keyword (keyword_keyed keyed))
+      (fs_keyword
+        (keyword_commit
+          commit
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword always))))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (fspec_fixed
+      F
+      'COLMBID   '
+      U
+      F
+      ' '
+      A
+      ' '
+      E
+      '     '
+      ' '
+      '     '
+      K
+      ' '
+      'DISK   '
+      ' '
+      (fs_keyword
+        (keyword_commit
+          COMMIT
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword C_COLMBID))))
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/
