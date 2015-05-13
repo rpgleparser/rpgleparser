@@ -3,6 +3,12 @@
  */
 lexer grammar RpgLexer;
 
+@members {
+	public boolean isEndOfToken() {
+		return " (;".indexOf(_input.LA(1)) >=0;
+	}
+}
+
 // Parser Rules
 	//End Source.  Not more parsing after this.
 END_SOURCE : {getCharPositionInLine()==0}? '**'~[\r\n]~[\r\n]~[\r\n]~[\r\n*]~[\r\n]* EOL  -> pushMode(EndOfSourceMode) ;
@@ -72,13 +78,68 @@ EOS_EOL : NEWLINE -> type(EOL);
 // -----------------  ---------------------
 mode OpCode;
 OP_WS: {getCharPositionInLine()>5}? [ \t]+ -> skip;
-OP_ACQ: [Aa][Cc][Qq] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
-OP_BEGSR: [Bb][Ee][Gg][Ss][Rr] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE);
-OP_CALLP: [Cc][Aa][Ll][Ll][Pp] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
-OP_CHAIN: [Cc][Hh][Aa][Ii][Nn] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
-OP_CLEAR: [Cc][Ll][Ee][Aa][Rr] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE);
-OP_CLOSE: [Cc][Ll][Oo][Ss][Ee] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
-OP_COMMIT: [Cc][Oo][Mm][Mm][Ii][Tt] {" (;".indexOf(_input.LA(1)) >=0}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_ACQ: [Aa][Cc][Qq] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_BEGSR: [Bb][Ee][Gg][Ss][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_CALLP: [Cc][Aa][Ll][Ll][Pp] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_CHAIN: [Cc][Hh][Aa][Ii][Nn] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_CLEAR: [Cc][Ll][Ee][Aa][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_CLOSE: [Cc][Ll][Oo][Ss][Ee] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_COMMIT: [Cc][Oo][Mm][Mm][Ii][Tt] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_DEALLOC: [Dd][Ee][Aa][Ll][Ll][Oo][Cc] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_DELETE: [Dd][Ee][Ll][Ee][Tt][Ee] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_DOU: [Dd][Oo][Uu] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_DOW: [Dd][Oo][Ww] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_DSPLY: [Dd][Ss][Pp][Ll][Yy] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_DUMP: [Dd][Uu][Mm][Pp] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_ELSE: [Ee][Ll][Ss][Ee] {isEndOfToken()}?-> mode(FREE);
+OP_ELSEIF: [Ee][Ll][Ss][Ee][Ii][Ff] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_ENDDO: [Ee][Nn][Dd][Dd][Oo] {isEndOfToken()}?-> mode(FREE);
+OP_ENDFOR: [Ee][Nn][Dd][Ff][Oo][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_ENDIF: [Ee][Nn][Dd][Ii][Ff] {isEndOfToken()}?-> mode(FREE);
+OP_ENDMON: [Ee][Nn][Dd][Mm][Oo][Nn] {isEndOfToken()}?-> mode(FREE);
+OP_ENDSL: [Ee][Nn][Dd][Ss][Ll] {isEndOfToken()}?-> mode(FREE);
+OP_ENDSR: [Ee][Nn][Dd][Ss][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_EVAL: [Ee][Vv][Aa][Ll] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_EVALR: [Ee][Vv][Aa][Ll][Rr] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_EVAL_CORR: [Ee][Vv][Aa][Ll][-][Cc][Oo][Rr][Rr] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_EXCEPT: [Ee][Xx][Cc][Ee][Pp][Tt] {isEndOfToken()}?-> mode(FREE);
+OP_EXFMT: [Ee][Xx][Ff][Mm][Tt] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_EXSR: [Ee][Xx][Ss][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_FEOD: [Ff][Ee][Oo][Dd] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_FOR: [Ff][Oo][Rr] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_FORCE: [Ff][Oo][Rr][Cc][Ee] {isEndOfToken()}?-> mode(FREE);
+OP_IF: [Ii][Ff] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_IN: [Ii][Nn] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_ITER: [Ii][Tt][Ee][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_LEAVE: [Ll][Ee][Aa][Vv][Ee] {isEndOfToken()}?-> mode(FREE);
+OP_LEAVESR: [Ll][Ee][Aa][Vv][Ee][Ss][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_MONITOR: [Mm][Oo][Nn][Ii][Tt][Oo][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_NEXT: [Nn][Ee][Xx][Tt] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_ON_ERROR: [Oo][Nn][-][Ee][Rr][Rr][Oo][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_OPEN: [Oo][Pp][Ee][Nn] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_OTHER: [Oo][Tt][Hh][Ee][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_OUT: [Oo][Uu][Tt] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_POST: [Pp][Oo][Ss][Tt] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_READ: [Rr][Ee][Aa][Dd] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_READC: [Rr][Ee][Aa][Dd][Cc] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_READE: [Rr][Ee][Aa][Dd][Ee] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_READP: [Rr][Ee][Aa][Dd][Pp] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_READPE: [Rr][Ee][Aa][Dd][Pp][Ee] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_REL: [Rr][Ee][Ll] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_RESET: [Rr][Ee][Ss][Ee][Tt] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_RETURN: [Rr][Ee][Tt][Uu][Rr][Nn] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_ROLBK: [Rr][Oo][Ll][Bb][Kk] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_SELECT: [Ss][Ee][Ll][Ee][Cc][Tt] {isEndOfToken()}?-> mode(FREE);
+OP_SETGT: [Ss][Ee][Tt][Gg][Tt] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_SETLL: [Ss][Ee][Tt][Ll][Ll] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_SORTA: [Ss][Oo][Rr][Tt][Aa] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_TEST: [Tt][Ee][Ss][Tt] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_UNLOCK: [Uu][Nn][Ll][Oo][Cc][Kk] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_UPDATE: [Uu][Pp][Dd][Aa][Tt][Ee] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_WHEN: [Ww][Hh][Ee][Nn] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_WRITE: [Ww][Rr][Ii][Tt][Ee] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_XML_INTO: [Xx][Mm][Ll][-][Ii][Nn][Tt][Oo] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
+OP_XML_SAX: [Xx][Mm][Ll][-][Ss][Aa][Xx] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
 OP_NoSpace: -> skip,mode(FREE),pushMode(FreeOpExtender);
 
 mode FREE;
@@ -101,63 +162,7 @@ H_SPEC : [cC] [tT] [lL] '-' [oO][pP][tT];
 FREE_CONT: '...' [ ]* NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n][ ]+ {setText("...");};
 FREE_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN); // skip comments after 80
 EXEC_SQL: [Ee][Xx][Ee][Cc][ ]+[Ss][Qq][Ll]-> pushMode(SQL_MODE) ;
-OP_DEALLOC: [Dd][Ee][Aa][Ll][Ll][Oo][Cc] -> pushMode(FreeOpExtender);
-OP_DELETE: [Dd][Ee][Ll][Ee][Tt][Ee] -> pushMode(FreeOpExtender);
-OP_DOU: [Dd][Oo][Uu] -> pushMode(FreeOpExtender);
-OP_DOW: [Dd][Oo][Ww] -> pushMode(FreeOpExtender);
-OP_DSPLY: [Dd][Ss][Pp][Ll][Yy] -> pushMode(FreeOpExtender);
-OP_DUMP: [Dd][Uu][Mm][Pp] -> pushMode(FreeOpExtender);
-OP_ELSE: [Ee][Ll][Ss][Ee];
-OP_ELSEIF: [Ee][Ll][Ss][Ee][Ii][Ff] -> pushMode(FreeOpExtender);
-OP_ENDDO: [Ee][Nn][Dd][Dd][Oo];
-OP_ENDFOR: [Ee][Nn][Dd][Ff][Oo][Rr];
-OP_ENDIF: [Ee][Nn][Dd][Ii][Ff];
-OP_ENDMON: [Ee][Nn][Dd][Mm][Oo][Nn];
-OP_ENDSL: [Ee][Nn][Dd][Ss][Ll];
-OP_ENDSR: [Ee][Nn][Dd][Ss][Rr];
-OP_EVAL: [Ee][Vv][Aa][Ll] -> pushMode(FreeOpExtender);
-OP_EVALR: [Ee][Vv][Aa][Ll][Rr] -> pushMode(FreeOpExtender);
-OP_EVAL_CORR: [Ee][Vv][Aa][Ll][-][Cc][Oo][Rr][Rr] -> pushMode(FreeOpExtender);
-OP_EXCEPT: [Ee][Xx][Cc][Ee][Pp][Tt];
-OP_EXFMT: [Ee][Xx][Ff][Mm][Tt] -> pushMode(FreeOpExtender);
-OP_EXSR: [Ee][Xx][Ss][Rr];
-OP_FEOD: [Ff][Ee][Oo][Dd] -> pushMode(FreeOpExtender);
-OP_FOR: [Ff][Oo][Rr] -> pushMode(FreeOpExtender);
-OP_FORCE: [Ff][Oo][Rr][Cc][Ee];
-OP_IF: [Ii][Ff] -> pushMode(FreeOpExtender);
-OP_IN: [Ii][Nn] -> pushMode(FreeOpExtender);
-OP_ITER: [Ii][Tt][Ee][Rr];
-OP_LEAVE: [Ll][Ee][Aa][Vv][Ee];
-OP_LEAVESR: [Ll][Ee][Aa][Vv][Ee][Ss][Rr];
-OP_MONITOR: [Mm][Oo][Nn][Ii][Tt][Oo][Rr];
-OP_NEXT: [Nn][Ee][Xx][Tt] -> pushMode(FreeOpExtender);
-OP_ON_ERROR: [Oo][Nn][-][Ee][Rr][Rr][Oo][Rr];
-OP_OPEN: [Oo][Pp][Ee][Nn] -> pushMode(FreeOpExtender);
-OP_OTHER: [Oo][Tt][Hh][Ee][Rr];
-OP_OUT: [Oo][Uu][Tt] -> pushMode(FreeOpExtender);
-OP_POST: [Pp][Oo][Ss][Tt] -> pushMode(FreeOpExtender);
-OP_READ: [Rr][Ee][Aa][Dd] -> pushMode(FreeOpExtender);
-OP_READC: [Rr][Ee][Aa][Dd][Cc] -> pushMode(FreeOpExtender);
-OP_READE: [Rr][Ee][Aa][Dd][Ee] -> pushMode(FreeOpExtender);
-OP_READP: [Rr][Ee][Aa][Dd][Pp] -> pushMode(FreeOpExtender);
-OP_READPE: [Rr][Ee][Aa][Dd][Pp][Ee] -> pushMode(FreeOpExtender);
-OP_REL: [Rr][Ee][Ll] -> pushMode(FreeOpExtender);
-OP_RESET: [Rr][Ee][Ss][Ee][Tt] -> pushMode(FreeOpExtender);
-OP_RETURN: [Rr][Ee][Tt][Uu][Rr][Nn] -> pushMode(FreeOpExtender);
-OP_ROLBK: [Rr][Oo][Ll][Bb][Kk] -> pushMode(FreeOpExtender);
-OP_SELECT: [Ss][Ee][Ll][Ee][Cc][Tt];
-OP_SETGT: [Ss][Ee][Tt][Gg][Tt] -> pushMode(FreeOpExtender);
-OP_SETLL: [Ss][Ee][Tt][Ll][Ll] -> pushMode(FreeOpExtender);
-OP_SORTA: [Ss][Oo][Rr][Tt][Aa] -> pushMode(FreeOpExtender);
-OP_TEST: [Tt][Ee][Ss][Tt] -> pushMode(FreeOpExtender);
-OP_UNLOCK: [Uu][Nn][Ll][Oo][Cc][Kk] -> pushMode(FreeOpExtender);
-OP_UPDATE: [Uu][Pp][Dd][Aa][Tt][Ee] -> pushMode(FreeOpExtender);
-OP_WHEN: [Ww][Hh][Ee][Nn] -> pushMode(FreeOpExtender);
-OP_WRITE: [Ww][Rr][Ii][Tt][Ee] -> pushMode(FreeOpExtender);
-OP_XML_INTO: [Xx][Mm][Ll][-][Ii][Nn][Tt][Oo] -> pushMode(FreeOpExtender);
-OP_XML_SAX: [Xx][Mm][Ll][-][Ss][Aa][Xx] -> pushMode(FreeOpExtender);
 
-//
 // Built In functions
 BIF_ABS: '%'[aA][bB][sS];
 BIF_ADDR: '%'[aA][dD][dD][rR];

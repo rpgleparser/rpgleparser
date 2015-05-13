@@ -9,7 +9,7 @@ NUMBER                   <25>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_SubField              <DCL-SUBF>
-OP_READ                  <read>
+ID                       <read>
 INT                      <INT>
 '('                      <(>
 NUMBER                   <3>
@@ -31,7 +31,7 @@ FREE_SEMI                <;>
       )
       (dcl_ds_field
         DCL-SUBF
-        (identifier (free_identifier (op_code read)))
+        (identifier (free_identifier (idOrKeyword read)))
         (datatype (datatypeName INT) (args ( (expression (number 3)) )))
         ;
       )
