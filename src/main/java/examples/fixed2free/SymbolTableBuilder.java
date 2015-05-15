@@ -1,7 +1,7 @@
 package examples.fixed2free;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.antlr.v4.runtime.CommonToken;
@@ -46,12 +46,17 @@ import org.rpgleparser.RpgParser.CsZ_ADDContext;
 import org.rpgleparser.RpgParser.CsZ_SUBContext;
 import org.rpgleparser.RpgParser.Cspec_fixedContext;
 import org.rpgleparser.RpgParser.Cspec_fixed_standard_partsContext;
+import org.rpgleparser.RpgParser.Dcl_dsContext;
+import org.rpgleparser.RpgParser.Dcl_ds_fieldContext;
 import org.rpgleparser.RpgParser.DirectiveContext;
+import org.rpgleparser.RpgParser.Ds_nameContext;
 import org.rpgleparser.RpgParser.DspecContext;
 import org.rpgleparser.RpgParser.Dspec_fixedContext;
 import org.rpgleparser.RpgParser.Fspec_fixedContext;
 import org.rpgleparser.RpgParser.Hspec_fixedContext;
 import org.rpgleparser.RpgParser.Ispec_fixedContext;
+import org.rpgleparser.RpgParser.KeywordContext;
+import org.rpgleparser.RpgParser.Keyword_dimContext;
 import org.rpgleparser.RpgParser.Ospec_fixedContext;
 import org.rpgleparser.RpgParser.ProcedureContext;
 import org.rpgleparser.RpgParser.ResultTypeContext;
@@ -84,7 +89,8 @@ public class SymbolTableBuilder extends LoggingListener {
 		List<Scope> temp2 = st.getAllScopes();
 		for (Scope sc : temp2){
 			result.add("Scope " + sc.getKey());
-			Collection<Symbol> c = st.getAllSymbolsFromScope(sc);
+			List<Symbol> c = st.getAllSymbolsFromScope(sc);
+			Collections.sort(c, new SymbolComparator());
 			for (Symbol s : c){
 				result.add(s.toString());
 			}
@@ -125,11 +131,11 @@ public class SymbolTableBuilder extends LoggingListener {
 		String dataStructureName = ctx.ds_name().getText().trim();
 		String externalDescription = ctx.EXTERNAL_DESCRIPTION().getText().trim();
 		String fromPosition = ctx.FROM_POSITION().getText().trim();
-		String keywords = null;//ctx.KEYWORDS().getText().trim(); //todo
+		String keywords = expandKeywords(ctx.keyword());
 		String toPosition = ctx.TO_POSITION().getText().trim();
 		Symbol theSym = new Symbol();
 		// Definition type
-		setDefinitionType(defType, keywords, theSym);
+		setDefinitionType(defType, keywords, theSym, ctx.keyword());
 		theSym.setName(dataStructureName);
 		theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decimalPositions);
 		theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
@@ -283,10 +289,20 @@ public class SymbolTableBuilder extends LoggingListener {
 	}
 
 	private void setDefinitionType(String defType, String keywords,
-			Symbol theSym) {
+			Symbol theSym, List<KeywordContext> kctx) {
+		Keyword_dimContext tmp = null;
+		for (KeywordContext k : kctx){
+			tmp = k.getChild(Keyword_dimContext.class, 0);
+			if (tmp != null){
+				break;
+			}
+		}
 		if (defType.equalsIgnoreCase("S")){
 			if (keywords.contains("DIM(")){
 				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_ARRAY);
+				if (tmp != null){
+					theSym.addAttribute(Symbol.CAT_ARRAY_ELEMENT_COUNT, tmp.numeric_constant.getText());
+				}
 			} else {
 				theSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_STANDALONE);
 			}
@@ -320,6 +336,7 @@ public class SymbolTableBuilder extends LoggingListener {
 	public void enterDspec(DspecContext ctx) {
 		super.enterDspec(ctx);
 		lastSpec = "D";
+		String garbage = ctx.getText();
 		String dsType = ctx.DATA_STRUCTURE_TYPE().getText().trim();
 		String rpgDataType = ctx.DATA_TYPE().getText().trim();
 		String decimalPositions = ctx.DECIMAL_POSITIONS().getText().trim();
@@ -327,11 +344,11 @@ public class SymbolTableBuilder extends LoggingListener {
 		String dataStructureName = ctx.ds_name().getText().trim();
 		String externalDescription = ctx.EXTERNAL_DESCRIPTION().getText().trim();
 		String fromPosition = ctx.FROM_POSITION().getText().trim();
-		String keywords = ctx.keyword().toString();//ctx.KEYWORDS().getText().trim(); //todo
+		String keywords = expandKeywords(ctx.keyword());
 		String toPosition = ctx.TO_POSITION().getText().trim();
 		Symbol theSym = new Symbol();
 		// Definition type
-		setDefinitionType(defType, keywords, theSym);
+		setDefinitionType(defType, keywords, theSym, ctx.keyword());
 		theSym.setName(dataStructureName);
 		theSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, decimalPositions);
 		theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
@@ -339,6 +356,14 @@ public class SymbolTableBuilder extends LoggingListener {
 		setDataType(rpgDataType, theSym, keywords);
 		st.addSymbolToScope(currentScope, theSym);
 
+	}
+
+	private String expandKeywords(List<KeywordContext> list) {
+		String result = "";
+		for (KeywordContext k : list){
+			result += k.getText() + " ";
+		}
+		return result;
 	}
 
 	@Override
@@ -562,6 +587,32 @@ public class SymbolTableBuilder extends LoggingListener {
 				theSym.addAttribute(Symbol.CAT_DATA_TYPE, Symbol.DT_ALPHANUM);
 			}
 			st.addSymbolToScope(currentScope, theSym);
+		}
+	}
+
+	@Override
+	public void enterDcl_ds(Dcl_dsContext ctx) {
+		// TODO Auto-generated method stub
+		super.enterDcl_ds(ctx);
+		System.out.println(ctx.getText());
+		String dsName = ctx.ds_name().getText().trim();
+		if (dsName.length() > 0){
+			Symbol ds = new Symbol();
+			ds.setName(dsName);
+			ds.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_DATA_STRUCTURE);
+			st.addSymbolToScope(currentScope, ds);
+		}
+		List<Dcl_ds_fieldContext> sf = ctx.dcl_ds_field();
+		for (Dcl_ds_fieldContext f : sf){
+			Symbol curSym = new Symbol();
+			curSym.addAttribute(Symbol.CAT_DEFINITION_TYPE, Symbol.DF_SUBFIELD);
+//			//curSym.addAttribute(Symbol.CAT_DECIMAL_POSITIONS, f.);
+//			theSym.addAttribute(Symbol.CAT_SYMBOL_ORIGIN, Symbol.SO_D_SPECS);
+//			setLength(fromPosition, toPosition, theSym);
+//			setDataType(rpgDataType, theSym, keywords);
+//			st.addSymbolToScope(currentScope, theSym);
+//
+//			curSym.addAttribute(category, value);
 		}
 	}
 

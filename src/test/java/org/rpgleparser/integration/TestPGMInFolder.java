@@ -35,6 +35,7 @@ public class TestPGMInFolder {
                 rpgsource = TestUtils.padSourceLines(rpgsource, false);
                 List<CommonToken> tokenList = TestUtils.getParsedTokens(rpgsource, errors);
                 if (errors.size() > 0) {
+                		System.out.println("The failing file is :"  + file.getName());
                     break;
                 }
             }

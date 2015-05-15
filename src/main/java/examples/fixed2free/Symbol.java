@@ -1,19 +1,21 @@
 package examples.fixed2free;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
 import examples.fixed2free.integration.ColumnInfo;
 import examples.fixed2free.integration.TableInfoProvider;
 
-public class Symbol {
+public class Symbol implements Comparator<Symbol>{
+	public static final String CAT_ARRAY_ELEMENT_COUNT = "ARRAY_ELEMS";
+
 	/** I am using static strings rather than enums because I want the user to be able to 
 	 * extend what is held in the list of symbol attributes.
 	 * The list of symbols that are predefined start with DT_
 	 * 
 	 */
 	private static final String CAT_CCSID = "CCSID";
-
 	public static final String CAT_DATA_TYPE="DATA TYPE";
 	/**
 	 * CAT_DECIMAL_POSITIONS Is an optional attribute that pertains only to Packed and Zoned fields
@@ -27,18 +29,14 @@ public class Symbol {
 	 */
 	public static final String CAT_DEFINITION_TYPE = "DEFINITION_TYPE";
 	/**
-	 * Element type is intended to be used with Arrays only
-	 */
-	public static final String CAT_ELEMENT_TYPE = "ELEMENT_TYPE";
-	/**
 	 * CAT_LENGTH Is an optional attribute that records the length of a field
 	 */
 	public static final String CAT_LENGTH = "LENGTH";
 	public static final String CAT_RECORD_FORMAT = "RECORD_FORMAT";
 	public static final String CAT_SYMBOL_ORIGIN = "SYMBOL_ORIGIN";
 	public static final String CAT_TABLE_NAME = "TABLE_NAME";
-	public static final String CAT_VARYING_LENGTH = "VARYING";
 	
+	public static final String CAT_VARYING_LENGTH = "VARYING";
 	public static final String DF_ARRAY="ARRAY";
 	public static final String DF_CONSTANT="CONSTANT";
 	public static final String DF_DATA_STRUCTURE = "DATA STRUCTURE";
@@ -47,8 +45,8 @@ public class Symbol {
 	public static final String DF_PARAMETER_INTERFACE = "PARAMETER INTERFACE";
 	public static final String DF_PLIST="PLIST";
 	public static final String DF_PRECOMPILER_SYMBOL="PRECOMPILER SYMBOL";
-	public static final String DF_PROTOTYPE = "PROTOTYPE";
 	
+	public static final String DF_PROTOTYPE = "PROTOTYPE";
 	public static final String DF_STANDALONE = "STAND-ALONE";
 	public static final String DF_SUBFIELD = "SUBFIELD";
 	public static final String DF_TABLE="TABLE";
@@ -69,12 +67,13 @@ public class Symbol {
 	public static final String DT_TIMESTAMP="TIMESTAMP";
 	public static final String DT_UCS2="UCS2";
 	public static final String DT_UNSIGNED="UNSIGNED";
-	public static final String DT_ZONED="ZONED";
 	
+	public static final String DT_ZONED="ZONED";
 	public static final String SO_C_SPECS = "C-SPECS";
 	public static final String SO_D_SPECS = "D-SPECS";
 	public static final String SO_EXTERNAL_FILE_DESCRIPTION = "EXTERNAL_FILE";
 	public static final String SO_I_SPECS = "I-SPECS";
+
 	public static final String SO_O_SPECS = "O-SPECS";
 
 	public static void sqlAttr2rpg(ColumnInfo col, Symbol sym) {
@@ -194,6 +193,10 @@ public class Symbol {
 			attributes.put(category, value);
 		}
 	}
+	@Override
+	public int compare(Symbol o1, Symbol o2) {
+		return o1.getName().compareTo(o2.getName());
+	}
 	public String getAnAttribute(String key) {
 		return attributes.get(key);
 	}
@@ -202,6 +205,9 @@ public class Symbol {
 	}
 	public String getName() {
 		return name;
+	}
+	public boolean hasAttribute(String category) {
+		return attributes.containsKey(category);
 	}
 	public void setAttributes(Map<String, String> attributes) {
 		this.attributes = attributes;
@@ -218,9 +224,6 @@ public class Symbol {
 			sb.append("\t\tKey = " + e.getKey() + "\t Value = " + e.getValue() + newline);
 		}
 		return sb.toString();
-	}
-	public boolean hasAttribute(String category) {
-		return attributes.containsKey(category);
 	}
 
 }
