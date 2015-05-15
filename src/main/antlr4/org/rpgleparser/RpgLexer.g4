@@ -777,7 +777,8 @@ PS_KEYWORDS : {getCharPositionInLine()==43}? ~[\r\n]+ -> popMode;
 
 // ----------------- Everything FIXED_DefSpec of a tag ---------------------
 mode FIXED_DefSpec;
-BLANK_SPEC : '                                                                           ';
+BLANK_SPEC : {getCharPositionInLine()==6}? 
+    '                                                                           ';
 CONTINUATION_NAME : [ ]* ~[\r\n ]+ CONTINUATION {setText(getText().substring(0,getText().length()-3));} -> pushMode(CONTINUATION_ELIPSIS) ;
 CONTINUATION : '...' ;
 NAME : {getCharPositionInLine()==6}? WORD5 WORD5 WORD5 {setText(getText().trim());};
@@ -810,7 +811,8 @@ CE_NEWLINE: NEWLINE ->skip;
 
 // ----------------- Everything FIXED_FileSpec of a tag ---------------------
 mode FIXED_FileSpec;
-FS_BLANK_SPEC : '                                                                           ' -> type(BLANK_SPEC);
+FS_BLANK_SPEC : {getCharPositionInLine()==6}? 
+    '                                                                           ' -> type(BLANK_SPEC);
 FS_RecordName : {getCharPositionInLine()==6}? WORD5 WORD5;
 FS_Type: {getCharPositionInLine()==16}? [a-zA-Z ];
 FS_Designation: {getCharPositionInLine()==17}? [a-zA-Z ];
@@ -830,7 +832,8 @@ FS_WhiteSpace : {getCharPositionInLine()>=80}? [ \t]+ -> skip  ; // skip spaces,
 FS_EOL : NEWLINE -> type(EOL),popMode;
 
 mode FIXED_OutputSpec;
-OS_BLANK_SPEC : '                                                                           ' -> type(BLANK_SPEC);
+OS_BLANK_SPEC : {getCharPositionInLine()==6}? 
+    '                                                                           ' -> type(BLANK_SPEC);
 OS_RecordName : {getCharPositionInLine()==6}? WORD5 WORD5;
 OS_AndOr: {getCharPositionInLine()==6}? '         ' ([aA][nN][dD] | [oO][rR] ' ') '  ' -> 
 	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode);
@@ -1371,7 +1374,8 @@ C2_FACTOR2: {getCharPositionInLine()==35}?
 C2_OTHER: {getCharPositionInLine()<35}? ~('\r' | '\n') ->skip;
 
 mode FIXED_InputSpec;
-IS_BLANK_SPEC : '                                                                           ' -> type(BLANK_SPEC);
+IS_BLANK_SPEC : {getCharPositionInLine()==6}? 
+    '                                                                           ' -> type(BLANK_SPEC);
 IS_FileName: {getCharPositionInLine()==6}? WORD5_WCOLON WORD5_WCOLON ;
 IS_FieldReserved: {getCharPositionInLine()==6}? '                        ' -> pushMode(FIXED_I_FIELD_SPEC),skip ;
 IS_ExtFieldReserved: {getCharPositionInLine()==6}? '              ' -> pushMode(FIXED_I_EXT_FIELD_SPEC),skip ;
