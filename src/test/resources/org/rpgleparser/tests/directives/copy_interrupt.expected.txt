@@ -1,0 +1,70 @@
+/*===TOKENS===*/
+DS_FIXED                 <D>
+NAME                     <defaultRFH2>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_DS              <DS>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_QUALIFIED        <qualified>
+EOL                      <
+>
+DIRECTIVE                <D/>
+DIR_COPY                 <copy>
+WS                       < >
+DIR_OtherText            <QMQM/QRPGLESRC,CMQRFH2G>
+EOL                      <                                                                
+>
+DS_FIXED                 <D>
+NAME                     <pscLen>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+/*===TREE===*/
+(r
+  (statement
+    (dcl_ds
+      D
+      (ds_name defaultRFH2)
+      ' '
+      ' '
+      DS
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (keyword (keyword_qualified qualified))
+      \r\n
+      (directive
+        D/
+        copy
+        ' '
+        QMQM/QRPGLESRC,CMQRFH2G
+        '                                                                \r\n'
+      )
+      (parm_fixed
+        D
+        (ds_name pscLen)
+        ' '
+        ' '
+        '  '
+        '       '
+        '     10'
+        I
+        ' 0'
+        ' '
+        <EOF>
+      )
+    )
+  )
+)
+/*======*/

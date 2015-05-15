@@ -216,7 +216,7 @@ dcl_ds:  (DS_DataStructureStart identifier keyword*
 	(
 			DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_DS FROM_POSITION TO_POSITION
 		DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF)
-		parm_fixed*
+		((directive | parm_fixed)* parm_fixed)?
 		
 	);
 dcl_ds_field: DS_SubField? identifier datatype? keyword* FREE_SEMI;
