@@ -25,6 +25,7 @@ statement:
 	| fspec_fixed 
 	| block
 	| cspec_fixed
+	| blank_spec
 	| cspec_fixed_sql
 	| ispec_fixed 
 	| hspec_fixed
@@ -542,7 +543,8 @@ ospec_fixed: OS_FIXED (((OS_RecordName
 	OS_Type
 	(os_fixed_pgmdesc1 | os_fixed_pgmdesc2)) | os_fixed_pgmfield) 
 	  |os_fixed_pgmdesc_compound)
-	OS_Comments?;
+	OS_Comments?
+	(EOL | EOF);
 
 os_fixed_pgmdesc1:
 	OS_FetchOverflow
@@ -664,11 +666,36 @@ fs_keyword:
 
 fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addution 
 	FS_Sequence FS_Format FS_RecordLength FS_Limits FS_LengthOfKey FS_RecordAddressType FS_Organization FS_Device FS_Reserved 
-	fs_keyword* (EOL|FS_EOL|EOF);	
+	fs_keyword* (EOL|EOF);	
 cspec_fixed: CS_FIXED
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(cspec_fixed_standard|cspec_fixed_x2);
+
+cspec_blank:
+	CS_FIXED
+	BlankIndicator
+	BlankFlag 
+	BlankIndicator
+	CS_BlankFactor
+	CS_OperationAndExtender_Blank
+	CS_BlankFactor
+	CS_BlankFactor
+	CS_FieldLength
+	CS_DecimalPositions
+	BlankIndicator
+	BlankIndicator
+	BlankIndicator
+	(EOL | EOF);
+
+blank_spec:
+  cspec_blank
+  | ( DS_FIXED | FS_FIXED | IS_FIXED | OS_FIXED)
+	BLANK_SPEC
+	(EOL | EOF)
+ ;
+
+
 
 // -------- interfaces --------  
 piBegin: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_PI FROM_POSITION TO_POSITION

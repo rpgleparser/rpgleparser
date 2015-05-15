@@ -5,6 +5,32 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
 OP_IF                    <IF>
+ID                       <isTest>
+'('                      <(>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <ENDIF>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <IF>
 BIF_ERROR                <%ERROR>
 '('                      <(>
 ')'                      <)>
@@ -132,6 +158,46 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 /*===TREE===*/
 (r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          IF
+          (c_free
+            (expression
+              (function (functionName (free_identifier (idOrKeyword isTest))) (args ( )))
+            )
+          )
+          \r\n
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            ENDIF
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+        )
+      )
+    )
+  )
   (statement
     (block
       (ifstatement

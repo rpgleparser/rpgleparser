@@ -1,4 +1,6 @@
  
+     C                   IF        isTest()
+     C                   ENDIF
      C                   IF        %ERROR()
      C                   IF        %STATUS(CUST)=1211
      C                   OPEN      CUST

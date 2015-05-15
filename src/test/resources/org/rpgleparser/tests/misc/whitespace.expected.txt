@@ -1,0 +1,83 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+CS_OperationAndExtender_Blank<          >
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+DS_FIXED                 <D>
+BLANK_SPEC               <                                                                           >
+EOL                      <
+>
+FS_FIXED                 <F>
+BLANK_SPEC               <                                                                           >
+EOL                      <
+>
+IS_FIXED                 <I>
+BLANK_SPEC               <                                                                           >
+EOL                      <
+>
+OS_FIXED                 <O>
+BLANK_SPEC               <                                                                           >
+HIDDEN:OS_Comments       <                  >
+/*===TREE===*/
+(r
+  (statement
+    (blank_spec
+      (cspec_blank
+        C
+        '  '
+        ' '
+        '  '
+        '              '
+        '          '
+        '              '
+        '              '
+        '     '
+        '  '
+        '  '
+        '  '
+        '  '
+        \r\n
+      )
+    )
+  )
+  (statement
+    (blank_spec
+      D
+      '                                                                           '
+      \r\n
+    )
+  )
+  (statement
+    (blank_spec
+      F
+      '                                                                           '
+      \r\n
+    )
+  )
+  (statement
+    (blank_spec
+      I
+      '                                                                           '
+      \r\n
+    )
+  )
+  (statement
+    (blank_spec
+      O
+      '                                                                           '
+      <EOF>
+    )
+  )
+)
+/*======*/
