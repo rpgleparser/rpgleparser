@@ -40,6 +40,11 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.10</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.jt400</groupId>
+			<artifactId>jt400</artifactId>
+			<version>8.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
