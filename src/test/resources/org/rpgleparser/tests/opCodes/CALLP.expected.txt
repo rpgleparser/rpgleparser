@@ -1,5 +1,5 @@
 /*===TOKENS===*/
-COMMENT_SPEC_FIXED       <C*>
+HIDDEN:COMMENT_SPEC_FIXED<C*>
 HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -16,7 +16,7 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
-COMMENT_SPEC_FIXED       < *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -128,7 +128,7 @@ DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <
 >
-COMMENT_SPEC_FIXED       < *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -146,7 +146,6 @@ EOL                      <
 >
 /*===TREE===*/
 (r
-  (statement (star_comments C*))
   (statement
     (cspec_fixed
       C
@@ -171,7 +170,6 @@ EOL                      <
       )
     )
   )
-  (statement (star_comments ' *'))
   (statement
     (cspec_fixed
       C
@@ -360,7 +358,6 @@ EOL                      <
     )
   )
   (statement (directive ' /' (endfree_directive end-free) \n))
-  (statement (star_comments ' *'))
   (statement
     (cspec_fixed
       C

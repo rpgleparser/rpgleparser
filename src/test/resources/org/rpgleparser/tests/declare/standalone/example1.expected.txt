@@ -1,5 +1,5 @@
 /*===TOKENS===*/
-COMMENT_SPEC_FIXED       <D*>
+HIDDEN:COMMENT_SPEC_FIXED<D*>
 HIDDEN:COMMENTS_TEXT     < fixed-form declarations                                                                    >
 DS_FIXED                 <D>
 NAME                     <string>
@@ -112,7 +112,6 @@ StringLiteralEnd         <'>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
-  (statement (star_comments D*))
   (statement
     (dspec
       D

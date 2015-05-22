@@ -1,5 +1,5 @@
 /*===TOKENS===*/
-COMMENT_SPEC_FIXED       < *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENTS_TEXT     < The RPG source, using the ALIAS keyword:                                                   >
 FS_FIXED                 <F>
 FS_RecordName            <myfile    >
@@ -38,7 +38,6 @@ ID                       <custRec>
 ')'                      <)>
 /*===TREE===*/
 (r
-  (statement (star_comments ' *'))
   (statement
     (fspec_fixed
       F

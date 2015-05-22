@@ -36,7 +36,7 @@ HIDDEN:FREE_COMMENTS80   <130128        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <3.00 >
-COMMENT_SPEC_FIXED       < *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENTS_TEXT     <                                                                              130128        >
 HIDDEN:LEAD_WS5_Comments <4.00 >
 CS_FIXED                 <C>
@@ -155,7 +155,6 @@ CS_Comments              <130128        >
       \r\n
     )
   )
-  (statement (star_comments ' *'))
   (statement
     (cspec_fixed
       C

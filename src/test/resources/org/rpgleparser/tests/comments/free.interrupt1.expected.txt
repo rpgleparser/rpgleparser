@@ -1,0 +1,44 @@
+/*===TOKENS===*/
+OP_IF                    <IF>
+ID                       <X>
+'='                      <=>
+NUMBER                   <1>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Interrupting comment                                                                       >
+AND                      <AND>
+ID                       <Y>
+'='                      <=>
+NUMBER                   <2>
+FREE_SEMI                <;>
+OP_ENDIF                 <ENDIF>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          (op_if
+            IF
+            (expression
+              (expression
+                (expression (identifier (free_identifier (idOrKeyword X))))
+                =
+                (expression (number 1))
+              )
+              AND
+              (expression
+                (expression (identifier (free_identifier (idOrKeyword Y))))
+                =
+                (expression (number 2))
+              )
+            )
+          )
+          ;
+        )
+        (endif (op_endif ENDIF) ;)
+      )
+    )
+  )
+)
+/*======*/

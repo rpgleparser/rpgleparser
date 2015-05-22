@@ -1,7 +1,7 @@
 /*===TOKENS===*/
-COMMENT_SPEC_FIXED       < *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENTS_TEXT     <.. 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8 ...+... 9 ...+... 10>
-COMMENT_SPEC_FIXED       <D*>
+HIDDEN:COMMENT_SPEC_FIXED<D*>
 HIDDEN:COMMENTS_TEXT     <ame+++++++++++ETDsFrom+++To/L+++IDc.Keywords+++++++++++++++++++++++++++++Comments++++++++++++>
 DS_FIXED                 <D>
 NAME                     <open>
@@ -83,8 +83,6 @@ EOL                      <
 >
 /*===TREE===*/
 (r
-  (statement (star_comments ' *'))
-  (statement (star_comments D*))
   (dcl_pr
     (prBegin
       D
