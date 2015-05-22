@@ -1,6 +1,5 @@
 /*===TOKENS===*/
 COMMENT_SPEC_FIXED       < *>
-HIDDEN:COMMENTS_TEXT     <                                                                                            >
 COMMENT_SPEC_FIXED       < *>
 HIDDEN:COMMENTS_TEXT     < The following example shows nested SELECT groups.  The employee                            >
 COMMENT_SPEC_FIXED       < *>
@@ -10,7 +9,6 @@ HIDDEN:COMMENTS_TEXT     < regular, and 'S' for student.  Depending on the emplo
 COMMENT_SPEC_FIXED       < *>
 HIDDEN:COMMENTS_TEXT     < (EmpTyp), the number of days off per year (Days) will vary.                                >
 COMMENT_SPEC_FIXED       < *>
-HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -93,7 +91,6 @@ BlankIndicator           <  >
 EOL                      <
 >
 COMMENT_SPEC_FIXED       < *>
-HIDDEN:COMMENTS_TEXT     <                                                                                            >
 COMMENT_SPEC_FIXED       < *>
 HIDDEN:COMMENTS_TEXT     < When the employee type is 'R', the days off depend also on the                             >
 COMMENT_SPEC_FIXED       < *>
@@ -105,7 +102,6 @@ HIDDEN:COMMENTS_TEXT     < 5 years, 5 extra days are added.  Between 6 and 10 ye
 COMMENT_SPEC_FIXED       < *>
 HIDDEN:COMMENTS_TEXT     < extra days are added, and over 10 years, 20 extra days are added.                          >
 COMMENT_SPEC_FIXED       < *>
-HIDDEN:COMMENTS_TEXT     <                                                                                            >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >

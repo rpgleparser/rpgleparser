@@ -1,0 +1,58 @@
+/*===TOKENS===*/
+DS_FIXED                 <D>
+NAME                     <JBDTTM>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_DS              <DS>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+COMMENT_SPEC_FIXED       < *>
+HIDDEN:COMMENTS_TEXT     < Job date/time                                                                               >
+DS_FIXED                 <D>
+NAME                     <##JDT>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <      1>
+TO_POSITION              <      7>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+/*===TREE===*/
+(r
+  (statement
+    (dcl_ds
+      D
+      (ds_name JBDTTM)
+      ' '
+      ' '
+      DS
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      \r\n
+      (star_comments ' *')
+      (parm_fixed
+        D
+        (ds_name ##JDT)
+        ' '
+        ' '
+        '  '
+        '      1'
+        '      7'
+        ' '
+        ' 0'
+        ' '
+        <EOF>
+      )
+    )
+  )
+)
+/*======*/

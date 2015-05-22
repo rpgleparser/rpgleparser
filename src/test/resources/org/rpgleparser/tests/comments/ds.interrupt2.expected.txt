@@ -1,0 +1,43 @@
+/*===TOKENS===*/
+DS_DataStructureStart    <DCL-DS>
+ID                       <data_str_1>
+FREE_SEMI                <;>
+HIDDEN:COMMENTS          <  //>
+HIDDEN:COMMENTS_TEXT     < Program described data structure                                                         >
+ID                       <emp_name>
+CHAR                     <CHAR>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <first_name>
+CHAR                     <CHAR>
+'('                      <(>
+NUMBER                   <10>
+')'                      <)>
+FREE_SEMI                <;>
+DS_DataStructureEnd      <END-DS>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (dcl_ds
+      DCL-DS
+      (identifier (free_identifier (idOrKeyword data_str_1)))
+      ;
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword emp_name)))
+        (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
+        ;
+      )
+      (dcl_ds_field
+        (identifier (free_identifier (idOrKeyword first_name)))
+        (datatype (datatypeName CHAR) (args ( (expression (number 10)) )))
+        ;
+      )
+      (end_dcl_ds END-DS)
+      ;
+    )
+  )
+)
+/*======*/

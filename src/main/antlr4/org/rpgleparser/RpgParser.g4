@@ -30,7 +30,7 @@ statement:
 	| ispec_fixed 
 	| hspec_fixed
 	| star_comments
-	| free_comments
+	| free_linecomments
 	| blank_line 
 	| directive 
 	| free
@@ -40,7 +40,7 @@ endSource: endSourceHead endSourceLine*;
 endSourceHead: END_SOURCE ;
 endSourceLine: EOS_Text (EOL|EOF);
 
-star_comments: COMMENT_SPEC_FIXED ;//comments COMMENTS_EOL;
+star_comments: COMMENT_SPEC_FIXED comments?;//comments COMMENTS_EOL;
 free_comments: COMMENTS comments COMMENTS_EOL;
 free_linecomments: COMMENTS comments;
 comments: COMMENTS_TEXT; 
@@ -147,7 +147,7 @@ keyword_likerec : KEYWORD_LIKEREC OPEN_PAREN intrecname=simpleExpression
 keyword_noopt : KEYWORD_NOOPT;
 keyword_occurs : KEYWORD_OCCURS OPEN_PAREN (numeric_constant=number | function | identifier) CLOSE_PAREN; 
 keyword_opdesc : KEYWORD_OPDESC;
-keyword_options : KEYWORD_OPTIONS OPEN_PAREN identifier+ CLOSE_PAREN; 
+keyword_options : KEYWORD_OPTIONS OPEN_PAREN identifier (COLON identifier)* CLOSE_PAREN; 
 keyword_overlay : KEYWORD_OVERLAY OPEN_PAREN name=simpleExpression (COLON (SPLAT_NEXT | pos=simpleExpression))? CLOSE_PAREN; 
 keyword_packeven : KEYWORD_PACKEVEN;
 keyword_perrcd : KEYWORD_PERRCD OPEN_PAREN numeric_constant=simpleExpression CLOSE_PAREN;
@@ -206,7 +206,9 @@ sign: PLUS | MINUS;
 dcl_ds:  (DS_DataStructureStart identifier keyword*    
 		(
 			(
-				(FREE_SEMI dcl_ds_field*)?
+				(FREE_SEMI 
+				   (star_comments | directive | dcl_ds_field)*
+				)?
 			end_dcl_ds 
 		)
 		 | keyword_likerec
@@ -216,7 +218,7 @@ dcl_ds:  (DS_DataStructureStart identifier keyword*
 	(
 			DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_DS FROM_POSITION TO_POSITION
 		DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF)
-		((directive | parm_fixed)* parm_fixed)?
+		((star_comments |directive | parm_fixed)* parm_fixed)?
 		
 	);
 dcl_ds_field: DS_SubField? identifier datatype? keyword* FREE_SEMI;

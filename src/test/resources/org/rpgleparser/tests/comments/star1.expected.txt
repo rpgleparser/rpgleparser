@@ -1,0 +1,6 @@
+/*===TOKENS===*/
+COMMENT_SPEC_FIXED       < *>
+HIDDEN:COMMENTS_TEXT     < Job date/time                                                                                >
+/*===TREE===*/
+(r (statement (star_comments ' *')))
+/*======*/

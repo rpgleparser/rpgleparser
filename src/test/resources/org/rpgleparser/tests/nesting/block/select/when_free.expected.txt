@@ -110,7 +110,6 @@ DIR_ENDFREE              <end-free>
 EOL                      <
 >
 HIDDEN:EMPTY_LINE        <                                                                           >
-HIDDEN:COMMENTS_TEXT     <                   >
 /*===TREE===*/
 (r
   (statement (directive ' /' (beginfree_directive free) \n))
