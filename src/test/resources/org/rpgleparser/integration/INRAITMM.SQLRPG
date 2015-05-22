@@ -1,0 +1,1624 @@
+      //========================================================================
+      //  Program Name   - INRAITMM
+      //  Program Title  - Ancillary Item Prompt
+      //  Foreign DSPF   - Yes
+      //  Worklist #     - INCW00H92A- ARO2- P061- RARO Prompts
+      //  Author         - William Warner
+      //  Date Created   - 11/19/2009
+      //  Based On Shell - xLRPRNT (05/19/2005)
+      //========================================================================
+      //  Purpose of Program:
+      //      This program is intended to work as a category level prompt      }
+      //      for ancillary buying's displyay screen.
+      //========================================================================
+      //  Parameters:
+      //      {?Describe all parameters, including usage and legal values.     }
+      //      Name           Description              Use   Size  Type  Required
+      //      -------------  -----------------------  ---  -----  ----  --------
+      //   1) inCompany      Company number for        I     3      P        Yes
+      //                     category being prompted
+      //   2) inDepartment   Department for category   I     3      P        Yes
+      //                     being prompted.
+      //   3) inLocation     Location for item prompt  I     5      P        Yes
+      //   4) inAllowOHOODisplay...                    I     1      N        Yes
+      //                     Indicator deciding if
+      //                     prompt program should
+      //                     allow for display of
+      //                     a locations OH/OO
+      //   5) inAllowDepotAvailDisplay...              I     1      N        Yes
+      //                     Indicator deciding if
+      //                     prompt program should
+      //                     allow for display of
+      //                     items depot available.
+      //   6) inDefaultAllowOHOO...                    I     1      N        Yes
+      //                     This indicator is used
+      //                     to preset the programs
+      //                     display filtering on
+      //                     on hand/on order.
+      //   7) inDefaultAllowDepotAvial...              I     1      N        Yes
+      //                     This indicator is used
+      //                     to preset the programs
+      //                     display filtering on
+      //                     depot available.
+      //   8) ioCategory1    Category Code 1          I/O    1      A        Yes
+      //   9) ioCategory2    Category Code 2          I/O    1      A        Yes
+      //  10) ioCategory3    Category Code 3          I/O    1      A        Yes
+      //  11) ioCategoryDescription...
+      //                     Category Code Desc.       O    30      A        Yes
+      //  12) outItemNumber  Item number returned to   O     9      P        Yes
+      //                     calling program.
+      //  13) outItemDescription1...                   O    25      A        Yes
+      //                     Field 1 description of
+      //                     prompted item.
+      //  14) outItemDescription2...                   O    25      A        Yes
+      //                     Field 2 description of
+      //                     prompted item.
+      //  15) outSignDescription1...                   O    25      A        Yes
+      //                     Field 1 sign description
+      //                     of prompted item.
+      //  16) outSignDescription2...                   O    25      A        Yes
+      //                     Field 2 sign description
+      //                     of prompted item.
+      //========================================================================
+      //  Related Programs / Interfaces:
+      //      INR3213- Review Auto Replenishment Orders
+      //========================================================================
+      //  Revisions:
+      //
+      //     Date     Programmer  Worklist #  Worklist / Task Description
+      //  ----------  ----------  ----------  ----------------------------------
+      // 03/22/2011  KBRISME     INMO00IY    Remmove INR2835
+      //- Deleted INR2835 since it is not being used.
+      //========================================================================
+     H option(*nodebugio : *srcstmt)
+     H dftactgrp(*no)
+     H actgrp(*caller)
+     H bnddir('PRDBNDDIR' : 'QC2LE')
+     H datfmt(*iso)
+
+      // =======================================================================
+      // - Files / Tables -
+      // =======================================================================
+     FINDAITMM  CF   E             workstn usropn
+     F                                     extfile(dspfName)
+     F                                     indds(dspfIndDS)
+     F                                     infds(dspfInfDS)
+     F                                     sfile(S01:rrnS01)
+     F                                     ignore(MS01)
+
+      // =======================================================================
+      // - Prototype Definition - Entry (Main) Procedure
+      // =======================================================================
+     D INRAITMM        PR                  extpgm('INRAITMM')
+     D  inCompany                          like(typeCompany)              const
+     D  inDepartment                       like(typeDepartment)           const
+     D  inLocation                         like(typeLocation)             const
+     D  inAllowOHOODisplay...
+     D                                 N                                  const
+     D  inAllowDepotAvailDisplay...
+     D                                 N                                  const
+     D  inDefaultAllowOHOO...
+     D                                 N                                  const
+     D  inDefaultAllowDepotAvail...
+     D                                 N                                  const
+     D  ioCategory1                        like(typeCategory)
+     D  ioCategory2                        like(typeCategory)
+     D  ioCategory3                        like(typeCategory)
+     D  outCategoryDescription...
+     D                                     like(typeCategoryDescription)
+     D  outItemNumber                      like(typeItem)
+     D  outItemDescription1...
+     D                                     like(typeItemDescription)
+     D  outItemDescription2...
+     D                                     like(typeItemDescription)
+     D  outSignDescription1...
+     D                                     like(typeItemDescription)
+     D  outSignDescription2...
+     D                                     like(typeItemDescription)
+
+     D INRAITMM        PI
+     D  inCompany                          like(typeCompany)              const
+     D  inDepartment                       like(typeDepartment)           const
+     D  inLocation                         like(typeLocation)             const
+     D  inAllowOHOODisplay...
+     D                                 N                                  const
+     D  inAllowDepotAvailDisplay...
+     D                                 N                                  const
+     D  inDefaultAllowOHOO...
+     D                                 N                                  const
+     D  inDefaultAllowDepotAvail...
+     D                                 N                                  const
+     D  ioCategory1                        like(typeCategory)
+     D  ioCategory2                        like(typeCategory)
+     D  ioCategory3                        like(typeCategory)
+     D  outCategoryDescription...
+     D                                     like(typeCategoryDescription)
+     D  outItemNumber                      like(typeItem)
+     D  outItemDescription1...
+     D                                     like(typeItemDescription)
+     D  outItemDescription2...
+     D                                     like(typeItemDescription)
+     D  outSignDescription1...
+     D                                     like(typeItemDescription)
+     D  outSignDescription2...
+     D                                     like(typeItemDescription)
+
+      /define getJobLang_AIS001
+      /copy *libl/QRPGLESRC,AIS001PR
+
+      /define typeDef_COS001
+      /define getLocShortName_COS001
+      /copy *libl/QRPGLESRC,COS001PR
+
+      /define typeDefinitions_INS007
+      /define getCategoryDescription_INS007
+      /copy *libl/QRPGLESRC,INS007PR
+
+      /define constantDefinitions_INS036
+      /define typeDefinitions_INS036
+      /define getWarehouseAssociatedDepotLab_INS036
+      /copy *libl/QRPGLESRC,INS036PR
+
+      /define putErrMsg_UTS001
+      /define rmvMsgFromQ_UTS001
+      /copy *libl/QRPGLESRC,UTS001PR
+
+      /define setCursorToCurrent_UTS005
+      /define setCursorToField_UTS005
+      /define setSubfileToLine_UTS005
+      /define resetErrors_UTS005
+      /copy *libl/QRPGLESRC,UTS005PR
+
+      /define getCurrentRDB_UTS006
+      /define putSQLDiagnostics_UTS006
+      /define setActiveRDB_UTS006
+      /copy *libl/QRPGLESRC,UTS006PR
+
+      // =======================================================================
+      // - Prototype Definitions - External Procedures
+      // =======================================================================
+      // displayHelp - Display Help Information
+     D displayHelp     PR                  extpgm('UTR067')
+     D  program                            like(typeObjectName) const
+     D  field                              like(typeObjectName) const
+     D                                     options(*noPass)
+     D  language                           like(typeLanguage)   const
+     D                                     options(*noPass)
+
+     D depotAvailable...
+     D                 PR                  extpgm('INR2079')
+     D  outOption                     3A                                  const
+     D  outCompany                    1  0                                const
+     D  outOpticalDepot...
+     D                                5  0                                const
+     D  ioOpticalLab                  5  0
+     D  outItemNumber                 7  0                                const
+     D  outSafetyStock...
+     D                                1A                                  const
+     D  quantityOnHand...
+     D                                     like(typeQuantity)
+
+      // =======================================================================
+      // - Prototype Definitions - Internal Procedures
+      // =======================================================================
+     D beginProgram    PR
+     D closeCursor     PR
+     D clearScreen1    PR
+
+     D displayPrompt   PR
+     D  dspfField                          like(typeObjectName) const
+     D displayScreen1  PR
+     D endProgram      PR
+
+     D fetchNextBlock  PR              N
+     D fetchNextRow    PR              N
+
+     D getDepotAvailable...
+     D                 PR                  like(typeQuantity)
+     D  itemNumber                         like(typeItem)                 const
+
+     D loadScreen1     PR
+     D loadSubfileControl1...
+     D                 PR
+     D openCursor      PR
+     D processScreen1  PR
+     D resetScreen     PR
+     D testUserAction1...
+     D                 PR
+     D validateInput1  PR
+
+      // =======================================================================
+      // - Global Constants -
+      // =======================================================================
+      // Copy Member UTRCPY001:  Global Named Constants for All Programs
+      /copy *libl/QRPGLESRC,UTRCPY001
+
+      // Copy Member UTRCPY002:  Named Constants for Function Key AID Bytes
+      /copy *libl/QRPGLESRC,UTRCPY002
+     D F_TOGGLE        C                   x'3A'
+      // Copy Member UTRCPY003:  Constants for Display Programs
+      /copy *libl/QRPGLESRC,UTRCPY003
+
+      // Copy Member UTRCPY007:  Constants for Common SQLCODE Values
+      /copy *libl/QRPGLESRC,UTRCPY007
+
+      // Copy Member UTRCPY008:  Constants for File & Program Errors
+      /copy *libl/QRPGLESRC,UTRCPY008
+
+      // Copy Member INRCPY001:  IN Message File and Standard Message IDs
+      /copy *libl/QRPGLESRC,INRCPY001
+
+      // Program errors
+     D SQL_ERROR_OCCURRED_CALL_HELP_DESK...
+     D                 C                   'UIN3613'
+     D INVALID_SELECTION_ENTRY...
+     D                 C                   'UIN0036'
+
+      // Number of Records per Subfile Page (SFLPAG * #lines per subfile entry)
+     D S01_RECORDS_PER_PAGE...
+     D                 C                   15
+
+     D COLUMN_COUNT    C                   9
+     D ACTIVE_STATUS   C                   'A'
+     D OUI             C                   'O'
+
+      // Constant ORDER_REPLENISHMENT is set to the original option name 'ORE'
+      // due to the fact that inr2079 uses this value to determine processing.
+      // In order to change this value to match the option name for this program
+      // it would require changes to more than one program in order to expand
+      // the field size to 5.
+     D ORDER_REPLENISHMENT...
+     D                 C                   'ORE'
+
+     D POSITION_C1LOCOHOO...
+     D                 C                   71
+     D POSITION_C1DEPQTYAV...
+     D                 C                   72
+
+      // =======================================================================
+      // - Program Status Data Structure -
+      // =======================================================================
+     D                SDS
+     D sdProgram         *proc
+
+      // =======================================================================
+      // This multiple-occurrence external data structure allows for blocked SQL
+      // fetches from the database.
+      // =======================================================================
+      // Number of Rows Read per Block Fetch (blocking factor)
+      // IMPORTANT:  The SQL precompiler requires that this constant be declared
+      //             prior to where it is referenced.
+     D BLOCK_FACTOR    C                   15
+
+     D itemPromptBlock...
+     D                 DS                  occurs(BLOCK_FACTOR)
+     D  ipbItemNumber...
+     D                                     like(typeItem)
+     D  ipbCategory1...
+     D                                     like(typeCategory)
+     D  ipbCategory2...
+     D                                     like(typeCategory)
+     D  ipbCategory3...
+     D                                     like(typeCategory)
+     D  ipbItemDescription1...
+     D                                     like(typeItemDescription)
+     D  ipbItemDescription2...
+     D                                     like(typeItemDescription)
+     D  ipbSignDescription1...
+     D                                     like(typeItemDescription)
+     D  ipbSignDescription2...
+     D                                     like(typeItemDescription)
+     D  ipbLocationOHOO...
+     D                                     like(typeSmallInteger)
+
+     D nullIndicators...
+     D                 DS                  occurs(BLOCK_FACTOR)
+     D  nulls                              like(typeNullIndicator)
+     D                                     dim(COLUMN_COUNT)
+
+      // This ds is used to break up the category entered into the control
+      // record for prompting.
+     D                 DS
+     D  category                           like(typeCategoryCode)
+     D   category1                         like(typeCategory)
+     D                                     overlay(category)
+     D   category2                         like(typeCategory)
+     D                                     overlay(category : *next)
+     D   category3                         like(typeCategory)
+     D                                     overlay(category : *next)
+
+     D                 DS
+     D c1CategoryCode                      like(typeCategoryCode)
+     D  c1categoryCode1...
+     D                                     like(typeCategory)
+     D                                     overlay(c1CategoryCode)
+     D  c1CategoryCode2...
+     D                                     like(typeCategory)
+     D                                     overlay(c1CategoryCode : *next)
+     D  c1CategoryCode3...
+     D                                     like(typeCategory)
+     D                                     overlay(c1CategoryCode : *next)
+
+      // =======================================================================
+      // - Internal Data Structure Definitions -
+      // =======================================================================
+
+      // Copy Member UTRCPY006:  Boolean Array - Rename Indicators 01..99
+      /copy *libl/QRPGLESRC,UTRCPY006
+     D displaySignInfo...
+     D                                 N   overlay(dspfIndDs:49)
+     D displayLocationOHOO...
+     D                                 N   overlay(dspfIndDs:48)
+     D displayDepotAvailable...
+     D                                 N   overlay(dspfIndDs:47)
+     D errorC1LocOHOO                  N   overlay(dspfIndDs:71)
+     D errorC1DepQtyAv...
+     D                                 N   overlay(dspfIndDs:72)
+
+      // =======================================================================
+      // - Display File Information Data Structure (INFDS) -
+      // =======================================================================
+     D dspfInfDS       DS
+     D  keyPressed           369    369A
+     D  minimumRRN           378    379I 0
+
+      // =======================================================================
+      // - Global User-Defined Types -
+      // =======================================================================
+      // Copy Member UTRCPY004:  Global Enterprise-Level Type Definitions
+      /copy *libl/QRPGLESRC,UTRCPY004
+     D typeCategoryDescription...
+     D                 S             30A
+     D typeFlag        S              1A
+     D typeItemDescription...
+     D                 S             25A
+     D typeQuantity    S              7P 0
+     D typeRegisterDescription...
+     D                 S             18A
+     D typeSignDescription...
+     D                 S             22A
+     D typeNullIndicator...
+     D                 S              4B 0
+
+      // =======================================================================
+      // - Global Variables -
+      // =======================================================================
+      // Copy Member UTRCPY005:  Variables for Display Programs
+      /copy *libl/QRPGLESRC,UTRCPY005
+
+     D dspfName        S                   like(typeObjectName) inz('INDAITMM')
+
+      // Local Variables for Input Parameters
+     D activeStatus    S                   like(typeFlag)
+     D                                     inz(ACTIVE_STATUS)
+     D allowDepotAvailDisplay...
+     D                 S               N   inz(FALSE)
+     D allowOHOODisplay...
+     D                 S               N   inz(FALSE)
+     D categoryCode1   S                   like(typeCategory)             inz
+     D categoryCode2   S                   like(typeCategory)             inz
+     D categoryCode3   S                   like(typeCategory)             inz
+     D company         S                   like(typeCompany)              inz
+     D cursorOpen      S               N                                  inz
+     D defaultAllowDepotAvail...
+     D                 S                   like(typeFlag)                 inz
+     D defaultAllowOHOO...
+     D                 S                   like(typeFlag)                 inz
+     D department      S                   like(typeDepartment)           inz
+     D entryDepotAvailableValue...
+     D                 S                   like(typeFlag)                 inz
+     D entryOHOOValue...
+     D                 S                   like(typeFlag)                 inz
+     D itemDescription...
+     D                 S             32A   varying
+     D location        S                   like(typeLocation)             inz
+     D locationAssociatedDepot...
+     D                 S                   like(typeLocation)
+     D returnItemDescription1...
+     D                 S                   like(typeItemDescription)      inz
+     D returnItemDescription2...
+     D                 S                   like(typeItemDescription)      inz
+     D returnItemNumber...
+     D                 S                   like(typeItem)                 inz
+     D returnSignDescription1...
+     D                 S                   like(typeItemDescription)      inz
+     D returnSignDescription2...
+     D                 S                   like(typeItemDescription)      inz
+     D saveCategory    S                   like(typeCategoryCode)         inz
+     D saveItemDescription...
+     D                 S                   like(typeItemDescription)      inz
+     D saveDepotQuantityAvailable...
+     D                 S                   like(typeFlag)
+     D                                     inz
+     D saveLocationOHOO...
+     D                 S                   like(typeFlag)
+     D                                     inz
+     D signDisplay     S               N   inz(FALSE)
+
+     D endOfProgram    S               N   inz(FALSE)
+     D jobLanguage     S                   like(typeLanguage)             inz
+     D numberLinesS01  S                   like(typeRelativeRecordNumber) inz
+     D rrnS01          S                   like(typeRelativeRecordNumber) inz
+     D saveRrnS01      S                   like(typeRelativeRecordNumber) inz
+
+      // Local Variables for SQL Connection processing:
+     D currentRDB      S                   like(typeRelationalDatabase)      inz
+     D initialRDB      S                   like(typeRelationalDatabase)      inz
+     D relationalDatabase...
+     D                 S                   like(typeRelationalDatabase)      inz
+
+     D systemName      S              8A   dtaara(INSYSNAM)                     INA400
+
+     D currentRow      S                   like(typeIndex)                   inz
+     D rowsFetched     S                   like(typeIndex)                   inz
+
+      /free
+       // ======================================================================
+       // - SQL Compiler Options -
+       // This statement is not an executable statement.  Instead, it provides
+       // instruction to the SQL Precompiler only.
+       // ======================================================================
+       exec sql set option closqlcsr = *endactgrp,
+                           commit    = *none,
+                           alwblk    = *allread,
+                           dlyprp    = *yes,
+                           alwcpydta = *optimize,
+                           rdbcnnmth = *duw,
+                           naming    = *sys,
+                           datfmt    = *iso,
+                           timfmt    = *hms
+                           ;
+
+       exec sql declare itemPromptCursor asensitive no scroll cursor
+       with hold for
+       with WII_DATA as
+       (SELECT ZXWHSE as warehouse, ZXCAT1 as caty1, ZXCAT2 as caty2,
+               ZXCAT3 as caty3, ZXITEM as item,
+               (coalesce(sum(ZXOHUR),0) +
+                coalesce(sum(ZXPDUN),0) +
+                coalesce(sum(ZXITUR),0)) as TOTAL
+               from INWWIIP
+                where  ZXCMPY = :company
+                and    ZXDEPT = :department
+                and    ZXWHSE = :location
+               group by ZXWHSE, ZXCAT1, ZXCAT2 , ZXCAT3, ZXITEM)
+       select A.IMITEM, A.IMCAT1, A.IMCAT2, A.IMCAT3, A.IMDES1, A.IMDES2,
+              C.WISGN1, C.WISGN2, B.TOTAL
+       from  INITMMP A
+       join  WII_DATA B
+       on    B.CATY1 = A.IMCAT1
+       and   B.CATY2 = A.IMCAT2
+       and   B.CATY3 = A.IMCAT3
+       and   B.ITEM  = A.IMITEM
+       join  INWITMP C
+       on    C.WIWHS5 = B.WAREHOUSE
+       and   C.WIDEPT = A.IMDEPT
+       and   C.WIITEM = B.ITEM
+       exception join INOPCDP
+       on    OCCMPY = A.IMCMPY
+       and   OCDEPT = A.IMDEPT
+       and   OCCAT1 = A.IMCAT1
+       and   OCCAT2 = A.IMCAT2
+       and   OCCAT3 = A.IMCAT3
+       where A.IMCMPY = :company
+       and   A.IMDEPT = :department
+       and   A.IMSTAT = :activeStatus
+       and   C.WIWHS5 = :location
+       and    ((A.IMCAT1 = :category1 and
+                :category1 <> ' ') or
+                :category1 = ' ')
+       and    ((A.IMCAT2 = :category2 and
+               :category2 <> ' ') or
+               :category2 = ' ')
+       and    ((A.IMCAT3 = :category3 and
+               :category3 <> ' ') or
+               :category3 = ' ')
+       and    (
+              ((A.IMDES1 like :itemDescription
+                and :itemDescription <> ' ')
+                or (A.IMDES2 like :itemDescription
+                    and :itemDescription <> ' ')
+                or :itemDescription = ' ')
+                or     ((C.WISGN1 like :itemDescription
+                         and :itemDescription <> ' ')
+                         or (C.WISGN2 like :itemDescription
+                             and :itemDescription <> ' ')
+                         or :itemDescription = ' ')
+                         )
+       order by IMCAT1, IMCAT2, IMCAT3, IMITEM
+       for fetch only
+       optimize for 15 rows
+       with NC
+                ;
+
+       // ======================================================================
+       //                            MAINLINE SECTION
+       // ======================================================================
+       beginProgram ();
+
+       // Loop until program termination is requested.
+       dow not endOfProgram;
+          select;
+          when screen = 1;
+             processScreen1 ();
+          other;
+             endOfProgram = TRUE;
+          endsl;
+       enddo;
+
+       endProgram ();
+       return;
+      /end-free
+
+      // =======================================================================
+      // Procedure beginProgram:
+      // =======================================================================
+      // Initialize Program Variables and Settings
+      // =======================================================================
+     P beginProgram    B
+     D                 PI
+
+      // =======================================================================
+      // - Local Variables - Static
+      // =======================================================================
+
+      // This variable is used to identify the first execution of this module.
+      // Upon completion of the "firstPass" logic, this variable will be set to
+      // FALSE.
+     D firstPass       S               N   static inz(TRUE)
+
+      // For Display programs that open the display file (DSPF) a single time
+      // for multiple executions, "currentLanguage" is used to detect when
+      // the "jobLanguage" has changed since the prior execution, thus allowing
+      // the current DSPF to be closed and the foreign DSPF to be opened.
+     D currentLanguage...
+     D                 S                   static like(typeLanguage)
+      /free
+       // ======================================================================
+       // Determine the current Relational Database Connection.  Then,
+       // conditionally connect to the appropriate database.
+       // ======================================================================
+       in systemName;
+       relationalDatabase = systemName;
+       currentRDB = getCurrentRDB (sdProgram);
+       initialRDB = currentRDB;
+
+       if currentRDB <> relationalDatabase;
+          setActiveRDB (sdProgram : relationalDatabase);
+       endif;
+
+       if firstPass;
+          category       = *blanks;
+          c1Location     = *zeros;
+          c1LocName      = *blanks;
+          c1Category     = *blanks;
+          c1CatDesc      = *blanks;
+          c1ItemDesc     = *blanks;
+          c1LocOHOO      = *blanks;
+          c1DepQtyAv     = *blanks;
+          // Clear return fields.
+          returnItemNumber       = *zeros;
+          returnItemDescription1 = *blanks;
+          returnItemDescription2 = *blanks;
+          returnSignDescription1 = *blanks;
+          returnSignDescription2 = *blanks;
+          firstPass = FALSE;
+          screenAction = LOAD_SCREEN;
+       endif;
+
+       jobLanguage = getJobLang ();
+
+       endOfProgram = FALSE;
+       // ======================================================================
+       // Move input parameters to local variables.  When optional parameters
+       // are not passed, pointer errors can occur if those parameters are later
+       // referenced by the program.  By storing optional parameters into local
+       // variables, pointer errors of this type can be avoided.
+       // ======================================================================
+       if %addr(inCompany) = *null
+       or inCompany = *zeros;
+          endOfProgram = TRUE;
+       else;
+          company = inCompany;
+       endif;
+
+       if %addr(inDepartment) = *null
+       or inDepartment = *zeros;
+          endOfProgram = TRUE;
+       else;
+          department = inDepartment;
+       endif;
+
+       if %addr(inLocation) = *null
+       or inLocation = *zeros;
+          endOfProgram = TRUE;
+       else;
+          location = inLocation;
+       endif;
+
+       if %addr(inAllowOHOODisplay) = *null
+       or inAllowOHOODisplay = *blanks;
+          endOfProgram = TRUE;
+       else;
+          allowOHOODisplay = inAllowOHOODisplay;
+       endif;
+
+       if %addr(inAllowDepotAvailDisplay) = *null
+       or inAllowDepotAvailDisplay = *blanks;
+          endOfProgram = TRUE;
+       else;
+          allowDepotAvailDisplay = inAllowDepotAvailDisplay;
+       endif;
+
+       if %addr(inDefaultAllowOHOO) = *null
+       or inDefaultAllowOHOO = *blanks;
+          endOfProgram = TRUE;
+       else;
+          if inDefaultAllowOHOO;
+             if jobLanguage = ENGLISH;
+                defaultAllowOHOO = YES;
+             else;
+                defaultAllowOHOO = OUI;
+             endif;
+          else;
+             defaultAllowOHOO = NO;
+          endif;
+       endif;
+
+       if %addr(inDefaultAllowDepotAvail) = *null
+       or inDefaultAllowDepotAvail = *blanks;
+          endOfProgram = TRUE;
+       else;
+          if inDefaultAllowDepotAvail;
+             if jobLanguage = ENGLISH;
+                defaultAllowDepotAvail = YES;
+             else;
+                defaultAllowDepotAvail = OUI;
+             endif;
+          else;
+             defaultAllowDepotAvail = NO;
+          endif;
+       endif;
+
+       if %addr(ioCategory1) = *null;
+          categoryCode1 = *blanks;
+       else;
+          categoryCode1 = ioCategory1;
+       endif;
+
+       if %addr(ioCategory2) = *null;
+          categoryCode2 = *blanks;
+       else;
+          categoryCode2 = ioCategory2;
+       endif;
+
+       if %addr(ioCategory3) = *null;
+          categoryCode3 = *blanks;
+       else;
+          categoryCode3 = ioCategory3;
+       endif;
+
+       if not endOfProgram;
+       // ======================================================================
+       // Get job-level information.
+       // ======================================================================
+          getWarehouseAssociatedDepotLab(location :
+                                         locationAssociatedDepot)
+                                         ;
+          // In the event that the jobLanguage changes, close the current DSPF and
+          // open the appropriate DSPF.
+          if currentLanguage <> jobLanguage;
+             currentLanguage = jobLanguage;
+
+             if %open(INDAITMM);
+                close INDAITMM;
+             endif;
+
+             reset dspfName;
+
+             if jobLanguage <> ENGLISH;
+                dspfName = %trim(dspfName) + jobLanguage;
+             endif;
+          endif;
+
+          if not %open(INDAITMM);
+             open INDAITMM;
+             mc1pgmq = sdProgram;
+          endif;
+
+          endOfProgram = FALSE;
+          resetErrors (sdProgram : csrPosRow : csrPosCol : errorFound :
+                       errorIndicators);
+
+          c1Location      = location;
+          c1LocName       = getLocShortName(c1Location);
+          c1CategoryCode1 = categoryCode1;
+          c1CategoryCode2 = categoryCode2;
+          c1CategoryCode3 = categoryCode3;
+          c1Category      = c1CategoryCode;
+          category        = c1CategoryCode;
+          if c1Category <> *blanks;
+             c1CatDesc = getCategoryDescription(company       :
+                                                department    :
+                                                categoryCode1 :
+                                                categoryCode2 :
+                                                categoryCode3 :
+                                                jobLanguage   :
+                                                messageId)
+                                                ;
+          endif;
+          if allowOHOODisplay;
+             displayLocationOHOO = TRUE;
+             c1LocOHOO           = defaultAllowOHOO;
+          else;
+             displayLocationOHOO = FALSE;
+          endif;
+
+          if allowDepotAvailDisplay;
+             displayDepotAvailable = TRUE;
+             c1DepQtyAv            = defaultAllowDepotAvail;
+          else;
+             displayDepotAvailable = FALSE;
+          endif;
+          saveCategory               = c1Category;
+          saveLocationOHOO           = c1LocOHOO;
+          saveDepotQuantityAvailable = c1DepQtyAv;
+          entryOHOOValue             = c1LocOHOO;
+          entryDepotAvailableValue   = c1DepQtyAv;
+
+          screen       = 1;
+          screenAction = LOAD_SCREEN;
+       endif;
+
+      /end-free
+     P beginProgram    E
+
+      // =======================================================================
+      // Procedure clearScreen1:
+      // =======================================================================
+      // This procedure is used to clear the subfile.
+      // =======================================================================
+     P clearScreen1    B
+     D clearScreen1    PI
+      /free
+       sflDsp     = FALSE;
+       sflDspCtl  = FALSE;
+       sflEnd     = FALSE;
+       write C01;
+
+       sflDspCtl  = TRUE;
+       sflNxtChg  = FALSE;
+
+       rrnS01     = 0;
+       saveRrnS01 = 0;
+       c1DspR     = 1;
+       endSubfile = FALSE;
+
+       // Default to display the subfile as a single line, turn on SFLDROP
+       sflFold    = TRUE;
+
+       return;
+      /end-free
+     P clearScreen1    E
+
+      // =======================================================================
+      // Procedure closeCursor:
+      // =======================================================================
+     P closeCursor     B
+     D                 PI
+
+      /free
+       exec sql
+       CLOSE itemPromptCursor;
+
+       select;
+       when sqlCode = SQL_SUCCESSFUL;
+          cursorOpen = FALSE;
+       when sqlcode = CURSOR_NOT_OPEN;
+         // no action
+       when sqlCode <> SQL_SUCCESSFUL;
+          putSQLDiagnostics (sdProgram : %addr(SQLCA) : 'closeCursor' : FALSE);
+          // SQL Error Occurred
+          putErrMsg ( SQL_ERROR_OCCURRED_CALL_HELP_DESK :
+                      MESSAGE_FILE : sdProgram :
+                      jobLanguage );
+       endsl;
+
+       return;
+      /end-free
+     P closeCursor     E
+
+      // =======================================================================
+      //?Procedure displayPrompt:
+      // =======================================================================
+      // If prompt key was pressed, decide what should be done.
+      // =======================================================================
+     P displayPrompt   B
+     D                 PI
+     D  dspfField                          like(typeObjectName) const
+
+      // =======================================================================
+      // - Prototype Definitions - External Procedures
+      // =======================================================================
+
+      //Category Prompt
+     D categoryPrompt  PR                  extpgm('INRACATD')
+     D  inCompany                          like(typeCompany)
+     D  inDepartment                       like(typeDepartment)
+     D  outCategory1                       like(typeCategory)
+     D  outCategory2                       like(typeCategory)
+     D  outCategory3                       like(typeCategory)
+     D  outCategoryDescription...
+     D                                     like(typeCategoryDescription)
+
+      // =======================================================================
+      // -Local Data Structures-
+      // =======================================================================
+     D                 DS
+     D fullCategory                   3A
+     D returnCategory1...
+     D                                     like(typeCategory)
+     D                                     overlay(fullCategory)
+     D returnCategory2...
+     D                                     like(typeCategory)
+     D                                     overlay(fullCategory : *next)
+     D returnCategory3...
+     D                                     like(typeCategory)
+     D                                     overlay(fullCategory : *next)
+
+      /free
+       monitor;
+
+          messageId = *blanks;
+          select;
+          when dspfField = 'C1CATEGORY';
+             fullCategory = c1Category;
+             categoryPrompt(company         :
+                            department      :
+                            returnCategory1 :
+                            returnCategory2 :
+                            returnCategory3 :
+                            c1CatDesc)
+                            ;
+             c1Category = fullCategory;
+          endsl;
+
+       on-error PGM_CALLED_PROGRAM_FAILED;
+          putErrMsg(INPUT_PARAMETER_ERROR : *blanks : sdProgram : jobLanguage);
+       on-error *all;
+          putErrMsg(FIELD_NOT_PROMPTABLE : *blanks : sdProgram : jobLanguage);
+       endmon;
+
+       return;
+      /end-free
+     P displayPrompt   E
+
+      // =======================================================================
+      // Procedure displayScreen1:
+      // =======================================================================
+      // This procedure is used to display the subfile.
+      // =======================================================================
+     P displayScreen1  B
+     D displayScreen1  PI
+      /free
+       // Display current screen and wait for input
+       write R01;
+       write MC01;
+       exfmt C01;
+
+       return;
+      /end-free
+     P displayScreen1  E
+
+      // =======================================================================
+      // Procedure endProgram:
+      // =======================================================================
+      // Load output parameters, close files/tables, and any other program
+      // termination activity.
+      // =======================================================================
+     P endProgram      B
+     D endProgram      PI
+      /free
+
+       ioCategory1 = category1;
+       ioCategory2 = category2;
+       ioCategory3 = category3;
+
+       if keyPressed <> F_CANCEL;
+          if %addr(outCategoryDescription) <> *null;
+             outCategoryDescription = c1CatDesc;
+          endif;
+
+          if %addr(outItemNumber) <> *null;
+             outItemNumber = returnItemNumber;
+          endif;
+
+          if %addr(outItemDescription1) <> *null;
+             outItemDescription1 = returnItemDescription1;
+          endif;
+
+          if %addr(outItemDescription2) <> *null;
+             outItemDescription2 = returnItemDescription2;
+          endif;
+
+          if %addr(outSignDescription1) <> *null;
+             outSignDescription1 = returnSignDescription1;
+          endif;
+
+          if %addr(outSignDescription2) <> *null;
+             outSignDescription2 = returnSignDescription2;
+          endif;
+       endif;
+
+       currentRDB = getCurrentRDB(sdProgram);
+       if currentRDB <> initialRDB;
+          setActiveRDB(sdProgram : initialRDB);
+       endif;
+
+       return;
+      /end-free
+     P endProgram      E
+
+      // =======================================================================
+      // Procedure fetchNextBlock:
+      // =======================================================================
+      // Fetch next block of rows from cursor 1
+      // =======================================================================
+     P fetchNextBlock  B
+     D                 PI              N
+
+      // =======================================================================
+      // - Local Variables -
+      // =======================================================================
+     D fetchRows       S              5I 0 inz(BLOCK_FACTOR)
+     D rowFound        S               N   inz(FALSE)
+
+      /free
+         reset itemPromptBlock(*);
+         reset nullIndicators(*);
+
+         exec sql
+         FETCH  itemPromptCursor
+         FOR   :fetchRows ROWS
+         INTO  :itemPromptBlock :nullIndicators;
+
+         select;
+           when sqlCode = SQL_SUCCESSFUL;
+             rowsFetched = sqlErrD(3);
+             rowFound = TRUE;
+
+           when sqlCode = END_OF_CURSOR;
+             rowFound = FALSE;
+
+           other;
+             putSQLDiagnostics (sdProgram : %addr(SQLCA) :
+                                'fetchNextBlock' : FALSE );
+            // SQL Error Occurred
+             putErrMsg ( SQL_ERROR_OCCURRED_CALL_HELP_DESK :
+                         MESSAGE_FILE : sdProgram :
+                         jobLanguage );
+           endsl;
+
+         return rowFound;
+      /end-free
+     P fetchNextBlock  E
+
+      // =======================================================================
+      // Procedure fetchNextRow:
+      // =======================================================================
+      // Fetch next row from cursor 1
+      // =======================================================================
+     P fetchNextRow    B
+     D                 PI              N
+      // =======================================================================
+      // - Local Variables -
+      // =======================================================================
+     D rowFound        S               N   inz(FALSE)
+
+      /free
+       if currentRow  = *zero
+       or currentRow >= rowsFetched;
+          rowFound   = fetchNextBlock ();
+          currentRow = 1;
+       else;
+          rowFound   = TRUE;
+          currentRow = currentRow + 1;
+       endif;
+
+       %occur(itemPromptBlock) = currentRow;
+       return rowFound;
+      /end-free
+     P fetchNextRow    E
+
+      // =======================================================================
+      // Procedure getDepotAvailable:
+      // =======================================================================
+     P getDepotAvailable...
+     P                 B
+     D                 PI                  like(typeQuantity)
+     D  itemNumber                         like(typeItem)                 const
+
+      // =======================================================================
+      // -Local Variables-
+      // =======================================================================
+     D company1        S              1P 0
+      // The lab parameter is used to identify a location as a lab.  This option
+      // will not be used for lab locations so it is set straight to zero.
+     D lab             S                   like(typeLocation)
+     D safetyStock     S              1A   inz(' ')
+     D onHand          S                   like(typeQuantity)
+     D itemNumber7     S              7  0
+
+      /free
+       company1    = company;
+       onHand      = *zeros;
+       safetyStock = *blanks;
+       itemNumber7 = itemNumber;
+       //The lab parameter is used only when the location being queried is
+       //a lab.  Since this option is not intended for labs the value should
+       // always be zero.
+       lab         = *zeros;
+
+       depotAvailable(ORDER_REPLENISHMENT     :
+                      company1                :
+                      locationAssociatedDepot :
+                      lab                     :
+                      itemNumber7             :
+                      safetyStock             :
+                      onHand);
+
+        // Do not return negative values.
+       if onHand < 0;
+          onHand = 0;
+       endif;
+
+       return onHand;
+
+      /end-free
+     P getDepotAvailable...
+     P                 E
+
+
+      // =======================================================================
+      // Procedure loadScreen1:
+      // =======================================================================
+      // This procedure is used to load the Subfile records.
+      // =======================================================================
+     P loadScreen1     B
+     D loadScreen1     PI
+
+      // =======================================================================
+      // -Local Data Structures-
+      // =======================================================================
+     D                 DS
+     D fullCategory                        like(typeCategoryCode)
+     D  cat1                               like(typeCategory)
+     D                                     overlay(fullCategory)
+     D  cat2                               like(typeCategory)
+     D                                     overlay(fullCategory : *next)
+     D  cat3                               like(typeCategory)
+     D                                     overlay(fullCategory : *next)
+      // =======================================================================
+      // - Local Variables -
+      // =======================================================================
+     D rowFound        S               N   inz(FALSE)
+     D depotQtyAvailable...
+     D                 S                   like(typeQuantity)
+     D registerDescription...
+     D                 S                   like(typeRegisterDescription)
+     D signDescription3...
+     D                 S                   like(typeItemDescription)
+
+      /free
+       // Start with the last SFL record loaded
+       rowFound          = fetchNextRow();
+
+       rrnS01            = saveRrnS01;
+       numberLinesS01    = 0;
+       depotQtyAvailable = *zeros;
+
+       select;
+       when c1LocOHOO  <> YES
+       and  c1DepQtyAv <> YES;
+          dow rowFound
+          and numberLinesS01 < S01_RECORDS_PER_PAGE
+          and rrnS01         < MAXIMUM_SUBFILE_RECORDS;
+             rrnS01         = rrnS01         + 1;
+             numberLinesS01 = numberLinesS01 + 1;
+
+             if numberLinesS01 = 1;
+                firstLine = rrnS01;
+             endif;
+
+             // Load Subfile fields.
+             clear S01;
+
+             cat1       = ipbCategory1;
+             cat2       = ipbCategory2;
+             cat3       = ipbCategory3;
+             s1Category = fullCategory;
+             s1ItemNbr  = ipbItemNumber;
+             s1HItmDes1 = ipbItemDescription1;
+             s1HItmDes2 = ipbItemDescription2;
+             s1HSgnDes1 = ipbSignDescription1;
+             s1HSgnDes2 = ipbSignDescription2;
+             if signDisplay;
+                s1ItemDes1 = s1HSgnDes1;
+                s1ItemDes2 = s1HSgnDes2;
+             else;
+                s1ItemDes1 = s1HItmDes1;
+                s1ItemDes2 = s1HItmDes2;
+             endif;
+
+             s1LocOHOO  = ipbLocationOHOO;
+             s1DepQtyAv = getDepotAvailable(ipbItemNumber);
+             write S01;
+
+             if numberLinesS01 < S01_RECORDS_PER_PAGE;
+                // Get next matching record from INCATDP.
+                rowFound = fetchNextRow();
+             endif;
+          enddo;
+       //Write subfile record only if there is location on hand/on order.
+       when c1LocOHOO = YES
+       and  c1DepQtyAv <> YES;
+          dow rowFound
+          and numberLinesS01 < S01_RECORDS_PER_PAGE
+          and rrnS01         < MAXIMUM_SUBFILE_RECORDS;
+             if ipbLocationOHOO > 0;
+                rrnS01         = rrnS01         + 1;
+                numberLinesS01 = numberLinesS01 + 1;
+
+                if numberLinesS01 = 1;
+                   firstLine = rrnS01;
+                endif;
+
+                // Load Subfile fields.
+                clear S01;
+
+                cat1       = ipbCategory1;
+                cat2       = ipbCategory2;
+                cat3       = ipbCategory3;
+                s1Category = fullCategory;
+                s1ItemNbr  = ipbItemNumber;
+                s1HItmDes1 = ipbItemDescription1;
+                s1HItmDes2 = ipbItemDescription2;
+                s1HSgnDes1 = ipbSignDescription1;
+                s1HSgnDes2 = ipbSignDescription2;
+                if signDisplay;
+                   s1ItemDes1 = s1HSgnDes1;
+                   s1ItemDes2 = s1HSgnDes2;
+                else;
+                   s1ItemDes1 = s1HItmDes1;
+                   s1ItemDes2 = s1HItmDes2;
+                endif;
+
+                s1LocOHOO  = ipbLocationOHOO;
+                s1DepQtyAv = getDepotAvailable(ipbItemNumber);
+                write S01;
+             endif;
+             if numberLinesS01 < S01_RECORDS_PER_PAGE;
+                // Get next matching record from INCATDP.
+                rowFound = fetchNextRow();
+             endif;
+          enddo;
+       //Write subfile record only if there is depot available.
+       when c1LocOHOO <> YES
+       and  c1DepQtyAv = YES;
+          dow rowFound
+          and numberLinesS01 < S01_RECORDS_PER_PAGE
+          and rrnS01         < MAXIMUM_SUBFILE_RECORDS;
+             depotQtyAvailable = getDepotAvailable(ipbItemNumber);
+             if depotQtyAvailable > 0;
+                rrnS01         = rrnS01         + 1;
+                numberLinesS01 = numberLinesS01 + 1;
+
+                if numberLinesS01 = 1;
+                   firstLine = rrnS01;
+                endif;
+
+                // Load Subfile fields.
+                clear S01;
+
+                cat1       = ipbCategory1;
+                cat2       = ipbCategory2;
+                cat3       = ipbCategory3;
+                s1Category = fullCategory;
+                s1ItemNbr  = ipbItemNumber;
+                s1HItmDes1 = ipbItemDescription1;
+                s1HItmDes2 = ipbItemDescription2;
+                s1HSgnDes1 = ipbSignDescription1;
+                s1HSgnDes2 = ipbSignDescription2;
+                if signDisplay;
+                   s1ItemDes1 = s1HSgnDes1;
+                   s1ItemDes2 = s1HSgnDes2;
+                else;
+                   s1ItemDes1 = s1HItmDes1;
+                   s1ItemDes2 = s1HItmDes2;
+                endif;
+
+                s1LocOHOO  = ipbLocationOHOO;
+                s1DepQtyAv = depotQtyAvailable;
+                write S01;
+             endif;
+             if numberLinesS01 < S01_RECORDS_PER_PAGE;
+                // Get next matching record from INCATDP.
+                rowFound = fetchNextRow();
+             endif;
+          enddo;
+       //Write subfile record only if there is both locatin on hand/on order
+       //and depot available.
+       when c1LocOHOO  = YES
+       and  c1DepQtyAv = YES;
+          dow rowFound
+          and numberLinesS01 < S01_RECORDS_PER_PAGE
+          and rrnS01         < MAXIMUM_SUBFILE_RECORDS;
+             depotQtyAvailable = getDepotAvailable(ipbItemNumber);
+             if  depotQtyAvailable > 0
+             and ipbLocationOHOO   > 0;
+                rrnS01         = rrnS01         + 1;
+                numberLinesS01 = numberLinesS01 + 1;
+
+                if numberLinesS01 = 1;
+                   firstLine = rrnS01;
+                endif;
+
+                // Load Subfile fields.
+                clear S01;
+
+                cat1       = ipbCategory1;
+                cat2       = ipbCategory2;
+                cat3       = ipbCategory3;
+                s1Category = fullCategory;
+                s1ItemNbr  = ipbItemNumber;
+                s1HItmDes1 = ipbItemDescription1;
+                s1HItmDes2 = ipbItemDescription2;
+                s1HSgnDes1 = ipbSignDescription1;
+                s1HSgnDes2 = ipbSignDescription2;
+                if signDisplay;
+                   s1ItemDes1 = s1HSgnDes1;
+                   s1ItemDes2 = s1HSgnDes2;
+                else;
+                   s1ItemDes1 = s1HItmDes1;
+                   s1ItemDes2 = s1HItmDes2;
+                endif;
+                s1LocOHOO  = ipbLocationOHOO;
+                s1DepQtyAv = depotQtyAvailable;
+
+                write S01;
+             endif;
+             if numberLinesS01 < S01_RECORDS_PER_PAGE;
+                // Get next matching record from INCATDP.
+                rowFound = fetchNextRow();
+             endif;
+          enddo;
+       endsl;
+
+       endSubfile = not rowFound;
+       saveRrnS01 = rrnS01;
+
+       // Indicate More records / this may be needed rather than loading blank pages
+       if rrnS01 >= MAXIMUM_SUBFILE_RECORDS
+       or endSubfile = TRUE;
+          sflEnd = TRUE;
+       else;
+          sflEnd = FALSE;
+       endif;
+
+       // Empty Subfile? / this may be needed if no blank pages
+       sflDsp = (rrnS01 <> 0);
+
+       if rrnS01 = 0;
+          putErrMsg (NO_RECORDS_FOUND : MESSAGE_FILE :
+                     sdProgram        : jobLanguage);
+       else;
+          // Set Subfile Display if Records Loaded to Subfile
+          // Set the cursor position to the first record of the last screen.
+          c1DspR = firstLine;
+       endif;
+
+       screenAction = PROCESS_SCREEN;
+
+       return;
+      /end-free
+     P loadScreen1     E
+
+      // =======================================================================
+      // Procedure loadSubfileControl1:
+      // =======================================================================
+      // This procedure is used to reset the Subfile Control format.
+      // =======================================================================
+     P loadSubfileControl1...
+     P                 B
+     D loadSubfileControl1...
+     D                 PI
+      /free
+       clearScreen1 ();
+       openCursor();
+       return;
+      /end-free
+     P loadSubfileControl1...
+     P                 E
+
+      // =======================================================================
+      // Procedure openCursor:
+      // =======================================================================
+     P openCursor      B
+     D                 PI
+
+      /free
+
+       if cursorOpen;
+          closeCursor();
+       endif;
+
+       exec sql
+       OPEN itemPromptCursor;
+
+       select;
+       when sqlCode = SQL_SUCCESSFUL;
+          currentRow = *zero;
+          cursorOpen = TRUE;
+       when sqlCode = CURSOR_OPEN;
+         // no action;
+       other;
+          putSQLDiagnostics (sdProgram : %addr(SQLCA) : 'openCursor' : FALSE);
+          // SQL Error Occurred
+          putErrMsg ( SQL_ERROR_OCCURRED_CALL_HELP_DESK :
+                      MESSAGE_FILE : sdProgram :
+                      jobLanguage );
+       endsl;
+
+       return;
+      /end-free
+     P openCursor      E
+
+      // =======================================================================
+      // Procedure processScreen1:
+      // =======================================================================
+      // This procedure is used to control Subfile processing.
+      // =======================================================================
+     P processScreen1  B
+     D processScreen1  PI
+      /free
+       if screenAction = LOAD_SCREEN;
+          clearScreen1 ();
+          loadSubfileControl1 ();
+          loadScreen1 ();
+       endif;
+
+       displayScreen1 ();
+       testUserAction1 ();
+
+       return;
+      /end-free
+     P processScreen1  E
+
+      // =======================================================================
+      // Procedure resetScreen:
+      // =======================================================================
+     P resetScreen     B
+     D                 PI
+
+      /free
+       c1Category      = *blanks;
+       c1CatDesc       = *blanks;
+       c1ItemDesc      = *blanks;
+       category        = *blanks;
+       itemDescription = *blanks;
+       saveCategory    = *blanks;
+       screenAction    = LOAD_SCREEN;
+       if allowOHOODisplay;
+          c1LocOHOO = entryOHOOValue;
+       else;
+          c1LocOHOO = *blanks;
+       endif;
+
+       if allowDepotAvailDisplay;
+          c1DepQtyAv = entryDepotAvailableValue;
+       else;
+          c1DepQtyAv = *blanks;
+       endif;
+
+      /end-free
+     P resetScreen     E
+
+      // =======================================================================
+      // Procedure testUserAction1:
+      // =======================================================================
+      // This procedure is used as test what function key was pressed by the
+      // user and to execute the corresponding action.
+      // =======================================================================
+     P testUserAction1...
+     P                 B
+     D testUserAction1...
+     D                 PI
+      /free
+       resetErrors (sdProgram : csrPosRow : csrPosCol : errorFound :
+                    errorIndicators);
+
+       select;
+       when keyPressed = F_CANCEL;
+          endOfProgram = TRUE;
+          c1DspR = 1;
+
+       when keyPressed = F_RESTART;
+          resetScreen();
+       when keyPressed = F_HELP;
+          // go out to the help window / return to same position on screen
+          displayHelp (sdProgram : csrFld : jobLanguage);
+          setCursorToCurrent (csrRow : csrCol : csrPosRow : csrPosCol);
+
+          select;
+          when csrRRN <> 0;
+             c1DspR = csrRRN;
+          when minimumRRN <> 0;
+             c1DspR = minimumRRN;
+          endsl;
+
+       when keyPressed = F_PROMPT;
+          // Prompt for valid values / return to same position on screen
+          displayPrompt(csrFld);
+          setCursorToCurrent(csrRow : csrCol : csrPosRow : csrPosCol);
+          if sflDsp;
+             c1DspR = setSubfileToLine(c1DspR : csrRRN : c1TopR);
+          endif;
+
+       when keyPressed = F_TOGGLE;
+          if signDisplay;
+             displaySignInfo = FALSE;
+             signDisplay     = FALSE;
+          else;
+             displaySignInfo = TRUE;
+             signDisplay     = TRUE;
+          endif;
+          screenAction = LOAD_SCREEN;
+       when keyPressed = F_PAGE_DOWN;
+          loadScreen1 ();
+
+       when keyPressed = F_ENTER;
+          // Detect position-to or subfile entry selection.
+          validateInput1 ();
+
+          if  not errorFound
+          and screenAction = PROCESS_SCREEN;
+             endOfProgram           = TRUE;
+             returnItemNumber       = s1ItemNbr;
+             returnItemDescription1 = s1HItmDes1;
+             returnItemDescription2 = s1HItmDes2;
+             returnSignDescription1 = s1HSgnDes1;
+             returnSignDescription2 = s1HSgnDes2;
+          else;
+             // Load query fields.
+             category            = c1Category;
+             if category <> *blanks;
+                c1CatDesc  = getCategoryDescription(company     :
+                                                    department  :
+                                                    category1   :
+                                                    category2   :
+                                                    category3   :
+                                                    jobLanguage :
+                                                    messageId)
+                                                    ;
+             endif;
+             if c1ItemDesc = *blanks;
+                itemDescription = *blanks;
+             else;
+                itemDescription = %subst('%' +
+                                         %trimr(c1ItemDesc) +
+                                         '%' : 1);
+             endif;
+          endif;
+
+          // Set C1DSPR to the current relative record so that the cursor will
+          // be positioned to the same row if the program is invoked again.
+          select;
+          when csrRRN <> 0;
+             c1DspR = csrRRN;
+          when minimumRRN <> 0;
+             c1DspR = minimumRRN;
+          endsl;
+       endsl;
+
+       return;
+      /end-free
+     P testUserAction1...
+     P                 E
+
+      // =======================================================================
+      // Procedure validateInput1:
+      // =======================================================================
+      // This procedure is used to validate data received from the DSPF.
+      // =======================================================================
+     P validateInput1  B
+     D validateInput1  PI
+      /free
+       if c1Category  = saveCategory
+       and c1ItemDesc = saveItemDescription
+       and c1LocOHOO  = saveLocationOHOO
+       and c1DepQtyAv = saveDepotQuantityAvailable;
+
+          // Retrieve the subfile entry where the cursor is positioned.
+          chain csrRRN S01;
+
+          // If not on a valid line then send an error message.
+          if not %found(INDAITMM);
+             rmvMsgFromQ (sdProgram);
+             putErrMsg (POSITION_CURSOR_TO_LINE_AND_PRESS_ENTER :
+                        MESSAGE_FILE : sdProgram : jobLanguage);
+             errorFound = TRUE;
+
+             // Position Cursor to the first subfile entry on the current page.
+             if  minimumRRN <> 0
+             and minimumRRN <= saveRrnS01;
+                c1DspR = minimumRRN;
+             endif;
+          endif;
+       else;
+          select;
+          when jobLanguage = ENGLISH;
+             if allowOHOODisplay;
+                if (c1LocOHOO <> YES
+                    and c1LocOHOO <> NO);
+                   putErrMsg(INVALID_SELECTION_ENTRY : MESSAGE_FILE :
+                             sdProgram : jobLanguage);
+                   setCursorToField(POSITION_C1LOCOHOO :
+                                    errorIndicators);
+                   errorC1LocOHOO = TRUE;
+                   errorFound     = TRUE;
+                endif;
+             endif;
+
+             if allowDepotAvailDisplay;
+                if (c1DepQtyAv <> YES
+                    and c1DepQtyAv <> NO);
+                   putErrMsg(INVALID_SELECTION_ENTRY : MESSAGE_FILE :
+                             sdProgram : jobLanguage);
+                   setCursorToField(POSITION_C1DEPQTYAV :
+                                    errorIndicators);
+                   errorC1DepQtyAv = TRUE;
+                   errorFound      = TRUE;
+                endif;
+             endif;
+
+          other;
+             if allowOHOODisplay;
+                if (c1LocOHOO <> OUI
+                    and c1LocOHOO <> NO);
+                   putErrMsg(INVALID_SELECTION_ENTRY : MESSAGE_FILE :
+                             sdProgram : jobLanguage);
+                   setCursorToField(POSITION_C1LOCOHOO :
+                                    errorIndicators);
+                   errorC1LocOHOO = TRUE;
+                   errorFound     = TRUE;
+                endif;
+             endif;
+
+             if allowDepotAvailDisplay;
+                if (c1DepQtyAv <> OUI
+                    and c1DepQtyAv <> NO);
+                   putErrMsg(INVALID_SELECTION_ENTRY : MESSAGE_FILE :
+                             sdProgram : jobLanguage);
+                   setCursorToField(POSITION_C1DEPQTYAV :
+                                    errorIndicators);
+                   errorC1DepQtyAv = TRUE;
+                   errorFound      = TRUE;
+                endif;
+             endif;
+          endsl;
+
+          if not errorFound;
+             errorFound                 = FALSE;
+             screenAction               = LOAD_SCREEN;
+             saveCategory               = c1Category;
+             saveItemDescription        = c1ItemDesc;
+             saveLocationOHOO           = c1LocOHOO;
+             saveDepotQuantityAvailable = c1DepQtyAv;
+          endif;
+
+       endif;
+
+       return;
+      /end-free
+     P validateInput1  E
+

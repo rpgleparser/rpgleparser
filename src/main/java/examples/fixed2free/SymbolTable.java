@@ -51,9 +51,10 @@ public class SymbolTable {
 			}
 		}
 	}
-	public Collection<Symbol> getAllSymbolsFromScope(Scope aScope){
+	public List<Symbol> getAllSymbolsFromScope(Scope aScope){
 		Map<String, Symbol>temp = symbolTable.get(aScope);
-		Collection<Symbol> result = temp.values();
+		List<Symbol> result = new ArrayList<Symbol>();
+		result.addAll(temp.values());
 		return result;
 	}
 	public List<Scope> getAllScopes() {
