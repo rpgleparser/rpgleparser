@@ -13,8 +13,8 @@ KEYWORD_EXTPROC          <extproc>
 '('                      <(>
 StringLiteralStart       <'>
 StringContent            <mylongservice>
-StringContent            <        programname_with_a>
-StringContent            <        procedure>
+StringContent            <programname_with_a>
+StringContent            <procedure>
 StringLiteralEnd         <'>
 ')'                      <)>
 EOL                      <
@@ -37,9 +37,7 @@ EOL                      <
         (keyword_extproc
           extproc
           (
-          (simpleExpression
-            (literal ' mylongservice '        programname_with_a' '        procedure' ')
-          )
+          (simpleExpression (literal ' mylongservice programname_with_a procedure '))
           )
         )
       )
