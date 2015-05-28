@@ -718,9 +718,13 @@ C_FREE_STRING_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? '+' [ ]* NEWLIN
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'C' ~[*] '                            ' [ ]* -> type(CONTINUATION),skip;
 C_FREE_STRING_CONTINUATION_MINUS: {_modeStack.peek()==FIXED_CalcSpec}? '-' [ ]* NEWLINE 
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'C' ~[*] '                            ' -> type(CONTINUATION),skip;
+D_FREE_STRING_CONTINUATION: {_modeStack.get(_modeStack.size() - 2)==FIXED_DefSpec}? '+' [ ]* NEWLINE 
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'D' ~[*] '                                     ' [ ]* -> type(CONTINUATION),skip;
+D_FREE_STRING_CONTINUATION_MINUS: {_modeStack.get(_modeStack.size() - 2)==FIXED_DefSpec}? '-' [ ]* NEWLINE 
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'D' ~[*] '                                     ' -> type(CONTINUATION),skip;
 FREE_STRING_CONTINUATION: {_modeStack.peek()!=FIXED_CalcSpec}? '+' [ ]* NEWLINE '       ' [ ]* -> skip;
 FREE_STRING_CONTINUATION_MINUS: {_modeStack.peek()!=FIXED_CalcSpec}? '-' [ ]* NEWLINE '       ' -> skip;
-PlusOrMinus: [+-];
+PlusOrMinus: {_modeStack.peek()==FIXED_DefSpec}?[+-] {System.out.println(";;;;" + _modeStack.peek());};
 
 mode InFactorStringMode;
 InFactor_StringContent:({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
