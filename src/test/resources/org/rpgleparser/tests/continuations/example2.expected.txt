@@ -1,0 +1,11 @@
+/*===TOKENS===*/
+HS_FIXED                 <H>
+ID                       <DATFMT>
+'('                      <(>
+ID                       <*MDY&>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement (hspec_fixed H (hs_expression DATFMT ( (hs_parm *MDY&) )) <EOF>))
+)
+/*======*/

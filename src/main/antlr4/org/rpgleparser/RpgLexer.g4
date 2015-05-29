@@ -1433,8 +1433,10 @@ HS_OPEN_PAREN: OPEN_PAREN -> type(OPEN_PAREN);
 HS_CLOSE_PAREN: CLOSE_PAREN -> type(CLOSE_PAREN);
 HS_StringLiteralStart: ['] -> type(StringLiteralStart),pushMode(InStringMode) ;
 HS_COLON: ':' -> type(COLON);
-HS_ID: [#@%$*a-zA-Z] [#@\-$*a-zA-Z0-9_]* -> type(ID);
+HS_ID: [#@%$*a-zA-Z] [&#@\-$*a-zA-Z0-9_]* -> type(ID);
 HS_WhiteSpace : [ \t]+ -> skip  ; // skip spaces, tabs, newlines
+HS_CONTINUATION: NEWLINE 
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [hH] ~[*] -> skip;
 HS_EOL : NEWLINE -> type(EOL),popMode;
 
 /*
