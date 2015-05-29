@@ -159,7 +159,7 @@ DS_Constant : [dD] [cC] [lL] '-' [cC] ;//-> pushMode(F_SPEC_FREE);
 
 FS_FreeFile : [dD] [cC] [lL] '-' [fF] ;//-> pushMode(F_SPEC_FREE);
 H_SPEC : [cC] [tT] [lL] '-' [oO][pP][tT];
-FREE_CONT: '...' [ ]* NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n][ ]+ {setText("...");};
+FREE_CONT: '...' [ ]* NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n][ ]+ {setText("...");} -> type(CONTINUATION);
 FREE_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN); // skip comments after 80
 EXEC_SQL: [Ee][Xx][Ee][Cc][ ]+[Ss][Qq][Ll]-> pushMode(SQL_MODE) ;
 
@@ -507,9 +507,11 @@ UCS2LiteralStart: [uU]['] -> pushMode(InStringMode) ;
 StringLiteralStart: ['] -> pushMode(InStringMode) ; 
 FREE_COMMENTS: {getCharPositionInLine()>=7}? [ ]*? '//' -> pushMode(FIXED_CommentMode_HIDDEN),channel(HIDDEN) ;
 FREE_WS: {getCharPositionInLine()>5}? [ \t]+ -> skip;
-FREE_CONTINUATION : {_modeStack.peek()!=FIXED_CalcSpec}? '...' WS* NEWLINE -> type(CONTINUATION);
+FREE_CONTINUATION : {_modeStack.peek()!=FIXED_CalcSpec && _modeStack.peek()!=FIXED_DefSpec}? '...' WS* NEWLINE -> type(CONTINUATION);
 C_FREE_CONTINUATION_DOTS : {_modeStack.peek()==FIXED_CalcSpec}? '...' WS* NEWLINE 
 	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
+D_FREE_CONTINUATION_DOTS : {_modeStack.peek()==FIXED_DefSpec}? '...' WS* NEWLINE 
+	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
 C_FREE_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE 
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> skip;
 D_FREE_CONTINUATION: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE 
@@ -784,7 +786,7 @@ PS_KEYWORDS : {getCharPositionInLine()==43}? ~[\r\n]+ -> popMode;
 mode FIXED_DefSpec;
 BLANK_SPEC : {getCharPositionInLine()==6}? 
     '                                                                           ';
-CONTINUATION_NAME : [ ]* ~[\r\n ]+ CONTINUATION {setText(getText().substring(0,getText().length()-3));} -> pushMode(CONTINUATION_ELIPSIS) ;
+CONTINUATION_NAME : {getCharPositionInLine()<21}? [ ]* ~[\r\n ]+ CONTINUATION {setText(getText().substring(0,getText().length()-3));} -> pushMode(CONTINUATION_ELIPSIS) ;
 CONTINUATION : '...' ;
 NAME : {getCharPositionInLine()==6}? WORD5 WORD5 WORD5 {setText(getText().trim());};
 EXTERNAL_DESCRIPTION: {getCharPositionInLine()==21}? [eE ];

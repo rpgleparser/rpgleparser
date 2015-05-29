@@ -1,0 +1,52 @@
+/*===TOKENS===*/
+FS_FIXED                 <F>
+FS_RecordName            < someFile >
+FS_Type                  < >
+FS_Designation           < >
+FS_EndOfFile             < >
+FS_Addution              < >
+FS_Sequence              < >
+FS_Format                < >
+FS_RecordLength          <     >
+FS_Limits                < >
+FS_LengthOfKey           <     >
+FS_RecordAddressType     < >
+FS_Organization          < >
+FS_Device                <       >
+FS_Reserved              < >
+KEYWORD_EXTIND           <EXTIND>
+'('                      <(>
+ID                       <*INU1>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (fspec_fixed
+      F
+      ' someFile '
+      ' '
+      ' '
+      ' '
+      ' '
+      ' '
+      ' '
+      '     '
+      ' '
+      '     '
+      ' '
+      ' '
+      '       '
+      ' '
+      (fs_keyword
+        (keyword_extind
+          EXTIND
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword *INU1))))
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/

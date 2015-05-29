@@ -1,0 +1,245 @@
+/*===TOKENS===*/
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Define a 10 character field with a long name.                                              >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < The second definition is a pointer initialized to the address                              >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < of the variable with the long name.                                                        >
+DS_FIXED                 <D>
+CONTINUATION_NAME        < QuiteLongFieldNameThatCannotAlwaysFitInOneLine>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <Ptr>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <*>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_INZ              <inz>
+'('                      <(>
+BIF_ADDR                 <%addr>
+'('                      <(>
+ID                       <QuiteLongFieldName>
+CONTINUATION             <...>
+ID                       <ThatCannotAlways>
+CONTINUATION             <...>
+ID                       <FitInOneLine>
+')'                      <)>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <ShorterName>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <      5>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <.. 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8                  >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Use the long name in an expression                                                         >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Note that you can split the name wherever it is convenient.                                >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <QuiteLongFieldName>
+CONTINUATION             <...>
+ID                       <ThatCannotAlwaysFitInOneLine>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <abc>
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < You can split any name this way                                                            >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <P>
+CONTINUATION             <...>
+ID                       <tr>
+'='                      <=>
+BIF_ADDR                 <%addr>
+'('                      <(>
+ID                       <Shorter>
+CONTINUATION             <...>
+ID                       <Name>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (dspec
+      D
+      (ds_name ' QuiteLongFieldNameThatCannotAlwaysFitInOneLine' )
+      ' '
+      ' '
+      'S '
+      '       '
+      '     10'
+      A
+      '  '
+      ' '
+      \r\n
+    )
+  )
+  (statement
+    (dspec
+      D
+      (ds_name Ptr)
+      ' '
+      ' '
+      'S '
+      '       '
+      '       '
+      *
+      '  '
+      ' '
+      (keyword
+        (keyword_inz
+          inz
+          (
+          (simpleExpression
+            (bif
+              (bif_addr
+                %addr
+                (
+                (expression
+                  (identifier
+                    (free_identifier
+                      (continuedIdentifier
+                        (idOrKeyword QuiteLongFieldName)
+                        ...
+                        (idOrKeyword ThatCannotAlways)
+                        ...
+                        (idOrKeyword FitInOneLine)
+                      )
+                    )
+                  )
+                )
+                )
+              )
+            )
+          )
+          )
+        )
+      )
+      \r\n
+    )
+  )
+  (statement
+    (dspec
+      D
+      (ds_name ShorterName)
+      ' '
+      ' '
+      'S '
+      '       '
+      '      5'
+      A
+      '  '
+      ' '
+      \r\n
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression
+                (identifier
+                  (free_identifier
+                    (continuedIdentifier
+                      (idOrKeyword QuiteLongFieldName)
+                      ...
+                      (idOrKeyword ThatCannotAlwaysFitInOneLine)
+                    )
+                  )
+                )
+              )
+              =
+              (expression (literal ' abc '))
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression
+                (identifier
+                  (free_identifier (continuedIdentifier (idOrKeyword P) ... (idOrKeyword tr)))
+                )
+              )
+              =
+              (expression
+                (bif
+                  (bif_addr
+                    %addr
+                    (
+                    (expression
+                      (identifier
+                        (free_identifier
+                          (continuedIdentifier (idOrKeyword Shorter) ... (idOrKeyword Name))
+                        )
+                      )
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          <EOF>
+        )
+      )
+    )
+  )
+)
+/*======*/

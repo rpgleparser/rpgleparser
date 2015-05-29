@@ -1,0 +1,45 @@
+/*===TOKENS===*/
+DIRECTIVE                <  />
+DIR_FREE                 <FREE>
+EOL                      <
+>
+TIME                     <time>
+'='                      <=>
+ID                       <hours>
+MULT                     <*>
+ID                       <num_employees>
+'+'                      <+>
+ID                       <overtime_saved>
+FREE_SEMI                <;>
+DIRECTIVE                <  />
+DIR_ENDFREE              <END-FREE>
+/*===TREE===*/
+(r
+  (statement (directive '  /' (beginfree_directive FREE) \r\n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (expression (identifier (free_identifier (idOrKeyword (datatypeName time)))))
+              =
+              (expression
+                (expression
+                  (expression (identifier (free_identifier (idOrKeyword hours))))
+                  *
+                  (expression (identifier (free_identifier (idOrKeyword num_employees))))
+                )
+                +
+                (expression (identifier (free_identifier (idOrKeyword overtime_saved))))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive '  /' (endfree_directive END-FREE) <EOF>))
+)
+/*======*/

@@ -372,7 +372,7 @@ beginif:
 	factor1=factor 
 	OP_IF cs_operationExtender?
 	fixedexpression=c_free
-	C_FREE_NEWLINE
+	(C_FREE_NEWLINE | EOF)
 	)
 	| (op_if FREE_SEMI free_linecomments? )
 ;
@@ -401,7 +401,7 @@ elseifstmt:
     factor1=factor 
     OP_ELSEIF cs_operationExtender?
     fixedexpression=c_free
-    C_FREE_NEWLINE
+    (C_FREE_NEWLINE | EOF)
     )
     | (op_if FREE_SEMI free_linecomments? )
 ;
@@ -414,7 +414,7 @@ elsestmt:
     factor1=factor 
     OP_ELSEIF 
     fixedexpression=c_free
-    C_FREE_NEWLINE
+    (C_FREE_NEWLINE | EOF)
     )
     | (op_if FREE_SEMI free_linecomments? )
 ;
@@ -1057,7 +1057,7 @@ csCALLB:
 csCALLP:
 	operation=OP_CALLP
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csCASEQ:
 	operation=OP_CASEQ
 	cspec_fixed_standard_parts;
@@ -1128,7 +1128,7 @@ csDO:
 csDOU:
 	operation=OP_DOU
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csDOUEQ:
 	operation=OP_DOUEQ
 	cspec_fixed_standard_parts;
@@ -1150,7 +1150,7 @@ csDOUGT:
 csDOW:
 	operation=OP_DOW
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csDOWEQ:
 	operation=OP_DOWEQ
 	cspec_fixed_standard_parts;
@@ -1211,14 +1211,14 @@ csENDSL:
 csEVAL:
 	operation=OP_EVAL
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csEVAL_CORR:
 	operation=OP_EVAL_CORR
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csEVALR:
 	operation=OP_EVALR
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csEXCEPT:
 	operation=OP_EXCEPT
 	cspec_fixed_standard_parts;
@@ -1241,7 +1241,7 @@ csFOR:
 	operation=OP_FOR operationExtender=cs_operationExtender? expression   //For(E) I
     (EQUAL expression )? // = 1
     (FREE_BY expression )?    // By 1
-    ((FREE_TO | FREE_DOWNTO) expression )? C_FREE_NEWLINE; // TO 10 ;
+    ((FREE_TO | FREE_DOWNTO) expression )? (C_FREE_NEWLINE | EOF); // TO 10 ;
 csFORCE:
 	operation=OP_FORCE
 	cspec_fixed_standard_parts;
@@ -1251,7 +1251,7 @@ csGOTO:
 csIF:
 	operation=OP_IF
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csIFEQ:
 	operation=OP_IFEQ
 	cspec_fixed_standard_parts;
@@ -1347,7 +1347,7 @@ csOCCUR:
 	cspec_fixed_standard_parts;
 csON_ERROR:
 	operation=OP_ON_ERROR
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csOPEN:
 	operation=OP_OPEN
 	operationExtender=cs_operationExtender? 
@@ -1428,7 +1428,7 @@ csRESET:
 csRETURN:
 	operation=OP_RETURN
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free? C_FREE_NEWLINE;
+	fixedexpression=c_free? (C_FREE_NEWLINE | EOF);
 csROLBK:
 	operation=OP_ROLBK
 	operationExtender=cs_operationExtender? 
@@ -1460,7 +1460,7 @@ csSHTDN:
 csSORTA:
 	operation=OP_SORTA
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csSQRT:
 	operation=OP_SQRT
 	operationExtender=cs_operationExtender? 
@@ -1507,7 +1507,7 @@ csUPDATE:
 csWHEN:
 	OP_WHEN 
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csWHENEQ:
 	operation=OP_WHENEQ
 	cspec_fixed_standard_parts;
@@ -1541,11 +1541,11 @@ csXLATE:
 csXML_INTO:
 	operation=OP_XML_INTO
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csXML_SAX:
 	operation=OP_XML_SAX
 	operationExtender=cs_operationExtender? 
-	fixedexpression=c_free C_FREE_NEWLINE;
+	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 csZ_ADD:
 	operation=OP_Z_ADD
 	operationExtender=cs_operationExtender? 
@@ -1572,7 +1572,7 @@ resultType:
    CS_FactorContent | CS_BlankFactor;
 cs_fixed_comments:CS_Comments;		
 //cs_fixed_x2: CS_OperationAndExtendedFactor2 C2_FACTOR2_CONT* C2_FACTOR2 C_EOL;
-cspec_fixed_x2: csOperationAndExtendedFactor2 fixedexpression=c_free C_FREE_NEWLINE;
+cspec_fixed_x2: csOperationAndExtendedFactor2 fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 
 csOperationAndExtendedFactor2:
 	operation=OP_EVAL
@@ -2208,7 +2208,7 @@ function: functionName args;
 args: OPEN_PAREN (expression (COLON expression)*)? CLOSE_PAREN;
 literal: (StringLiteralStart|HexLiteralStart|DateLiteralStart|TimeLiteralStart|TimeStampLiteralStart|UCS2LiteralStart|GraphicLiteralStart) 
 	content=(StringContent | StringEscapedQuote | PlusOrMinus)* StringLiteralEnd;
-identifier: free_identifier (FREE_CONT free_identifier)? |multipart_identifier | all;
+identifier: free_identifier |multipart_identifier | all;
 all: symbolicConstants literal?;
 //assignIdentifier: multipart_identifier;
 functionName: free_identifier;
@@ -2218,7 +2218,7 @@ opCode: free_identifier;
 number: MINUS? NUMBER ;
 free_identifier: (continuedIdentifier | MULT_NOSPACE? idOrKeyword | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code);//OP_E?
 //free_identifier: (continuedIdentifier | ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
-continuedIdentifier: idOrKeyword CONTINUATION idOrKeyword ;
+continuedIdentifier: (idOrKeyword CONTINUATION)+ idOrKeyword ;
 idOrKeyword:
      ID
    | KEYWORD_ALIAS
