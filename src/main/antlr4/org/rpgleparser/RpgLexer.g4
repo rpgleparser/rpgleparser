@@ -717,13 +717,13 @@ StringContent: (~['\r\n+-] | [+-] ' '* ~['\r\n ])+;// space or not
 StringEscapedQuote: [']['] {setText("'");};
 StringLiteralEnd: ['] -> popMode;
 C_FREE_STRING_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? '+' [ ]* NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'C' ~[*] '                            ' [ ]* -> type(CONTINUATION),skip;
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' [ ]* -> type(CONTINUATION),skip;
 C_FREE_STRING_CONTINUATION_MINUS: {_modeStack.peek()==FIXED_CalcSpec}? '-' [ ]* NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'C' ~[*] '                            ' -> type(CONTINUATION),skip;
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> type(CONTINUATION),skip;
 D_FREE_STRING_CONTINUATION: {_modeStack.get(_modeStack.size() - 2)==FIXED_DefSpec}? '+' [ ]* NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'D' ~[*] '                                    ' [ ]* -> type(CONTINUATION),skip;
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                                    ' [ ]* -> type(CONTINUATION),skip;
 D_FREE_STRING_CONTINUATION_MINUS: {_modeStack.get(_modeStack.size() - 2)==FIXED_DefSpec}? '-' [ ]* NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 'D' ~[*] '                                    ' -> type(CONTINUATION),skip;
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                                    ' -> type(CONTINUATION),skip;
 FREE_STRING_CONTINUATION: {_modeStack.peek()!=FIXED_CalcSpec}? '+' [ ]* NEWLINE '       ' [ ]* -> skip;
 FREE_STRING_CONTINUATION_MINUS: {_modeStack.peek()!=FIXED_CalcSpec}? '-' [ ]* NEWLINE '       ' -> skip;
 PlusOrMinus: [+-];
