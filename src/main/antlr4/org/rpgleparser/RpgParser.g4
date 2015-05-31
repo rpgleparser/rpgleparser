@@ -50,11 +50,15 @@ dspec:
 	(DS_Standalone name=identifier datatype? 
     		(keyword+)? FREE_SEMI free_linecomments?
     )
+    | dspecConstant
     | (
 	DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_S FROM_POSITION TO_POSITION
 		DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF)
     )
-    ;
+;
+dspecConstant: 
+    DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_C FROM_POSITION TO_POSITION
+		DATA_TYPE DECIMAL_POSITIONS RESERVED number (EOL|EOF);
     
 datatype: datatypeName args?; 
 keyword:
@@ -2215,7 +2219,7 @@ functionName: free_identifier;
 multipart_identifier: (free_identifier | indexed_identifier) (FREE_DOT (free_identifier | indexed_identifier))*;
 indexed_identifier: free_identifier OPEN_PAREN (expression | ARRAY_REPEAT) CLOSE_PAREN;
 opCode: free_identifier;
-number: MINUS? NUMBER ;
+number: MINUS? NUMBER NumberPart* ;
 free_identifier: (continuedIdentifier | MULT_NOSPACE? idOrKeyword | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code);//OP_E?
 //free_identifier: (continuedIdentifier | ID | NOT | FREE_BY | FREE_TO | FREE_DOWNTO |op_code) OP_E?;
 continuedIdentifier: (idOrKeyword CONTINUATION)+ idOrKeyword ;

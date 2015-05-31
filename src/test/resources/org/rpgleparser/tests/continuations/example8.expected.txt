@@ -1,0 +1,390 @@
+/*===TOKENS===*/
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Long name without continued name lines:                                                    >
+DS_FIXED                 <D>
+NAME                     <RatherLongName>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Long name using 1 continued name line:                                                     >
+DS_FIXED                 <D>
+CONTINUATION_NAME        < NameThatIsEvenLonger>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_C               <C >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+StringLiteralStart       <'>
+StringContent            <This is the constant >
+StringContent            <that the name represents.>
+StringLiteralEnd         <'>
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Long name using 1 continued name line:                                                     >
+DS_FIXED                 <D>
+CONTINUATION_NAME        < NameThatIsSoLongItMustBe>
+NAME                     <Continued>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Compile-time arrays may have long names:                                                   >
+DS_FIXED                 <D>
+CONTINUATION_NAME        < CompileTimeArrayContainingDataRepresentingTheNamesOfTheMonthsOf>
+CONTINUATION_NAME        <  TheYearInGermanLanguage>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <     20>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_DIM              <DIM>
+'('                      <(>
+NUMBER                   <12>
+')'                      <)>
+KEYWORD_CTDATA           <CTDATA>
+KEYWORD_PERRCD           <PERRCD>
+'('                      <(>
+NUMBER                   <1>
+')'                      <)>
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Long name using 3 continued name lines:                                                    >
+DS_FIXED                 <D>
+CONTINUATION_NAME        < ThisNameIsSoMuchLongerThanThe>
+CONTINUATION_NAME        <    PreviousNamesThatItMustBe>
+CONTINUATION_NAME        <    ContinuedOnSeveralSpecs>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PR              <PR>
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <parm_1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_VALUE            <VALUE>
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Long names defined on calc spec:                                                           >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <LongTagName>
+OP_TAG                   <TAG>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+SPLAT_LIKE               <*LIKE>
+OP_DEFINE                <DEFINE>
+CS_FactorContent         <RatherLongName>
+CS_FactorContent         <QuiteLongName>
+CS_FieldLength           <   +5>
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < Long name specified on Procedure spec:                                                     >
+PS_FIXED                 <P>
+PS_CONTINUATION_NAME     < ThisNameIsSoMuchLongerThanThe>
+PS_CONTINUATION_NAME     <    PreviousNamesThatItMustBe>
+PS_CONTINUATION_NAME     <    ContinuedOnSeveralSpecs>
+PS_NAME                  <>
+PS_BEGIN                 <B>
+PS_KEYWORDS              <                                                        >
+DS_FIXED                 <D>
+CONTINUATION_NAME        < ThisNameIsSoMuchLongerThanThe>
+CONTINUATION_NAME        <    PreviousNamesThatItMustBe>
+CONTINUATION_NAME        <    ContinuedOnSeveralSpecs>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PI              <PI>
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <parm_1>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_VALUE            <VALUE>
+EOL                      <
+>
+PS_FIXED                 <P>
+PS_NAME                  <>
+PS_END                   <E>
+PS_KEYWORDS              <                                                        >
+/*===TREE===*/
+(r
+  (statement
+    (dspec
+      D
+      (ds_name RatherLongName)
+      ' '
+      ' '
+      'S '
+      '       '
+      '     10'
+      A
+      '  '
+      ' '
+      \r\n
+    )
+  )
+  (statement
+    (dcl_c
+      D
+      (ds_name ' NameThatIsEvenLonger' )
+      ' '
+      ' '
+      'C '
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (literal ' 'This is the constant ' that the name represents. ')
+      \r\n
+    )
+  )
+  (statement
+    (dspec
+      D
+      (ds_name ' NameThatIsSoLongItMustBe' Continued)
+      ' '
+      ' '
+      'S '
+      '       '
+      '     10'
+      A
+      '  '
+      ' '
+      \r\n
+    )
+  )
+  (statement
+    (dspec
+      D
+      (ds_name
+        ' CompileTimeArrayContainingDataRepresentingTheNamesOfTheMonthsOf'
+        '  TheYearInGermanLanguage'
+        
+      )
+      ' '
+      ' '
+      'S '
+      '       '
+      '     20'
+      A
+      '  '
+      ' '
+      (keyword (keyword_dim DIM ( (number 12) )))
+      (keyword (keyword_ctdata CTDATA))
+      (keyword (keyword_perrcd PERRCD ( (simpleExpression (number 1)) )))
+      \r\n
+    )
+  )
+  (dcl_pr
+    (prBegin
+      D
+      (ds_name
+        ' ThisNameIsSoMuchLongerThanThe'
+        '    PreviousNamesThatItMustBe'
+        '    ContinuedOnSeveralSpecs'
+        
+      )
+      ' '
+      ' '
+      PR
+      '       '
+      '     10'
+      A
+      '  '
+      ' '
+      \r\n
+    )
+    (parm_fixed
+      D
+      (ds_name parm_1)
+      ' '
+      ' '
+      '  '
+      '       '
+      '     10'
+      A
+      '  '
+      ' '
+      (keyword (keyword_value VALUE))
+      \r\n
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent LongTagName))
+      (cspec_fixed_standard
+        (csTAG
+          TAG
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (symbolicConstants *LIKE))
+      (cspec_fixed_standard
+        (csDEFINE
+          DEFINE
+          (cspec_fixed_standard_parts
+            (factor (factorContent RatherLongName))
+            (resultType QuiteLongName)
+            '   +5'
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (procedure
+    (beginProcedure
+      (psBegin
+        P
+        (ps_name
+          ' ThisNameIsSoMuchLongerThanThe'
+          '    PreviousNamesThatItMustBe'
+          '    ContinuedOnSeveralSpecs'
+          
+        )
+        B
+        '                                                        '
+      )
+    )
+    (dcl_pi
+      (piBegin
+        D
+        (ds_name
+          ' ThisNameIsSoMuchLongerThanThe'
+          '    PreviousNamesThatItMustBe'
+          '    ContinuedOnSeveralSpecs'
+          
+        )
+        ' '
+        ' '
+        PI
+        '       '
+        '     10'
+        A
+        '  '
+        ' '
+        \r\n
+      )
+      (parm_fixed
+        D
+        (ds_name parm_1)
+        ' '
+        ' '
+        '  '
+        '       '
+        '     10'
+        A
+        '  '
+        ' '
+        (keyword (keyword_value VALUE))
+        \r\n
+      )
+    )
+    (endProcedure
+      (psEnd
+        P
+        (ps_name )
+        E
+        '                                                        '
+      )
+    )
+  )
+)
+/*======*/

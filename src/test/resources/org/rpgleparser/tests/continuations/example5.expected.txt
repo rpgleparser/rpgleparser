@@ -1,0 +1,186 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <MARY>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <Mary had a little lamb, its >
+StringContent            <fleece was white as snow.>
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <  Arithmetic expressions do not have continuation characters.                               >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <  The '+' sign below is the addition operator, not a continuation                           >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <  character.                                                                                >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+CS_OperationAndExtender_Blank<          >
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <A>
+'='                      <=>
+'('                      <(>
+ID                       <B>
+MULT_NOSPACE             <*>
+ID                       <D>
+')'                      <)>
+'/'                      </>
+ID                       <C>
+'+'                      <+>
+NUMBER                   <24>
+C_FREE_NEWLINE           <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <  The first use of '+' in this example is the concatenation                                 >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <  operator.  The second use is the character literal continuation.                          >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <ERRMSG>
+'='                      <=>
+ID                       <NAME>
+'+'                      <+>
+StringLiteralStart       <'>
+StringContent            < was not found >
+StringContent            <in the file.>
+StringLiteralEnd         <'>
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword MARY))))
+              =
+              (expression
+                (literal ' 'Mary had a little lamb, its ' fleece was white as snow. ')
+              )
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+  (statement
+    (blank_spec
+      (cspec_blank
+        C
+        '  '
+        ' '
+        '  '
+        '              '
+        '          '
+        '              '
+        '              '
+        '     '
+        '  '
+        '  '
+        '  '
+        '  '
+        \r\n
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression
+                (expression
+                  (expression (identifier (free_identifier (idOrKeyword A))))
+                  =
+                  (expression
+                    (
+                    (expression
+                      (expression (identifier (free_identifier (idOrKeyword B))))
+                      *
+                      (expression (identifier (free_identifier (idOrKeyword D))))
+                    )
+                    )
+                  )
+                )
+                /
+                (expression (identifier (free_identifier (idOrKeyword C))))
+              )
+              +
+              (expression (number 24))
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression
+                (expression (identifier (free_identifier (idOrKeyword ERRMSG))))
+                =
+                (expression (identifier (free_identifier (idOrKeyword NAME))))
+              )
+              +
+              (expression (literal ' ' was not found ' in the file. '))
+            )
+          )
+          <EOF>
+        )
+      )
+    )
+  )
+)
+/*======*/

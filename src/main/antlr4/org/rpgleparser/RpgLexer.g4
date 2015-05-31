@@ -486,6 +486,7 @@ NE : '<>' ;
 FREE_OPEN_PAREN: OPEN_PAREN -> type(OPEN_PAREN);
 FREE_CLOSE_PAREN: CLOSE_PAREN -> type(CLOSE_PAREN);
 FREE_DOT: '.';
+FREE_NUMBER_CONT: NUMBER {_modeStack.peek()==FIXED_DefSpec}? -> pushMode(NumberContinuation),type(NUMBER);
 FREE_NUMBER: NUMBER -> type(NUMBER);
 EQUAL: '=';
 
@@ -527,6 +528,12 @@ D_FREE_NEWLINE: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE -> type(EOL),popMo
 F_FREE_NEWLINE: {_modeStack.peek() == FIXED_FileSpec}? NEWLINE -> type(EOL),popMode,popMode;
 FREE_NEWLINE: {_modeStack.peek()!=FIXED_CalcSpec}? NEWLINE -> skip,popMode;
 FREE_SEMI: SEMI -> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
+
+mode NumberContinuation;
+NumberContinuation_CONTINUATION: ([ ]* NEWLINE)   
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                            ' [ ]* -> skip;
+NumberPart: NUMBER -> popMode;
+NumberContinuation_ANY: -> popMode,skip;
 
 mode DurationCodes; //Referenced (not used)
 SPLAT_D: '*'[dD];
@@ -716,17 +723,51 @@ mode InStringMode;
 StringContent: (~['\r\n+-] | [+-] ' '* ~['\r\n ])+;// space or not 
 StringEscapedQuote: [']['] {setText("'");};
 StringLiteralEnd: ['] -> popMode;
-C_FREE_STRING_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? '+' [ ]* NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' [ ]* -> type(CONTINUATION),skip;
-C_FREE_STRING_CONTINUATION_MINUS: {_modeStack.peek()==FIXED_CalcSpec}? '-' [ ]* NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> type(CONTINUATION),skip;
-D_FREE_STRING_CONTINUATION: {_modeStack.get(_modeStack.size() - 2)==FIXED_DefSpec}? '+' [ ]* NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                                    ' [ ]* -> type(CONTINUATION),skip;
-D_FREE_STRING_CONTINUATION_MINUS: {_modeStack.get(_modeStack.size() - 2)==FIXED_DefSpec}? '-' [ ]* NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                                    ' -> type(CONTINUATION),skip;
+FIXED_FREE_STRING_CONTINUATION: ('+' [ ]* NEWLINE) 
+   {_modeStack.contains(FIXED_CalcSpec) || _modeStack.contains(FIXED_DefSpec)}?
+   -> pushMode(EatCommentLinesPlus),pushMode(EatCommentLines),skip;
+FIXED_FREE_STRING_CONTINUATION_MINUS: ('-' [ ]* NEWLINE) 
+   {_modeStack.contains(FIXED_CalcSpec) || _modeStack.contains(FIXED_DefSpec)}?
+   -> pushMode(EatCommentLines),skip;
 FREE_STRING_CONTINUATION: {_modeStack.peek()!=FIXED_CalcSpec}? '+' [ ]* NEWLINE '       ' [ ]* -> skip;
 FREE_STRING_CONTINUATION_MINUS: {_modeStack.peek()!=FIXED_CalcSpec}? '-' [ ]* NEWLINE '       ' -> skip;
 PlusOrMinus: [+-];
+
+//This mode is basically a language independent flag.
+mode EatCommentLinesPlus;
+EatCommentLinesPlus_Any: -> popMode,skip;
+
+// Inside continuations, ignore comment and blank lines.
+mode EatCommentLines;
+EatCommentLines_WhiteSpace: [ ]* NEWLINE -> skip;
+EatCommentLines_StarComment: 
+   ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [*] ~[\r\n]* NEWLINE -> skip;
+FIXED_FREE_STRING_CONTINUATION_Plus_Part2:  
+   (
+     ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 
+     ( [cC] {_modeStack.contains(FIXED_CalcSpec)}?
+      | [dD] {_modeStack.contains(FIXED_DefSpec)}? 
+     ) 
+     ~[*] 
+     ( '                            ' {_modeStack.contains(FIXED_CalcSpec)}?
+       | '                                    ' {_modeStack.contains(FIXED_DefSpec)}?
+     ) 
+     ([ ]* {_modeStack.peek() == EatCommentLinesPlus}?
+      | 
+     )  // If it plus continuation eat whitespace.
+   ) 
+   -> type(CONTINUATION),skip ;
+FIXED_FREE_STRING_CONTINUATION_Minus_Part2:  
+   (
+     ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 
+     ( [cC] {_modeStack.contains(FIXED_CalcSpec)}?
+      | [dD] {_modeStack.contains(FIXED_DefSpec)}? 
+     ) 
+     ~[*] '                            ' 
+   ) 
+   -> type(CONTINUATION),skip ;
+//Deliberate match no char, pop out again
+EatCommentLines_NothingLeft: -> popMode,skip;
 
 mode InFactorStringMode;
 InFactor_StringContent:({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
@@ -1109,9 +1150,10 @@ CS_FactorWs2: ({(getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 		
 CS_FactorContent: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
 }?
 		~[\r\n'\'' :])+;
+CS_ResultContent: ({(getCharPositionInLine()>=49 && getCharPositionInLine()<=62)}?
+		~[\r\n'\'' :])+ -> type(CS_FactorContent);
 CS_FactorColon: ({(getCharPositionInLine()>11 && getCharPositionInLine()<24)
 			|| (getCharPositionInLine()>35 && getCharPositionInLine()<48)
 			|| (getCharPositionInLine()>49 && getCharPositionInLine()<62)
@@ -1302,7 +1344,7 @@ CS_OperationExtenderClose: {getCharPositionInLine()>=25 && getCharPositionInLine
   {setText(getText().trim());}
   -> type(CLOSE_PAREN);
   
-CS_FieldLength: {getCharPositionInLine()==63}? [ 0-9][ 0-9][ 0-9][ 0-9][ 0-9];
+CS_FieldLength: {getCharPositionInLine()==63}? [+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9];
 CS_DecimalPositions: {getCharPositionInLine()==68}? [ 0-9][ 0-9]
 	-> pushMode(IndicatorMode),pushMode(IndicatorMode),pushMode(IndicatorMode); // 3 Indicators in a row
 CS_WhiteSpace : {getCharPositionInLine()>=76}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
