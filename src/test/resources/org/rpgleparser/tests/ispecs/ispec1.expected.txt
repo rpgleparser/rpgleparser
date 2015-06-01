@@ -1,0 +1,22 @@
+/*===TOKENS===*/
+IS_FIXED                 <I>
+IS_FileName              <AR1203B   >
+IS_ExtRecordReserved     <    >
+BlankIndicator           <  >
+WS                       <                                                                             >
+/*===TREE===*/
+(r
+  (statement
+    (ispec_fixed
+      I
+      'AR1203B   '
+      (is_external_rec
+        '    '
+        (resultIndicator '  ')
+        '                                                                             '
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/

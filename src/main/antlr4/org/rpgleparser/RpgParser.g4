@@ -605,7 +605,7 @@ os_fixed_pgmfield:
 	OS_BlankAfter
 	OS_EndPosition
 	OS_DataFormat
-	OS_Words;
+	literal?;
 	
 
 ps_name: PS_CONTINUATION_NAME* PS_NAME;
@@ -767,8 +767,8 @@ freeENDSR:
 
 	
 onOffIndicatorsFlag:
-BlankFlag
-| NoFlag;
+    BlankFlag
+    | NoFlag;
 
 cs_controlLevel:
 BlankIndicator

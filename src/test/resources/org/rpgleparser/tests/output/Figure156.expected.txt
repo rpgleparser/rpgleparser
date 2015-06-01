@@ -1,0 +1,151 @@
+/*===TOKENS===*/
+HIDDEN:COMMENT_SPEC_FIXED<C*>
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq..                     >
+HIDDEN:COMMENT_SPEC_FIXED<C*>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <KEY>
+OP_CHAIN                 <CHAIN>
+CS_FactorContent         <RCDA>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EXCEPT                <EXCEPT>
+CS_FactorContent         <RELEASE>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED<O*>
+HIDDEN:COMMENTS_TEXT     <cdname+++D...N01N02N03Excnam++++.......................................                     >
+OS_FIXED                 <O>
+BLANK_SPEC               <                                                                           >
+HIDDEN:OS_Comments       <                  >
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED<O*>
+OS_FIXED                 <O>
+OS_RecordName            <RCDA      >
+OS_Type                  <E>
+OS_FetchOverflow         <   >
+BlankFlag                < >
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+OS_ExceptName            <RELEASE   >
+OS_Space3                <   >
+OS_Space3                <   >
+OS_Space3                <   >
+OS_Space3                <   >
+OS_RemainingSpace        <                             >
+HIDDEN:OS_Comments       <                   >
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED<O*>
+HIDDEN:COMMENTS_TEXT     <                    (no fields)                                                             >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent KEY))
+      (cspec_fixed_standard
+        (csCHAIN
+          CHAIN
+          (cspec_fixed_standard_parts
+            (factor (factorContent RCDA))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEXCEPT
+          EXCEPT
+          (cspec_fixed_standard_parts
+            (factor (factorContent RELEASE))
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (blank_spec
+      O
+      '                                                                           '
+      \r\n
+    )
+  )
+  (statement
+    (ospec_fixed
+      O
+      'RCDA      '
+      E
+      (os_fixed_pgmdesc1
+        '   '
+        (outputConditioningOnOffIndicator
+          (onOffIndicatorsFlag ' ')
+          (outputConditioningIndicator '  ')
+        )
+        (outputConditioningOnOffIndicator
+          (onOffIndicatorsFlag ' ')
+          (outputConditioningIndicator '  ')
+        )
+        (outputConditioningOnOffIndicator
+          (onOffIndicatorsFlag ' ')
+          (outputConditioningIndicator '  ')
+        )
+        'RELEASE   '
+        '   '
+        '   '
+        '   '
+        '   '
+        '                             '
+      )
+      \r\n
+    )
+  )
+)
+/*======*/

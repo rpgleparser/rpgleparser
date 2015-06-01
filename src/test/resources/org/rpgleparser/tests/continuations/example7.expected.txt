@@ -1,0 +1,49 @@
+/*===TOKENS===*/
+OS_FIXED                 <O>
+OS_FieldReserved         <              >
+BlankFlag                < >
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+OS_FieldName             <              >
+OS_EditNames             < >
+OS_BlankAfter            < >
+OS_EndPosition           <   80>
+OS_DataFormat            < >
+StringLiteralStart       <'>
+StringContent            <Mary had a little lamb, its>
+StringContent            <fleece was white as snow.>
+StringLiteralEnd         <'>
+/*===TREE===*/
+(r
+  (statement
+    (ospec_fixed
+      O
+      (os_fixed_pgmfield
+        '              '
+        (outputConditioningOnOffIndicator
+          (onOffIndicatorsFlag ' ')
+          (outputConditioningIndicator '  ')
+        )
+        (outputConditioningOnOffIndicator
+          (onOffIndicatorsFlag ' ')
+          (outputConditioningIndicator '  ')
+        )
+        (outputConditioningOnOffIndicator
+          (onOffIndicatorsFlag ' ')
+          (outputConditioningIndicator '  ')
+        )
+        '              '
+        ' '
+        ' '
+        '   80'
+        ' '
+        (literal ' Mary had a little lamb, its fleece was white as snow. ')
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/
