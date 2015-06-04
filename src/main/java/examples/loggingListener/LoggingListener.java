@@ -310,6 +310,7 @@ import org.rpgleparser.RpgParser.Dcl_prContext;
 import org.rpgleparser.RpgParser.Dcl_pr_fieldContext;
 import org.rpgleparser.RpgParser.DirectiveContext;
 import org.rpgleparser.RpgParser.Ds_nameContext;
+import org.rpgleparser.RpgParser.DspecConstantContext;
 import org.rpgleparser.RpgParser.DspecContext;
 import org.rpgleparser.RpgParser.Dspec_fixedContext;
 import org.rpgleparser.RpgParser.ElseifstmtContext;
@@ -4626,6 +4627,20 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterDspecConstant(DspecConstantContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDspecConstant(DspecConstantContext) - start"); //$NON-NLS-1$
+		}
+
+		// TODO Auto-generated method stub
+		super.enterDspecConstant(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDspecConstant(DspecConstantContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterElseifstmt(ElseifstmtContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterElseifstmt(ElseifstmtContext) - start"); //$NON-NLS-1$
@@ -5268,19 +5283,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-	@Override
-	public void enterIs_external_rec(Is_external_recContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterIs_external_rec(Is_external_recContext) - start"); //$NON-NLS-1$
-		}
-		
-		super.enterIs_external_rec(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterIs_external_rec(Is_external_recContext) - end"); //$NON-NLS-1$
-		}
-	}
-
 //	@Override
 //	public void exitArithmeticalOperator(ArithmeticalOperatorContext ctx) {
 //		if (logger.isDebugEnabled()) {
@@ -5293,6 +5295,19 @@ public class LoggingListener extends RpgParserBaseListener {
 //			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - end"); //$NON-NLS-1$
 //		}
 //	}
+
+	@Override
+	public void enterIs_external_rec(Is_external_recContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterIs_external_rec(Is_external_recContext) - start"); //$NON-NLS-1$
+		}
+		
+		super.enterIs_external_rec(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterIs_external_rec(Is_external_recContext) - end"); //$NON-NLS-1$
+		}
+	}
 
 	@Override
 	public void enterIs_rec(Is_recContext ctx) {
@@ -8320,19 +8335,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-	@Override
-	public void exitBif_editc(Bif_editcContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitBif_editc(Bif_editcContext) - start"); //$NON-NLS-1$
-		}
-
-		super.exitBif_editc(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitBif_editc(Bif_editcContext) - end"); //$NON-NLS-1$
-		}
-	}
-
 //	@Override
 //	public void exitFree_directive(Free_directiveContext ctx) {
 //		if (logger.isDebugEnabled()) {
@@ -8345,6 +8347,19 @@ public class LoggingListener extends RpgParserBaseListener {
 //			logger.debug("exitFree_directive(Free_directiveContext) - end"); //$NON-NLS-1$
 //		}
 //	}
+
+	@Override
+	public void exitBif_editc(Bif_editcContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editc(Bif_editcContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitBif_editc(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitBif_editc(Bif_editcContext) - end"); //$NON-NLS-1$
+		}
+	}
 
 	@Override
 	public void exitBif_editccurrency(Bif_editccurrencyContext ctx) {
@@ -11886,6 +11901,20 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitDspec_fixed(Dspec_fixedContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitDspecConstant(DspecConstantContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDspecConstant(DspecConstantContext) - start"); //$NON-NLS-1$
+		}
+
+		// TODO Auto-generated method stub
+		super.exitDspecConstant(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDspecConstant(DspecConstantContext) - end"); //$NON-NLS-1$
 		}
 	}
 
