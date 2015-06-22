@@ -46,6 +46,8 @@ NEWLINE : ('\r' '\n'? | '\n') -> skip;
 WS : {getCharPositionInLine()>5}? [ \t]+ -> skip ; // skip spaces, tabs, NEWLINEs
 
 mode DirectiveMode;
+DIR_NOT: 'NOT';
+DIR_DEFINED: 'DEFINED';
 DIR_FREE: {_input.LA(-1)=='/'}? [fF][rR][eE][eE] -> pushMode(SKIP_REMAINING_WS);
 DIR_ENDFREE: {_input.LA(-1)=='/'}? [eE][nN][dD] '-' [fF][rR][eE][eE] -> pushMode(SKIP_REMAINING_WS);
 DIR_TITLE:{_input.LA(-1)=='/'}? ([tT][iI][tT][lL][eE]);
@@ -63,8 +65,14 @@ DIR_ELSE: {_input.LA(-1)=='/'}? ([eE][lL][sS][eE]);
 DIR_ELSEIF: {_input.LA(-1)=='/'}? ([eE][lL][sS][eE][iI][fF]);
 DIR_ENDIF: {_input.LA(-1)=='/'}? ([eE][nN][dD][iI][fF]);
 DIR_Number: NUMBER -> type(NUMBER);
-DIR_WhiteSpace: [ ] -> type(WS);
-DIR_OtherText : ~[\r\n \t]+ ;
+DIR_WhiteSpace: [ ] -> type(WS),skip;
+DIR_OtherText : ~[/'"\r\n \t,()]+ ;
+DIR_Comma : [,] -> skip;
+DIR_Slash : [/] ;
+DIR_OpenParen: [(] -> type(OPEN_PAREN);
+DIR_CloseParen: [)] -> type(CLOSE_PAREN);
+DIR_DblStringLiteralStart: ["] -> pushMode(InDoubleStringMode),type(StringLiteralStart) ;
+DIR_StringLiteralStart: ['] -> pushMode(InStringMode),type(StringLiteralStart) ;
 DIR_EOL : [ ]* NEWLINE -> type(EOL),popMode;
 
 mode SKIP_REMAINING_WS;
@@ -741,6 +749,12 @@ FREE_STRING_CONTINUATION_MINUS: {!_modeStack.contains(FIXED_CalcSpec)
      && !_modeStack.contains(FIXED_OutputSpec)}?
       '-' [ ]* NEWLINE '       ' -> skip;
 PlusOrMinus: [+-];
+
+mode InDoubleStringMode;
+	//  Any char except +,- or ", or a + or - followed by more than just whitespace 
+DblStringContent: ~["\r\n]+ -> type(StringContent); 
+DblStringLiteralEnd: ["] -> popMode,type(StringLiteralEnd);
+
 
 //This mode is basically a language independent flag.
 mode EatCommentLinesPlus;

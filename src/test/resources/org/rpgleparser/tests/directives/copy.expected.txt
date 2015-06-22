@@ -1,0 +1,144 @@
+/*===TOKENS===*/
+DIRECTIVE                <C/>
+DIR_COPY                 <COPY>
+DIR_OtherText            <MBR1>
+EOL                      <                                                                                   
+>
+DIRECTIVE                <I/>
+DIR_INCLUDE              <INCLUDE>
+DIR_OtherText            <SRCFIL>
+DIR_OtherText            <MBR2>
+EOL                      <                                                                         
+>
+DIRECTIVE                <O/>
+DIR_COPY                 <COPY>
+DIR_OtherText            <SRCLIB>
+DIR_Slash                </>
+DIR_OtherText            <SRCFIL>
+DIR_OtherText            <MBR3>
+EOL                      <                                                                     
+>
+DIRECTIVE                <O/>
+DIR_INCLUDE              <INCLUDE>
+StringLiteralStart       <">
+StringContent            <SRCLIB!>
+StringLiteralEnd         <">
+DIR_Slash                </>
+StringLiteralStart       <">
+StringContent            <SRC>3>
+StringLiteralEnd         <">
+StringLiteralStart       <">
+StringContent            <MBR¬3>
+StringLiteralEnd         <">
+EOL                      <                                                           
+>
+DIRECTIVE                <O/>
+DIR_COPY                 <COPY>
+DIR_Slash                </>
+DIR_OtherText            <dir1>
+DIR_Slash                </>
+DIR_OtherText            <dir2>
+DIR_Slash                </>
+DIR_OtherText            <file.rpg>
+EOL                      <                                                                    
+>
+DIRECTIVE                <O/>
+DIR_COPY                 <COPY>
+DIR_Slash                </>
+DIR_OtherText            <dir1>
+DIR_Slash                </>
+DIR_OtherText            <dir2>
+DIR_Slash                </>
+DIR_OtherText            <file>
+EOL                      <                                                                        
+>
+DIRECTIVE                <O/>
+DIR_COPY                 <COPY>
+DIR_OtherText            <dir1>
+DIR_Slash                </>
+DIR_OtherText            <dir2>
+DIR_Slash                </>
+DIR_OtherText            <file.rpg>
+EOL                      <                                                                     
+>
+DIRECTIVE                <O/>
+DIR_COPY                 <COPY>
+StringLiteralStart       <">
+StringContent            <ifs file containing blanks>
+StringLiteralEnd         <">
+EOL                      <                                                           
+>
+DIRECTIVE                <O/>
+DIR_COPY                 <COPY>
+StringLiteralStart       <'>
+StringContent            <ifs file containing blanks>
+StringLiteralEnd         <'>
+/*===TREE===*/
+(r
+  (statement
+    (directive
+      C/
+      (dir_copy COPY (copyText MBR1))
+      '                                                                                   \r\n'
+    )
+  )
+  (statement
+    (directive
+      I/
+      (dir_include INCLUDE (copyText SRCFIL) (copyText MBR2))
+      '                                                                         \r\n'
+    )
+  )
+  (statement
+    (directive
+      O/
+      (dir_copy COPY (copyText SRCLIB) / (copyText SRCFIL) (copyText MBR3))
+      '                                                                     \r\n'
+    )
+  )
+  (statement
+    (directive
+      O/
+      (dir_include
+        INCLUDE
+        (copyText " SRCLIB! ")
+        /
+        (copyText " SRC>3 ")
+        (copyText " MBR¬3 ")
+      )
+      '                                                           \r\n'
+    )
+  )
+  (statement
+    (directive
+      O/
+      (dir_copy COPY / (copyText dir1) / (copyText dir2) / (copyText file.rpg))
+      '                                                                    \r\n'
+    )
+  )
+  (statement
+    (directive
+      O/
+      (dir_copy COPY / (copyText dir1) / (copyText dir2) / (copyText file))
+      '                                                                        \r\n'
+    )
+  )
+  (statement
+    (directive
+      O/
+      (dir_copy COPY (copyText dir1) / (copyText dir2) / (copyText file.rpg))
+      '                                                                     \r\n'
+    )
+  )
+  (statement
+    (directive
+      O/
+      (dir_copy COPY (copyText " ifs file containing blanks "))
+      '                                                           \r\n'
+    )
+  )
+  (statement
+    (directive O/ (dir_copy COPY (copyText ' ifs file containing blanks ')) <EOF>)
+  )
+)
+/*======*/

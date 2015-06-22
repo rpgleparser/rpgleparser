@@ -14,8 +14,10 @@ EOL                      <
 >
 DIRECTIVE                <D/>
 DIR_COPY                 <copy>
-WS                       < >
-DIR_OtherText            <QMQM/QRPGLESRC,CMQRFH2G>
+DIR_OtherText            <QMQM>
+DIR_Slash                </>
+DIR_OtherText            <QRPGLESRC>
+DIR_OtherText            <CMQRFH2G>
 EOL                      <                                                                
 >
 DS_FIXED                 <D>
@@ -46,9 +48,7 @@ RESERVED                 < >
       \r\n
       (directive
         D/
-        copy
-        ' '
-        QMQM/QRPGLESRC,CMQRFH2G
+        (dir_copy copy (copyText QMQM) / (copyText QRPGLESRC) (copyText CMQRFH2G))
         '                                                                \r\n'
       )
       (parm_fixed

@@ -1681,20 +1681,45 @@ directive: DIRECTIVE
 		| space_directive
 		| DIR_SET
 		| DIR_RESTORE
-		| (DIR_COPY WS* DIR_OtherText)
-		| (DIR_INCLUDE WS* DIR_OtherText)
-		| DIR_EOF
-		| (DIR_DEFINE WS* DIR_OtherText)
-		| (DIR_UNDEFINE WS* DIR_OtherText)
-		| (DIR_IF WS* DIR_OtherText)
-		| (DIR_ELSE WS* DIR_OtherText)
-		| (DIR_ELSEIF WS* DIR_OtherText)
-		| (DIR_ENDIF WS* DIR_OtherText)
+		| dir_copy
+		| dir_include 
+		| dir_eof
+		| dir_define
+		| dir_undefine
+		| dir_if
+		| dir_elseif
+		| dir_else
+		| dir_endif
 		)
 	(EOL|EOF);
 space_directive: DIR_SPACE (WS NUMBER)?;
+dir_copy: (DIR_COPY
+		   ( 
+			(((library=copyText DIR_Slash)? file=copyText)? member=copyText)
+			| (DIR_Slash? (copyText DIR_Slash)+ copyText)
+		   )
+		  );
+dir_include: (DIR_INCLUDE 
+		   (
+			(((library=copyText DIR_Slash)? file=copyText)? member=copyText)
+			| (DIR_Slash? (copyText DIR_Slash)+ copyText)
+		   )
+		  );
+dir_if:
+	DIR_IF not=DIR_NOT? DIR_DEFINED OPEN_PAREN copyText CLOSE_PAREN;
+dir_elseif:
+	DIR_ELSEIF not=DIR_NOT? DIR_DEFINED OPEN_PAREN copyText CLOSE_PAREN;
+dir_else: DIR_ELSE;
+dir_endif: DIR_ENDIF;
+dir_define: DIR_DEFINE name=DIR_OtherText;
+dir_undefine: DIR_UNDEFINE name=DIR_OtherText;
+dir_eof:DIR_EOF;
 beginfree_directive: DIR_FREE;
 endfree_directive: DIR_ENDFREE;
+copyText: DIR_OtherText
+ | (StringLiteralStart StringContent StringLiteralEnd)
+ | DIR_NOT
+ | DIR_DEFINE;
 trailing_ws: DIR_FREE_OTHER_TEXT;
 //title_directive: DIR_TITLE WS title_text WS*;
 //title_directive: DIR_TITLE (WS* DIR_OtherText)?;

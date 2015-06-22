@@ -1,0 +1,21 @@
+/*===TOKENS===*/
+DIRECTIVE                < />
+DIR_DEFINE               <DEFINE>
+DIR_OtherText            <def1>
+EOL                      <                                                                                 
+>
+DIRECTIVE                < />
+DIR_UNDEFINE             <UNDEFINE>
+DIR_OtherText            <def1>
+/*===TREE===*/
+(r
+  (statement
+    (directive
+      ' /'
+      (dir_define DEFINE def1)
+      '                                                                                 \r\n'
+    )
+  )
+  (statement (directive ' /' (dir_undefine UNDEFINE def1) <EOF>))
+)
+/*======*/
