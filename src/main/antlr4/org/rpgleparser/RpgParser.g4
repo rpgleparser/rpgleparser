@@ -1692,7 +1692,7 @@ directive: DIRECTIVE
 		| dir_endif
 		)
 	(EOL|EOF);
-space_directive: DIR_SPACE (WS NUMBER)?;
+space_directive: DIR_SPACE (NUMBER)?;
 dir_copy: (DIR_COPY
 		   ( 
 			(((library=copyText DIR_Slash)? file=copyText)? member=copyText)
@@ -1721,11 +1721,11 @@ copyText: DIR_OtherText
  | DIR_NOT
  | DIR_DEFINE;
 trailing_ws: DIR_FREE_OTHER_TEXT;
-//title_directive: DIR_TITLE WS title_text WS*;
-//title_directive: DIR_TITLE (WS* DIR_OtherText)?;
-title_directive: DIR_TITLE WS title_text*;
-//title_text: (WS | NUMBER | DIR_OtherText) (NUMBER | DIR_OtherText);
-title_text: (WS | NUMBER | DIR_OtherText);
+//title_directive: DIR_TITLE title_text;
+//title_directive: DIR_TITLE (DIR_OtherText)?;
+title_directive: DIR_TITLE title_text*;
+//title_text: (NUMBER | DIR_OtherText) (NUMBER | DIR_OtherText);
+title_text: (NUMBER | DIR_OtherText);
  
 //------- Auto from here
 op: op_acq 
