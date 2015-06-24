@@ -118,6 +118,7 @@ import org.rpgleparser.RpgParser.ComplexCondxxContext;
 import org.rpgleparser.RpgParser.ContinuedIdentifierContext;
 import org.rpgleparser.RpgParser.ControlContext;
 import org.rpgleparser.RpgParser.ControlLevelIndicatorContext;
+import org.rpgleparser.RpgParser.CopyTextContext;
 import org.rpgleparser.RpgParser.CsACQContext;
 import org.rpgleparser.RpgParser.CsADDContext;
 import org.rpgleparser.RpgParser.CsADDDURContext;
@@ -308,6 +309,15 @@ import org.rpgleparser.RpgParser.Dcl_piContext;
 import org.rpgleparser.RpgParser.Dcl_pi_fieldContext;
 import org.rpgleparser.RpgParser.Dcl_prContext;
 import org.rpgleparser.RpgParser.Dcl_pr_fieldContext;
+import org.rpgleparser.RpgParser.Dir_copyContext;
+import org.rpgleparser.RpgParser.Dir_defineContext;
+import org.rpgleparser.RpgParser.Dir_elseContext;
+import org.rpgleparser.RpgParser.Dir_elseifContext;
+import org.rpgleparser.RpgParser.Dir_endifContext;
+import org.rpgleparser.RpgParser.Dir_eofContext;
+import org.rpgleparser.RpgParser.Dir_ifContext;
+import org.rpgleparser.RpgParser.Dir_includeContext;
+import org.rpgleparser.RpgParser.Dir_undefineContext;
 import org.rpgleparser.RpgParser.DirectiveContext;
 import org.rpgleparser.RpgParser.Ds_nameContext;
 import org.rpgleparser.RpgParser.DspecConstantContext;
@@ -2071,6 +2081,19 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterCopyText(CopyTextContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCopyText(CopyTextContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterCopyText(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCopyText(CopyTextContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterCs_controlLevel(Cs_controlLevelContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterCs_controlLevel(Cs_controlLevelContext) - start"); //$NON-NLS-1$
@@ -2122,6 +2145,8 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
+
 	@Override
 	public void enterCsACQ(CsACQContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2136,7 +2161,6 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 
-
 	@Override
 	public void enterCsADD(CsADDContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2149,7 +2173,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsADD(CsADDContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsADDDUR(CsADDDURContext ctx) {
@@ -2372,6 +2395,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsCABNE(CsCABNEContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2384,7 +2408,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsCABNE(CsCABNEContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsCABxx(CsCABxxContext ctx) {
@@ -2569,6 +2592,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsCLEAR(CsCLEARContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2581,7 +2605,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsCLEAR(CsCLEARContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsCLOSE(CsCLOSEContext ctx) {
@@ -2791,6 +2814,7 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
 	@Override
 	public void enterCsDOW(CsDOWContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2818,7 +2842,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsDOWGE(CsDOWGEContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2831,6 +2854,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsDOWGE(CsDOWGEContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsDOWGT(CsDOWGTContext ctx) {
@@ -2859,7 +2883,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-
 	@Override
 	public void enterCsDOWLT(CsDOWLTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -2885,6 +2908,7 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsDOWNE(CsDOWNEContext) - end"); //$NON-NLS-1$
 		}
 	}
+
 
 	@Override
 	public void enterCsDOWxx(CsDOWxxContext ctx) {
@@ -2912,7 +2936,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsDSPLY(CsDSPLYContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsDUMP(CsDUMPContext ctx) {
@@ -3617,19 +3640,6 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
-	@Override
-	public void enterCsORGT(CsORGTContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterCsORGT(CsORGTContext) - start"); //$NON-NLS-1$
-		}
-
-		super.enterCsORGT(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterCsORGT(CsORGTContext) - end"); //$NON-NLS-1$
-		}
-	}
-
 //	@Override
 //	public void enterFree_text(Free_textContext ctx) {
 //		if (logger.isDebugEnabled()) {
@@ -3642,6 +3652,19 @@ public class LoggingListener extends RpgParserBaseListener {
 //			logger.debug("enterFree_text(Free_textContext) - end"); //$NON-NLS-1$
 //		}
 //	}
+
+	@Override
+	public void enterCsORGT(CsORGTContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsORGT(CsORGTContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterCsORGT(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterCsORGT(CsORGTContext) - end"); //$NON-NLS-1$
+		}
+	}
 
 	@Override
 	public void enterCsORLE(CsORLEContext ctx) {
@@ -3814,6 +3837,9 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+
+
+
 	@Override
 	public void enterCsPLIST(CsPLISTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -3828,8 +3854,6 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 
-
-
 	@Override
 	public void enterCsPOST(CsPOSTContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -3842,7 +3866,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterCsPOST(CsPOSTContext) - end"); //$NON-NLS-1$
 		}
 	}
-
 
 	@Override
 	public void enterCsREAD(CsREADContext ctx) {
@@ -4575,6 +4598,123 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void enterDir_copy(Dir_copyContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_copy(Dir_copyContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterDir_copy(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_copy(Dir_copyContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterDir_define(Dir_defineContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_define(Dir_defineContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterDir_define(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_define(Dir_defineContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterDir_else(Dir_elseContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_else(Dir_elseContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterDir_else(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_else(Dir_elseContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterDir_elseif(Dir_elseifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_elseif(Dir_elseifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterDir_elseif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_elseif(Dir_elseifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterDir_endif(Dir_endifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_endif(Dir_endifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterDir_endif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_endif(Dir_endifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterDir_eof(Dir_eofContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_eof(Dir_eofContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterDir_eof(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_eof(Dir_eofContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterDir_if(Dir_ifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_if(Dir_ifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterDir_if(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_if(Dir_ifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterDir_include(Dir_includeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_include(Dir_includeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterDir_include(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_include(Dir_includeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void enterDir_undefine(Dir_undefineContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_undefine(Dir_undefineContext) - start"); //$NON-NLS-1$
+		}
+
+		super.enterDir_undefine(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("enterDir_undefine(Dir_undefineContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void enterDirective(DirectiveContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterDirective(DirectiveContext) - start"); //$NON-NLS-1$
@@ -4632,7 +4772,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterDspecConstant(DspecConstantContext) - start"); //$NON-NLS-1$
 		}
 
-		// TODO Auto-generated method stub
 		super.enterDspecConstant(ctx);
 
 		if (logger.isDebugEnabled()) {
@@ -5152,6 +5291,19 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+//	@Override
+//	public void exitArithmeticalOperator(ArithmeticalOperatorContext ctx) {
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - start"); //$NON-NLS-1$
+//		}
+//		
+//		super.exitArithmeticalOperator(ctx);
+//
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - end"); //$NON-NLS-1$
+//		}
+//	}
+
 	@Override
 	public void enterHs_expression(Hs_expressionContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -5282,19 +5434,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("enterIs_external_field(Is_external_fieldContext) - end"); //$NON-NLS-1$
 		}
 	}
-
-//	@Override
-//	public void exitArithmeticalOperator(ArithmeticalOperatorContext ctx) {
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - start"); //$NON-NLS-1$
-//		}
-//		
-//		super.exitArithmeticalOperator(ctx);
-//
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("exitArithmeticalOperator(ArithmeticalOperatorContext) - end"); //$NON-NLS-1$
-//		}
-//	}
 
 	@Override
 	public void enterIs_external_rec(Is_external_recContext ctx) {
@@ -8205,6 +8344,19 @@ public class LoggingListener extends RpgParserBaseListener {
 		}
 	}
 
+//	@Override
+//	public void exitFree_directive(Free_directiveContext ctx) {
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitFree_directive(Free_directiveContext) - start"); //$NON-NLS-1$
+//		}
+//		
+//		super.exitFree_directive(ctx);
+//
+//		if (logger.isDebugEnabled()) {
+//			logger.debug("exitFree_directive(Free_directiveContext) - end"); //$NON-NLS-1$
+//		}
+//	}
+
 	@Override
 	public void exitBif_code(Bif_codeContext ctx) {
 		if (logger.isDebugEnabled()) {
@@ -8334,19 +8486,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("exitBif_div(Bif_divContext) - end"); //$NON-NLS-1$
 		}
 	}
-
-//	@Override
-//	public void exitFree_directive(Free_directiveContext ctx) {
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("exitFree_directive(Free_directiveContext) - start"); //$NON-NLS-1$
-//		}
-//		
-//		super.exitFree_directive(ctx);
-//
-//		if (logger.isDebugEnabled()) {
-//			logger.debug("exitFree_directive(Free_directiveContext) - end"); //$NON-NLS-1$
-//		}
-//	}
 
 	@Override
 	public void exitBif_editc(Bif_editcContext ctx) {
@@ -9373,6 +9512,19 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitControlLevelIndicator(ControlLevelIndicatorContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitCopyText(CopyTextContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCopyText(CopyTextContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitCopyText(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitCopyText(CopyTextContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -11853,6 +12005,123 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
+	public void exitDir_copy(Dir_copyContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_copy(Dir_copyContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitDir_copy(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_copy(Dir_copyContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitDir_define(Dir_defineContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_define(Dir_defineContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitDir_define(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_define(Dir_defineContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitDir_else(Dir_elseContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_else(Dir_elseContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitDir_else(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_else(Dir_elseContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitDir_elseif(Dir_elseifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_elseif(Dir_elseifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitDir_elseif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_elseif(Dir_elseifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitDir_endif(Dir_endifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_endif(Dir_endifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitDir_endif(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_endif(Dir_endifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitDir_eof(Dir_eofContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_eof(Dir_eofContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitDir_eof(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_eof(Dir_eofContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitDir_if(Dir_ifContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_if(Dir_ifContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitDir_if(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_if(Dir_ifContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitDir_include(Dir_includeContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_include(Dir_includeContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitDir_include(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_include(Dir_includeContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
+	public void exitDir_undefine(Dir_undefineContext ctx) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_undefine(Dir_undefineContext) - start"); //$NON-NLS-1$
+		}
+
+		super.exitDir_undefine(ctx);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("exitDir_undefine(Dir_undefineContext) - end"); //$NON-NLS-1$
+		}
+	}
+
+	@Override
 	public void exitDirective(DirectiveContext ctx) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitDirective(DirectiveContext) - start"); //$NON-NLS-1$
@@ -11910,7 +12179,6 @@ public class LoggingListener extends RpgParserBaseListener {
 			logger.debug("exitDspecConstant(DspecConstantContext) - start"); //$NON-NLS-1$
 		}
 
-		// TODO Auto-generated method stub
 		super.exitDspecConstant(ctx);
 
 		if (logger.isDebugEnabled()) {
