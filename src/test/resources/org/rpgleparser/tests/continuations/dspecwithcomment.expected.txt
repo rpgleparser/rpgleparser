@@ -1,0 +1,45 @@
+/*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <  |  >
+DS_FIXED                 <D>
+CONTINUATION_NAME        < Item_Not_Passed_For_Deletion>
+HIDDEN:CE_LEAD_WS5_Comments<  |  >
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <s >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_LIKE             <like>
+'('                      <(>
+SPLAT_IN                 <*in>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (dspec
+      D
+      (ds_name ' Item_Not_Passed_For_Deletion' )
+      ' '
+      ' '
+      's '
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (keyword
+        (keyword_like
+          like
+          (
+          (simpleExpression (identifier (all (symbolicConstants *in))))
+          )
+        )
+      )
+      <EOF>
+    )
+  )
+)
+/*======*/

@@ -878,6 +878,7 @@ mode CONTINUATION_ELIPSIS;
 CE_WS: WS ->skip;
 CE_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n ]~[\r\n]* -> channel(HIDDEN); // skip comments after 80
 CE_LEAD_WS5 :  LEAD_WS5 ->skip;
+CE_LEAD_WS5_Comments : LEAD_WS5_Comments -> channel(HIDDEN);
 CE_D_SPEC_FIXED : {_modeStack.peek()==FIXED_DefSpec && getCharPositionInLine()==5}? [dD] -> skip,popMode ;
 CE_P_SPEC_FIXED : {_modeStack.peek()==FIXED_ProcedureSpec && getCharPositionInLine()==5}? [pP] -> skip,popMode ;
 CE_NEWLINE: NEWLINE ->skip;
