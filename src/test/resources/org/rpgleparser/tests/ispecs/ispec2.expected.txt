@@ -1,0 +1,109 @@
+/*===TOKENS===*/
+HIDDEN:COMMENTS          < //>
+HIDDEN:COMMENTS_TEXT     <---------------------------------------------------------------                            >
+IS_FIXED                 <I>
+IS_FileName              <orctl     >
+IS_Sequence              <ns>
+IS_Number                < >
+IS_Option                < >
+BlankIndicator           <  >
+IS_RecordIdCode          <   12 cX   13 cX        >
+EOL                      <
+>
+HIDDEN:COMMENTS          < //>
+HIDDEN:COMMENTS_TEXT     < company names                                                                             >
+IS_FIXED                 <I>
+IFD_DATA_ATTR            <    >
+IFD_DATETIME_SEP         < >
+IFD_DATA_FORMAT          < >
+IFD_FIELD_LOCATION       <   14   43>
+IFD_DECIMAL_POSITIONS    <  >
+IFD_FIELD_NAME           <k3conm        >
+IFD_CONTROL_LEVEL        <  >
+IFD_MATCHING_FIELDS      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+HIDDEN:IFD_COMMENTS      <                   >
+EOL                      <
+>
+IS_FIXED                 <I>
+IFD_DATA_ATTR            <    >
+IFD_DATETIME_SEP         < >
+IFD_DATA_FORMAT          < >
+IFD_FIELD_LOCATION       <   44   45>
+IFD_DECIMAL_POSITIONS    <  >
+IFD_FIELD_NAME           <dftwhc        >
+IFD_CONTROL_LEVEL        <  >
+IFD_MATCHING_FIELDS      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+HIDDEN:IFD_COMMENTS      <                   >
+EOL                      <
+>
+IS_FIXED                 <I>
+IS_FileName              <          >
+IS_Sequence              <ns>
+IS_Number                < >
+IS_Option                < >
+BlankIndicator           <  >
+IS_RecordIdCode          <   12 cI   13 cU        >
+/*===TREE===*/
+(r
+  (statement
+    (ispec_fixed
+      I
+      'orctl     '
+      (is_rec ns ' ' ' ' (recordIdIndicator '  ') '   12 cX   13 cX        ')
+      \r\n
+    )
+  )
+  (statement
+    (ispec_fixed
+      I
+      '    '
+      ' '
+      ' '
+      '   14   43'
+      '  '
+      'k3conm        '
+      '  '
+      '  '
+      (fieldRecordRelation '  ')
+      (fieldIndicator '  ')
+      (fieldIndicator '  ')
+      (fieldIndicator '  ')
+      \r\n
+    )
+  )
+  (statement
+    (ispec_fixed
+      I
+      '    '
+      ' '
+      ' '
+      '   44   45'
+      '  '
+      'dftwhc        '
+      '  '
+      '  '
+      (fieldRecordRelation '  ')
+      (fieldIndicator '  ')
+      (fieldIndicator '  ')
+      (fieldIndicator '  ')
+      \r\n
+    )
+  )
+  (statement
+    (ispec_fixed
+      I
+      '          '
+      (is_rec ns ' ' ' ' (recordIdIndicator '  ') '   12 cI   13 cU        ')
+      <EOF>
+    )
+  )
+)
+/*======*/

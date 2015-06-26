@@ -1646,7 +1646,8 @@ recordIdIndicator:
   | ControlLevelIndicator
   | LastRecordIndicator
   | ExternalIndicator
-  | ReturnIndicator;
+  | ReturnIndicator
+  | BlankIndicator;
 
 is_external_field:
 			IF_Name
