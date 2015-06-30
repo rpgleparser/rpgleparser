@@ -179,7 +179,7 @@ PS_KEYWORDS              <                                                      
           (op
             (op_eval
               (assignmentExpression
-                (expression (identifier (free_identifier (idOrKeyword Result))))
+                (simpleExpression (identifier (free_identifier (idOrKeyword Result))))
                 =
                 (expression
                   (expression

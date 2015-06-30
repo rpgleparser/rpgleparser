@@ -159,7 +159,7 @@ EOL                      <
           (op_eval_corr
             EVAL-CORR
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword x))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword x))))
               =
               (expression (identifier (free_identifier (idOrKeyword y))))
             )
@@ -176,7 +176,7 @@ EOL                      <
           (op_eval_corr
             eval-corr
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword fldds))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword fldds))))
               =
               (expression (identifier (free_identifier (idOrKeyword fld2ds))))
             )
@@ -194,7 +194,7 @@ EOL                      <
             Eval-corr
             (cs_operationExtender ( h ))
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword ds01))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword ds01))))
               =
               (expression (identifier (free_identifier (idOrKeyword ds02))))
             )

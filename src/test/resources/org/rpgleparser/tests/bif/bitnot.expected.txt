@@ -295,7 +295,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword val1))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword val1))))
               =
               (expression
                 (bif
@@ -320,7 +320,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword val2))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword val2))))
               =
               (expression (bif (bif_bitnot %BITNOT ( (expression (literal x' 80 ')) ))))
             )
@@ -336,7 +336,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword val3))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword val3))))
               =
               (expression
                 (bif
@@ -361,7 +361,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword val4))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword val4))))
               =
               (expression
                 (bif

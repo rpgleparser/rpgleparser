@@ -501,65 +501,65 @@ BlankIndicator           <  >
           )
           ;
         )
-        (statement (free (baseExpression (op (op_endfor endfor))) ;))
-        (statement
-          (block
-            (forstatement
-              (beginfor
-                (op_for
-                  FOR
-                  (expression
-                    (expression (identifier (free_identifier (idOrKeyword i))))
-                    =
-                    (expression
-                      (bif
-                        (bif_len
-                          %len
-                          (
-                          (expression (identifier (free_identifier (idOrKeyword field))))
-                          )
-                        )
-                      )
+        (endfor (op_endfor endfor) ;)
+      )
+    )
+  )
+  (statement
+    (block
+      (forstatement
+        (beginfor
+          (op_for
+            FOR
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword i))))
+              =
+              (expression
+                (bif
+                  (bif_len
+                    %len
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword field))))
                     )
                   )
-                  downto
-                  (expression (number 1))
                 )
-                ;
               )
-              (endfor (op_endfor endfor) ;)
             )
+            downto
+            (expression (number 1))
           )
+          ;
         )
-        (statement
-          (free
-            (baseExpression
-              (op
-                (op_for
-                  for
-                  (expression
-                    (expression (identifier (free_identifier (idOrKeyword i))))
-                    =
-                    (expression (number 1))
-                  )
-                  by
-                  (expression (identifier (free_identifier (idOrKeyword incr))))
-                  to
-                  (expression
-                    (bif
-                      (bif_len
-                        %len
-                        (
-                        (expression (identifier (free_identifier (idOrKeyword fld))))
-                        )
-                      )
-                    )
+        (endfor (op_endfor endfor) ;)
+      )
+    )
+  )
+  (statement
+    (block
+      (forstatement
+        (beginfor
+          (op_for
+            for
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword i))))
+              =
+              (expression (number 1))
+            )
+            by
+            (expression (identifier (free_identifier (idOrKeyword incr))))
+            to
+            (expression
+              (bif
+                (bif_len
+                  %len
+                  (
+                  (expression (identifier (free_identifier (idOrKeyword fld))))
                   )
                 )
               )
             )
-            ;
           )
+          ;
         )
         (endfor (op_endfor endfor) ;)
       )

@@ -273,7 +273,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword ptr1))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword ptr1))))
               =
               (expression (bif (bif_alloc %alloc ( (expression (number 200)) ))))
             )
@@ -289,7 +289,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword ptr2))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword ptr2))))
               =
               (expression
                 (bif
@@ -314,7 +314,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword ptr3))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword ptr3))))
               =
               (expression
                 (bif
@@ -348,7 +348,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword ptr4))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword ptr4))))
               =
               (expression
                 (bif

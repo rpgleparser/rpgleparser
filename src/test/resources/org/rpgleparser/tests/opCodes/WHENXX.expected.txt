@@ -607,24 +607,28 @@ EOL                      <
               )
             )
           )
-        )
-        (other
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor '              ')
-          (csOTHER
-            OTHER
-            (cspec_fixed_standard_parts
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
               (factor '              ')
-              (resultType '              ')
-              '     '
-              '  '
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              \n
+              (cspec_fixed_standard
+                (csOTHER
+                  OTHER
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
             )
           )
         )
@@ -757,24 +761,28 @@ EOL                      <
               )
             )
           )
-        )
-        (other
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor '              ')
-          (csOTHER
-            OTHER
-            (cspec_fixed_standard_parts
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
               (factor '              ')
-              (resultType '              ')
-              '     '
-              '  '
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              \n
+              (cspec_fixed_standard
+                (csOTHER
+                  OTHER
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
             )
           )
         )

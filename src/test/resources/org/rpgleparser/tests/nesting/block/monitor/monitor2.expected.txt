@@ -1,0 +1,207 @@
+/*===TOKENS===*/
+ID                       <$count>
+'='                      <=>
+NUMBER                   <0>
+FREE_SEMI                <;>
+OP_MONITOR               <monitor>
+FREE_SEMI                <;>
+OP_CALLP                 <callp>
+ID                       <ExcCmd>
+'('                      <(>
+BIF_TRIM                 <%Trim>
+'('                      <(>
+ID                       <@CmdStr>
+')'                      <)>
+COLON                    <:>
+BIF_LEN                  <%Len>
+'('                      <(>
+BIF_TRIM                 <%Trim>
+'('                      <(>
+ID                       <@CmdStr>
+')'                      <)>
+')'                      <)>
+')'                      <)>
+FREE_SEMI                <;>
+OP_ON_ERROR              <on-error>
+FREE_SEMI                <;>
+OP_SELECT                <select>
+FREE_SEMI                <;>
+OP_WHEN                  <when>
+ID                       <errmsgID>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <CPFA09E>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+OP_CALLP                 <callp>
+ID                       <ExcCmd>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <DLYJOB DLY(3)>
+StringLiteralEnd         <'>
+COLON                    <:>
+NUMBER                   <13>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <$count>
+'='                      <=>
+ID                       <$count>
+'+'                      <+>
+NUMBER                   <1>
+FREE_SEMI                <;>
+OP_ITER                  <iter>
+FREE_SEMI                <;>
+OP_OTHER                 <other>
+FREE_SEMI                <;>
+OP_LEAVE                 <leave>
+FREE_SEMI                <;>
+OP_ENDSL                 <endsl>
+FREE_SEMI                <;>
+OP_ENDMON                <endmon>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (simpleExpression (identifier (free_identifier (idOrKeyword $count))))
+              =
+              (expression (number 0))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (block
+      (monitorstatement
+        (beginmonitor (op_monitor monitor) ;)
+        (statement
+          (free
+            (baseExpression
+              (op
+                (op_callp
+                  callp
+                  (identifier (free_identifier (idOrKeyword ExcCmd)))
+                  (
+                  (expression
+                    (bif
+                      (bif_trim
+                        %Trim
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword @CmdStr))))
+                        )
+                      )
+                    )
+                  )
+                  :
+                  (expression
+                    (bif
+                      (bif_len
+                        %Len
+                        (
+                        (expression
+                          (bif
+                            (bif_trim
+                              %Trim
+                              (
+                              (expression (identifier (free_identifier (idOrKeyword @CmdStr))))
+                              )
+                            )
+                          )
+                        )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        (onError
+          (op_on_error on-error)
+          ;
+          (statement
+            (block
+              (selectstatement
+                (beginselect (op_select select) ;)
+                (whenstatement
+                  (when
+                    (op_when
+                      when
+                      (indicator_expr
+                        (expression
+                          (expression (identifier (free_identifier (idOrKeyword errmsgID))))
+                          =
+                          (expression (literal ' CPFA09E '))
+                        )
+                      )
+                    )
+                    ;
+                    (statement
+                      (free
+                        (baseExpression
+                          (op
+                            (op_callp
+                              callp
+                              (identifier (free_identifier (idOrKeyword ExcCmd)))
+                              (
+                              (expression (literal ' DLYJOB DLY(3) '))
+                              :
+                              (expression (number 13))
+                              )
+                            )
+                          )
+                        )
+                        ;
+                      )
+                    )
+                    (statement
+                      (free
+                        (baseExpression
+                          (op
+                            (op_eval
+                              (assignmentExpression
+                                (simpleExpression (identifier (free_identifier (idOrKeyword $count))))
+                                =
+                                (expression
+                                  (expression (identifier (free_identifier (idOrKeyword $count))))
+                                  +
+                                  (expression (number 1))
+                                )
+                              )
+                            )
+                          )
+                        )
+                        ;
+                      )
+                    )
+                    (statement (free (baseExpression (op (op_iter iter))) ;))
+                    (statement
+                      (free
+                        (baseExpression (expression (identifier (free_identifier (op_code other)))))
+                        ;
+                      )
+                    )
+                    (statement (free (baseExpression (op (op_leave leave))) ;))
+                  )
+                )
+                (endselect (op_endsl endsl) ;)
+              )
+            )
+          )
+        )
+        (endmonitor (op_endmon endmon) ;)
+      )
+    )
+  )
+)
+/*======*/

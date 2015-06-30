@@ -256,7 +256,7 @@ EOL                      <
           (op_evalr
             EVALR
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword name))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword name))))
               =
               (expression (literal ' XXXXXX '))
             )
@@ -273,7 +273,7 @@ EOL                      <
           (op_evalr
             evalr
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword result))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword result))))
               =
               (expression
                 (bif
@@ -304,7 +304,7 @@ EOL                      <
             evalr
             (cs_operationExtender ( m ))
             (assignmentExpression
-              (expression
+              (simpleExpression
                 (bif
                   (bif_subst
                     %subst

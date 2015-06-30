@@ -285,6 +285,7 @@ block:
 	| ifstatement
 	| selectstatement
 	| forstatement
+	| monitorstatement
 ;
 
 ifstatement:
@@ -294,14 +295,43 @@ ifstatement:
 	(elsestmt statement*)?
 	endif)
 ;
+
+monitorstatement:
+	beginmonitor
+	statement*
+	onError*
+	endmonitor
+;
+beginmonitor:
+	(op_monitor FREE_SEMI)
+	| 
+	CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	csMONITOR
+;
+endmonitor:
+	(op_endmon FREE_SEMI)
+	| 
+	CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	csENDMON
+;
+onError:
+	((op_on_error FREE_SEMI)
+	| 
+	CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	csON_ERROR
+	)
+	statement*
+;
 selectstatement:
 	beginselect
-	(
-	   (  
-		whenstatement*
-		other
-		)|
-		whenstatement*)
+	whenstatement*
+	other?
 	endselect
 ;
 
@@ -407,7 +437,7 @@ elseifstmt:
     fixedexpression=c_free
     (C_FREE_NEWLINE | EOF)
     )
-    | (op_if FREE_SEMI free_linecomments? )
+    | (op_elseif FREE_SEMI free_linecomments? )
 ;
 
 elsestmt:
@@ -416,11 +446,11 @@ elsestmt:
     indicatorsOff=onOffIndicatorsFlag 
     indicators=cs_indicators 
     factor1=factor 
-    OP_ELSEIF 
+    OP_ELSE 
     fixedexpression=c_free
     (C_FREE_NEWLINE | EOF)
     )
-    | (op_if FREE_SEMI free_linecomments? )
+    | (op_else FREE_SEMI free_linecomments? )
 ;
 
 csIFxx:
@@ -872,8 +902,8 @@ cspec_fixed_standard:
 	| csENDDO
 	//| csENDFOR
 	//| csENDIF
-	| csENDMON
-	| csENDSL
+	//| csENDMON
+	//| csENDSL
 	//| csENDSR
 	| csEVAL
 	| csEVAL_CORR
@@ -903,7 +933,7 @@ cspec_fixed_standard:
 	| csMHLZO
 	| csMLHZO
 	| csMLLZO
-	| csMONITOR
+	//| csMONITOR
 	| csMOVE
 	| csMOVEA
 	| csMOVEL
@@ -911,7 +941,7 @@ cspec_fixed_standard:
 	//| csMVR
 	| csNEXT
 	| csOCCUR
-	| csON_ERROR
+	//| csON_ERROR
 	| csOPEN
 	//| csOREQ
 	//| csORNE
@@ -1351,7 +1381,11 @@ csOCCUR:
 	cspec_fixed_standard_parts;
 csON_ERROR:
 	operation=OP_ON_ERROR
-	fixedexpression=c_free (C_FREE_NEWLINE | EOF);
+	(onErrorCode (COLON onErrorCode) *)?
+	(C_FREE_NEWLINE | EOF);
+	
+onErrorCode:
+    (identifier | number);
 csOPEN:
 	operation=OP_OPEN
 	operationExtender=cs_operationExtender? 
@@ -1582,8 +1616,9 @@ csOperationAndExtendedFactor2:
 	operation=OP_EVAL
 	//|operation=OP_IF
 	|operation=OP_CALLP operationExtender=cs_operationExtender?
-	|operation=OP_DOW
-	|operation=OP_ELSEIF;
+	//|operation=OP_DOW
+	//|operation=OP_ELSEIF
+	;
 
 ispec_fixed: IS_FIXED 
 	((IS_FileName
@@ -1738,17 +1773,17 @@ op: op_acq
 	| op_commit 
 	| op_dealloc 
 	| op_delete 
-	| op_dou 
-	| op_dow 
+	//| op_dou 
+	//| op_dow 
 	| op_dsply 
 	| op_dump 
-	| op_else 
-	| op_elseif 
-	| op_enddo 
-	| op_endfor 
+	//| op_else 
+	//| op_elseif 
+	//| op_enddo 
+	//| op_endfor 
 	//| op_endif 
-	| op_endmon 
-	| op_endsl 
+	//| op_endmon 
+	//| op_endsl 
 	//| op_endsr 
 	| op_eval 
 	| op_evalr
@@ -1757,16 +1792,16 @@ op: op_acq
 	| op_exfmt 
 	| op_exsr 
 	| op_feod 
-	| op_for 
+	//| op_for 
 	| op_force 
 	//| op_if 
 	| op_in 
 	| op_iter 
 	| op_leave 
 	| op_leavesr 
-	| op_monitor 
+	//| op_monitor 
 	| op_next 
-	| op_on_error 
+	//| op_on_error 
 	| op_open 
 	//| op_other 
 	| op_out 
@@ -1832,7 +1867,7 @@ op_leave: OP_LEAVE ;
 op_leavesr: OP_LEAVESR ;
 op_monitor: OP_MONITOR ;
 op_next: OP_NEXT cs_operationExtender? (literal | identifier) identifier ;
-op_on_error: OP_ON_ERROR (identifier (COLON identifier )* )? ;
+op_on_error: OP_ON_ERROR (onErrorCode (COLON onErrorCode )* )? ;
 op_open: OP_OPEN cs_operationExtender? identifier ;
 op_other: OP_OTHER ;
 op_out: OP_OUT cs_operationExtender? (identifier )? identifier ;
@@ -1868,17 +1903,17 @@ op_code: OP_ACQ
 	  | OP_COMMIT
 	  | OP_DEALLOC
 	  | OP_DELETE
-      | OP_DOU
-      | OP_DOW
+      //| OP_DOU
+      //| OP_DOW
       | OP_DSPLY
       | OP_DUMP
-      | OP_ELSE
-      | OP_ELSEIF
-      | OP_ENDDO
-      | OP_ENDFOR
-      | OP_ENDIF
-      | OP_ENDMON
-      | OP_ENDSL
+      //| OP_ELSE
+      //| OP_ELSEIF
+      //| OP_ENDDO
+      //| OP_ENDFOR
+      //| OP_ENDIF
+      //| OP_ENDMON
+      //| OP_ENDSL
       | OP_ENDSR
       | OP_EVAL
       | OP_EVALR
@@ -1887,16 +1922,16 @@ op_code: OP_ACQ
       | OP_EXFMT
       | OP_EXSR
       | OP_FEOD
-      | OP_FOR
+      //| OP_FOR
       | OP_FORCE
-      | OP_IF
+      //| OP_IF
       | OP_IN
       | OP_ITER
       | OP_LEAVE
       | OP_LEAVESR
-      | OP_MONITOR
+      //| OP_MONITOR
       | OP_NEXT
-      | OP_ON_ERROR
+      //| OP_ON_ERROR
       | OP_OPEN
       | OP_OTHER
       | OP_OUT
@@ -2193,12 +2228,15 @@ exec_sql: EXEC_SQL WORDS+ SEMI ;
 
 //---------------  
 baseExpression: op | expression;
-assignmentExpression: expression EQUAL expression;
+assignmentExpression: simpleExpression EQUAL expression;
 simpleExpression:
-	bif
+	function
+	| bif
 	| identifier 
 	| number 
-	| literal; 
+	| literal
+	| OPEN_PAREN expression CLOSE_PAREN
+	; 
 
 expression: 
 	// op | // should drop op I think?
@@ -2334,6 +2372,10 @@ idOrKeyword:
    | KEYWORD_SPECIAL   
    | KEYWORD_KEYED
    | KEYWORD_USAGE
+   | UDATE
+   | UMONTH
+   | UYEAR
+   | UDAY
    |datatypeName;
 		
 argument: ID;

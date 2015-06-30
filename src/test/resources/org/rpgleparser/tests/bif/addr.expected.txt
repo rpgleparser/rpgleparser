@@ -171,7 +171,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword P))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword P))))
               =
               (expression
                 (bif
@@ -228,7 +228,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (op
                 (op_eval
                   (assignmentExpression
-                    (expression (identifier (free_identifier (idOrKeyword P))))
+                    (simpleExpression (identifier (free_identifier (idOrKeyword P))))
                     =
                     (expression
                       (bif
@@ -270,7 +270,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword prefix_size))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword prefix_size))))
               =
               (expression
                 (expression

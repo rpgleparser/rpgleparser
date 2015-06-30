@@ -1,0 +1,25 @@
+/*===TOKENS===*/
+ID                       <x1date>
+'='                      <=>
+UDATE                    <udate>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (assignmentExpression
+              (simpleExpression (identifier (free_identifier (idOrKeyword x1date))))
+              =
+              (expression (identifier (free_identifier (idOrKeyword udate))))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/

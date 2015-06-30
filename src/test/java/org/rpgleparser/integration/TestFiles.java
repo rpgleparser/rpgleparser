@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -83,6 +84,8 @@ public class TestFiles {
 		}
 		lexer.reset();
 		
+		//parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+		//parser.reset();
 		final ParseTree parseTree = parser.r();
 		
 		final String actualTree = TreeUtils.printTree(parseTree, parser);

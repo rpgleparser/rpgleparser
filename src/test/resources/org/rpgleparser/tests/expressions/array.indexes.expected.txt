@@ -30,7 +30,7 @@ FREE_SEMI                <;>
         (op
           (op_eval
             (assignmentExpression
-              (expression
+              (simpleExpression
                 (identifier
                   (multipart_identifier
                     (indexed_identifier (free_identifier (idOrKeyword arr)) ( * ))

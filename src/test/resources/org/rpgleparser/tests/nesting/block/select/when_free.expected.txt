@@ -144,7 +144,7 @@ HIDDEN:EMPTY_LINE        <                                                      
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier (idOrKeyword event))))
+                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Insert '))
                       )
@@ -195,7 +195,7 @@ HIDDEN:EMPTY_LINE        <                                                      
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier (idOrKeyword event))))
+                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Delete '))
                       )
@@ -246,7 +246,7 @@ HIDDEN:EMPTY_LINE        <                                                      
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier (idOrKeyword event))))
+                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Update '))
                       )
@@ -297,7 +297,7 @@ HIDDEN:EMPTY_LINE        <                                                      
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier (idOrKeyword event))))
+                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Read '))
                       )
@@ -331,7 +331,7 @@ HIDDEN:EMPTY_LINE        <                                                      
                   (op
                     (op_eval
                       (assignmentExpression
-                        (expression (identifier (free_identifier (idOrKeyword event))))
+                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
                         =
                         (expression (literal ' Unknown '))
                       )

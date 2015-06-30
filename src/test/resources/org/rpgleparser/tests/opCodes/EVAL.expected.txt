@@ -299,7 +299,7 @@ EOL                      <
           (op_eval
             EVAL
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword x))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword x))))
               =
               (expression (identifier (free_identifier (idOrKeyword y))))
             )
@@ -316,7 +316,7 @@ EOL                      <
           (op_eval
             eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword result))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword result))))
               =
               (expression
                 (expression (identifier (free_identifier (idOrKeyword fld1))))
@@ -346,7 +346,7 @@ EOL                      <
             eval
             (cs_operationExtender ( h ))
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword result))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword result))))
               =
               (expression
                 (expression (identifier (free_identifier (idOrKeyword fld1))))
@@ -375,7 +375,7 @@ EOL                      <
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword ptr))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword ptr))))
               =
               (expression
                 (bif

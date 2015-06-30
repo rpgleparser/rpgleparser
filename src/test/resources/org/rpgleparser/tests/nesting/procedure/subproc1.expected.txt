@@ -78,7 +78,7 @@ FREE_SEMI                <;>
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword wkAlpha))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword wkAlpha))))
               =
               (expression (literal ' 1140214 '))
             )
@@ -114,7 +114,7 @@ FREE_SEMI                <;>
                 (op
                   (op_eval
                     (assignmentExpression
-                      (expression (identifier (free_identifier (idOrKeyword wkError))))
+                      (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
                       =
                       (expression (identifier (all (symbolicConstants *on))))
                     )
@@ -124,14 +124,14 @@ FREE_SEMI                <;>
               ;
             )
           )
-          (statement (free (baseExpression (op (op_else else))) ;))
+          (elsestmt (op_else else) ;)
           (statement
             (free
               (baseExpression
                 (op
                   (op_eval
                     (assignmentExpression
-                      (expression (identifier (free_identifier (idOrKeyword wkError))))
+                      (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
                       =
                       (expression (identifier (all (symbolicConstants *off))))
                     )

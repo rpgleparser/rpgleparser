@@ -22,7 +22,9 @@ DIR_ENDFREE              <END-FREE>
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword (datatypeName time)))))
+              (simpleExpression
+                (identifier (free_identifier (idOrKeyword (datatypeName time))))
+              )
               =
               (expression
                 (expression

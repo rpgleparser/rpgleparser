@@ -258,29 +258,25 @@ BlankIndicator           <  >
                   )
                 )
               )
-              (statement
-                (cspec_fixed
-                  C
-                  (cs_controlLevel '  ')
-                  (onOffIndicatorsFlag ' ')
-                  (cs_indicators '  ')
-                  (factor '              ')
-                  (cspec_fixed_x2
-                    (csOperationAndExtendedFactor2 ELSEIF)
-                    (c_free
-                      (expression
-                        (expression
-                          (bif
-                            (bif_status %STATUS ( (identifier (free_identifier (idOrKeyword CUST))) ))
-                          )
-                        )
-                        =
-                        (expression (number 1221))
+              (elseifstmt
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor '              ')
+                ELSEIF
+                (c_free
+                  (expression
+                    (expression
+                      (bif
+                        (bif_status %STATUS ( (identifier (free_identifier (idOrKeyword CUST))) ))
                       )
                     )
-                    \r\n
+                    =
+                    (expression (number 1221))
                   )
                 )
+                \r\n
               )
               (statement
                 (cspec_fixed

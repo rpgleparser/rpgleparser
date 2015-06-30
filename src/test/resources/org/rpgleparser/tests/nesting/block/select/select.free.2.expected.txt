@@ -157,9 +157,14 @@ FREE_SEMI                <;>
               )
             )
             ;
+            (statement
+              (free
+                (baseExpression (expression (identifier (free_identifier (op_code other)))))
+                ;
+              )
+            )
           )
         )
-        (other (op_other other) ;)
         (endselect (op_endsl endsl) ;)
       )
     )

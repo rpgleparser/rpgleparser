@@ -7,7 +7,7 @@ lexer grammar RpgLexer;
 	public boolean isEndOfToken() {
 		return " (;".indexOf(_input.LA(1)) >=0;
 	}
-}
+} 
 
 // Parser Rules
 	//End Source.  Not more parsing after this.
@@ -1194,6 +1194,7 @@ CS_OperationAndExtendedFactor2: {getCharPositionInLine()==25}?
 		| OP_CALLP[(][eE][)]'  '
 		| OP_DOW'       '
 		| OP_ELSEIF'    '
+		| OP_ON_ERROR'  '
 	) -> pushMode(FREE);
 	*/
 CS_OperationAndExtender_Blank:  
@@ -1249,12 +1250,14 @@ CS_Operation_DOUNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}?
 CS_Operation_DOULE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOULE-> type(OP_DOULE);
 CS_Operation_DOULT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOULT-> type(OP_DOULT);
 CS_Operation_DOUGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOUGE-> type(OP_DOUGE);
+CS_Operation_DOUGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOUGT-> type(OP_DOUGT);
 CS_Operation_DOW: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOW-> type(OP_DOW),pushMode(FREE),pushMode(FixedOpExtender);
 CS_Operation_DOWEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWEQ-> type(OP_DOWEQ);
 CS_Operation_DOWNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWNE-> type(OP_DOWNE);
 CS_Operation_DOWLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWLE-> type(OP_DOWLE);
 CS_Operation_DOWLT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWLT-> type(OP_DOWLT);
 CS_Operation_DOWGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWGE-> type(OP_DOWGE);
+CS_Operation_DOWGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWGT-> type(OP_DOWGT);
 CS_Operation_DSPLY: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DSPLY-> type(OP_DSPLY);
 CS_Operation_DUMP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DUMP-> type(OP_DUMP);
 CS_Operation_ELSE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ELSE-> type(OP_ELSE);
@@ -1304,7 +1307,7 @@ CS_Operation_MULT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? 
 CS_Operation_MVR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MVR-> type(OP_MVR);
 CS_Operation_NEXT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_NEXT-> type(OP_NEXT);
 CS_Operation_OCCUR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_OCCUR-> type(OP_OCCUR);
-CS_Operation_ON_ERROR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ON_ERROR-> type(OP_ON_ERROR);
+CS_Operation_ON_ERROR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ON_ERROR-> type(OP_ON_ERROR),pushMode(FREE);
 CS_Operation_OPEN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_OPEN-> type(OP_OPEN);
 CS_Operation_OREQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_OREQ-> type(OP_OREQ);
 CS_Operation_ORNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ORNE-> type(OP_ORNE);

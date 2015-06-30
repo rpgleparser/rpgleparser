@@ -1,0 +1,372 @@
+/*===TOKENS===*/
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < The MONITOR block consists of the READ statement and the IF                                >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < group.                                                                                     >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < - The first ON-ERROR block handles status 1211 which                                       >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <   is issued for the READ operation if the file is not open.                                >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < - The second ON-ERROR block handles all other file errors.                                 >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < - The third ON-ERROR block handles the string-operation status                             >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <   code 00100 and array index status code 00121.                                            >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < - The fourth ON-ERROR block (which could have had a factor 2                               >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <   of *ALL) handles errors not handled by the specific ON-ERROR                             >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <   operations.                                                                              >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < If no error occurs in the MONITOR block, control passes from the                           >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < ENDIF to the ENDMON.                                                                       >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_MONITOR               <MONITOR>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_READ                  <READ>
+CS_FactorContent         <FILE1>
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <IF>
+NOT                      <NOT>
+BIF_EOF                  <%EOF>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <Line>
+'='                      <=>
+BIF_SUBST                <%SUBST>
+'('                      <(>
+ID                       <Line>
+'('                      <(>
+ID                       <i>
+')'                      <)>
+COLON                    <:>
+BIF_SCAN                 <%SCAN>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <***>
+StringLiteralEnd         <'>
+COLON                    <:>
+ID                       <Line>
+'('                      <(>
+ID                       <i>
+')'                      <)>
+')'                      <)>
+'+'                      <+>
+NUMBER                   <1>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <ENDIF>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ON_ERROR              <ON-ERROR>
+NUMBER                   <1211>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ON_ERROR              <ON-ERROR>
+SPLAT_FILE               <*FILE>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ON_ERROR              <ON-ERROR>
+NUMBER                   <00100>
+COLON                    <:>
+NUMBER                   <00121>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ON_ERROR              <ON-ERROR>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDMON                <ENDMON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (monitorstatement
+        (beginmonitor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csMONITOR
+            MONITOR
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csREAD
+                READ
+                (cspec_fixed_standard_parts
+                  (factor (factorContent FILE1))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \r\n
+                )
+              )
+            )
+          )
+        )
+        (statement
+          (block
+            (ifstatement
+              (beginif
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor '              ')
+                IF
+                (c_free (expression NOT (expression (bif (bif_eof %EOF)))))
+                \r\n
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_standard
+                    (csEVAL
+                      EVAL
+                      (c_free
+                        (expression
+                          (expression (identifier (free_identifier (idOrKeyword Line))))
+                          =
+                          (expression
+                            (bif
+                              (bif_subst
+                                %SUBST
+                                (
+                                (expression
+                                  (function
+                                    (functionName (free_identifier (idOrKeyword Line)))
+                                    (args ( (expression (identifier (free_identifier (idOrKeyword i)))) ))
+                                  )
+                                )
+                                :
+                                (expression
+                                  (expression
+                                    (bif
+                                      (bif_scan
+                                        %SCAN
+                                        (
+                                        (expression (literal ' *** '))
+                                        :
+                                        (expression
+                                          (function
+                                            (functionName (free_identifier (idOrKeyword Line)))
+                                            (args ( (expression (identifier (free_identifier (idOrKeyword i)))) ))
+                                          )
+                                        )
+                                        )
+                                      )
+                                    )
+                                  )
+                                  +
+                                  (expression (number 1))
+                                )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                      \r\n
+                    )
+                  )
+                )
+              )
+              (endif
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor '              ')
+                (csENDIF
+                  ENDIF
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \r\n
+                  )
+                )
+              )
+            )
+          )
+        )
+        (onError
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csON_ERROR ON-ERROR (onErrorCode (number 1211)) \r\n)
+        )
+        (onError
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csON_ERROR
+            ON-ERROR
+            (onErrorCode (identifier (all (symbolicConstants *FILE))))
+            \r\n
+          )
+        )
+        (onError
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csON_ERROR
+            ON-ERROR
+            (onErrorCode (number 00100))
+            :
+            (onErrorCode (number 00121))
+            \r\n
+          )
+        )
+        (onError
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csON_ERROR ON-ERROR \r\n)
+        )
+        (endmonitor
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDMON
+            ENDMON
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

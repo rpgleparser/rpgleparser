@@ -35,7 +35,7 @@ FREE_SEMI                <;>
           (op
             (op_eval
               (assignmentExpression
-                (expression (identifier (free_identifier (idOrKeyword X))))
+                (simpleExpression (identifier (free_identifier (idOrKeyword X))))
                 =
                 (expression (number 1234))
               )

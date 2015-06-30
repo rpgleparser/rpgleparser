@@ -276,7 +276,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword fldb))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword fldb))))
               =
               (expression
                 (bif
@@ -296,7 +296,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword fldc))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword fldc))))
               =
               (expression
                 (bif
@@ -325,7 +325,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword FLDD))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword FLDD))))
               =
               (expression
                 (bif
@@ -354,7 +354,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         (op
           (op_eval
             (assignmentExpression
-              (expression (identifier (free_identifier (idOrKeyword FLDe))))
+              (simpleExpression (identifier (free_identifier (idOrKeyword FLDe))))
               =
               (expression
                 (bif

@@ -158,28 +158,22 @@ BlankIndicator           <  >
                   )
                 )
               )
-              (statement
-                (free
-                  (baseExpression
-                    (op
-                      (op_elseif
-                        ELSEIF
-                        (indicator_expr
-                          (expression
-                            (expression
-                              (bif
-                                (bif_status %STATUS ( (identifier (free_identifier (idOrKeyword CUST))) ))
-                              )
-                            )
-                            =
-                            (expression (number 1221))
-                          )
+              (elseifstmt
+                (op_elseif
+                  ELSEIF
+                  (indicator_expr
+                    (expression
+                      (expression
+                        (bif
+                          (bif_status %STATUS ( (identifier (free_identifier (idOrKeyword CUST))) ))
                         )
                       )
+                      =
+                      (expression (number 1221))
                     )
                   )
-                  ;
                 )
+                ;
               )
               (statement
                 (cspec_fixed
