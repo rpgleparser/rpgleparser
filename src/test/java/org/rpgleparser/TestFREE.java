@@ -103,13 +103,13 @@ public class TestFREE {
                 ";");
     }
 
-    @Test
-    public void testON_ERROR() {
-        String inputString =
-                "             on-error; \r\n";
-        expectTokensForSourceLines(inputString,
-                "on-error", ";");
-    }
+//    @Test
+//    public void testON_ERROR() {
+//        String inputString =
+//                "             on-error; \r\n";
+//        expectTokensForSourceLines(inputString,
+//                "on-error", ";");
+//    }
 
     @Test
     public void testComparison() {
@@ -390,10 +390,10 @@ public class TestFREE {
     @Test
     public void testForBy() {
         String inputString =
-                "FOR X = 100 BY -1 TO 100;";
+                "FOR X = 100 BY -1 TO 100;\r\n ENDFOR;";
         expectTokensForFreeSnippet(inputString,
                 "FOR", "X", "=", "100", "BY", "-", "1", "TO",
-                "100", ";");
+                "100", ";","ENDFOR",";");
     }
 
     @Test

@@ -21,8 +21,8 @@ public class TestOPCode {
 
     @Test
     public void testDOW() {
-        String inputString = "           dow *in99 = *on;        \r\n";
-        expectTokensForSourceLines(inputString, "dow", "*in99", "=","*on",";");
+        String inputString = "           dow *in99 = *on;        \r\n        enddo;";
+        expectTokensForSourceLines(inputString, "dow", "*in99", "=","*on",";","enddo",";");
     }
 
     @Test
@@ -33,8 +33,8 @@ public class TestOPCode {
 
     @Test
     public void testFOR() {
-        String inputString = "for Ptr = 1 to 40;";
-        expectTokensForFreeSnippet(inputString, "for", "Ptr", "=", "1", "to", "40", ";");
+        String inputString = "for Ptr = 1 to 40;\r\nendfor;";
+        expectTokensForFreeSnippet(inputString, "for", "Ptr", "=", "1", "to", "40", ";", "endfor",";");
     }
 
     @Test
