@@ -291,7 +291,7 @@ block:
 ifstatement:
 	(beginif
 	statement*
-	(elseifstmt statement*)?
+	(elseifstmt statement*)*
 	(elsestmt statement*)?
 	endif)
 ;
