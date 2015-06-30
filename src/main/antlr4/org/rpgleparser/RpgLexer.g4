@@ -46,8 +46,8 @@ NEWLINE : ('\r' '\n'? | '\n') -> skip;
 WS : {getCharPositionInLine()>5}? [ \t]+ -> skip ; // skip spaces, tabs, NEWLINEs
 
 mode DirectiveMode;
-DIR_NOT: 'NOT';
-DIR_DEFINED: 'DEFINED';
+DIR_NOT: [nN][oO][tT];
+DIR_DEFINED: [dD][eE][fF][iI][nN][eE][dD];
 DIR_FREE: {_input.LA(-1)=='/'}? [fF][rR][eE][eE] -> pushMode(SKIP_REMAINING_WS);
 DIR_ENDFREE: {_input.LA(-1)=='/'}? [eE][nN][dD] '-' [fF][rR][eE][eE] -> pushMode(SKIP_REMAINING_WS);
 DIR_TITLE:{_input.LA(-1)=='/'}? ([tT][iI][tT][lL][eE]);
