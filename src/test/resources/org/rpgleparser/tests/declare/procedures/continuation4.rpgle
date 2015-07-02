@@ -1,0 +1,6 @@
+     D isLocationInCurrentGroup...                                                                                         
+     D                 PR              N   extproc('isLocationInCurrentGroup_IN-                                                                                         
+     D                                     S002')                                                                                         
+     D  inLocation                         like(typeLocation) const                                                                                         
+     D  inIgnoreSelection...                                                                                         
+     D                                 N   const options(*nopass)                                                                                         

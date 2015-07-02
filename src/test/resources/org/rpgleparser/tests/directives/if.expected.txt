@@ -1,7 +1,7 @@
 /*===TOKENS===*/
 DIRECTIVE                < />
 DIR_IF                   <IF>
-'DEFINED'                <DEFINED>
+DIR_DEFINED              <DEFINED>
 '('                      <(>
 DIR_OtherText            <*CRTRPGMOD>
 ')'                      <)>
@@ -9,8 +9,8 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_IF                   <IF>
-'NOT'                    <NOT>
-'DEFINED'                <DEFINED>
+DIR_NOT                  <NOT>
+DIR_DEFINED              <DEFINED>
 '('                      <(>
 DIR_OtherText            <THIS_IS_MAIN>
 ')'                      <)>

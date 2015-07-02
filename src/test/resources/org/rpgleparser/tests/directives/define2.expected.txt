@@ -1,0 +1,35 @@
+/*===TOKENS===*/
+DIRECTIVE                < />
+DIR_IF                   <if>
+DIR_DEFINED              <defined>
+'('                      <(>
+DIR_OtherText            <header_INS002>
+')'                      <)>
+EOL                      <                                                                                     
+>
+DIRECTIVE                < />
+DIR_UNDEFINE             <undefine>
+DIR_OtherText            <header_INS002>
+EOL                      <                                                                                         
+>
+DIRECTIVE                < />
+DIR_ENDIF                <endif>
+/*===TREE===*/
+(r
+  (statement
+    (directive
+      ' /'
+      (dir_if if defined ( (copyText header_INS002) ))
+      '                                                                                     \r\n'
+    )
+  )
+  (statement
+    (directive
+      ' /'
+      (dir_undefine undefine header_INS002)
+      '                                                                                         \r\n'
+    )
+  )
+  (statement (directive ' /' (dir_endif endif) <EOF>))
+)
+/*======*/

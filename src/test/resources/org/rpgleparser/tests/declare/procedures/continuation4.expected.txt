@@ -1,0 +1,127 @@
+/*===TOKENS===*/
+DS_FIXED                 <D>
+CONTINUATION_NAME        < isLocationInCurrentGroup>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PR              <PR>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <N>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_EXTPROC          <extproc>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <isLocationInCurrentGroup_IN>
+StringContent            <S002>
+StringLiteralEnd         <'>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <inLocation>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_LIKE             <like>
+'('                      <(>
+ID                       <typeLocation>
+')'                      <)>
+KEYWORD_CONST            <const>
+EOL                      <
+>
+DS_FIXED                 <D>
+CONTINUATION_NAME        <  inIgnoreSelection>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <N>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_CONST            <const>
+KEYWORD_OPTIONS          <options>
+'('                      <(>
+ID                       <*nopass>
+')'                      <)>
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (dcl_pr
+    (prBegin
+      D
+      (ds_name ' isLocationInCurrentGroup' )
+      ' '
+      ' '
+      PR
+      '       '
+      '       '
+      N
+      '  '
+      ' '
+      (keyword
+        (keyword_extproc
+          extproc
+          (
+          (simpleExpression (literal ' isLocationInCurrentGroup_IN S002 '))
+          )
+        )
+      )
+      \r\n
+    )
+    (parm_fixed
+      D
+      (ds_name inLocation)
+      ' '
+      ' '
+      '  '
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (keyword
+        (keyword_like
+          like
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword typeLocation))))
+          )
+        )
+      )
+      (keyword (keyword_const const))
+      \r\n
+    )
+    (parm_fixed
+      D
+      (ds_name '  inIgnoreSelection' )
+      ' '
+      ' '
+      '  '
+      '       '
+      '       '
+      N
+      '  '
+      ' '
+      (keyword (keyword_const const))
+      (keyword
+        (keyword_options
+          options
+          (
+          (identifier (free_identifier (idOrKeyword *nopass)))
+          )
+        )
+      )
+      \r\n
+    )
+  )
+)
+/*======*/
