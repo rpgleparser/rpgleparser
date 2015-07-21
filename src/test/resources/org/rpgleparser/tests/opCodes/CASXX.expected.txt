@@ -67,7 +67,7 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <Field1>
-CS_OperationAndExtender  <CAS>
+OP_CAS                   <CAS>
 CS_FactorContent         <FIELDB>
 CS_FactorContent         <SUBR>
 CS_FieldLength           <     >
@@ -82,7 +82,7 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <Field1>
-CS_OperationAndExtender  <CAS>
+OP_CAS                   <CAS>
 CS_FactorContent         <FIELDB>
 CS_FactorContent         <SUBR>
 CS_FieldLength           <     >
@@ -148,6 +148,21 @@ CS_FactorContent         <SUBR>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 GeneralIndicator         <21>
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDCS                 <ENDCS>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
@@ -225,13 +240,13 @@ EOL                      <
     )
   )
   (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent Field1))
-      (cspec_fixed_standard
+    (block
+      (casestatement
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent Field1))
         (csCASLT
           CASLT
           (cspec_fixed_standard_parts
@@ -245,17 +260,11 @@ EOL                      <
             \n
           )
         )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent Field1))
-      (cspec_fixed_standard
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent Field1))
         (csCASLE
           CASLE
           (cspec_fixed_standard_parts
@@ -269,17 +278,11 @@ EOL                      <
             \n
           )
         )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent Field1))
-      (cspec_fixed_standard
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent Field1))
         (csCASLE
           CASLE
           (cspec_fixed_standard_parts
@@ -293,61 +296,47 @@ EOL                      <
             \n
           )
         )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent Field1))
-      (cspec_fixed_standard
-        CAS
-        (cspec_fixed_standard_parts
-          (factor (factorContent FIELDB))
-          (resultType SUBR)
-          '     '
-          '  '
-          (resultIndicator 17)
-          (resultIndicator 18)
-          (resultIndicator '  ')
-          \n
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent Field1))
+        (csCAS
+          CAS
+          (cspec_fixed_standard_parts
+            (factor (factorContent FIELDB))
+            (resultType SUBR)
+            '     '
+            '  '
+            (resultIndicator 17)
+            (resultIndicator 18)
+            (resultIndicator '  ')
+            \n
+          )
         )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent Field1))
-      (cspec_fixed_standard
-        CAS
-        (cspec_fixed_standard_parts
-          (factor (factorContent FIELDB))
-          (resultType SUBR)
-          '     '
-          '  '
-          (resultIndicator '  ')
-          (resultIndicator '  ')
-          (resultIndicator 19)
-          \n
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent Field1))
+        (csCAS
+          CAS
+          (cspec_fixed_standard_parts
+            (factor (factorContent FIELDB))
+            (resultType SUBR)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator 19)
+            \n
+          )
         )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent Field1))
-      (cspec_fixed_standard
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent Field1))
         (csCASGT
           casgt
           (cspec_fixed_standard_parts
@@ -361,17 +350,11 @@ EOL                      <
             \n
           )
         )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent Field1))
-      (cspec_fixed_standard
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent Field1))
         (csCASGE
           CASge
           (cspec_fixed_standard_parts
@@ -385,17 +368,11 @@ EOL                      <
             \n
           )
         )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent Field1))
-      (cspec_fixed_standard
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent Field1))
         (csCASEQ
           CASEQ
           (cspec_fixed_standard_parts
@@ -409,17 +386,11 @@ EOL                      <
             \n
           )
         )
-      )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent Field1))
-      (cspec_fixed_standard
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent Field1))
         (csCASEQ
           CASEQ
           (cspec_fixed_standard_parts
@@ -431,6 +402,26 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             \n
+          )
+        )
+        (casestatementend
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDCS
+            ENDCS
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
           )
         )
       )

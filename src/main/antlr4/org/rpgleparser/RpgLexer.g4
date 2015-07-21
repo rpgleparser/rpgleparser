@@ -588,6 +588,7 @@ OP_CASLE: [cC][aA][sS][lL][eE];
 OP_CASLT: [cC][aA][sS][lL][tT];
 OP_CASGE: [cC][aA][sS][gG][eE];
 OP_CASGT: [cC][aA][sS][gG][tT];
+OP_CAS: [cC][aA][sS];
 OP_CAT: [cC][aA][tT];
 //OP_CHAIN: [cC][hH][aA][iI][nN];
 OP_CHECK: [cC][hH][eE][cC][kK];
@@ -1231,6 +1232,7 @@ CS_Operation_CASLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}?
 CS_Operation_CASLT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASLT-> type(OP_CASLT);
 CS_Operation_CASGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASGE-> type(OP_CASGE);
 CS_Operation_CASGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASGT-> type(OP_CASGT);
+CS_Operation_CAS: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CAS-> type(OP_CAS);
 CS_Operation_CAT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CAT-> type(OP_CAT);
 CS_Operation_CHAIN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CHAIN-> type(OP_CHAIN);
 CS_Operation_CHECK: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CHECK-> type(OP_CHECK);

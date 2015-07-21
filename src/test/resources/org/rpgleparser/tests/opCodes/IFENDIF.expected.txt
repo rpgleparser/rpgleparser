@@ -294,28 +294,22 @@ EOL                      <
           )
           \n
         )
-        (statement
-          (cspec_fixed
-            C
-            (cs_controlLevel '  ')
-            (onOffIndicatorsFlag ' ')
-            (cs_indicators '  ')
+        (elsestmt
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          ELSE
+          (cspec_fixed_standard_parts
             (factor '              ')
-            (cspec_fixed_standard
-              (csELSE
-                ELSE
-                (cspec_fixed_standard_parts
-                  (factor '              ')
-                  (resultType '              ')
-                  '     '
-                  '  '
-                  (resultIndicator '  ')
-                  (resultIndicator '  ')
-                  (resultIndicator '  ')
-                  \n
-                )
-              )
-            )
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
           )
         )
         (endif
@@ -384,28 +378,22 @@ EOL                      <
           )
           \n
         )
-        (statement
-          (cspec_fixed
-            C
-            (cs_controlLevel '  ')
-            (onOffIndicatorsFlag ' ')
-            (cs_indicators '  ')
+        (elsestmt
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          ELSE
+          (cspec_fixed_standard_parts
             (factor '              ')
-            (cspec_fixed_standard
-              (csELSE
-                ELSE
-                (cspec_fixed_standard_parts
-                  (factor '              ')
-                  (resultType '              ')
-                  '     '
-                  '  '
-                  (resultIndicator '  ')
-                  (resultIndicator '  ')
-                  (resultIndicator '  ')
-                  \n
-                )
-              )
-            )
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
           )
         )
         (endif
@@ -471,28 +459,22 @@ EOL                      <
           )
           \n
         )
-        (statement
-          (cspec_fixed
-            C
-            (cs_controlLevel '  ')
-            (onOffIndicatorsFlag ' ')
-            (cs_indicators '  ')
+        (elsestmt
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          else
+          (cspec_fixed_standard_parts
             (factor '              ')
-            (cspec_fixed_standard
-              (csELSE
-                else
-                (cspec_fixed_standard_parts
-                  (factor '              ')
-                  (resultType '              ')
-                  '     '
-                  '  '
-                  (resultIndicator '  ')
-                  (resultIndicator '  ')
-                  (resultIndicator '  ')
-                  \n
-                )
-              )
-            )
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \n
           )
         )
         (endif

@@ -121,16 +121,122 @@ BlankIndicator           <  >
 (r
   (statement
     (block
-      (csIFxx
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor (factorContent FIELDA))
-        (csIFGT
-          IFGT
+      (ifstatement
+        (beginif
+          (csIFxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent FIELDA))
+            (csIFGT
+              IFGT
+              (cspec_fixed_standard_parts
+                (factor (factorContent FIELDB))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \r\n
+              )
+            )
+            (csANDxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent FIELDA))
+              (csANDGE
+                ANDGE
+                (cspec_fixed_standard_parts
+                  (factor (factorContent FIELDC))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \r\n
+                )
+              )
+            )
+            (csORxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent FIELDA))
+              (csORLT
+                ORLT
+                (cspec_fixed_standard_parts
+                  (factor (factorContent FIELDD))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \r\n
+                )
+              )
+              (csANDxx
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor (factorContent FIELDA))
+                (csANDGE
+                  ANDGE
+                  (cspec_fixed_standard_parts
+                    (factor (factorContent FIELDE))
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \r\n
+                  )
+                )
+              )
+            )
+          )
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csSETON
+                SETON
+                (cspec_fixed_standard_parts
+                  (factor '              ')
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \r\n
+                )
+              )
+            )
+          )
+        )
+        (elsestmt
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          ELSE
           (cspec_fixed_standard_parts
-            (factor (factorContent FIELDB))
+            (factor '              ')
             (resultType '              ')
             '     '
             '  '
@@ -140,156 +246,48 @@ BlankIndicator           <  >
             \r\n
           )
         )
-        (csANDxx
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor (factorContent FIELDA))
-          (csANDGE
-            ANDGE
-            (cspec_fixed_standard_parts
-              (factor (factorContent FIELDC))
-              (resultType '              ')
-              '     '
-              '  '
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              \r\n
-            )
-          )
-        )
-        (csORxx
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor (factorContent FIELDA))
-          (csORLT
-            ORLT
-            (cspec_fixed_standard_parts
-              (factor (factorContent FIELDD))
-              (resultType '              ')
-              '     '
-              '  '
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              \r\n
-            )
-          )
-          (csANDxx
+        (statement
+          (cspec_fixed
             C
             (cs_controlLevel '  ')
             (onOffIndicatorsFlag ' ')
             (cs_indicators '  ')
-            (factor (factorContent FIELDA))
-            (csANDGE
-              ANDGE
-              (cspec_fixed_standard_parts
-                (factor (factorContent FIELDE))
-                (resultType '              ')
-                '     '
-                '  '
-                (resultIndicator '  ')
-                (resultIndicator '  ')
-                (resultIndicator '  ')
-                \r\n
-              )
-            )
-          )
-        )
-      )
-      (statement
-        (cspec_fixed
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor '              ')
-          (cspec_fixed_standard
-            (csSETON
-              SETON
-              (cspec_fixed_standard_parts
-                (factor '              ')
-                (resultType '              ')
-                '     '
-                '  '
-                (resultIndicator '  ')
-                (resultIndicator '  ')
-                (resultIndicator '  ')
-                \r\n
-              )
-            )
-          )
-        )
-      )
-      (statement
-        (cspec_fixed
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor '              ')
-          (cspec_fixed_standard
-            (csELSE
-              ELSE
-              (cspec_fixed_standard_parts
-                (factor '              ')
-                (resultType '              ')
-                '     '
-                '  '
-                (resultIndicator '  ')
-                (resultIndicator '  ')
-                (resultIndicator '  ')
-                \r\n
-              )
-            )
-          )
-        )
-      )
-      (statement
-        (cspec_fixed
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor '              ')
-          (cspec_fixed_standard
-            (csSETOFF
-              SETOFF
-              (cspec_fixed_standard_parts
-                (factor '              ')
-                (resultType '              ')
-                '     '
-                '  '
-                (resultIndicator '  ')
-                (resultIndicator '  ')
-                (resultIndicator '  ')
-                \r\n
-              )
-            )
-          )
-        )
-      )
-      (endif
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor '              ')
-        (csENDIF
-          ENDIF
-          (cspec_fixed_standard_parts
             (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            <EOF>
+            (cspec_fixed_standard
+              (csSETOFF
+                SETOFF
+                (cspec_fixed_standard_parts
+                  (factor '              ')
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \r\n
+                )
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            ENDIF
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
           )
         )
       )

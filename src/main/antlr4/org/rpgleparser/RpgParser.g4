@@ -274,11 +274,7 @@ datatypeName:
   | OBJECT;
 
 block:
-	(csIFxx
-		statement*
-		endif
-	)
-	| ((csDOUxx | csDOWxx | begindou | begindow)
+	((csDOUxx | csDOWxx | begindou | begindow | begindo)
 		statement*
 		enddo
 	)
@@ -286,6 +282,7 @@ block:
 	| selectstatement
 	| forstatement
 	| monitorstatement
+	| casestatement
 ;
 
 ifstatement:
@@ -294,6 +291,26 @@ ifstatement:
 	(elseifstmt statement*)*
 	(elsestmt statement*)?
 	endif)
+;
+
+casestatement:
+	((CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor)
+	(csCASEQ
+	| csCASNE
+	| csCASLE
+	| csCASLT
+	| csCASGE
+	| csCASGT
+	| csCAS))+
+	casestatementend
+;
+casestatementend:
+	CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor
+	(csEND | csENDCS)
 ;
 
 monitorstatement:
@@ -399,7 +416,8 @@ endselect:
 	| (op_endsl FREE_SEMI free_linecomments? );
 	
 beginif:
-	(CS_FIXED
+	csIFxx
+	| (CS_FIXED
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag 
 	indicators=cs_indicators 
@@ -423,6 +441,14 @@ begindow:
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	csDOW
+	)
+	| (op_dow FREE_SEMI free_linecomments?)
+;
+begindo:
+    (CS_FIXED
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
+	csDO
 	)
 	| (op_dow FREE_SEMI free_linecomments?)
 ;
@@ -859,12 +885,12 @@ cspec_fixed_standard:
 	| csCABGT
 	| csCALL
 	| csCALLB
-	| csCASEQ
-	| csCASNE
-	| csCASLE
-	| csCASLT
-	| csCASGE
-	| csCASGT
+	//| csCASEQ
+	//| csCASNE
+	//| csCASLE
+	//| csCASLT
+	//| csCASGE
+	//| csCASGT
 	| csCAT
 	| csCHAIN
 	| csCHECK
@@ -897,7 +923,7 @@ cspec_fixed_standard:
 	//| csELSE
 	//| csELSEIF
 	//| csEND
-	| csENDCS
+	//| csENDCS
 	//| csENDDO
 	//| csENDFOR
 	//| csENDIF
@@ -1108,6 +1134,9 @@ csCASGE:
 	cspec_fixed_standard_parts;
 csCASGT:
 	operation=OP_CASGT
+	cspec_fixed_standard_parts;
+csCAS:
+	operation=OP_CAS
 	cspec_fixed_standard_parts;
 csCAT:
 	operation=OP_CAT

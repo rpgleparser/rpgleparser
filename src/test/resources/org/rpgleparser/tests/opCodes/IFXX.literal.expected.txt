@@ -49,63 +49,67 @@ BlankIndicator           <  >
 (r
   (statement
     (block
-      (csIFxx
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor (factorContent Field1))
-        (csIFGT
-          IFGT
-          (cspec_fixed_standard_parts
-            (factor (factorContent FIELDB))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \r\n
+      (ifstatement
+        (beginif
+          (csIFxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent Field1))
+            (csIFGT
+              IFGT
+              (cspec_fixed_standard_parts
+                (factor (factorContent FIELDB))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \r\n
+              )
+            )
+            (csANDxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent XPMC))
+              (csANDGT
+                ANDGT
+                (cspec_fixed_standard_parts
+                  (factor (symbolicConstants *ALL) (literal ' 0 '))
+                  (resultType xxx)
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \r\n
+                )
+              )
+            )
           )
         )
-        (csANDxx
+        (endif
           C
           (cs_controlLevel '  ')
           (onOffIndicatorsFlag ' ')
           (cs_indicators '  ')
-          (factor (factorContent XPMC))
-          (csANDGT
-            ANDGT
+          (factor '              ')
+          (csENDIF
+            endif
             (cspec_fixed_standard_parts
-              (factor (symbolicConstants *ALL) (literal ' 0 '))
-              (resultType xxx)
+              (factor '              ')
+              (resultType '              ')
               '     '
               '  '
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              <EOF>
             )
-          )
-        )
-      )
-      (endif
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor '              ')
-        (csENDIF
-          endif
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            <EOF>
           )
         )
       )

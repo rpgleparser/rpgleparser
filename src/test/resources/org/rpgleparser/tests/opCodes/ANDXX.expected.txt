@@ -273,35 +273,59 @@ EOL                      <
   )
   (statement
     (block
-      (csIFxx
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor (factorContent XX))
-        (csIFEQ
-          IFEQ
-          (cspec_fixed_standard_parts
-            (factor (factorContent (literal ' A ')))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
+      (ifstatement
+        (beginif
+          (csIFxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent XX))
+            (csIFEQ
+              IFEQ
+              (cspec_fixed_standard_parts
+                (factor (factorContent (literal ' A ')))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \n
+              )
+            )
+            (csANDxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent YY))
+              (csANDEQ
+                ANDEQ
+                (cspec_fixed_standard_parts
+                  (factor (factorContent (literal ' B ')))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
           )
         )
-        (csANDxx
+        (endif
           C
           (cs_controlLevel '  ')
           (onOffIndicatorsFlag ' ')
           (cs_indicators '  ')
-          (factor (factorContent YY))
-          (csANDEQ
-            ANDEQ
+          (factor '              ')
+          (csENDIF
+            endif
             (cspec_fixed_standard_parts
-              (factor (factorContent (literal ' B ')))
+              (factor '              ')
               (resultType '              ')
               '     '
               '  '
@@ -310,26 +334,6 @@ EOL                      <
               (resultIndicator '  ')
               \n
             )
-          )
-        )
-      )
-      (endif
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor '              ')
-        (csENDIF
-          endif
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
           )
         )
       )
@@ -337,35 +341,99 @@ EOL                      <
   )
   (statement
     (block
-      (csIFxx
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor (factorContent XX))
-        (csIFEQ
-          ifeq
-          (cspec_fixed_standard_parts
-            (factor (factorContent (literal ' A ')))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
+      (ifstatement
+        (beginif
+          (csIFxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent XX))
+            (csIFEQ
+              ifeq
+              (cspec_fixed_standard_parts
+                (factor (factorContent (literal ' A ')))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \n
+              )
+            )
+            (csANDxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent YY))
+              (csANDGT
+                ANDGT
+                (cspec_fixed_standard_parts
+                  (factor (factorContent (literal ' B ')))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
+            (csANDxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent ZZ))
+              (csANDLT
+                ANDLT
+                (cspec_fixed_standard_parts
+                  (factor (factorContent (literal ' C ')))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
+            (csANDxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (symbolicConstants *IN50))
+              (csANDEQ
+                andeq
+                (cspec_fixed_standard_parts
+                  (factor (symbolicConstants *ON))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
           )
         )
-        (csANDxx
+        (endif
           C
           (cs_controlLevel '  ')
           (onOffIndicatorsFlag ' ')
           (cs_indicators '  ')
-          (factor (factorContent YY))
-          (csANDGT
-            ANDGT
+          (factor '              ')
+          (csENDIF
+            endif
             (cspec_fixed_standard_parts
-              (factor (factorContent (literal ' B ')))
+              (factor '              ')
               (resultType '              ')
               '     '
               '  '
@@ -374,66 +442,6 @@ EOL                      <
               (resultIndicator '  ')
               \n
             )
-          )
-        )
-        (csANDxx
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor (factorContent ZZ))
-          (csANDLT
-            ANDLT
-            (cspec_fixed_standard_parts
-              (factor (factorContent (literal ' C ')))
-              (resultType '              ')
-              '     '
-              '  '
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              \n
-            )
-          )
-        )
-        (csANDxx
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor (symbolicConstants *IN50))
-          (csANDEQ
-            andeq
-            (cspec_fixed_standard_parts
-              (factor (symbolicConstants *ON))
-              (resultType '              ')
-              '     '
-              '  '
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              \n
-            )
-          )
-        )
-      )
-      (endif
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor '              ')
-        (csENDIF
-          endif
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
           )
         )
       )
@@ -441,103 +449,107 @@ EOL                      <
   )
   (statement
     (block
-      (csIFxx
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor (factorContent XX))
-        (csIFEQ
-          ifeq
-          (cspec_fixed_standard_parts
-            (factor (factorContent (literal ' A ')))
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \n
+      (ifstatement
+        (beginif
+          (csIFxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent XX))
+            (csIFEQ
+              ifeq
+              (cspec_fixed_standard_parts
+                (factor (factorContent (literal ' A ')))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \n
+              )
+            )
+            (csANDxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent YY))
+              (csANDGE
+                ANDGE
+                (cspec_fixed_standard_parts
+                  (factor (factorContent (literal ' B ')))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
+            (csANDxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (factorContent ZZ))
+              (csANDLT
+                ANDLT
+                (cspec_fixed_standard_parts
+                  (factor (factorContent (literal ' C ')))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
+            (csANDxx
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor (symbolicConstants *IN50))
+              (csANDEQ
+                andEq
+                (cspec_fixed_standard_parts
+                  (factor (symbolicConstants *ON))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+              )
+            )
           )
         )
-        (csANDxx
+        (endif
           C
           (cs_controlLevel '  ')
           (onOffIndicatorsFlag ' ')
           (cs_indicators '  ')
-          (factor (factorContent YY))
-          (csANDGE
-            ANDGE
+          (factor '              ')
+          (csENDIF
+            endif
             (cspec_fixed_standard_parts
-              (factor (factorContent (literal ' B ')))
+              (factor '              ')
               (resultType '              ')
               '     '
               '  '
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              \r\n
             )
-          )
-        )
-        (csANDxx
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor (factorContent ZZ))
-          (csANDLT
-            ANDLT
-            (cspec_fixed_standard_parts
-              (factor (factorContent (literal ' C ')))
-              (resultType '              ')
-              '     '
-              '  '
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              \n
-            )
-          )
-        )
-        (csANDxx
-          C
-          (cs_controlLevel '  ')
-          (onOffIndicatorsFlag ' ')
-          (cs_indicators '  ')
-          (factor (symbolicConstants *IN50))
-          (csANDEQ
-            andEq
-            (cspec_fixed_standard_parts
-              (factor (symbolicConstants *ON))
-              (resultType '              ')
-              '     '
-              '  '
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              (resultIndicator '  ')
-              \n
-            )
-          )
-        )
-      )
-      (endif
-        C
-        (cs_controlLevel '  ')
-        (onOffIndicatorsFlag ' ')
-        (cs_indicators '  ')
-        (factor '              ')
-        (csENDIF
-          endif
-          (cspec_fixed_standard_parts
-            (factor '              ')
-            (resultType '              ')
-            '     '
-            '  '
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            (resultIndicator '  ')
-            \r\n
           )
         )
       )

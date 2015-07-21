@@ -209,13 +209,13 @@ EOL                      <
     )
   )
   (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
+    (block
+      (begindo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
         (csDO
           DO
           (cspec_fixed_standard_parts
@@ -230,16 +230,12 @@ EOL                      <
           )
         )
       )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
+      (enddo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
         (csENDDO
           ENDDO
           (cspec_fixed_standard_parts
@@ -257,13 +253,13 @@ EOL                      <
     )
   )
   (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor (factorContent 5))
-      (cspec_fixed_standard
+    (block
+      (begindo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor (factorContent 5))
         (csDO
           DO
           (cspec_fixed_standard_parts
@@ -278,16 +274,12 @@ EOL                      <
           )
         )
       )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
+      (enddo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
         (csENDDO
           ENDDO
           (cspec_fixed_standard_parts
@@ -305,13 +297,13 @@ EOL                      <
     )
   )
   (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators 10)
-      (factor '              ')
-      (cspec_fixed_standard
+    (block
+      (begindo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators 10)
+        (factor '              ')
         (csDO
           do
           (cspec_fixed_standard_parts
@@ -326,16 +318,12 @@ EOL                      <
           )
         )
       )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
+      (enddo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
         (csENDDO
           enddo
           (cspec_fixed_standard_parts
@@ -353,13 +341,13 @@ EOL                      <
     )
   )
   (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators 10)
-      (factor '              ')
-      (cspec_fixed_standard
+    (block
+      (begindo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators 10)
+        (factor '              ')
         (csDO
           do
           (cspec_fixed_standard_parts
@@ -374,16 +362,12 @@ EOL                      <
           )
         )
       )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators 50)
-      (factor '              ')
-      (cspec_fixed_standard
+      (enddo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators 50)
+        (factor '              ')
         (csENDDO
           enddo
           (cspec_fixed_standard_parts
@@ -401,13 +385,13 @@ EOL                      <
     )
   )
   (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators 10)
-      (factor '              ')
-      (cspec_fixed_standard
+    (block
+      (begindo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators 10)
+        (factor '              ')
         (csDO
           do
           (cspec_fixed_standard_parts
@@ -422,16 +406,12 @@ EOL                      <
           )
         )
       )
-    )
-  )
-  (statement
-    (cspec_fixed
-      C
-      (cs_controlLevel '  ')
-      (onOffIndicatorsFlag ' ')
-      (cs_indicators '  ')
-      (factor '              ')
-      (cspec_fixed_standard
+      (enddo
+        C
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
         (csEND
           end
           (cspec_fixed_standard_parts

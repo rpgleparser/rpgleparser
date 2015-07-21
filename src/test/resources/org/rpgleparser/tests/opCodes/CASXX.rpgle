@@ -10,6 +10,7 @@
      C     Field1        CASge     FIELDB        SUBR
      C     Field1        CASEQ     FIELDB        SUBR                   20
      C     Field1        CASEQ     FIELDB        SUBR                 21
+     C                   ENDCS
       *
      C     SUBR          BEGSR
      C                   ENDSR
