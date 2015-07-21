@@ -447,8 +447,7 @@ elsestmt:
     indicators=cs_indicators 
     factor1=factor 
     OP_ELSE 
-    fixedexpression=c_free
-    (C_FREE_NEWLINE | EOF)
+    cspec_fixed_standard_parts
     )
     | (op_else FREE_SEMI free_linecomments? )
 ;
@@ -895,11 +894,11 @@ cspec_fixed_standard:
 	//| csDOWGT
 	| csDSPLY
 	| csDUMP
-	| csELSE
-	| csELSEIF
-	| csEND
+	//| csELSE
+	//| csELSEIF
+	//| csEND
 	| csENDCS
-	| csENDDO
+	//| csENDDO
 	//| csENDFOR
 	//| csENDIF
 	//| csENDMON
