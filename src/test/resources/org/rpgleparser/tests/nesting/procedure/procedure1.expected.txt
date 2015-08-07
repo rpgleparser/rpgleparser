@@ -102,20 +102,24 @@ PS_KEYWORDS              <                                                      
         \r\n
       )
     )
-    (statement
-      (dspec D (ds_name Result) ' ' ' ' 'S ' '       ' '     10' I ' 0' ' ' \r\n)
+    (subprocedurestatement
+      (statement
+        (dspec D (ds_name Result) ' ' ' ' 'S ' '       ' '     10' I ' 0' ' ' \r\n)
+      )
     )
-    (statement
-      (free
-        (baseExpression
-          (op
-            (op_return
-              return
-              (expression (identifier (free_identifier (idOrKeyword Result))))
+    (subprocedurestatement
+      (statement
+        (free
+          (baseExpression
+            (op
+              (op_return
+                return
+                (expression (identifier (free_identifier (idOrKeyword Result))))
+              )
             )
           )
+          ;
         )
-        ;
       )
     )
     (endProcedure

@@ -769,7 +769,7 @@ parm_fixed: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_B
 procedure:
 beginProcedure
 dcl_pi?
-statements=statement*
+statements=subprocedurestatement*
 endProcedure;
 
 beginProcedure: psBegin | freeBeginProcedure;
@@ -789,6 +789,10 @@ subroutine:
 begin=begsr
 statement*
 end=endsr
+;
+
+subprocedurestatement:
+statement | subroutine
 ;
 
 begsr:csBEGSR | freeBEGSR;

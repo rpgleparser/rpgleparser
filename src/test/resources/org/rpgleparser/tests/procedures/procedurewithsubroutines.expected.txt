@@ -1,0 +1,699 @@
+/*===TOKENS===*/
+PS_FIXED                 <P>
+PS_CONTINUATION_NAME     < ReplaceDataInEmailBody>
+PS_NAME                  <>
+PS_BEGIN                 <B>
+PS_KEYWORDS              <                                                        >
+DS_FIXED                 <D>
+CONTINUATION_NAME        < ReplaceDataInEmailBody>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PI              <PI>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <ppData>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_LIKEDS           <LIKEDS>
+'('                      <(>
+ID                       <xpNSDataElem>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <pos>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <      3>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORD_INZ              <Inz>
+'('                      <(>
+NUMBER                   <0>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <pos2>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <      3>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORD_INZ              <Inz>
+'('                      <(>
+NUMBER                   <0>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <DataBefore>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <    100>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <DataAfter>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <    100>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <MsgLine>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <    200>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <ReplaceField>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DIRECTIVE                < />
+DIR_FREE                 <FREE>
+EOL                      <
+>
+OP_SETLL                 <SetLL>
+'('                      <(>
+ID                       <useMasterCode>
+')'                      <)>
+ID                       <NSGNMSDL0>
+FREE_SEMI                <;>
+OP_DOU                   <DoU>
+BIF_EOF                  <%EOF>
+'('                      <(>
+ID                       <NSGNMSDL0>
+')'                      <)>
+FREE_SEMI                <;>
+OP_EXSR                  <Exsr>
+ID                       <ScanForReplacement>
+FREE_SEMI                <;>
+ID                       <xxEmBody>
+'='                      <=>
+BIF_TRIM                 <%Trim>
+'('                      <(>
+ID                       <xxEmBody>
+')'                      <)>
+'+'                      <+>
+BIF_TRIM                 <%Trim>
+'('                      <(>
+ID                       <MsgLine>
+')'                      <)>
+'+'                      <+>
+StringLiteralStart       <'>
+StringContent            < >
+StringLiteralEnd         <'>
+'+'                      <+>
+ID                       <CRLF>
+FREE_SEMI                <;>
+OP_ENDDO                 <EndDo>
+FREE_SEMI                <;>
+HIDDEN:COMMENTS          <  //>
+HIDDEN:COMMENTS_TEXT     < ************************************************************                             >
+OP_BEGSR                 <BegSr>
+ID                       <ScanForReplacement>
+FREE_SEMI                <;>
+ID                       <MsgLine>
+'='                      <=>
+BIF_TRIM                 <%trim>
+'('                      <(>
+ID                       <NSGMDTA>
+')'                      <)>
+FREE_SEMI                <;>
+KEYWORD_POS              <Pos>
+'='                      <=>
+BIF_SCAN                 <%Scan>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <<%>
+StringLiteralEnd         <'>
+COLON                    <:>
+ID                       <MsgLine>
+COLON                    <:>
+NUMBER                   <1>
+')'                      <)>
+FREE_SEMI                <;>
+OP_ENDSR                 <EndSr>
+FREE_SEMI                <;>
+HIDDEN:COMMENTS          <  //>
+HIDDEN:COMMENTS_TEXT     < ************************************************************                             >
+OP_BEGSR                 <BegSr>
+ID                       <FindReplacementMatch>
+FREE_SEMI                <;>
+OP_SELECT                <Select>
+FREE_SEMI                <;>
+OP_WHEN                  <When>
+ID                       <ReplaceField>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <ITMN>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+ID                       <Msgline>
+'='                      <=>
+BIF_TRIM                 <%Trim>
+'('                      <(>
+ID                       <DataBefore>
+')'                      <)>
+'+'                      <+>
+StringLiteralStart       <'>
+StringContent            < >
+StringLiteralEnd         <'>
+'+'                      <+>
+BIF_TRIM                 <%Trim>
+'('                      <(>
+ID                       <ppData>
+'.'                      <.>
+ID                       <NS_ITMN>
+')'                      <)>
+'+'                      <+>
+StringLiteralStart       <'>
+StringContent            < >
+StringLiteralEnd         <'>
+'+'                      <+>
+BIF_TRIM                 <%Trim>
+'('                      <(>
+ID                       <DataAfter>
+')'                      <)>
+FREE_SEMI                <;>
+OP_OTHER                 <Other>
+FREE_SEMI                <;>
+ID                       <Msgline>
+'='                      <=>
+BIF_TRIM                 <%Trim>
+'('                      <(>
+ID                       <DataBefore>
+')'                      <)>
+'+'                      <+>
+StringLiteralStart       <'>
+StringContent            < UnKnown >
+StringLiteralEnd         <'>
+'+'                      <+>
+BIF_TRIM                 <%Trim>
+'('                      <(>
+ID                       <DataAfter>
+')'                      <)>
+FREE_SEMI                <;>
+OP_ENDSL                 <EndSl>
+FREE_SEMI                <;>
+OP_ENDSR                 <EndSr>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <END-FREE>
+EOL                      <
+>
+PS_FIXED                 <P>
+PS_CONTINUATION_NAME     < ReplaceDataInEmailBody>
+PS_NAME                  <>
+PS_END                   <E>
+PS_KEYWORDS              <                                                          >
+/*===TREE===*/
+(r
+  (procedure
+    (beginProcedure
+      (psBegin
+        P
+        (ps_name ' ReplaceDataInEmailBody' )
+        B
+        '                                                        '
+      )
+    )
+    (dcl_pi
+      (piBegin
+        D
+        (ds_name ' ReplaceDataInEmailBody' )
+        ' '
+        ' '
+        PI
+        '       '
+        '       '
+        ' '
+        '  '
+        ' '
+        \n
+      )
+      (parm_fixed
+        D
+        (ds_name ppData)
+        ' '
+        ' '
+        '  '
+        '       '
+        '       '
+        ' '
+        '  '
+        ' '
+        (keyword
+          (keyword_likeds
+            LIKEDS
+            (
+            (simpleExpression (identifier (free_identifier (idOrKeyword xpNSDataElem))))
+            )
+          )
+        )
+        (keyword (keyword_const CONST))
+        \n
+      )
+    )
+    (subprocedurestatement
+      (statement
+        (dspec
+          D
+          (ds_name pos)
+          ' '
+          ' '
+          'S '
+          '       '
+          '      3'
+          ' '
+          ' 0'
+          ' '
+          (keyword (keyword_inz Inz ( (simpleExpression (number 0)) )))
+          \n
+        )
+      )
+    )
+    (subprocedurestatement
+      (statement
+        (dspec
+          D
+          (ds_name pos2)
+          ' '
+          ' '
+          'S '
+          '       '
+          '      3'
+          ' '
+          ' 0'
+          ' '
+          (keyword (keyword_inz Inz ( (simpleExpression (number 0)) )))
+          \n
+        )
+      )
+    )
+    (subprocedurestatement
+      (statement
+        (dspec D (ds_name DataBefore) ' ' ' ' 'S ' '       ' '    100' ' ' '  ' ' ' \n)
+      )
+    )
+    (subprocedurestatement
+      (statement
+        (dspec D (ds_name DataAfter) ' ' ' ' 'S ' '       ' '    100' ' ' '  ' ' ' \n)
+      )
+    )
+    (subprocedurestatement
+      (statement
+        (dspec D (ds_name MsgLine) ' ' ' ' 'S ' '       ' '    200' ' ' '  ' ' ' \n)
+      )
+    )
+    (subprocedurestatement
+      (statement
+        (dspec
+          D
+          (ds_name ReplaceField)
+          ' '
+          ' '
+          'S '
+          '       '
+          '     10'
+          ' '
+          '  '
+          ' '
+          \n
+        )
+      )
+    )
+    (subprocedurestatement
+      (statement (directive ' /' (beginfree_directive FREE) \n))
+    )
+    (subprocedurestatement
+      (statement
+        (free
+          (baseExpression
+            (op
+              (op_setll
+                SetLL
+                (search_arg
+                  (expression
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword useMasterCode))))
+                    )
+                  )
+                )
+                (identifier (free_identifier (idOrKeyword NSGNMSDL0)))
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+    (subprocedurestatement
+      (statement
+        (block
+          (begindou
+            (op_dou
+              DoU
+              (indicator_expr
+                (expression
+                  (bif (bif_eof %EOF ( (identifier (free_identifier (idOrKeyword NSGNMSDL0))) )))
+                )
+              )
+            )
+            ;
+          )
+          (statement
+            (free
+              (baseExpression
+                (op
+                  (op_exsr Exsr (identifier (free_identifier (idOrKeyword ScanForReplacement))))
+                )
+              )
+              ;
+            )
+          )
+          (statement
+            (free
+              (baseExpression
+                (op
+                  (op_eval
+                    (assignmentExpression
+                      (simpleExpression (identifier (free_identifier (idOrKeyword xxEmBody))))
+                      =
+                      (expression
+                        (expression
+                          (expression
+                            (expression
+                              (bif
+                                (bif_trim
+                                  %Trim
+                                  (
+                                  (expression (identifier (free_identifier (idOrKeyword xxEmBody))))
+                                  )
+                                )
+                              )
+                            )
+                            +
+                            (expression
+                              (bif
+                                (bif_trim
+                                  %Trim
+                                  (
+                                  (expression (identifier (free_identifier (idOrKeyword MsgLine))))
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          +
+                          (expression (literal ' ' ' '))
+                        )
+                        +
+                        (expression (identifier (free_identifier (idOrKeyword CRLF))))
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+          )
+          (enddo (op_enddo EndDo) ;)
+        )
+      )
+    )
+    (subprocedurestatement
+      (subroutine
+        (begsr
+          (freeBEGSR
+            BegSr
+            (identifier (free_identifier (idOrKeyword ScanForReplacement)))
+            ;
+          )
+        )
+        (statement
+          (free
+            (baseExpression
+              (op
+                (op_eval
+                  (assignmentExpression
+                    (simpleExpression (identifier (free_identifier (idOrKeyword MsgLine))))
+                    =
+                    (expression
+                      (bif
+                        (bif_trim
+                          %trim
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword NSGMDTA))))
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        (statement
+          (free
+            (baseExpression
+              (op
+                (op_eval
+                  (assignmentExpression
+                    (simpleExpression (identifier (free_identifier (idOrKeyword Pos))))
+                    =
+                    (expression
+                      (bif
+                        (bif_scan
+                          %Scan
+                          (
+                          (expression (literal ' <% '))
+                          :
+                          (expression (identifier (free_identifier (idOrKeyword MsgLine))))
+                          :
+                          (expression (number 1))
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        (endsr (freeENDSR EndSr ;))
+      )
+    )
+    (subprocedurestatement
+      (subroutine
+        (begsr
+          (freeBEGSR
+            BegSr
+            (identifier (free_identifier (idOrKeyword FindReplacementMatch)))
+            ;
+          )
+        )
+        (statement
+          (block
+            (selectstatement
+              (beginselect (op_select Select) ;)
+              (whenstatement
+                (when
+                  (op_when
+                    When
+                    (indicator_expr
+                      (expression
+                        (expression (identifier (free_identifier (idOrKeyword ReplaceField))))
+                        =
+                        (expression (literal ' ITMN '))
+                      )
+                    )
+                  )
+                  ;
+                  (statement
+                    (free
+                      (baseExpression
+                        (op
+                          (op_eval
+                            (assignmentExpression
+                              (simpleExpression (identifier (free_identifier (idOrKeyword Msgline))))
+                              =
+                              (expression
+                                (expression
+                                  (expression
+                                    (expression
+                                      (expression
+                                        (bif
+                                          (bif_trim
+                                            %Trim
+                                            (
+                                            (expression (identifier (free_identifier (idOrKeyword DataBefore))))
+                                            )
+                                          )
+                                        )
+                                      )
+                                      +
+                                      (expression (literal ' ' ' '))
+                                    )
+                                    +
+                                    (expression
+                                      (bif
+                                        (bif_trim
+                                          %Trim
+                                          (
+                                          (expression
+                                            (identifier
+                                              (multipart_identifier
+                                                (free_identifier (idOrKeyword ppData))
+                                                .
+                                                (free_identifier (idOrKeyword NS_ITMN))
+                                              )
+                                            )
+                                          )
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                  +
+                                  (expression (literal ' ' ' '))
+                                )
+                                +
+                                (expression
+                                  (bif
+                                    (bif_trim
+                                      %Trim
+                                      (
+                                      (expression (identifier (free_identifier (idOrKeyword DataAfter))))
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                      ;
+                    )
+                  )
+                  (statement
+                    (free
+                      (baseExpression (expression (identifier (free_identifier (op_code Other)))))
+                      ;
+                    )
+                  )
+                  (statement
+                    (free
+                      (baseExpression
+                        (op
+                          (op_eval
+                            (assignmentExpression
+                              (simpleExpression (identifier (free_identifier (idOrKeyword Msgline))))
+                              =
+                              (expression
+                                (expression
+                                  (expression
+                                    (bif
+                                      (bif_trim
+                                        %Trim
+                                        (
+                                        (expression (identifier (free_identifier (idOrKeyword DataBefore))))
+                                        )
+                                      )
+                                    )
+                                  )
+                                  +
+                                  (expression (literal ' ' UnKnown ' '))
+                                )
+                                +
+                                (expression
+                                  (bif
+                                    (bif_trim
+                                      %Trim
+                                      (
+                                      (expression (identifier (free_identifier (idOrKeyword DataAfter))))
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                      ;
+                    )
+                  )
+                )
+              )
+              (endselect (op_endsl EndSl) ;)
+            )
+          )
+        )
+        (endsr (freeENDSR EndSr ;))
+      )
+    )
+    (subprocedurestatement
+      (statement (directive ' /' (endfree_directive END-FREE) \n))
+    )
+    (endProcedure
+      (psEnd
+        P
+        (ps_name ' ReplaceDataInEmailBody' )
+        E
+        '                                                          '
+      )
+    )
+  )
+)
+/*======*/
