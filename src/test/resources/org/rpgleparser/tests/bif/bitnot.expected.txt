@@ -93,7 +93,7 @@ ID                       <HEXVAL>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 1                                                      >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 1                                                      >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val2>
@@ -106,7 +106,7 @@ StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 2                                                       >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 2                                                       >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val3>
@@ -117,7 +117,7 @@ ID                       <hexval>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 3                                                      >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 3                                                      >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val4>
@@ -131,7 +131,7 @@ ID                       <fld>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 4                                                   >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 4                                                   >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />

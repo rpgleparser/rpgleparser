@@ -1,0 +1,150 @@
+/*===TOKENS===*/
+DIRECTIVE                < />
+DIR_FREE                 <FREE>
+EOL                      <
+>
+OP_IF                    <If>
+KEYWORD_POS              <Pos>
+'>'                      <>>
+NUMBER                   <0>
+FREE_SEMI                <;>
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN< Now try to find the end                                                >
+HIDDEN:COMMENTS_EOL_HIDDEN<
+>
+ID                       <Pos2>
+'='                      <=>
+BIF_SCAN                 <%Scan>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <%>>
+StringLiteralEnd         <'>
+COLON                    <:>
+ID                       <MsgLine>
+COLON                    <:>
+KEYWORD_POS              <Pos>
+'+'                      <+>
+NUMBER                   <2>
+')'                      <)>
+FREE_SEMI                <;>
+OP_ENDIF                 <endif>
+FREE_SEMI                <;>
+HIDDEN:COMMENTS          <     //>
+HIDDEN:COMMENTS_TEXT     <**********                                                                             >
+HIDDEN:COMMENTS          <     //>
+HIDDEN:COMMENTS_TEXT     < Test Record Keys                                                                      >
+OP_IF                    <If>
+NOT                      <not>
+SPLAT_INDICATOR          <*In04>
+HIDDEN:FREE_COMMENTS     <                                                        //>
+HIDDEN:COMMENTS_EOL_HIDDEN<
+>
+AND                      <and>
+NOT                      <not>
+SPLAT_INDICATOR          <*In20>
+FREE_SEMI                <;>
+OP_ENDIF                 <EndIf>
+FREE_SEMI                <;>
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_EOL_HIDDEN<
+>
+OP_DOW                   <DoW>
+NOT                      <not>
+SPLAT_INLR               <*InLR>
+FREE_SEMI                <;>
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_EOL_HIDDEN<
+>
+OP_ENDDO                 <enddo>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <END-FREE>
+/*===TREE===*/
+(r
+  (statement (directive ' /' (beginfree_directive FREE) \n))
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          (op_if
+            If
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword Pos))))
+              (comparisonOperator >)
+              (expression (number 0))
+            )
+          )
+          ;
+        )
+        (statement
+          (free
+            (baseExpression
+              (op
+                (op_eval
+                  (assignmentExpression
+                    (simpleExpression (identifier (free_identifier (idOrKeyword Pos2))))
+                    =
+                    (expression
+                      (bif
+                        (bif_scan
+                          %Scan
+                          (
+                          (expression (literal ' %> '))
+                          :
+                          (expression (identifier (free_identifier (idOrKeyword MsgLine))))
+                          :
+                          (expression
+                            (expression (identifier (free_identifier (idOrKeyword Pos))))
+                            +
+                            (expression (number 2))
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        (endif (op_endif endif) ;)
+      )
+    )
+  )
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          (op_if
+            If
+            (expression
+              (expression not (expression (identifier (all (symbolicConstants *In04)))))
+              and
+              (expression not (expression (identifier (all (symbolicConstants *In20)))))
+            )
+          )
+          ;
+        )
+        (endif (op_endif EndIf) ;)
+      )
+    )
+  )
+  (statement
+    (block
+      (begindow
+        (op_dow
+          DoW
+          (indicator_expr
+            (expression not (expression (identifier (all (symbolicConstants *InLR)))))
+          )
+        )
+        ;
+      )
+      (enddo (op_enddo enddo) ;)
+    )
+  )
+  (statement (directive ' /' (endfree_directive END-FREE) <EOF>))
+)
+/*======*/

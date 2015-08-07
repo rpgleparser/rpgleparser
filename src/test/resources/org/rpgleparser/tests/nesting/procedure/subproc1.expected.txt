@@ -104,44 +104,46 @@ FREE_SEMI                <;>
         ;
       )
     )
-    (statement
-      (block
-        (ifstatement
-          (beginif (op_if if (expression ( (expression (bif (bif_error %error))) ))) ;)
-          (statement
-            (free
-              (baseExpression
-                (op
-                  (op_eval
-                    (assignmentExpression
-                      (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
-                      =
-                      (expression (identifier (all (symbolicConstants *on))))
+    (subprocedurestatement
+      (statement
+        (block
+          (ifstatement
+            (beginif (op_if if (expression ( (expression (bif (bif_error %error))) ))) ;)
+            (statement
+              (free
+                (baseExpression
+                  (op
+                    (op_eval
+                      (assignmentExpression
+                        (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
+                        =
+                        (expression (identifier (all (symbolicConstants *on))))
+                      )
                     )
                   )
                 )
+                ;
               )
-              ;
             )
-          )
-          (elsestmt (op_else else) ;)
-          (statement
-            (free
-              (baseExpression
-                (op
-                  (op_eval
-                    (assignmentExpression
-                      (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
-                      =
-                      (expression (identifier (all (symbolicConstants *off))))
+            (elsestmt (op_else else) ;)
+            (statement
+              (free
+                (baseExpression
+                  (op
+                    (op_eval
+                      (assignmentExpression
+                        (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
+                        =
+                        (expression (identifier (all (symbolicConstants *off))))
+                      )
                     )
                   )
                 )
+                ;
               )
-              ;
             )
+            (endif (op_endif endif) ;)
           )
-          (endif (op_endif endif) ;)
         )
       )
     )

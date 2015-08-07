@@ -9,5 +9,4 @@
           EndIf;                                                              //
        DoW not *InLR;                                                         //
        enddo; 
-      /END-FREE             
-                                                                            
+      /END-FREE                                                                     

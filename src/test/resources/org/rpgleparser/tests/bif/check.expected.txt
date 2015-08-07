@@ -88,7 +88,7 @@ ID                       <FLD2>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 1                                                    >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 1                                                    >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val2>
@@ -105,7 +105,7 @@ StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 2                                               >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 2                                               >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val3>
@@ -120,7 +120,7 @@ StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 3                                            >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 3                                            >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val4>
@@ -138,7 +138,7 @@ NUMBER                   <5>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 4                                      >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 4                                      >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />

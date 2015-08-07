@@ -92,7 +92,7 @@ ID                       <HEXVAL>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 1                                                        >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 1                                                        >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val2>
@@ -105,7 +105,7 @@ StringLiteralEnd         <'>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 2                                                         >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 2                                                         >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val3>
@@ -118,7 +118,7 @@ SPLAT_JOBRUN             <*jobrun>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 3                                                   >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 3                                                   >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val4>
@@ -134,7 +134,7 @@ SPLAT_HMS                <*HMS>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 4                                                >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 4                                                >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <val5>
@@ -147,7 +147,7 @@ SPLAT_HMS                <*hms>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 5                                                  >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 5                                                  >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />

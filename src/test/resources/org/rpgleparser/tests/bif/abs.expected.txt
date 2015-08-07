@@ -79,7 +79,7 @@ ID                       <f8>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 1                                                             >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 1                                                             >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <fldc>
@@ -92,7 +92,7 @@ ID                       <f0>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 2                                                          >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 2                                                          >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <FLDD>
@@ -107,7 +107,7 @@ NUMBER                   <4>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 3                                                        >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 3                                                        >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 ID                       <FLDe>
@@ -120,7 +120,7 @@ NUMBER                   <25>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:FE_COMMENTS       <//>
-HIDDEN:COMMENTS_TEXT_HIDDEN<comment 4                                                         >
+HIDDEN:COMMENTS_TEXT_HIDDEN< comment 4                                                         >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />

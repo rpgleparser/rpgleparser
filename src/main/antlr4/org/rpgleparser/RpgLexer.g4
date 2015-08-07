@@ -827,7 +827,7 @@ COMMENTS_EOL : NEWLINE -> popMode,skip;
 
 mode FIXED_CommentMode_HIDDEN;
 COMMENTS_TEXT_SKIP : [ ]+ -> skip;
-COMMENTS_TEXT_HIDDEN : ~[ ] ~[\r\n]+ -> channel(HIDDEN);
+COMMENTS_TEXT_HIDDEN :  ~[\r\n]* -> channel(HIDDEN);
 COMMENTS_EOL_HIDDEN : NEWLINE ->  channel(HIDDEN),popMode;
 
 mode SQL_MODE;
