@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 DS_FIXED                 <D>
-CONTINUATION_NAME        < CalcNewSweepDate>
+CONTINUATION_NAME        <CalcNewSweepDate>
 NAME                     <123>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
@@ -19,7 +19,7 @@ StringLiteralEnd         <'>
 EOL                      <
 >
 DS_FIXED                 <D>
-CONTINUATION_NAME        <  Goodville_VehSymbolCd>
+CONTINUATION_NAME        <Goodville_VehSymbolCd>
 HIDDEN:CE_COMMENTS80     <Pers risk symbol   >
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >
@@ -35,7 +35,7 @@ RESERVED                 < >
   (dcl_pr
     (prBegin
       D
-      (ds_name ' CalcNewSweepDate' 123)
+      (ds_name CalcNewSweepDate 123)
       ' '
       ' '
       PR
@@ -49,7 +49,7 @@ RESERVED                 < >
     )
     (parm_fixed
       D
-      (ds_name '  Goodville_VehSymbolCd' )
+      (ds_name Goodville_VehSymbolCd )
       ' '
       ' '
       '  '

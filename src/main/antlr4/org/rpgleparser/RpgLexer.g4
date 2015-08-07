@@ -839,7 +839,7 @@ WORDS: ~[ ;\r\n] (~[;\r\n]+ ~[ ;\r\n])?;
 
 // ----------------- Everything FIXED_ProcedureSpec of a tag ---------------------
 mode FIXED_ProcedureSpec;
-PS_NAME : {getCharPositionInLine()==6}? WORD5 WORD5 WORD5 {setText(getText().trim());};
+PS_NAME : {getCharPositionInLine()==6}? NAME5 NAME5 NAME5 {setText(getText().trim());};
 PS_CONTINUATION_NAME : [ ]* ~[\r\n ]+ PS_CONTINUATION {setText(getText().substring(0,getText().length()-3));} -> pushMode(CONTINUATION_ELIPSIS) ;
 PS_CONTINUATION : '...' ;
 
@@ -853,9 +853,9 @@ PS_KEYWORDS : {getCharPositionInLine()==43}? ~[\r\n]+ -> popMode;
 mode FIXED_DefSpec;
 BLANK_SPEC : {getCharPositionInLine()==6}? 
     '                                                                           ';
-CONTINUATION_NAME : {getCharPositionInLine()<21}? [ ]* ~[\r\n ]+ CONTINUATION {setText(getText().substring(0,getText().length()-3));} -> pushMode(CONTINUATION_ELIPSIS) ;
+CONTINUATION_NAME : {getCharPositionInLine()<21}? [ ]* ~[\r\n ]+ CONTINUATION {setText(getText().substring(0,getText().length()-3).trim());} -> pushMode(CONTINUATION_ELIPSIS) ;
 CONTINUATION : '...' ;
-NAME : {getCharPositionInLine()==6}? WORD5 WORD5 WORD5 {setText(getText().trim());};
+NAME : {getCharPositionInLine()==6}? NAME5 NAME5 NAME5 {setText(getText().trim());};
 EXTERNAL_DESCRIPTION: {getCharPositionInLine()==21}? [eE ];
 DATA_STRUCTURE_TYPE: {getCharPositionInLine()==22}? [sSuU ];
 DEF_TYPE_C: {getCharPositionInLine()==23}? [cC][ ];
@@ -1553,6 +1553,11 @@ FREE_D_EOL : NEWLINE -> skip;
 	8,80,"Free-form Operations"
  */
 fragment WORD5 : ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n];
+fragment NAME5 : NAMECHAR NAMECHAR NAMECHAR NAMECHAR NAMECHAR;
+// valid characters in symbolic names.
+fragment NAMECHAR : [A-Za-z0-9$#@_ ];
+// names cannot start with _ or numbers
+fragment INITNAMECHAR : [A-Za-z$#@];
 fragment WORD_WCOLON : ~[\r\n];//[a-zA-Z0-9 :*];
 fragment WORD5_WCOLON : WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON;
 //fragment C_OP_EXT: [ aAhHnNpPdDtTzZmMrReE];

@@ -28,9 +28,9 @@ StringLiteralStart       <">
 StringContent            <SRC>3>
 StringLiteralEnd         <">
 StringLiteralStart       <">
-StringContent            <MBR??3>
+StringContent            <MBR¬3>
 StringLiteralEnd         <">
-EOL                      <                                                          
+EOL                      <                                                           
 >
 DIRECTIVE                <O/>
 DIR_COPY                 <COPY>
@@ -104,9 +104,9 @@ StringLiteralEnd         <'>
         (copyText " SRCLIB! ")
         /
         (copyText " SRC>3 ")
-        (copyText " MBR??3 ")
+        (copyText " MBR¬3 ")
       )
-      '                                                          \r\n'
+      '                                                           \r\n'
     )
   )
   (statement

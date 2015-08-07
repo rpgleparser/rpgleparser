@@ -5,7 +5,7 @@ PS_NAME                  <>
 PS_BEGIN                 <B>
 PS_KEYWORDS              <                                                        >
 DS_FIXED                 <D>
-CONTINUATION_NAME        < ReplaceDataInEmailBody>
+CONTINUATION_NAME        <ReplaceDataInEmailBody>
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
@@ -266,7 +266,7 @@ PS_KEYWORDS              <                                                      
     (dcl_pi
       (piBegin
         D
-        (ds_name ' ReplaceDataInEmailBody' )
+        (ds_name ReplaceDataInEmailBody )
         ' '
         ' '
         PI

@@ -8,3 +8,5 @@
      D                                     LIKE(xpAppSource) CONST
      D  ppUserId...
      D                               10a   CONST
+     P                 E                   EXPORT
+	

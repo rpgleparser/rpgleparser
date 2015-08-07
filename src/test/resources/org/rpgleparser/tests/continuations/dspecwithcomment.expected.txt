@@ -1,7 +1,7 @@
 /*===TOKENS===*/
 HIDDEN:LEAD_WS5_Comments <  |  >
 DS_FIXED                 <D>
-CONTINUATION_NAME        < Item_Not_Passed_For_Deletion>
+CONTINUATION_NAME        <Item_Not_Passed_For_Deletion>
 HIDDEN:CE_LEAD_WS5_Comments<  |  >
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >
@@ -21,7 +21,7 @@ SPLAT_IN                 <*in>
   (statement
     (dspec
       D
-      (ds_name ' Item_Not_Passed_For_Deletion' )
+      (ds_name Item_Not_Passed_For_Deletion )
       ' '
       ' '
       's '

@@ -6,7 +6,7 @@ HIDDEN:COMMENTS_TEXT     < The second definition is a pointer initialized to the
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENTS_TEXT     < of the variable with the long name.                                                        >
 DS_FIXED                 <D>
-CONTINUATION_NAME        < QuiteLongFieldNameThatCannotAlwaysFitInOneLine>
+CONTINUATION_NAME        <QuiteLongFieldNameThatCannotAlwaysFitInOneLine>
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
@@ -97,7 +97,7 @@ ID                       <Name>
   (statement
     (dspec
       D
-      (ds_name ' QuiteLongFieldNameThatCannotAlwaysFitInOneLine' )
+      (ds_name QuiteLongFieldNameThatCannotAlwaysFitInOneLine )
       ' '
       ' '
       'S '

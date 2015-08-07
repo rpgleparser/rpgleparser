@@ -16,7 +16,7 @@ EOL                      <
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENTS_TEXT     < Long name using 1 continued name line:                                                     >
 DS_FIXED                 <D>
-CONTINUATION_NAME        < NameThatIsEvenLonger>
+CONTINUATION_NAME        <NameThatIsEvenLonger>
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
@@ -35,7 +35,7 @@ EOL                      <
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENTS_TEXT     < Long name using 1 continued name line:                                                     >
 DS_FIXED                 <D>
-CONTINUATION_NAME        < NameThatIsSoLongItMustBe>
+CONTINUATION_NAME        <NameThatIsSoLongItMustBe>
 NAME                     <Continued>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
@@ -50,8 +50,8 @@ EOL                      <
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENTS_TEXT     < Compile-time arrays may have long names:                                                   >
 DS_FIXED                 <D>
-CONTINUATION_NAME        < CompileTimeArrayContainingDataRepresentingTheNamesOfTheMonthsOf>
-CONTINUATION_NAME        <  TheYearInGermanLanguage>
+CONTINUATION_NAME        <CompileTimeArrayContainingDataRepresentingTheNamesOfTheMonthsOf>
+CONTINUATION_NAME        <TheYearInGermanLanguage>
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
@@ -75,9 +75,9 @@ EOL                      <
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENTS_TEXT     < Long name using 3 continued name lines:                                                    >
 DS_FIXED                 <D>
-CONTINUATION_NAME        < ThisNameIsSoMuchLongerThanThe>
-CONTINUATION_NAME        <    PreviousNamesThatItMustBe>
-CONTINUATION_NAME        <    ContinuedOnSeveralSpecs>
+CONTINUATION_NAME        <ThisNameIsSoMuchLongerThanThe>
+CONTINUATION_NAME        <PreviousNamesThatItMustBe>
+CONTINUATION_NAME        <ContinuedOnSeveralSpecs>
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
@@ -146,9 +146,9 @@ PS_NAME                  <>
 PS_BEGIN                 <B>
 PS_KEYWORDS              <                                                        >
 DS_FIXED                 <D>
-CONTINUATION_NAME        < ThisNameIsSoMuchLongerThanThe>
-CONTINUATION_NAME        <    PreviousNamesThatItMustBe>
-CONTINUATION_NAME        <    ContinuedOnSeveralSpecs>
+CONTINUATION_NAME        <ThisNameIsSoMuchLongerThanThe>
+CONTINUATION_NAME        <PreviousNamesThatItMustBe>
+CONTINUATION_NAME        <ContinuedOnSeveralSpecs>
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >
 DATA_STRUCTURE_TYPE      < >
@@ -197,7 +197,7 @@ PS_KEYWORDS              <                                                      
   (statement
     (dcl_c
       D
-      (ds_name ' NameThatIsEvenLonger' )
+      (ds_name NameThatIsEvenLonger )
       ' '
       ' '
       'C '
@@ -213,7 +213,7 @@ PS_KEYWORDS              <                                                      
   (statement
     (dspec
       D
-      (ds_name ' NameThatIsSoLongItMustBe' Continued)
+      (ds_name NameThatIsSoLongItMustBe Continued)
       ' '
       ' '
       'S '
@@ -229,8 +229,8 @@ PS_KEYWORDS              <                                                      
     (dspec
       D
       (ds_name
-        ' CompileTimeArrayContainingDataRepresentingTheNamesOfTheMonthsOf'
-        '  TheYearInGermanLanguage'
+        CompileTimeArrayContainingDataRepresentingTheNamesOfTheMonthsOf
+        TheYearInGermanLanguage
         
       )
       ' '
@@ -251,9 +251,9 @@ PS_KEYWORDS              <                                                      
     (prBegin
       D
       (ds_name
-        ' ThisNameIsSoMuchLongerThanThe'
-        '    PreviousNamesThatItMustBe'
-        '    ContinuedOnSeveralSpecs'
+        ThisNameIsSoMuchLongerThanThe
+        PreviousNamesThatItMustBe
+        ContinuedOnSeveralSpecs
         
       )
       ' '
@@ -347,9 +347,9 @@ PS_KEYWORDS              <                                                      
       (piBegin
         D
         (ds_name
-          ' ThisNameIsSoMuchLongerThanThe'
-          '    PreviousNamesThatItMustBe'
-          '    ContinuedOnSeveralSpecs'
+          ThisNameIsSoMuchLongerThanThe
+          PreviousNamesThatItMustBe
+          ContinuedOnSeveralSpecs
           
         )
         ' '

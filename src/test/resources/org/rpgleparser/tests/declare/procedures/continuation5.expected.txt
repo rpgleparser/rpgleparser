@@ -1,0 +1,158 @@
+/*===TOKENS===*/
+PS_FIXED                 <P>
+PS_CONTINUATION_NAME     < NS_updateNotificationHistory>
+PS_NAME                  <>
+PS_BEGIN                 <B>
+PS_KEYWORDS              <EXPORT                                                  >
+DS_FIXED                 <D>
+CONTINUATION_NAME        <NS_updateNotificationHistory>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PI              <PI>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+CONTINUATION_NAME        <ppCurrentTimeStamp>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <z>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_VALUE            <VALUE>
+EOL                      <
+>
+DS_FIXED                 <D>
+CONTINUATION_NAME        <ppAppSource>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_LIKE             <LIKE>
+'('                      <(>
+ID                       <xpAppSource>
+')'                      <)>
+KEYWORD_CONST            <CONST>
+EOL                      <
+>
+DS_FIXED                 <D>
+CONTINUATION_NAME        <ppUserId>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <a>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_CONST            <CONST>
+EOL                      <
+>
+PS_FIXED                 <P>
+PS_NAME                  <>
+PS_END                   <E>
+PS_KEYWORDS              <EXPORT                                                  >
+HIDDEN:LEAD_WS5_Comments <	    >
+HIDDEN:EMPTY_LINE        <                                                                           >
+/*===TREE===*/
+(r
+  (procedure
+    (beginProcedure
+      (psBegin
+        P
+        (ps_name ' NS_updateNotificationHistory' )
+        B
+        'EXPORT                                                  '
+      )
+    )
+    (dcl_pi
+      (piBegin
+        D
+        (ds_name NS_updateNotificationHistory )
+        ' '
+        ' '
+        PI
+        '       '
+        '       '
+        ' '
+        '  '
+        ' '
+        \r\n
+      )
+      (parm_fixed
+        D
+        (ds_name ppCurrentTimeStamp )
+        ' '
+        ' '
+        '  '
+        '       '
+        '       '
+        z
+        '  '
+        ' '
+        (keyword (keyword_value VALUE))
+        \r\n
+      )
+      (parm_fixed
+        D
+        (ds_name ppAppSource )
+        ' '
+        ' '
+        '  '
+        '       '
+        '       '
+        ' '
+        '  '
+        ' '
+        (keyword
+          (keyword_like
+            LIKE
+            (
+            (simpleExpression (identifier (free_identifier (idOrKeyword xpAppSource))))
+            )
+          )
+        )
+        (keyword (keyword_const CONST))
+        \r\n
+      )
+      (parm_fixed
+        D
+        (ds_name ppUserId )
+        ' '
+        ' '
+        '  '
+        '       '
+        '     10'
+        a
+        '  '
+        ' '
+        (keyword (keyword_const CONST))
+        \r\n
+      )
+    )
+    (endProcedure
+      (psEnd
+        P
+        (ps_name )
+        E
+        'EXPORT                                                  '
+      )
+    )
+  )
+)
+/*======*/
