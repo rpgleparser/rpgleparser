@@ -123,7 +123,7 @@ keyword_ctdata: KEYWORD_CTDATA;
 keyword_datfmt : KEYWORD_DATFMT OPEN_PAREN (simpleExpression | symbolicConstants) (dateSeparator)? CLOSE_PAREN;
 dateSeparator : AMPERSAND | MINUS | DIV | FREE_DOT;  
 keyword_descend : KEYWORD_DESCEND;
-keyword_dim:  KEYWORD_DIM OPEN_PAREN (numeric_constant=number) CLOSE_PAREN;
+keyword_dim:  KEYWORD_DIM OPEN_PAREN (numeric_constant=simpleExpression) CLOSE_PAREN;
 keyword_dtaara: KEYWORD_DTAARA (OPEN_PAREN (SPLAT_VAR COLON)? (name=literal | nameVariable=simpleExpression) CLOSE_PAREN)?;
 keyword_export : KEYWORD_EXPORT (OPEN_PAREN external_name=simpleExpression CLOSE_PAREN)?;
 keyword_ext : KEYWORD_EXT;

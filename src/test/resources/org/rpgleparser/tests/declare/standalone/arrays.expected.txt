@@ -42,7 +42,7 @@ FREE_SEMI                <;>
       ' '
       '  '
       ' '
-      (keyword (keyword_dim dim ( (number 100) )))
+      (keyword (keyword_dim dim ( (simpleExpression (number 100)) )))
       \r\n
     )
   )
@@ -51,7 +51,7 @@ FREE_SEMI                <;>
       dcl-s
       (identifier (free_identifier (idOrKeyword Array1)))
       (datatype (datatypeName char) (args ( (expression (number 3)) )))
-      (keyword (keyword_dim dim ( (number 100) )))
+      (keyword (keyword_dim dim ( (simpleExpression (number 100)) )))
       ;
     )
   )

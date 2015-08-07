@@ -44,7 +44,7 @@ FREE_SEMI                <;>
       ' '
       '  '
       ' '
-      (keyword (keyword_dim dim ( (number 3) )))
+      (keyword (keyword_dim dim ( (simpleExpression (number 3)) )))
       (keyword (keyword_ctdata ctdata))
       \r\n
     )
@@ -54,7 +54,7 @@ FREE_SEMI                <;>
       dcl-s
       (identifier (free_identifier (idOrKeyword TabTable1)))
       (datatype (datatypeName char) (args ( (expression (number 7)) )))
-      (keyword (keyword_dim dim ( (number 3) )))
+      (keyword (keyword_dim dim ( (simpleExpression (number 3)) )))
       (keyword (keyword_ctdata ctdata))
       ;
     )

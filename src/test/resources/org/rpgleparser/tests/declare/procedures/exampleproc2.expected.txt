@@ -81,7 +81,7 @@ FREE_SEMI                <;>
     DCL-PR
     (identifier (free_identifier (idOrKeyword SubProc1)))
     (datatype (datatypeName VARCHAR) (args ( (expression (number 100)) )))
-    (keyword (keyword_dim DIM ( (number 2) )))
+    (keyword (keyword_dim DIM ( (simpleExpression (number 2)) )))
     ;
     (dcl_pr_field
       (identifier (free_identifier (idOrKeyword varchar1)))

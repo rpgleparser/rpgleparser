@@ -241,7 +241,7 @@ PS_KEYWORDS              <                                                      
       A
       '  '
       ' '
-      (keyword (keyword_dim DIM ( (number 12) )))
+      (keyword (keyword_dim DIM ( (simpleExpression (number 12)) )))
       (keyword (keyword_ctdata CTDATA))
       (keyword (keyword_perrcd PERRCD ( (simpleExpression (number 1)) )))
       \r\n
