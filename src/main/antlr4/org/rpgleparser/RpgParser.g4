@@ -1880,17 +1880,17 @@ op_endif: OP_ENDIF ;
 op_endmon: OP_ENDMON ;
 op_endsl: OP_ENDSL ;
 //op_endsr: OP_ENDSR (identifier )? ;
-op_eval: (OP_EVAL cs_operationExtender? )? assignmentExpression ;
+op_eval: (OP_EVAL cs_operationExtender? )? evalExpression ;
 op_evalr: OP_EVALR cs_operationExtender? assignmentExpression ;
 op_eval_corr: OP_EVAL_CORR cs_operationExtender? assignmentExpression ;
 op_except: OP_EXCEPT (identifier )? ;
 op_exfmt: OP_EXFMT cs_operationExtender? identifier (identifier )? ;
 op_exsr: OP_EXSR identifier ;
 op_feod: OP_FEOD cs_operationExtender? identifier ;
-op_for: OP_FOR cs_operationExtender? expression   //For(E) I
-	(EQUAL expression )? // = 1
-	(FREE_BY expression )?    // By 1
-	((FREE_TO | FREE_DOWNTO) expression )?; // TO 10 ;
+op_for: OP_FOR cs_operationExtender? indexname=expression   //For(E) I
+	(EQUAL startvalue=expression )? // = 1
+	(FREE_BY increment=expression )?    // By 1
+	((FREE_TO | FREE_DOWNTO) limit=expression )?; // TO 10 ;
 op_force: OP_FORCE identifier ;
 op_if: OP_IF cs_operationExtender? expression ;
 op_in: OP_IN cs_operationExtender? (identifier )? identifier ;
@@ -2261,6 +2261,10 @@ exec_sql: EXEC_SQL WORDS+ SEMI ;
 //---------------  
 baseExpression: op | expression;
 assignmentExpression: simpleExpression EQUAL expression;
+
+assignOperatorExpression : simpleExpression assignmentOperator expression;
+evalExpression : assignmentExpression |  assignOperatorExpression;
+
 simpleExpression:
 	function
 	| bif
