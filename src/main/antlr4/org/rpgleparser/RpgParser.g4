@@ -240,7 +240,7 @@ dcl_pi:  (DS_ProcedureInterfaceStart identifier datatype? keyword* FREE_SEMI?
 	dcl_pi_field*
 	end_dcl_pi FREE_SEMI)
 	| (piBegin
-		parm_fixed*
+		pi_parm_fixed*
 	);
 dcl_pi_field: DS_Parm? identifier (datatype | like=keyword_like) FREE_SEMI;
 end_dcl_pi: DS_ProcedureInterfaceEnd;
@@ -764,7 +764,14 @@ piBegin: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_PI F
 
 parm_fixed: DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_BLANK FROM_POSITION TO_POSITION
 	DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF);
+	
+pr_parm_fixed: DS_FIXED ds_name? EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_BLANK FROM_POSITION TO_POSITION
+    DATA_TYPE DECIMAL_POSITIONS RESERVED keyword* (EOL|EOF);
  
+pi_parm_fixed : parm_fixed | (prBegin
+      pr_parm_fixed*
+    );
+
 // -------- sub procedures --------  
 procedure:
 beginProcedure
@@ -2132,7 +2139,7 @@ bif_nullind: BIF_NULLIND OPEN_PAREN fieldname=identifier CLOSE_PAREN;
 bif_occur: BIF_OCCUR OPEN_PAREN dsnname=identifier CLOSE_PAREN;
 bif_open: BIF_OPEN OPEN_PAREN filenameident=identifier CLOSE_PAREN;
 bif_paddr: BIF_PADDR OPEN_PAREN identifier CLOSE_PAREN;
-bif_parms: BIF_PARMS;
+bif_parms: BIF_PARMS (OPEN_PAREN CLOSE_PAREN)?;
 bif_parmnum: BIF_PARMNUM OPEN_PAREN identifier CLOSE_PAREN;
 bif_realloc: BIF_REALLOC OPEN_PAREN ptr=identifier COLON num=expression CLOSE_PAREN;
 bif_rem: BIF_REM OPEN_PAREN numerator=expression COLON denominator=expression CLOSE_PAREN;
@@ -2149,7 +2156,7 @@ bif_subarr: BIF_SUBARR OPEN_PAREN array=expression COLON start=expression (COLON
 bif_subdt: BIF_SUBDT OPEN_PAREN value=expression COLON format=bif_subdtargs CLOSE_PAREN;
 bif_subst: BIF_SUBST OPEN_PAREN string=expression COLON start=expression (COLON length=expression )? CLOSE_PAREN;
 bif_this: BIF_THIS;
-bif_time: BIF_TIME (OPEN_PAREN expression (COLON timeformat=bif_timeformat)? CLOSE_PAREN)?;
+bif_time: BIF_TIME (OPEN_PAREN expression? (COLON timeformat=bif_timeformat)? CLOSE_PAREN)?;
 bif_timestamp: BIF_TIMESTAMP (OPEN_PAREN expression? (COLON format=bif_timestampargs)? CLOSE_PAREN)?;
 bif_tlookup: BIF_TLOOKUP bif_tlookupargs;
 bif_tlookuplt: BIF_TLOOKUPLT bif_tlookupargs;
