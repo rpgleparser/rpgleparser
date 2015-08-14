@@ -1,0 +1,96 @@
+/*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <//   >
+HIDDEN:COMMENT_SPEC_FIXED<D*>
+HIDDEN:COMMENTS_TEXT     <ame+++++++++++ETDsFrom+++To/L+++IDc.Keywords+++++++++++++++++++++++++++++Comments++++++++++++>
+HIDDEN:LEAD_WS5_Comments <Rlc02>
+DS_FIXED                 <D>
+NAME                     <#POAllowA>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <     +2>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_LIKE             <Like>
+'('                      <(>
+ID                       <PIQALBC>
+')'                      <)>
+KEYWORD_INZ              <Inz>
+'('                      <(>
+NUMBER                   <0>
+')'                      <)>
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <Rlc02>
+DS_FIXED                 <D>
+NAME                     <#POAllowB>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <     +2>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_LIKE             <Like>
+'('                      <(>
+ID                       <PIQALBC>
+')'                      <)>
+KEYWORD_INZ              <Inz>
+'('                      <(>
+NUMBER                   <0>
+')'                      <)>
+/*===TREE===*/
+(r
+  (statement
+    (dspec
+      D
+      (ds_name #POAllowA)
+      ' '
+      ' '
+      'S '
+      '       '
+      '     +2'
+      ' '
+      '  '
+      ' '
+      (keyword
+        (keyword_like
+          Like
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword PIQALBC))))
+          )
+        )
+      )
+      (keyword (keyword_inz Inz ( (simpleExpression (number 0)) )))
+      \r\n
+    )
+  )
+  (statement
+    (dspec
+      D
+      (ds_name #POAllowB)
+      ' '
+      ' '
+      'S '
+      '       '
+      '     +2'
+      ' '
+      '  '
+      ' '
+      (keyword
+        (keyword_like
+          Like
+          (
+          (simpleExpression (identifier (free_identifier (idOrKeyword PIQALBC))))
+          )
+        )
+      )
+      (keyword (keyword_inz Inz ( (simpleExpression (number 0)) )))
+      <EOF>
+    )
+  )
+)
+/*======*/

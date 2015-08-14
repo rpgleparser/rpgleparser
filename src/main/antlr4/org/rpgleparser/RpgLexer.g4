@@ -866,10 +866,10 @@ DEF_TYPE_DS: {getCharPositionInLine()==23}? [dD][sS];
 DEF_TYPE_S: {getCharPositionInLine()==23}? [sS][ ];
 DEF_TYPE_BLANK: {getCharPositionInLine()==23}? [ ][ ];
 DEF_TYPE: {getCharPositionInLine()==23}? [a-zA-Z0-9 ][a-zA-Z0-9 ];
-FROM_POSITION: {getCharPositionInLine()==25}? WORD5 [a-zA-Z0-9 ][a-zA-Z0-9 ];
-TO_POSITION: {getCharPositionInLine()==32}? WORD5[a-zA-Z0-9 ][a-zA-Z0-9 ];
+FROM_POSITION: {getCharPositionInLine()==25}? WORD5 [a-zA-Z0-9\+\- ][a-zA-Z0-9 ];
+TO_POSITION: {getCharPositionInLine()==32}? WORD5[a-zA-Z0-9\+\- ][a-zA-Z0-9 ];
 DATA_TYPE: {getCharPositionInLine()==39}? [a-zA-Z\* ];
-DECIMAL_POSITIONS: {getCharPositionInLine()==40}? [0-9 ][0-9 ];
+DECIMAL_POSITIONS: {getCharPositionInLine()==40}? [0-9\+\- ][0-9 ];
 RESERVED : {getCharPositionInLine()==42}? ' ' -> pushMode(FREE);
 //KEYWORDS : {getCharPositionInLine()==43}? ~[\r\n]+ ;
 D_WS : {getCharPositionInLine()>=80}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
