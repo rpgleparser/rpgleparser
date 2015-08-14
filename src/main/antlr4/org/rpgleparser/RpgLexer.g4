@@ -1,6 +1,7 @@
 /**
- * Define a grammar called Hello
+ * Define a grammar called RpgLexer
  */
+ 
 lexer grammar RpgLexer;
 
 @members {

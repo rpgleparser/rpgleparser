@@ -2096,7 +2096,7 @@ bif_bitxor: BIF_BITXOR OPEN_PAREN expression COLON expression  CLOSE_PAREN;
 bif_char: BIF_CHAR OPEN_PAREN expression (COLON format=bif_charformat)? CLOSE_PAREN;
 bif_check: BIF_CHECK OPEN_PAREN comparator=expression COLON base=expression (COLON start=expression)? CLOSE_PAREN;
 bif_checkr: BIF_CHECKR OPEN_PAREN comparator=expression COLON base=expression (COLON start=expression)? CLOSE_PAREN;
-bif_date: BIF_DATE OPEN_PAREN expression (COLON dateformat=bif_dateformat)? CLOSE_PAREN;
+bif_date: BIF_DATE (OPEN_PAREN expression? (COLON dateformat=bif_dateformat)? CLOSE_PAREN)?;
 bif_days: BIF_DAYS OPEN_PAREN numberexpression=expression CLOSE_PAREN;
 bif_dec: BIF_DEC OPEN_PAREN expression (COLON expression)? (COLON expression)? CLOSE_PAREN;
 bif_dech: BIF_DECH OPEN_PAREN expression COLON expression COLON expression CLOSE_PAREN;
@@ -2150,7 +2150,7 @@ bif_subdt: BIF_SUBDT OPEN_PAREN value=expression COLON format=bif_subdtargs CLOS
 bif_subst: BIF_SUBST OPEN_PAREN string=expression COLON start=expression (COLON length=expression )? CLOSE_PAREN;
 bif_this: BIF_THIS;
 bif_time: BIF_TIME (OPEN_PAREN expression (COLON timeformat=bif_timeformat)? CLOSE_PAREN)?;
-bif_timestamp: BIF_TIMESTAMP (OPEN_PAREN expression (COLON format=bif_timestampargs)? CLOSE_PAREN)?;
+bif_timestamp: BIF_TIMESTAMP (OPEN_PAREN expression? (COLON format=bif_timestampargs)? CLOSE_PAREN)?;
 bif_tlookup: BIF_TLOOKUP bif_tlookupargs;
 bif_tlookuplt: BIF_TLOOKUPLT bif_tlookupargs;
 bif_tlookuple: BIF_TLOOKUPLE bif_tlookupargs;
