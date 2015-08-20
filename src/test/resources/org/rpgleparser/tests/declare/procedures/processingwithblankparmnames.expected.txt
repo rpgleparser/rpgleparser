@@ -1,0 +1,257 @@
+/*===TOKENS===*/
+HIDDEN:COMMENTS          < //>
+HIDDEN:COMMENTS_TEXT     < Main Entry Parms                                                                          >
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < JAVA - create an integer object                                                            >
+DS_FIXED                 <D>
+CONTINUATION_NAME        <JAVA_MakeInteger>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PR              <PR>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <o>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_EXTPROC          <EXTPROC>
+'('                      <(>
+SPLAT_JAVA               <*JAVA>
+COLON                    <:>
+StringLiteralStart       <'>
+StringContent            <java.lang.Integer>
+StringLiteralEnd         <'>
+COLON                    <:>
+ID                       <*CONSTRUCTOR>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <i>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+KEYWORD_VALUE            <VALUE>
+EOL                      <
+>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+DS_FIXED                 <D>
+NAME                     <Main>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PR              <PR>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_EXTPGM           <ExtPgm>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <BC01Q1P>
+StringLiteralEnd         <'>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <      3>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <      3>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <      3>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <Main>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PI              <PI>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <PrmCmpn>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <      3>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <PrmDivn>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <      3>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <PrmDptn>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <      3>
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (dcl_pr
+    (prBegin
+      D
+      (ds_name JAVA_MakeInteger )
+      ' '
+      ' '
+      PR
+      '       '
+      '       '
+      o
+      '  '
+      ' '
+      (keyword
+        (keyword_extproc
+          EXTPROC
+          (
+          *JAVA
+          :
+          (simpleExpression (literal ' java.lang.Integer '))
+          :
+          (simpleExpression (identifier (free_identifier (idOrKeyword *CONSTRUCTOR))))
+          )
+        )
+      )
+      \r\n
+    )
+    (parm_fixed
+      D
+      (ds_name )
+      ' '
+      ' '
+      '  '
+      '       '
+      '     10'
+      i
+      ' 0'
+      ' '
+      (keyword (keyword_value VALUE))
+      \r\n
+    )
+  )
+  (dcl_pr
+    (prBegin
+      D
+      (ds_name Main)
+      ' '
+      ' '
+      PR
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (keyword (keyword_extpgm ExtPgm ( (simpleExpression (literal ' BC01Q1P ')) )))
+      \r\n
+    )
+    (parm_fixed D (ds_name ) ' ' ' ' '  ' '       ' '      3' ' ' '  ' ' ' \r\n)
+    (parm_fixed D (ds_name ) ' ' ' ' '  ' '       ' '      3' ' ' '  ' ' ' \r\n)
+    (parm_fixed D (ds_name ) ' ' ' ' '  ' '       ' '      3' ' ' '  ' ' ' \r\n)
+  )
+  (dcl_pi
+    (piBegin D (ds_name Main) ' ' ' ' PI '       ' '       ' ' ' '  ' ' ' \r\n)
+    (pi_parm_fixed
+      (parm_fixed
+        D
+        (ds_name PrmCmpn)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      3'
+        ' '
+        '  '
+        ' '
+        \r\n
+      )
+    )
+    (pi_parm_fixed
+      (parm_fixed
+        D
+        (ds_name PrmDivn)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      3'
+        ' '
+        '  '
+        ' '
+        \r\n
+      )
+    )
+    (pi_parm_fixed
+      (parm_fixed
+        D
+        (ds_name PrmDptn)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      3'
+        ' '
+        '  '
+        ' '
+        \r\n
+      )
+    )
+  )
+)
+/*======*/

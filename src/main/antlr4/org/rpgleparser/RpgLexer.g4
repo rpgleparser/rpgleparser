@@ -525,9 +525,9 @@ D_FREE_CONTINUATION_DOTS : {_modeStack.peek()==FIXED_DefSpec}? '...' WS* NEWLINE
 C_FREE_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE 
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> skip;
 D_FREE_CONTINUATION: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                            ' -> skip;
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                                    ' -> skip;
 F_FREE_CONTINUATION: {_modeStack.peek() == FIXED_FileSpec}? NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [fF] ~[*] '                            ' -> skip;
+	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [fF] ~[*] '                                    ' -> skip;
 FREE_LEAD_WS5 :  {getCharPositionInLine()==0}? '     ' -> skip;
 FREE_LEAD_WS5_Comments :  {getCharPositionInLine()==0}?~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] -> channel(HIDDEN);
 FREE_FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> skip;
