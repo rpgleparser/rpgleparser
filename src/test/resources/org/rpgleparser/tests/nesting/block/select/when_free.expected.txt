@@ -143,10 +143,12 @@ HIDDEN:EMPTY_LINE        <                                                      
                 (baseExpression
                   (op
                     (op_eval
-                      (assignmentExpression
-                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
-                        =
-                        (expression (literal ' Insert '))
+                      (evalExpression
+                        (assignmentExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword event))))
+                          =
+                          (expression (literal ' Insert '))
+                        )
                       )
                     )
                   )
@@ -157,10 +159,16 @@ HIDDEN:EMPTY_LINE        <                                                      
             (statement
               (free
                 (baseExpression
-                  (expression
-                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
-                    (assignmentOperator +=)
-                    (expression (literal ' <Event>Insert</Event> '))
+                  (op
+                    (op_eval
+                      (evalExpression
+                        (assignOperatorExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword outUserXML))))
+                          (assignmentOperator +=)
+                          (expression (literal ' <Event>Insert</Event> '))
+                        )
+                      )
+                    )
                   )
                 )
                 ;
@@ -194,10 +202,12 @@ HIDDEN:EMPTY_LINE        <                                                      
                 (baseExpression
                   (op
                     (op_eval
-                      (assignmentExpression
-                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
-                        =
-                        (expression (literal ' Delete '))
+                      (evalExpression
+                        (assignmentExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword event))))
+                          =
+                          (expression (literal ' Delete '))
+                        )
                       )
                     )
                   )
@@ -208,10 +218,16 @@ HIDDEN:EMPTY_LINE        <                                                      
             (statement
               (free
                 (baseExpression
-                  (expression
-                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
-                    (assignmentOperator +=)
-                    (expression (literal ' <Event>Delete</Event> '))
+                  (op
+                    (op_eval
+                      (evalExpression
+                        (assignOperatorExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword outUserXML))))
+                          (assignmentOperator +=)
+                          (expression (literal ' <Event>Delete</Event> '))
+                        )
+                      )
+                    )
                   )
                 )
                 ;
@@ -245,10 +261,12 @@ HIDDEN:EMPTY_LINE        <                                                      
                 (baseExpression
                   (op
                     (op_eval
-                      (assignmentExpression
-                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
-                        =
-                        (expression (literal ' Update '))
+                      (evalExpression
+                        (assignmentExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword event))))
+                          =
+                          (expression (literal ' Update '))
+                        )
                       )
                     )
                   )
@@ -259,10 +277,16 @@ HIDDEN:EMPTY_LINE        <                                                      
             (statement
               (free
                 (baseExpression
-                  (expression
-                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
-                    (assignmentOperator +=)
-                    (expression (literal ' <Event>Update</Event> '))
+                  (op
+                    (op_eval
+                      (evalExpression
+                        (assignOperatorExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword outUserXML))))
+                          (assignmentOperator +=)
+                          (expression (literal ' <Event>Update</Event> '))
+                        )
+                      )
+                    )
                   )
                 )
                 ;
@@ -296,10 +320,12 @@ HIDDEN:EMPTY_LINE        <                                                      
                 (baseExpression
                   (op
                     (op_eval
-                      (assignmentExpression
-                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
-                        =
-                        (expression (literal ' Read '))
+                      (evalExpression
+                        (assignmentExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword event))))
+                          =
+                          (expression (literal ' Read '))
+                        )
                       )
                     )
                   )
@@ -310,10 +336,16 @@ HIDDEN:EMPTY_LINE        <                                                      
             (statement
               (free
                 (baseExpression
-                  (expression
-                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
-                    (assignmentOperator +=)
-                    (expression (literal ' <Event>Read</Event> '))
+                  (op
+                    (op_eval
+                      (evalExpression
+                        (assignOperatorExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword outUserXML))))
+                          (assignmentOperator +=)
+                          (expression (literal ' <Event>Read</Event> '))
+                        )
+                      )
+                    )
                   )
                 )
                 ;
@@ -330,10 +362,12 @@ HIDDEN:EMPTY_LINE        <                                                      
                 (baseExpression
                   (op
                     (op_eval
-                      (assignmentExpression
-                        (simpleExpression (identifier (free_identifier (idOrKeyword event))))
-                        =
-                        (expression (literal ' Unknown '))
+                      (evalExpression
+                        (assignmentExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword event))))
+                          =
+                          (expression (literal ' Unknown '))
+                        )
                       )
                     )
                   )
@@ -344,10 +378,16 @@ HIDDEN:EMPTY_LINE        <                                                      
             (statement
               (free
                 (baseExpression
-                  (expression
-                    (expression (identifier (free_identifier (idOrKeyword outUserXML))))
-                    (assignmentOperator +=)
-                    (expression (literal ' <Event>Unknown</Event> '))
+                  (op
+                    (op_eval
+                      (evalExpression
+                        (assignOperatorExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword outUserXML))))
+                          (assignmentOperator +=)
+                          (expression (literal ' <Event>Unknown</Event> '))
+                        )
+                      )
+                    )
                   )
                 )
                 ;

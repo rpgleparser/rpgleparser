@@ -297,17 +297,19 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val1))))
-              =
-              (expression
-                (bif
-                  (bif_check
-                    %check
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword fld1))))
-                    :
-                    (expression (identifier (free_identifier (idOrKeyword FLD2))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val1))))
+                =
+                (expression
+                  (bif
+                    (bif_check
+                      %check
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword fld1))))
+                      :
+                      (expression (identifier (free_identifier (idOrKeyword FLD2))))
+                      )
                     )
                   )
                 )
@@ -324,17 +326,19 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val2))))
-              =
-              (expression
-                (bif
-                  (bif_check
-                    %CHECK
-                    (
-                    (expression (literal ' ,; '))
-                    :
-                    (expression (literal ' dfsdf,; '))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val2))))
+                =
+                (expression
+                  (bif
+                    (bif_check
+                      %CHECK
+                      (
+                      (expression (literal ' ,; '))
+                      :
+                      (expression (literal ' dfsdf,; '))
+                      )
                     )
                   )
                 )
@@ -351,17 +355,19 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val3))))
-              =
-              (expression
-                (bif
-                  (bif_check
-                    %Check
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword delim))))
-                    :
-                    (expression (literal ' thersting '))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val3))))
+                =
+                (expression
+                  (bif
+                    (bif_check
+                      %Check
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword delim))))
+                      :
+                      (expression (literal ' thersting '))
+                      )
                     )
                   )
                 )
@@ -378,28 +384,30 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val4))))
-              =
-              (expression
-                (bif
-                  (bif_check
-                    %Check
-                    (
-                    (expression
-                      (bif
-                        (bif_str
-                          %str
-                          (
-                          (expression (identifier (free_identifier (idOrKeyword fld))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val4))))
+                =
+                (expression
+                  (bif
+                    (bif_check
+                      %Check
+                      (
+                      (expression
+                        (bif
+                          (bif_str
+                            %str
+                            (
+                            (expression (identifier (free_identifier (idOrKeyword fld))))
+                            )
                           )
                         )
                       )
-                    )
-                    :
-                    (expression (identifier (free_identifier (idOrKeyword mystringfld))))
-                    :
-                    (expression (number 5))
+                      :
+                      (expression (identifier (free_identifier (idOrKeyword mystringfld))))
+                      :
+                      (expression (number 5))
+                      )
                     )
                   )
                 )

@@ -10,10 +10,12 @@ FREE_SEMI                <;>
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword x1date))))
-              =
-              (expression (identifier (free_identifier (idOrKeyword udate))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword x1date))))
+                =
+                (expression (identifier (free_identifier (idOrKeyword udate))))
+              )
             )
           )
         )

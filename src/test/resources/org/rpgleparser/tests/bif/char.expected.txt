@@ -324,15 +324,17 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val1))))
-              =
-              (expression
-                (bif
-                  (bif_char
-                    %char
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val1))))
+                =
+                (expression
+                  (bif
+                    (bif_char
+                      %char
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
+                      )
                     )
                   )
                 )
@@ -349,10 +351,12 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val2))))
-              =
-              (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val2))))
+                =
+                (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
+              )
             )
           )
         )
@@ -365,17 +369,19 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val3))))
-              =
-              (expression
-                (bif
-                  (bif_char
-                    %Char
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword fld))))
-                    :
-                    (bif_charformat (symbolicConstants *jobrun))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val3))))
+                =
+                (expression
+                  (bif
+                    (bif_char
+                      %Char
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword fld))))
+                      :
+                      (bif_charformat (symbolicConstants *jobrun))
+                      )
                     )
                   )
                 )
@@ -392,26 +398,28 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val4))))
-              =
-              (expression
-                (bif
-                  (bif_char
-                    %char
-                    (
-                    (expression
-                      (bif
-                        (bif_str
-                          %str
-                          (
-                          (expression (identifier (free_identifier (idOrKeyword fld))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val4))))
+                =
+                (expression
+                  (bif
+                    (bif_char
+                      %char
+                      (
+                      (expression
+                        (bif
+                          (bif_str
+                            %str
+                            (
+                            (expression (identifier (free_identifier (idOrKeyword fld))))
+                            )
                           )
                         )
                       )
-                    )
-                    :
-                    (bif_charformat (symbolicConstants *HMS))
+                      :
+                      (bif_charformat (symbolicConstants *HMS))
+                      )
                     )
                   )
                 )
@@ -428,17 +436,19 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val5))))
-              =
-              (expression
-                (bif
-                  (bif_char
-                    %char
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword datefld))))
-                    :
-                    (bif_charformat (symbolicConstants *hms))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val5))))
+                =
+                (expression
+                  (bif
+                    (bif_char
+                      %char
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword datefld))))
+                      :
+                      (bif_charformat (symbolicConstants *hms))
+                      )
                     )
                   )
                 )

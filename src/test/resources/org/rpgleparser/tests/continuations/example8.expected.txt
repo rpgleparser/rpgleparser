@@ -362,19 +362,21 @@ PS_KEYWORDS              <                                                      
         ' '
         \r\n
       )
-      (parm_fixed
-        D
-        (ds_name parm_1)
-        ' '
-        ' '
-        '  '
-        '       '
-        '     10'
-        A
-        '  '
-        ' '
-        (keyword (keyword_value VALUE))
-        \r\n
+      (pi_parm_fixed
+        (parm_fixed
+          D
+          (ds_name parm_1)
+          ' '
+          ' '
+          '  '
+          '       '
+          '     10'
+          A
+          '  '
+          ' '
+          (keyword (keyword_value VALUE))
+          \r\n
+        )
       )
     )
     (endProcedure

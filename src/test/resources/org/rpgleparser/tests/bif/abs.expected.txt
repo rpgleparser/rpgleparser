@@ -275,12 +275,14 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword fldb))))
-              =
-              (expression
-                (bif
-                  (bif_abs %abs ( (expression (identifier (free_identifier (idOrKeyword f8)))) ))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword fldb))))
+                =
+                (expression
+                  (bif
+                    (bif_abs %abs ( (expression (identifier (free_identifier (idOrKeyword f8)))) ))
+                  )
                 )
               )
             )
@@ -295,19 +297,21 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword fldc))))
-              =
-              (expression
-                (bif
-                  (bif_abs
-                    %abs
-                    (
-                    (expression
-                      (expression (identifier (free_identifier (idOrKeyword f9))))
-                      +
-                      (expression (identifier (free_identifier (idOrKeyword f0))))
-                    )
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword fldc))))
+                =
+                (expression
+                  (bif
+                    (bif_abs
+                      %abs
+                      (
+                      (expression
+                        (expression (identifier (free_identifier (idOrKeyword f9))))
+                        +
+                        (expression (identifier (free_identifier (idOrKeyword f0))))
+                      )
+                      )
                     )
                   )
                 )
@@ -324,19 +328,21 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword FLDD))))
-              =
-              (expression
-                (bif
-                  (bif_abs
-                    %ABS
-                    (
-                    (expression
-                      (expression (identifier (free_identifier (idOrKeyword F9))))
-                      -
-                      (expression (expression (number 10)) + (expression (number 4)))
-                    )
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword FLDD))))
+                =
+                (expression
+                  (bif
+                    (bif_abs
+                      %ABS
+                      (
+                      (expression
+                        (expression (identifier (free_identifier (idOrKeyword F9))))
+                        -
+                        (expression (expression (number 10)) + (expression (number 4)))
+                      )
+                      )
                     )
                   )
                 )
@@ -353,19 +359,21 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword FLDe))))
-              =
-              (expression
-                (bif
-                  (bif_abs
-                    %Abs
-                    (
-                    (expression
-                      (expression (identifier (free_identifier (idOrKeyword F14))))
-                      *
-                      (expression (number 25))
-                    )
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword FLDe))))
+                =
+                (expression
+                  (bif
+                    (bif_abs
+                      %Abs
+                      (
+                      (expression
+                        (expression (identifier (free_identifier (idOrKeyword F14))))
+                        *
+                        (expression (number 25))
+                      )
+                      )
                     )
                   )
                 )

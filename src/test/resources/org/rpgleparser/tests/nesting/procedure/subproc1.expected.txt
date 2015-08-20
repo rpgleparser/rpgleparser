@@ -77,10 +77,12 @@ FREE_SEMI                <;>
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword wkAlpha))))
-              =
-              (expression (literal ' 1140214 '))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword wkAlpha))))
+                =
+                (expression (literal ' 1140214 '))
+              )
             )
           )
         )
@@ -114,10 +116,12 @@ FREE_SEMI                <;>
                 (baseExpression
                   (op
                     (op_eval
-                      (assignmentExpression
-                        (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
-                        =
-                        (expression (identifier (all (symbolicConstants *on))))
+                      (evalExpression
+                        (assignmentExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
+                          =
+                          (expression (identifier (all (symbolicConstants *on))))
+                        )
                       )
                     )
                   )
@@ -131,10 +135,12 @@ FREE_SEMI                <;>
                 (baseExpression
                   (op
                     (op_eval
-                      (assignmentExpression
-                        (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
-                        =
-                        (expression (identifier (all (symbolicConstants *off))))
+                      (evalExpression
+                        (assignmentExpression
+                          (simpleExpression (identifier (free_identifier (idOrKeyword wkError))))
+                          =
+                          (expression (identifier (all (symbolicConstants *off))))
+                        )
                       )
                     )
                   )

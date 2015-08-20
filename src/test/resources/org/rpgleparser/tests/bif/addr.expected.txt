@@ -170,15 +170,17 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword P))))
-              =
-              (expression
-                (bif
-                  (bif_addr
-                    %addr
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword subf))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword P))))
+                =
+                (expression
+                  (bif
+                    (bif_addr
+                      %addr
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword subf))))
+                      )
                     )
                   )
                 )
@@ -227,28 +229,30 @@ HIDDEN:EMPTY_LINE        <                                                      
             (baseExpression
               (op
                 (op_eval
-                  (assignmentExpression
-                    (simpleExpression (identifier (free_identifier (idOrKeyword P))))
-                    =
-                    (expression
-                      (bif
-                        (bif_addr
-                          %ADDR
-                          (
-                          (expression
-                            (function
-                              (functionName (free_identifier (idOrKeyword ARRAY)))
-                              (args
-                                (
-                                (expression
-                                  (expression (identifier (free_identifier (idOrKeyword X))))
-                                  +
-                                  (expression (number 10))
-                                )
+                  (evalExpression
+                    (assignmentExpression
+                      (simpleExpression (identifier (free_identifier (idOrKeyword P))))
+                      =
+                      (expression
+                        (bif
+                          (bif_addr
+                            %ADDR
+                            (
+                            (expression
+                              (function
+                                (functionName (free_identifier (idOrKeyword ARRAY)))
+                                (args
+                                  (
+                                  (expression
+                                    (expression (identifier (free_identifier (idOrKeyword X))))
+                                    +
+                                    (expression (number 10))
+                                  )
+                                  )
                                 )
                               )
                             )
-                          )
+                            )
                           )
                         )
                       )
@@ -269,29 +273,31 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword prefix_size))))
-              =
-              (expression
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword prefix_size))))
+                =
                 (expression
-                  (bif
-                    (bif_addr
-                      %addr
-                      (
-                      (expression (identifier (free_identifier (idOrKeyword fld))))
-                      :
-                      *data
+                  (expression
+                    (bif
+                      (bif_addr
+                        %addr
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword fld))))
+                        :
+                        *data
+                        )
                       )
                     )
                   )
-                )
-                -
-                (expression
-                  (bif
-                    (bif_addr
-                      %addr
-                      (
-                      (expression (identifier (free_identifier (idOrKeyword fld))))
+                  -
+                  (expression
+                    (bif
+                      (bif_addr
+                        %addr
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword fld))))
+                        )
                       )
                     )
                   )

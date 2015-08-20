@@ -61,10 +61,12 @@ EOL                      <
         (baseExpression
           (op
             (op_eval
-              (assignmentExpression
-                (simpleExpression (identifier (free_identifier (idOrKeyword X))))
-                =
-                (expression (number 1234))
+              (evalExpression
+                (assignmentExpression
+                  (simpleExpression (identifier (free_identifier (idOrKeyword X))))
+                  =
+                  (expression (number 1234))
+                )
               )
             )
           )

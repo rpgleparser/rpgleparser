@@ -81,23 +81,25 @@ DIR_ENDFREE              <END-FREE>
             (baseExpression
               (op
                 (op_eval
-                  (assignmentExpression
-                    (simpleExpression (identifier (free_identifier (idOrKeyword Pos2))))
-                    =
-                    (expression
-                      (bif
-                        (bif_scan
-                          %Scan
-                          (
-                          (expression (literal ' %> '))
-                          :
-                          (expression (identifier (free_identifier (idOrKeyword MsgLine))))
-                          :
-                          (expression
-                            (expression (identifier (free_identifier (idOrKeyword Pos))))
-                            +
-                            (expression (number 2))
-                          )
+                  (evalExpression
+                    (assignmentExpression
+                      (simpleExpression (identifier (free_identifier (idOrKeyword Pos2))))
+                      =
+                      (expression
+                        (bif
+                          (bif_scan
+                            %Scan
+                            (
+                            (expression (literal ' %> '))
+                            :
+                            (expression (identifier (free_identifier (idOrKeyword MsgLine))))
+                            :
+                            (expression
+                              (expression (identifier (free_identifier (idOrKeyword Pos))))
+                              +
+                              (expression (number 2))
+                            )
+                            )
                           )
                         )
                       )

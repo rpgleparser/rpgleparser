@@ -277,27 +277,29 @@ PS_KEYWORDS              <                                                      
         ' '
         \n
       )
-      (parm_fixed
-        D
-        (ds_name ppData)
-        ' '
-        ' '
-        '  '
-        '       '
-        '       '
-        ' '
-        '  '
-        ' '
-        (keyword
-          (keyword_likeds
-            LIKEDS
-            (
-            (simpleExpression (identifier (free_identifier (idOrKeyword xpNSDataElem))))
+      (pi_parm_fixed
+        (parm_fixed
+          D
+          (ds_name ppData)
+          ' '
+          ' '
+          '  '
+          '       '
+          '       '
+          ' '
+          '  '
+          ' '
+          (keyword
+            (keyword_likeds
+              LIKEDS
+              (
+              (simpleExpression (identifier (free_identifier (idOrKeyword xpNSDataElem))))
+              )
             )
           )
+          (keyword (keyword_const CONST))
+          \n
         )
-        (keyword (keyword_const CONST))
-        \n
       )
     )
     (subprocedurestatement
@@ -422,39 +424,41 @@ PS_KEYWORDS              <                                                      
               (baseExpression
                 (op
                   (op_eval
-                    (assignmentExpression
-                      (simpleExpression (identifier (free_identifier (idOrKeyword xxEmBody))))
-                      =
-                      (expression
+                    (evalExpression
+                      (assignmentExpression
+                        (simpleExpression (identifier (free_identifier (idOrKeyword xxEmBody))))
+                        =
                         (expression
                           (expression
                             (expression
-                              (bif
-                                (bif_trim
-                                  %Trim
-                                  (
-                                  (expression (identifier (free_identifier (idOrKeyword xxEmBody))))
+                              (expression
+                                (bif
+                                  (bif_trim
+                                    %Trim
+                                    (
+                                    (expression (identifier (free_identifier (idOrKeyword xxEmBody))))
+                                    )
+                                  )
+                                )
+                              )
+                              +
+                              (expression
+                                (bif
+                                  (bif_trim
+                                    %Trim
+                                    (
+                                    (expression (identifier (free_identifier (idOrKeyword MsgLine))))
+                                    )
                                   )
                                 )
                               )
                             )
                             +
-                            (expression
-                              (bif
-                                (bif_trim
-                                  %Trim
-                                  (
-                                  (expression (identifier (free_identifier (idOrKeyword MsgLine))))
-                                  )
-                                )
-                              )
-                            )
+                            (expression (literal ' ' ' '))
                           )
                           +
-                          (expression (literal ' ' ' '))
+                          (expression (identifier (free_identifier (idOrKeyword CRLF))))
                         )
-                        +
-                        (expression (identifier (free_identifier (idOrKeyword CRLF))))
                       )
                     )
                   )
@@ -481,15 +485,17 @@ PS_KEYWORDS              <                                                      
             (baseExpression
               (op
                 (op_eval
-                  (assignmentExpression
-                    (simpleExpression (identifier (free_identifier (idOrKeyword MsgLine))))
-                    =
-                    (expression
-                      (bif
-                        (bif_trim
-                          %trim
-                          (
-                          (expression (identifier (free_identifier (idOrKeyword NSGMDTA))))
+                  (evalExpression
+                    (assignmentExpression
+                      (simpleExpression (identifier (free_identifier (idOrKeyword MsgLine))))
+                      =
+                      (expression
+                        (bif
+                          (bif_trim
+                            %trim
+                            (
+                            (expression (identifier (free_identifier (idOrKeyword NSGMDTA))))
+                            )
                           )
                         )
                       )
@@ -506,19 +512,21 @@ PS_KEYWORDS              <                                                      
             (baseExpression
               (op
                 (op_eval
-                  (assignmentExpression
-                    (simpleExpression (identifier (free_identifier (idOrKeyword Pos))))
-                    =
-                    (expression
-                      (bif
-                        (bif_scan
-                          %Scan
-                          (
-                          (expression (literal ' <% '))
-                          :
-                          (expression (identifier (free_identifier (idOrKeyword MsgLine))))
-                          :
-                          (expression (number 1))
+                  (evalExpression
+                    (assignmentExpression
+                      (simpleExpression (identifier (free_identifier (idOrKeyword Pos))))
+                      =
+                      (expression
+                        (bif
+                          (bif_scan
+                            %Scan
+                            (
+                            (expression (literal ' <% '))
+                            :
+                            (expression (identifier (free_identifier (idOrKeyword MsgLine))))
+                            :
+                            (expression (number 1))
+                            )
                           )
                         )
                       )
@@ -564,56 +572,58 @@ PS_KEYWORDS              <                                                      
                       (baseExpression
                         (op
                           (op_eval
-                            (assignmentExpression
-                              (simpleExpression (identifier (free_identifier (idOrKeyword Msgline))))
-                              =
-                              (expression
+                            (evalExpression
+                              (assignmentExpression
+                                (simpleExpression (identifier (free_identifier (idOrKeyword Msgline))))
+                                =
                                 (expression
                                   (expression
                                     (expression
+                                      (expression
+                                        (expression
+                                          (bif
+                                            (bif_trim
+                                              %Trim
+                                              (
+                                              (expression (identifier (free_identifier (idOrKeyword DataBefore))))
+                                              )
+                                            )
+                                          )
+                                        )
+                                        +
+                                        (expression (literal ' ' ' '))
+                                      )
+                                      +
                                       (expression
                                         (bif
                                           (bif_trim
                                             %Trim
                                             (
-                                            (expression (identifier (free_identifier (idOrKeyword DataBefore))))
-                                            )
-                                          )
-                                        )
-                                      )
-                                      +
-                                      (expression (literal ' ' ' '))
-                                    )
-                                    +
-                                    (expression
-                                      (bif
-                                        (bif_trim
-                                          %Trim
-                                          (
-                                          (expression
-                                            (identifier
-                                              (multipart_identifier
-                                                (free_identifier (idOrKeyword ppData))
-                                                .
-                                                (free_identifier (idOrKeyword NS_ITMN))
+                                            (expression
+                                              (identifier
+                                                (multipart_identifier
+                                                  (free_identifier (idOrKeyword ppData))
+                                                  .
+                                                  (free_identifier (idOrKeyword NS_ITMN))
+                                                )
                                               )
                                             )
-                                          )
+                                            )
                                           )
                                         )
                                       )
                                     )
+                                    +
+                                    (expression (literal ' ' ' '))
                                   )
                                   +
-                                  (expression (literal ' ' ' '))
-                                )
-                                +
-                                (expression
-                                  (bif
-                                    (bif_trim
-                                      %Trim
-                                      (
-                                      (expression (identifier (free_identifier (idOrKeyword DataAfter))))
+                                  (expression
+                                    (bif
+                                      (bif_trim
+                                        %Trim
+                                        (
+                                        (expression (identifier (free_identifier (idOrKeyword DataAfter))))
+                                        )
                                       )
                                     )
                                   )
@@ -637,31 +647,33 @@ PS_KEYWORDS              <                                                      
                       (baseExpression
                         (op
                           (op_eval
-                            (assignmentExpression
-                              (simpleExpression (identifier (free_identifier (idOrKeyword Msgline))))
-                              =
-                              (expression
+                            (evalExpression
+                              (assignmentExpression
+                                (simpleExpression (identifier (free_identifier (idOrKeyword Msgline))))
+                                =
                                 (expression
+                                  (expression
+                                    (expression
+                                      (bif
+                                        (bif_trim
+                                          %Trim
+                                          (
+                                          (expression (identifier (free_identifier (idOrKeyword DataBefore))))
+                                          )
+                                        )
+                                      )
+                                    )
+                                    +
+                                    (expression (literal ' ' UnKnown ' '))
+                                  )
+                                  +
                                   (expression
                                     (bif
                                       (bif_trim
                                         %Trim
                                         (
-                                        (expression (identifier (free_identifier (idOrKeyword DataBefore))))
+                                        (expression (identifier (free_identifier (idOrKeyword DataAfter))))
                                         )
-                                      )
-                                    )
-                                  )
-                                  +
-                                  (expression (literal ' ' UnKnown ' '))
-                                )
-                                +
-                                (expression
-                                  (bif
-                                    (bif_trim
-                                      %Trim
-                                      (
-                                      (expression (identifier (free_identifier (idOrKeyword DataAfter))))
                                       )
                                     )
                                   )

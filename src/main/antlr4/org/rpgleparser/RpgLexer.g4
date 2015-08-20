@@ -149,7 +149,7 @@ OP_WHEN: [Ww][Hh][Ee][Nn] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender
 OP_WRITE: [Ww][Rr][Ii][Tt][Ee] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
 OP_XML_INTO: [Xx][Mm][Ll][-][Ii][Nn][Tt][Oo] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
 OP_XML_SAX: [Xx][Mm][Ll][-][Ss][Aa][Xx] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
-OP_NoSpace: -> skip,mode(FREE),pushMode(FreeOpExtender);
+OP_NoSpace: -> skip,mode(FREE);//,pushMode(FreeOpExtender);
 
 mode FREE;
 //OP_COMMIT: [Cc][Oo][Mm][Mm][Ii][Tt] -> mode(FREE),pushMode(FreeOpExtender);

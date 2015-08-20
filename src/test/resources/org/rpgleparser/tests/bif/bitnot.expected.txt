@@ -294,15 +294,17 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val1))))
-              =
-              (expression
-                (bif
-                  (bif_bitnot
-                    %bitnot
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val1))))
+                =
+                (expression
+                  (bif
+                    (bif_bitnot
+                      %bitnot
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
+                      )
                     )
                   )
                 )
@@ -319,10 +321,12 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val2))))
-              =
-              (expression (bif (bif_bitnot %BITNOT ( (expression (literal x' 80 ')) ))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val2))))
+                =
+                (expression (bif (bif_bitnot %BITNOT ( (expression (literal x' 80 ')) ))))
+              )
             )
           )
         )
@@ -335,15 +339,17 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val3))))
-              =
-              (expression
-                (bif
-                  (bif_bitnot
-                    %Bitnot
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword hexval))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val3))))
+                =
+                (expression
+                  (bif
+                    (bif_bitnot
+                      %Bitnot
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword hexval))))
+                      )
                     )
                   )
                 )
@@ -360,24 +366,26 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword val4))))
-              =
-              (expression
-                (bif
-                  (bif_bitnot
-                    %Bitnot
-                    (
-                    (expression
-                      (bif
-                        (bif_str
-                          %str
-                          (
-                          (expression (identifier (free_identifier (idOrKeyword fld))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword val4))))
+                =
+                (expression
+                  (bif
+                    (bif_bitnot
+                      %Bitnot
+                      (
+                      (expression
+                        (bif
+                          (bif_str
+                            %str
+                            (
+                            (expression (identifier (free_identifier (idOrKeyword fld))))
+                            )
                           )
                         )
                       )
-                    )
+                      )
                     )
                   )
                 )

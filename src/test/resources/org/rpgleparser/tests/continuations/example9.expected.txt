@@ -1,0 +1,246 @@
+/*===TOKENS===*/
+DIRECTIVE                < />
+DIR_FREE                 <FREE>
+EOL                      <
+>
+OP_BEGSR                 <Begsr>
+ID                       <selectFunctionToCheckForEmail>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <RLCIS>
+ID                       <xxEmailAddress>
+'='                      <=>
+ID                       <FindEmailAddressFromBuyerNumber>
+'('                      <(>
+HIDDEN:LEAD_WS5_Comments <RLCIS>
+ID                       <PPDATA>
+'.'                      <.>
+ID                       <NS_CMPN>
+COLON                    <:>
+ID                       <xxDataValue>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <xxEmailAddress>
+'='                      <=>
+ID                       <FindEmailAddressFromCustomerNumber>
+'('                      <(>
+ID                       <xxDataValue>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <xxEmailAddress>
+'='                      <=>
+ID                       <FindEmailAddressFromRandomFile>
+'('                      <(>
+ID                       <xxDataValue>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <xxEmailAddress>
+'='                      <=>
+ID                       <FindEmailAddressFromVendorNumber>
+'('                      <(>
+ID                       <xxDataValue>
+COLON                    <:>
+ID                       <ppData>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <RLCIS>
+ID                       <xxEmailAddress>
+'='                      <=>
+ID                       <FindEmailAddressFromBuyerNumber>
+'('                      <(>
+HIDDEN:LEAD_WS5_Comments <RLCIS>
+ID                       <PPDATA>
+'.'                      <.>
+ID                       <NS_CMPN>
+COLON                    <:>
+ID                       <PPDATA>
+'.'                      <.>
+ID                       <NS_RESP>
+')'                      <)>
+FREE_SEMI                <;>
+OP_ENDSR                 <EndSr>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <END-FREE>
+/*===TREE===*/
+(r
+  (statement (directive ' /' (beginfree_directive FREE) \r\n))
+  (subroutine
+    (begsr
+      (freeBEGSR
+        Begsr
+        (identifier (free_identifier (idOrKeyword selectFunctionToCheckForEmail)))
+        ;
+      )
+    )
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (evalExpression
+                (assignmentExpression
+                  (simpleExpression (identifier (free_identifier (idOrKeyword xxEmailAddress))))
+                  =
+                  (expression
+                    (function
+                      (functionName (free_identifier (idOrKeyword FindEmailAddressFromBuyerNumber)))
+                      (args
+                        (
+                        (expression
+                          (identifier
+                            (multipart_identifier
+                              (free_identifier (idOrKeyword PPDATA))
+                              .
+                              (free_identifier (idOrKeyword NS_CMPN))
+                            )
+                          )
+                        )
+                        :
+                        (expression (identifier (free_identifier (idOrKeyword xxDataValue))))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (evalExpression
+                (assignmentExpression
+                  (simpleExpression (identifier (free_identifier (idOrKeyword xxEmailAddress))))
+                  =
+                  (expression
+                    (function
+                      (functionName
+                        (free_identifier (idOrKeyword FindEmailAddressFromCustomerNumber))
+                      )
+                      (args
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword xxDataValue))))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (evalExpression
+                (assignmentExpression
+                  (simpleExpression (identifier (free_identifier (idOrKeyword xxEmailAddress))))
+                  =
+                  (expression
+                    (function
+                      (functionName (free_identifier (idOrKeyword FindEmailAddressFromRandomFile)))
+                      (args
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword xxDataValue))))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (evalExpression
+                (assignmentExpression
+                  (simpleExpression (identifier (free_identifier (idOrKeyword xxEmailAddress))))
+                  =
+                  (expression
+                    (function
+                      (functionName (free_identifier (idOrKeyword FindEmailAddressFromVendorNumber)))
+                      (args
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword xxDataValue))))
+                        :
+                        (expression (identifier (free_identifier (idOrKeyword ppData))))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              (evalExpression
+                (assignmentExpression
+                  (simpleExpression (identifier (free_identifier (idOrKeyword xxEmailAddress))))
+                  =
+                  (expression
+                    (function
+                      (functionName (free_identifier (idOrKeyword FindEmailAddressFromBuyerNumber)))
+                      (args
+                        (
+                        (expression
+                          (identifier
+                            (multipart_identifier
+                              (free_identifier (idOrKeyword PPDATA))
+                              .
+                              (free_identifier (idOrKeyword NS_CMPN))
+                            )
+                          )
+                        )
+                        :
+                        (expression
+                          (identifier
+                            (multipart_identifier
+                              (free_identifier (idOrKeyword PPDATA))
+                              .
+                              (free_identifier (idOrKeyword NS_RESP))
+                            )
+                          )
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (endsr (freeENDSR EndSr ;))
+  )
+  (statement (directive ' /' (endfree_directive END-FREE) <EOF>))
+)
+/*======*/

@@ -298,10 +298,12 @@ EOL                      <
         (op
           (op_eval
             EVAL
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword x))))
-              =
-              (expression (identifier (free_identifier (idOrKeyword y))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword x))))
+                =
+                (expression (identifier (free_identifier (idOrKeyword y))))
+              )
             )
           )
         )
@@ -315,19 +317,21 @@ EOL                      <
         (op
           (op_eval
             eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword result))))
-              =
-              (expression
-                (expression (identifier (free_identifier (idOrKeyword fld1))))
-                +
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword result))))
+                =
                 (expression
-                  (
+                  (expression (identifier (free_identifier (idOrKeyword fld1))))
+                  +
                   (expression
-                    (expression (identifier (free_identifier (idOrKeyword fld2))))
-                    -
-                    (expression (identifier (free_identifier (idOrKeyword fld3))))
-                  )
+                    (
+                    (expression
+                      (expression (identifier (free_identifier (idOrKeyword fld2))))
+                      -
+                      (expression (identifier (free_identifier (idOrKeyword fld3))))
+                    )
+                    )
                   )
                 )
               )
@@ -345,18 +349,20 @@ EOL                      <
           (op_eval
             eval
             (cs_operationExtender ( h ))
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword result))))
-              =
-              (expression
-                (expression (identifier (free_identifier (idOrKeyword fld1))))
-                +
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword result))))
+                =
                 (expression
-                  (bif
-                    (bif_len
-                      %len
-                      (
-                      (expression (identifier (free_identifier (idOrKeyword fld4))))
+                  (expression (identifier (free_identifier (idOrKeyword fld1))))
+                  +
+                  (expression
+                    (bif
+                      (bif_len
+                        %len
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword fld4))))
+                        )
                       )
                     )
                   )
@@ -374,15 +380,17 @@ EOL                      <
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword ptr))))
-              =
-              (expression
-                (bif
-                  (bif_addr
-                    %addr
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword foeld))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword ptr))))
+                =
+                (expression
+                  (bif
+                    (bif_addr
+                      %addr
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword foeld))))
+                      )
                     )
                   )
                 )
@@ -397,48 +405,14 @@ EOL                      <
   (statement
     (free
       (baseExpression
-        (expression
-          (expression (identifier (free_identifier (idOrKeyword fld3))))
-          (assignmentOperator +=)
-          (expression (number 5))
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (expression
-          (expression (identifier (free_identifier (idOrKeyword fld4))))
-          (assignmentOperator -=)
-          (expression (number 6))
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (expression
-          (expression (identifier (free_identifier (idOrKeyword fld7))))
-          (assignmentOperator /=)
-          (expression (number 10))
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (expression
-          (expression (identifier (free_identifier (idOrKeyword fld8))))
-          (assignmentOperator *=)
-          (expression
-            (
-            (expression (expression (number 20)) + (expression (number 30)))
+        (op
+          (op_eval
+            (evalExpression
+              (assignOperatorExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword fld3))))
+                (assignmentOperator +=)
+                (expression (number 5))
+              )
             )
           )
         )
@@ -449,59 +423,129 @@ EOL                      <
   (statement
     (free
       (baseExpression
-        (expression
-          (expression (identifier (free_identifier (idOrKeyword fld9))))
-          (assignmentOperator **=)
-          (expression
-            (
-            (expression
-              (expression (number 6))
-              +
-              (expression
-                (bif
-                  (bif_len
-                    %len
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword fleid))))
+        (op
+          (op_eval
+            (evalExpression
+              (assignOperatorExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword fld4))))
+                (assignmentOperator -=)
+                (expression (number 6))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (evalExpression
+              (assignOperatorExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword fld7))))
+                (assignmentOperator /=)
+                (expression (number 10))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (evalExpression
+              (assignOperatorExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword fld8))))
+                (assignmentOperator *=)
+                (expression
+                  (
+                  (expression (expression (number 20)) + (expression (number 30)))
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (evalExpression
+              (assignOperatorExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword fld9))))
+                (assignmentOperator **=)
+                (expression
+                  (
+                  (expression
+                    (expression (number 6))
+                    +
+                    (expression
+                      (bif
+                        (bif_len
+                          %len
+                          (
+                          (expression (identifier (free_identifier (idOrKeyword fleid))))
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (evalExpression
+              (assignOperatorExpression
+                (simpleExpression
+                  (identifier
+                    (multipart_identifier
+                      (indexed_identifier
+                        (free_identifier (idOrKeyword cust))
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword custom))))
+                        )
+                      )
+                      .
+                      (indexed_identifier
+                        (free_identifier (idOrKeyword account))
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword accum))))
+                        )
+                      )
+                      .
+                      (free_identifier (idOrKeyword balance))
                     )
                   )
                 )
-              )
-            )
-            )
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (expression
-          (expression
-            (identifier
-              (multipart_identifier
-                (indexed_identifier
-                  (free_identifier (idOrKeyword cust))
-                  (
-                  (expression (identifier (free_identifier (idOrKeyword custom))))
-                  )
-                )
-                .
-                (indexed_identifier
-                  (free_identifier (idOrKeyword account))
-                  (
-                  (expression (identifier (free_identifier (idOrKeyword accum))))
-                  )
-                )
-                .
-                (free_identifier (idOrKeyword balance))
+                (assignmentOperator -=)
+                (expression (number 24))
               )
             )
           )
-          (assignmentOperator -=)
-          (expression (number 24))
         )
       )
       ;

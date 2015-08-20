@@ -272,34 +272,11 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword ptr1))))
-              =
-              (expression (bif (bif_alloc %alloc ( (expression (number 200)) ))))
-            )
-          )
-        )
-      )
-      ;
-    )
-  )
-  (statement
-    (free
-      (baseExpression
-        (op
-          (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword ptr2))))
-              =
-              (expression
-                (bif
-                  (bif_alloc
-                    %ALLOC
-                    (
-                    (expression (expression (number 200)) + (expression (number 300)))
-                    )
-                  )
-                )
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword ptr1))))
+                =
+                (expression (bif (bif_alloc %alloc ( (expression (number 200)) ))))
               )
             )
           )
@@ -313,25 +290,18 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword ptr3))))
-              =
-              (expression
-                (bif
-                  (bif_alloc
-                    %Alloc
-                    (
-                    (expression
-                      (bif
-                        (bif_len
-                          %len
-                          (
-                          (expression (identifier (free_identifier (idOrKeyword fld))))
-                          )
-                        )
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword ptr2))))
+                =
+                (expression
+                  (bif
+                    (bif_alloc
+                      %ALLOC
+                      (
+                      (expression (expression (number 200)) + (expression (number 300)))
                       )
                     )
-                    )
                   )
                 )
               )
@@ -347,15 +317,15 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword ptr4))))
-              =
-              (expression
-                (bif
-                  (bif_alloc
-                    %Alloc
-                    (
-                    (expression
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword ptr3))))
+                =
+                (expression
+                  (bif
+                    (bif_alloc
+                      %Alloc
+                      (
                       (expression
                         (bif
                           (bif_len
@@ -366,9 +336,47 @@ HIDDEN:EMPTY_LINE        <                                                      
                           )
                         )
                       )
-                      *
-                      (expression (number 25))
+                      )
                     )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword ptr4))))
+                =
+                (expression
+                  (bif
+                    (bif_alloc
+                      %Alloc
+                      (
+                      (expression
+                        (expression
+                          (bif
+                            (bif_len
+                              %len
+                              (
+                              (expression (identifier (free_identifier (idOrKeyword fld))))
+                              )
+                            )
+                          )
+                        )
+                        *
+                        (expression (number 25))
+                      )
+                      )
                     )
                   )
                 )

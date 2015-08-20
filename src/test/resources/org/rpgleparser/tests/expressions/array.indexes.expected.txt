@@ -29,19 +29,21 @@ FREE_SEMI                <;>
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression
-                (identifier
-                  (multipart_identifier
-                    (indexed_identifier (free_identifier (idOrKeyword arr)) ( * ))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression
+                  (identifier
+                    (multipart_identifier
+                      (indexed_identifier (free_identifier (idOrKeyword arr)) ( * ))
+                    )
                   )
                 )
-              )
-              =
-              (expression
-                (expression (identifier (free_identifier (idOrKeyword field2))))
-                *
-                (expression (identifier (free_identifier (idOrKeyword filed3))))
+                =
+                (expression
+                  (expression (identifier (free_identifier (idOrKeyword field2))))
+                  *
+                  (expression (identifier (free_identifier (idOrKeyword filed3))))
+                )
               )
             )
           )
@@ -53,30 +55,36 @@ FREE_SEMI                <;>
   (statement
     (free
       (baseExpression
-        (expression
-          (expression
-            (identifier
-              (multipart_identifier
-                (indexed_identifier
-                  (free_identifier (idOrKeyword cust))
-                  (
-                  (expression (identifier (free_identifier (idOrKeyword custom))))
+        (op
+          (op_eval
+            (evalExpression
+              (assignOperatorExpression
+                (simpleExpression
+                  (identifier
+                    (multipart_identifier
+                      (indexed_identifier
+                        (free_identifier (idOrKeyword cust))
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword custom))))
+                        )
+                      )
+                      .
+                      (indexed_identifier
+                        (free_identifier (idOrKeyword account))
+                        (
+                        (expression (identifier (free_identifier (idOrKeyword accum))))
+                        )
+                      )
+                      .
+                      (free_identifier (idOrKeyword balance))
+                    )
                   )
                 )
-                .
-                (indexed_identifier
-                  (free_identifier (idOrKeyword account))
-                  (
-                  (expression (identifier (free_identifier (idOrKeyword accum))))
-                  )
-                )
-                .
-                (free_identifier (idOrKeyword balance))
+                (assignmentOperator -=)
+                (expression (number 24))
               )
             )
           )
-          (assignmentOperator -=)
-          (expression (number 24))
         )
       )
       ;

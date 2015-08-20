@@ -113,61 +113,69 @@ PS_KEYWORDS              <                                                      
     )
     (dcl_pi
       (piBegin D (ds_name Function) ' ' ' ' PI '       ' '     10' I ' 0' ' ' \r\n)
-      (parm_fixed
-        D
-        (ds_name Term1)
-        ' '
-        ' '
-        '  '
-        '       '
-        '      5'
-        I
-        ' 0'
-        ' '
-        (keyword (keyword_value VALUE))
-        \r\n
+      (pi_parm_fixed
+        (parm_fixed
+          D
+          (ds_name Term1)
+          ' '
+          ' '
+          '  '
+          '       '
+          '      5'
+          I
+          ' 0'
+          ' '
+          (keyword (keyword_value VALUE))
+          \r\n
+        )
       )
-      (parm_fixed
-        D
-        (ds_name Term2)
-        ' '
-        ' '
-        '  '
-        '       '
-        '      5'
-        I
-        ' 0'
-        ' '
-        (keyword (keyword_value VALUE))
-        \r\n
+      (pi_parm_fixed
+        (parm_fixed
+          D
+          (ds_name Term2)
+          ' '
+          ' '
+          '  '
+          '       '
+          '      5'
+          I
+          ' 0'
+          ' '
+          (keyword (keyword_value VALUE))
+          \r\n
+        )
       )
-      (parm_fixed
-        D
-        (ds_name Term1)
-        ' '
-        ' '
-        '  '
-        '       '
-        '      5'
-        I
-        ' 0'
-        ' '
-        (keyword (keyword_value VALUE))
-        \r\n
+      (pi_parm_fixed
+        (parm_fixed
+          D
+          (ds_name Term1)
+          ' '
+          ' '
+          '  '
+          '       '
+          '      5'
+          I
+          ' 0'
+          ' '
+          (keyword (keyword_value VALUE))
+          \r\n
+        )
       )
-      (parm_fixed
-        D
-        (ds_name Term2)
-        ' '
-        ' '
-        '  '
-        '       '
-        '      5'
-        I
-        ' 0'
-        ' '
-        (keyword (keyword_value VALUE))
-        \r\n
+      (pi_parm_fixed
+        (parm_fixed
+          D
+          (ds_name Term2)
+          ' '
+          ' '
+          '  '
+          '       '
+          '      5'
+          I
+          ' 0'
+          ' '
+          (keyword (keyword_value VALUE))
+          \r\n
+        )
       )
     )
     (subprocedurestatement
@@ -181,29 +189,31 @@ PS_KEYWORDS              <                                                      
           (baseExpression
             (op
               (op_eval
-                (assignmentExpression
-                  (simpleExpression (identifier (free_identifier (idOrKeyword Result))))
-                  =
-                  (expression
+                (evalExpression
+                  (assignmentExpression
+                    (simpleExpression (identifier (free_identifier (idOrKeyword Result))))
+                    =
                     (expression
                       (expression
                         (expression
-                          (expression (identifier (free_identifier (idOrKeyword Term1))))
-                          **
-                          (expression (number 2))
+                          (expression
+                            (expression (identifier (free_identifier (idOrKeyword Term1))))
+                            **
+                            (expression (number 2))
+                          )
+                          *
+                          (expression (number 17))
                         )
-                        *
-                        (expression (number 17))
+                        +
+                        (expression
+                          (expression (identifier (free_identifier (idOrKeyword Term2))))
+                          *
+                          (expression (number 7))
+                        )
                       )
                       +
-                      (expression
-                        (expression (identifier (free_identifier (idOrKeyword Term2))))
-                        *
-                        (expression (number 7))
-                      )
+                      (expression (identifier (free_identifier (idOrKeyword Term3))))
                     )
-                    +
-                    (expression (identifier (free_identifier (idOrKeyword Term3))))
                   )
                 )
               )

@@ -66,10 +66,12 @@ FREE_SEMI                <;>
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword $count))))
-              =
-              (expression (number 0))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword $count))))
+                =
+                (expression (number 0))
+              )
             )
           )
         )
@@ -169,13 +171,15 @@ FREE_SEMI                <;>
                         (baseExpression
                           (op
                             (op_eval
-                              (assignmentExpression
-                                (simpleExpression (identifier (free_identifier (idOrKeyword $count))))
-                                =
-                                (expression
-                                  (expression (identifier (free_identifier (idOrKeyword $count))))
-                                  +
-                                  (expression (number 1))
+                              (evalExpression
+                                (assignmentExpression
+                                  (simpleExpression (identifier (free_identifier (idOrKeyword $count))))
+                                  =
+                                  (expression
+                                    (expression (identifier (free_identifier (idOrKeyword $count))))
+                                    +
+                                    (expression (number 1))
+                                  )
                                 )
                               )
                             )

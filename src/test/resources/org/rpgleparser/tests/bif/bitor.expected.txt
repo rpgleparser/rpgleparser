@@ -301,17 +301,19 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword ison))))
-              =
-              (expression
-                (bif
-                  (bif_bitor
-                    %bitor
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
-                    :
-                    (expression (identifier (free_identifier (idOrKeyword B0))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword ison))))
+                =
+                (expression
+                  (bif
+                    (bif_bitor
+                      %bitor
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword HEXVAL))))
+                      :
+                      (expression (identifier (free_identifier (idOrKeyword B0))))
+                      )
                     )
                   )
                 )
@@ -328,17 +330,19 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword ison))))
-              =
-              (expression
-                (bif
-                  (bif_bitor
-                    %BITOR
-                    (
-                    (expression (literal x' 80 '))
-                    :
-                    (expression (literal X' 40 '))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword ison))))
+                =
+                (expression
+                  (bif
+                    (bif_bitor
+                      %BITOR
+                      (
+                      (expression (literal x' 80 '))
+                      :
+                      (expression (literal X' 40 '))
+                      )
                     )
                   )
                 )
@@ -355,17 +359,19 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword ison))))
-              =
-              (expression
-                (bif
-                  (bif_bitor
-                    %Bitor
-                    (
-                    (expression (identifier (free_identifier (idOrKeyword hexval))))
-                    :
-                    (expression (literal x' 01 '))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword ison))))
+                =
+                (expression
+                  (bif
+                    (bif_bitor
+                      %Bitor
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword hexval))))
+                      :
+                      (expression (literal x' 01 '))
+                      )
                     )
                   )
                 )
@@ -382,28 +388,30 @@ HIDDEN:EMPTY_LINE        <                                                      
       (baseExpression
         (op
           (op_eval
-            (assignmentExpression
-              (simpleExpression (identifier (free_identifier (idOrKeyword ison))))
-              =
-              (expression
-                (bif
-                  (bif_bitor
-                    %Bitor
-                    (
-                    (expression
-                      (bif
-                        (bif_str
-                          %str
-                          (
-                          (expression (identifier (free_identifier (idOrKeyword fld))))
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword ison))))
+                =
+                (expression
+                  (bif
+                    (bif_bitor
+                      %Bitor
+                      (
+                      (expression
+                        (bif
+                          (bif_str
+                            %str
+                            (
+                            (expression (identifier (free_identifier (idOrKeyword fld))))
+                            )
                           )
                         )
                       )
-                    )
-                    :
-                    (expression (identifier (free_identifier (idOrKeyword bitval))))
-                    :
-                    (expression (literal x' 0F0F '))
+                      :
+                      (expression (identifier (free_identifier (idOrKeyword bitval))))
+                      :
+                      (expression (literal x' 0F0F '))
+                      )
                     )
                   )
                 )
