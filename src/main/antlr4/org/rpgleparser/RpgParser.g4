@@ -1931,7 +1931,7 @@ op_update: OP_UPDATE cs_operationExtender? identifier (identifier | bif_fields )
 op_when: OP_WHEN cs_operationExtender? indicator_expr ;
 op_write: OP_WRITE cs_operationExtender? identifier (identifier )? ;
 op_xml_into: OP_XML_INTO cs_operationExtender? identifier expression ;
-op_xml_sax: OP_XML_SAX cs_operationExtender? identifier identifier ;
+op_xml_sax: OP_XML_SAX cs_operationExtender? bif_handler bif_xml ;
 search_arg: expression | args;
 op_code: OP_ACQ
 	  | OP_BEGSR
