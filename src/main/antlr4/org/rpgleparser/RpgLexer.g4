@@ -1121,6 +1121,24 @@ CS_Factor2_SPLAT_SECONDS : {35<= getCharPositionInLine() && getCharPositionInLin
 CS_Factor2_SPLAT_YEARS : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_YEARS -> type(SPLAT_YEARS);
 CS_Factor2_SPLAT_Y : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_Y -> type(SPLAT_Y);
 
+//Result 
+
+//Duration
+CS_Result_SPLAT_D : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_D -> type(SPLAT_D);
+CS_Result_SPLAT_DAYS : {49<= getCharPositionInLine() && getCharPositionInLine()+5<=62}? SPLAT_DAYS -> type(SPLAT_DAYS);
+CS_Result_SPLAT_H : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_H -> type(SPLAT_H);
+CS_Result_SPLAT_HOURS : {49<= getCharPositionInLine() && getCharPositionInLine()+6<=62}? SPLAT_HOURS -> type(SPLAT_HOURS);
+CS_Result_SPLAT_MINUTES : {49<= getCharPositionInLine() && getCharPositionInLine()+8<=62}? SPLAT_MINUTES -> type(SPLAT_MINUTES);
+CS_Result_SPLAT_MONTHS : {49<= getCharPositionInLine() && getCharPositionInLine()+7<=62}? SPLAT_MONTHS -> type(SPLAT_MONTHS);
+CS_Result_SPLAT_M : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_M -> type(SPLAT_M);
+CS_Result_SPLAT_MN : {49<= getCharPositionInLine() && getCharPositionInLine()+3<=62}? SPLAT_MN -> type(SPLAT_MN);
+CS_Result_SPLAT_MS : {49<= getCharPositionInLine() && getCharPositionInLine()+3<=62}? SPLAT_MS -> type(SPLAT_MS);
+CS_Result_SPLAT_MSECONDS : {49<= getCharPositionInLine() && getCharPositionInLine()+9<=62}? SPLAT_MSECONDS -> type(SPLAT_MSECONDS);
+CS_Result_SPLAT_SECONDS : {49<= getCharPositionInLine() && getCharPositionInLine()+8<=62}? SPLAT_SECONDS -> type(SPLAT_SECONDS);
+CS_Result_SPLAT_YEARS : {49<= getCharPositionInLine() && getCharPositionInLine()+6<=62}? SPLAT_YEARS -> type(SPLAT_YEARS);
+CS_Result_SPLAT_Y : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_Y -> type(SPLAT_Y);
+
+
 CS_BlankFactor: {(getCharPositionInLine()==11)
 			|| (getCharPositionInLine()==35)
 			|| (getCharPositionInLine()==49)}? 
