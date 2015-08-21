@@ -31,6 +31,7 @@ PS_FIXED : {getCharPositionInLine()==5}? [pP] -> pushMode(FIXED_ProcedureSpec) ;
 HS_FIXED : {getCharPositionInLine()==5}? [hH] -> pushMode(HeaderSpecMode) ;
 
 BLANK_LINE : {getCharPositionInLine()==5}? [ ]+ NEWLINE -> skip;
+BLANK_SPEC_LINE : {getCharPositionInLine()==5}? .[ ]* NEWLINE -> skip;
 COMMENTS : {getCharPositionInLine()>=5}? [ ][ ]*? '//' -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
 EMPTY_LINE : {getCharPositionInLine()>=5}?
 	'                                                                           ' -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
