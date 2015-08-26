@@ -49,6 +49,49 @@
 
 	<build>
 		<plugins>
+			<!-- plugin>
+				<groupId>com.fasterxml</groupId>
+				<artifactId>maven-stringtemplate-plugin</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<inputDir>src/main/antlr4/org/rpgleparser/templates</inputDir>
+					<templateDir>src/main/antlr4/org/rpgleparser/templates</templateDir>
+					<inputSuffix>.st</inputSuffix> 
+					<outputDir>src/main/antlr4/org/rpgleparser</outputDir>
+					<outputSuffix>g4</outputSuffix>
+				</configuration>
+				<executions>
+	<execution>
+		<phase>generate-sources</phase>
+		<goals>
+			<goal>process</goal>
+		</goals>
+	</execution>
+</executions>
+				
+			</plugin-->
+			<plugin>
+                <groupId>com.webguys</groupId>
+                <artifactId>string-template-maven-plugin</artifactId>
+                <version>1.1</version>
+                <configuration>
+                    <templates>
+                        <template>
+                            <directory>src/main/antlr4/org/rpgleparser/templates</directory>
+                            <name>RpgLexer</name>
+                            <target>src/main/antlr4/org/rpgleparser/main.g4</target>
+                        </template>
+                    </templates>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>render</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
