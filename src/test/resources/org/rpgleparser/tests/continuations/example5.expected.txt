@@ -25,21 +25,6 @@ BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_BlankFactor           <              >
-CS_OperationAndExtender_Blank<          >
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
-CS_FieldLength           <     >
-CS_DecimalPositions      <  >
-BlankIndicator           <  >
-BlankIndicator           <  >
-BlankIndicator           <  >
-EOL                      <
->
-CS_FIXED                 <C>
-BlankIndicator           <  >
-BlankFlag                < >
-BlankIndicator           <  >
-CS_BlankFactor           <              >
 OP_EVAL                  <EVAL>
 ID                       <A>
 '='                      <=>
@@ -95,26 +80,6 @@ StringLiteralEnd         <'>
           )
           \r\n
         )
-      )
-    )
-  )
-  (statement
-    (blank_spec
-      (cspec_blank
-        C
-        '  '
-        ' '
-        '  '
-        '              '
-        '          '
-        '              '
-        '              '
-        '     '
-        '  '
-        '  '
-        '  '
-        '  '
-        \r\n
       )
     )
   )

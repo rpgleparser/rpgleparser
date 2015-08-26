@@ -34,11 +34,6 @@ EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED<O*>
 HIDDEN:COMMENTS_TEXT     <cdname+++D...N01N02N03Excnam++++.......................................                     >
-OS_FIXED                 <O>
-BLANK_SPEC               <                                                                           >
-HIDDEN:OS_Comments       <                  >
-EOL                      <
->
 HIDDEN:COMMENT_SPEC_FIXED<O*>
 OS_FIXED                 <O>
 OS_RecordName            <RCDA      >
@@ -109,13 +104,6 @@ HIDDEN:COMMENTS_TEXT     <                    (no fields)                       
           )
         )
       )
-    )
-  )
-  (statement
-    (blank_spec
-      O
-      '                                                                           '
-      \r\n
     )
   )
   (statement

@@ -1,0 +1,577 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <STARTDT>
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_MONTHS             <*MONTHS>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_M                  <*M>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_DAYS               <*DAYS>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_D                  <*D>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_YEARS              <*YEARS>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_Y                  <*Y>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_SECONDS            <*SECONDS>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+CS_FactorContent         <*S>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_MINUTES            <*MINUTES>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_MN                 <*MN>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_HOURS              <*HOURS>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_H                  <*H>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_MSECONDS           <*MSECONDS>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ADDDUR                <ADDDUR>
+CS_FactorContent         <YY>
+COLON                    <:>
+SPLAT_MS                 <*MS>
+CS_FactorContent         <TEST>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor (factorContent STARTDT))
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *MONTHS))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *M))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *DAYS))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *D))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *YEARS))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *Y))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *SECONDS))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (factorContent *S))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *MINUTES))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *MN))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *HOURS))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *H))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *MSECONDS))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            \r\n
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csADDDUR
+          ADDDUR
+          (cspec_fixed_standard_parts
+            (factor (factorContent YY) : (symbolicConstants *MS))
+            (resultType TEST)
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            <EOF>
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

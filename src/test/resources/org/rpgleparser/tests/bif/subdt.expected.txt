@@ -1,0 +1,289 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <HH>
+'='                      <=>
+BIF_SUBDT                <%SUBDT>
+'('                      <(>
+ID                       <T3>
+COLON                    <:>
+SPLAT_H                  <*H>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <MN>
+'='                      <=>
+BIF_SUBDT                <%SUBDT>
+'('                      <(>
+ID                       <T3>
+COLON                    <:>
+SPLAT_MN                 <*MN>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <SC>
+'='                      <=>
+BIF_SUBDT                <%SUBDT>
+'('                      <(>
+ID                       <T3>
+COLON                    <:>
+SPLAT_S                  <*S>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <
+>
+ID                       <hh>
+'='                      <=>
+BIF_SUBDT                <%subdt>
+'('                      <(>
+ID                       <t3>
+COLON                    <:>
+SPLAT_H                  <*H>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment                                                             >
+HIDDEN:COMMENTS_EOL_HIDDEN<
+>
+ID                       <mn>
+'='                      <=>
+BIF_SUBDT                <%subdt>
+'('                      <(>
+ID                       <t3>
+COLON                    <:>
+SPLAT_MN                 <*mn>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment                                                            >
+HIDDEN:COMMENTS_EOL_HIDDEN<
+>
+ID                       <sc>
+'='                      <=>
+BIF_SUBDT                <%subdt>
+'('                      <(>
+ID                       <t3>
+COLON                    <:>
+SPLAT_S                  <*S>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment                                                             >
+HIDDEN:COMMENTS_EOL_HIDDEN<
+>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+HIDDEN:EMPTY_LINE        <                                                                           >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword HH))))
+              =
+              (expression
+                (bif
+                  (bif_subdt
+                    %SUBDT
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword T3))))
+                    :
+                    (durationCode *H)
+                    )
+                  )
+                )
+              )
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword MN))))
+              =
+              (expression
+                (bif
+                  (bif_subdt
+                    %SUBDT
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword T3))))
+                    :
+                    (durationCode *MN)
+                    )
+                  )
+                )
+              )
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword SC))))
+              =
+              (expression
+                (bif
+                  (bif_subdt
+                    %SUBDT
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword T3))))
+                    :
+                    (durationCode *S)
+                    )
+                  )
+                )
+              )
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+  (statement (directive ' /' (beginfree_directive free) \r\n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword hh))))
+                =
+                (expression
+                  (bif
+                    (bif_subdt
+                      %subdt
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword t3))))
+                      :
+                      (durationCode *H)
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword mn))))
+                =
+                (expression
+                  (bif
+                    (bif_subdt
+                      %subdt
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword t3))))
+                      :
+                      (durationCode *mn)
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword sc))))
+                =
+                (expression
+                  (bif
+                    (bif_subdt
+                      %subdt
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword t3))))
+                      :
+                      (durationCode *S)
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \r\n))
+)
+/*======*/

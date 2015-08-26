@@ -2088,7 +2088,8 @@ bif_timeformat: symbolicConstants;
 bif_diffformat: symbolicConstants;
 bif_editccurrency : SPLAT_ASTFILL | SPLAT_CURSYM | literal;
 bif_lookupargs: OPEN_PAREN arg=expression (COLON array=expression)? (COLON startindex=expression)? (COLON numberelements=expression)? CLOSE_PAREN;
-bif_subdtargs: symbolicConstants;
+durationCode: SPLAT_D | SPLAT_H | SPLAT_HOURS | SPLAT_DAYS | SPLAT_M | SPLAT_MINUTES | SPLAT_MONTHS | SPLAT_MN
+   | SPLAT_MS | SPLAT_MSECONDS | SPLAT_S | SPLAT_SECONDS | SPLAT_Y |SPLAT_YEARS;
 bif_timestampargs : SPLAT_ISO | SPLAT_ISO0 ;
 bif_tlookupargs: OPEN_PAREN arg=expression COLON searchtable=expression (COLON alttable=expression)? CLOSE_PAREN;
 
@@ -2153,7 +2154,7 @@ bif_sqrt: BIF_SQRT OPEN_PAREN numeric=expression CLOSE_PAREN;
 bif_status: BIF_STATUS (OPEN_PAREN filenameident=identifier CLOSE_PAREN)?;
 bif_str: BIF_STR OPEN_PAREN basingpointer=expression (COLON maxlength=expression)? CLOSE_PAREN;
 bif_subarr: BIF_SUBARR OPEN_PAREN array=expression COLON start=expression (COLON numberelements=expression)? CLOSE_PAREN;
-bif_subdt: BIF_SUBDT OPEN_PAREN value=expression COLON format=bif_subdtargs CLOSE_PAREN;
+bif_subdt: BIF_SUBDT OPEN_PAREN value=expression COLON format=durationCode CLOSE_PAREN;
 bif_subst: BIF_SUBST OPEN_PAREN string=expression COLON start=expression (COLON length=expression )? CLOSE_PAREN;
 bif_this: BIF_THIS;
 bif_time: BIF_TIME (OPEN_PAREN expression? (COLON timeformat=bif_timeformat)? CLOSE_PAREN)?;
@@ -2513,6 +2514,7 @@ SPLAT_ALL
    //Durations
    | SPLAT_D
    | SPLAT_DAYS
+   | SPLAT_H
    | SPLAT_HOURS
    | SPLAT_M
    | SPLAT_MINUTES

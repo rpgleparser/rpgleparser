@@ -1,0 +1,115 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <@SECS>
+'='                      <=>
+BIF_DIFF                 <%DIFF>
+'('                      <(>
+ID                       <T2>
+COLON                    <:>
+ID                       <T1>
+COLON                    <:>
+SPLAT_SECONDS            <*SECONDS>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <
+>
+ID                       <@secs>
+'='                      <=>
+BIF_DIFF                 <%diff>
+'('                      <(>
+ID                       <t2>
+COLON                    <:>
+ID                       <t1>
+COLON                    <:>
+SPLAT_SECONDS            <*seconds>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN<comment                                                  >
+HIDDEN:COMMENTS_EOL_HIDDEN<
+>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <
+>
+HIDDEN:EMPTY_LINE        <                                                                           >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword @SECS))))
+              =
+              (expression
+                (bif
+                  (bif_diff
+                    %DIFF
+                    (
+                    (expression (identifier (free_identifier (idOrKeyword T2))))
+                    :
+                    (expression (identifier (free_identifier (idOrKeyword T1))))
+                    :
+                    (bif_diffformat (symbolicConstants *SECONDS))
+                    )
+                  )
+                )
+              )
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+  (statement (directive ' /' (beginfree_directive free) \r\n))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_eval
+            (evalExpression
+              (assignmentExpression
+                (simpleExpression (identifier (free_identifier (idOrKeyword @secs))))
+                =
+                (expression
+                  (bif
+                    (bif_diff
+                      %diff
+                      (
+                      (expression (identifier (free_identifier (idOrKeyword t2))))
+                      :
+                      (expression (identifier (free_identifier (idOrKeyword t1))))
+                      :
+                      (bif_diffformat (symbolicConstants *seconds))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) \r\n))
+)
+/*======*/

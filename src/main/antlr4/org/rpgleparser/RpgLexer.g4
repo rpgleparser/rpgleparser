@@ -8,6 +8,14 @@ lexer grammar RpgLexer;
 	public boolean isEndOfToken() {
 		return " (;".indexOf(_input.LA(1)) >=0;
 	}
+	int lastTokenType = 0;
+	public void emit(Token token) {
+		super.emit(token);
+		lastTokenType = token.getType();
+	}
+	protected int getLastTokenType(){
+		return lastTokenType;
+	}
 } 
 
 // Parser Rules
@@ -343,6 +351,22 @@ SPLAT_MAX: '*'[mM][aA][xX];
 SPLAT_LOCK: '*'[lL][oO][cC][kK];
 SPLAT_PROGRAM: '*'[pP][rR][oO][gG][rR][aA][mM];
 SPLAT_EXTDESC: '*'[eE][xX][tT][dD][eE][sS][cC];
+//Durations
+SPLAT_D: '*'{getLastTokenType() == COLON}? [dD];
+SPLAT_H: '*'{getLastTokenType() == COLON}? [hH];
+SPLAT_HOURS: '*'{getLastTokenType() == COLON}? [hH][oO][uU][rR][sS];
+SPLAT_DAYS:  SPLAT_DAY[sS]{getLastTokenType() == COLON}?;
+SPLAT_M: '*'{getLastTokenType() == COLON}? [mM];
+SPLAT_MINUTES: '*'{getLastTokenType() == COLON}? [mM][iI][nN][uU][tT][eE][sS];
+SPLAT_MONTHS: SPLAT_MONTH[sS];
+SPLAT_MN: '*'{getLastTokenType() == COLON}? [mM][nN]; //Minutes
+SPLAT_MS: '*'{getLastTokenType() == COLON}? [mM][sS]; //Minutes
+SPLAT_MSECONDS: '*'{getLastTokenType() == COLON}? [mM][sS][eE][cC][oO][nN][dD][sS];
+SPLAT_S: '*'{getLastTokenType() == COLON}? [sS];
+SPLAT_SECONDS: '*'{getLastTokenType() == COLON}? [sS][eE][cC][oO][nN][dD][sS];
+SPLAT_Y: '*'{getLastTokenType() == COLON}? [yY];
+SPLAT_YEARS: SPLAT_YEAR[sS]{getLastTokenType() == COLON}?;
+
 
 // Reserved Words
 UDATE : [uU] [dD] [aA] [tT] [eE] ;
@@ -545,22 +569,6 @@ NumberContinuation_CONTINUATION: ([ ]* NEWLINE)
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                            ' [ ]* -> skip;
 NumberPart: NUMBER -> popMode;
 NumberContinuation_ANY: -> popMode,skip;
-
-mode DurationCodes; //Referenced (not used)
-SPLAT_D: '*'[dD];
-SPLAT_H: '*'[hH];
-SPLAT_HOURS: '*'[hH][oO][uU][rR][sS];
-SPLAT_DAYS:  SPLAT_DAY[sS];
-SPLAT_M: '*'[mM];
-SPLAT_MINUTES: '*'[mM][iI][nN][uU][tT][eE][sS];
-SPLAT_MONTHS: SPLAT_MONTH[sS];
-SPLAT_MN: '*'[mM][nN]; //Minutes
-SPLAT_MS: '*'[mM][sS]; //Minutes
-SPLAT_MSECONDS: '*'[mM][sS][eE][cC][oO][nN][dD][sS];
-SPLAT_S: '*'[sS];
-SPLAT_SECONDS: '*'[sS][eE][cC][oO][nN][dD][sS];
-SPLAT_Y: '*'[yY];
-SPLAT_YEARS: SPLAT_YEAR[sS];
 
 mode FixedOpCodes; //Referenced (not used)
 OP_ADD: [aA][dD][dD];

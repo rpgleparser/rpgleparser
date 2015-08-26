@@ -86,7 +86,6 @@ import org.rpgleparser.RpgParser.Bif_statusContext;
 import org.rpgleparser.RpgParser.Bif_strContext;
 import org.rpgleparser.RpgParser.Bif_subarrContext;
 import org.rpgleparser.RpgParser.Bif_subdtContext;
-import org.rpgleparser.RpgParser.Bif_subdtargsContext;
 import org.rpgleparser.RpgParser.Bif_substContext;
 import org.rpgleparser.RpgParser.Bif_thisContext;
 import org.rpgleparser.RpgParser.Bif_timeContext;
@@ -324,6 +323,7 @@ import org.rpgleparser.RpgParser.Ds_nameContext;
 import org.rpgleparser.RpgParser.DspecConstantContext;
 import org.rpgleparser.RpgParser.DspecContext;
 import org.rpgleparser.RpgParser.Dspec_fixedContext;
+import org.rpgleparser.RpgParser.DurationCodeContext;
 import org.rpgleparser.RpgParser.ElseifstmtContext;
 import org.rpgleparser.RpgParser.ElsestmtContext;
 import org.rpgleparser.RpgParser.EndProcedureContext;
@@ -1669,15 +1669,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void enterBif_subdtargs(Bif_subdtargsContext ctx) {
+	public void enterDurationCode(DurationCodeContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterBif_subdtargs(Bif_subdtargsContext) - start"); //$NON-NLS-1$
+			logger.debug("enterDurationCode(DurationCodeContext) - start"); //$NON-NLS-1$
 		}
 
-		super.enterBif_subdtargs(ctx);
+		super.enterDurationCode(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("enterBif_subdtargs(Bif_subdtargsContext) - end"); //$NON-NLS-1$
+			logger.debug("enterDurationCode(DurationCodeContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -9169,15 +9169,15 @@ public class LoggingListener extends RpgParserBaseListener {
 	}
 
 	@Override
-	public void exitBif_subdtargs(Bif_subdtargsContext ctx) {
+	public void exitDurationCode(DurationCodeContext ctx) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitBif_subdtargs(Bif_subdtargsContext) - start"); //$NON-NLS-1$
+			logger.debug("exitDurationCode(DurationCodeContext) - start"); //$NON-NLS-1$
 		}
 
-		super.exitBif_subdtargs(ctx);
+		super.exitDurationCode(ctx);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("exitBif_subdtargs(Bif_subdtargsContext) - end"); //$NON-NLS-1$
+			logger.debug("exitDurationCode(DurationCodeContext) - end"); //$NON-NLS-1$
 		}
 	}
 
