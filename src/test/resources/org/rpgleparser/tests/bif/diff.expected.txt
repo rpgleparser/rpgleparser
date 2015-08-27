@@ -66,7 +66,7 @@ HIDDEN:EMPTY_LINE        <                                                      
                     :
                     (expression (identifier (free_identifier (idOrKeyword T1))))
                     :
-                    (bif_diffformat (symbolicConstants *SECONDS))
+                    (durationCode *SECONDS)
                     )
                   )
                 )
@@ -97,7 +97,7 @@ HIDDEN:EMPTY_LINE        <                                                      
                       :
                       (expression (identifier (free_identifier (idOrKeyword t1))))
                       :
-                      (bif_diffformat (symbolicConstants *seconds))
+                      (durationCode *seconds)
                       )
                     )
                   )

@@ -2085,7 +2085,6 @@ optargs: (OPEN_PAREN (expression (COLON expression)*)? CLOSE_PAREN)?;
 bif_charformat: symbolicConstants; //SPLAT_JOBRUN | SPLAT_HMS | SPLAT_ISO | SPLAT_EUR | SPLAT_DMY ..
 bif_dateformat: symbolicConstants;
 bif_timeformat: symbolicConstants;
-bif_diffformat: symbolicConstants;
 bif_editccurrency : SPLAT_ASTFILL | SPLAT_CURSYM | literal;
 bif_lookupargs: OPEN_PAREN arg=expression (COLON array=expression)? (COLON startindex=expression)? (COLON numberelements=expression)? CLOSE_PAREN;
 durationCode: SPLAT_D | SPLAT_H | SPLAT_HOURS | SPLAT_DAYS | SPLAT_M | SPLAT_MINUTES | SPLAT_MONTHS | SPLAT_MN
@@ -2109,7 +2108,7 @@ bif_days: BIF_DAYS OPEN_PAREN numberexpression=expression CLOSE_PAREN;
 bif_dec: BIF_DEC OPEN_PAREN expression (COLON expression)? (COLON expression)? CLOSE_PAREN;
 bif_dech: BIF_DECH OPEN_PAREN expression COLON expression COLON expression CLOSE_PAREN;
 bif_decpos: BIF_DECPOS OPEN_PAREN numericexpression=expression CLOSE_PAREN;
-bif_diff: BIF_DIFF OPEN_PAREN op1=expression COLON op2=expression COLON format=bif_diffformat CLOSE_PAREN;
+bif_diff: BIF_DIFF OPEN_PAREN op1=expression COLON op2=expression COLON format=durationCode CLOSE_PAREN;
 bif_div: BIF_DIV OPEN_PAREN numerator=expression COLON denominator=expression CLOSE_PAREN;
 bif_editc: BIF_EDITC OPEN_PAREN numeric=expression COLON editcode=expression (COLON currency=bif_editccurrency)? CLOSE_PAREN;
 bif_editflt: BIF_EDITFLT OPEN_PAREN numericexpression=expression CLOSE_PAREN;
