@@ -38,7 +38,6 @@ import org.rpgleparser.RpgParser.Bif_decContext;
 import org.rpgleparser.RpgParser.Bif_dechContext;
 import org.rpgleparser.RpgParser.Bif_decposContext;
 import org.rpgleparser.RpgParser.Bif_diffContext;
-import org.rpgleparser.RpgParser.Bif_diffformatContext;
 import org.rpgleparser.RpgParser.Bif_divContext;
 import org.rpgleparser.RpgParser.Bif_editcContext;
 import org.rpgleparser.RpgParser.Bif_editccurrencyContext;
@@ -1034,19 +1033,6 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("enterBif_diff(Bif_diffContext) - end"); //$NON-NLS-1$
-		}
-	}
-
-	@Override
-	public void enterBif_diffformat(Bif_diffformatContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterBif_diffformat(Bif_diffformatContext) - start"); //$NON-NLS-1$
-		}
-
-		super.enterBif_diffformat(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("enterBif_diffformat(Bif_diffformatContext) - end"); //$NON-NLS-1$
 		}
 	}
 
@@ -8541,19 +8527,6 @@ public class LoggingListener extends RpgParserBaseListener {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("exitBif_diff(Bif_diffContext) - end"); //$NON-NLS-1$
-		}
-	}
-
-	@Override
-	public void exitBif_diffformat(Bif_diffformatContext ctx) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitBif_diffformat(Bif_diffformatContext) - start"); //$NON-NLS-1$
-		}
-
-		super.exitBif_diffformat(ctx);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("exitBif_diffformat(Bif_diffformatContext) - end"); //$NON-NLS-1$
 		}
 	}
 
