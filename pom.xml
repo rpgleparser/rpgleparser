@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr4</artifactId>
-			<version>4.5</version>
+			<version>4.5.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -33,17 +33,17 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
+			<version>3.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.10</version>
+			<version>1.7.12</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.jt400</groupId>
 			<artifactId>jt400</artifactId>
-			<version>8.5</version>
+			<version>8.6</version>
 		</dependency>
 	</dependencies>
 
@@ -61,7 +61,7 @@
 			<plugin>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr4-maven-plugin</artifactId>
-				<version>4.5</version>
+				<version>4.5.1-1</version>
 				<executions>
 					<execution>
 						<goals>
