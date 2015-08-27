@@ -84,8 +84,8 @@ public class TestFiles {
 		}
 		lexer.reset();
 		
-		//parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
-		//parser.reset();
+		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+		parser.reset();
 		final ParseTree parseTree = parser.r();
 		
 		final String actualTree = TreeUtils.printTree(parseTree, parser);
