@@ -1,0 +1,148 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <IF>
+ID                       <FFAMTHC>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <F>
+StringLiteralEnd         <'>
+AND                      <AND>
+ID                       <OOICLCD>
+'<>'                     <<>>
+StringLiteralStart       <'>
+StringContent            <N>
+StringLiteralEnd         <'>
+AND                      <AND>
+ID                       <OOIITMN>
+'<>'                     <<>>
+StringLiteralStart       <'>
+StringContent            <9999999999>
+StringLiteralEnd         <'>
+AND                      <AND>
+ID                       <OOIUINV>
+'<>'                     <<>>
+StringLiteralStart       <'>
+StringContent            <N>
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+ID                       <YYFITMN>
+'='                      <=>
+ID                       <OOIITMN>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <ENDIF>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          IF
+          (c_free
+            (expression
+              (expression
+                (expression
+                  (expression
+                    (expression (identifier (free_identifier (idOrKeyword FFAMTHC))))
+                    =
+                    (expression (literal ' F '))
+                  )
+                  AND
+                  (expression
+                    (expression (identifier (free_identifier (idOrKeyword OOICLCD))))
+                    (comparisonOperator <>)
+                    (expression (literal ' N '))
+                  )
+                )
+                AND
+                (expression
+                  (expression (identifier (free_identifier (idOrKeyword OOIITMN))))
+                  (comparisonOperator <>)
+                  (expression (literal ' 9999999999 '))
+                )
+              )
+              AND
+              (expression
+                (expression (identifier (free_identifier (idOrKeyword OOIUINV))))
+                (comparisonOperator <>)
+                (expression (literal ' N '))
+              )
+            )
+          )
+          \r\n
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csEVAL
+                EVAL
+                (c_free
+                  (expression
+                    (expression (identifier (free_identifier (idOrKeyword YYFITMN))))
+                    =
+                    (expression (identifier (free_identifier (idOrKeyword OOIITMN))))
+                  )
+                )
+                \r\n
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            ENDIF
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
