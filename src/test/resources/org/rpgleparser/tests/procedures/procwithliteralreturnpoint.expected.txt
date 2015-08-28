@@ -1,0 +1,129 @@
+/*===TOKENS===*/
+DIRECTIVE                < />
+DIR_FREE                 <FREE>
+EOL                      <
+>
+HIDDEN:COMMENTS          <         //>
+HIDDEN:COMMENTS_TEXT     < *PSSR - Error Routine                                                             >
+OP_BEGSR                 <BegSr>
+SPLAT_PSSR               <*Pssr>
+FREE_SEMI                <;>
+HIDDEN:COMMENTS          <      //>
+HIDDEN:COMMENTS_TEXT     < Dump program and terminate process                                                   >
+OP_IF                    <If>
+ID                       <Wrk_1stErr>
+'<>'                     <<>>
+SPLAT_ON                 <*On>
+FREE_SEMI                <;>
+ID                       <Wrk_1stErr>
+'='                      <=>
+SPLAT_ON                 <*On>
+FREE_SEMI                <;>
+OP_DUMP                  <Dump>
+FREE_SEMI                <;>
+ID                       <PrmPssrErr>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <Y>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+HIDDEN:FE_COMMENTS       <//>
+HIDDEN:COMMENTS_TEXT_HIDDEN< Force Exit now                                                >
+HIDDEN:COMMENTS_EOL_HIDDEN<
+>
+SPLAT_INLR               <*InLr>
+'='                      <=>
+SPLAT_ON                 <*On>
+FREE_SEMI                <;>
+OP_ENDIF                 <EndIf>
+FREE_SEMI                <;>
+OP_ENDSR                 <EndSr>
+StringLiteralStart       <'>
+StringContent            <*CANCL>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <END-FREE>
+/*===TREE===*/
+(r
+  (statement (directive ' /' (beginfree_directive FREE) \n))
+  (subroutine
+    (begsr (freeBEGSR BegSr (identifier (all (symbolicConstants *Pssr))) ;))
+    (statement
+      (block
+        (ifstatement
+          (beginif
+            (op_if
+              If
+              (expression
+                (expression (identifier (free_identifier (idOrKeyword Wrk_1stErr))))
+                (comparisonOperator <>)
+                (expression (identifier (all (symbolicConstants *On))))
+              )
+            )
+            ;
+          )
+          (statement
+            (free
+              (baseExpression
+                (op
+                  (op_eval
+                    (evalExpression
+                      (assignmentExpression
+                        (simpleExpression (identifier (free_identifier (idOrKeyword Wrk_1stErr))))
+                        =
+                        (expression (identifier (all (symbolicConstants *On))))
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+          )
+          (statement (free (baseExpression (op (op_dump Dump))) ;))
+          (statement
+            (free
+              (baseExpression
+                (op
+                  (op_eval
+                    (evalExpression
+                      (assignmentExpression
+                        (simpleExpression (identifier (free_identifier (idOrKeyword PrmPssrErr))))
+                        =
+                        (expression (literal ' Y '))
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+          )
+          (statement
+            (free
+              (baseExpression
+                (op
+                  (op_eval
+                    (evalExpression
+                      (assignmentExpression
+                        (simpleExpression (identifier (all (symbolicConstants *InLr))))
+                        =
+                        (expression (identifier (all (symbolicConstants *On))))
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+          )
+          (endif (op_endif EndIf) ;)
+        )
+      )
+    )
+    (endsr (freeENDSR EndSr (literal ' *CANCL ') ;))
+  )
+  (statement (directive ' /' (endfree_directive END-FREE) <EOF>))
+)
+/*======*/
