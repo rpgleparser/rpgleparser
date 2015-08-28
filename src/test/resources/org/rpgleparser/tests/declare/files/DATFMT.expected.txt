@@ -3,24 +3,21 @@ FS_FreeFile              <dcl-f>
 ID                       <table1>
 KEYWORD_DATFMT           <DATFMT>
 '('                      <(>
-SPLAT_YMD                <*YMD>
-'/'                      </>
+SPLAT_YMD                <*YMD/>
 ')'                      <)>
 FREE_SEMI                <;>
 FS_FreeFile              <dcl-f>
 ID                       <table2>
 KEYWORD_DATFMT           <DATFMT>
 '('                      <(>
-SPLAT_JUL                <*JUL>
-'&'                      <&>
+SPLAT_JUL                <*JUL&>
 ')'                      <)>
 FREE_SEMI                <;>
 FS_FreeFile              <dcl-f>
 ID                       <table3>
 KEYWORD_DATFMT           <DATFMT>
 '('                      <(>
-SPLAT_YMD                <*YMD>
-'-'                      <->
+SPLAT_YMD                <*YMD->
 ')'                      <)>
 FREE_SEMI                <;>
 /*===TREE===*/
@@ -33,8 +30,7 @@ FREE_SEMI                <;>
         (keyword_datfmt
           DATFMT
           (
-          (simpleExpression (identifier (all (symbolicConstants *YMD))))
-          (dateSeparator /)
+          (simpleExpression (identifier (all (symbolicConstants *YMD/))))
           )
         )
       )
@@ -49,8 +45,7 @@ FREE_SEMI                <;>
         (keyword_datfmt
           DATFMT
           (
-          (simpleExpression (identifier (all (symbolicConstants *JUL))))
-          (dateSeparator &)
+          (simpleExpression (identifier (all (symbolicConstants *JUL&))))
           )
         )
       )
@@ -65,8 +60,7 @@ FREE_SEMI                <;>
         (keyword_datfmt
           DATFMT
           (
-          (simpleExpression (identifier (all (symbolicConstants *YMD))))
-          (dateSeparator -)
+          (simpleExpression (identifier (all (symbolicConstants *YMD-))))
           )
         )
       )

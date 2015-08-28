@@ -51,7 +51,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <*MDY/>
+SPLAT_MDY                <*MDY/>
 OP_MOVE                  <MOVE>
 StringLiteralStart       <'>
 StringContent            <02/01/53>
@@ -131,7 +131,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <*MDY0>
+SPLAT_MDY                <*MDY0>
 OP_MOVE                  <move>
 CS_FactorContent         <chr1>
 CS_FactorContent         <datefld>
@@ -161,7 +161,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <*cymd0>
+SPLAT_CYMD               <*cymd0>
 OP_MOVE                  <move>
 CS_FactorContent         <chrb>
 CS_FactorContent         <date_usa>
@@ -315,7 +315,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *MDY/))
+      (factor (symbolicConstants *MDY/))
       (cspec_fixed_standard
         (csMOVE
           MOVE
@@ -436,7 +436,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *MDY0))
+      (factor (symbolicConstants *MDY0))
       (cspec_fixed_standard
         (csMOVE
           move
@@ -484,7 +484,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *cymd0))
+      (factor (symbolicConstants *cymd0))
       (cspec_fixed_standard
         (csMOVE
           move

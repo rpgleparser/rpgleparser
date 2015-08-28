@@ -1745,7 +1745,7 @@ hspec_fixed: HS_FIXED
 	hs_expression*
 	(EOL|EOF);
 hs_expression: (ID (OPEN_PAREN (hs_parm (COLON hs_parm)*)? CLOSE_PAREN)?);
-hs_parm: ID | hs_string;
+hs_parm: ID | hs_string | symbolicConstants;
 hs_string: StringLiteralStart (StringContent | StringEscapedQuote )* StringLiteralEnd;
 blank_line: BLANK_LINE;
 directive: DIRECTIVE 
@@ -2089,7 +2089,7 @@ bif_editccurrency : SPLAT_ASTFILL | SPLAT_CURSYM | literal;
 bif_lookupargs: OPEN_PAREN arg=expression (COLON array=expression)? (COLON startindex=expression)? (COLON numberelements=expression)? CLOSE_PAREN;
 durationCode: SPLAT_D | SPLAT_H | SPLAT_HOURS | SPLAT_DAYS | SPLAT_M | SPLAT_MINUTES | SPLAT_MONTHS | SPLAT_MN
    | SPLAT_MS | SPLAT_MSECONDS | SPLAT_S | SPLAT_SECONDS | SPLAT_Y |SPLAT_YEARS;
-bif_timestampargs : SPLAT_ISO | SPLAT_ISO0 ;
+bif_timestampargs : SPLAT_ISO  ;
 bif_tlookupargs: OPEN_PAREN arg=expression COLON searchtable=expression (COLON alttable=expression)? CLOSE_PAREN;
 
 
@@ -2450,7 +2450,6 @@ SPLAT_ALL
    | SPLAT_INPUT
    | SPLAT_OUTPUT
    | SPLAT_ISO
-   | SPLAT_ISO0
    | SPLAT_KEY
    | SPLAT_NEXT
    | SPLAT_USA

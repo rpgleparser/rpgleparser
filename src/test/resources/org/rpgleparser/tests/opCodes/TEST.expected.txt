@@ -21,7 +21,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <*ISO0>
+SPLAT_ISO                <*ISO0>
 OP_TEST                  <TEST>
 '('                      <(>
 CS_OperationAndExtender  <Z>
@@ -39,7 +39,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_FactorContent         <*MDY0>
+SPLAT_MDY                <*MDY0>
 OP_TEST                  <TEST>
 '('                      <(>
 CS_OperationAndExtender  <D>
@@ -115,14 +115,14 @@ OP_TEST                  <TEST>
 '('                      <(>
 CS_OperationAndExtender  <Z>
 ')'                      <)>
-SPLAT_ISO0               <*ISO0>
+SPLAT_ISO                <*ISO0>
 ID                       <TFLD>
 FREE_SEMI                <;>
 OP_TEST                  <Test>
 '('                      <(>
 CS_OperationAndExtender  <d>
 ')'                      <)>
-ID                       <*MDY0>
+SPLAT_MDY                <*MDY0>
 ID                       <dfld>
 FREE_SEMI                <;>
 OP_TEST                  <test>
@@ -198,7 +198,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *ISO0))
+      (factor (symbolicConstants *ISO0))
       (cspec_fixed_standard
         (csTEST
           TEST
@@ -223,7 +223,7 @@ EOL                      <
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
-      (factor (factorContent *MDY0))
+      (factor (symbolicConstants *MDY0))
       (cspec_fixed_standard
         (csTEST
           TEST
@@ -340,7 +340,7 @@ EOL                      <
           (op_test
             Test
             (cs_operationExtender ( d ))
-            (identifier (free_identifier (idOrKeyword *MDY0)))
+            (identifier (all (symbolicConstants *MDY0)))
             (identifier (free_identifier (idOrKeyword dfld)))
           )
         )
