@@ -826,7 +826,7 @@ csENDSR:
 	cspec_fixed_standard_parts;
 
 freeENDSR:
-	OP_ENDSR identifier?
+	OP_ENDSR (identifier | literal)?
 	FREE_SEMI 
 	free_linecomments? 
 	;	
