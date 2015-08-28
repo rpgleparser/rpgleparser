@@ -1145,7 +1145,7 @@ CS_Result_SPLAT_MSECONDS : {49<= getCharPositionInLine() && getCharPositionInLin
 CS_Result_SPLAT_SECONDS : {49<= getCharPositionInLine() && getCharPositionInLine()+8<=62}? SPLAT_SECONDS -> type(SPLAT_SECONDS);
 CS_Result_SPLAT_YEARS : {49<= getCharPositionInLine() && getCharPositionInLine()+6<=62}? SPLAT_YEARS -> type(SPLAT_YEARS);
 CS_Result_SPLAT_Y : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_Y -> type(SPLAT_Y);
-
+CS_Result_SPLAT_S : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_S -> type(SPLAT_S);
 
 CS_BlankFactor: {(getCharPositionInLine()==11)
 			|| (getCharPositionInLine()==35)
