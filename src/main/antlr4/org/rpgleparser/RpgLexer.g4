@@ -55,12 +55,16 @@ ID : {getCharPositionInLine()>6}?('*'? '*' [a-zA-Z])?[#@%$a-zA-Z] [#@$a-zA-Z0-9_
 NEWLINE : ('\r' '\n'? | '\n') -> skip;
 WS : {getCharPositionInLine()>5}? [ \t]+ -> skip ; // skip spaces, tabs, NEWLINEs
 
+mode DirectiveTitle;
+TITLE_Text : ~[\r\n]+ -> type(DIR_OtherText);
+TITLE_EOL : NEWLINE -> type(EOL),popMode,popMode;
+
 mode DirectiveMode;
 DIR_NOT: [nN][oO][tT];
 DIR_DEFINED: [dD][eE][fF][iI][nN][eE][dD];
 DIR_FREE: {_input.LA(-1)=='/'}? [fF][rR][eE][eE] -> pushMode(SKIP_REMAINING_WS);
 DIR_ENDFREE: {_input.LA(-1)=='/'}? [eE][nN][dD] '-' [fF][rR][eE][eE] -> pushMode(SKIP_REMAINING_WS);
-DIR_TITLE:{_input.LA(-1)=='/'}? ([tT][iI][tT][lL][eE]);
+DIR_TITLE:{_input.LA(-1)=='/'}? ([tT][iI][tT][lL][eE]) -> pushMode(DirectiveTitle);
 DIR_EJECT: {_input.LA(-1)=='/'}? [eE][jJ][eE][cC][tT] -> pushMode(SKIP_REMAINING_WS);
 DIR_SPACE: {_input.LA(-1)=='/'}? [sS][pP][aA][cC][eE];
 DIR_SET: {_input.LA(-1)=='/'}?  [sS][eE][tT];
@@ -547,8 +551,11 @@ C_FREE_CONTINUATION_DOTS : {_modeStack.peek()==FIXED_CalcSpec}? '...' WS* NEWLIN
 D_FREE_CONTINUATION_DOTS : {_modeStack.peek()==FIXED_DefSpec}? '...' WS* NEWLINE 
 	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
 C_FREE_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE
-	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] [*] ~[\r\n]* NEWLINE)* //Skip mid statement comments
-	 ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> skip;
+	(
+		(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ~[\r\n] [*] ~[\r\n]* NEWLINE) //Skip mid statement comments
+	|	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ~[\r\n] [ ]* NEWLINE) //Skip mid statement blanks
+	)*
+	 ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' ' ' -> skip;
 D_FREE_CONTINUATION: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE 
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                                    ' -> skip;
 F_FREE_CONTINUATION: {_modeStack.peek() == FIXED_FileSpec}? NEWLINE 

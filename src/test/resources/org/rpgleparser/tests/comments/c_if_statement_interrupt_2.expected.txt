@@ -1,0 +1,312 @@
+/*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <GB02 >
+HIDDEN:LEAD_WS5_Comments <GB02 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <If>
+NOT                      <Not>
+ID                       <OpenSeg>
+C_FREE_NEWLINE           <
+>
+HIDDEN:LEAD_WS5_Comments <GB02 >
+HIDDEN:LEAD_WS5_Comments <GB02 >
+HIDDEN:COMMENT_SPEC_FIXED<¿*>
+HIDDEN:COMMENTS_TEXT     < Capture instances where the final ..                                                       >
+HIDDEN:LEAD_WS5_Comments <GB02 >
+HIDDEN:LEAD_WS5_Comments <GB02 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_IF                    <If>
+'('                      <(>
+NOT                      <Not>
+ID                       <LeftOrigCntry>
+AND                      <and>
+ID                       <Dept_Country>
+'<>'                     <<>>
+ID                       <Dest_Country>
+')'                      <)>
+OR                       <or>
+'('                      <(>
+BIF_ABS                  <%Abs>
+'('                      <(>
+ID                       <orgDeptWgt>
+'-'                      <->
+ID                       <wrkDestWgt>
+')'                      <)>
+'>='                     <>=>
+BIF_ABS                  <%Abs>
+'('                      <(>
+ID                       <orgDeptWgt>
+'-'                      <->
+ID                       <savDestWgt>
+')'                      <)>
+AND                      <and>
+ID                       <Dept_Country>
+'<>'                     <<>>
+ID                       <Dest_Country>
+AND                      <and>
+ID                       <Sav_StayF>
+'<='                     <<=>
+NUMBER                   <240>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+HIDDEN:LEAD_WS5_Comments <GB02 >
+HIDDEN:LEAD_WS5_Comments <GB02 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <Eval>
+ID                       <Sav_Dest>
+'='                      <=>
+ID                       <Isdsap>
+C_FREE_NEWLINE           <
+>
+HIDDEN:LEAD_WS5_Comments <GB02 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <Eval>
+ID                       <savDestWgt>
+'='                      <=>
+ID                       <wrkDestWgt>
+C_FREE_NEWLINE           <
+>
+HIDDEN:LEAD_WS5_Comments <GB02 >
+HIDDEN:LEAD_WS5_Comments <GB02 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <EndIf>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+HIDDEN:LEAD_WS5_Comments <GB02 >
+HIDDEN:LEAD_WS5_Comments <GB02 >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_ENDIF                 <EndIf>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          If
+          (c_free
+            (expression
+              Not
+              (expression (identifier (free_identifier (idOrKeyword OpenSeg))))
+            )
+          )
+          \r\n
+        )
+        (statement
+          (block
+            (ifstatement
+              (beginif
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor '              ')
+                If
+                (c_free
+                  (expression
+                    (expression
+                      (
+                      (expression
+                        (expression
+                          Not
+                          (expression (identifier (free_identifier (idOrKeyword LeftOrigCntry))))
+                        )
+                        and
+                        (expression
+                          (expression (identifier (free_identifier (idOrKeyword Dept_Country))))
+                          (comparisonOperator <>)
+                          (expression (identifier (free_identifier (idOrKeyword Dest_Country))))
+                        )
+                      )
+                      )
+                    )
+                    or
+                    (expression
+                      (
+                      (expression
+                        (expression
+                          (expression
+                            (expression
+                              (bif
+                                (bif_abs
+                                  %Abs
+                                  (
+                                  (expression
+                                    (expression (identifier (free_identifier (idOrKeyword orgDeptWgt))))
+                                    -
+                                    (expression (identifier (free_identifier (idOrKeyword wrkDestWgt))))
+                                  )
+                                  )
+                                )
+                              )
+                            )
+                            (comparisonOperator >=)
+                            (expression
+                              (bif
+                                (bif_abs
+                                  %Abs
+                                  (
+                                  (expression
+                                    (expression (identifier (free_identifier (idOrKeyword orgDeptWgt))))
+                                    -
+                                    (expression (identifier (free_identifier (idOrKeyword savDestWgt))))
+                                  )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          and
+                          (expression
+                            (expression (identifier (free_identifier (idOrKeyword Dept_Country))))
+                            (comparisonOperator <>)
+                            (expression (identifier (free_identifier (idOrKeyword Dest_Country))))
+                          )
+                        )
+                        and
+                        (expression
+                          (expression (identifier (free_identifier (idOrKeyword Sav_StayF))))
+                          (comparisonOperator <=)
+                          (expression (number 240))
+                        )
+                      )
+                      )
+                    )
+                  )
+                )
+                \r\n
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_standard
+                    (csEVAL
+                      Eval
+                      (c_free
+                        (expression
+                          (expression (identifier (free_identifier (idOrKeyword Sav_Dest))))
+                          =
+                          (expression (identifier (free_identifier (idOrKeyword Isdsap))))
+                        )
+                      )
+                      \r\n
+                    )
+                  )
+                )
+              )
+              (statement
+                (cspec_fixed
+                  C
+                  (cs_controlLevel '  ')
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  (cspec_fixed_standard
+                    (csEVAL
+                      Eval
+                      (c_free
+                        (expression
+                          (expression (identifier (free_identifier (idOrKeyword savDestWgt))))
+                          =
+                          (expression (identifier (free_identifier (idOrKeyword wrkDestWgt))))
+                        )
+                      )
+                      \r\n
+                    )
+                  )
+                )
+              )
+              (endif
+                C
+                (cs_controlLevel '  ')
+                (onOffIndicatorsFlag ' ')
+                (cs_indicators '  ')
+                (factor '              ')
+                (csENDIF
+                  EndIf
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType '              ')
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \r\n
+                  )
+                )
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            EndIf
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              <EOF>
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

@@ -13,13 +13,6 @@ StringContent            <fleece was white as snow.>
 StringLiteralEnd         <'>
 C_FREE_NEWLINE           <
 >
-HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     <  Arithmetic expressions do not have continuation characters.                               >
-HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     <  The '+' sign below is the addition operator, not a continuation                           >
-HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     <  character.                                                                                >
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >

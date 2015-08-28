@@ -1,0 +1,22 @@
+/*===TOKENS===*/
+DIRECTIVE                <H/>
+DIR_TITLE                <TITLE>
+DIR_OtherText            < Enter prem w/o recovered  Prompt & validate record                                    >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement
+    (directive
+      H/
+      (title_directive
+        TITLE
+        (title_text
+          ' Enter prem w/o recovered  Prompt & validate record                                    '
+        )
+      )
+      \r\n
+    )
+  )
+)
+/*======*/
