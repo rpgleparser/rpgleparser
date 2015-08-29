@@ -1,0 +1,41 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_BlankFactor           <              >
+OP_EVAL                  <EVAL>
+SPLAT_IN                 <*IN>
+'('                      <(>
+ID                       <X>
+')'                      <)>
+'='                      <=>
+SPLAT_ON                 <*ON>
+C_FREE_NEWLINE           <
+>
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (expression (indicator *IN ( (identifier (free_identifier (idOrKeyword X))) )))
+              =
+              (expression (identifier (all (symbolicConstants *ON))))
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+)
+/*======*/

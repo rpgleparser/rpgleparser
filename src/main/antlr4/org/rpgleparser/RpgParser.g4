@@ -2280,6 +2280,11 @@ exec_sql: EXEC_SQL WORDS+ SEMI ;
 
 //---------------  
 baseExpression: op | expression;
+indicator: SPLAT_IN
+  OPEN_PAREN
+  identifier
+  CLOSE_PAREN;
+
 assignmentExpression: simpleExpression EQUAL expression;
 
 assignOperatorExpression : simpleExpression assignmentOperator expression;
@@ -2296,7 +2301,8 @@ simpleExpression:
 
 expression: 
 	// op | // should drop op I think?
-	function 
+	indicator
+	|function 
 	| identifier 
 	| number 
 	| literal  
