@@ -242,7 +242,7 @@ dcl_pi:  (DS_ProcedureInterfaceStart identifier datatype? keyword* FREE_SEMI?
 	| (piBegin
 		pi_parm_fixed*
 	);
-dcl_pi_field: DS_Parm? identifier (datatype | like=keyword_like) FREE_SEMI;
+dcl_pi_field: DS_Parm? identifier (datatype | like=keyword_like) keyword* FREE_SEMI;
 end_dcl_pi: DS_ProcedureInterfaceEnd;
 dcl_c:  (DS_Constant name=identifier (keyword_const | literal)? FREE_SEMI) 
 	| (
@@ -726,7 +726,7 @@ fs_keyword:
 
 
 fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addution 
-	FS_Sequence FS_Format FS_RecordLength FS_Limits FS_LengthOfKey FS_RecordAddressType FS_Organization FS_Device FS_Reserved 
+	FS_Sequence FS_Format FS_RecordLength FS_Limits FS_LengthOfKey FS_RecordAddressType FS_Organization FS_Device FS_Reserved? 
 	fs_keyword* (EOL|EOF);	
 cspec_fixed:
 	CS_FIXED
