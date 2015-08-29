@@ -1,0 +1,27 @@
+/*===TOKENS===*/
+FS_FreeFile              <DCL-F>
+ID                       <NAMSTR>
+KEYWORD_DISK             <DISK>
+'('                      <(>
+SPLAT_EXT                <*EXT>
+')'                      <)>
+KEYWORD_USAGE            <USAGE>
+'('                      <(>
+SPLAT_INPUT              <*INPUT>
+')'                      <)>
+KEYWORD_KEYED            <KEYED>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (fspec
+      DCL-F
+      (filename NAMSTR)
+      (fs_keyword (keyword_disk DISK ( *EXT )))
+      (fs_keyword (keyword_usage USAGE ( (symbolicConstants *INPUT) )))
+      (fs_keyword (keyword_keyed KEYED))
+      ;
+    )
+  )
+)
+/*======*/

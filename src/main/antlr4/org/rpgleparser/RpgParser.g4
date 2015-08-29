@@ -197,7 +197,7 @@ keyword_saveind: KEYWORD_SAVEIND OPEN_PAREN number CLOSE_PAREN;
 keyword_sfile: KEYWORD_SFILE OPEN_PAREN recformat=simpleExpression COLON rrnfield=simpleExpression CLOSE_PAREN;
 keyword_sln: KEYWORD_SLN OPEN_PAREN number CLOSE_PAREN;
 keyword_usropn: KEYWORD_USROPN;
-keyword_disk: KEYWORD_DISK;
+keyword_disk: KEYWORD_DISK (OPEN_PAREN SPLAT_EXT CLOSE_PAREN)?;
 keyword_workstn: KEYWORD_WORKSTN;
 keyword_printer: KEYWORD_PRINTER OPEN_PAREN symbolicConstants CLOSE_PAREN;
 keyword_special: KEYWORD_SPECIAL;
