@@ -202,7 +202,7 @@ keyword_workstn: KEYWORD_WORKSTN;
 keyword_printer: KEYWORD_PRINTER OPEN_PAREN symbolicConstants CLOSE_PAREN;
 keyword_special: KEYWORD_SPECIAL;
 keyword_keyed: KEYWORD_KEYED;
-keyword_usage: KEYWORD_USAGE OPEN_PAREN symbolicConstants (COLON symbolicConstants)* CLOSE_PAREN;
+keyword_usage: KEYWORD_USAGE OPEN_PAREN (symbolicConstants | ID) (COLON (symbolicConstants | ID))* CLOSE_PAREN;
 
 like_lengthAdjustment: sign number;
 sign: PLUS | MINUS;
