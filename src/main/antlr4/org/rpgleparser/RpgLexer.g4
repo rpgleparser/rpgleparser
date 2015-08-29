@@ -555,7 +555,7 @@ C_FREE_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE
 		(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ~[\r\n] [*] ~[\r\n]* NEWLINE) //Skip mid statement comments
 	|	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ~[\r\n] [ ]* NEWLINE) //Skip mid statement blanks
 	)*
-	 ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' ' ' -> skip;
+	 ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> skip;
 D_FREE_CONTINUATION: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE 
 	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                                    ' -> skip;
 F_FREE_CONTINUATION: {_modeStack.peek() == FIXED_FileSpec}? NEWLINE 
@@ -1158,6 +1158,8 @@ CS_BlankFactor: {(getCharPositionInLine()==11)
 			|| (getCharPositionInLine()==35)
 			|| (getCharPositionInLine()==49)}? 
 			 		'              ';
+//Factor to end of line is blank
+CS_BlankFactor_EOL: '              ' {getCharPositionInLine()==25}? [ ]* NEWLINE -> type(EOL),popMode;
 CS_FactorWs: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
 			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
 }?  

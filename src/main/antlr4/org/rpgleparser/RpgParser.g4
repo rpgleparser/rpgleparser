@@ -728,11 +728,21 @@ fs_keyword:
 fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addution 
 	FS_Sequence FS_Format FS_RecordLength FS_Limits FS_LengthOfKey FS_RecordAddressType FS_Organization FS_Device FS_Reserved 
 	fs_keyword* (EOL|EOF);	
-cspec_fixed: CS_FIXED
+cspec_fixed:
+	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(cspec_fixed_standard|cspec_fixed_x2);
 
+cspec_continuedIndicators:
+	cs_controlLevel 
+	indicatorsOff=onOffIndicatorsFlag 
+	indicators=cs_indicators 
+	EOL
+	CS_FIXED 
+	;
+	
 cspec_blank:
 	CS_FIXED
 	BlankIndicator

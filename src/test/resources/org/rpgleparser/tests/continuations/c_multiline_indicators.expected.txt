@@ -1,0 +1,59 @@
+/*===TOKENS===*/
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     < If SFLRCD invalid, note that errors present                                                >
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+GeneralIndicator         <98>
+EOL                      <                                                                                        
+>
+CS_FIXED                 <C>
+AndIndicator             <AN>
+NoFlag                   <N>
+GeneralIndicator         <99>
+CS_BlankFactor           <              >
+OP_SETON                 <SETON>
+CS_BlankFactor           <              >
+CS_BlankFactor           <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+GeneralIndicator         <99>
+BlankIndicator           <  >
+BlankIndicator           <  >
+CS_Comments              <*                  >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cspec_continuedIndicators
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators 98)
+        '                                                                                        \r\n'
+        C
+      )
+      (cs_controlLevel AN)
+      (onOffIndicatorsFlag N)
+      (cs_indicators 99)
+      (factor '              ')
+      (cspec_fixed_standard
+        (csSETON
+          SETON
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator 99)
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (cs_fixed_comments '*                  ')
+            <EOF>
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
