@@ -108,7 +108,8 @@ keyword:
    | keyword_timfmt
    | keyword_tofile
    | keyword_value
-   | keyword_varying;
+   | keyword_varying
+   | keyword_psds;
    
 keyword_alias : KEYWORD_ALIAS;
 keyword_align : KEYWORD_ALIGN;
@@ -166,6 +167,7 @@ keyword_timfmt : KEYWORD_TIMFMT OPEN_PAREN format=simpleExpression CLOSE_PAREN; 
 keyword_tofile : KEYWORD_TOFILE OPEN_PAREN file_name=simpleExpression (separator=simpleExpression)? CLOSE_PAREN; 
 keyword_value : KEYWORD_VALUE;
 keyword_varying : KEYWORD_VARYING (OPEN_PAREN size=simpleExpression CLOSE_PAREN)?;
+keyword_psds: KEYWORD_PSDS;
 
 // File spec keywords
 keyword_block: KEYWORD_BLOCK OPEN_PAREN symbolicConstants CLOSE_PAREN;
@@ -225,7 +227,7 @@ dcl_ds:  (DS_DataStructureStart identifier keyword*
 		((star_comments |directive | parm_fixed)* parm_fixed)?
 		
 	);
-dcl_ds_field: DS_SubField? identifier datatype? keyword* FREE_SEMI;
+dcl_ds_field: DS_SubField? identifier (datatype | identifier)? keyword* FREE_SEMI;
 end_dcl_ds: DS_DataStructureEnd identifier?;
 dcl_pr:  (DS_PrototypeStart identifier datatype? keyword* FREE_SEMI?  
 	dcl_pr_field*
@@ -715,7 +717,7 @@ fs_keyword:
    | keyword_timfmt
    | keyword_tofile
    | keyword_usropn
-   | keyword_value
+   | keyword_value 
    | keyword_varying
    | keyword_disk
    | keyword_workstn
@@ -723,6 +725,7 @@ fs_keyword:
    | keyword_special
    | keyword_keyed
    | keyword_usage;
+   
 
 
 fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addution 
@@ -2425,6 +2428,7 @@ idOrKeyword:
    | KEYWORD_SPECIAL   
    | KEYWORD_KEYED
    | KEYWORD_USAGE
+   | KEYWORD_PSDS
    | UDATE
    | UMONTH
    | UYEAR

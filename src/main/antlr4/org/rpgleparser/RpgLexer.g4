@@ -382,6 +382,7 @@ UDAY : [uU] [dD] [aA] [yY] ;
 DAY : '*' [dD] [aA] [yY] ;
 PAGE : [pP] [aA] [gG] [eE] [1-7]? ;
 
+
 //DataType
 CHAR: [Cc][Hh][Aa][Rr];
 VARCHAR: [Va][Aa][Rr][Cc][Hh][Aa][Rr];
@@ -486,6 +487,8 @@ KEYWORD_PRINTER : [pP][rR][iI][nN][tT][eE][rR];
 KEYWORD_SPECIAL : [sS][pP][eE][cC][iI][aA][lL];
 KEYWORD_KEYED : [kK][eE][yY][eE][dD];
 KEYWORD_USAGE : [uU][sS][aA][gG][eE];
+KEYWORD_PSDS: [pP][sS][dD][sS];
+
 // 
 AMPERSAND: '&';
 
