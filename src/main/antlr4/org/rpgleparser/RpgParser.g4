@@ -163,7 +163,7 @@ keyword_qualified : KEYWORD_QUALIFIED;
 keyword_rtnparm : KEYWORD_RTNPARM;
 keyword_static : KEYWORD_STATIC (OPEN_PAREN SPLAT_ALLTHREAD CLOSE_PAREN)?; 
 keyword_template : KEYWORD_TEMPLATE;
-keyword_timfmt : KEYWORD_TIMFMT OPEN_PAREN format=simpleExpression CLOSE_PAREN; //TODO separator
+keyword_timfmt : KEYWORD_TIMFMT OPEN_PAREN format=simpleExpression COLON? CLOSE_PAREN; //TODO separator
 keyword_tofile : KEYWORD_TOFILE OPEN_PAREN file_name=simpleExpression (separator=simpleExpression)? CLOSE_PAREN; 
 keyword_value : KEYWORD_VALUE;
 keyword_varying : KEYWORD_VARYING (OPEN_PAREN size=simpleExpression CLOSE_PAREN)?;
