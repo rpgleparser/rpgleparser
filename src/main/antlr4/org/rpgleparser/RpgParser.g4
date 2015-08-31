@@ -109,11 +109,7 @@ keyword:
    | keyword_tofile
    | keyword_value
    | keyword_varying
-   | dspec_bif;
-
-//
-// BIFs allow on dspec.
-dspec_bif : bif_elem;
+   | keyword_psds;
    
 keyword_alias : KEYWORD_ALIAS;
 keyword_align : KEYWORD_ALIGN;
@@ -167,10 +163,11 @@ keyword_qualified : KEYWORD_QUALIFIED;
 keyword_rtnparm : KEYWORD_RTNPARM;
 keyword_static : KEYWORD_STATIC (OPEN_PAREN SPLAT_ALLTHREAD CLOSE_PAREN)?; 
 keyword_template : KEYWORD_TEMPLATE;
-keyword_timfmt : KEYWORD_TIMFMT OPEN_PAREN format=simpleExpression CLOSE_PAREN; //TODO separator
+keyword_timfmt : KEYWORD_TIMFMT OPEN_PAREN format=simpleExpression COLON? CLOSE_PAREN; //TODO separator
 keyword_tofile : KEYWORD_TOFILE OPEN_PAREN file_name=simpleExpression (separator=simpleExpression)? CLOSE_PAREN; 
 keyword_value : KEYWORD_VALUE;
 keyword_varying : KEYWORD_VARYING (OPEN_PAREN size=simpleExpression CLOSE_PAREN)?;
+keyword_psds: KEYWORD_PSDS;
 
 // File spec keywords
 keyword_block: KEYWORD_BLOCK OPEN_PAREN symbolicConstants CLOSE_PAREN;
@@ -207,7 +204,7 @@ keyword_workstn: KEYWORD_WORKSTN;
 keyword_printer: KEYWORD_PRINTER OPEN_PAREN symbolicConstants CLOSE_PAREN;
 keyword_special: KEYWORD_SPECIAL;
 keyword_keyed: KEYWORD_KEYED;
-keyword_usage: KEYWORD_USAGE OPEN_PAREN symbolicConstants (COLON symbolicConstants)* CLOSE_PAREN;
+keyword_usage: KEYWORD_USAGE OPEN_PAREN (symbolicConstants | ID) (COLON (symbolicConstants | ID))* CLOSE_PAREN;
 
 like_lengthAdjustment: sign number;
 sign: PLUS | MINUS;
@@ -230,7 +227,7 @@ dcl_ds:  (DS_DataStructureStart identifier keyword*
 		((star_comments |directive | parm_fixed)* parm_fixed)?
 		
 	);
-dcl_ds_field: DS_SubField? identifier datatype? keyword* FREE_SEMI;
+dcl_ds_field: DS_SubField? identifier (datatype | identifier)? keyword* FREE_SEMI;
 end_dcl_ds: DS_DataStructureEnd identifier?;
 dcl_pr:  (DS_PrototypeStart identifier datatype? keyword* FREE_SEMI?  
 	dcl_pr_field*
@@ -247,7 +244,7 @@ dcl_pi:  (DS_ProcedureInterfaceStart identifier datatype? keyword* FREE_SEMI?
 	| (piBegin
 		pi_parm_fixed*
 	);
-dcl_pi_field: DS_Parm? identifier (datatype | like=keyword_like) FREE_SEMI;
+dcl_pi_field: DS_Parm? identifier (datatype | like=keyword_like) keyword* FREE_SEMI;
 end_dcl_pi: DS_ProcedureInterfaceEnd;
 dcl_c:  (DS_Constant name=identifier (keyword_const | literal)? FREE_SEMI) 
 	| (
@@ -720,7 +717,7 @@ fs_keyword:
    | keyword_timfmt
    | keyword_tofile
    | keyword_usropn
-   | keyword_value
+   | keyword_value 
    | keyword_varying
    | keyword_disk
    | keyword_workstn
@@ -728,10 +725,11 @@ fs_keyword:
    | keyword_special
    | keyword_keyed
    | keyword_usage;
+   
 
 
 fspec_fixed: FS_FIXED FS_RecordName FS_Type FS_Designation FS_EndOfFile FS_Addution 
-	FS_Sequence FS_Format FS_RecordLength FS_Limits FS_LengthOfKey FS_RecordAddressType FS_Organization FS_Device FS_Reserved 
+	FS_Sequence FS_Format FS_RecordLength FS_Limits FS_LengthOfKey FS_RecordAddressType FS_Organization FS_Device FS_Reserved? 
 	fs_keyword* (EOL|EOF);	
 cspec_fixed:
 	CS_FIXED
@@ -2282,6 +2280,11 @@ exec_sql: EXEC_SQL WORDS+ SEMI ;
 
 //---------------  
 baseExpression: op | expression;
+indicator: SPLAT_IN
+  OPEN_PAREN
+  identifier
+  CLOSE_PAREN;
+
 assignmentExpression: simpleExpression EQUAL expression;
 
 assignOperatorExpression : simpleExpression assignmentOperator expression;
@@ -2298,7 +2301,8 @@ simpleExpression:
 
 expression: 
 	// op | // should drop op I think?
-	function 
+	indicator
+	|function 
 	| identifier 
 	| number 
 	| literal  
@@ -2430,6 +2434,7 @@ idOrKeyword:
    | KEYWORD_SPECIAL   
    | KEYWORD_KEYED
    | KEYWORD_USAGE
+   | KEYWORD_PSDS
    | UDATE
    | UMONTH
    | UYEAR
