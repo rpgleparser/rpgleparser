@@ -108,7 +108,12 @@ keyword:
    | keyword_timfmt
    | keyword_tofile
    | keyword_value
-   | keyword_varying;
+   | keyword_varying
+   | dspec_bif;
+
+//
+// BIFs allow on dspec.
+dspec_bif : bif_elem;
    
 keyword_alias : KEYWORD_ALIAS;
 keyword_align : KEYWORD_ALIGN;
