@@ -109,7 +109,13 @@ keyword:
    | keyword_tofile
    | keyword_value
    | keyword_varying
-   | keyword_psds;
+   | keyword_psds
+   | dspec_bif;
+
+//
+// BIFs allow on dspec.
+dspec_bif : bif_elem;
+   
    
 keyword_alias : KEYWORD_ALIAS;
 keyword_align : KEYWORD_ALIGN;
