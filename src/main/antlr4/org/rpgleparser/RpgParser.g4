@@ -110,7 +110,7 @@ keyword:
    | keyword_value
    | keyword_varying
    | keyword_psds
-   | dspec_bif;
+   | dspec_bif; 
 
 //
 // BIFs allow on dspec.
@@ -255,7 +255,7 @@ end_dcl_pi: DS_ProcedureInterfaceEnd;
 dcl_c:  (DS_Constant name=identifier (keyword_const | literal)? FREE_SEMI) 
 	| (
 		DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_C FROM_POSITION TO_POSITION
-	DATA_TYPE DECIMAL_POSITIONS RESERVED (keyword_const | literal)? (EOL|EOF)
+	DATA_TYPE DECIMAL_POSITIONS RESERVED (keyword_const | literal | dspec_bif)? (EOL|EOF)
 		
 	)
 ;

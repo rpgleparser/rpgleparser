@@ -1,0 +1,69 @@
+/*===TOKENS===*/
+DS_FIXED                 <D>
+NAME                     <#_Elements>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_C               <C >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+BIF_ELEM                 <%ELEM>
+'('                      <(>
+ID                       <$Bkln_Err>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <Element_No>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <      3>
+DATA_TYPE                <S>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+/*===TREE===*/
+(r
+  (statement
+    (dcl_c
+      D
+      (ds_name #_Elements)
+      ' '
+      ' '
+      'C '
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (dspec_bif
+        (bif_elem
+          %ELEM
+          (
+          (expression (identifier (free_identifier (idOrKeyword $Bkln_Err))))
+          )
+        )
+      )
+      \r\n
+    )
+  )
+  (statement
+    (dspec
+      D
+      (ds_name Element_No)
+      ' '
+      ' '
+      'S '
+      '       '
+      '      3'
+      S
+      ' 0'
+      ' '
+      <EOF>
+    )
+  )
+)
+/*======*/

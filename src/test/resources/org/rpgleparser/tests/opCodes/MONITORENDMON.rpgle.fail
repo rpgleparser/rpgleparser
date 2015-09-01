@@ -1,0 +1,28 @@
+     C*0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....
+     C     *Entry        PList
+      *        
+     C                   MONITOR  
+     C                   ON-ERROR  1211
+     C                   ENDMON 
+     C                   Monitor  
+     C                   ON-ERROR  1211 :0011
+     C                   ON-ERROR  *FILE
+     C                   on-error  *program
+     C                   On-error  *ALL
+     C                   endmon           
+      /Free
+          MONITOR;
+          ON-ERROR 1211;
+          ENDMON;
+          
+          monitor;
+          on-error 1211: 0011: 1122;
+          on-error *file;
+          on-error *PROGRAM;
+          on-error *ALL;
+          endmon;
+
+      /end-free
+      *
+
+     C                   SETON                                        LR  
