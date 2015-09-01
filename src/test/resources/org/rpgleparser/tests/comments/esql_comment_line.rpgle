@@ -1,4 +1,4 @@
-ez01ÀC* Declare Query
+ez01À * Declare Query
 ez01ÀC/EXEC SQL
 ez01 C+
 ez01 C+ DECLARE BOOKINGS CURSOR FOR
