@@ -1,0 +1,35 @@
+/*===TOKENS===*/
+DS_FIXED                 <D>
+NAME                     <Error_12>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_C               <C >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+StringLiteralStart       <'>
+StringContent            < No longer Exists on the File - >
+StringContent            <Press Enter to Continue>
+StringLiteralEnd         <'>
+/*===TREE===*/
+(r
+  (statement
+    (dcl_c
+      D
+      (ds_name Error_12)
+      ' '
+      ' '
+      'C '
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      (literal ' ' No longer Exists on the File - ' Press Enter to Continue ')
+      <EOF>
+    )
+  )
+)
+/*======*/

@@ -750,7 +750,10 @@ FE_NEWLINE : NEWLINE -> popMode,skip;
 
 mode InStringMode;
 	//  Any char except +,- or ', or a + or - followed by more than just whitespace 
-StringContent: (~['\r\n+-] | [+-] ' '* ~['\r\n ])+;// space or not 
+StringContent: ( 
+       ~['\r\n+-]
+       | [+-] [ ]* {_input.LA(1)!=' ' && _input.LA(1)!='\r' && _input.LA(1)!='\n'}? // Plus is ok as long as it's not the last char
+       )+;// space or not 
 StringEscapedQuote: [']['] {setText("'");};
 StringLiteralEnd: ['] -> popMode;
 FIXED_FREE_STRING_CONTINUATION: ('+' [ ]* NEWLINE) 
