@@ -1,0 +1,54 @@
+/*===TOKENS===*/
+CS_FIXED                 <c>
+BlankIndicator           <  >
+BlankFlag                < >
+GeneralIndicator         <16>
+EOL                      <                                                                                        
+>
+CS_FIXED                 <c>
+AndIndicator             <an>
+NoFlag                   <n>
+GeneralIndicator         <15>
+CS_BlankFactor           <              >
+OP_DOU                   <dou>
+SPLAT_INDICATOR          <*in25>
+'='                      <=>
+SPLAT_ON                 <*on>
+C_FREE_NEWLINE           <
+>
+OP_ENDDO                 <enddo>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (begindou
+        c
+        (cspec_continuedIndicators
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators 16)
+          '                                                                                        \r\n'
+          c
+        )
+        (cs_controlLevel an)
+        (onOffIndicatorsFlag n)
+        (cs_indicators 15)
+        (factor '              ')
+        (csDOU
+          dou
+          (c_free
+            (expression
+              (expression (identifier (all (symbolicConstants *in25))))
+              =
+              (expression (identifier (all (symbolicConstants *on))))
+            )
+          )
+          \r\n
+        )
+      )
+      (enddo (op_enddo enddo) ;)
+    )
+  )
+)
+/*======*/

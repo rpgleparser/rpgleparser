@@ -303,6 +303,7 @@ ifstatement:
 
 casestatement:
 	((CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor)
 	(csCASEQ
@@ -316,6 +317,7 @@ casestatement:
 ;
 casestatementend:
 	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor
 	(csEND | csENDCS)
@@ -331,6 +333,7 @@ beginmonitor:
 	(op_monitor FREE_SEMI)
 	| 
 	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	csMONITOR
@@ -339,6 +342,7 @@ endmonitor:
 	(op_endmon FREE_SEMI)
 	| 
 	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	csENDMON
@@ -347,6 +351,7 @@ onError:
 	((op_on_error FREE_SEMI)
 	| 
 	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	csON_ERROR
@@ -362,6 +367,7 @@ selectstatement:
 
 other:
 	(CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	csOTHER
@@ -373,6 +379,7 @@ other:
 
 beginselect:
 	(CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag 
 	indicators=cs_indicators 
@@ -391,6 +398,7 @@ whenstatement:
 
 when:
 	(CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag 
 	indicators=cs_indicators 
@@ -402,6 +410,7 @@ when:
 ;
 csWHENxx:
 CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	 (csWHENEQ
@@ -417,6 +426,7 @@ CS_FIXED
 endselect:
 	(
 	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(csEND | csENDSL)
@@ -426,6 +436,7 @@ endselect:
 beginif:
 	csIFxx
 	| (CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag 
 	indicators=cs_indicators 
@@ -438,6 +449,7 @@ beginif:
 ;
 begindou:
     (CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	csDOU
@@ -446,6 +458,7 @@ begindou:
 ;
 begindow:
     (CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	csDOW
@@ -454,6 +467,7 @@ begindow:
 ;
 begindo:
     (CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	csDO
@@ -463,6 +477,7 @@ begindo:
 
 elseifstmt:
     (CS_FIXED
+	cspec_continuedIndicators*
     cs_controlLevel 
     indicatorsOff=onOffIndicatorsFlag 
     indicators=cs_indicators 
@@ -476,6 +491,7 @@ elseifstmt:
 
 elsestmt:
     (CS_FIXED
+	cspec_continuedIndicators*
     cs_controlLevel 
     indicatorsOff=onOffIndicatorsFlag 
     indicators=cs_indicators 
@@ -488,6 +504,7 @@ elsestmt:
 
 csIFxx:
 CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	 (csIFEQ
@@ -501,6 +518,7 @@ CS_FIXED
 ;
 csDOUxx:
 CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	 (csDOUEQ
@@ -515,6 +533,7 @@ CS_FIXED
 
 csDOWxx:
 CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	 (csDOWEQ
@@ -534,6 +553,7 @@ complexCondxx:
 
 csANDxx:
 CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(csANDEQ
@@ -547,6 +567,7 @@ CS_FIXED
 
 csORxx:
 CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(csOREQ
@@ -567,6 +588,7 @@ forstatement:
 
 beginfor:
     (CS_FIXED
+	cspec_continuedIndicators*
     cs_controlLevel 
     indicatorsOff=onOffIndicatorsFlag 
     indicators=cs_indicators 
@@ -578,6 +600,7 @@ beginfor:
 endif:
 	(
 	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(csEND | csENDIF)
@@ -587,6 +610,7 @@ endif:
 enddo:
 	(
 	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	(csEND | csENDDO)
@@ -597,6 +621,7 @@ enddo:
 endfor:
     (
     CS_FIXED
+	cspec_continuedIndicators*
     cs_controlLevel 
     indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
     (csEND | csENDFOR)
@@ -826,6 +851,7 @@ endsr:csENDSR | freeENDSR;
 
 csBEGSR:
 	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	operation=OP_BEGSR
@@ -839,6 +865,7 @@ freeBEGSR:
 
 csENDSR:
 	CS_FIXED
+	cspec_continuedIndicators*
 	cs_controlLevel 
 	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators factor1=factor 
 	operation=OP_ENDSR
