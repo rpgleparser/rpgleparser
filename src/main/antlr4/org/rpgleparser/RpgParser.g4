@@ -252,12 +252,12 @@ dcl_pi:  (DS_ProcedureInterfaceStart identifier datatype? keyword* FREE_SEMI?
 	);
 dcl_pi_field: DS_Parm? identifier (datatype | like=keyword_like) keyword* FREE_SEMI;
 end_dcl_pi: DS_ProcedureInterfaceEnd;
-dcl_c:  (DS_Constant name=identifier (keyword_const | literal)? FREE_SEMI) 
-	| (
-		DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_C FROM_POSITION TO_POSITION
-	DATA_TYPE DECIMAL_POSITIONS RESERVED (keyword_const | literal | dspec_bif)? (EOL|EOF)
-		
-	)
+dcl_c:  (DS_Constant name=identifier (keyword_const | literal | SPLAT_ON | SPLAT_OFF)? FREE_SEMI) 
+    | (
+        DS_FIXED ds_name EXTERNAL_DESCRIPTION DATA_STRUCTURE_TYPE DEF_TYPE_C FROM_POSITION TO_POSITION
+    DATA_TYPE DECIMAL_POSITIONS RESERVED (keyword_const | literal | dspec_bif | SPLAT_ON | SPLAT_OFF)? (EOL|EOF)
+        
+    )
 ;
 ctl_opt: H_SPEC (identifier | expression)* FREE_SEMI ;
 
