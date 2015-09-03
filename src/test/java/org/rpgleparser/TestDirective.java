@@ -24,7 +24,7 @@ public class TestDirective {
     public void testTITLE() {
         String inputString =
                 "     D/TITLE There is a title here";
-        expectTokensForSourceLines(inputString, "D/", "TITLE", "There", "is", "a", "title", "here", "");
+        expectTokensForSourceLines(inputString, "D/", "TITLE", "There is a title here", "");
     }
 
     @Test
