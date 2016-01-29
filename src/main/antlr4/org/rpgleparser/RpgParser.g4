@@ -843,7 +843,7 @@ end=endsr
 ;
 
 subprocedurestatement:
-statement | subroutine
+statement | subroutine | dcl_pr
 ;
 
 begsr:csBEGSR | freeBEGSR;
