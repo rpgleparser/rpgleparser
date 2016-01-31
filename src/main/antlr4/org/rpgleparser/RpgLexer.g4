@@ -991,7 +991,7 @@ CS_Factor1_SPLAT_VRM :  SPLAT_VRM{11+4<= getCharPositionInLine() && getCharPosit
 CS_Factor1_SPLAT_ALLG : SPLAT_ALLG {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ALLG);
 CS_Factor1_SPLAT_ALLU : SPLAT_ALLU {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ALLU);
 CS_Factor1_SPLAT_ALLX : SPLAT_ALLX {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ALLX);
-CS_Factor1_SPLAT_BLANKS : SPLAT_BLANKS {11+7<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_BLANKS);
+CS_Factor1_SPLAT_BLANKS : SPLAT_BLANKS {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_BLANKS);
 CS_Factor1_SPLAT_CANCL : SPLAT_CANCL {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_CANCL);
 CS_Factor1_SPLAT_CYMD : SPLAT_CYMD {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_CYMD);
 CS_Factor1_SPLAT_CMDY : SPLAT_CMDY {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_CMDY);
@@ -1075,7 +1075,7 @@ CS_Factor2_SPLAT_VRM : SPLAT_VRM {35+4<= getCharPositionInLine() && getCharPosit
 CS_Factor2_SPLAT_ALLG : SPLAT_ALLG {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ALLG);
 CS_Factor2_SPLAT_ALLU : SPLAT_ALLU {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ALLU);
 CS_Factor2_SPLAT_ALLX : SPLAT_ALLX {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ALLX);
-CS_Factor2_SPLAT_BLANKS : SPLAT_BLANKS {35+7<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_BLANKS);
+CS_Factor2_SPLAT_BLANKS : SPLAT_BLANKS {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_BLANKS);
 CS_Factor2_SPLAT_CANCL : SPLAT_CANCL {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_CANCL);
 CS_Factor2_SPLAT_CYMD : SPLAT_CYMD {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_CYMD);
 CS_Factor2_SPLAT_CMDY : SPLAT_CMDY {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_CMDY);
