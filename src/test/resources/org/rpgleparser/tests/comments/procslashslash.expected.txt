@@ -4,7 +4,6 @@ PS_CONTINUATION_NAME     < unappliedChanges>
 PS_NAME                  <>
 PS_BEGIN                 <B>
 PS_KEYWORDS              <                                     >
-HIDDEN:PS_COMMENTS80     <                   >
 DS_FIXED                 <D>
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >
@@ -51,11 +50,10 @@ PS_CONTINUATION_NAME     < unappliedChanges>
 PS_NAME                  <>
 PS_END                   <E>
 PS_KEYWORDS              <                                     >
-HIDDEN:PS_COMMENTS80     <                   >
 HIDDEN:COMMENTS          < //>
 HIDDEN:COMMENTS_TEXT     <========================================================================                   >
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     <ÎProcedure getCompanyEcommLoc_COS001                                                       >
+HIDDEN:COMMENTS_TEXT     <ÎProcedure getCompanyEcommLoc_COS001                                                      >
 HIDDEN:COMMENTS          < //>
 HIDDEN:COMMENTS_TEXT     <========================================================================                   >
 HIDDEN:COMMENTS          < //>
@@ -67,7 +65,6 @@ PS_CONTINUATION_NAME     < getCompanyEcommLoc>
 PS_NAME                  <>
 PS_BEGIN                 <B>
 PS_KEYWORDS              <export                               >
-HIDDEN:PS_COMMENTS80     <                   >
 DS_FIXED                 <D>
 NAME                     <>
 EXTERNAL_DESCRIPTION     < >

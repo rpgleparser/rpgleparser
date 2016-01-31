@@ -12,7 +12,7 @@ HIDDEN:COMMENTS_TEXT     < ==================================|==================
 PS_FIXED                 <P>
 PS_NAME                  <CalcDOW>
 PS_BEGIN                 <B>
-PS_KEYWORDS              <Export                                                  >
+PS_KEYWORDS              <Export                               >
 HIDDEN:LEAD_WS5_Comments <    />
 HIDDEN:COMMENT_SPEC_FIXED<**>
 HIDDEN:COMMENTS_TEXT     <----------------------------------------------------------------------                      >
@@ -80,17 +80,13 @@ C_FREE_NEWLINE           <
 PS_FIXED                 <P>
 PS_NAME                  <CalcDOW>
 PS_END                   <E>
-PS_KEYWORDS              <                                                        >
+PS_KEYWORDS              <                                     >
+HIDDEN:PS_COMMENTS80     <                   >
 /*===TREE===*/
 (r
   (procedure
     (beginProcedure
-      (psBegin
-        P
-        (ps_name CalcDOW)
-        B
-        'Export                                                  '
-      )
+      (psBegin P (ps_name CalcDOW) B 'Export                               ')
     )
     (dcl_pi
       (piBegin D (ds_name CalcDOW) ' ' ' ' PI '       ' '     10' I ' 0' ' ' \r\n)
@@ -143,12 +139,7 @@ PS_KEYWORDS              <                                                      
       )
     )
     (endProcedure
-      (psEnd
-        P
-        (ps_name CalcDOW)
-        E
-        '                                                        '
-      )
+      (psEnd P (ps_name CalcDOW) E '                                     ')
     )
   )
 )

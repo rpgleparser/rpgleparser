@@ -144,7 +144,7 @@ PS_CONTINUATION_NAME     <    PreviousNamesThatItMustBe>
 PS_CONTINUATION_NAME     <    ContinuedOnSeveralSpecs>
 PS_NAME                  <>
 PS_BEGIN                 <B>
-PS_KEYWORDS              <                                                        >
+PS_KEYWORDS              <                                     >
 DS_FIXED                 <D>
 CONTINUATION_NAME        <ThisNameIsSoMuchLongerThanThe>
 CONTINUATION_NAME        <PreviousNamesThatItMustBe>
@@ -176,7 +176,8 @@ EOL                      <
 PS_FIXED                 <P>
 PS_NAME                  <>
 PS_END                   <E>
-PS_KEYWORDS              <                                                        >
+PS_KEYWORDS              <                                     >
+HIDDEN:PS_COMMENTS80     <                   >
 /*===TREE===*/
 (r
   (statement
@@ -340,7 +341,7 @@ PS_KEYWORDS              <                                                      
           
         )
         B
-        '                                                        '
+        '                                     '
       )
     )
     (dcl_pi
@@ -379,14 +380,7 @@ PS_KEYWORDS              <                                                      
         )
       )
     )
-    (endProcedure
-      (psEnd
-        P
-        (ps_name )
-        E
-        '                                                        '
-      )
-    )
+    (endProcedure (psEnd P (ps_name ) E '                                     '))
   )
 )
 /*======*/
