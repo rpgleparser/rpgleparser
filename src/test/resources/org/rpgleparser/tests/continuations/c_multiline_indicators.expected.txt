@@ -11,10 +11,10 @@ CS_FIXED                 <C>
 AndIndicator             <AN>
 NoFlag                   <N>
 GeneralIndicator         <99>
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 GeneralIndicator         <99>

@@ -111,8 +111,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <LongTagName>
 OP_TAG                   <TAG>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >

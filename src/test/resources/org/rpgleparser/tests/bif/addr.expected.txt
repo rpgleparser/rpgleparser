@@ -22,7 +22,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EVAL                  <Eval>
 ID                       <ReturnDir>
 '='                      <=>
