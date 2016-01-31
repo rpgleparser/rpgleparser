@@ -7,8 +7,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*Entry>
 OP_PLIST                 <PList>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -21,9 +21,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CLEAR                 <CLEAR>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <MYDS>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -36,7 +36,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CLEAR                 <CLEAR>
 SPLAT_ALL                <*ALL>
 CS_FactorContent         <MYTABLE>
@@ -68,7 +68,7 @@ BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_NOKEY              <*NOKEY>
 OP_CLEAR                 <clear>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <MYTABLE>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -109,10 +109,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>

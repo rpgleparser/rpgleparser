@@ -7,8 +7,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*Entry>
 OP_PLIST                 <PList>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -21,9 +21,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_DEALLOC               <DEALLOC>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <Ptr>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -36,12 +36,12 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_DEALLOC               <dealloc>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <Ptr>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -54,9 +54,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_DEALLOC               <dealloc>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <Ptr>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -69,12 +69,12 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_DEALLOC               <dealloc>
 '('                      <(>
 CS_OperationAndExtender  <n>
 ')'                      <)>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <Ptr>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -118,10 +118,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>

@@ -484,6 +484,7 @@ KEYWORD_SAVEDS : [sS][aA][vV][eE][dD][sS];
 KEYWORD_SAVEIND : [sS][aA][vV][eE][iI][nN][dD];
 KEYWORD_SFILE : [sS][fF][iI][lL][eE];
 KEYWORD_SLN : [sS][lL][nN];
+KEYWORD_SQLTYPE : [sS][qQ][lL][tT][yY][pP][eE] {_modeStack.contains(FIXED_DefSpec)}?;
 KEYWORD_USROPN : [uU][sS][rR][oO][pP][nN];
 KEYWORD_DISK : [dD][iI][sS][kK];
 KEYWORD_WORKSTN : [wW][oO][rR][kK][sS][tT][nN];
@@ -880,13 +881,16 @@ PS_RESERVED1: '  ' {getCharPositionInLine()==23}? -> skip;
 PS_BEGIN: [bB] {getCharPositionInLine()==24}?;
 PS_END: [eE] {getCharPositionInLine()==24}?;
 PS_RESERVED2: '                   ' {getCharPositionInLine()==43}? -> skip;
-PS_KEYWORDS : ~[\r\n] {getCharPositionInLine()==44}? ~[\r\n]* -> popMode;
+PS_KEYWORDS : ~[\r\n] {getCharPositionInLine()==44}? (~[\r\n] {getCharPositionInLine()<=80}?)*;
+PS_WS80 : [ ] {getCharPositionInLine()>80}? [ ]* NEWLINE -> skip; 
+PS_COMMENTS80: FREE_COMMENTS80-> channel(HIDDEN),popMode;
+PS_Any: -> popMode,skip;
 
 // ----------------- Everything FIXED_DefSpec of a tag ---------------------
 mode FIXED_DefSpec;
 BLANK_SPEC :  
 	'                                                                           ' 
-	{getCharPositionInLine()==80}?;
+	{getCharPositionInLine()==81}?;
 CONTINUATION_NAME : [ ]* ~[\r\n ]+ CONTINUATION {getCharPositionInLine()<80}? {setText(getText().substring(0,getText().length()-3).trim());} -> pushMode(CONTINUATION_ELIPSIS) ;
 CONTINUATION : '...' ;
 NAME : NAME5 NAME5 NAME5 {getCharPositionInLine()==21}? {setText(getText().trim());};
@@ -911,7 +915,7 @@ EOL : NEWLINE ->  popMode;
 
 mode CONTINUATION_ELIPSIS;
 CE_WS: WS ->skip;
-CE_COMMENTS80 :  [ ]* ~[\r\n ] {getCharPositionInLine()>=81}? ~[\r\n]* -> channel(HIDDEN); // skip comments after 80
+CE_COMMENTS80 :  ~[\r\n ] {getCharPositionInLine()>=81}? ~[\r\n]* -> channel(HIDDEN); // skip comments after 80
 CE_LEAD_WS5 :  LEAD_WS5 ->skip;
 CE_LEAD_WS5_Comments : LEAD_WS5_Comments -> channel(HIDDEN);
 CE_D_SPEC_FIXED : [dD] {_modeStack.peek()==FIXED_DefSpec && getCharPositionInLine()==6}? -> skip,popMode ;
@@ -920,9 +924,7 @@ CE_NEWLINE: NEWLINE ->skip;
 
 // ----------------- Everything FIXED_FileSpec of a tag ---------------------
 mode FIXED_FileSpec;
-FS_BLANK_SPEC : 
-    '                                                                           ' 
-    {getCharPositionInLine()==80}? -> type(BLANK_SPEC);
+FS_BLANK_SPEC : BLANK_SPEC -> type(BLANK_SPEC);
 FS_RecordName : WORD5 WORD5 {getCharPositionInLine()==16}? ;
 FS_Type: [a-zA-Z ] {getCharPositionInLine()==17}?;
 FS_Designation: [a-zA-Z ] {getCharPositionInLine()==18}? ;
@@ -942,9 +944,7 @@ FS_WhiteSpace : [ \t] {getCharPositionInLine()>80}? [ \t]* -> skip  ; // skip sp
 FS_EOL : NEWLINE -> type(EOL),popMode;
 
 mode FIXED_OutputSpec;
-OS_BLANK_SPEC :  
-    '                                                                           ' 
-    {getCharPositionInLine()==80}? -> type(BLANK_SPEC);
+OS_BLANK_SPEC : BLANK_SPEC -> type(BLANK_SPEC);
 OS_RecordName : WORD5 WORD5 {getCharPositionInLine()==16}?;
 OS_AndOr: '         ' ([aA][nN][dD] | [oO][rR] ' ') '  ' -> 
 	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode);

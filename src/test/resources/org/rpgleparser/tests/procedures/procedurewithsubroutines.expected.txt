@@ -3,7 +3,7 @@ PS_FIXED                 <P>
 PS_CONTINUATION_NAME     < ReplaceDataInEmailBody>
 PS_NAME                  <>
 PS_BEGIN                 <B>
-PS_KEYWORDS              <                                                        >
+PS_KEYWORDS              <                                     >
 DS_FIXED                 <D>
 CONTINUATION_NAME        <ReplaceDataInEmailBody>
 NAME                     <>
@@ -251,7 +251,8 @@ PS_FIXED                 <P>
 PS_CONTINUATION_NAME     < ReplaceDataInEmailBody>
 PS_NAME                  <>
 PS_END                   <E>
-PS_KEYWORDS              <                                                          >
+PS_KEYWORDS              <                                     >
+HIDDEN:PS_COMMENTS80     <                     >
 /*===TREE===*/
 (r
   (procedure
@@ -260,7 +261,7 @@ PS_KEYWORDS              <                                                      
         P
         (ps_name ' ReplaceDataInEmailBody' )
         B
-        '                                                        '
+        '                                     '
       )
     )
     (dcl_pi
@@ -703,7 +704,7 @@ PS_KEYWORDS              <                                                      
         P
         (ps_name ' ReplaceDataInEmailBody' )
         E
-        '                                                          '
+        '                                     '
       )
     )
   )

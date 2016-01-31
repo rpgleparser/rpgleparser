@@ -104,6 +104,7 @@ keyword:
    | keyword_qualified
    | keyword_rtnparm
    | keyword_static
+   | keyword_sqltype
    | keyword_template
    | keyword_timfmt
    | keyword_tofile
@@ -168,6 +169,7 @@ keyword_procptr : KEYWORD_PROCPTR;
 keyword_qualified : KEYWORD_QUALIFIED;
 keyword_rtnparm : KEYWORD_RTNPARM;
 keyword_static : KEYWORD_STATIC (OPEN_PAREN SPLAT_ALLTHREAD CLOSE_PAREN)?; 
+keyword_sqltype : KEYWORD_SQLTYPE (OPEN_PAREN id=simpleExpression (COLON number)? CLOSE_PAREN)?; 
 keyword_template : KEYWORD_TEMPLATE;
 keyword_timfmt : KEYWORD_TIMFMT OPEN_PAREN format=simpleExpression COLON? CLOSE_PAREN; //TODO separator
 keyword_tofile : KEYWORD_TOFILE OPEN_PAREN file_name=simpleExpression (separator=simpleExpression)? CLOSE_PAREN; 

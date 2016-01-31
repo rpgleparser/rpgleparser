@@ -7,8 +7,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*Entry>
 OP_PLIST                 <PList>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -25,8 +25,8 @@ StringLiteralStart       <'>
 StringContent            <msg>
 StringLiteralEnd         <'>
 OP_DSPLY                 <DSPLY>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -43,7 +43,7 @@ StringContent            <msg>
 StringLiteralEnd         <'>
 OP_DSPLY                 <Dsply>
 CS_FactorContent         <MSGQ>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -75,7 +75,7 @@ BlankIndicator           <  >
 CS_FactorContent         <MSGFLD>
 OP_DSPLY                 <Dsply>
 CS_FactorContent         <MSGQ>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -95,7 +95,7 @@ OP_DSPLY                 <Dsply>
 CS_OperationAndExtender  <e>
 ')'                      <)>
 CS_FactorContent         <QSYSOPR>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -110,7 +110,7 @@ BlankIndicator           <  >
 CS_FactorContent         <MSGFLD>
 OP_DSPLY                 <Dsply>
 SPLAT_EXT                <*EXT>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -172,10 +172,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>
