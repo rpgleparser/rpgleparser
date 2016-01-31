@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED<C*>
-HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -98,9 +98,9 @@ ID                       <fld4>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <     //>
-HIDDEN:COMMENTS_TEXT     < Not dealing with following case yet                                                   >
+HIDDEN:COMMENTS_TEXT     <Not dealing with following case yet>
 HIDDEN:COMMENTS          <     //>
-HIDDEN:COMMENTS_TEXT     <arr(*) = field2 * filed3;                                                              >
+HIDDEN:COMMENTS_TEXT     <arr(*) = field2 * filed3;>
 ID                       <ptr>
 '='                      <=>
 BIF_ADDR                 <%addr>

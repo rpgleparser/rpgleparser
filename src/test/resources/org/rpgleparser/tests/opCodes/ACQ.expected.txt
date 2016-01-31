@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED<C*>
-HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -102,7 +102,7 @@ ID                       <qpadev1>
 ID                       <orch01dspf>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <     //>
-HIDDEN:COMMENTS_TEXT     <comments                                                                               >
+HIDDEN:COMMENTS_TEXT     <comments>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <

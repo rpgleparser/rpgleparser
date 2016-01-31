@@ -1,7 +1,7 @@
 /*===TOKENS===*/
 HIDDEN:LEAD_WS5_Comments <ez01À>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Declare Query                                                                              >
+HIDDEN:COMMENTS_TEXT     <Declare Query>
 HIDDEN:LEAD_WS5_Comments <ez01À>
 CS_ExecSQL               <C/EXEC SQL>
 CSQL_TEXT                < DECLARE BOOKINGS CURSOR FOR                                                                >

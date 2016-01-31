@@ -154,7 +154,7 @@ FREE_SEMI                <;>
 OP_ENDDO                 <EndDo>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     < ************************************************************                             >
+HIDDEN:COMMENTS_TEXT     <************************************************************>
 OP_BEGSR                 <BegSr>
 ID                       <ScanForReplacement>
 FREE_SEMI                <;>
@@ -181,7 +181,7 @@ FREE_SEMI                <;>
 OP_ENDSR                 <EndSr>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     < ************************************************************                             >
+HIDDEN:COMMENTS_TEXT     <************************************************************>
 OP_BEGSR                 <BegSr>
 ID                       <FindReplacementMatch>
 FREE_SEMI                <;>

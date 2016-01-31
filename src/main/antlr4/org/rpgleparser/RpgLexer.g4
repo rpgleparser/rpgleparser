@@ -856,7 +856,7 @@ InFactor_EndFactor: {(getCharPositionInLine()==25)
 // -----------------  ---------------------
 mode FIXED_CommentMode;
 BLANK_COMMENTS_TEXT : [ ]+ -> skip;
-COMMENTS_TEXT : ~[\r\n]+ -> channel(HIDDEN);
+COMMENTS_TEXT : ~[\r\n]+ {setText(getText().trim());} -> channel(HIDDEN);
 COMMENTS_EOL : NEWLINE -> popMode,skip;
 
 mode FIXED_CommentMode_HIDDEN;

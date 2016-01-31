@@ -86,7 +86,7 @@ CS_Comments              <*FI                >
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     <----------------------------------------------------------------                            >
+HIDDEN:COMMENTS_TEXT     <---------------------------------------------------------------->
 CS_FIXED                 <C>
 SubroutineIndicator      <SR>
 BlankFlag                < >

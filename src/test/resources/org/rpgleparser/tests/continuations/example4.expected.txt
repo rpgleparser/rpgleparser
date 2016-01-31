@@ -19,7 +19,7 @@ StringLiteralEnd         <'>
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Numeric literal, continues with the first non blank in/past position 44                    >
+HIDDEN:COMMENTS_TEXT     <Numeric literal, continues with the first non blank in/past position 44>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 DS_FIXED                 <D>
 NAME                     <NUMERIC>
@@ -36,7 +36,7 @@ NumberPart               <67>
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Graphic named constant, must have shift-out in/past position 44                            >
+HIDDEN:COMMENTS_TEXT     <Graphic named constant, must have shift-out in/past position 44>
 DS_FIXED                 <D>
 NAME                     <GRAF>
 EXTERNAL_DESCRIPTION     < >

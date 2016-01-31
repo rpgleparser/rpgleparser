@@ -43,7 +43,7 @@ ID                       <*NOPASS>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <    //>
-HIDDEN:COMMENTS_TEXT     < ....                                                                                   >
+HIDDEN:COMMENTS_TEXT     <....>
 DS_PrototypeEnd          <END-PR>
 FREE_SEMI                <;>
 /*===TREE===*/

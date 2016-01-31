@@ -51,15 +51,15 @@ PS_NAME                  <>
 PS_END                   <E>
 PS_KEYWORDS              <                                     >
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     <========================================================================                   >
+HIDDEN:COMMENTS_TEXT     <========================================================================>
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     <ÎProcedure getCompanyEcommLoc_COS001                                                      >
+HIDDEN:COMMENTS_TEXT     <ÎProcedure getCompanyEcommLoc_COS001>
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     <========================================================================                   >
+HIDDEN:COMMENTS_TEXT     <========================================================================>
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     < .....                                                                                     >
+HIDDEN:COMMENTS_TEXT     <.....>
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     <========================================================================                   >
+HIDDEN:COMMENTS_TEXT     <========================================================================>
 PS_FIXED                 <P>
 PS_CONTINUATION_NAME     < getCompanyEcommLoc>
 PS_NAME                  <>
@@ -117,7 +117,7 @@ PS_END                   <E>
 PS_KEYWORDS              <                                     >
 HIDDEN:PS_COMMENTS80     <//test             >
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     <Test                                                                                       >
+HIDDEN:COMMENTS_TEXT     <Test>
 /*===TREE===*/
 (r
   (procedure

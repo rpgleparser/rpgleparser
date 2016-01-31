@@ -37,7 +37,7 @@ EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <3.00 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     <                                                                              130128        >
+HIDDEN:COMMENTS_TEXT     <130128>
 HIDDEN:LEAD_WS5_Comments <4.00 >
 CS_FIXED                 <C>
 BlankIndicator           <  >

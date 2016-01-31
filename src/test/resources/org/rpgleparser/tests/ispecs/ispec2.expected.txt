@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     <---------------------------------------------------------------                            >
+HIDDEN:COMMENTS_TEXT     <--------------------------------------------------------------->
 IS_FIXED                 <I>
 IS_FileName              <orctl     >
 IS_Sequence              <ns>
@@ -11,7 +11,7 @@ IS_RecordIdCode          <   12 cX   13 cX        >
 EOL                      <
 >
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     < company names                                                                             >
+HIDDEN:COMMENTS_TEXT     <company names>
 IS_FIXED                 <I>
 IFD_DATA_ATTR            <    >
 IFD_DATETIME_SEP         < >

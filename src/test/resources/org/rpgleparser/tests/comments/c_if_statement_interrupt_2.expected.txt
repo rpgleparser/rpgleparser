@@ -14,7 +14,7 @@ C_FREE_NEWLINE           <
 HIDDEN:LEAD_WS5_Comments <GB02 >
 HIDDEN:LEAD_WS5_Comments <GB02 >
 HIDDEN:COMMENT_SPEC_FIXED<¿*>
-HIDDEN:COMMENTS_TEXT     < Capture instances where the final ..                                                       >
+HIDDEN:COMMENTS_TEXT     <Capture instances where the final ..>
 HIDDEN:LEAD_WS5_Comments <GB02 >
 HIDDEN:LEAD_WS5_Comments <GB02 >
 CS_FIXED                 <C>

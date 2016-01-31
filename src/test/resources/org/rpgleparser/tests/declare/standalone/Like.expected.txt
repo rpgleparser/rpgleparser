@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENTS          <   //>
-HIDDEN:COMMENTS_TEXT     < Define using the LIKE keyword                                                           >
+HIDDEN:COMMENTS_TEXT     <Define using the LIKE keyword>
 DS_Standalone            <DCL-S>
 ID                       <cust_index>
 KEYWORD_LIKE             <LIKE>
@@ -9,7 +9,7 @@ ID                       <index>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <   //>
-HIDDEN:COMMENTS_TEXT     <Specify length adjustment with LIKE keyword                                              >
+HIDDEN:COMMENTS_TEXT     <Specify length adjustment with LIKE keyword>
 DS_Standalone            <DCL-S>
 ID                       <big_index>
 KEYWORD_LIKE             <LIKE>

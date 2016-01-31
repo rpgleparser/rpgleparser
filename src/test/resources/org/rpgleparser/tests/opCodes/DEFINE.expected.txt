@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED<C*>
-HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -33,9 +33,9 @@ BlankIndicator           <  >
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED<C*>
-HIDDEN:COMMENTS_TEXT     <     *LIKE         DEFINE    FLDA          FLDB             +2                              >
+HIDDEN:COMMENTS_TEXT     <*LIKE         DEFINE    FLDA          FLDB             +2>
 HIDDEN:COMMENT_SPEC_FIXED<C*>
-HIDDEN:COMMENTS_TEXT     <     *LIKE         DEFINE    FLDA          FLDB          -   1                              >
+HIDDEN:COMMENTS_TEXT     <*LIKE         DEFINE    FLDA          FLDB          -   1>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >

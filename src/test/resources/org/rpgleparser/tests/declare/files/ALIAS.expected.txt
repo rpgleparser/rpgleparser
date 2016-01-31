@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < The RPG source, using the ALIAS keyword:                                                   >
+HIDDEN:COMMENTS_TEXT     <The RPG source, using the ALIAS keyword:>
 FS_FIXED                 <F>
 FS_RecordName            <myfile    >
 FS_Type                  <i>

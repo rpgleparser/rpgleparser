@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < If SFLRCD invalid, note that errors present                                                >
+HIDDEN:COMMENTS_TEXT     <If SFLRCD invalid, note that errors present>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
