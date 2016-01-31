@@ -1018,7 +1018,7 @@ CS_Factor1_SPLAT_FILE : SPLAT_FILE {11+5<= getCharPositionInLine() && getCharPos
 CS_Factor1_SPLAT_GETIN : SPLAT_GETIN {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_GETIN);
 CS_Factor1_SPLAT_HIVAL : SPLAT_HIVAL {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_HIVAL);
 CS_Factor1_SPLAT_INIT : SPLAT_INIT {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_INIT);
-CS_Factor1_SPLAT_INDICATOR : SPLAT_INDICATOR {11+10<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_INDICATOR);
+CS_Factor1_SPLAT_INDICATOR : SPLAT_INDICATOR {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_INDICATOR);
 CS_Factor1_SPLAT_INZSR : SPLAT_INZSR {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_INZSR);
 CS_Factor1_SPLAT_IN : SPLAT_IN {11+3<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_IN);
 CS_Factor1_SPLAT_JOBRUN : SPLAT_JOBRUN {11+7<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_JOBRUN);
