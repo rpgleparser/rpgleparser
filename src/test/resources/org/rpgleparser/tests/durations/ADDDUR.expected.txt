@@ -20,7 +20,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -37,7 +37,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -54,7 +54,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -71,7 +71,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -88,7 +88,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -105,7 +105,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -122,7 +122,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -139,7 +139,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -156,7 +156,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -173,7 +173,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -190,7 +190,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -207,7 +207,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>
@@ -224,7 +224,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADDDUR                <ADDDUR>
 CS_FactorContent         <YY>
 COLON                    <:>

@@ -5,8 +5,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <FILEKY>
 OP_KLIST                 <KLIST>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -18,9 +18,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_KFLD                  <KFLD>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <DEPT>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -33,9 +33,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_KFLD                  <KFLD>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <SHIFT>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -48,9 +48,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_KFLD                  <KFLD>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <CLOCK#>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
