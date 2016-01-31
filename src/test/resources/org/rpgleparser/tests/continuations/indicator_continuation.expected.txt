@@ -1,0 +1,123 @@
+/*===TOKENS===*/
+CS_FIXED                 <c>
+BlankIndicator           <  >
+BlankFlag                < >
+GeneralIndicator         <16>
+EOL                      <                                                                                        
+>
+CS_FIXED                 <c>
+AndIndicator             <an>
+NoFlag                   <n>
+GeneralIndicator         <15>
+'              '         <              >
+OP_DOU                   <dou>
+SPLAT_INDICATOR          <*in25>
+'='                      <=>
+SPLAT_ON                 <*on>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <c>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <hrkey>
+OP_READE                 <reade>
+CS_FactorContent         <hcivhrl2>
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+GeneralIndicator         <25>
+EOL                      <
+>
+CS_FIXED                 <c>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_ENDDO                 <enddo>
+'              '         <              >
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (begindou
+        c
+        (cspec_continuedIndicators
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators 16)
+          '                                                                                        \n'
+          c
+        )
+        (cs_controlLevel an)
+        (onOffIndicatorsFlag n)
+        (cs_indicators 15)
+        (factor '              ')
+        (csDOU
+          dou
+          (c_free
+            (expression
+              (expression (identifier (all (symbolicConstants *in25))))
+              =
+              (expression (identifier (all (symbolicConstants *on))))
+            )
+          )
+          \n
+        )
+      )
+      (statement
+        (cspec_fixed
+          c
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor (factorContent hrkey))
+          (cspec_fixed_standard
+            (csREADE
+              reade
+              (cspec_fixed_standard_parts
+                (factor (factorContent hcivhrl2))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator 25)
+                \n
+              )
+            )
+          )
+        )
+      )
+      (enddo
+        c
+        (cs_controlLevel '  ')
+        (onOffIndicatorsFlag ' ')
+        (cs_indicators '  ')
+        (factor '              ')
+        (csENDDO
+          enddo
+          (cspec_fixed_standard_parts
+            (factor '              ')
+            (resultType '              ')
+            '     '
+            '  '
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            (resultIndicator '  ')
+            <EOF>
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
