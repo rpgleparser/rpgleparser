@@ -20,40 +20,44 @@ lexer grammar RpgLexer;
 
 // Parser Rules
 	//End Source.  Not more parsing after this.
-END_SOURCE : {getCharPositionInLine()==0}? '**'~[\r\n]~[\r\n]~[\r\n]~[\r\n*]~[\r\n]* EOL  -> pushMode(EndOfSourceMode) ;
+END_SOURCE :  '**' {getCharPositionInLine()==2}? ~[\r\n]~[\r\n]~[\r\n]~[\r\n*]~[\r\n]* EOL  -> pushMode(EndOfSourceMode) ;
     //Ignore or skip leading 5 white space.
-LEAD_WS5 :  {getCharPositionInLine()==0}? '     ' -> skip;
-LEAD_WS5_Comments :  {getCharPositionInLine()==0}?~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] -> channel(HIDDEN);
+LEAD_WS5 :  '     ' {getCharPositionInLine()==5}? -> skip;
+LEAD_WS5_Comments :  WORD5 {getCharPositionInLine()==5}? -> channel(HIDDEN);
 	//5 position blank means FREE, unless..
 FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> pushMode(OpCode),skip;
     // 6th position asterisk is a comment
 COMMENT_SPEC_FIXED : {getCharPositionInLine()==5}? .'*' -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
     // X specs 
-DS_FIXED : {getCharPositionInLine()==5}? [dD] -> pushMode(FIXED_DefSpec) ; 
-FS_FIXED : {getCharPositionInLine()==5}? [fF] -> pushMode(FIXED_FileSpec) ;
-OS_FIXED : {getCharPositionInLine()==5}? [oO] -> pushMode(FIXED_OutputSpec) ;
-CS_FIXED : {getCharPositionInLine()==5}? [cC] -> pushMode(FIXED_CalcSpec),pushMode(OnOffIndicatorMode),pushMode(IndicatorMode) ;
-CS_ExecSQL : {getCharPositionInLine()==5}? [cC] '/' EXEC_SQL -> pushMode(FIXED_CalcSpec_SQL);
-IS_FIXED : {getCharPositionInLine()==5}? [iI] -> pushMode(FIXED_InputSpec) ;
-PS_FIXED : {getCharPositionInLine()==5}? [pP] -> pushMode(FIXED_ProcedureSpec) ;
-HS_FIXED : {getCharPositionInLine()==5}? [hH] -> pushMode(HeaderSpecMode) ;
+DS_FIXED : [dD] {getCharPositionInLine()==6}? -> pushMode(FIXED_DefSpec) ; 
+FS_FIXED : [fF] {getCharPositionInLine()==6}? -> pushMode(FIXED_FileSpec) ;
+OS_FIXED : [oO] {getCharPositionInLine()==6}? -> pushMode(FIXED_OutputSpec) ;
+CS_FIXED : [cC] {getCharPositionInLine()==6}? -> pushMode(FIXED_CalcSpec),pushMode(OnOffIndicatorMode),pushMode(IndicatorMode) ;
+CS_ExecSQL:[cC] '/' {getCharPositionInLine()==7}? EXEC_SQL -> pushMode(FIXED_CalcSpec_SQL);
+IS_FIXED : [iI] {getCharPositionInLine()==6}? -> pushMode(FIXED_InputSpec) ;
+PS_FIXED : [pP] {getCharPositionInLine()==6}? -> pushMode(FIXED_ProcedureSpec) ;
+HS_FIXED : [hH] {getCharPositionInLine()==6}? -> pushMode(HeaderSpecMode) ;
 
-BLANK_LINE : {getCharPositionInLine()==5}? [ ]+ NEWLINE -> skip;
-BLANK_SPEC_LINE : {getCharPositionInLine()==5}? .[ ]* NEWLINE -> skip;
-COMMENTS : {getCharPositionInLine()>=5}? [ ][ ]*? '//' -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
-EMPTY_LINE : {getCharPositionInLine()>=5}?
-	'                                                                           ' -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
+BLANK_LINE : [ ] {getCharPositionInLine()==6}? [ ]* NEWLINE -> skip;
+BLANK_SPEC_LINE1 : . NEWLINE {getCharPositionInLine()==7}?-> skip;
+BLANK_SPEC_LINE : .[ ] {getCharPositionInLine()==7}? [ ]* NEWLINE -> skip;
+COMMENTS : [ ] {getCharPositionInLine()>=6}? [ ]*? '//' -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
+EMPTY_LINE : 
+	'                                                                           ' 
+	{getCharPositionInLine()>=80}? -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
+	
 	//Directives are not necessarily blank at pos 5
-DIRECTIVE : {getCharPositionInLine()>=5}? .[ ]*? '/' -> pushMode(DirectiveMode) ;
+DIRECTIVE :  . {getCharPositionInLine()>=6}? [ ]*? '/' -> pushMode(DirectiveMode) ;
 
 OPEN_PAREN : '(';
 CLOSE_PAREN : ')';
 NUMBER : ([0-9]+([.][0-9]*)?) | [.][0-9]+ ;
 SEMI : ';';
 COLON : ':';
-ID : {getCharPositionInLine()>6}?('*'? '*' [a-zA-Z])?[#@%$a-zA-Z] [#@$a-zA-Z0-9_]* ;             // match lower-case identifiers
+ID : ('*' {getCharPositionInLine()>7}? '*'? [a-zA-Z])?
+        [#@%$a-zA-Z]{getCharPositionInLine()>7}? [#@$a-zA-Z0-9_]* ;             // match lower-case identifiers
 NEWLINE : ('\r' '\n'? | '\n') -> skip;
-WS : {getCharPositionInLine()>5}? [ \t]+ -> skip ; // skip spaces, tabs, NEWLINEs
+WS : [ \t] {getCharPositionInLine()>6}? [ \t]* -> skip ; // skip spaces, tabs, NEWLINEs
 
 mode DirectiveTitle;
 TITLE_Text : ~[\r\n]+ -> type(DIR_OtherText);
@@ -99,7 +103,7 @@ EOS_EOL : NEWLINE -> type(EOL);
 
 // -----------------  ---------------------
 mode OpCode;
-OP_WS: {getCharPositionInLine()>5}? [ \t]+ -> skip;
+OP_WS: [ \t] {getCharPositionInLine()>6}? [ \t]* -> skip;
 OP_ACQ: [Aa][Cc][Qq] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
 OP_BEGSR: [Bb][Ee][Gg][Ss][Rr] {isEndOfToken()}?-> mode(FREE);
 OP_CALLP: [Cc][Aa][Ll][Ll][Pp] {isEndOfToken()}?-> mode(FREE),pushMode(FreeOpExtender);
@@ -181,8 +185,8 @@ DS_Constant : [dD] [cC] [lL] '-' [cC] ;//-> pushMode(F_SPEC_FREE);
 
 FS_FreeFile : [dD] [cC] [lL] '-' [fF] ;//-> pushMode(F_SPEC_FREE);
 H_SPEC : [cC] [tT] [lL] '-' [oO][pP][tT];
-FREE_CONT: '...' [ ]* NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n][ ]+ {setText("...");} -> type(CONTINUATION);
-FREE_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN); // skip comments after 80
+FREE_CONT: '...' [ ]* NEWLINE WORD5[ ]+ {setText("...");} -> type(CONTINUATION);
+FREE_COMMENTS80 : ~[\r\n] {getCharPositionInLine()>80}? ~[\r\n]* -> channel(HIDDEN); // skip comments after 80
 EXEC_SQL: [Ee][Xx][Ee][Cc][ ]+[Ss][Qq][Ll]-> pushMode(SQL_MODE) ;
 
 // Built In functions
@@ -546,37 +550,39 @@ TimeStampLiteralStart: [zZ]['] -> pushMode(InStringMode) ;
 GraphicLiteralStart: [gG]['] -> pushMode(InStringMode) ;
 UCS2LiteralStart: [uU]['] -> pushMode(InStringMode) ;
 StringLiteralStart: ['] -> pushMode(InStringMode) ; 
-FREE_COMMENTS: {getCharPositionInLine()>=7}? [ ]*? '//' -> pushMode(FIXED_CommentMode_HIDDEN),channel(HIDDEN) ;
-FREE_WS: {getCharPositionInLine()>5}? [ \t]+ -> skip;
-FREE_CONTINUATION : {_modeStack.peek()!=FIXED_CalcSpec && _modeStack.peek()!=FIXED_DefSpec}? '...' WS* NEWLINE -> type(CONTINUATION);
-C_FREE_CONTINUATION_DOTS : {_modeStack.peek()==FIXED_CalcSpec}? '...' WS* NEWLINE 
-	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
-D_FREE_CONTINUATION_DOTS : {_modeStack.peek()==FIXED_DefSpec}? '...' WS* NEWLINE 
-	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
-C_FREE_CONTINUATION: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE
+FREE_COMMENTS:  [ ]*? '//' {getCharPositionInLine()>=8}? -> pushMode(FIXED_CommentMode_HIDDEN),channel(HIDDEN) ;
+FREE_WS: [ \t] {getCharPositionInLine()>6}? [ \t]* -> skip;
+FREE_CONTINUATION : '...'
+	{_modeStack.peek()!=FIXED_CalcSpec && _modeStack.peek()!=FIXED_DefSpec}? 
+	WS* NEWLINE -> type(CONTINUATION);
+C_FREE_CONTINUATION_DOTS : '...' {_modeStack.peek()==FIXED_CalcSpec}? WS* NEWLINE 
+	(WORD5 [cC] ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
+D_FREE_CONTINUATION_DOTS : '...' {_modeStack.peek()==FIXED_DefSpec}? WS* NEWLINE 
+	(WORD5 [dD] ~[*] '                            ') {setText("...");} -> type(CONTINUATION);
+C_FREE_CONTINUATION: NEWLINE {_modeStack.peek()==FIXED_CalcSpec}?
 	(
-		(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ~[\r\n] [*] ~[\r\n]* NEWLINE) //Skip mid statement comments
-	|	(~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ~[\r\n] [ ]* NEWLINE) //Skip mid statement blanks
+		(WORD5 ~[\r\n] [*] ~[\r\n]* NEWLINE) //Skip mid statement comments
+	|	(WORD5 ~[\r\n] [ ]* NEWLINE) //Skip mid statement blanks
 	)*
-	 ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] ~[*] '                            ' -> skip;
-D_FREE_CONTINUATION: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                                    ' -> skip;
-F_FREE_CONTINUATION: {_modeStack.peek() == FIXED_FileSpec}? NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [fF] ~[*] '                                    ' -> skip;
-FREE_LEAD_WS5 :  {getCharPositionInLine()==0}? '     ' -> skip;
-FREE_LEAD_WS5_Comments :  {getCharPositionInLine()==0}?~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] -> channel(HIDDEN);
-FREE_FREE_SPEC : {getCharPositionInLine()==5}? [  ] -> skip;
+	 WORD5 [cC] ~[*] '                            ' -> skip;
+D_FREE_CONTINUATION: NEWLINE {_modeStack.peek() == FIXED_DefSpec}?  
+	WORD5 [dD] ~[*] '                                    ' -> skip;
+F_FREE_CONTINUATION: NEWLINE {_modeStack.peek() == FIXED_FileSpec}?  
+	WORD5 [fF] ~[*] '                                    ' -> skip;
+FREE_LEAD_WS5 :   '     ' {getCharPositionInLine()==5}? -> skip;
+FREE_LEAD_WS5_Comments :  WORD5 {getCharPositionInLine()==5}? -> channel(HIDDEN);
+FREE_FREE_SPEC :  [ ][ ] {getCharPositionInLine()==7}? -> skip;
 	
-C_FREE_NEWLINE: {_modeStack.peek()==FIXED_CalcSpec}? NEWLINE -> popMode,popMode;
-O_FREE_NEWLINE: {_modeStack.peek()==FIXED_OutputSpec_PGMFIELD}? NEWLINE -> type(EOL),popMode,popMode,popMode;
-D_FREE_NEWLINE: {_modeStack.peek() == FIXED_DefSpec}? NEWLINE -> type(EOL),popMode,popMode;
-F_FREE_NEWLINE: {_modeStack.peek() == FIXED_FileSpec}? NEWLINE -> type(EOL),popMode,popMode;
-FREE_NEWLINE: {_modeStack.peek()!=FIXED_CalcSpec}? NEWLINE -> skip,popMode;
+C_FREE_NEWLINE: NEWLINE {_modeStack.peek()==FIXED_CalcSpec}? -> popMode,popMode;
+O_FREE_NEWLINE: NEWLINE {_modeStack.peek()==FIXED_OutputSpec_PGMFIELD}? -> type(EOL),popMode,popMode,popMode;
+D_FREE_NEWLINE: NEWLINE {_modeStack.peek() == FIXED_DefSpec}? -> type(EOL),popMode,popMode;
+F_FREE_NEWLINE: NEWLINE {_modeStack.peek() == FIXED_FileSpec}? -> type(EOL),popMode,popMode;
+FREE_NEWLINE:   NEWLINE {_modeStack.peek()!=FIXED_CalcSpec}? -> skip,popMode;
 FREE_SEMI: SEMI -> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
 
 mode NumberContinuation;
 NumberContinuation_CONTINUATION: ([ ]* NEWLINE)   
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [dD] ~[*] '                            ' [ ]* -> skip;
+	WORD5 [dD] ~[*] '                            ' [ ]* -> skip;
 NumberPart: NUMBER -> popMode;
 NumberContinuation_ANY: -> popMode,skip;
 
@@ -786,12 +792,12 @@ EatCommentLinesPlus_Any: -> popMode,skip;
 
 // Inside continuations, ignore comment and blank lines.
 mode EatCommentLines;
-EatCommentLines_WhiteSpace: ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n]{getCharPositionInLine()==6}?[ ]* NEWLINE -> skip;
+EatCommentLines_WhiteSpace: WORD5~[\r\n]{getCharPositionInLine()==6}?[ ]* NEWLINE -> skip;
 EatCommentLines_StarComment: 
-   ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n]{getCharPositionInLine()==6}? [*] ~[\r\n]* NEWLINE -> skip;
+   WORD5~[\r\n]{getCharPositionInLine()==6}? [*] ~[\r\n]* NEWLINE -> skip;
 FIXED_FREE_STRING_CONTINUATION_Part2:  
    (
-     ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 
+     WORD5 
      ( [cC] {_modeStack.contains(FIXED_CalcSpec)}?
       | [dD] {_modeStack.contains(FIXED_DefSpec)}? 
       | [oO] {_modeStack.contains(FIXED_OutputSpec)}? 
@@ -808,7 +814,7 @@ FIXED_FREE_STRING_CONTINUATION_Part2:
    -> type(CONTINUATION),skip ;
 //FIXED_FREE_STRING_CONTINUATION_Minus_Part2:  
 //   (
-//     ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 
+//     WORD5 
 //     ( [cC] {_modeStack.contains(FIXED_CalcSpec)}?
 //      | [dD] {_modeStack.contains(FIXED_DefSpec)}? 
 //     ) 
@@ -819,23 +825,27 @@ FIXED_FREE_STRING_CONTINUATION_Part2:
 EatCommentLines_NothingLeft: -> popMode,skip;
 
 mode InFactorStringMode;
-InFactor_StringContent:({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
-}?
-		~[\r\n'])+ -> type(StringContent);
+InFactor_StringContent:(
+~[\r\n']
+		{(getCharPositionInLine()>=12 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=36 && getCharPositionInLine()<=49)
+			|| (getCharPositionInLine()>=50 && getCharPositionInLine()<=63)
+		}?
+)+ -> type(StringContent);
 		
-InFactor_StringEscapedQuote: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
-}?
-		[']['] -> type(StringEscapedQuote);
+InFactor_StringEscapedQuote: ['][']
+		{(getCharPositionInLine()>=12 && getCharPositionInLine()<=24)
+			|| (getCharPositionInLine()>=36 && getCharPositionInLine()<=48)
+			|| (getCharPositionInLine()>=50 && getCharPositionInLine()<=62)
+		}?
+		 -> type(StringEscapedQuote);
 		
-InFactor_StringLiteralEnd: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
-}?
-		['] -> type(StringLiteralEnd),popMode;
+InFactor_StringLiteralEnd: [']
+		{(getCharPositionInLine()>=12 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=36 && getCharPositionInLine()<=49)
+			|| (getCharPositionInLine()>=50 && getCharPositionInLine()<=63)
+		}?
+		 -> type(StringLiteralEnd),popMode;
 
 InFactor_EndFactor: {(getCharPositionInLine()==25)
 			|| (getCharPositionInLine()==49)
@@ -862,583 +872,583 @@ WORDS: ~[ ;\r\n] (~[;\r\n]+ ~[ ;\r\n])?;
 
 // ----------------- Everything FIXED_ProcedureSpec of a tag ---------------------
 mode FIXED_ProcedureSpec;
-PS_NAME : {getCharPositionInLine()==6}? NAME5 NAME5 NAME5 {setText(getText().trim());};
+PS_NAME :  NAME5 NAME5 NAME5 {getCharPositionInLine()==21}? {setText(getText().trim());};
 PS_CONTINUATION_NAME : [ ]* ~[\r\n ]+ PS_CONTINUATION {setText(getText().substring(0,getText().length()-3));} -> pushMode(CONTINUATION_ELIPSIS) ;
 PS_CONTINUATION : '...' ;
 
-PS_RESERVED1: {getCharPositionInLine()==21}? '  ' -> skip;
-PS_BEGIN: {getCharPositionInLine()==23}? [bB];
-PS_END: {getCharPositionInLine()==23}? [eE];
-PS_RESERVED2: {getCharPositionInLine()==24}? '                   ' -> skip;
-PS_KEYWORDS : {getCharPositionInLine()==43}? ~[\r\n]+ -> popMode;
+PS_RESERVED1: '  ' {getCharPositionInLine()==23}? -> skip;
+PS_BEGIN: [bB] {getCharPositionInLine()==24}?;
+PS_END: [eE] {getCharPositionInLine()==24}?;
+PS_RESERVED2: '                   ' {getCharPositionInLine()==43}? -> skip;
+PS_KEYWORDS : ~[\r\n] {getCharPositionInLine()==44}? ~[\r\n]* -> popMode;
 
 // ----------------- Everything FIXED_DefSpec of a tag ---------------------
 mode FIXED_DefSpec;
-BLANK_SPEC : {getCharPositionInLine()==6}? 
-    '                                                                           ';
-CONTINUATION_NAME : {getCharPositionInLine()<21}? [ ]* ~[\r\n ]+ CONTINUATION {setText(getText().substring(0,getText().length()-3).trim());} -> pushMode(CONTINUATION_ELIPSIS) ;
+BLANK_SPEC :  
+	'                                                                           ' 
+	{getCharPositionInLine()==80}?;
+CONTINUATION_NAME : [ ]* ~[\r\n ]+ CONTINUATION {getCharPositionInLine()<80}? {setText(getText().substring(0,getText().length()-3).trim());} -> pushMode(CONTINUATION_ELIPSIS) ;
 CONTINUATION : '...' ;
-NAME : {getCharPositionInLine()==6}? NAME5 NAME5 NAME5 {setText(getText().trim());};
-EXTERNAL_DESCRIPTION: {getCharPositionInLine()==21}? [eE ];
-DATA_STRUCTURE_TYPE: {getCharPositionInLine()==22}? [sSuU ];
-DEF_TYPE_C: {getCharPositionInLine()==23}? [cC][ ];
-DEF_TYPE_PI: {getCharPositionInLine()==23}? [pP][iI];
-DEF_TYPE_PR: {getCharPositionInLine()==23}? [pP][rR];
-DEF_TYPE_DS: {getCharPositionInLine()==23}? [dD][sS];
-DEF_TYPE_S: {getCharPositionInLine()==23}? [sS][ ];
-DEF_TYPE_BLANK: {getCharPositionInLine()==23}? [ ][ ];
-DEF_TYPE: {getCharPositionInLine()==23}? [a-zA-Z0-9 ][a-zA-Z0-9 ];
-FROM_POSITION: {getCharPositionInLine()==25}? WORD5 [a-zA-Z0-9\+\- ][a-zA-Z0-9 ];
-TO_POSITION: {getCharPositionInLine()==32}? WORD5[a-zA-Z0-9\+\- ][a-zA-Z0-9 ];
-DATA_TYPE: {getCharPositionInLine()==39}? [a-zA-Z\* ];
-DECIMAL_POSITIONS: {getCharPositionInLine()==40}? [0-9\+\- ][0-9 ];
-RESERVED : {getCharPositionInLine()==42}? ' ' -> pushMode(FREE);
-//KEYWORDS : {getCharPositionInLine()==43}? ~[\r\n]+ ;
-D_WS : {getCharPositionInLine()>=80}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
-D_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN); // skip comments after 80
+NAME : NAME5 NAME5 NAME5 {getCharPositionInLine()==21}? {setText(getText().trim());};
+EXTERNAL_DESCRIPTION: [eE ] {getCharPositionInLine()==22}? ;
+DATA_STRUCTURE_TYPE: [sSuU ] {getCharPositionInLine()==23}? ;
+DEF_TYPE_C: [cC][ ] {getCharPositionInLine()==25}?;
+DEF_TYPE_PI: [pP][iI] {getCharPositionInLine()==25}?;
+DEF_TYPE_PR: [pP][rR] {getCharPositionInLine()==25}?;
+DEF_TYPE_DS: [dD][sS] {getCharPositionInLine()==25}?;
+DEF_TYPE_S: [sS][ ] {getCharPositionInLine()==25}?;
+DEF_TYPE_BLANK: [ ][ ] {getCharPositionInLine()==25}?;
+DEF_TYPE: [a-zA-Z0-9 ][a-zA-Z0-9 ] {getCharPositionInLine()==25}?;
+FROM_POSITION: WORD5 [a-zA-Z0-9\+\- ][a-zA-Z0-9 ]{getCharPositionInLine()==32}?;
+TO_POSITION: WORD5[a-zA-Z0-9\+\- ][a-zA-Z0-9 ]{getCharPositionInLine()==39}? ;
+DATA_TYPE: [a-zA-Z\* ]{getCharPositionInLine()==40}? ;
+DECIMAL_POSITIONS: [0-9\+\- ][0-9 ]{getCharPositionInLine()==42}? ;
+RESERVED :  ' ' {getCharPositionInLine()==43}? -> pushMode(FREE);
+//KEYWORDS : ~[\r\n] {getCharPositionInLine()==44}? ~[\r\n]* ;
+D_WS : [ \t] {getCharPositionInLine()>=81}? [ \t]* -> skip  ; // skip spaces, tabs, newlines
+D_COMMENTS80 : ~[\r\n] {getCharPositionInLine()>=81}? ~[\r\n]* -> channel(HIDDEN); // skip comments after 80
 EOL : NEWLINE ->  popMode;
 
 mode CONTINUATION_ELIPSIS;
 CE_WS: WS ->skip;
-CE_COMMENTS80 : {getCharPositionInLine()>=80}? ~[\r\n ]~[\r\n]* -> channel(HIDDEN); // skip comments after 80
+CE_COMMENTS80 :  [ ]* ~[\r\n ] {getCharPositionInLine()>=81}? ~[\r\n]* -> channel(HIDDEN); // skip comments after 80
 CE_LEAD_WS5 :  LEAD_WS5 ->skip;
 CE_LEAD_WS5_Comments : LEAD_WS5_Comments -> channel(HIDDEN);
-CE_D_SPEC_FIXED : {_modeStack.peek()==FIXED_DefSpec && getCharPositionInLine()==5}? [dD] -> skip,popMode ;
-CE_P_SPEC_FIXED : {_modeStack.peek()==FIXED_ProcedureSpec && getCharPositionInLine()==5}? [pP] -> skip,popMode ;
+CE_D_SPEC_FIXED : [dD] {_modeStack.peek()==FIXED_DefSpec && getCharPositionInLine()==6}? -> skip,popMode ;
+CE_P_SPEC_FIXED : [pP] {_modeStack.peek()==FIXED_ProcedureSpec && getCharPositionInLine()==6}? -> skip,popMode ;
 CE_NEWLINE: NEWLINE ->skip;
 
 // ----------------- Everything FIXED_FileSpec of a tag ---------------------
 mode FIXED_FileSpec;
-FS_BLANK_SPEC : {getCharPositionInLine()==6}? 
-    '                                                                           ' -> type(BLANK_SPEC);
-FS_RecordName : {getCharPositionInLine()==6}? WORD5 WORD5;
-FS_Type: {getCharPositionInLine()==16}? [a-zA-Z ];
-FS_Designation: {getCharPositionInLine()==17}? [a-zA-Z ];
-FS_EndOfFile: {getCharPositionInLine()==18}? [eE ];
-FS_Addution: {getCharPositionInLine()==19}? [aA ];
-FS_Sequence: {getCharPositionInLine()==20}? [aAdD ];
-FS_Format: {getCharPositionInLine()==21}? [eEfF ];
-FS_RecordLength: {getCharPositionInLine()==22}? WORD5;
-FS_Limits: {getCharPositionInLine()==27}? [lL ];
-FS_LengthOfKey: {getCharPositionInLine()==28}? [0-9 ][0-9 ][0-9 ][0-9 ][0-9 ];
-FS_RecordAddressType: {getCharPositionInLine()==33}? [a-zA-Z ];
-FS_Organization: {getCharPositionInLine()==34}? [a-zA-Z ];
-FS_Device: {getCharPositionInLine()==35}? WORD5 [a-zA-Z ][a-zA-Z ];
-FS_Reserved: {getCharPositionInLine()==42}? [ ] -> pushMode(FREE);
-//FS_Keywords : {getCharPositionInLine()==43}? ~[\r\n]+;
-FS_WhiteSpace : {getCharPositionInLine()>=80}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
+FS_BLANK_SPEC : 
+    '                                                                           ' 
+    {getCharPositionInLine()==80}? -> type(BLANK_SPEC);
+FS_RecordName : WORD5 WORD5 {getCharPositionInLine()==16}? ;
+FS_Type: [a-zA-Z ] {getCharPositionInLine()==17}?;
+FS_Designation: [a-zA-Z ] {getCharPositionInLine()==18}? ;
+FS_EndOfFile: [eE ] {getCharPositionInLine()==19}?;
+FS_Addution: [aA ] {getCharPositionInLine()==20}?;
+FS_Sequence: [aAdD ] {getCharPositionInLine()==21}?;
+FS_Format: [eEfF ] {getCharPositionInLine()==22}?;
+FS_RecordLength: WORD5 {getCharPositionInLine()==27}?;
+FS_Limits: [lL ] {getCharPositionInLine()==28}?;
+FS_LengthOfKey: [0-9 ][0-9 ][0-9 ][0-9 ][0-9 ] {getCharPositionInLine()==33}?;
+FS_RecordAddressType: [a-zA-Z ] {getCharPositionInLine()==34}?;
+FS_Organization: [a-zA-Z ] {getCharPositionInLine()==35}?;
+FS_Device: WORD5 [a-zA-Z ][a-zA-Z ] {getCharPositionInLine()==42}?;
+FS_Reserved: [ ] {getCharPositionInLine()==43}? -> pushMode(FREE);
+//FS_Keywords : ~[\r\n] {getCharPositionInLine()==44}? ~[\r\n]*;
+FS_WhiteSpace : [ \t] {getCharPositionInLine()>80}? [ \t]* -> skip  ; // skip spaces, tabs, newlines
 FS_EOL : NEWLINE -> type(EOL),popMode;
 
 mode FIXED_OutputSpec;
-OS_BLANK_SPEC : {getCharPositionInLine()==6}? 
-    '                                                                           ' -> type(BLANK_SPEC);
-OS_RecordName : {getCharPositionInLine()==6}? WORD5 WORD5;
-OS_AndOr: {getCharPositionInLine()==6}? '         ' ([aA][nN][dD] | [oO][rR] ' ') '  ' -> 
+OS_BLANK_SPEC :  
+    '                                                                           ' 
+    {getCharPositionInLine()==80}? -> type(BLANK_SPEC);
+OS_RecordName : WORD5 WORD5 {getCharPositionInLine()==16}?;
+OS_AndOr: '         ' ([aA][nN][dD] | [oO][rR] ' ') '  ' -> 
 	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode);
-OS_FieldReserved: {getCharPositionInLine()==6}? '              ' -> pushMode(FIXED_OutputSpec_PGMFIELD),
+OS_FieldReserved:  '              ' {getCharPositionInLine()==20}? 
+    -> pushMode(FIXED_OutputSpec_PGMFIELD),
 	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode);
-OS_Type: {getCharPositionInLine()==16}? [a-zA-Z ];
-OS_AddDelete: {getCharPositionInLine()==17}? ([aA][dD][dD] | [dD][eE][lL])  -> pushMode(FIXED_OutputSpec_PGM1),
+OS_Type: [a-zA-Z ] {getCharPositionInLine()==17}?;
+OS_AddDelete: ([aA][dD][dD] | [dD][eE][lL])  {getCharPositionInLine()==20}? -> pushMode(FIXED_OutputSpec_PGM1),
 	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode); 
-OS_FetchOverflow: {getCharPositionInLine()==17}? (' ' | [fFrR]) '  ' -> pushMode(OnOffIndicatorMode),
+OS_FetchOverflow: (' ' | [fFrR]) '  '  {getCharPositionInLine()==20}? -> pushMode(OnOffIndicatorMode),
 	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode);
 //OS_OutputCondition: {getCharPositionInLine()==20 || getCharPositionInLine()==23
 //		|| getCharPositionInLine()==26}? [N ] IND_FRAG ; 
-OS_ExceptName: {getCharPositionInLine()==29}? WORD5 WORD5;
-OS_Space3: {getCharPositionInLine()==39 || getCharPositionInLine()==42 
-	|| getCharPositionInLine()==45 || getCharPositionInLine()==48}? [ 0-9][ 0-9][ 0-9];
-OS_RemainingSpace: {getCharPositionInLine()==51}? '                             ';
+OS_ExceptName: WORD5 WORD5 {getCharPositionInLine()==39}?;
+OS_Space3: [ 0-9][ 0-9][ 0-9] {getCharPositionInLine()==42 || getCharPositionInLine()==45 
+	|| getCharPositionInLine()==48 || getCharPositionInLine()==51}? ;
+OS_RemainingSpace:  '                             ' {getCharPositionInLine()==80}?;
 OS_Comments : CS_Comments -> channel(HIDDEN); // skip comments after 80
-OS_WS : {getCharPositionInLine()>=80}? [ \t]+ -> type(WS),skip  ; // skip spaces, tabs, newlines
+OS_WS : [ \t] {getCharPositionInLine()>80}? [ \t]* -> type(WS),skip  ; // skip spaces, tabs, newlines
 OS_EOL : NEWLINE -> type(EOL),popMode;//,skip;
 
 mode FIXED_OutputSpec_PGM1;
-//O1_OutputCondition: {getCharPositionInLine()==20 || getCharPositionInLine()==23
-//		|| getCharPositionInLine()==26}? [N ] IND_FRAG -> type(OS_OutputCondition);
-O1_ExceptName: {getCharPositionInLine()==29}? WORD5 WORD5 -> type(OS_ExceptName);
-O1_RemainingSpace: {getCharPositionInLine()==39}? '                                         ' -> type(OS_RemainingSpace),popMode;	
+O1_ExceptName: WORD5 WORD5 {getCharPositionInLine()==39}? -> type(OS_ExceptName);
+O1_RemainingSpace: '                                         '  {getCharPositionInLine()==80}?
+	-> type(OS_RemainingSpace),popMode;	
  
 mode FIXED_OutputSpec_PGMFIELD;
-//OF_OutputCondition: {getCharPositionInLine()==20 || getCharPositionInLine()==23
-//		|| getCharPositionInLine()==26}? [Nn ] IND_FRAG -> type(OS_OutputCondition);
-OS_FieldName: {getCharPositionInLine()==29}? WORD5 WORD5 ~[\r\n] ~[\r\n] ~[\r\n] ~[\r\n];
-OS_EditNames: {getCharPositionInLine()==43}? [ 0-9A-Za-z];
-OS_BlankAfter: {getCharPositionInLine()==44}? [ bB];
-OS_Reserved1: {getCharPositionInLine()==45}? [ ] -> skip;
-OS_EndPosition: {getCharPositionInLine()==46}? WORD5;
-OS_DataFormat: {getCharPositionInLine()==51}? [ 0-9A-Za-z] -> pushMode(FREE);
-//OS_Words: {getCharPositionInLine()==52}? WORD5 WORD5 WORD5 WORD5 WORD5 ~[\r\n] ~[\r\n] ~[\r\n] -> popMode;
+OS_FieldName: WORD5 WORD5 ~[\r\n] ~[\r\n] ~[\r\n] ~[\r\n] {getCharPositionInLine()==43}? ;
+OS_EditNames: [ 0-9A-Za-z] {getCharPositionInLine()==44}?;
+OS_BlankAfter: [ bB] {getCharPositionInLine()==45}?;
+OS_Reserved1: [ ]  {getCharPositionInLine()==46}?-> skip;
+OS_EndPosition: WORD5 {getCharPositionInLine()==51}?;
+OS_DataFormat: [ 0-9A-Za-z] {getCharPositionInLine()==52}? -> pushMode(FREE);
 OS_Any: -> popMode;
-
 	
 mode FIXED_CalcSpec;
-//CS_IndicatorOff: {getCharPositionInLine()==8}? [nN ] -> pushMode(IndicatorMode);
-//CS_BlankFactor: {getCharPositionInLine()==11 || getCharPositionInLine()==35 || getCharPositionInLine()==49}? '              ' ;
 // Symbolic Constants
-CS_Factor1_SPLAT_ALL : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_ALL -> type(SPLAT_ALL);
-CS_Factor1_SPLAT_NONE : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_NONE -> type(SPLAT_NONE);
-CS_Factor1_SPLAT_ILERPG : {11<= getCharPositionInLine() && getCharPositionInLine()+7<=24}? SPLAT_ILERPG -> type(SPLAT_ILERPG);
-CS_Factor1_SPLAT_CRTBNDRPG : {11<= getCharPositionInLine() && getCharPositionInLine()+10<=24}? SPLAT_CRTBNDRPG -> type(SPLAT_CRTBNDRPG);
-CS_Factor1_SPLAT_CRTRPGMOD : {11<= getCharPositionInLine() && getCharPositionInLine()+10<=24}? SPLAT_CRTRPGMOD -> type(SPLAT_CRTRPGMOD);
-CS_Factor1_SPLAT_VRM : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_VRM -> type(SPLAT_VRM);
-CS_Factor1_SPLAT_ALLG : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_ALLG -> type(SPLAT_ALLG);
-CS_Factor1_SPLAT_ALLU : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_ALLU -> type(SPLAT_ALLU);
-CS_Factor1_SPLAT_ALLX : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_ALLX -> type(SPLAT_ALLX);
-CS_Factor1_SPLAT_BLANKS : {11<= getCharPositionInLine() && getCharPositionInLine()+7<=24}? SPLAT_BLANKS -> type(SPLAT_BLANKS);
-CS_Factor1_SPLAT_CANCL : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_CANCL -> type(SPLAT_CANCL);
-CS_Factor1_SPLAT_CYMD : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_CYMD -> type(SPLAT_CYMD);
-CS_Factor1_SPLAT_CMDY : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_CMDY -> type(SPLAT_CMDY);
-CS_Factor1_SPLAT_CDMY : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_CDMY -> type(SPLAT_CDMY);
-CS_Factor1_SPLAT_MDY : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_MDY -> type(SPLAT_MDY);
-CS_Factor1_SPLAT_DMY : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_DMY -> type(SPLAT_DMY);
-CS_Factor1_SPLAT_YMD : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_YMD -> type(SPLAT_YMD);
-CS_Factor1_SPLAT_JUL : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_JUL -> type(SPLAT_JUL);
-CS_Factor1_SPLAT_ISO : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_ISO -> type(SPLAT_ISO);
-CS_Factor1_SPLAT_USA : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_USA -> type(SPLAT_USA);
-CS_Factor1_SPLAT_EUR : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_EUR -> type(SPLAT_EUR);
-CS_Factor1_SPLAT_JIS : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_JIS -> type(SPLAT_JIS);
-CS_Factor1_SPLAT_DATE : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_DATE -> type(SPLAT_DATE);
-CS_Factor1_SPLAT_DAY : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_DAY -> type(SPLAT_DAY);
-CS_Factor1_SPLAT_DETC : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPlAT_DETC -> type(SPlAT_DETC);
-CS_Factor1_SPLAT_DETL : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_DETL -> type(SPLAT_DETL);
-CS_Factor1_SPLAT_DTAARA : {11<= getCharPositionInLine() && getCharPositionInLine()+7<=24}? SPLAT_DTAARA -> type(SPLAT_DTAARA);
-CS_Factor1_SPLAT_END : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_END -> type(SPLAT_END);
-CS_Factor1_SPLAT_ENTRY : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_ENTRY -> type(SPLAT_ENTRY);
-CS_Factor1_SPLAT_EQUATE : {11<= getCharPositionInLine() && getCharPositionInLine()+7<=24}? SPLAT_EQUATE -> type(SPLAT_EQUATE);
-CS_Factor1_SPLAT_EXTDFT : {11<= getCharPositionInLine() && getCharPositionInLine()+7<=24}? SPLAT_EXTDFT -> type(SPLAT_EXTDFT);
-CS_Factor1_SPLAT_EXT : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_EXT -> type(SPLAT_EXT);
-CS_Factor1_SPLAT_FILE : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_FILE -> type(SPLAT_FILE);
-CS_Factor1_SPLAT_GETIN : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_GETIN -> type(SPLAT_GETIN);
-CS_Factor1_SPLAT_HIVAL : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_HIVAL -> type(SPLAT_HIVAL);
-CS_Factor1_SPLAT_INIT : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_INIT -> type(SPLAT_INIT);
-CS_Factor1_SPLAT_INDICATOR : {11<= getCharPositionInLine() && getCharPositionInLine()+10<=24}? SPLAT_INDICATOR -> type(SPLAT_INDICATOR);
-CS_Factor1_SPLAT_INZSR : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_INZSR -> type(SPLAT_INZSR);
-CS_Factor1_SPLAT_IN : {11<= getCharPositionInLine() && getCharPositionInLine()+3<=24}? SPLAT_IN -> type(SPLAT_IN);
-CS_Factor1_SPLAT_JOBRUN : {11<= getCharPositionInLine() && getCharPositionInLine()+7<=24}? SPLAT_JOBRUN -> type(SPLAT_JOBRUN);
-CS_Factor1_SPLAT_JOB : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_JOB -> type(SPLAT_JOB);
-CS_Factor1_SPLAT_LDA : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_LDA -> type(SPLAT_LDA);
-CS_Factor1_SPLAT_LIKE : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_LIKE -> type(SPLAT_LIKE);
-CS_Factor1_SPLAT_LONGJUL : {11<= getCharPositionInLine() && getCharPositionInLine()+8<=24}? SPLAT_LONGJUL -> type(SPLAT_LONGJUL);
-CS_Factor1_SPLAT_LOVAL : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_LOVAL -> type(SPLAT_LOVAL);
-CS_Factor1_SPLAT_MONTH : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_MONTH -> type(SPLAT_MONTH);
-CS_Factor1_SPLAT_NOIND : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_NOIND -> type(SPLAT_NOIND);
-CS_Factor1_SPLAT_NOKEY : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_NOKEY -> type(SPLAT_NOKEY);
-CS_Factor1_SPLAT_NULL : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_NULL -> type(SPLAT_NULL);
-CS_Factor1_SPLAT_OFL : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_OFL -> type(SPLAT_OFL);
-CS_Factor1_SPLAT_ON : {11<= getCharPositionInLine() && getCharPositionInLine()+3<=24}? SPLAT_ON -> type(SPLAT_ON);
-CS_Factor1_SPLAT_OFF : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_OFF -> type(SPLAT_OFF);
-CS_Factor1_SPLAT_PDA : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_PDA -> type(SPLAT_PDA);
-CS_Factor1_SPLAT_PLACE : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_PLACE -> type(SPLAT_PLACE);
-CS_Factor1_SPLAT_PSSR : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_PSSR -> type(SPLAT_PSSR);
-CS_Factor1_SPLAT_ROUTINE : {11<= getCharPositionInLine() && getCharPositionInLine()+8<=24}? SPLAT_ROUTINE -> type(SPLAT_ROUTINE);
-CS_Factor1_SPLAT_START : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_START -> type(SPLAT_START);
-CS_Factor1_SPLAT_SYS : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_SYS -> type(SPLAT_SYS);
-CS_Factor1_SPLAT_TERM : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_TERM -> type(SPLAT_TERM);
-CS_Factor1_SPLAT_TOTC : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_TOTC -> type(SPLAT_TOTC);
-CS_Factor1_SPLAT_TOTL : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_TOTL -> type(SPLAT_TOTL);
-CS_Factor1_SPLAT_USER : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_USER -> type(SPLAT_USER);
-CS_Factor1_SPLAT_VAR : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_VAR -> type(SPLAT_VAR);
-CS_Factor1_SPLAT_YEAR : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_YEAR -> type(SPLAT_YEAR);
-CS_Factor1_SPLAT_ZEROS : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_ZEROS -> type(SPLAT_ZEROS);
-CS_Factor1_SPLAT_HMS : {11<= getCharPositionInLine() && getCharPositionInLine()+4<=24}? SPLAT_HMS -> type(SPLAT_HMS);
-CS_Factor1_SPLAT_INLR : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_INLR -> type(SPLAT_INLR);
-CS_Factor1_SPLAT_INOF : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_INOF -> type(SPLAT_INOF);
+CS_Factor1_SPLAT_ALL : SPLAT_ALL {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ALL);
+CS_Factor1_SPLAT_NONE : SPLAT_NONE {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_NONE);
+CS_Factor1_SPLAT_ILERPG : SPLAT_ILERPG {11+7<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ILERPG);
+CS_Factor1_SPLAT_CRTBNDRPG : SPLAT_CRTBNDRPG {11+10<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_CRTBNDRPG);
+CS_Factor1_SPLAT_CRTRPGMOD : SPLAT_CRTRPGMOD {11+10<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_CRTRPGMOD);
+CS_Factor1_SPLAT_VRM :  SPLAT_VRM{11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_VRM);
+CS_Factor1_SPLAT_ALLG : SPLAT_ALLG {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ALLG);
+CS_Factor1_SPLAT_ALLU : SPLAT_ALLU {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ALLU);
+CS_Factor1_SPLAT_ALLX : SPLAT_ALLX {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ALLX);
+CS_Factor1_SPLAT_BLANKS : SPLAT_BLANKS {11+7<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_BLANKS);
+CS_Factor1_SPLAT_CANCL : SPLAT_CANCL {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_CANCL);
+CS_Factor1_SPLAT_CYMD : SPLAT_CYMD {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_CYMD);
+CS_Factor1_SPLAT_CMDY : SPLAT_CMDY {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_CMDY);
+CS_Factor1_SPLAT_CDMY : SPLAT_CDMY {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_CDMY);
+CS_Factor1_SPLAT_MDY : SPLAT_MDY {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_MDY);
+CS_Factor1_SPLAT_DMY : SPLAT_DMY {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_DMY);
+CS_Factor1_SPLAT_YMD : SPLAT_YMD {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_YMD);
+CS_Factor1_SPLAT_JUL : SPLAT_JUL {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_JUL);
+CS_Factor1_SPLAT_ISO : SPLAT_ISO {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ISO);
+CS_Factor1_SPLAT_USA : SPLAT_USA {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_USA);
+CS_Factor1_SPLAT_EUR : SPLAT_EUR {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_EUR);
+CS_Factor1_SPLAT_JIS : SPLAT_JIS {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_JIS);
+CS_Factor1_SPLAT_DATE : SPLAT_DATE {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_DATE);
+CS_Factor1_SPLAT_DAY : SPLAT_DAY {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_DAY);
+CS_Factor1_SPLAT_DETC : SPlAT_DETC {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPlAT_DETC);
+CS_Factor1_SPLAT_DETL : SPLAT_DETL {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_DETL);
+CS_Factor1_SPLAT_DTAARA : SPLAT_DTAARA {11+7<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_DTAARA);
+CS_Factor1_SPLAT_END : SPLAT_END {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_END);
+CS_Factor1_SPLAT_ENTRY : SPLAT_ENTRY {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ENTRY);
+CS_Factor1_SPLAT_EQUATE : SPLAT_EQUATE {11+7<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_EQUATE);
+CS_Factor1_SPLAT_EXTDFT : SPLAT_EXTDFT {11+7<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_EXTDFT);
+CS_Factor1_SPLAT_EXT : SPLAT_EXT {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_EXT);
+CS_Factor1_SPLAT_FILE : SPLAT_FILE {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_FILE);
+CS_Factor1_SPLAT_GETIN : SPLAT_GETIN {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_GETIN);
+CS_Factor1_SPLAT_HIVAL : SPLAT_HIVAL {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_HIVAL);
+CS_Factor1_SPLAT_INIT : SPLAT_INIT {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_INIT);
+CS_Factor1_SPLAT_INDICATOR : SPLAT_INDICATOR {11+10<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_INDICATOR);
+CS_Factor1_SPLAT_INZSR : SPLAT_INZSR {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_INZSR);
+CS_Factor1_SPLAT_IN : SPLAT_IN {11+3<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_IN);
+CS_Factor1_SPLAT_JOBRUN : SPLAT_JOBRUN {11+7<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_JOBRUN);
+CS_Factor1_SPLAT_JOB : SPLAT_JOB {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_JOB);
+CS_Factor1_SPLAT_LDA : SPLAT_LDA {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_LDA);
+CS_Factor1_SPLAT_LIKE : SPLAT_LIKE {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_LIKE);
+CS_Factor1_SPLAT_LONGJUL : SPLAT_LONGJUL {11+8<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_LONGJUL);
+CS_Factor1_SPLAT_LOVAL : SPLAT_LOVAL {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_LOVAL);
+CS_Factor1_SPLAT_MONTH : SPLAT_MONTH {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_MONTH);
+CS_Factor1_SPLAT_NOIND : SPLAT_NOIND {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_NOIND);
+CS_Factor1_SPLAT_NOKEY : SPLAT_NOKEY {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_NOKEY);
+CS_Factor1_SPLAT_NULL : SPLAT_NULL {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_NULL);
+CS_Factor1_SPLAT_OFL : SPLAT_OFL {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_OFL);
+CS_Factor1_SPLAT_ON : SPLAT_ON {11+3<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ON);
+CS_Factor1_SPLAT_OFF : SPLAT_OFF {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_OFF);
+CS_Factor1_SPLAT_PDA : SPLAT_PDA {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_PDA);
+CS_Factor1_SPLAT_PLACE : SPLAT_PLACE {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_PLACE);
+CS_Factor1_SPLAT_PSSR : SPLAT_PSSR {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_PSSR);
+CS_Factor1_SPLAT_ROUTINE : SPLAT_ROUTINE {11+8<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ROUTINE);
+CS_Factor1_SPLAT_START : SPLAT_START {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_START);
+CS_Factor1_SPLAT_SYS : SPLAT_SYS {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_SYS);
+CS_Factor1_SPLAT_TERM : SPLAT_TERM {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_TERM);
+CS_Factor1_SPLAT_TOTC : SPLAT_TOTC {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_TOTC);
+CS_Factor1_SPLAT_TOTL : SPLAT_TOTL {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_TOTL);
+CS_Factor1_SPLAT_USER : SPLAT_USER {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_USER);
+CS_Factor1_SPLAT_VAR : SPLAT_VAR {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_VAR);
+CS_Factor1_SPLAT_YEAR : SPLAT_YEAR {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_YEAR);
+CS_Factor1_SPLAT_ZEROS : SPLAT_ZEROS {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_ZEROS);
+CS_Factor1_SPLAT_HMS : SPLAT_HMS {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_HMS);
+CS_Factor1_SPLAT_INLR : SPLAT_INLR {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_INLR);
+CS_Factor1_SPLAT_INOF : SPLAT_INOF {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_INOF);
 //DurationCodes
-CS_Factor1_SPLAT_D : {11<= getCharPositionInLine() && getCharPositionInLine()+2<=24}? SPLAT_D -> type(SPLAT_D);
-CS_Factor1_SPLAT_DAYS : {11<= getCharPositionInLine() && getCharPositionInLine()+5<=24}? SPLAT_DAYS -> type(SPLAT_DAYS);
-CS_Factor1_SPLAT_H : {11<= getCharPositionInLine() && getCharPositionInLine()+2<=24}? SPLAT_H -> type(SPLAT_H);
-CS_Factor1_SPLAT_HOURS : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_HOURS -> type(SPLAT_HOURS);
-CS_Factor1_SPLAT_MINUTES : {11<= getCharPositionInLine() && getCharPositionInLine()+8<=24}? SPLAT_MINUTES -> type(SPLAT_MINUTES);
-CS_Factor1_SPLAT_MONTHS : {11<= getCharPositionInLine() && getCharPositionInLine()+7<=24}? SPLAT_MONTHS -> type(SPLAT_MONTHS);
-CS_Factor1_SPLAT_M : {11<= getCharPositionInLine() && getCharPositionInLine()+2<=24}? SPLAT_M -> type(SPLAT_M);
-CS_Factor1_SPLAT_MN : {11<= getCharPositionInLine() && getCharPositionInLine()+3<=24}? SPLAT_MN -> type(SPLAT_MN);
-CS_Factor1_SPLAT_MS : {11<= getCharPositionInLine() && getCharPositionInLine()+3<=24}? SPLAT_MS -> type(SPLAT_MS);
-CS_Factor1_SPLAT_MSECONDS : {11<= getCharPositionInLine() && getCharPositionInLine()+9<=24}? SPLAT_MSECONDS -> type(SPLAT_MSECONDS);
-CS_Factor1_SPLAT_SECONDS : {11<= getCharPositionInLine() && getCharPositionInLine()+8<=24}? SPLAT_SECONDS -> type(SPLAT_SECONDS);
-CS_Factor1_SPLAT_YEARS : {11<= getCharPositionInLine() && getCharPositionInLine()+6<=24}? SPLAT_YEARS -> type(SPLAT_YEARS);
-CS_Factor1_SPLAT_Y : {11<= getCharPositionInLine() && getCharPositionInLine()+2<=24}? SPLAT_Y -> type(SPLAT_Y);
+CS_Factor1_SPLAT_D : SPLAT_D {11+2<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_D);
+CS_Factor1_SPLAT_DAYS : SPLAT_DAYS {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_DAYS);
+CS_Factor1_SPLAT_H : SPLAT_H {11+2<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_H);
+CS_Factor1_SPLAT_HOURS : SPLAT_HOURS {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_HOURS);
+CS_Factor1_SPLAT_MINUTES : SPLAT_MINUTES {11+8<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_MINUTES);
+CS_Factor1_SPLAT_MONTHS : SPLAT_MONTHS {11+7<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_MONTHS);
+CS_Factor1_SPLAT_M : SPLAT_M {11+2<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_M);
+CS_Factor1_SPLAT_MN : SPLAT_MN {11+3<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_MN);
+CS_Factor1_SPLAT_MS : SPLAT_MS {11+3<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_MS);
+CS_Factor1_SPLAT_MSECONDS : SPLAT_MSECONDS {11+9<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_MSECONDS);
+CS_Factor1_SPLAT_SECONDS : SPLAT_SECONDS {11+8<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_SECONDS);
+CS_Factor1_SPLAT_YEARS : SPLAT_YEARS {11+6<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_YEARS);
+CS_Factor1_SPLAT_Y : SPLAT_Y {11+2<= getCharPositionInLine() && getCharPositionInLine()<=24}? -> type(SPLAT_Y);
 
 //Factor 2
-CS_Factor2_SPLAT_ALL : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_ALL -> type(SPLAT_ALL);
-CS_Factor2_SPLAT_NONE : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_NONE -> type(SPLAT_NONE);
-CS_Factor2_SPLAT_ILERPG : {35<= getCharPositionInLine() && getCharPositionInLine()+7<=48}? SPLAT_ILERPG -> type(SPLAT_ILERPG);
-CS_Factor2_SPLAT_CRTBNDRPG : {35<= getCharPositionInLine() && getCharPositionInLine()+10<=48}? SPLAT_CRTBNDRPG -> type(SPLAT_CRTBNDRPG);
-CS_Factor2_SPLAT_CRTRPGMOD : {35<= getCharPositionInLine() && getCharPositionInLine()+10<=48}? SPLAT_CRTRPGMOD -> type(SPLAT_CRTRPGMOD);
-CS_Factor2_SPLAT_VRM : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_VRM -> type(SPLAT_VRM);
-CS_Factor2_SPLAT_ALLG : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_ALLG -> type(SPLAT_ALLG);
-CS_Factor2_SPLAT_ALLU : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_ALLU -> type(SPLAT_ALLU);
-CS_Factor2_SPLAT_ALLX : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_ALLX -> type(SPLAT_ALLX);
-CS_Factor2_SPLAT_BLANKS : {35<= getCharPositionInLine() && getCharPositionInLine()+7<=48}? SPLAT_BLANKS -> type(SPLAT_BLANKS);
-CS_Factor2_SPLAT_CANCL : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_CANCL -> type(SPLAT_CANCL);
-CS_Factor2_SPLAT_CYMD : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_CYMD -> type(SPLAT_CYMD);
-CS_Factor2_SPLAT_CMDY : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_CMDY -> type(SPLAT_CMDY);
-CS_Factor2_SPLAT_CDMY : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_CDMY -> type(SPLAT_CDMY);
-CS_Factor2_SPLAT_MDY : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_MDY -> type(SPLAT_MDY);
-CS_Factor2_SPLAT_DMY : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_DMY -> type(SPLAT_DMY);
-CS_Factor2_SPLAT_YMD : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_YMD -> type(SPLAT_YMD);
-CS_Factor2_SPLAT_JUL : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_JUL -> type(SPLAT_JUL);
-CS_Factor2_SPLAT_ISO : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_ISO -> type(SPLAT_ISO);
-CS_Factor2_SPLAT_USA : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_USA -> type(SPLAT_USA);
-CS_Factor2_SPLAT_EUR : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_EUR -> type(SPLAT_EUR);
-CS_Factor2_SPLAT_JIS : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_JIS -> type(SPLAT_JIS);
-CS_Factor2_SPLAT_DATE : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_DATE -> type(SPLAT_DATE);
-CS_Factor2_SPLAT_DAY : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_DAY -> type(SPLAT_DAY);
-CS_Factor2_SPLAT_DETC : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPlAT_DETC -> type(SPlAT_DETC);
-CS_Factor2_SPLAT_DETL : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_DETL -> type(SPLAT_DETL);
-CS_Factor2_SPLAT_DTAARA : {35<= getCharPositionInLine() && getCharPositionInLine()+7<=48}? SPLAT_DTAARA -> type(SPLAT_DTAARA);
-CS_Factor2_SPLAT_END : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_END -> type(SPLAT_END);
-CS_Factor2_SPLAT_ENTRY : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_ENTRY -> type(SPLAT_ENTRY);
-CS_Factor2_SPLAT_EQUATE : {35<= getCharPositionInLine() && getCharPositionInLine()+7<=48}? SPLAT_EQUATE -> type(SPLAT_EQUATE);
-CS_Factor2_SPLAT_EXTDFT : {35<= getCharPositionInLine() && getCharPositionInLine()+7<=48}? SPLAT_EXTDFT -> type(SPLAT_EXTDFT);
-CS_Factor2_SPLAT_EXT : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_EXT -> type(SPLAT_EXT);
-CS_Factor2_SPLAT_FILE : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_FILE -> type(SPLAT_FILE);
-CS_Factor2_SPLAT_GETIN : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_GETIN -> type(SPLAT_GETIN);
-CS_Factor2_SPLAT_HIVAL : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_HIVAL -> type(SPLAT_HIVAL);
-CS_Factor2_SPLAT_INIT : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_INIT -> type(SPLAT_INIT);
-CS_Factor2_SPLAT_INDICATOR : {35<= getCharPositionInLine() && getCharPositionInLine()+10<=48}? SPLAT_INDICATOR -> type(SPLAT_INDICATOR);
-CS_Factor2_SPLAT_INZSR : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_INZSR -> type(SPLAT_INZSR);
-CS_Factor2_SPLAT_IN : {35<= getCharPositionInLine() && getCharPositionInLine()+3<=48}? SPLAT_IN -> type(SPLAT_IN);
-CS_Factor2_SPLAT_JOBRUN : {35<= getCharPositionInLine() && getCharPositionInLine()+7<=48}? SPLAT_JOBRUN -> type(SPLAT_JOBRUN);
-CS_Factor2_SPLAT_JOB : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_JOB -> type(SPLAT_JOB);
-CS_Factor2_SPLAT_LDA : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_LDA -> type(SPLAT_LDA);
-CS_Factor2_SPLAT_LIKE : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_LIKE -> type(SPLAT_LIKE);
-CS_Factor2_SPLAT_LONGJUL : {35<= getCharPositionInLine() && getCharPositionInLine()+8<=48}? SPLAT_LONGJUL -> type(SPLAT_LONGJUL);
-CS_Factor2_SPLAT_LOVAL : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_LOVAL -> type(SPLAT_LOVAL);
-CS_Factor2_SPLAT_MONTH : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_MONTH -> type(SPLAT_MONTH);
-CS_Factor2_SPLAT_NOIND : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_NOIND -> type(SPLAT_NOIND);
-CS_Factor2_SPLAT_NOKEY : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_NOKEY -> type(SPLAT_NOKEY);
-CS_Factor2_SPLAT_NULL : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_NULL -> type(SPLAT_NULL);
-CS_Factor2_SPLAT_OFL : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_OFL -> type(SPLAT_OFL);
-CS_Factor2_SPLAT_ON : {35<= getCharPositionInLine() && getCharPositionInLine()+3<=48}? SPLAT_ON -> type(SPLAT_ON);
-CS_Factor2_SPLAT_OFF : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_OFF -> type(SPLAT_OFF);
-CS_Factor2_SPLAT_PDA : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_PDA -> type(SPLAT_PDA);
-CS_Factor2_SPLAT_PLACE : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_PLACE -> type(SPLAT_PLACE);
-CS_Factor2_SPLAT_PSSR : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_PSSR -> type(SPLAT_PSSR);
-CS_Factor2_SPLAT_ROUTINE : {35<= getCharPositionInLine() && getCharPositionInLine()+8<=48}? SPLAT_ROUTINE -> type(SPLAT_ROUTINE);
-CS_Factor2_SPLAT_START : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_START -> type(SPLAT_START);
-CS_Factor2_SPLAT_SYS : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_SYS -> type(SPLAT_SYS);
-CS_Factor2_SPLAT_TERM : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_TERM -> type(SPLAT_TERM);
-CS_Factor2_SPLAT_TOTC : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_TOTC -> type(SPLAT_TOTC);
-CS_Factor2_SPLAT_TOTL : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_TOTL -> type(SPLAT_TOTL);
-CS_Factor2_SPLAT_USER : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_USER -> type(SPLAT_USER);
-CS_Factor2_SPLAT_VAR : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_VAR -> type(SPLAT_VAR);
-CS_Factor2_SPLAT_YEAR : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_YEAR -> type(SPLAT_YEAR);
-CS_Factor2_SPLAT_ZEROS : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_ZEROS -> type(SPLAT_ZEROS);
-CS_Factor2_SPLAT_HMS : {35<= getCharPositionInLine() && getCharPositionInLine()+4<=48}? SPLAT_HMS -> type(SPLAT_HMS);
-CS_Factor2_SPLAT_INLR : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_INLR -> type(SPLAT_INLR);
-CS_Factor2_SPLAT_INOF : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_INOF -> type(SPLAT_INOF);
+CS_Factor2_SPLAT_ALL : SPLAT_ALL {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ALL);
+CS_Factor2_SPLAT_NONE : SPLAT_NONE {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_NONE);
+CS_Factor2_SPLAT_ILERPG : SPLAT_ILERPG {35+7<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ILERPG);
+CS_Factor2_SPLAT_CRTBNDRPG : SPLAT_CRTBNDRPG {35+10<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_CRTBNDRPG);
+CS_Factor2_SPLAT_CRTRPGMOD : SPLAT_CRTRPGMOD {35+10<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_CRTRPGMOD);
+CS_Factor2_SPLAT_VRM : SPLAT_VRM {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_VRM);
+CS_Factor2_SPLAT_ALLG : SPLAT_ALLG {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ALLG);
+CS_Factor2_SPLAT_ALLU : SPLAT_ALLU {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ALLU);
+CS_Factor2_SPLAT_ALLX : SPLAT_ALLX {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ALLX);
+CS_Factor2_SPLAT_BLANKS : SPLAT_BLANKS {35+7<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_BLANKS);
+CS_Factor2_SPLAT_CANCL : SPLAT_CANCL {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_CANCL);
+CS_Factor2_SPLAT_CYMD : SPLAT_CYMD {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_CYMD);
+CS_Factor2_SPLAT_CMDY : SPLAT_CMDY {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_CMDY);
+CS_Factor2_SPLAT_CDMY : SPLAT_CDMY {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_CDMY);
+CS_Factor2_SPLAT_MDY : SPLAT_MDY {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_MDY);
+CS_Factor2_SPLAT_DMY : SPLAT_DMY {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_DMY);
+CS_Factor2_SPLAT_YMD : SPLAT_YMD {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_YMD);
+CS_Factor2_SPLAT_JUL : SPLAT_JUL {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_JUL);
+CS_Factor2_SPLAT_ISO : SPLAT_ISO {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ISO);
+CS_Factor2_SPLAT_USA : SPLAT_USA {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_USA);
+CS_Factor2_SPLAT_EUR : SPLAT_EUR {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_EUR);
+CS_Factor2_SPLAT_JIS : SPLAT_JIS {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_JIS);
+CS_Factor2_SPLAT_DATE : SPLAT_DATE {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_DATE);
+CS_Factor2_SPLAT_DAY : SPLAT_DAY {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_DAY);
+CS_Factor2_SPLAT_DETC : SPlAT_DETC {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPlAT_DETC);
+CS_Factor2_SPLAT_DETL : SPLAT_DETL {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_DETL);
+CS_Factor2_SPLAT_DTAARA : SPLAT_DTAARA {35+7<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_DTAARA);
+CS_Factor2_SPLAT_END : SPLAT_END {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_END);
+CS_Factor2_SPLAT_ENTRY : SPLAT_ENTRY {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ENTRY);
+CS_Factor2_SPLAT_EQUATE : SPLAT_EQUATE {35+7<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_EQUATE);
+CS_Factor2_SPLAT_EXTDFT : SPLAT_EXTDFT {35+7<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_EXTDFT);
+CS_Factor2_SPLAT_EXT : SPLAT_EXT {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_EXT);
+CS_Factor2_SPLAT_FILE : SPLAT_FILE {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_FILE);
+CS_Factor2_SPLAT_GETIN : SPLAT_GETIN {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_GETIN);
+CS_Factor2_SPLAT_HIVAL : SPLAT_HIVAL {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_HIVAL);
+CS_Factor2_SPLAT_INIT : SPLAT_INIT {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_INIT);
+CS_Factor2_SPLAT_INDICATOR : SPLAT_INDICATOR {35+10<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_INDICATOR);
+CS_Factor2_SPLAT_INZSR : SPLAT_INZSR {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_INZSR);
+CS_Factor2_SPLAT_IN : SPLAT_IN {35+3<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_IN);
+CS_Factor2_SPLAT_JOBRUN : SPLAT_JOBRUN {35+7<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_JOBRUN);
+CS_Factor2_SPLAT_JOB : SPLAT_JOB {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_JOB);
+CS_Factor2_SPLAT_LDA : SPLAT_LDA {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_LDA);
+CS_Factor2_SPLAT_LIKE : SPLAT_LIKE {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_LIKE);
+CS_Factor2_SPLAT_LONGJUL : SPLAT_LONGJUL {35+8<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_LONGJUL);
+CS_Factor2_SPLAT_LOVAL : SPLAT_LOVAL {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_LOVAL);
+CS_Factor2_SPLAT_MONTH : SPLAT_MONTH {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_MONTH);
+CS_Factor2_SPLAT_NOIND : SPLAT_NOIND {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_NOIND);
+CS_Factor2_SPLAT_NOKEY : SPLAT_NOKEY {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_NOKEY);
+CS_Factor2_SPLAT_NULL : SPLAT_NULL {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_NULL);
+CS_Factor2_SPLAT_OFL : SPLAT_OFL {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_OFL);
+CS_Factor2_SPLAT_ON : SPLAT_ON {35+3<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ON);
+CS_Factor2_SPLAT_OFF : SPLAT_OFF {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_OFF);
+CS_Factor2_SPLAT_PDA : SPLAT_PDA {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_PDA);
+CS_Factor2_SPLAT_PLACE : SPLAT_PLACE {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_PLACE);
+CS_Factor2_SPLAT_PSSR : SPLAT_PSSR {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_PSSR);
+CS_Factor2_SPLAT_ROUTINE : SPLAT_ROUTINE {35+8<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ROUTINE);
+CS_Factor2_SPLAT_START : SPLAT_START {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_START);
+CS_Factor2_SPLAT_SYS : SPLAT_SYS {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_SYS);
+CS_Factor2_SPLAT_TERM : SPLAT_TERM {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_TERM);
+CS_Factor2_SPLAT_TOTC : SPLAT_TOTC {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_TOTC);
+CS_Factor2_SPLAT_TOTL : SPLAT_TOTL {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_TOTL);
+CS_Factor2_SPLAT_USER : SPLAT_USER {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_USER);
+CS_Factor2_SPLAT_VAR : SPLAT_VAR {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_VAR);
+CS_Factor2_SPLAT_YEAR : SPLAT_YEAR {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_YEAR);
+CS_Factor2_SPLAT_ZEROS : SPLAT_ZEROS {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_ZEROS);
+CS_Factor2_SPLAT_HMS : SPLAT_HMS {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_HMS);
+CS_Factor2_SPLAT_INLR : SPLAT_INLR {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_INLR);
+CS_Factor2_SPLAT_INOF : SPLAT_INOF {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_INOF);
 //Duration
-CS_Factor2_SPLAT_D : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_D -> type(SPLAT_D);
-CS_Factor2_SPLAT_DAYS : {35<= getCharPositionInLine() && getCharPositionInLine()+5<=48}? SPLAT_DAYS -> type(SPLAT_DAYS);
-CS_Factor2_SPLAT_H : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_H -> type(SPLAT_H);
-CS_Factor2_SPLAT_HOURS : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_HOURS -> type(SPLAT_HOURS);
-CS_Factor2_SPLAT_MINUTES : {35<= getCharPositionInLine() && getCharPositionInLine()+8<=48}? SPLAT_MINUTES -> type(SPLAT_MINUTES);
-CS_Factor2_SPLAT_MONTHS : {35<= getCharPositionInLine() && getCharPositionInLine()+7<=48}? SPLAT_MONTHS -> type(SPLAT_MONTHS);
-CS_Factor2_SPLAT_M : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_M -> type(SPLAT_M);
-CS_Factor2_SPLAT_MN : {35<= getCharPositionInLine() && getCharPositionInLine()+3<=48}? SPLAT_MN -> type(SPLAT_MN);
-CS_Factor2_SPLAT_MS : {35<= getCharPositionInLine() && getCharPositionInLine()+3<=48}? SPLAT_MS -> type(SPLAT_MS);
-CS_Factor2_SPLAT_MSECONDS : {35<= getCharPositionInLine() && getCharPositionInLine()+9<=48}? SPLAT_MSECONDS -> type(SPLAT_MSECONDS);
-CS_Factor2_SPLAT_SECONDS : {35<= getCharPositionInLine() && getCharPositionInLine()+8<=48}? SPLAT_SECONDS -> type(SPLAT_SECONDS);
-CS_Factor2_SPLAT_YEARS : {35<= getCharPositionInLine() && getCharPositionInLine()+6<=48}? SPLAT_YEARS -> type(SPLAT_YEARS);
-CS_Factor2_SPLAT_Y : {35<= getCharPositionInLine() && getCharPositionInLine()+2<=48}? SPLAT_Y -> type(SPLAT_Y);
+CS_Factor2_SPLAT_D : SPLAT_D {35+2<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_D);
+CS_Factor2_SPLAT_DAYS : SPLAT_DAYS {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_DAYS);
+CS_Factor2_SPLAT_H : SPLAT_H {35+2<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_H);
+CS_Factor2_SPLAT_HOURS : SPLAT_HOURS {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_HOURS);
+CS_Factor2_SPLAT_MINUTES : SPLAT_MINUTES {35+8<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_MINUTES);
+CS_Factor2_SPLAT_MONTHS : SPLAT_MONTHS {35+7<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_MONTHS);
+CS_Factor2_SPLAT_M : SPLAT_M {35+2<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_M);
+CS_Factor2_SPLAT_MN : SPLAT_MN {35+3<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_MN);
+CS_Factor2_SPLAT_MS : SPLAT_MS {35+3<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_MS);
+CS_Factor2_SPLAT_MSECONDS : SPLAT_MSECONDS {35+9<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_MSECONDS);
+CS_Factor2_SPLAT_SECONDS : SPLAT_SECONDS {35+8<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_SECONDS);
+CS_Factor2_SPLAT_YEARS : SPLAT_YEARS {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_YEARS);
+CS_Factor2_SPLAT_Y : SPLAT_Y {35+2<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_Y);
 
 //Result 
 
 //Duration
-CS_Result_SPLAT_D : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_D -> type(SPLAT_D);
-CS_Result_SPLAT_DAYS : {49<= getCharPositionInLine() && getCharPositionInLine()+5<=62}? SPLAT_DAYS -> type(SPLAT_DAYS);
-CS_Result_SPLAT_H : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_H -> type(SPLAT_H);
-CS_Result_SPLAT_HOURS : {49<= getCharPositionInLine() && getCharPositionInLine()+6<=62}? SPLAT_HOURS -> type(SPLAT_HOURS);
-CS_Result_SPLAT_MINUTES : {49<= getCharPositionInLine() && getCharPositionInLine()+8<=62}? SPLAT_MINUTES -> type(SPLAT_MINUTES);
-CS_Result_SPLAT_MONTHS : {49<= getCharPositionInLine() && getCharPositionInLine()+7<=62}? SPLAT_MONTHS -> type(SPLAT_MONTHS);
-CS_Result_SPLAT_M : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_M -> type(SPLAT_M);
-CS_Result_SPLAT_MN : {49<= getCharPositionInLine() && getCharPositionInLine()+3<=62}? SPLAT_MN -> type(SPLAT_MN);
-CS_Result_SPLAT_MS : {49<= getCharPositionInLine() && getCharPositionInLine()+3<=62}? SPLAT_MS -> type(SPLAT_MS);
-CS_Result_SPLAT_MSECONDS : {49<= getCharPositionInLine() && getCharPositionInLine()+9<=62}? SPLAT_MSECONDS -> type(SPLAT_MSECONDS);
-CS_Result_SPLAT_SECONDS : {49<= getCharPositionInLine() && getCharPositionInLine()+8<=62}? SPLAT_SECONDS -> type(SPLAT_SECONDS);
-CS_Result_SPLAT_YEARS : {49<= getCharPositionInLine() && getCharPositionInLine()+6<=62}? SPLAT_YEARS -> type(SPLAT_YEARS);
-CS_Result_SPLAT_Y : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_Y -> type(SPLAT_Y);
-CS_Result_SPLAT_S : {49<= getCharPositionInLine() && getCharPositionInLine()+2<=62}? SPLAT_S -> type(SPLAT_S);
+CS_Result_SPLAT_D : SPLAT_D {49+2<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_D);
+CS_Result_SPLAT_DAYS : SPLAT_DAYS {49+5<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_DAYS);
+CS_Result_SPLAT_H : SPLAT_H {49+2<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_H);
+CS_Result_SPLAT_HOURS : SPLAT_HOURS {49+6<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_HOURS);
+CS_Result_SPLAT_MINUTES : SPLAT_MINUTES {49+8<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_MINUTES);
+CS_Result_SPLAT_MONTHS : SPLAT_MONTHS {49+7<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_MONTHS);
+CS_Result_SPLAT_M : SPLAT_M {49+2<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_M);
+CS_Result_SPLAT_MN : SPLAT_MN {49+3<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_MN);
+CS_Result_SPLAT_MS : SPLAT_MS {49+3<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_MS);
+CS_Result_SPLAT_MSECONDS : SPLAT_MSECONDS {49+9<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_MSECONDS);
+CS_Result_SPLAT_SECONDS : SPLAT_SECONDS {49+8<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_SECONDS);
+CS_Result_SPLAT_YEARS : SPLAT_YEARS {49+6<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_YEARS);
+CS_Result_SPLAT_Y : SPLAT_Y {49+2<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_Y);
+CS_Result_SPLAT_S : SPLAT_S {49+2<= getCharPositionInLine() && getCharPositionInLine()<=62}? -> type(SPLAT_S);
 
-CS_BlankFactor: {(getCharPositionInLine()==11)
-			|| (getCharPositionInLine()==35)
-			|| (getCharPositionInLine()==49)}? 
-			 		'              ';
+CS_BlankFactor: '              '
+		{(getCharPositionInLine()==25)
+			|| (getCharPositionInLine()==49)
+			|| (getCharPositionInLine()==63)}?
+;
 //Factor to end of line is blank
 CS_BlankFactor_EOL: '              ' {getCharPositionInLine()==25}? [ ]* NEWLINE -> type(EOL),popMode;
-CS_FactorWs: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-}?  
-		' ')+ -> skip;
-CS_FactorWs2: ({(getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
-}?  
-		' ')+ -> skip;
+CS_FactorWs: (' '
+	{(getCharPositionInLine()>=12 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=36 && getCharPositionInLine()<=49)
+	}?  
+		)+ -> skip;
+CS_FactorWs2: (' '
+	{(getCharPositionInLine()>=50 && getCharPositionInLine()<=63)
+	}?  
+		)+ -> skip;
 		
 /*
- * This rather awkward token, matches a literal. including whitespace literals
+ * This rather awkward token matches a literal. including whitespace literals
  */
- CS_FactorContentHexLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
-}?
-		[xX]['] -> type(HexLiteralStart),pushMode(InFactorStringMode);
+CS_FactorContentHexLiteral: [xX][']
+	{(getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
+			|| (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
+	}?
+		 -> type(HexLiteralStart),pushMode(InFactorStringMode);
 		
- CS_FactorContentDateLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
-}?
-		[dD]['] -> type(DateLiteralStart),pushMode(InFactorStringMode);
+CS_FactorContentDateLiteral: [dD][']
+	{(getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
+			|| (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
+	}?
+		 -> type(DateLiteralStart),pushMode(InFactorStringMode);
 		
- CS_FactorContentTimeLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
-}?
-		[tT]['] -> type(TimeLiteralStart),pushMode(InFactorStringMode);
+CS_FactorContentTimeLiteral: [tT][']
+	{(getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
+			|| (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
+	}?
+		-> type(TimeLiteralStart),pushMode(InFactorStringMode);
 		
- CS_FactorContentGraphicLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
-}?
-		[gG]['] -> type(GraphicLiteralStart),pushMode(InFactorStringMode);
+CS_FactorContentGraphicLiteral: [gG][']
+	{(getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
+			|| (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
+	}?
+		-> type(GraphicLiteralStart),pushMode(InFactorStringMode);
 		
- CS_FactorContentUCS2Literal: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=23)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=47)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=61)
-}?
-		[uU]['] -> type(UCS2LiteralStart),pushMode(InFactorStringMode);
+CS_FactorContentUCS2Literal: [uU]['] 
+	{(getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
+			|| (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
+	}?
+		-> type(UCS2LiteralStart),pushMode(InFactorStringMode);
 		
- CS_FactorContentStringLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
-}?
-		['] -> type(StringLiteralStart),pushMode(InFactorStringMode);
-// 		
-//CS_FactorContentLiteral: {(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
-//			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-//			|| (getCharPositionInLine()>=49 && getCharPositionInLine()<=62)
-//}?
-//		['] -> type(UCS2LiteralStart),pushMode(InFactorStringMode);
-		
-CS_FactorContent: ({(getCharPositionInLine()>=11 && getCharPositionInLine()<=24)
-			|| (getCharPositionInLine()>=35 && getCharPositionInLine()<=48)
-}?
-		~[\r\n'\'' :])+;
-CS_ResultContent: ({(getCharPositionInLine()>=49 && getCharPositionInLine()<=62)}?
-		~[\r\n'\'' :])+ -> type(CS_FactorContent);
-CS_FactorColon: ({(getCharPositionInLine()>11 && getCharPositionInLine()<24)
-			|| (getCharPositionInLine()>35 && getCharPositionInLine()<48)
-			|| (getCharPositionInLine()>49 && getCharPositionInLine()<62)
-}?
-		[:]) -> type(COLON);//pushMode(FIXED_CalcSpec_2PartFactor),
-		/* 
-CS_OperationAndExtendedFactor2: {getCharPositionInLine()==25}? 
-	(OP_EVAL '      ' 
-		| OP_IF '        '  
-		| OP_CALLP'     '
-		| OP_CALLP[(][eE][)]'  '
-		| OP_DOW'       '
-		| OP_ELSEIF'    '
-		| OP_ON_ERROR'  '
-	) -> pushMode(FREE);
-	*/
+CS_FactorContentStringLiteral: ['] 
+ 	{(getCharPositionInLine()>=12 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=36 && getCharPositionInLine()<=49)
+			|| (getCharPositionInLine()>=50 && getCharPositionInLine()<=63)
+	}?
+		-> type(StringLiteralStart),pushMode(InFactorStringMode);
+				
+CS_FactorContent: (~[\r\n'\'' :]
+	{(getCharPositionInLine()>=12 && getCharPositionInLine()<=25)
+			|| (getCharPositionInLine()>=36 && getCharPositionInLine()<=49)
+	}?
+		)+;
+CS_ResultContent: (~[\r\n'\'' :]
+	{(getCharPositionInLine()>=50 && getCharPositionInLine()<=63)}?
+		)+ -> type(CS_FactorContent);
+CS_FactorColon: ([:]
+	{(getCharPositionInLine()>12 && getCharPositionInLine()<25)
+			|| (getCharPositionInLine()>36 && getCharPositionInLine()<49)
+			|| (getCharPositionInLine()>50 && getCharPositionInLine()<63)
+	}?
+		) -> type(COLON);//pushMode(FIXED_CalcSpec_2PartFactor),
 CS_OperationAndExtender_Blank:  
-   {getCharPositionInLine()==25}?'          ';
+   '          '{getCharPositionInLine()==35}?;
 CS_OperationAndExtender_WS:
-	({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[ ])+ -> skip;	
-CS_Operation_ACQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<33}? OP_ACQ -> type(OP_ACQ);
-CS_Operation_ADD: {getCharPositionInLine()>=25 && getCharPositionInLine()<33}? OP_ADD -> type(OP_ADD);
-CS_Operation_ADDDUR: {getCharPositionInLine()>=25 && getCharPositionInLine()<30}? OP_ADDDUR -> type(OP_ADDDUR);
-CS_Operation_ALLOC: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ALLOC -> type(OP_ALLOC);
-CS_Operation_ANDEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ANDEQ -> type(OP_ANDEQ);
-CS_Operation_ANDNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ANDNE -> type(OP_ANDNE);
-CS_Operation_ANDLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ANDLE -> type(OP_ANDLE);
-CS_Operation_ANDLT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ANDLT -> type(OP_ANDLT);
-CS_Operation_ANDGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ANDGE -> type(OP_ANDGE);
-CS_Operation_ANDGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ANDGT -> type(OP_ANDGT);
-CS_Operation_ANDxx: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ANDxx -> type(OP_ANDxx);
-CS_Operation_BEGSR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_BEGSR -> type(OP_BEGSR);
-CS_Operation_BITOFF: {getCharPositionInLine()>=25 && getCharPositionInLine()<30}? OP_BITOFF -> type(OP_BITOFF);
-CS_Operation_BITON: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_BITON -> type(OP_BITON);
-CS_Operation_CABxx: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABxx-> type(OP_CABxx);
-CS_Operation_CABEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABEQ-> type(OP_CABEQ);
-CS_Operation_CABNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABNE-> type(OP_CABNE);
-CS_Operation_CABLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABLE-> type(OP_CABLE);
-CS_Operation_CABLT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABLT-> type(OP_CABLT);
-CS_Operation_CABGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABGE-> type(OP_CABGE);
-CS_Operation_CABGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CABGT-> type(OP_CABGT);
-CS_Operation_CALL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALL -> type(OP_CALL);
-CS_Operation_CALLB: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALLB -> type(OP_CALLB);
-CS_Operation_CALLP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CALLP -> type(OP_CALLP),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_CASEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASEQ-> type(OP_CASEQ);
-CS_Operation_CASNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASNE-> type(OP_CASNE);
-CS_Operation_CASLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASLE-> type(OP_CASLE);
-CS_Operation_CASLT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASLT-> type(OP_CASLT);
-CS_Operation_CASGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASGE-> type(OP_CASGE);
-CS_Operation_CASGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CASGT-> type(OP_CASGT);
-CS_Operation_CAS: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CAS-> type(OP_CAS);
-CS_Operation_CAT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CAT-> type(OP_CAT);
-CS_Operation_CHAIN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CHAIN-> type(OP_CHAIN);
-CS_Operation_CHECK: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CHECK-> type(OP_CHECK);
-CS_Operation_CHECKR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CHECKR-> type(OP_CHECKR);
-CS_Operation_CLEAR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CLEAR-> type(OP_CLEAR);
-CS_Operation_CLOSE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_CLOSE-> type(OP_CLOSE);
-CS_Operation_COMMIT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_COMMIT-> type(OP_COMMIT);
-CS_Operation_COMP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_COMP-> type(OP_COMP);
-CS_Operation_DEALLOC: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DEALLOC-> type(OP_DEALLOC);
-CS_Operation_DEFINE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DEFINE-> type(OP_DEFINE);
-CS_Operation_DELETE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DELETE-> type(OP_DELETE);
-CS_Operation_DIV: {getCharPositionInLine()>=25 && getCharPositionInLine()<33}? OP_DIV-> type(OP_DIV);
-CS_Operation_DO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DO-> type(OP_DO);
-CS_Operation_DOU: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOU-> type(OP_DOU),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_DOUEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOUEQ-> type(OP_DOUEQ);
-CS_Operation_DOUNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOUNE-> type(OP_DOUNE);
-CS_Operation_DOULE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOULE-> type(OP_DOULE);
-CS_Operation_DOULT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOULT-> type(OP_DOULT);
-CS_Operation_DOUGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOUGE-> type(OP_DOUGE);
-CS_Operation_DOUGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOUGT-> type(OP_DOUGT);
-CS_Operation_DOW: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOW-> type(OP_DOW),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_DOWEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWEQ-> type(OP_DOWEQ);
-CS_Operation_DOWNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWNE-> type(OP_DOWNE);
-CS_Operation_DOWLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWLE-> type(OP_DOWLE);
-CS_Operation_DOWLT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWLT-> type(OP_DOWLT);
-CS_Operation_DOWGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWGE-> type(OP_DOWGE);
-CS_Operation_DOWGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DOWGT-> type(OP_DOWGT);
-CS_Operation_DSPLY: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DSPLY-> type(OP_DSPLY);
-CS_Operation_DUMP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_DUMP-> type(OP_DUMP);
-CS_Operation_ELSE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ELSE-> type(OP_ELSE);
-CS_Operation_ELSEIF: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ELSEIF-> type(OP_ELSEIF),pushMode(FREE);
-CS_Operation_END: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_END-> type(OP_END);
-CS_Operation_ENDCS: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDCS-> type(OP_ENDCS);
-CS_Operation_ENDDO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDDO-> type(OP_ENDDO);
-CS_Operation_ENDFOR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDFOR-> type(OP_ENDFOR);
-CS_Operation_ENDIF: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDIF-> type(OP_ENDIF);
-CS_Operation_ENDMON: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDMON-> type(OP_ENDMON);
-CS_Operation_ENDSL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDSL-> type(OP_ENDSL);
-CS_Operation_ENDSR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ENDSR-> type(OP_ENDSR);
-CS_Operation_EVAL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EVAL-> type(OP_EVAL),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_EVALR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EVALR-> type(OP_EVALR),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_EVAL_CORR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EVAL_CORR-> type(OP_EVAL_CORR),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_EXCEPT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EXCEPT-> type(OP_EXCEPT);
-CS_Operation_EXFMT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EXFMT-> type(OP_EXFMT);
-CS_Operation_EXSR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EXSR-> type(OP_EXSR);
-CS_Operation_EXTRCT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_EXTRCT-> type(OP_EXTRCT);
-CS_Operation_FEOD: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_FEOD-> type(OP_FEOD);
-CS_Operation_FOR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_FOR-> type(OP_FOR),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_FORCE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_FORCE-> type(OP_FORCE);
-CS_Operation_GOTO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_GOTO-> type(OP_GOTO);
-CS_Operation_IF: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IF-> type(OP_IF),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_IFEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IFEQ-> type(OP_IFEQ);
-CS_Operation_IFNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IFNE-> type(OP_IFNE);
-CS_Operation_IFLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IFLE-> type(OP_IFLE);
-CS_Operation_IFLT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IFLT-> type(OP_IFLT);
-CS_Operation_IFGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IFGE-> type(OP_IFGE);
-CS_Operation_IFGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IFGT-> type(OP_IFGT);
-CS_Operation_IN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_IN-> type(OP_IN);
-CS_Operation_ITER: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ITER-> type(OP_ITER);
-CS_Operation_KFLD: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_KFLD-> type(OP_KFLD);
-CS_Operation_KLIST: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_KLIST-> type(OP_KLIST);
-CS_Operation_LEAVE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_LEAVE-> type(OP_LEAVE);
-CS_Operation_LEAVESR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_LEAVESR-> type(OP_LEAVESR);
-CS_Operation_LOOKUP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_LOOKUP-> type(OP_LOOKUP);
-CS_Operation_MHHZO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MHHZO-> type(OP_MHHZO);
-CS_Operation_MHLZO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MHLZO-> type(OP_MHLZO);
-CS_Operation_MLHZO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MLHZO-> type(OP_MLHZO);
-CS_Operation_MLLZO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MLLZO-> type(OP_MLLZO);
-CS_Operation_MONITOR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MONITOR-> type(OP_MONITOR);
-CS_Operation_MOVE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MOVE-> type(OP_MOVE);
-CS_Operation_MOVEA: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MOVEA-> type(OP_MOVEA);
-CS_Operation_MOVEL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MOVEL-> type(OP_MOVEL);
-CS_Operation_MULT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MULT-> type(OP_MULT);
-CS_Operation_MVR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_MVR-> type(OP_MVR);
-CS_Operation_NEXT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_NEXT-> type(OP_NEXT);
-CS_Operation_OCCUR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_OCCUR-> type(OP_OCCUR);
-CS_Operation_ON_ERROR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ON_ERROR-> type(OP_ON_ERROR),pushMode(FREE);
-CS_Operation_OPEN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_OPEN-> type(OP_OPEN);
-CS_Operation_OREQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_OREQ-> type(OP_OREQ);
-CS_Operation_ORNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ORNE-> type(OP_ORNE);
-CS_Operation_ORLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ORLE-> type(OP_ORLE);
-CS_Operation_ORLT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ORLT-> type(OP_ORLT);
-CS_Operation_ORGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ORGE-> type(OP_ORGE);
-CS_Operation_ORGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ORGT-> type(OP_ORGT);
-CS_Operation_OTHER: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_OTHER-> type(OP_OTHER);
-CS_Operation_OUT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_OUT-> type(OP_OUT);
-CS_Operation_PARM: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_PARM-> type(OP_PARM);
-CS_Operation_PLIST: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_PLIST-> type(OP_PLIST);
-CS_Operation_POST: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_POST-> type(OP_POST);
-CS_Operation_READ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_READ-> type(OP_READ);
-CS_Operation_READC: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_READC-> type(OP_READC);
-CS_Operation_READE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_READE-> type(OP_READE);
-CS_Operation_READP: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_READP-> type(OP_READP);
-CS_Operation_READPE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_READPE-> type(OP_READPE);
-CS_Operation_REALLOC: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_REALLOC-> type(OP_REALLOC);
-CS_Operation_REL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_REL-> type(OP_REL);
-CS_Operation_RESET: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_RESET-> type(OP_RESET);
-CS_Operation_RETURN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_RETURN-> type(OP_RETURN),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_ROLBK: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_ROLBK-> type(OP_ROLBK);
-CS_Operation_SCAN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SCAN-> type(OP_SCAN);
-CS_Operation_SELECT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SELECT-> type(OP_SELECT);
-CS_Operation_SETGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SETGT-> type(OP_SETGT);
-CS_Operation_SETLL: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SETLL-> type(OP_SETLL);
-CS_Operation_SETOFF: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SETOFF-> type(OP_SETOFF);
-CS_Operation_SETON: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SETON-> type(OP_SETON);
-CS_Operation_SORTA: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SORTA-> type(OP_SORTA),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_SHTDN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SHTDN-> type(OP_SHTDN);
-CS_Operation_SQRT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SQRT-> type(OP_SQRT);
-CS_Operation_SUB: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SUB-> type(OP_SUB);
-CS_Operation_SUBDUR: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SUBDUR-> type(OP_SUBDUR);
-CS_Operation_SUBST: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_SUBST-> type(OP_SUBST);
-CS_Operation_TAG: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_TAG-> type(OP_TAG);
-CS_Operation_TEST: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_TEST-> type(OP_TEST);
-CS_Operation_TESTB: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_TESTB-> type(OP_TESTB);
-CS_Operation_TESTN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_TESTN-> type(OP_TESTN);
-CS_Operation_TESTZ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_TESTZ-> type(OP_TESTZ);
-CS_Operation_TIME: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_TIME-> type(OP_TIME);
-CS_Operation_UNLOCK: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_UNLOCK-> type(OP_UNLOCK);
-CS_Operation_UPDATE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_UPDATE-> type(OP_UPDATE);
-CS_Operation_WHEN: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_WHEN-> type(OP_WHEN),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_WHENEQ: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_WHENEQ-> type(OP_WHENEQ);
-CS_Operation_WHENNE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_WHENNE-> type(OP_WHENNE);
-CS_Operation_WHENLE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_WHENLE-> type(OP_WHENLE);
-CS_Operation_WHENLT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_WHENLT-> type(OP_WHENLT);
-CS_Operation_WHENGE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_WHENGE-> type(OP_WHENGE);
-CS_Operation_WHENGT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_WHENGT-> type(OP_WHENGT);
-CS_Operation_WRITE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_WRITE-> type(OP_WRITE);
-CS_Operation_XFOOT: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_XFOOT-> type(OP_XFOOT);
-CS_Operation_XLATE: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_XLATE-> type(OP_XLATE);
-CS_Operation_XML_INTO: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_XML_INTO-> type(OP_XML_INTO),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_XML_SAX: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_XML_SAX-> type(OP_XML_SAX),pushMode(FREE),pushMode(FixedOpExtender);
-CS_Operation_Z_ADD: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_Z_ADD-> type(OP_Z_ADD);
-CS_Operation_Z_SUB: {getCharPositionInLine()>=25 && getCharPositionInLine()<31}? OP_Z_SUB-> type(OP_Z_SUB);
+	([ ]{getCharPositionInLine()>=26 && getCharPositionInLine()<36}?)+ -> skip;	
+CS_Operation_ACQ: OP_ACQ {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_ACQ);
+CS_Operation_ADD: OP_ADD {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_ADD);
+CS_Operation_ADDDUR: OP_ADDDUR {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_ADDDUR);
+CS_Operation_ALLOC: OP_ALLOC {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ALLOC);
+CS_Operation_ANDEQ: OP_ANDEQ {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ANDEQ);
+CS_Operation_ANDNE: OP_ANDNE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ANDNE);
+CS_Operation_ANDLE: OP_ANDLE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ANDLE);
+CS_Operation_ANDLT: OP_ANDLT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ANDLT);
+CS_Operation_ANDGE: OP_ANDGE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ANDGE);
+CS_Operation_ANDGT: OP_ANDGT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ANDGT);
+CS_Operation_ANDxx: OP_ANDxx {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ANDxx);
+CS_Operation_BEGSR: OP_BEGSR {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_BEGSR);
+CS_Operation_BITOFF: OP_BITOFF {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_BITOFF);
+CS_Operation_BITON: OP_BITON {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_BITON);
+CS_Operation_CABxx: OP_CABxx {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CABxx);
+CS_Operation_CABEQ: OP_CABEQ {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CABEQ);
+CS_Operation_CABNE: OP_CABNE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CABNE);
+CS_Operation_CABLE: OP_CABLE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CABLE);
+CS_Operation_CABLT: OP_CABLT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CABLT);
+CS_Operation_CABGE: OP_CABGE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CABGE);
+CS_Operation_CABGT: OP_CABGT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CABGT);
+CS_Operation_CALL: OP_CALL {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_CALL);
+CS_Operation_CALLB: OP_CALLB {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CALLB);
+CS_Operation_CALLP: OP_CALLP {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CALLP),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_CASEQ: OP_CASEQ {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CASEQ);
+CS_Operation_CASNE: OP_CASNE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CASNE);
+CS_Operation_CASLE: OP_CASLE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CASLE);
+CS_Operation_CASLT: OP_CASLT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CASLT);
+CS_Operation_CASGE: OP_CASGE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CASGE);
+CS_Operation_CASGT: OP_CASGT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CASGT);
+CS_Operation_CAS: OP_CAS {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_CAS);
+CS_Operation_CAT: OP_CAT {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_CAT);
+CS_Operation_CHAIN: OP_CHAIN {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CHAIN);
+CS_Operation_CHECK: OP_CHECK {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CHECK);
+CS_Operation_CHECKR: OP_CHECKR {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_CHECKR);
+CS_Operation_CLEAR: OP_CLEAR {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CLEAR);
+CS_Operation_CLOSE: OP_CLOSE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_CLOSE);
+CS_Operation_COMMIT: OP_COMMIT {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_COMMIT);
+CS_Operation_COMP: OP_COMP {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_COMP);
+CS_Operation_DEALLOC: OP_DEALLOC {getCharPositionInLine()>=32 && getCharPositionInLine()<36}? -> type(OP_DEALLOC);
+CS_Operation_DEFINE: OP_DEFINE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DEFINE);
+CS_Operation_DELETE: OP_DELETE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DELETE);
+CS_Operation_DIV: OP_DIV {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_DIV);
+CS_Operation_DO: OP_DO {getCharPositionInLine()>=27 && getCharPositionInLine()<36}? -> type(OP_DO);
+CS_Operation_DOU: OP_DOU {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_DOU),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_DOUEQ: OP_DOUEQ {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOUEQ);
+CS_Operation_DOUNE: OP_DOUNE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOUNE);
+CS_Operation_DOULE: OP_DOULE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOULE);
+CS_Operation_DOULT: OP_DOULT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOULT);
+CS_Operation_DOUGE: OP_DOUGE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOUGE);
+CS_Operation_DOUGT: OP_DOUGT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOUGT);
+CS_Operation_DOW: OP_DOW {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_DOW),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_DOWEQ: OP_DOWEQ {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOWEQ);
+CS_Operation_DOWNE: OP_DOWNE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOWNE);
+CS_Operation_DOWLE: OP_DOWLE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOWLE);
+CS_Operation_DOWLT: OP_DOWLT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOWLT);
+CS_Operation_DOWGE: OP_DOWGE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOWGE);
+CS_Operation_DOWGT: OP_DOWGT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DOWGT);
+CS_Operation_DSPLY: OP_DSPLY {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_DSPLY);
+CS_Operation_DUMP: OP_DUMP {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_DUMP);
+CS_Operation_ELSE: OP_ELSE {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_ELSE);
+CS_Operation_ELSEIF: OP_ELSEIF {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_ELSEIF),pushMode(FREE);
+CS_Operation_END: OP_END {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_END);
+CS_Operation_ENDCS: OP_ENDCS {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ENDCS);
+CS_Operation_ENDDO: OP_ENDDO {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ENDDO);
+CS_Operation_ENDFOR: OP_ENDFOR {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_ENDFOR);
+CS_Operation_ENDIF: OP_ENDIF {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ENDIF);
+CS_Operation_ENDMON: OP_ENDMON {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_ENDMON);
+CS_Operation_ENDSL: OP_ENDSL {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ENDSL);
+CS_Operation_ENDSR: OP_ENDSR {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ENDSR);
+CS_Operation_EVAL: OP_EVAL {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_EVAL),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_EVALR: OP_EVALR {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_EVALR),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_EVAL_CORR: OP_EVAL_CORR {getCharPositionInLine()>=34 && getCharPositionInLine()<36}? -> type(OP_EVAL_CORR),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_EXCEPT: OP_EXCEPT {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_EXCEPT);
+CS_Operation_EXFMT: OP_EXFMT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_EXFMT);
+CS_Operation_EXSR: OP_EXSR {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_EXSR);
+CS_Operation_EXTRCT: OP_EXTRCT {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_EXTRCT);
+CS_Operation_FEOD: OP_FEOD {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_FEOD);
+CS_Operation_FOR: OP_FOR {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_FOR),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_FORCE: OP_FORCE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_FORCE);
+CS_Operation_GOTO: OP_GOTO {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_GOTO);
+CS_Operation_IF: OP_IF {getCharPositionInLine()>=27 && getCharPositionInLine()<36}? -> type(OP_IF),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_IFEQ: OP_IFEQ {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_IFEQ);
+CS_Operation_IFNE: OP_IFNE {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_IFNE);
+CS_Operation_IFLE: OP_IFLE {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_IFLE);
+CS_Operation_IFLT: OP_IFLT {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_IFLT);
+CS_Operation_IFGE: OP_IFGE {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_IFGE);
+CS_Operation_IFGT: OP_IFGT {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_IFGT);
+CS_Operation_IN: OP_IN {getCharPositionInLine()>=27 && getCharPositionInLine()<36}? -> type(OP_IN);
+CS_Operation_ITER: OP_ITER {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_ITER);
+CS_Operation_KFLD: OP_KFLD {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_KFLD);
+CS_Operation_KLIST: OP_KLIST {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_KLIST);
+CS_Operation_LEAVE: OP_LEAVE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_LEAVE);
+CS_Operation_LEAVESR: OP_LEAVESR {getCharPositionInLine()>=32 && getCharPositionInLine()<36}? -> type(OP_LEAVESR);
+CS_Operation_LOOKUP: OP_LOOKUP {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_LOOKUP);
+CS_Operation_MHHZO: OP_MHHZO {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_MHHZO);
+CS_Operation_MHLZO: OP_MHLZO {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_MHLZO);
+CS_Operation_MLHZO: OP_MLHZO {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_MLHZO);
+CS_Operation_MLLZO: OP_MLLZO {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_MLLZO);
+CS_Operation_MONITOR: OP_MONITOR {getCharPositionInLine()>=32 && getCharPositionInLine()<36}? -> type(OP_MONITOR);
+CS_Operation_MOVE: OP_MOVE {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_MOVE);
+CS_Operation_MOVEA: OP_MOVEA {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_MOVEA);
+CS_Operation_MOVEL: OP_MOVEL {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_MOVEL);
+CS_Operation_MULT: OP_MULT {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_MULT);
+CS_Operation_MVR: OP_MVR {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_MVR);
+CS_Operation_NEXT: OP_NEXT {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_NEXT);
+CS_Operation_OCCUR: OP_OCCUR {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_OCCUR);
+CS_Operation_ON_ERROR: OP_ON_ERROR {getCharPositionInLine()>=33 && getCharPositionInLine()<36}? -> type(OP_ON_ERROR),pushMode(FREE);
+CS_Operation_OPEN: OP_OPEN {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_OPEN);
+CS_Operation_OREQ: OP_OREQ {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_OREQ);
+CS_Operation_ORNE: OP_ORNE {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_ORNE);
+CS_Operation_ORLE: OP_ORLE {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_ORLE);
+CS_Operation_ORLT: OP_ORLT {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_ORLT);
+CS_Operation_ORGE: OP_ORGE {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_ORGE);
+CS_Operation_ORGT: OP_ORGT {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_ORGT);
+CS_Operation_OTHER: OP_OTHER {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_OTHER);
+CS_Operation_OUT: OP_OUT {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_OUT);
+CS_Operation_PARM: OP_PARM {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_PARM);
+CS_Operation_PLIST: OP_PLIST {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_PLIST);
+CS_Operation_POST: OP_POST {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_POST);
+CS_Operation_READ: OP_READ {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_READ);
+CS_Operation_READC: OP_READC {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_READC);
+CS_Operation_READE: OP_READE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_READE);
+CS_Operation_READP: OP_READP {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_READP);
+CS_Operation_READPE: OP_READPE {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_READPE);
+CS_Operation_REALLOC: OP_REALLOC {getCharPositionInLine()>=32 && getCharPositionInLine()<36}? -> type(OP_REALLOC);
+CS_Operation_REL: OP_REL {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_REL);
+CS_Operation_RESET: OP_RESET {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_RESET);
+CS_Operation_RETURN: OP_RETURN {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_RETURN),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_ROLBK: OP_ROLBK {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_ROLBK);
+CS_Operation_SCAN: OP_SCAN {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_SCAN);
+CS_Operation_SELECT: OP_SELECT {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_SELECT);
+CS_Operation_SETGT: OP_SETGT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_SETGT);
+CS_Operation_SETLL: OP_SETLL {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_SETLL);
+CS_Operation_SETOFF: OP_SETOFF {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_SETOFF);
+CS_Operation_SETON: OP_SETON {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_SETON);
+CS_Operation_SORTA: OP_SORTA {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_SORTA),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_SHTDN: OP_SHTDN {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_SHTDN);
+CS_Operation_SQRT: OP_SQRT {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_SQRT);
+CS_Operation_SUB: OP_SUB {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_SUB);
+CS_Operation_SUBDUR: OP_SUBDUR {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_SUBDUR);
+CS_Operation_SUBST: OP_SUBST {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_SUBST);
+CS_Operation_TAG: OP_TAG {getCharPositionInLine()>=28 && getCharPositionInLine()<36}? -> type(OP_TAG);
+CS_Operation_TEST: OP_TEST {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_TEST);
+CS_Operation_TESTB: OP_TESTB {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_TESTB);
+CS_Operation_TESTN: OP_TESTN {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_TESTN);
+CS_Operation_TESTZ: OP_TESTZ {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_TESTZ);
+CS_Operation_TIME: OP_TIME {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_TIME);
+CS_Operation_UNLOCK: OP_UNLOCK {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_UNLOCK);
+CS_Operation_UPDATE: OP_UPDATE {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_UPDATE);
+CS_Operation_WHEN: OP_WHEN {getCharPositionInLine()>=29 && getCharPositionInLine()<36}? -> type(OP_WHEN),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_WHENEQ: OP_WHENEQ {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_WHENEQ);
+CS_Operation_WHENNE: OP_WHENNE {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_WHENNE);
+CS_Operation_WHENLE: OP_WHENLE {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_WHENLE);
+CS_Operation_WHENLT: OP_WHENLT {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_WHENLT);
+CS_Operation_WHENGE: OP_WHENGE {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_WHENGE);
+CS_Operation_WHENGT: OP_WHENGT {getCharPositionInLine()>=31 && getCharPositionInLine()<36}? -> type(OP_WHENGT);
+CS_Operation_WRITE: OP_WRITE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_WRITE);
+CS_Operation_XFOOT: OP_XFOOT {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_XFOOT);
+CS_Operation_XLATE: OP_XLATE {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_XLATE);
+CS_Operation_XML_INTO: OP_XML_INTO {getCharPositionInLine()>=33 && getCharPositionInLine()<36}? -> type(OP_XML_INTO),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_XML_SAX: OP_XML_SAX {getCharPositionInLine()>=32 && getCharPositionInLine()<36}? -> type(OP_XML_SAX),pushMode(FREE),pushMode(FixedOpExtender);
+CS_Operation_Z_ADD: OP_Z_ADD {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_Z_ADD);
+CS_Operation_Z_SUB: OP_Z_SUB {getCharPositionInLine()>=30 && getCharPositionInLine()<36}? -> type(OP_Z_SUB);
 
 
 CS_OperationAndExtender:  
-   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[a-zA-Z0-9\\-])+;
-CS_OperationExtenderOpen: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?OPEN_PAREN -> type(OPEN_PAREN);
-CS_OperationExtenderClose: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?CLOSE_PAREN 
-  ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}? ' ')*
+   ([a-zA-Z0-9\\-]
+    {getCharPositionInLine()>=26 && getCharPositionInLine()<36}?)+;
+CS_OperationExtenderOpen: OPEN_PAREN{getCharPositionInLine()>=26 && getCharPositionInLine()<36}? -> type(OPEN_PAREN);
+CS_OperationExtenderClose: CLOSE_PAREN{getCharPositionInLine()>=26 && getCharPositionInLine()<36}? 
+  ( ' '{getCharPositionInLine()>=26 && getCharPositionInLine()<36}?)*
   {setText(getText().trim());}
   -> type(CLOSE_PAREN);
   
-CS_FieldLength: {getCharPositionInLine()==63}? [+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9];
-CS_DecimalPositions: {getCharPositionInLine()==68}? [ 0-9][ 0-9]
+CS_FieldLength: [+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9]  {getCharPositionInLine()==68}?;
+CS_DecimalPositions: [ 0-9][ 0-9] {getCharPositionInLine()==70}?
 	-> pushMode(IndicatorMode),pushMode(IndicatorMode),pushMode(IndicatorMode); // 3 Indicators in a row
-CS_WhiteSpace : {getCharPositionInLine()>=76}? [ \t]+ -> skip  ; // skip spaces, tabs, newlines
-CS_Comments : {getCharPositionInLine()>=80}? ~[\r\n]+  ; // skip spaces, tabs, newlines
+CS_WhiteSpace : [ \t] {getCharPositionInLine()>=77}? [ \t]* -> skip  ; // skip spaces, tabs, newlines
+CS_Comments : ~[\r\n] {getCharPositionInLine()>80}? ~[\r\n]*  ; // skip spaces, tabs, newlines
 CS_EOL : NEWLINE -> type(EOL),popMode;
 
 mode FixedOpExtender;
 CS_FixedOperationAndExtender_WS:
-	({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[ ])+ -> skip;	
-CS_FixedOperationExtenderOpen: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?OPEN_PAREN -> type(OPEN_PAREN),popMode,pushMode(FixedOpExtender2);
+	([ ]
+	  {getCharPositionInLine()>=26 && getCharPositionInLine()<36}?
+	)+ -> skip;	
+CS_FixedOperationExtenderOpen: OPEN_PAREN {getCharPositionInLine()>=26 && getCharPositionInLine()<36}? 
+		-> type(OPEN_PAREN),popMode,pushMode(FixedOpExtender2);
 CS_FixedOperationExtenderReturn: {getCharPositionInLine()>=25 && getCharPositionInLine()<=35}? ->skip,popMode;
 
 mode FixedOpExtender2;
 CS_FixedOperationAndExtender2_WS:
-	({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[ ])+ -> skip;	
+	([ ]
+		{getCharPositionInLine()>=26 && getCharPositionInLine()<36}?)+ -> skip;	
 CS_FixedOperationAndExtender2:  
-   ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}?[a-zA-Z0-9\\-])+ -> type(CS_OperationAndExtender);
-CS_FixedOperationExtender2Close: {getCharPositionInLine()>=25 && getCharPositionInLine()<35}?CLOSE_PAREN 
-  ({getCharPositionInLine()>=25 && getCharPositionInLine()<35}? ' ')*
+   ([a-zA-Z0-9\\-]
+   	{getCharPositionInLine()>=26 && getCharPositionInLine()<36}?)+ -> type(CS_OperationAndExtender);
+CS_FixedOperationExtender2Close: CLOSE_PAREN {getCharPositionInLine()>=26 && getCharPositionInLine()<36}? 
+  (' '
+  	{getCharPositionInLine()>=26 && getCharPositionInLine()<36}? 
+  )*
   {setText(getText().trim());}
   -> type(CLOSE_PAREN);
 CS_FixedOperationExtender2Return: {getCharPositionInLine()==35}? ->skip,popMode;
@@ -1481,68 +1491,65 @@ OtherTextIndicator: ~[\r\n]~[\r\n];
 mode FIXED_CalcSpec_SQL;
 CSQL_EMPTY_TEXT: [ ]+ -> skip;
 CSQL_TEXT: ~[\r\n]+;
-//CSQL_CONT : ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n]  [cC] '+' -> skip;
-CSQL_LEADWS : {getCharPositionInLine()==0}? ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] -> skip,popMode;
-CSQL_END : NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] 
+//CSQL_CONT : WORD5  [cC] '+' -> skip;
+CSQL_LEADWS : WORD5 {getCharPositionInLine()==5}?-> skip,popMode;
+CSQL_END : NEWLINE WORD5 
 	 [cC] '/' [Ee][nN][dD][-][Ee][Xx][Ee][Cc] WS NEWLINE-> popMode ;
-CSQL_CONT : NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC ] '+' -> skip; 
+CSQL_CONT : NEWLINE WORD5 [cC ] '+' -> skip; 
 CSQL_EOL : NEWLINE -> popMode; 
 
 mode FIXED_CalcSpec_X2;
-C2_FACTOR2_CONT: {getCharPositionInLine()==35}? 
-		~[\r\n]+ '+' [ ]+ NEWLINE;  //TODO  the continuation should not include the plus and the \r\n
-//C2_FACTOR2_CONT2: {getCharPositionInLine()==35}? 
-//		~[\r\n]+ NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [cC] '                             ' ;  
-C2_FACTOR2: {getCharPositionInLine()==35}? 
-		~[\r\n]+ ->popMode;
-C2_OTHER: {getCharPositionInLine()<35}? ~('\r' | '\n') ->skip;
+C2_FACTOR2_CONT: ~[\r\n]{getCharPositionInLine()==36}? 
+		~[\r\n]* '+' [ ]+ NEWLINE;  //TODO  the continuation should not include the plus and the \r\n
+//C2_FACTOR2_CONT2: ~[\r\n] {getCharPositionInLine()==36}? 
+//		~[\r\n]* NEWLINE WORD5 [cC] '                             ' ;  
+C2_FACTOR2: ~[\r\n]{getCharPositionInLine()==36}? 
+		~[\r\n]* ->popMode;
+C2_OTHER: ~('\r' | '\n') {getCharPositionInLine()<36}?  ->skip;
 
 mode FIXED_InputSpec;
-IS_BLANK_SPEC : {getCharPositionInLine()==6}? 
-    '                                                                           ' -> type(BLANK_SPEC);
-IS_FileName: {getCharPositionInLine()==6}? WORD5_WCOLON WORD5_WCOLON ;
-IS_FieldReserved: {getCharPositionInLine()==6}? '                        ' -> pushMode(FIXED_I_FIELD_SPEC),skip ;
-IS_ExtFieldReserved: {getCharPositionInLine()==6}? '              ' -> pushMode(FIXED_I_EXT_FIELD_SPEC),skip ;
-IS_LogicalRelationship : {getCharPositionInLine()==15}? ('AND' | 'OR '| ' OR') ;
-IS_ExtRecordReserved : {getCharPositionInLine()==16}? '    '  -> pushMode(FIXED_I_EXT_REC_SPEC),pushMode(IndicatorMode) ;
-IS_Sequence : {getCharPositionInLine()==16}? WORD_WCOLON WORD_WCOLON ;
-IS_Number : {getCharPositionInLine()==18}? [ 1nN] ;
-IS_Option: {getCharPositionInLine()==19}? [ oO] -> pushMode(IndicatorMode);
-//IS_RecordIdIndicator: {getCharPositionInLine()==20}? IND_FRAG | '**';
-IS_RecordIdCode: {getCharPositionInLine()==22}?  WORD5_WCOLON WORD5_WCOLON WORD5_WCOLON WORD5_WCOLON
-		WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON; //TODO better lexing
-IS_WS : {getCharPositionInLine()>=46}? [ \t]+ -> type(WS),skip  ; // skip spaces, tabs
-IS_COMMENTS : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN) ; // skip spaces, tabs, newlines
+IS_BLANK_SPEC :  
+    '                                                                           ' 
+    {getCharPositionInLine()==80}? -> type(BLANK_SPEC);
+IS_FileName: WORD5_WCOLON WORD5_WCOLON {getCharPositionInLine()==16}?;
+IS_FieldReserved: '                        '  {getCharPositionInLine()==30}? -> pushMode(FIXED_I_FIELD_SPEC),skip ;
+IS_ExtFieldReserved:  '              ' {getCharPositionInLine()==20}?-> pushMode(FIXED_I_EXT_FIELD_SPEC),skip ;
+IS_LogicalRelationship :  ('AND' | 'OR '| ' OR') {getCharPositionInLine()==18}?;
+IS_ExtRecordReserved : '    '  {getCharPositionInLine()==20}? -> pushMode(FIXED_I_EXT_REC_SPEC),pushMode(IndicatorMode) ;
+IS_Sequence : WORD_WCOLON WORD_WCOLON  {getCharPositionInLine()==18}?;
+IS_Number : [ 1nN]  {getCharPositionInLine()==19}?;
+IS_Option: [ oO] {getCharPositionInLine()==20}? -> pushMode(IndicatorMode);
+IS_RecordIdCode:  WORD5_WCOLON WORD5_WCOLON WORD5_WCOLON WORD5_WCOLON
+		WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON  {getCharPositionInLine()==46}?; //TODO better lexing
+IS_WS : [ \t] {getCharPositionInLine()>=47}? [ \t]* -> type(WS),skip  ; // skip spaces, tabs
+IS_COMMENTS : ~[\r\n] {getCharPositionInLine()>80}? ~[\r\n]* -> channel(HIDDEN) ; // skip spaces, tabs, newlines
 IS_EOL : NEWLINE -> type(EOL),popMode; 
 
 mode FIXED_I_EXT_FIELD_SPEC;
-IF_Name: {getCharPositionInLine()==20}? WORD5_WCOLON WORD5_WCOLON ;
-IF_Reserved: {getCharPositionInLine()==30}? '                  ' -> skip;
-IF_FieldName: {getCharPositionInLine()==48}? WORD5_WCOLON WORD5_WCOLON WORD_WCOLON WORD_WCOLON
-	WORD_WCOLON WORD_WCOLON->pushMode(IndicatorMode),pushMode(IndicatorMode);
-//IF_ControlLevel : {getCharPositionInLine()==62}? ('L'[0-9] | '  ') ;	
-//IF_MatchingFields: {getCharPositionInLine()==64}? ('M'[0-9] | '  ') ;
-IF_Reserved2: {getCharPositionInLine()==66}? '  ' ->pushMode(IndicatorMode),pushMode(IndicatorMode),pushMode(IndicatorMode),skip; // 3 Indicators in a row
-IF_WS : {getCharPositionInLine()>=74}? [ \t]+ -> type(WS),popMode,skip  ; // skip spaces, tabs
+IF_Name: WORD5_WCOLON WORD5_WCOLON {getCharPositionInLine()==30}?;
+IF_Reserved: '                  ' {getCharPositionInLine()==48}? -> skip;
+IF_FieldName: WORD5_WCOLON WORD5_WCOLON WORD_WCOLON WORD_WCOLON
+	WORD_WCOLON WORD_WCOLON  {getCharPositionInLine()==62}? ->pushMode(IndicatorMode),pushMode(IndicatorMode);
+IF_Reserved2: '  ' {getCharPositionInLine()==68}? ->pushMode(IndicatorMode),pushMode(IndicatorMode),pushMode(IndicatorMode),skip; // 3 Indicators in a row
+IF_WS : [ \t] {getCharPositionInLine()>=75}? [ \t]* -> type(WS),popMode,skip  ; // skip spaces, tabs
 
 mode FIXED_I_EXT_REC_SPEC;
-//IR_ID_IND : {getCharPositionInLine()==20}? IND_FRAG ;
-IR_WS : {getCharPositionInLine()>=22}? [ \t]+ -> type(WS),popMode  ; // skip spaces, tabs
+IR_WS : [ \t]{getCharPositionInLine()>=23}? [ \t]* -> type(WS),popMode  ; // skip spaces, tabs
 
 mode FIXED_I_FIELD_SPEC;
-IFD_DATA_ATTR: {getCharPositionInLine()==30}?  WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON;
-IFD_DATETIME_SEP: {getCharPositionInLine()==34}?  ~[\r\n];
-IFD_DATA_FORMAT: {getCharPositionInLine()==35}?  [A-Z ];
-IFD_FIELD_LOCATION: {getCharPositionInLine()==36}?  WORD5_WCOLON WORD5_WCOLON;
-IFD_DECIMAL_POSITIONS: {getCharPositionInLine()==46}?  [ 0-9][ 0-9];
-IFD_FIELD_NAME: {getCharPositionInLine()==48}?  WORD5_WCOLON WORD5_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON;
-IFD_CONTROL_LEVEL : {getCharPositionInLine()==62}? ('L'[0-9] | '  ') ;
-IFD_MATCHING_FIELDS: {getCharPositionInLine()==64}? ('M'[0-9] | '  ') ->pushMode(IndicatorMode),pushMode(IndicatorMode),
+IFD_DATA_ATTR: WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON {getCharPositionInLine()==34}?;
+IFD_DATETIME_SEP: ~[\r\n] {getCharPositionInLine()==35}?;
+IFD_DATA_FORMAT: [A-Z ] {getCharPositionInLine()==36}?;
+IFD_FIELD_LOCATION: WORD5_WCOLON WORD5_WCOLON {getCharPositionInLine()==46}?;
+IFD_DECIMAL_POSITIONS: [ 0-9][ 0-9] {getCharPositionInLine()==48}?;
+IFD_FIELD_NAME: WORD5_WCOLON WORD5_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON {getCharPositionInLine()==62}?;
+IFD_CONTROL_LEVEL : ('L'[0-9] | '  ') {getCharPositionInLine()==64}?;
+IFD_MATCHING_FIELDS: ('M'[0-9] | '  ') {getCharPositionInLine()==66}? ->pushMode(IndicatorMode),pushMode(IndicatorMode),
 	pushMode(IndicatorMode),pushMode(IndicatorMode);
-//IFD_FIELD_RELATION: {getCharPositionInLine()==66}? IND_FRAG ;
-//IFD_FIELD_IND: {getCharPositionInLine()==68}? IND_FRAG IND_FRAG IND_FRAG ;
-IFD_BLANKS: {getCharPositionInLine()==74}? '      ' -> skip;
-IFD_COMMENTS : {getCharPositionInLine()>=80}? ~[\r\n]+ -> channel(HIDDEN) ; // skip spaces, tabs, newlines
+//IFD_FIELD_RELATION: IND_FRAG {getCharPositionInLine()==68}? ;
+//IFD_FIELD_IND: IND_FRAG IND_FRAG IND_FRAG {getCharPositionInLine()==74}? ;
+IFD_BLANKS: '      ' {getCharPositionInLine()==80}? -> skip;
+IFD_COMMENTS : ~[\r\n]{getCharPositionInLine()>80}? ~[\r\n]* -> channel(HIDDEN) ; // skip spaces, tabs, newlines
 IFD_EOL : NEWLINE -> type(EOL),popMode,popMode;
 
 mode HeaderSpecMode;
@@ -1553,7 +1560,7 @@ HS_COLON: ':' -> type(COLON);
 HS_ID: [#@%$*a-zA-Z] [&#@\-$*a-zA-Z0-9_/,\.]* -> type(ID);
 HS_WhiteSpace : [ \t]+ -> skip  ; // skip spaces, tabs, newlines
 HS_CONTINUATION: NEWLINE 
-	~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] [hH] ~[*] -> skip;
+	WORD5 [hH] ~[*] -> skip;
 HS_EOL : NEWLINE -> type(EOL),popMode;
 
 /*
@@ -1564,7 +1571,7 @@ FREE_F_STRING_START: ['] -> pushMode(InStringMode) ;
 FREE_F_COLON: ':';
 FREE_F_ID: ID;
 FREE_F_NUMBER: NUMBER;
-FREE_F_CONT: '...' [ ]* NEWLINE ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n][ ]+ {setText("...");};
+FREE_F_CONT: '...' [ ]* NEWLINE WORD5[ ]+ {setText("...");};
 FREE_F_WS : [ \t]+ -> skip  ; // skip spaces, tabs, newlines
 FREE_F_SEMICOLON: ';' -> popMode,popMode;
 FREE_F_EOL : NEWLINE -> skip;
