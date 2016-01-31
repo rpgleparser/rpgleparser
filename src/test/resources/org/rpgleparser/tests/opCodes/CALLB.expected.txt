@@ -7,8 +7,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*Entry>
 OP_PLIST                 <PList>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -21,12 +21,12 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CALLB                 <CALLB>
 StringLiteralStart       <'>
 StringContent            <PROGRA>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -38,9 +38,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <parm>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <p1>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -53,12 +53,12 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CALLB                 <callb>
 StringLiteralStart       <'>
 StringContent            <PROGRA>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -70,9 +70,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <parm>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <p1>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -85,7 +85,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CALLB                 <CALLB>
 '('                      <(>
 CS_OperationAndExtender  <e>
@@ -93,7 +93,7 @@ CS_OperationAndExtender  <e>
 StringLiteralStart       <'>
 StringContent            <PROGRA>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -105,9 +105,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <parm>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <p1>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -120,7 +120,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CALLB                 <CALLB>
 '('                      <(>
 CS_OperationAndExtender  <d>
@@ -128,7 +128,7 @@ CS_OperationAndExtender  <d>
 StringLiteralStart       <'>
 StringContent            <PROGRA>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -140,9 +140,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <parm>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <p1>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -155,12 +155,12 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CALLB                 <CALLB>
 StringLiteralStart       <'>
 StringContent            <PROGRA>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -172,9 +172,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <parm>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <p1>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -187,7 +187,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CALLB                 <CALLB>
 StringLiteralStart       <'>
 StringContent            <PROGRA>
@@ -204,7 +204,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CALLB                 <Callb>
 '('                      <(>
 CS_OperationAndExtender  <e>
@@ -224,10 +224,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CALLB                 <callb>
 CS_FactorContent         <PROCptr>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -239,9 +239,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <parm>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <p1>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -255,10 +255,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>
