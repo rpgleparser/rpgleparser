@@ -5,8 +5,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*ENTRY>
 OP_PLIST                 <PLIST>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >

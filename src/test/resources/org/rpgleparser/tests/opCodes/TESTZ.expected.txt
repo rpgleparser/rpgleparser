@@ -7,8 +7,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*Entry>
 OP_PLIST                 <PList>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -21,9 +21,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_TESTZ                 <TESTZ>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <Tfld>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -36,9 +36,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_TESTZ                 <Testz>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <Tfld>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -51,9 +51,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_TESTZ                 <testz>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <Tfld>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -66,9 +66,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_TESTZ                 <TESTZ>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <Tfld>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -81,10 +81,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>

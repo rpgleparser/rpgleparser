@@ -1102,7 +1102,7 @@ CS_Factor2_SPLAT_FILE : SPLAT_FILE {35+5<= getCharPositionInLine() && getCharPos
 CS_Factor2_SPLAT_GETIN : SPLAT_GETIN {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_GETIN);
 CS_Factor2_SPLAT_HIVAL : SPLAT_HIVAL {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_HIVAL);
 CS_Factor2_SPLAT_INIT : SPLAT_INIT {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_INIT);
-CS_Factor2_SPLAT_INDICATOR : SPLAT_INDICATOR {35+10<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_INDICATOR);
+CS_Factor2_SPLAT_INDICATOR : SPLAT_INDICATOR {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_INDICATOR);
 CS_Factor2_SPLAT_INZSR : SPLAT_INZSR {35+6<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_INZSR);
 CS_Factor2_SPLAT_IN : SPLAT_IN {35+3<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_IN);
 CS_Factor2_SPLAT_JOBRUN : SPLAT_JOBRUN {35+7<= getCharPositionInLine() && getCharPositionInLine()<=48}? -> type(SPLAT_JOBRUN);

@@ -9,7 +9,7 @@ BlankIndicator           <  >
 CS_FactorContent         <KEY>
 OP_CHAIN                 <CHAIN>
 CS_FactorContent         <RCDA>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -21,10 +21,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EXCEPT                <EXCEPT>
 CS_FactorContent         <RELEASE>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -50,7 +50,7 @@ OS_Space3                <   >
 OS_Space3                <   >
 OS_Space3                <   >
 OS_Space3                <   >
-OS_RemainingSpace        <                             >
+'                             '<                             >
 HIDDEN:OS_Comments       <                   >
 EOL                      <
 >
