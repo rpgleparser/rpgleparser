@@ -891,7 +891,7 @@ mode FIXED_DefSpec;
 BLANK_SPEC :  
 	'                                                                           ' 
 	{getCharPositionInLine()==81}?;
-CONTINUATION_NAME : [ ]* ~[\r\n ]+ CONTINUATION {getCharPositionInLine()<80}? {setText(getText().substring(0,getText().length()-3).trim());} -> pushMode(CONTINUATION_ELIPSIS) ;
+CONTINUATION_NAME : {getCharPositionInLine()<21}? [ ]* ~[\r\n ]+ CONTINUATION {setText(getText().substring(0,getText().length()-3).trim());} -> pushMode(CONTINUATION_ELIPSIS) ;
 CONTINUATION : '...' ;
 NAME : NAME5 NAME5 NAME5 {getCharPositionInLine()==21}? {setText(getText().trim());};
 EXTERNAL_DESCRIPTION: [eE ] {getCharPositionInLine()==22}? ;
@@ -1490,13 +1490,22 @@ OtherTextIndicator: ~[\r\n]~[\r\n];
 
 mode FIXED_CalcSpec_SQL;
 CSQL_EMPTY_TEXT: [ ]+ -> skip;
-CSQL_TEXT: ~[\r\n]+;
-//CSQL_CONT : WORD5  [cC] '+' -> skip;
-CSQL_LEADWS : WORD5 {getCharPositionInLine()==5}?-> skip,popMode;
-CSQL_END : NEWLINE WORD5 
-	 [cC] '/' [Ee][nN][dD][-][Ee][Xx][Ee][Cc] WS NEWLINE-> popMode ;
-CSQL_CONT : NEWLINE WORD5 [cC ] '+' -> skip; 
-CSQL_EOL : NEWLINE -> popMode; 
+CSQL_TEXT: ~[\r\n] {getCharPositionInLine()>=8}? ~[\r\n]*;
+CSQL_LEADWS : WORD5 {getCharPositionInLine()==5}?-> skip;
+CSQL_END : 
+	 [cC] '/' [Ee][nN][dD][-][Ee][Xx][Ee][Cc] WS ~[\r\n]* NEWLINE-> popMode ;
+CSQL_CONT: [cC ] '+' -> skip; 
+CSQL_CSplat: [cC ] '*' -> skip,pushMode(FIXED_CalcSpec_SQL_Comments); 
+CSQL_EOL: NEWLINE -> skip;
+CSQL_Any:  -> skip,popMode;
+
+mode FIXED_CalcSpec_SQL_Comments;
+CSQLC_LEADWS : CSQL_LEADWS-> skip;
+CSQLC_CSplat : [cC ] '*' -> skip;
+CSQLC_WS : [ \t] {getCharPositionInLine()>=8}? [ \t]* -> skip; 
+CSQLC_Comments : ~[\r\n ] {getCharPositionInLine()>=8}? ~[\r\n]* -> channel(HIDDEN);
+CSQLC_Any : NEWLINE? -> skip,popMode;
+
 
 mode FIXED_CalcSpec_X2;
 C2_FACTOR2_CONT: ~[\r\n]{getCharPositionInLine()==36}? 
