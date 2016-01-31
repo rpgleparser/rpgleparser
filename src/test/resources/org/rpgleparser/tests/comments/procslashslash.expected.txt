@@ -53,7 +53,7 @@ PS_KEYWORDS              <                                     >
 HIDDEN:COMMENTS          < //>
 HIDDEN:COMMENTS_TEXT     <========================================================================                   >
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     <ÎProcedure getCompanyEcommLoc_COS001                                                       >
+HIDDEN:COMMENTS_TEXT     <ÎProcedure getCompanyEcommLoc_COS001                                                      >
 HIDDEN:COMMENTS          < //>
 HIDDEN:COMMENTS_TEXT     <========================================================================                   >
 HIDDEN:COMMENTS          < //>
