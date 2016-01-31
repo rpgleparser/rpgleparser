@@ -7,8 +7,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*Entry>
 OP_PLIST                 <PList>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -26,7 +26,7 @@ OP_IFEQ                  <IFEQ>
 StringLiteralStart       <'>
 StringContent            <A>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -43,7 +43,7 @@ OP_ANDEQ                 <ANDEQ>
 StringLiteralStart       <'>
 StringContent            <B>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -55,10 +55,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -76,7 +76,7 @@ OP_IFEQ                  <ifeq>
 StringLiteralStart       <'>
 StringContent            <A>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -93,7 +93,7 @@ OP_ANDGT                 <ANDGT>
 StringLiteralStart       <'>
 StringContent            <B>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -110,7 +110,7 @@ OP_ANDLT                 <ANDLT>
 StringLiteralStart       <'>
 StringContent            <C>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -125,7 +125,7 @@ BlankIndicator           <  >
 SPLAT_INDICATOR          <*IN50>
 OP_ANDEQ                 <andeq>
 SPLAT_ON                 <*ON>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -137,10 +137,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -158,7 +158,7 @@ OP_IFEQ                  <ifeq>
 StringLiteralStart       <'>
 StringContent            <A>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -175,7 +175,7 @@ OP_ANDGE                 <ANDGE>
 StringLiteralStart       <'>
 StringContent            <B>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -192,7 +192,7 @@ OP_ANDLT                 <ANDLT>
 StringLiteralStart       <'>
 StringContent            <C>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -207,7 +207,7 @@ BlankIndicator           <  >
 SPLAT_INDICATOR          <*IN50>
 OP_ANDEQ                 <andEq>
 SPLAT_ON                 <*ON>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -219,10 +219,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -234,10 +234,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>
