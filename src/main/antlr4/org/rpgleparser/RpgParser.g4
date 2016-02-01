@@ -2333,6 +2333,9 @@ simpleExpression:
 	| literal
 	| OPEN_PAREN expression CLOSE_PAREN
 	; 
+	
+unaryExpression:
+	sign expression;
 
 expression: 
 	// op | // should drop op I think?
@@ -2354,6 +2357,7 @@ expression:
 	| expression EQUAL expression	
 	| expression AND expression	
 	| expression OR expression	
+	| unaryExpression
 	;
 indicator_expr: expression;
 function: functionName args;
