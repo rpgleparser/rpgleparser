@@ -3,7 +3,7 @@ CS_FIXED                 <c>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_IF                    <if>
 ID                       <retst>
 '='                      <=>
@@ -18,7 +18,7 @@ CS_FIXED                 <c>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EVAL                  <eval>
 ID                       <retst>
 '='                      <=>
@@ -29,10 +29,10 @@ CS_FIXED                 <c>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >

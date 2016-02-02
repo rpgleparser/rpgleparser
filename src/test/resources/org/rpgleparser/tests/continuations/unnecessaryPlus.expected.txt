@@ -1,0 +1,113 @@
+/*===TOKENS===*/
+OP_IF                    <if>
+ID                       <BDEBRYR>
+'='                      <=>
+SPLAT_ZEROS              <*zero>
+AND                      <and>
+ID                       <ADEBRYR>
+'<>'                     <<>>
+SPLAT_ZEROS              <*zero>
+OR                       <or>
+'+'                      <+>
+ID                       <BDEBMTH>
+'='                      <=>
+SPLAT_ZEROS              <*zero>
+AND                      <and>
+ID                       <ADEBMTH>
+'<>'                     <<>>
+SPLAT_ZEROS              <*zero>
+OR                       <or>
+'+'                      <+>
+ID                       <BDEBDAY>
+'='                      <=>
+SPLAT_ZEROS              <*zero>
+AND                      <and>
+ID                       <ADEBDAY>
+'<>'                     <<>>
+SPLAT_ZEROS              <*zero>
+FREE_SEMI                <;>
+OP_EXSR                  <exsr>
+ID                       <crtdob>
+FREE_SEMI                <;>
+OP_ENDIF                 <endif>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          (op_if
+            if
+            (expression
+              (expression
+                (expression
+                  (expression (identifier (free_identifier (idOrKeyword BDEBRYR))))
+                  =
+                  (expression (identifier (all (symbolicConstants *zero))))
+                )
+                and
+                (expression
+                  (expression (identifier (free_identifier (idOrKeyword ADEBRYR))))
+                  (comparisonOperator <>)
+                  (expression (identifier (all (symbolicConstants *zero))))
+                )
+              )
+              or
+              (expression
+                (unaryExpression
+                  (sign +)
+                  (expression
+                    (expression
+                      (expression
+                        (expression (identifier (free_identifier (idOrKeyword BDEBMTH))))
+                        =
+                        (expression (identifier (all (symbolicConstants *zero))))
+                      )
+                      and
+                      (expression
+                        (expression (identifier (free_identifier (idOrKeyword ADEBMTH))))
+                        (comparisonOperator <>)
+                        (expression (identifier (all (symbolicConstants *zero))))
+                      )
+                    )
+                    or
+                    (expression
+                      (unaryExpression
+                        (sign +)
+                        (expression
+                          (expression
+                            (expression (identifier (free_identifier (idOrKeyword BDEBDAY))))
+                            =
+                            (expression (identifier (all (symbolicConstants *zero))))
+                          )
+                          and
+                          (expression
+                            (expression (identifier (free_identifier (idOrKeyword ADEBDAY))))
+                            (comparisonOperator <>)
+                            (expression (identifier (all (symbolicConstants *zero))))
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (free
+            (baseExpression
+              (op (op_exsr exsr (identifier (free_identifier (idOrKeyword crtdob)))))
+            )
+            ;
+          )
+        )
+        (endif (op_endif endif) ;)
+      )
+    )
+  )
+)
+/*======*/

@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED<D*>
-HIDDEN:COMMENTS_TEXT     < fixed-form declarations                                                                    >
+HIDDEN:COMMENTS_TEXT     <fixed-form declarations>
 DS_FIXED                 <D>
 NAME                     <string>
 EXTERNAL_DESCRIPTION     < >
@@ -64,7 +64,7 @@ KEYWORD_PROCPTR          <PROCPTR>
 EOL                      <
 >
 HIDDEN:COMMENTS          <    //>
-HIDDEN:COMMENTS_TEXT     < free-form declarations                                                                 >
+HIDDEN:COMMENTS_TEXT     <free-form declarations>
 DS_Standalone            <DCL-S>
 ID                       <string>
 VARCHAR                  <VARCHAR>

@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED<C*>
-HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq..                     >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq..>
 HIDDEN:COMMENT_SPEC_FIXED<C*>
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -9,7 +9,7 @@ BlankIndicator           <  >
 CS_FactorContent         <KEY>
 OP_CHAIN                 <CHAIN>
 CS_FactorContent         <RCDA>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -21,10 +21,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EXCEPT                <EXCEPT>
 CS_FactorContent         <RELEASE>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -33,7 +33,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED<O*>
-HIDDEN:COMMENTS_TEXT     <cdname+++D...N01N02N03Excnam++++.......................................                     >
+HIDDEN:COMMENTS_TEXT     <cdname+++D...N01N02N03Excnam++++.......................................>
 HIDDEN:COMMENT_SPEC_FIXED<O*>
 OS_FIXED                 <O>
 OS_RecordName            <RCDA      >
@@ -50,12 +50,12 @@ OS_Space3                <   >
 OS_Space3                <   >
 OS_Space3                <   >
 OS_Space3                <   >
-OS_RemainingSpace        <                             >
+'                             '<                             >
 HIDDEN:OS_Comments       <                   >
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED<O*>
-HIDDEN:COMMENTS_TEXT     <                    (no fields)                                                             >
+HIDDEN:COMMENTS_TEXT     <(no fields)>
 /*===TREE===*/
 (r
   (statement

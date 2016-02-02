@@ -1,0 +1,156 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_IF                    <If>
+ID                       <SP>
+'>'                      <>>
+NUMBER                   <0>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_EVAL                  <Eval>
+ID                       <DataValue>
+'='                      <=>
+BIF_REPLACE              <%Replace>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <&amp;>
+StringLiteralEnd         <'>
+COLON                    <:>
+ID                       <DataValue>
+COLON                    <:>
+'+'                      <+>
+BIF_SCAN                 <%Scan>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <[>
+StringLiteralEnd         <'>
+COLON                    <:>
+ID                       <DataValue>
+')'                      <)>
+COLON                    <:>
+NUMBER                   <1>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_ENDIF                 <EndIf>
+'              '         <              >
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          If
+          (c_free
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword SP))))
+              (comparisonOperator >)
+              (expression (number 0))
+            )
+          )
+          \n
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csEVAL
+                Eval
+                (c_free
+                  (expression
+                    (expression (identifier (free_identifier (idOrKeyword DataValue))))
+                    =
+                    (expression
+                      (bif
+                        (bif_replace
+                          %Replace
+                          (
+                          (expression (literal ' &amp; '))
+                          :
+                          (expression (identifier (free_identifier (idOrKeyword DataValue))))
+                          :
+                          (expression
+                            (unaryExpression
+                              (sign +)
+                              (expression
+                                (bif
+                                  (bif_scan
+                                    %Scan
+                                    (
+                                    (expression (literal ' [ '))
+                                    :
+                                    (expression (identifier (free_identifier (idOrKeyword DataValue))))
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          :
+                          (expression (number 1))
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+                \n
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            EndIf
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

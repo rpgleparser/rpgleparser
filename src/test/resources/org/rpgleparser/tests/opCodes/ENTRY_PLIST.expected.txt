@@ -5,8 +5,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*ENTRY>
 OP_PLIST                 <PLIST>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -18,9 +18,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <PARM>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <OLDLIB1>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -33,9 +33,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <PARM>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <NEWLIB1>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -48,9 +48,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <PARM>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <OLDLIB2>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
@@ -63,9 +63,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <PARM>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <NEWLIB2>
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >

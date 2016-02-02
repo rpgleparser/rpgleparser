@@ -5,8 +5,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <AdaddCtl>
 OP_BEGSR                 <Begsr>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -18,7 +18,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_IF                    <If>
 ID                       <##opt>
 '='                      <=>
@@ -43,10 +43,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EXSR                  <Exsr>
 CS_FactorContent         <AdAddWdw>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -58,10 +58,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <Endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -73,10 +73,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDSR                 <Endsr>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >

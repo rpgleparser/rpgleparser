@@ -4,12 +4,12 @@ DIR_FREE                 <FREE>
 EOL                      <
 >
 HIDDEN:COMMENTS          <         //>
-HIDDEN:COMMENTS_TEXT     < *PSSR - Error Routine                                                             >
+HIDDEN:COMMENTS_TEXT     <*PSSR - Error Routine>
 OP_BEGSR                 <BegSr>
 SPLAT_PSSR               <*Pssr>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <      //>
-HIDDEN:COMMENTS_TEXT     < Dump program and terminate process                                                   >
+HIDDEN:COMMENTS_TEXT     <Dump program and terminate process>
 OP_IF                    <If>
 ID                       <Wrk_1stErr>
 '<>'                     <<>>

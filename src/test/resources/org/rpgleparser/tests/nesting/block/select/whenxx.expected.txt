@@ -1,22 +1,22 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < The following example shows nested SELECT groups.  The employee                            >
+HIDDEN:COMMENTS_TEXT     <The following example shows nested SELECT groups.  The employee>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < type can be one of 'C' for casual, 'T' for retired, 'R' for                                >
+HIDDEN:COMMENTS_TEXT     <type can be one of 'C' for casual, 'T' for retired, 'R' for>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < regular, and 'S' for student.  Depending on the employee type                              >
+HIDDEN:COMMENTS_TEXT     <regular, and 'S' for student.  Depending on the employee type>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < (EmpTyp), the number of days off per year (Days) will vary.                                >
+HIDDEN:COMMENTS_TEXT     <(EmpTyp), the number of days off per year (Days) will vary.>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SELECT                <SELECT>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -33,7 +33,7 @@ OP_WHENEQ                <WHENEQ>
 StringLiteralStart       <'>
 StringContent            <C>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -50,7 +50,7 @@ OP_OREQ                  <OREQ>
 StringLiteralStart       <'>
 StringContent            <T>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -62,7 +62,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_Z_ADD                 <Z-ADD>
 CS_FactorContent         <0>
 CS_FactorContent         <Days>
@@ -82,7 +82,7 @@ OP_WHENEQ                <WHENEQ>
 StringLiteralStart       <'>
 StringContent            <R>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -92,21 +92,21 @@ EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < When the employee type is 'R', the days off depend also on the                             >
+HIDDEN:COMMENTS_TEXT     <When the employee type is 'R', the days off depend also on the>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < number of years of employment.  The base number of days is 14.                             >
+HIDDEN:COMMENTS_TEXT     <number of years of employment.  The base number of days is 14.>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < For less than 2 years, no extra days are added.  Between 2 and                             >
+HIDDEN:COMMENTS_TEXT     <For less than 2 years, no extra days are added.  Between 2 and>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < 5 years, 5 extra days are added.  Between 6 and 10 years, 10                               >
+HIDDEN:COMMENTS_TEXT     <5 years, 5 extra days are added.  Between 6 and 10 years, 10>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < extra days are added, and over 10 years, 20 extra days are added.                          >
+HIDDEN:COMMENTS_TEXT     <extra days are added, and over 10 years, 20 extra days are added.>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_Z_ADD                 <Z-ADD>
 CS_FactorContent         <14>
 CS_FactorContent         <Days>
@@ -118,15 +118,15 @@ BlankIndicator           <  >
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Nested select group.                                                                       >
+HIDDEN:COMMENTS_TEXT     <Nested select group.>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SELECT                <SELECT>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -141,7 +141,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Years>
 OP_WHENLT                <WHENLT>
 CS_FactorContent         <2>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -156,7 +156,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Years>
 OP_WHENLE                <WHENLE>
 CS_FactorContent         <5>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -168,7 +168,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADD                   <ADD>
 CS_FactorContent         <5>
 CS_FactorContent         <Days>
@@ -186,7 +186,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Years>
 OP_WHENLE                <WHENLE>
 CS_FactorContent         <10>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -198,7 +198,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADD                   <ADD>
 CS_FactorContent         <10>
 CS_FactorContent         <Days>
@@ -213,10 +213,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_OTHER                 <OTHER>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -228,7 +228,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ADD                   <ADD>
 CS_FactorContent         <20>
 CS_FactorContent         <Days>
@@ -243,10 +243,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDSL                 <ENDSL>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -255,7 +255,7 @@ BlankIndicator           <  >
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < End of nested select group.                                                                >
+HIDDEN:COMMENTS_TEXT     <End of nested select group.>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -265,7 +265,7 @@ OP_WHENEQ                <WHENEQ>
 StringLiteralStart       <'>
 StringContent            <S>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -277,7 +277,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_Z_ADD                 <Z-ADD>
 CS_FactorContent         <5>
 CS_FactorContent         <Days>
@@ -292,10 +292,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDSL                 <ENDSL>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >

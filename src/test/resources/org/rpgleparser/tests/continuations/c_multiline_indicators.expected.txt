@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < If SFLRCD invalid, note that errors present                                                >
+HIDDEN:COMMENTS_TEXT     <If SFLRCD invalid, note that errors present>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -11,10 +11,10 @@ CS_FIXED                 <C>
 AndIndicator             <AN>
 NoFlag                   <N>
 GeneralIndicator         <99>
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 GeneralIndicator         <99>

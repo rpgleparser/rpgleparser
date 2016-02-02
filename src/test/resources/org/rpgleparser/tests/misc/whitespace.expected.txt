@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 OS_FIXED                 <O>
-BLANK_SPEC               <                                                                           >
+'                                                                           '<                                                                           >
 HIDDEN:OS_Comments       <                  >
 /*===TREE===*/
 (r

@@ -3,7 +3,7 @@ PS_FIXED                 <P>
 PS_CONTINUATION_NAME     < ReplaceDataInEmailBody>
 PS_NAME                  <>
 PS_BEGIN                 <B>
-PS_KEYWORDS              <                                                        >
+PS_KEYWORDS              <                                     >
 DS_FIXED                 <D>
 CONTINUATION_NAME        <ReplaceDataInEmailBody>
 NAME                     <>
@@ -154,7 +154,7 @@ FREE_SEMI                <;>
 OP_ENDDO                 <EndDo>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     < ************************************************************                             >
+HIDDEN:COMMENTS_TEXT     <************************************************************>
 OP_BEGSR                 <BegSr>
 ID                       <ScanForReplacement>
 FREE_SEMI                <;>
@@ -181,7 +181,7 @@ FREE_SEMI                <;>
 OP_ENDSR                 <EndSr>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     < ************************************************************                             >
+HIDDEN:COMMENTS_TEXT     <************************************************************>
 OP_BEGSR                 <BegSr>
 ID                       <FindReplacementMatch>
 FREE_SEMI                <;>
@@ -251,7 +251,8 @@ PS_FIXED                 <P>
 PS_CONTINUATION_NAME     < ReplaceDataInEmailBody>
 PS_NAME                  <>
 PS_END                   <E>
-PS_KEYWORDS              <                                                          >
+PS_KEYWORDS              <                                     >
+HIDDEN:PS_COMMENTS80     <                     >
 /*===TREE===*/
 (r
   (procedure
@@ -260,7 +261,7 @@ PS_KEYWORDS              <                                                      
         P
         (ps_name ' ReplaceDataInEmailBody' )
         B
-        '                                                        '
+        '                                     '
       )
     )
     (dcl_pi
@@ -703,7 +704,7 @@ PS_KEYWORDS              <                                                      
         P
         (ps_name ' ReplaceDataInEmailBody' )
         E
-        '                                                          '
+        '                                     '
       )
     )
   )

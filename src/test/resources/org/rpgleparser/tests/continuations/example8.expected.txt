@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Long name without continued name lines:                                                    >
+HIDDEN:COMMENTS_TEXT     <Long name without continued name lines:>
 DS_FIXED                 <D>
 NAME                     <RatherLongName>
 EXTERNAL_DESCRIPTION     < >
@@ -14,7 +14,7 @@ RESERVED                 < >
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Long name using 1 continued name line:                                                     >
+HIDDEN:COMMENTS_TEXT     <Long name using 1 continued name line:>
 DS_FIXED                 <D>
 CONTINUATION_NAME        <NameThatIsEvenLonger>
 NAME                     <>
@@ -33,7 +33,7 @@ StringLiteralEnd         <'>
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Long name using 1 continued name line:                                                     >
+HIDDEN:COMMENTS_TEXT     <Long name using 1 continued name line:>
 DS_FIXED                 <D>
 CONTINUATION_NAME        <NameThatIsSoLongItMustBe>
 NAME                     <Continued>
@@ -48,7 +48,7 @@ RESERVED                 < >
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Compile-time arrays may have long names:                                                   >
+HIDDEN:COMMENTS_TEXT     <Compile-time arrays may have long names:>
 DS_FIXED                 <D>
 CONTINUATION_NAME        <CompileTimeArrayContainingDataRepresentingTheNamesOfTheMonthsOf>
 CONTINUATION_NAME        <TheYearInGermanLanguage>
@@ -73,7 +73,7 @@ NUMBER                   <1>
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Long name using 3 continued name lines:                                                    >
+HIDDEN:COMMENTS_TEXT     <Long name using 3 continued name lines:>
 DS_FIXED                 <D>
 CONTINUATION_NAME        <ThisNameIsSoMuchLongerThanThe>
 CONTINUATION_NAME        <PreviousNamesThatItMustBe>
@@ -104,15 +104,15 @@ EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Long names defined on calc spec:                                                           >
+HIDDEN:COMMENTS_TEXT     <Long names defined on calc spec:>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <LongTagName>
 OP_TAG                   <TAG>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -137,14 +137,14 @@ EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Long name specified on Procedure spec:                                                     >
+HIDDEN:COMMENTS_TEXT     <Long name specified on Procedure spec:>
 PS_FIXED                 <P>
 PS_CONTINUATION_NAME     < ThisNameIsSoMuchLongerThanThe>
 PS_CONTINUATION_NAME     <    PreviousNamesThatItMustBe>
 PS_CONTINUATION_NAME     <    ContinuedOnSeveralSpecs>
 PS_NAME                  <>
 PS_BEGIN                 <B>
-PS_KEYWORDS              <                                                        >
+PS_KEYWORDS              <                                     >
 DS_FIXED                 <D>
 CONTINUATION_NAME        <ThisNameIsSoMuchLongerThanThe>
 CONTINUATION_NAME        <PreviousNamesThatItMustBe>
@@ -176,7 +176,8 @@ EOL                      <
 PS_FIXED                 <P>
 PS_NAME                  <>
 PS_END                   <E>
-PS_KEYWORDS              <                                                        >
+PS_KEYWORDS              <                                     >
+HIDDEN:PS_COMMENTS80     <                   >
 /*===TREE===*/
 (r
   (statement
@@ -340,7 +341,7 @@ PS_KEYWORDS              <                                                      
           
         )
         B
-        '                                                        '
+        '                                     '
       )
     )
     (dcl_pi
@@ -379,14 +380,7 @@ PS_KEYWORDS              <                                                      
         )
       )
     )
-    (endProcedure
-      (psEnd
-        P
-        (ps_name )
-        E
-        '                                                        '
-      )
-    )
+    (endProcedure (psEnd P (ps_name ) E '                                     '))
   )
 )
 /*======*/

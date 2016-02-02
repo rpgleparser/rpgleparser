@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Job date/time                                                                                 >
+HIDDEN:COMMENTS_TEXT     <Job date/time>
 /*===TREE===*/
 r
 /*======*/

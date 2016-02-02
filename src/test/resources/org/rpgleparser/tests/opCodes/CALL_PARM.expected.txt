@@ -4,12 +4,12 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_CALL                  <CALL>
 StringLiteralStart       <'>
 StringContent            <MSGSFLCL>
 StringLiteralEnd         <'>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -22,9 +22,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <PARM>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <MSGID>
 CS_FieldLength           <    7>
 CS_DecimalPositions      <  >
@@ -38,9 +38,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <PARM>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <MSGF>
 CS_FieldLength           <   10>
 CS_DecimalPositions      <  >
@@ -54,9 +54,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <PARM>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <MSGDTA>
 CS_FieldLength           <   62>
 CS_DecimalPositions      <  >
@@ -70,9 +70,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_PARM                  <PARM>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <MSGOPT>
 CS_FieldLength           <    1>
 CS_DecimalPositions      <  >

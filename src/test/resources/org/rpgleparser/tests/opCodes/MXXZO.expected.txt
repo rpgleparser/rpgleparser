@@ -1,14 +1,14 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED<C*>
-HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*Entry>
 OP_PLIST                 <PList>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -21,7 +21,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_MHHZO                 <MHHZO>
 CS_FactorContent         <SRC>
 CS_FactorContent         <TARG>
@@ -36,7 +36,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_MHHZO                 <mhhzo>
 CS_FactorContent         <SRC>
 CS_FactorContent         <TARG>
@@ -51,7 +51,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_MHLZO                 <MHLZO>
 CS_FactorContent         <SRC>
 CS_FactorContent         <TARG>
@@ -66,7 +66,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_MHLZO                 <mhlzo>
 CS_FactorContent         <SRC>
 CS_FactorContent         <TARG>
@@ -81,7 +81,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_MLHZO                 <MLHZO>
 CS_FactorContent         <SRC>
 CS_FactorContent         <TARG>
@@ -96,7 +96,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_MLHZO                 <mlhzo>
 CS_FactorContent         <SRC>
 CS_FactorContent         <TARG>
@@ -111,7 +111,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_MLLZO                 <MLLZO>
 CS_FactorContent         <SRC>
 CS_FactorContent         <TARG>
@@ -126,7 +126,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_MLLZO                 <mllzo>
 CS_FactorContent         <SRC>
 CS_FactorContent         <TARG>
@@ -141,10 +141,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>

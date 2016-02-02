@@ -1,14 +1,14 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED<C*>
-HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*Entry>
 OP_PLIST                 <PList>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -26,7 +26,7 @@ StringContent            <DEV>
 StringLiteralEnd         <'>
 OP_REL                   <REL>
 CS_FactorContent         <MYFILE>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -41,7 +41,7 @@ BlankIndicator           <  >
 CS_FactorContent         <DEVFL>
 OP_REL                   <rel>
 CS_FactorContent         <myfile>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -61,7 +61,7 @@ OP_REL                   <rel>
 CS_OperationAndExtender  <e>
 ')'                      <)>
 CS_FactorContent         <myfile>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -108,10 +108,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>

@@ -1,9 +1,9 @@
 /*===TOKENS===*/
 HIDDEN:COMMENTS          < //>
-HIDDEN:COMMENTS_TEXT     < Main Entry Parms                                                                          >
+HIDDEN:COMMENTS_TEXT     <Main Entry Parms>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < JAVA - create an integer object                                                            >
+HIDDEN:COMMENTS_TEXT     <JAVA - create an integer object>
 DS_FIXED                 <D>
 CONTINUATION_NAME        <JAVA_MakeInteger>
 NAME                     <>

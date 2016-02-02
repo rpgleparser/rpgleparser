@@ -8,7 +8,7 @@ NUMBER                   <132>
 DS_DataStructureEnd      <END-DS>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     <Two equivalent data structures (END-DS)                                                   >
+HIDDEN:COMMENTS_TEXT     <Two equivalent data structures (END-DS)>
 DS_DataStructureStart    <DCL-DS>
 ID                       <myrecord>
 KEYWORD_EXT              <EXT>

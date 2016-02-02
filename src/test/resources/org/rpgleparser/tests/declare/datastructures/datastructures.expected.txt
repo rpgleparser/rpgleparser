@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     < Program described data structure                                                         >
+HIDDEN:COMMENTS_TEXT     <Program described data structure>
 DS_DataStructureStart    <DCL-DS>
 ID                       <data_str_1>
 FREE_SEMI                <;>
@@ -27,7 +27,7 @@ FREE_SEMI                <;>
 DS_DataStructureEnd      <END-DS>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     < Program described data structure                                                         >
+HIDDEN:COMMENTS_TEXT     <Program described data structure>
 DS_DataStructureStart    <DCL-DS>
 ID                       <data_str_2>
 FREE_SEMI                <;>
@@ -47,7 +47,7 @@ DS_DataStructureEnd      <END-DS>
 ID                       <data_str_2>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     <Unnamed data structure                                                                    >
+HIDDEN:COMMENTS_TEXT     <Unnamed data structure>
 DS_DataStructureStart    <DCL-DS>
 MULT_NOSPACE             <*>
 ID                       <N>

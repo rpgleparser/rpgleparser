@@ -22,7 +22,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EVAL                  <EVAL>
 ID                       <val1>
 '='                      <=>
@@ -36,7 +36,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EVAL                  <EVAL>
 ID                       <val2>
 '='                      <=>
@@ -52,7 +52,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EVAL                  <EVAL>
 ID                       <val3>
 '='                      <=>
@@ -68,7 +68,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EVAL                  <EVAL>
 ID                       <val4>
 '='                      <=>

@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 HIDDEN:COMMENTS          <     //>
-HIDDEN:COMMENTS_TEXT     <D* fixed-form declaration                                                              >
+HIDDEN:COMMENTS_TEXT     <D* fixed-form declaration>
 DS_FIXED                 <D>
 NAME                     <myds>
 EXTERNAL_DESCRIPTION     < >
@@ -78,7 +78,7 @@ SPLAT_NEXT               <*NEXT>
 EOL                      <
 >
 HIDDEN:COMMENTS          <      //>
-HIDDEN:COMMENTS_TEXT     <free-form declaration                                                                 >
+HIDDEN:COMMENTS_TEXT     <free-form declaration>
 DS_DataStructureStart    <DCL-DS>
 ID                       <myds>
 FREE_SEMI                <;>

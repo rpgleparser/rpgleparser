@@ -30,9 +30,9 @@ FREE_SEMI                <;>
 OP_ENDIF                 <endif>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <     //>
-HIDDEN:COMMENTS_TEXT     <**********                                                                             >
+HIDDEN:COMMENTS_TEXT     <**********>
 HIDDEN:COMMENTS          <     //>
-HIDDEN:COMMENTS_TEXT     < Test Record Keys                                                                      >
+HIDDEN:COMMENTS_TEXT     <Test Record Keys>
 OP_IF                    <If>
 NOT                      <not>
 SPLAT_INDICATOR          <*In04>

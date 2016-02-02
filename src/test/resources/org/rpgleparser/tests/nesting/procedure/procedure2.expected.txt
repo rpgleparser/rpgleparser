@@ -2,7 +2,7 @@
 PS_FIXED                 <P>
 PS_NAME                  <>
 PS_BEGIN                 <B>
-PS_KEYWORDS              <                                                        >
+PS_KEYWORDS              <                                     >
 DS_FIXED                 <D>
 NAME                     <Function>
 EXTERNAL_DESCRIPTION     < >
@@ -99,17 +99,13 @@ FREE_SEMI                <;>
 PS_FIXED                 <P>
 PS_NAME                  <>
 PS_END                   <E>
-PS_KEYWORDS              <                                                        >
+PS_KEYWORDS              <                                     >
+HIDDEN:PS_COMMENTS80     <                   >
 /*===TREE===*/
 (r
   (procedure
     (beginProcedure
-      (psBegin
-        P
-        (ps_name )
-        B
-        '                                                        '
-      )
+      (psBegin P (ps_name ) B '                                     ')
     )
     (dcl_pi
       (piBegin D (ds_name Function) ' ' ' ' PI '       ' '     10' I ' 0' ' ' \r\n)
@@ -238,14 +234,7 @@ PS_KEYWORDS              <                                                      
         )
       )
     )
-    (endProcedure
-      (psEnd
-        P
-        (ps_name )
-        E
-        '                                                        '
-      )
-    )
+    (endProcedure (psEnd P (ps_name ) E '                                     '))
   )
 )
 /*======*/

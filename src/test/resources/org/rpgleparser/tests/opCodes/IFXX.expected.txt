@@ -1,14 +1,14 @@
 /*===TOKENS===*/
 HIDDEN:COMMENT_SPEC_FIXED<C*>
-HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....                   >
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 SPLAT_ENTRY              <*Entry>
 OP_PLIST                 <PList>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -24,7 +24,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFEQ                  <IFEQ>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -36,10 +36,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <ENDIF>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -54,7 +54,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFEQ                  <ifeq>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -66,10 +66,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -84,7 +84,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFLT                  <IFLT>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -96,10 +96,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <ENDIF>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -114,7 +114,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFLT                  <iflt>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -126,10 +126,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -144,7 +144,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFLE                  <IFLE>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -156,10 +156,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <ENDIF>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -174,7 +174,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFLE                  <ifle>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -186,10 +186,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -204,7 +204,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFGT                  <IFGT>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -216,10 +216,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <ENDIF>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -234,7 +234,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFGT                  <ifgt>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -246,10 +246,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -264,7 +264,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFGE                  <IFGE>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -276,10 +276,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <ENDIF>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -294,7 +294,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFGE                  <ifge>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -306,10 +306,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -325,7 +325,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFEQ                  <IFEQ>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -340,7 +340,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDEQ                 <ANDEQ>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -355,7 +355,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDGT                 <ANDGT>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -370,7 +370,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDGE                 <ANDGE>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -385,7 +385,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDLT                 <ANDLT>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -400,7 +400,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDLE                 <ANDLE>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -412,10 +412,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <ENDIF>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -430,7 +430,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFEQ                  <ifeq>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -445,7 +445,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDEQ                 <andeq>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -460,7 +460,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDGT                 <andgt>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -475,7 +475,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDGE                 <andge>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -490,7 +490,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDLT                 <andlt>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -505,7 +505,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ANDLE                 <andle>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -517,10 +517,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -536,7 +536,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFEQ                  <IFEQ>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -551,7 +551,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_OREQ                  <OREQ>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -566,7 +566,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ORGT                  <ORGT>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -581,7 +581,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ORGE                  <ORGE>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -596,7 +596,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ORLT                  <ORLT>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -611,7 +611,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ORLE                  <ORLE>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -623,10 +623,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <ENDIF>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -641,7 +641,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_IFEQ                  <ifeq>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -656,7 +656,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_OREQ                  <oreq>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -671,7 +671,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ORGT                  <orgt>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -686,7 +686,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ORGE                  <orge>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -701,7 +701,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ORLT                  <orlt>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -716,7 +716,7 @@ BlankIndicator           <  >
 CS_FactorContent         <Field1>
 OP_ORLE                  <orle>
 CS_FactorContent         <FIELDB>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -728,10 +728,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_ENDIF                 <endif>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -744,10 +744,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>

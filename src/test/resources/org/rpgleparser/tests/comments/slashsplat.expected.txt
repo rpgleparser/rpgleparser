@@ -1,0 +1,146 @@
+/*===TOKENS===*/
+HIDDEN:COMMENTS          < //>
+HIDDEN:COMMENTS_TEXT     <=======================================================================>
+HIDDEN:COMMENTS          < //>
+HIDDEN:COMMENTS_TEXT     <- Global Variables ->
+HIDDEN:COMMENTS          < //>
+HIDDEN:COMMENTS_TEXT     <=======================================================================>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <==================================|================================== *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <==================================|================================== *>
+PS_FIXED                 <P>
+PS_NAME                  <CalcDOW>
+PS_BEGIN                 <B>
+PS_KEYWORDS              <Export                               >
+HIDDEN:LEAD_WS5_Comments <    />
+HIDDEN:COMMENT_SPEC_FIXED<**>
+HIDDEN:COMMENTS_TEXT     <---------------------------------------------------------------------->
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <Calculates the day of week based on fixed starting date>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <<pre>>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <Eval      MyInt = CalcDoW(MyISO)>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <</pre>>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <--------------------------------------------------------------------*/>
+DS_FIXED                 <D>
+NAME                     <CalcDOW>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PI              <PI>
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <TheInDate>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                <D>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+KEYWORD_CONST            <Const>
+KEYWORD_DATFMT           <DatFmt>
+'('                      <(>
+SPLAT_ISO                <*ISO>
+')'                      <)>
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <Result>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_S               <S >
+FROM_POSITION            <       >
+TO_POSITION              <     10>
+DATA_TYPE                <I>
+DECIMAL_POSITIONS        < 0>
+RESERVED                 < >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_RETURN                <Return>
+ID                       <Result>
+C_FREE_NEWLINE           <
+>
+PS_FIXED                 <P>
+PS_NAME                  <CalcDOW>
+PS_END                   <E>
+PS_KEYWORDS              <                                     >
+HIDDEN:PS_COMMENTS80     <                   >
+/*===TREE===*/
+(r
+  (procedure
+    (beginProcedure
+      (psBegin P (ps_name CalcDOW) B 'Export                               ')
+    )
+    (dcl_pi
+      (piBegin D (ds_name CalcDOW) ' ' ' ' PI '       ' '     10' I ' 0' ' ' \r\n)
+      (pi_parm_fixed
+        (parm_fixed
+          D
+          (ds_name TheInDate)
+          ' '
+          ' '
+          '  '
+          '       '
+          '       '
+          D
+          '  '
+          ' '
+          (keyword (keyword_const Const))
+          (keyword
+            (keyword_datfmt
+              DatFmt
+              (
+              (simpleExpression (identifier (all (symbolicConstants *ISO))))
+              )
+            )
+          )
+          \r\n
+        )
+      )
+    )
+    (subprocedurestatement
+      (statement
+        (dspec D (ds_name Result) ' ' ' ' 'S ' '       ' '     10' I ' 0' ' ' \r\n)
+      )
+    )
+    (subprocedurestatement
+      (statement
+        (cspec_fixed
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (cspec_fixed_standard
+            (csRETURN
+              Return
+              (c_free (expression (identifier (free_identifier (idOrKeyword Result)))))
+              \r\n
+            )
+          )
+        )
+      )
+    )
+    (endProcedure
+      (psEnd P (ps_name CalcDOW) E '                                     ')
+    )
+  )
+)
+/*======*/

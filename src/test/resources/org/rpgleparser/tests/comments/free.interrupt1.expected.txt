@@ -4,7 +4,7 @@ ID                       <X>
 '='                      <=>
 NUMBER                   <1>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     < Interrupting comment                                                                       >
+HIDDEN:COMMENTS_TEXT     <Interrupting comment>
 AND                      <AND>
 ID                       <Y>
 '='                      <=>

@@ -3,7 +3,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EVAL                  <EVAL>
 ID                       <MARY>
 '='                      <=>
@@ -17,7 +17,7 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EVAL                  <EVAL>
 ID                       <A>
 '='                      <=>
@@ -33,14 +33,14 @@ NUMBER                   <24>
 C_FREE_NEWLINE           <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     <  The first use of '+' in this example is the concatenation                                 >
+HIDDEN:COMMENTS_TEXT     <The first use of '+' in this example is the concatenation>
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     <  operator.  The second use is the character literal continuation.                          >
+HIDDEN:COMMENTS_TEXT     <operator.  The second use is the character literal continuation.>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_EVAL                  <EVAL>
 ID                       <ERRMSG>
 '='                      <=>

@@ -3,7 +3,7 @@ DS_DataStructureStart    <DCL-DS>
 ID                       <data_str_1>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <  //>
-HIDDEN:COMMENTS_TEXT     < Program described data structure                                                         >
+HIDDEN:COMMENTS_TEXT     <Program described data structure>
 ID                       <emp_name>
 CHAR                     <CHAR>
 '('                      <(>

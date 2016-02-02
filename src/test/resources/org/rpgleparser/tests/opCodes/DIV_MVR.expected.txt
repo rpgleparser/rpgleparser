@@ -37,7 +37,7 @@ EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <3.00 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
-HIDDEN:COMMENTS_TEXT     <                                                                              130128        >
+HIDDEN:COMMENTS_TEXT     <130128>
 HIDDEN:LEAD_WS5_Comments <4.00 >
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -60,9 +60,9 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_MVR                   <MVR>
-CS_BlankFactor           <              >
+'              '         <              >
 CS_FactorContent         <D>
 CS_FieldLength           <    2>
 CS_DecimalPositions      < 0>
@@ -79,8 +79,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <C>
 OP_DSPLY                 <DSPLY>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -96,8 +96,8 @@ BlankFlag                < >
 BlankIndicator           <  >
 CS_FactorContent         <D>
 OP_DSPLY                 <DSPLY>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 BlankIndicator           <  >
@@ -111,10 +111,10 @@ CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
-CS_BlankFactor           <              >
+'              '         <              >
 OP_SETON                 <SETON>
-CS_BlankFactor           <              >
-CS_BlankFactor           <              >
+'              '         <              >
+'              '         <              >
 CS_FieldLength           <     >
 CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>

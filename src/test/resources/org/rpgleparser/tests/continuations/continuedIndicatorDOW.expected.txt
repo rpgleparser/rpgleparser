@@ -9,7 +9,7 @@ CS_FIXED                 <c>
 AndIndicator             <an>
 NoFlag                   <n>
 GeneralIndicator         <15>
-CS_BlankFactor           <              >
+'              '         <              >
 OP_DOU                   <dou>
 SPLAT_INDICATOR          <*in25>
 '='                      <=>
