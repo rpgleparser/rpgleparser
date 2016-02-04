@@ -100,7 +100,6 @@ mode EndOfSourceMode;
 EOS_Text : ~[\r\n]+ ;
 EOS_EOL : NEWLINE -> type(EOL); 
 
-
 // -----------------  ---------------------
 mode OpCode;
 OP_WS: [ \t] {getCharPositionInLine()>6}? [ \t]* -> skip;
@@ -494,7 +493,6 @@ KEYWORD_KEYED : [kK][eE][yY][eE][dD];
 KEYWORD_USAGE : [uU][sS][aA][gG][eE];
 KEYWORD_PSDS: [pP][sS][dD][sS];
 
-// 
 AMPERSAND: '&';
 
 // Boolean operators
@@ -506,7 +504,6 @@ NOT : [nN] [oO] [tT] ;
 PLUS : '+' ;
 MINUS : '-' ;
 EXP : '**' ;
-//MULT : '*' ;
 ARRAY_REPEAT: {_input.LA(2) == ')' && _input.LA(-1) == '('}? '*' ;
 MULT_NOSPACE: {_input.LA(2) != 32}? '*';
 MULT: {_input.LA(2) == 32}? '*' ;
@@ -535,10 +532,7 @@ FREE_NUMBER_CONT: NUMBER {_modeStack.peek()==FIXED_DefSpec}? -> pushMode(NumberC
 FREE_NUMBER: NUMBER -> type(NUMBER);
 EQUAL: '=';
 
-//FREE_OPERATION: '+' | '/' | '+=' | '-=';
-//FREE_COMPARE: '<' | '>'  | '<'[>=] | '>=';
 FREE_COLON: COLON -> type(COLON);
-
 FREE_BY: [bB][yY];
 FREE_TO: [tT][oO];
 FREE_DOWNTO: [dD][oO][wW][nN][tT][oO];
@@ -617,136 +611,77 @@ OP_CASGE: [cC][aA][sS][gG][eE];
 OP_CASGT: [cC][aA][sS][gG][tT];
 OP_CAS: [cC][aA][sS];
 OP_CAT: [cC][aA][tT];
-//OP_CHAIN: [cC][hH][aA][iI][nN];
 OP_CHECK: [cC][hH][eE][cC][kK];
 OP_CHECKR: [cC][hH][eE][cC][kK][rR];
-//OP_CLEAR: [cC][lL][eE][aA][rR];
-//OP_CLOSE: [cC][lL][oO][sS][eE];
-//OP_COMMIT: [cC][oO][mM][mM][iI][tT];
 OP_COMP: [cC][oO][mM][pP];
-//OP_DEALLOC: [dD][eE][aA][lL][lL][oO][cC];
 OP_DEFINE: [dD][eE][fF][iI][nN][eE];
-//OP_DELETE: [dD][eE][lL][eE][tT][eE];
 OP_DIV: [dD][iI][vV];
 OP_DO: [dD][oO];
-//OP_DOU: [dD][oO][uU];
 OP_DOUEQ: [dD][oO][uU][eE][qQ];
 OP_DOUNE: [dD][oO][uU][nN][eE];
 OP_DOULE: [dD][oO][uU][lL][eE];
 OP_DOULT: [dD][oO][uU][lL][tT];
 OP_DOUGE: [dD][oO][uU][gG][eE];
 OP_DOUGT: [dD][oO][uU][gG][tT];
-//OP_DOW: [dD][oO][wW];
 OP_DOWEQ: [dD][oO][wW][eE][qQ];
 OP_DOWNE: [dD][oO][wW][nN][eE];
 OP_DOWLE: [dD][oO][wW][lL][eE];
 OP_DOWLT: [dD][oO][wW][lL][tT];
 OP_DOWGE: [dD][oO][wW][gG][eE];
 OP_DOWGT: [dD][oO][wW][gG][tT];
-//OP_DSPLY: [dD][sS][pP][lL][yY];
-//OP_DUMP: [dD][uU][mM][pP];
-//OP_ELSE: [eE][lL][sS][eE];
-//OP_ELSEIF: [eE][lL][sS][eE][iI][fF];
 OP_END: [eE][nN][dD];
 OP_ENDCS: [eE][nN][dD][cC][sS];
-//OP_ENDDO: [eE][nN][dD][dD][oO];
-//OP_ENDFOR: [eE][nN][dD][fF][oO][rR];
-//OP_ENDIF: [eE][nN][dD][iI][fF];
-//OP_ENDMON: [eE][nN][dD][mM][oO][nN];
-//OP_ENDSL: [eE][nN][dD][sS][lL];
-//OP_ENDSR: [eE][nN][dD][sS][rR];
-//OP_EVAL: [eE][vV][aA][lL];
-//OP_EVAL-CORR: [eE][vV][aA][lL]'-'[cC][oO][rR][rR];
-//OP_EVALR: [eE][vV][aA][lL][rR];
-//OP_EXCEPT: [eE][xX][cC][eE][pP][tT];
-//OP_EXFMT: [eE][xX][fF][mM][tT];
-//OP_EXSR: [eE][xX][sS][rR];
 OP_EXTRCT: [eE][xX][tT][rR][cC][tT];
-//OP_FEOD: [fF][eE][oO][dD];
-//OP_FOR: [fF][oO][rR];
-//OP_FORCE: [fF][oO][rR][cC][eE];
 OP_GOTO: [gG][oO][tT][oO];
-//OP_IF: [iI][fF];
 OP_IFEQ: [iI][fF][eE][qQ];
 OP_IFNE: [iI][fF][nN][eE];
 OP_IFLE: [iI][fF][lL][eE];
 OP_IFLT: [iI][fF][lL][tT];
 OP_IFGE: [iI][fF][gG][eE];
 OP_IFGT: [iI][fF][gG][tT];
-//OP_IN: [iI][nN];
-//OP_ITER: [iI][tT][eE][rR];
 OP_KFLD: [kK][fF][lL][dD];
 OP_KLIST: [kK][lL][iI][sS][tT];
-//OP_LEAVE: [lL][eE][aA][vV][eE];
-//OP_LEAVESR: [lL][eE][aA][vV][eE][sS][rR];
 OP_LOOKUP: [lL][oO][oO][kK][uU][pP];
 OP_MHHZO: [mM][hH][hH][zZ][oO];
 OP_MHLZO: [mM][hH][lL][zZ][oO];
 OP_MLHZO: [mM][lL][hH][zZ][oO];
 OP_MLLZO: [mM][lL][lL][zZ][oO];
-//OP_MONITOR: [mM][oO][nN][iI][tT][oO][rR];
 OP_MOVE: [mM][oO][vV][eE];
 OP_MOVEA: [mM][oO][vV][eE][aA];
 OP_MOVEL: [mM][oO][vV][eE][lL];
 OP_MULT: [mM][uU][lL][tT];
 OP_MVR: [mM][vV][rR];
-//OP_NEXT: [nN][eE][xX][tT];
 OP_OCCUR: [oO][cC][cC][uU][rR];
-//OP_ON_ERROR: [oO][nN]'-'[eE][rR][rR][oO][rR];
-//OP_OPEN: [oO][pP][eE][nN];
 OP_OREQ: [oO][rR][eE][qQ];
 OP_ORNE: [oO][rR][nN][eE];
 OP_ORLE: [oO][rR][lL][eE];
 OP_ORLT: [oO][rR][lL][tT];
 OP_ORGE: [oO][rR][gG][eE];
 OP_ORGT: [oO][rR][gG][tT];
-//OP_OTHER: [oO][tT][hH][eE][rR];
-//OP_OUT: [oO][uU][tT];
 OP_PARM: [pP][aA][rR][mM];
 OP_PLIST: [pP][lL][iI][sS][tT];
-//OP_POST: [pP][oO][sS][tT];
-//OP_READ: [rR][eE][aA][dD];
-//OP_READC: [rR][eE][aA][dD][cC];
-//OP_READE: [rR][eE][aA][dD][eE];
-//OP_READP: [rR][eE][aA][dD][pP];
-//OP_READPE: [rR][eE][aA][dD][pP][eE];
 OP_REALLOC: [rR][eE][aA][lL][lL][oO][cC];
-//OP_REL: [rR][eE][lL];
-//OP_RESET: [rR][eE][sS][eE][tT];
-//OP_RETURN: [rR][eE][tT][uU][rR][nN];
-//OP_ROLBK: [rR][oO][lL][bB][kK];
 OP_SCAN: [sS][cC][aA][nN];
-//OP_SELECT: [sS][eE][lL][eE][cC][tT];
-//OP_SETGT: [sS][eE][tT][gG][tT];
-//OP_SETLL: [sS][eE][tT][lL][lL];
 OP_SETOFF: [sS][eE][tT][oO][fF][fF];
 OP_SETON: [sS][eE][tT][oO][nN];
 OP_SHTDN: [sS][hH][tT][dD][nN];
-//OP_SORTA: [sS][oO][rR][tT][aA];
 OP_SQRT: [sS][qQ][rR][tT];
 OP_SUB: [sS][uU][bB];
 OP_SUBDUR: [sS][uU][bB][dD][uU][rR];
 OP_SUBST: [sS][uU][bB][sS][tT];
 OP_TAG: [tT][aA][gG];
-//OP_TEST: [tT][eE][sS][tT];
 OP_TESTB: [tT][eE][sS][tT][bB];
 OP_TESTN: [tT][eE][sS][tT][nN];
 OP_TESTZ: [tT][eE][sS][tT][zZ];
 OP_TIME: [tT][iI][mM][eE];
-//OP_UNLOCK: [uU][nN][lL][oO][cC][kK];
-//OP_UPDATE: [uU][pP][dD][aA][tT][eE];
-//OP_WHEN: [wW][hH][eE][nN];
 OP_WHENEQ: [wW][hH][eE][nN][eE][qQ];
 OP_WHENNE: [wW][hH][eE][nN][nN][eE];
 OP_WHENLE: [wW][hH][eE][nN][lL][eE];
 OP_WHENLT: [wW][hH][eE][nN][lL][tT];
 OP_WHENGE: [wW][hH][eE][nN][gG][eE];
 OP_WHENGT: [wW][hH][eE][nN][gG][tT];
-//OP_WRITE: [wW][rR][iI][tT][eE];
 OP_XFOOT: [xX][fF][oO][oO][tT];
 OP_XLATE: [xX][lL][aA][tT][eE];
-//OP_XML_INTO: [xX][mM][lL]'-'[iI][nN][tT][oO];
-//OP_XML_SAX: [xX][mM][lL]'-'[sS][aA][xX];
 OP_Z_ADD: [zZ]'-'[aA][dD][dD];
 OP_Z_SUB: [zZ]'-'[sS][uU][bB];
 
@@ -813,15 +748,6 @@ FIXED_FREE_STRING_CONTINUATION_Part2:
      )  // If it plus continuation eat whitespace.
    ) 
    -> type(CONTINUATION),skip ;
-//FIXED_FREE_STRING_CONTINUATION_Minus_Part2:  
-//   (
-//     WORD5 
-//     ( [cC] {_modeStack.contains(FIXED_CalcSpec)}?
-//      | [dD] {_modeStack.contains(FIXED_DefSpec)}? 
-//     ) 
-//     ~[*] '                            ' 
-//   ) 
-//   -> type(CONTINUATION),skip ;
 //Deliberate match no char, pop out again
 EatCommentLines_NothingLeft: -> popMode,skip;
 
@@ -939,7 +865,6 @@ FS_RecordAddressType: [a-zA-Z ] {getCharPositionInLine()==34}?;
 FS_Organization: [a-zA-Z ] {getCharPositionInLine()==35}?;
 FS_Device: WORD5 [a-zA-Z ][a-zA-Z ] {getCharPositionInLine()==42}?;
 FS_Reserved: [ ] {getCharPositionInLine()==43}? -> pushMode(FREE);
-//FS_Keywords : ~[\r\n] {getCharPositionInLine()==44}? ~[\r\n]*;
 FS_WhiteSpace : [ \t] {getCharPositionInLine()>80}? [ \t]* -> skip  ; // skip spaces, tabs, newlines
 FS_EOL : NEWLINE -> type(EOL),popMode;
 
@@ -956,8 +881,6 @@ OS_AddDelete: ([aA][dD][dD] | [dD][eE][lL])  {getCharPositionInLine()==20}? -> p
 	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode); 
 OS_FetchOverflow: (' ' | [fFrR]) '  '  {getCharPositionInLine()==20}? -> pushMode(OnOffIndicatorMode),
 	pushMode(OnOffIndicatorMode),pushMode(OnOffIndicatorMode);
-//OS_OutputCondition: {getCharPositionInLine()==20 || getCharPositionInLine()==23
-//		|| getCharPositionInLine()==26}? [N ] IND_FRAG ; 
 OS_ExceptName: WORD5 WORD5 {getCharPositionInLine()==39}?;
 OS_Space3: [ 0-9][ 0-9][ 0-9] {getCharPositionInLine()==42 || getCharPositionInLine()==45 
 	|| getCharPositionInLine()==48 || getCharPositionInLine()==51}? ;
@@ -1510,8 +1433,6 @@ CSQLC_Any : NEWLINE? -> skip,popMode;
 mode FIXED_CalcSpec_X2;
 C2_FACTOR2_CONT: ~[\r\n]{getCharPositionInLine()==36}? 
 		~[\r\n]* '+' [ ]+ NEWLINE;  //TODO  the continuation should not include the plus and the \r\n
-//C2_FACTOR2_CONT2: ~[\r\n] {getCharPositionInLine()==36}? 
-//		~[\r\n]* NEWLINE WORD5 [cC] '                             ' ;  
 C2_FACTOR2: ~[\r\n]{getCharPositionInLine()==36}? 
 		~[\r\n]* ->popMode;
 C2_OTHER: ~('\r' | '\n') {getCharPositionInLine()<36}?  ->skip;
@@ -1555,8 +1476,6 @@ IFD_FIELD_NAME: WORD5_WCOLON WORD5_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON WO
 IFD_CONTROL_LEVEL : ('L'[0-9] | '  ') {getCharPositionInLine()==64}?;
 IFD_MATCHING_FIELDS: ('M'[0-9] | '  ') {getCharPositionInLine()==66}? ->pushMode(IndicatorMode),pushMode(IndicatorMode),
 	pushMode(IndicatorMode),pushMode(IndicatorMode);
-//IFD_FIELD_RELATION: IND_FRAG {getCharPositionInLine()==68}? ;
-//IFD_FIELD_IND: IND_FRAG IND_FRAG IND_FRAG {getCharPositionInLine()==74}? ;
 IFD_BLANKS: '      ' {getCharPositionInLine()==80}? -> skip;
 IFD_COMMENTS : ~[\r\n]{getCharPositionInLine()>80}? ~[\r\n]* -> channel(HIDDEN) ; // skip spaces, tabs, newlines
 IFD_EOL : NEWLINE -> type(EOL),popMode,popMode;
@@ -1572,45 +1491,6 @@ HS_CONTINUATION: NEWLINE
 	WORD5 [hH] ~[*] -> skip;
 HS_EOL : NEWLINE -> type(EOL),popMode;
 
-/*
-mode F_SPEC_FREE;
-FREE_F_OPEN_PAREN: OPEN_PAREN;
-FREE_F_CLOSE_PAREN: CLOSE_PAREN;
-FREE_F_STRING_START: ['] -> pushMode(InStringMode) ;
-FREE_F_COLON: ':';
-FREE_F_ID: ID;
-FREE_F_NUMBER: NUMBER;
-FREE_F_CONT: '...' [ ]* NEWLINE WORD5[ ]+ {setText("...");};
-FREE_F_WS : [ \t]+ -> skip  ; // skip spaces, tabs, newlines
-FREE_F_SEMICOLON: ';' -> popMode,popMode;
-FREE_F_EOL : NEWLINE -> skip;
-/*
-mode D_SPEC_FREE;
-FREE_D_OPEN_PAREN: OPEN_PAREN;
-FREE_D_CLOSE_PAREN: CLOSE_PAREN;
-FREE_D_STRING_START: ['] -> pushMode(InStringMode) ;
-FREE_D_COLON: ':';
-FREE_D_ID: ID;
-FREE_D_WS : [ \t]+ -> skip  ; // skip spaces, tabs, newlines
-FREE_D_SEMICOLON: ';' -> popMode,popMode;
-FREE_D_EOL : NEWLINE -> skip;
-*/
-
-/*	26,35,"Operation and Extender"
-	36,49,"Factor 2"
-	50,63,"Result Field"
-	64,68,"Field Length"
-	69,70,"Decimal Positions"
-	71,76,"Resulting Indicators"
-	7,8,"Control Level"
-	7,8,"Control Level"
-	9,11,"Indicators"
-	9,11,"Indicators"
-	12,25,"Factor 1"
-	26,35,"Operation and Extender"
-	36,80,"Extended Factor 2"
-	8,80,"Free-form Operations"
- */
 fragment WORD5 : ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n];
 fragment NAME5 : NAMECHAR NAMECHAR NAMECHAR NAMECHAR NAMECHAR;
 // valid characters in symbolic names.
@@ -1619,6 +1499,3 @@ fragment NAMECHAR : [A-Za-z0-9$#@_ ];
 fragment INITNAMECHAR : [A-Za-z$#@];
 fragment WORD_WCOLON : ~[\r\n];//[a-zA-Z0-9 :*];
 fragment WORD5_WCOLON : WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON;
-//fragment C_OP_EXT: [ aAhHnNpPdDtTzZmMrReE];
-//fragment IND_FRAG: ('  ' | [0-9lLhH][0-9] | [kK][A-NP-Ya-np0y] | [lLmM][rR] | [rR][tT] | [uU][1-8] | [oO][a-gvA-GV] | [0-9][pP]);
-
