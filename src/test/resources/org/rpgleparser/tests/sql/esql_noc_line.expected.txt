@@ -1,0 +1,53 @@
+/*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <ez01À>
+HIDDEN:COMMENT_SPEC_FIXED< *>
+HIDDEN:COMMENTS_TEXT     <Declare Query>
+HIDDEN:LEAD_WS5_Comments <ez01À>
+CS_ExecSQL               <C/EXEC SQL>
+CSQL_TEXT                < DECLARE BOOKINGS CURSOR FOR                                                                >
+CSQL_TEXT                < SELECT DISTINCT  KHBKID, KHBKST,  KHBRNO,  KHRCDT,  KHRCTM,  KHRSID,                       >
+CSQL_TEXT                <                  KHISPC, KHBKPC,  KHRSSQ,  KHRSLC,  KHTVDT,  KHCANO,                       >
+CSQL_TEXT                <                  KHDCTP, KHDCNO,  KHDCVL,  KHDCDT,                                         >
+CSQL_TEXT                <                  BLBKLN, BLCRRF,  BLPRTY                                                   >
+HIDDEN:CSQLC_Comments    <Header/Detail Line                                                               >
+CSQL_TEXT                < FROM      CBBFBHP, CBBFBLP                                                                 >
+HIDDEN:CSQLC_Comments    <Booking Id          Product Type                                                 >
+CSQL_TEXT                < WHERE     KHBKID = BLBKID And BLPRTY = 'FX' And                                            >
+HIDDEN:CSQLC_Comments    <Carrier Reference                                                                >
+CSQL_TEXT                <           SUBSTR(BLCRRF,1,6) = :##SELCRREF And                                             >
+HIDDEN:CSQLC_Comments    <Branch                   Booking Status Not Float Order                          >
+CSQL_TEXT                <           KHBRNO = :##SELBRNCH And KHBKST <> 'E'                                           >
+CSQL_TEXT                < GROUP BY  KHBKID, KHBKST,  KHBRNO,  KHRCDT,  KHRCTM,  KHRSID,                              >
+CSQL_TEXT                <           KHISPC, KHBKPC,  KHRSSQ,  KHRSLC,  KHTVDT,  KHCANO,                              >
+CSQL_TEXT                <           KHDCTP, KHDCNO,  KHDCVL,  KHDCDT,                                                >
+CSQL_TEXT                <           BLBKLN, BLCRRF,  BLPRTY                                                          >
+CSQL_TEXT                < ORDER BY  KHBKID                                                                           >
+CSQL_TEXT                < OPTIMIZE FOR 9999999 ROWS                                                                  >
+CSQL_END                 <C/END-EXEC                                                                                    
+>
+HIDDEN:LEAD_WS5_Comments <ez01 >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed_sql
+      C/EXEC SQL
+      ' DECLARE BOOKINGS CURSOR FOR                                                                '
+      ' SELECT DISTINCT  KHBKID, KHBKST,  KHBRNO,  KHRCDT,  KHRCTM,  KHRSID,                       '
+      '                  KHISPC, KHBKPC,  KHRSSQ,  KHRSLC,  KHTVDT,  KHCANO,                       '
+      '                  KHDCTP, KHDCNO,  KHDCVL,  KHDCDT,                                         '
+      '                  BLBKLN, BLCRRF,  BLPRTY                                                   '
+      ' FROM      CBBFBHP, CBBFBLP                                                                 '
+      ' WHERE     KHBKID = BLBKID And BLPRTY = 'FX' And                                            '
+      '           SUBSTR(BLCRRF,1,6) = :##SELCRREF And                                             '
+      '           KHBRNO = :##SELBRNCH And KHBKST <> 'E'                                           '
+      ' GROUP BY  KHBKID, KHBKST,  KHBRNO,  KHRCDT,  KHRCTM,  KHRSID,                              '
+      '           KHISPC, KHBKPC,  KHRSSQ,  KHRSLC,  KHTVDT,  KHCANO,                              '
+      '           KHDCTP, KHDCNO,  KHDCVL,  KHDCDT,                                                '
+      '           BLBKLN, BLCRRF,  BLPRTY                                                          '
+      ' ORDER BY  KHBKID                                                                           '
+      ' OPTIMIZE FOR 9999999 ROWS                                                                  '
+      C/END-EXEC                                                                                    \r\n
+    )
+  )
+)
+/*======*/
