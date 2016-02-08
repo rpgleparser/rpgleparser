@@ -1,0 +1,37 @@
+/*===TOKENS===*/
+HIDDEN:COMMENTS          < //>
+HIDDEN:COMMENTS_TEXT     <=======================================================================>
+HIDDEN:COMMENTS          < //>
+HIDDEN:COMMENTS_TEXT     <- SQL Compiler Options ->
+HIDDEN:COMMENTS          < //>
+HIDDEN:COMMENTS_TEXT     <=======================================================================>
+CS_ExecSQL               <C/exec sql>
+CSQL_TEXT                < set option closqlcsr = *endactgrp,                                                         >
+CSQL_TEXT                <            commit    = *none,                                                              >
+CSQL_TEXT                <            alwblk    = *allread,                                                           >
+CSQL_TEXT                <            dlyprp    = *yes,                                                               >
+CSQL_TEXT                <            alwcpydta = *optimize,                                                          >
+CSQL_TEXT                <            rdbcnnmth = *duw,                                                               >
+CSQL_TEXT                <            naming    = *sys,                                                               >
+CSQL_TEXT                <            datfmt    = *iso,                                                               >
+CSQL_TEXT                <            timfmt    = *hms                                                                >
+CSQL_END                 <C/end-exec                                                                                    >
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed_sql
+      C/exec sql
+      ' set option closqlcsr = *endactgrp,                                                         '
+      '            commit    = *none,                                                              '
+      '            alwblk    = *allread,                                                           '
+      '            dlyprp    = *yes,                                                               '
+      '            alwcpydta = *optimize,                                                          '
+      '            rdbcnnmth = *duw,                                                               '
+      '            naming    = *sys,                                                               '
+      '            datfmt    = *iso,                                                               '
+      '            timfmt    = *hms                                                                '
+      'C/end-exec                                                                                    '
+    )
+  )
+)
+/*======*/

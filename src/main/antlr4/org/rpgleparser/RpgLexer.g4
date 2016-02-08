@@ -1412,11 +1412,12 @@ OtherTextIndicator: ~[\r\n]~[\r\n];
 
 
 mode FIXED_CalcSpec_SQL;
-CSQL_EMPTY_TEXT: [ ]+ -> skip;
+CSQL_EMPTY_TEXT: [ ] {getCharPositionInLine()>=8}? [ ]* -> skip;
 CSQL_TEXT: ~[\r\n] {getCharPositionInLine()>=8}? ~[\r\n]*;
+CSQL_LEADBLANK : '     ' {getCharPositionInLine()==5}?-> skip;
 CSQL_LEADWS : WORD5 {getCharPositionInLine()==5}?-> skip;
 CSQL_END : 
-	 [cC] '/' [Ee][nN][dD][-][Ee][Xx][Ee][Cc] WS ~[\r\n]* NEWLINE-> popMode ;
+	 [cC] '/' [Ee][nN][dD][-][Ee][Xx][Ee][Cc] WS ~[\r\n]* -> popMode ;
 CSQL_CONT: [cC ] '+' -> skip; 
 CSQL_CSplat: [cC ] '*' -> skip,pushMode(FIXED_CalcSpec_SQL_Comments); 
 CSQL_EOL: NEWLINE -> skip;
