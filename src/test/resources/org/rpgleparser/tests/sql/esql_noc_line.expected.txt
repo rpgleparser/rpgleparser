@@ -1,8 +1,8 @@
 /*===TOKENS===*/
-HIDDEN:LEAD_WS5_Comments <ez01À>
+HIDDEN:LEAD_WS5_Comments <ez01A>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 HIDDEN:COMMENTS_TEXT     <Declare Query>
-HIDDEN:LEAD_WS5_Comments <ez01À>
+HIDDEN:LEAD_WS5_Comments <ez01A>
 CS_ExecSQL               <C/EXEC SQL>
 CSQL_TEXT                < DECLARE BOOKINGS CURSOR FOR                                                                >
 CSQL_TEXT                < SELECT DISTINCT  KHBKID, KHBKST,  KHBRNO,  KHRCDT,  KHRCTM,  KHRSID,                       >
