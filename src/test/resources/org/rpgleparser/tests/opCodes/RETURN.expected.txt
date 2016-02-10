@@ -72,8 +72,7 @@ C_FREE_NEWLINE           <
 >
 DIRECTIVE                < />
 DIR_FREE                 <Free>
-EOL                      <
->
+EOL                      <>
 OP_RETURN                <return>
 FREE_SEMI                <;>
 OP_RETURN                <return>
@@ -103,8 +102,7 @@ NUMBER                   <10>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -228,7 +226,7 @@ BlankIndicator           <  >
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \r\n))
+  (statement (directive ' /' (beginfree_directive Free) ))
   (statement (free (baseExpression (op (op_return return))) ;))
   (statement
     (free
@@ -290,7 +288,7 @@ BlankIndicator           <  >
       ;
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \r\n))
+  (statement (directive ' /' (endfree_directive end-free) ))
   (statement
     (cspec_fixed
       C

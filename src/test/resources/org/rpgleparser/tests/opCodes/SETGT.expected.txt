@@ -116,8 +116,7 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <Free>
-EOL                      <
->
+EOL                      <>
 OP_SETGT                 <setgt>
 ID                       <key>
 ID                       <infile>
@@ -161,8 +160,7 @@ ID                       <custrecDS>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -343,7 +341,7 @@ EOL                      <
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement (directive ' /' (beginfree_directive Free) ))
   (statement
     (free
       (baseExpression
@@ -425,7 +423,7 @@ EOL                      <
       ;
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \r\n))
+  (statement (directive ' /' (endfree_directive end-free) ))
   (statement
     (cspec_fixed
       C

@@ -1,8 +1,7 @@
 /*===TOKENS===*/
 DIRECTIVE                <  />
 DIR_FREE                 <FREE>
-EOL                      <
->
+EOL                      <>
 TIME                     <time>
 '='                      <=>
 ID                       <hours>
@@ -15,7 +14,7 @@ DIRECTIVE                <  />
 DIR_ENDFREE              <END-FREE>
 /*===TREE===*/
 (r
-  (statement (directive '  /' (beginfree_directive FREE) \r\n))
+  (statement (directive '  /' (beginfree_directive FREE) ))
   (statement
     (free
       (baseExpression

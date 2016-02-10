@@ -15,7 +15,7 @@ CSQL_TEXT                <            rdbcnnmth = *duw,                         
 CSQL_TEXT                <            naming    = *sys,                                                               >
 CSQL_TEXT                <            datfmt    = *iso,                                                               >
 CSQL_TEXT                <            timfmt    = *hms                                                                >
-CSQL_END                 <C/end-exec                                                                                    >
+CSQL_END                 <C/end-exec>
 /*===TREE===*/
 (r
   (statement
@@ -30,7 +30,7 @@ CSQL_END                 <C/end-exec                                            
       '            naming    = *sys,                                                               '
       '            datfmt    = *iso,                                                               '
       '            timfmt    = *hms                                                                '
-      'C/end-exec                                                                                    '
+      C/end-exec
     )
   )
 )

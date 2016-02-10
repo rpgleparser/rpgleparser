@@ -1,0 +1,115 @@
+/*===TOKENS===*/
+HIDDEN:DIRECTIVE         < />
+HIDDEN:DIR_DEFINE        <Define>
+HIDDEN:DIR_OtherText     <Copy_Procedure_Interface>
+HIDDEN:DIRECTIVE         < />
+HIDDEN:DIR_IF            <If>
+HIDDEN:DIR_NOT           <Not>
+HIDDEN:DIR_DEFINED       <Defined>
+HIDDEN:'('               <(>
+HIDDEN:')'               <)>
+HIDDEN:DS_FIXED          <D>
+HIDDEN:NAME              <RtvAcgCde>
+HIDDEN:EXTERNAL_DESCRIPTION< >
+HIDDEN:DATA_STRUCTURE_TYPE< >
+HIDDEN:DEF_TYPE_PR       <PR>
+HIDDEN:FROM_POSITION     <       >
+HIDDEN:TO_POSITION       <       >
+HIDDEN:DATA_TYPE         < >
+HIDDEN:DECIMAL_POSITIONS <  >
+HIDDEN:RESERVED          < >
+HIDDEN:KEYWORD_EXTPGM    <ExtPgm>
+HIDDEN:'('               <(>
+HIDDEN:StringLiteralStart<'>
+HIDDEN:StringContent     <RTVACGCDE>
+HIDDEN:StringLiteralEnd  <'>
+HIDDEN:')'               <)>
+HIDDEN:EOL               <
+>
+HIDDEN:DIRECTIVE         < />
+HIDDEN:DIR_ELSE          <Else>
+DS_FIXED                 <D>
+NAME                     <RtvAcgCde>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_PI              <PI>
+FROM_POSITION            <       >
+TO_POSITION              <       >
+DATA_TYPE                < >
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+HIDDEN:DIRECTIVE         < />
+HIDDEN:DIR_ENDIF         <EndIf>
+DS_FIXED                 <D>
+NAME                     <P@AcgCde>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <     15>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+EOL                      <
+>
+DS_FIXED                 <D>
+NAME                     <P@LocType>
+EXTERNAL_DESCRIPTION     < >
+DATA_STRUCTURE_TYPE      < >
+DEF_TYPE_BLANK           <  >
+FROM_POSITION            <       >
+TO_POSITION              <      1>
+DATA_TYPE                <A>
+DECIMAL_POSITIONS        <  >
+RESERVED                 < >
+/*===TREE===*/
+(r
+  (dcl_pi
+    (piBegin
+      D
+      (ds_name RtvAcgCde)
+      ' '
+      ' '
+      PI
+      '       '
+      '       '
+      ' '
+      '  '
+      ' '
+      \r\n
+    )
+    (pi_parm_fixed
+      (parm_fixed
+        D
+        (ds_name P@AcgCde)
+        ' '
+        ' '
+        '  '
+        '       '
+        '     15'
+        A
+        '  '
+        ' '
+        \r\n
+      )
+    )
+    (pi_parm_fixed
+      (parm_fixed
+        D
+        (ds_name P@LocType)
+        ' '
+        ' '
+        '  '
+        '       '
+        '      1'
+        A
+        '  '
+        ' '
+        <EOF>
+      )
+    )
+  )
+)
+/*======*/

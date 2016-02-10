@@ -2,22 +2,19 @@
 DIRECTIVE                <C/>
 DIR_COPY                 <COPY>
 DIR_OtherText            <MBR1>
-EOL                      <                                                                                   
->
+EOL                      <>
 DIRECTIVE                <I/>
 DIR_INCLUDE              <INCLUDE>
 DIR_OtherText            <SRCFIL>
 DIR_OtherText            <MBR2>
-EOL                      <                                                                         
->
+EOL                      <>
 DIRECTIVE                <O/>
 DIR_COPY                 <COPY>
 DIR_OtherText            <SRCLIB>
 DIR_Slash                </>
 DIR_OtherText            <SRCFIL>
 DIR_OtherText            <MBR3>
-EOL                      <                                                                     
->
+EOL                      <>
 DIRECTIVE                <O/>
 DIR_INCLUDE              <INCLUDE>
 StringLiteralStart       <">
@@ -30,8 +27,7 @@ StringLiteralEnd         <">
 StringLiteralStart       <">
 StringContent            <MBR¬3>
 StringLiteralEnd         <">
-EOL                      <                                                          
->
+EOL                      <>
 DIRECTIVE                <O/>
 DIR_COPY                 <COPY>
 DIR_Slash                </>
@@ -40,8 +36,7 @@ DIR_Slash                </>
 DIR_OtherText            <dir2>
 DIR_Slash                </>
 DIR_OtherText            <file.rpg>
-EOL                      <                                                                    
->
+EOL                      <>
 DIRECTIVE                <O/>
 DIR_COPY                 <COPY>
 DIR_Slash                </>
@@ -50,8 +45,7 @@ DIR_Slash                </>
 DIR_OtherText            <dir2>
 DIR_Slash                </>
 DIR_OtherText            <file>
-EOL                      <                                                                        
->
+EOL                      <>
 DIRECTIVE                <O/>
 DIR_COPY                 <COPY>
 DIR_OtherText            <dir1>
@@ -59,15 +53,13 @@ DIR_Slash                </>
 DIR_OtherText            <dir2>
 DIR_Slash                </>
 DIR_OtherText            <file.rpg>
-EOL                      <                                                                     
->
+EOL                      <>
 DIRECTIVE                <O/>
 DIR_COPY                 <COPY>
 StringLiteralStart       <">
 StringContent            <ifs file containing blanks>
 StringLiteralEnd         <">
-EOL                      <                                                           
->
+EOL                      <>
 DIRECTIVE                <O/>
 DIR_COPY                 <COPY>
 StringLiteralStart       <'>
@@ -75,25 +67,15 @@ StringContent            <ifs file containing blanks>
 StringLiteralEnd         <'>
 /*===TREE===*/
 (r
+  (statement (directive C/ (dir_copy COPY (copyText MBR1)) ))
   (statement
-    (directive
-      C/
-      (dir_copy COPY (copyText MBR1))
-      '                                                                                   \r\n'
-    )
-  )
-  (statement
-    (directive
-      I/
-      (dir_include INCLUDE (copyText SRCFIL) (copyText MBR2))
-      '                                                                         \r\n'
-    )
+    (directive I/ (dir_include INCLUDE (copyText SRCFIL) (copyText MBR2)) )
   )
   (statement
     (directive
       O/
       (dir_copy COPY (copyText SRCLIB) / (copyText SRCFIL) (copyText MBR3))
-      '                                                                     \r\n'
+      
     )
   )
   (statement
@@ -106,36 +88,32 @@ StringLiteralEnd         <'>
         (copyText " SRC>3 ")
         (copyText " MBR¬3 ")
       )
-      '                                                          \r\n'
+      
     )
   )
   (statement
     (directive
       O/
       (dir_copy COPY / (copyText dir1) / (copyText dir2) / (copyText file.rpg))
-      '                                                                    \r\n'
+      
     )
   )
   (statement
     (directive
       O/
       (dir_copy COPY / (copyText dir1) / (copyText dir2) / (copyText file))
-      '                                                                        \r\n'
+      
     )
   )
   (statement
     (directive
       O/
       (dir_copy COPY (copyText dir1) / (copyText dir2) / (copyText file.rpg))
-      '                                                                     \r\n'
+      
     )
   )
   (statement
-    (directive
-      O/
-      (dir_copy COPY (copyText " ifs file containing blanks "))
-      '                                                           \r\n'
-    )
+    (directive O/ (dir_copy COPY (copyText " ifs file containing blanks ")) )
   )
   (statement
     (directive O/ (dir_copy COPY (copyText ' ifs file containing blanks ')) <EOF>)

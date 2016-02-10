@@ -1,8 +1,7 @@
 /*===TOKENS===*/
 DIRECTIVE                < />
 DIR_FREE                 <free>
-EOL                      <
->
+EOL                      <>
 OP_SELECT                <select>
 FREE_SEMI                <;>
 OP_WHEN                  <when>
@@ -107,12 +106,11 @@ OP_ENDSL                 <endsl>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 HIDDEN:EMPTY_LINE        <                                                                           >
 /*===TREE===*/
 (r
-  (statement (directive ' /' (beginfree_directive free) \n))
+  (statement (directive ' /' (beginfree_directive free) ))
   (statement
     (block
       (selectstatement
@@ -399,6 +397,6 @@ HIDDEN:EMPTY_LINE        <                                                      
       )
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (directive ' /' (endfree_directive end-free) ))
 )
 /*======*/

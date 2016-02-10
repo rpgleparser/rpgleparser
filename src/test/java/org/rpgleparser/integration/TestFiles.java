@@ -5,9 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.Assert.assertEquals;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -18,7 +16,7 @@ import java.util.ResourceBundle;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.TokenSource;
 import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Test;
@@ -26,10 +24,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.rpgleparser.RpgLexer;
 import org.rpgleparser.RpgParser;
+import org.rpgleparser.tokens.PreprocessTokenSource;
 import org.rpgleparser.utils.FixedWidthBufferedReader;
 import org.rpgleparser.utils.TestUtils;
-import org.rpgleparser.utils.TreeUtils;
 import org.rpgleparser.utils.TestUtils.ErrorListener;
+import org.rpgleparser.utils.TreeUtils;
 
 /**
  * Run a test over each *.rpgle file in src/test/resources/org/rpgleparser/tests
@@ -65,16 +64,18 @@ public class TestFiles {
 		String expectedTree = getTree(expectedFileText);
 		final List<String> errors = new ArrayList<String>();
         final ANTLRInputStream input = new ANTLRInputStream(new FixedWidthBufferedReader(inputString));
-		final RpgLexer lexer = new RpgLexer(input);
-        final TokenStream tokens = new CommonTokenStream(lexer);
+		final RpgLexer rpglexer = new RpgLexer(input);
+        final TokenSource lexer = new PreprocessTokenSource(rpglexer);
+        final CommonTokenStream tokens = new CommonTokenStream(lexer);
+                
         final RpgParser parser = new RpgParser(tokens);
 
-        final ErrorListener errorListener = new ErrorListener(errors, lexer, parser);
-        lexer.addErrorListener(errorListener);
+        final ErrorListener errorListener = new ErrorListener(errors, rpglexer, parser);
+        rpglexer.addErrorListener(errorListener);
         parser.addErrorListener(errorListener);
         
-		final String actualTokens = printTokens(lexer);
-		boolean rewriteExpectFile=false;
+		final String actualTokens = TestUtils.printTokens(lexer,rpglexer.getVocabulary());
+        boolean rewriteExpectFile=false;
 		if(expectedTokens != null && expectedTokens.trim().length()>0 ){
 			if(autoReplaceFailed && !expectedTokens.equals(actualTokens)){
 				rewriteExpectFile=true;
@@ -82,7 +83,7 @@ public class TestFiles {
 				assertEquals("Token lists do not match",expectedTokens,actualTokens);
 			}
 		}
-		lexer.reset();
+		rpglexer.reset();
 		
 		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
 		parser.reset();

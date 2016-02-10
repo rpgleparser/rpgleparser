@@ -91,7 +91,7 @@ DIR_OpenParen: [(] -> type(OPEN_PAREN);
 DIR_CloseParen: [)] -> type(CLOSE_PAREN);
 DIR_DblStringLiteralStart: ["] -> pushMode(InDoubleStringMode),type(StringLiteralStart) ;
 DIR_StringLiteralStart: ['] -> pushMode(InStringMode),type(StringLiteralStart) ;
-DIR_EOL : [ ]* NEWLINE -> type(EOL),popMode;
+DIR_EOL : [ ]* NEWLINE {setText(getText().trim());} -> type(EOL),popMode;
 
 mode SKIP_REMAINING_WS;
 DIR_FREE_OTHER_TEXT: ~[\r\n]+ -> popMode,skip;
@@ -1417,7 +1417,7 @@ CSQL_TEXT: ~[\r\n] {getCharPositionInLine()>=8}? ~[\r\n]*;
 CSQL_LEADBLANK : '     ' {getCharPositionInLine()==5}?-> skip;
 CSQL_LEADWS : WORD5 {getCharPositionInLine()==5}?-> skip;
 CSQL_END : 
-	 [cC] '/' [Ee][nN][dD][-][Ee][Xx][Ee][Cc] WS ~[\r\n]* -> popMode ;
+	 [cC] '/' [Ee][nN][dD][-][Ee][Xx][Ee][Cc] WS ~[\r\n]* {setText(getText().trim());} -> popMode ;
 CSQL_CONT: [cC ] '+' -> skip; 
 CSQL_CSplat: [cC ] '*' -> skip,pushMode(FIXED_CalcSpec_SQL_Comments); 
 CSQL_EOL: NEWLINE -> skip;

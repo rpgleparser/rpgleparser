@@ -1,8 +1,7 @@
 /*===TOKENS===*/
 DIRECTIVE                < />
 DIR_FREE                 <FREE>
-EOL                      <
->
+EOL                      <>
 OP_IF                    <If>
 KEYWORD_POS              <Pos>
 '>'                      <>>
@@ -61,7 +60,7 @@ DIRECTIVE                < />
 DIR_ENDFREE              <END-FREE>
 /*===TREE===*/
 (r
-  (statement (directive ' /' (beginfree_directive FREE) \n))
+  (statement (directive ' /' (beginfree_directive FREE) ))
   (statement
     (block
       (ifstatement

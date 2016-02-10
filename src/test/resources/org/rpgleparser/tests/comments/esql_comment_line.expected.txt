@@ -23,8 +23,7 @@ CSQL_TEXT                <           KHDCTP, KHDCNO,  KHDCVL,  KHDCDT,          
 CSQL_TEXT                <           BLBKLN, BLCRRF,  BLPRTY                                                          >
 CSQL_TEXT                < ORDER BY  KHBKID                                                                           >
 CSQL_TEXT                < OPTIMIZE FOR 9999999 ROWS                                                                  >
-CSQL_END                 <C/END-EXEC                                                                                    
->
+CSQL_END                 <C/END-EXEC>
 HIDDEN:LEAD_WS5_Comments <ez01 >
 /*===TREE===*/
 (r
@@ -46,7 +45,7 @@ HIDDEN:LEAD_WS5_Comments <ez01 >
       '           BLBKLN, BLCRRF,  BLPRTY                                                          '
       ' ORDER BY  KHBKID                                                                           '
       ' OPTIMIZE FOR 9999999 ROWS                                                                  '
-      C/END-EXEC                                                                                    \r\n
+      C/END-EXEC
     )
   )
 )

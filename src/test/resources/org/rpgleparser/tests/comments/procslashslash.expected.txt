@@ -39,12 +39,10 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <free>
-EOL                      <
->
+EOL                      <>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 PS_FIXED                 <P>
 PS_CONTINUATION_NAME     < unappliedChanges>
 PS_NAME                  <>
@@ -104,12 +102,10 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <free>
-EOL                      <
->
+EOL                      <>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 PS_FIXED                 <P>
 PS_CONTINUATION_NAME     < getCompanyEcommLoc>
 PS_NAME                  <>
@@ -165,10 +161,10 @@ HIDDEN:COMMENTS_TEXT     <Test>
       )
     )
     (subprocedurestatement
-      (statement (directive ' /' (beginfree_directive free) \r\n))
+      (statement (directive ' /' (beginfree_directive free) ))
     )
     (subprocedurestatement
-      (statement (directive ' /' (endfree_directive end-free) \r\n))
+      (statement (directive ' /' (endfree_directive end-free) ))
     )
     (endProcedure
       (psEnd
@@ -239,10 +235,10 @@ HIDDEN:COMMENTS_TEXT     <Test>
       )
     )
     (subprocedurestatement
-      (statement (directive ' /' (beginfree_directive free) \r\n))
+      (statement (directive ' /' (beginfree_directive free) ))
     )
     (subprocedurestatement
-      (statement (directive ' /' (endfree_directive end-free) \r\n))
+      (statement (directive ' /' (endfree_directive end-free) ))
     )
     (endProcedure
       (psEnd

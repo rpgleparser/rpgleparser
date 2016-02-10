@@ -85,8 +85,7 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <Free>
-EOL                      <
->
+EOL                      <>
 OP_DUMP                  <dump>
 FREE_SEMI                <;>
 OP_DUMP                  <dump>
@@ -108,8 +107,7 @@ CS_OperationAndExtender  <a>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -250,7 +248,7 @@ EOL                      <
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement (directive ' /' (beginfree_directive Free) ))
   (statement (free (baseExpression (op (op_dump dump))) ;))
   (statement
     (free
@@ -285,7 +283,7 @@ EOL                      <
   (statement
     (free (baseExpression (op (op_dump Dump (cs_operationExtender ( a ))))) ;)
   )
-  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (directive ' /' (endfree_directive end-free) ))
   (statement
     (cspec_fixed
       C

@@ -1,8 +1,7 @@
 /*===TOKENS===*/
 DIRECTIVE                < />
 DIR_FREE                 <FREE>
-EOL                      <
->
+EOL                      <>
 HIDDEN:COMMENTS          <         //>
 HIDDEN:COMMENTS_TEXT     <*PSSR - Error Routine>
 OP_BEGSR                 <BegSr>
@@ -46,7 +45,7 @@ DIRECTIVE                < />
 DIR_ENDFREE              <END-FREE>
 /*===TREE===*/
 (r
-  (statement (directive ' /' (beginfree_directive FREE) \n))
+  (statement (directive ' /' (beginfree_directive FREE) ))
   (subroutine
     (begsr (freeBEGSR BegSr (identifier (all (symbolicConstants *Pssr))) ;))
     (statement

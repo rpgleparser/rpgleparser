@@ -116,8 +116,7 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <FREE>
-EOL                      <
->
+EOL                      <>
 OP_SETLL                 <SetLL>
 '('                      <(>
 ID                       <useMasterCode>
@@ -245,8 +244,7 @@ OP_ENDSR                 <EndSr>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <END-FREE>
-EOL                      <
->
+EOL                      <>
 PS_FIXED                 <P>
 PS_CONTINUATION_NAME     < ReplaceDataInEmailBody>
 PS_NAME                  <>
@@ -372,7 +370,7 @@ HIDDEN:PS_COMMENTS80     <                     >
       )
     )
     (subprocedurestatement
-      (statement (directive ' /' (beginfree_directive FREE) \n))
+      (statement (directive ' /' (beginfree_directive FREE) ))
     )
     (subprocedurestatement
       (statement
@@ -697,7 +695,7 @@ HIDDEN:PS_COMMENTS80     <                     >
       )
     )
     (subprocedurestatement
-      (statement (directive ' /' (endfree_directive END-FREE) \n))
+      (statement (directive ' /' (endfree_directive END-FREE) ))
     )
     (endProcedure
       (psEnd

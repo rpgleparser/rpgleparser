@@ -64,6 +64,17 @@ public class TestUtils {
     	System.out.println(getTokenString(tokens,vocabulary));
     	
     }
+    
+	public static String printTokens(TokenSource tokenSource,Vocabulary vocabulary){
+		List<Token> tokens = new ArrayList<Token>();
+		Token t = tokenSource.nextToken();
+		while ( t.getType()!=Token.EOF ) {
+			tokens.add(t);
+			t = tokenSource.nextToken();
+		}
+    	return getTokenString(tokens, vocabulary);
+    }
+	
     public static String getTokenString(List<? extends Token> tokens,Vocabulary vocabulary){
     	StringBuilder sb = new StringBuilder();
 		for (Token token:tokens){ // A token from a ParseTree object

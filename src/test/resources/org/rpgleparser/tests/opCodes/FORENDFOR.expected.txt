@@ -168,8 +168,7 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <Free>
-EOL                      <
->
+EOL                      <>
 OP_FOR                   <for>
 ID                       <i>
 '='                      <=>
@@ -207,8 +206,7 @@ OP_ENDFOR                <endfor>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -484,7 +482,7 @@ BlankIndicator           <  >
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement (directive ' /' (beginfree_directive Free) ))
   (statement
     (block
       (forstatement
@@ -565,7 +563,7 @@ BlankIndicator           <  >
       )
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (directive ' /' (endfree_directive end-free) ))
   (statement
     (cspec_fixed
       C

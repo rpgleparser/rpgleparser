@@ -76,8 +76,7 @@ C_FREE_NEWLINE           <
 >
 DIRECTIVE                < />
 DIR_FREE                 <free>
-EOL                      <
->
+EOL                      <>
 ID                       <val1>
 '='                      <=>
 BIF_CHECKR               <%checkr>
@@ -143,8 +142,7 @@ HIDDEN:COMMENTS_EOL_HIDDEN<
 >
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 HIDDEN:EMPTY_LINE        <                                                                           >
 /*===TREE===*/
 (r
@@ -291,7 +289,7 @@ HIDDEN:EMPTY_LINE        <                                                      
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive free) \r\n))
+  (statement (directive ' /' (beginfree_directive free) ))
   (statement
     (free
       (baseExpression
@@ -419,6 +417,6 @@ HIDDEN:EMPTY_LINE        <                                                      
       ;
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \r\n))
+  (statement (directive ' /' (endfree_directive end-free) ))
 )
 /*======*/

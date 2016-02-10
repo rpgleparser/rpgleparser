@@ -130,8 +130,7 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <Free>
-EOL                      <
->
+EOL                      <>
 OP_DOW                   <DOW>
 ID                       <*inkc>
 FREE_SEMI                <;>
@@ -167,8 +166,7 @@ OP_ENDDO                 <Enddo>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -386,7 +384,7 @@ EOL                      <
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement (directive ' /' (beginfree_directive Free) ))
   (statement
     (block
       (begindow
@@ -464,7 +462,7 @@ EOL                      <
       (enddo (op_enddo Enddo) ;)
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (directive ' /' (endfree_directive end-free) ))
   (statement
     (cspec_fixed
       C

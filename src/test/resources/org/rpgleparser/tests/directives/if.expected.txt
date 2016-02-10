@@ -1,55 +1,23 @@
 /*===TOKENS===*/
-DIRECTIVE                < />
-DIR_IF                   <IF>
-DIR_DEFINED              <DEFINED>
-'('                      <(>
-DIR_OtherText            <*CRTRPGMOD>
-')'                      <)>
-EOL                      <                                                                      
->
-DIRECTIVE                < />
-DIR_IF                   <IF>
-DIR_NOT                  <NOT>
-DIR_DEFINED              <DEFINED>
-'('                      <(>
-DIR_OtherText            <THIS_IS_MAIN>
-')'                      <)>
-EOL                      <                                                                
->
+HIDDEN:DIRECTIVE         < />
+HIDDEN:DIR_IF            <IF>
+HIDDEN:DIR_DEFINED       <DEFINED>
+HIDDEN:'('               <(>
+HIDDEN:')'               <)>
+HIDDEN:DIRECTIVE         < />
+HIDDEN:DIR_IF            <IF>
+HIDDEN:DIR_NOT           <NOT>
+HIDDEN:DIR_DEFINED       <DEFINED>
+HIDDEN:'('               <(>
+HIDDEN:')'               <)>
 HS_FIXED                 <H>
 ID                       <NOMAIN>
 EOL                      <
 >
-DIRECTIVE                < />
-DIR_ENDIF                <ENDIF>
-EOL                      <                                                                                       
->
-DIRECTIVE                < />
-DIR_ENDIF                <ENDIF>
+HIDDEN:DIRECTIVE         < />
+HIDDEN:DIR_ENDIF         <ENDIF>
+HIDDEN:DIRECTIVE         < />
+HIDDEN:DIR_ENDIF         <ENDIF>
 /*===TREE===*/
-(r
-  (statement
-    (directive
-      ' /'
-      (dir_if IF DEFINED ( (copyText *CRTRPGMOD) ))
-      '                                                                      \r\n'
-    )
-  )
-  (statement
-    (directive
-      ' /'
-      (dir_if IF NOT DEFINED ( (copyText THIS_IS_MAIN) ))
-      '                                                                \r\n'
-    )
-  )
-  (statement (hspec_fixed H (hs_expression NOMAIN) \r\n))
-  (statement
-    (directive
-      ' /'
-      (dir_endif ENDIF)
-      '                                                                                       \r\n'
-    )
-  )
-  (statement (directive ' /' (dir_endif ENDIF) <EOF>))
-)
+(r (statement (hspec_fixed H (hs_expression NOMAIN) \r\n)))
 /*======*/

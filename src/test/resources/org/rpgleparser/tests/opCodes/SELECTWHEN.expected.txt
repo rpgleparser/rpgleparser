@@ -240,8 +240,7 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <Free>
-EOL                      <
->
+EOL                      <>
 OP_SELECT                <SELECT>
 FREE_SEMI                <;>
 OP_WHEN                  <WHEN>
@@ -309,8 +308,7 @@ OP_ENDSL                 <endsl>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -706,7 +704,7 @@ EOL                      <
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement (directive ' /' (beginfree_directive Free) ))
   (statement
     (block
       (selectstatement
@@ -842,7 +840,7 @@ EOL                      <
       )
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (directive ' /' (endfree_directive end-free) ))
   (statement
     (cspec_fixed
       C

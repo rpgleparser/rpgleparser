@@ -82,8 +82,7 @@ C_FREE_NEWLINE           <
 >
 DIRECTIVE                < />
 DIR_FREE                 <Free>
-EOL                      <
->
+EOL                      <>
 OP_CALLP                 <callp>
 ID                       <proc1>
 '('                      <(>
@@ -126,8 +125,7 @@ StringLiteralEnd         <'>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 HIDDEN:COMMENT_SPEC_FIXED< *>
 CS_FIXED                 <C>
 BlankIndicator           <  >
@@ -279,7 +277,7 @@ EOL                      <
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement (directive ' /' (beginfree_directive Free) ))
   (statement
     (free
       (baseExpression
@@ -357,7 +355,7 @@ EOL                      <
       ;
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \n))
+  (statement (directive ' /' (endfree_directive end-free) ))
   (statement
     (cspec_fixed
       C

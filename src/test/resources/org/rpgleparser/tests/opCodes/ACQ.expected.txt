@@ -88,8 +88,7 @@ EOL                      <
 >
 DIRECTIVE                < />
 DIR_FREE                 <Free>
-EOL                      <
->
+EOL                      <>
 OP_ACQ                   <ACQ>
 '('                      <(>
 CS_OperationAndExtender  <e>
@@ -105,8 +104,7 @@ HIDDEN:COMMENTS          <     //>
 HIDDEN:COMMENTS_TEXT     <comments>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
-EOL                      <
->
+EOL                      <>
 CS_FIXED                 <C>
 BlankIndicator           <  >
 BlankFlag                < >
@@ -239,7 +237,7 @@ EOL                      <
       )
     )
   )
-  (statement (directive ' /' (beginfree_directive Free) \n))
+  (statement (directive ' /' (beginfree_directive Free) ))
   (statement
     (free
       (baseExpression
@@ -269,7 +267,7 @@ EOL                      <
       ;
     )
   )
-  (statement (directive ' /' (endfree_directive end-free) \r\n))
+  (statement (directive ' /' (endfree_directive end-free) ))
   (statement
     (cspec_fixed
       C
