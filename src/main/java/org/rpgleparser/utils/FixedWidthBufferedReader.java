@@ -19,7 +19,7 @@ public class FixedWidthBufferedReader extends Reader{
 	}
 	public FixedWidthBufferedReader(Reader reader) {
 		super();
-		this.reader = new PushbackReader(reader);
+		this.reader = new PushbackReader(reader,10000);
 	}
 	public FixedWidthBufferedReader(String input) {
 		super();
