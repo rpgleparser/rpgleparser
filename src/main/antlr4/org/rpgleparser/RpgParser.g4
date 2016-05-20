@@ -2162,12 +2162,12 @@ bif_editc: BIF_EDITC OPEN_PAREN numeric=expression COLON editcode=expression (CO
 bif_editflt: BIF_EDITFLT OPEN_PAREN numericexpression=expression CLOSE_PAREN;
 bif_editw: BIF_EDITW OPEN_PAREN numeric=expression COLON editword=expression CLOSE_PAREN;
 bif_elem: BIF_ELEM OPEN_PAREN expression CLOSE_PAREN;
-bif_eof: BIF_EOF (OPEN_PAREN filenameident=identifier CLOSE_PAREN)?;
+bif_eof: BIF_EOF (OPEN_PAREN (filenameident=identifier)? CLOSE_PAREN)?;
 bif_equal: BIF_EQUAL (OPEN_PAREN filenameident=identifier CLOSE_PAREN)?;
 bif_error: BIF_ERROR (OPEN_PAREN CLOSE_PAREN)?;
 bif_fields: BIF_FIELDS OPEN_PAREN identifier (COLON identifier)* CLOSE_PAREN;
 bif_float: BIF_FLOAT OPEN_PAREN expression CLOSE_PAREN;
-bif_found: BIF_FOUND (OPEN_PAREN filenameident=identifier CLOSE_PAREN)?;
+bif_found: BIF_FOUND (OPEN_PAREN (filenameident=identifier)? CLOSE_PAREN)?;
 bif_graph: BIF_GRAPH OPEN_PAREN expression (COLON identifier)? CLOSE_PAREN;
 bif_handler: BIF_HANDLER OPEN_PAREN handlingprocedure=expression COLON communicationarea=expression CLOSE_PAREN;
 bif_hours: BIF_HOURS OPEN_PAREN numberexpression=expression CLOSE_PAREN;
