@@ -1350,6 +1350,7 @@ CS_DecimalPositions: [ 0-9][ 0-9] {getCharPositionInLine()==70}?
 	-> pushMode(IndicatorMode),pushMode(IndicatorMode),pushMode(IndicatorMode); // 3 Indicators in a row
 CS_WhiteSpace : [ \t] {getCharPositionInLine()>=77}? [ \t]* -> skip  ; // skip spaces, tabs, newlines
 CS_Comments : ~[\r\n] {getCharPositionInLine()>80}? ~[\r\n]*  ; // skip spaces, tabs, newlines
+CS_FixedComments : ~[\r\n] {getCharPositionInLine()>=77}? ~[\r\n]*  ; // skip spaces, tabs, newlines
 CS_EOL : NEWLINE -> type(EOL),popMode;
 
 mode FixedOpExtender;

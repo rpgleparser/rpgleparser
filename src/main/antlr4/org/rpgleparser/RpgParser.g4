@@ -1695,7 +1695,7 @@ CS_FactorContent | literal;
 
 resultType:	
    CS_FactorContent (COLON (constant=symbolicConstants))?  | CS_BlankFactor;
-cs_fixed_comments:CS_Comments;		
+cs_fixed_comments:CS_FixedComments;		
 //cs_fixed_x2: CS_OperationAndExtendedFactor2 C2_FACTOR2_CONT* C2_FACTOR2 C_EOL;
 cspec_fixed_x2: csOperationAndExtendedFactor2 fixedexpression=c_free (C_FREE_NEWLINE | EOF);
 
