@@ -2323,7 +2323,7 @@ exec_sql: EXEC_SQL WORDS+ SEMI ;
 baseExpression: op | expression;
 indicator: SPLAT_IN
   OPEN_PAREN
-  identifier
+  baseExpression
   CLOSE_PAREN;
 
 assignmentExpression: simpleExpression EQUAL expression;
