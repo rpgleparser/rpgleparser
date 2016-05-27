@@ -21,6 +21,7 @@ ID                       <WURMCD>
 StringLiteralStart       <'>
 StringContent            <CPR>
 StringLiteralEnd         <'>
+HIDDEN:FREE_COMMENTS80   <*INDENT+1          >
 C_FREE_NEWLINE           <
 >
 CS_FIXED                 <C>
@@ -51,7 +52,7 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
-CS_Comments              <*FI                >
+CS_FixedComments         <*FI CODE SMELL         >
 EOL                      <
 >
 CS_FIXED                 <C>
@@ -82,7 +83,7 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
-CS_Comments              <*FI                >
+CS_FixedComments         <*FI CODE SMELL         >
 EOL                      <
 >
 HIDDEN:COMMENT_SPEC_FIXED< *>
@@ -191,7 +192,7 @@ EOL                      <
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    (cs_fixed_comments '*FI                ')
+                    (cs_fixed_comments '*FI CODE SMELL         ')
                     \r\n
                   )
                 )
@@ -233,7 +234,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              (cs_fixed_comments '*FI                ')
+              (cs_fixed_comments '*FI CODE SMELL         ')
               \r\n
             )
           )
