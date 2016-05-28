@@ -8,3 +8,6 @@
      C                   endfor
      C                   for       X1= %len(str) by 1 downto 1
      C                   endfor
+     c                   For       Idx = FcTpc DownTo 1 by 1
+     c                   Exsr      WriteMap
+     c                   EndFor     

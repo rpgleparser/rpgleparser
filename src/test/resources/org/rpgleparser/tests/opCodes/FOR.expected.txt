@@ -146,6 +146,51 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <c>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_FOR                   <For>
+ID                       <Idx>
+'='                      <=>
+ID                       <FcTpc>
+FREE_DOWNTO              <DownTo>
+NUMBER                   <1>
+FREE_BY                  <by>
+NUMBER                   <1>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <c>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_EXSR                  <Exsr>
+CS_FactorContent         <WriteMap>
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <c>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_ENDFOR                <EndFor>
+'              '         <              >
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
 /*===TREE===*/
 (r
   (statement
@@ -368,6 +413,76 @@ BlankIndicator           <  >
           (factor '              ')
           (csENDFOR
             endfor
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \r\n
+            )
+          )
+        )
+      )
+    )
+  )
+  (statement
+    (block
+      (forstatement
+        (beginfor
+          c
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csFOR
+            For
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword Idx))))
+              =
+              (expression (identifier (free_identifier (idOrKeyword FcTpc))))
+            )
+            DownTo
+            (expression (number 1))
+            by
+            (expression (number 1))
+            \r\n
+          )
+        )
+        (statement
+          (cspec_fixed
+            c
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csEXSR
+                Exsr
+                (cspec_fixed_standard_parts
+                  (factor (factorContent WriteMap))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \r\n
+                )
+              )
+            )
+          )
+        )
+        (endfor
+          c
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDFOR
+            EndFor
             (cspec_fixed_standard_parts
               (factor '              ')
               (resultType '              ')
