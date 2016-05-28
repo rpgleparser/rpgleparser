@@ -1,5 +1,6 @@
 package org.rpgleparser.integration;
 
+import static java.util.ResourceBundle.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
@@ -12,7 +13,6 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -43,15 +43,15 @@ public class TestFiles {
 	static String singleTestName=null;
 	static{
 		try{
-			singleTestName=ResourceBundle.getBundle("org.rpgleparser.tests.test").getString("RunSingleTest");
-		}catch(Exception e){}
+			singleTestName= getBundle("org.rpgleparser.tests.test").getString("RunSingleTest");
+		}catch(Exception ignored){}
 	}
-	
+
 	public TestFiles(File sourceFile) {
 		super();
 		this.sourceFile = sourceFile;
 		try{
-			autoReplaceFailed="Y".equalsIgnoreCase(ResourceBundle.getBundle("org.rpgleparser.tests.test").getString("AutoReplaceFailedTestResults"));
+			autoReplaceFailed="Y".equalsIgnoreCase(getBundle("org.rpgleparser.tests.test").getString("AutoReplaceFailedTestResults"));
 		}catch(Exception e){}
 	}
 	
@@ -92,7 +92,7 @@ public class TestFiles {
 		final String actualTree = TreeUtils.printTree(parseTree, parser);
 		if(!errors.isEmpty()){
 			System.out.println("/*===TOKENS===*/\r\n" + actualTokens + "\r\n");
-			System.out.println("/*===TOKENS===*/\r\n" + actualTree + "\r\n/*======*/");
+			System.out.println("/*===TREE===*/\r\n" + actualTree + "\r\n/*======*/");
 		}
 		assertThat(errors, is(empty()));
 		

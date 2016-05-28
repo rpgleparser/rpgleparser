@@ -1,0 +1,149 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_SELECT                <SELECT>
+'              '         <              >
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_WHEN                  <WHEN>
+ID                       <IDCCA1Z>
+'='                      <=>
+ID                       <@PRIME1>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_EVAL                  <EVAL>
+ID                       <TYPE>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <5>
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_ENDSL                 <ENDSL>
+'              '         <              >
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+CS_FixedComments         <Subf                                                                                 >
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (selectstatement
+        (beginselect
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csSELECT
+            SELECT
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+        (whenstatement
+          (when
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (csWHEN
+              WHEN
+              (c_free
+                (expression
+                  (expression (identifier (free_identifier (idOrKeyword IDCCA1Z))))
+                  =
+                  (expression (identifier (free_identifier (idOrKeyword @PRIME1))))
+                )
+              )
+              \n
+            )
+          )
+          (statement
+            (cspec_fixed
+              C
+              (cs_controlLevel '  ')
+              (onOffIndicatorsFlag ' ')
+              (cs_indicators '  ')
+              (factor '              ')
+              (cspec_fixed_standard
+                (csEVAL
+                  EVAL
+                  (c_free
+                    (expression
+                      (expression (identifier (free_identifier (idOrKeyword TYPE))))
+                      =
+                      (expression (literal ' 5 '))
+                    )
+                  )
+                  \n
+                )
+              )
+            )
+          )
+        )
+        (endselect
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDSL
+            ENDSL
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (cs_fixed_comments
+                'Subf                                                                                 '
+              )
+              <EOF>
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

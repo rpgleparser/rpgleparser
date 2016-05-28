@@ -20,7 +20,7 @@ CS_DecimalPositions      <  >
 GeneralIndicator         <99>
 BlankIndicator           <  >
 BlankIndicator           <  >
-CS_Comments              <*                  >
+CS_FixedComments         <*                      >
 /*===TREE===*/
 (r
   (statement
@@ -48,7 +48,7 @@ CS_Comments              <*                  >
             (resultIndicator 99)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            (cs_fixed_comments '*                  ')
+            (cs_fixed_comments '*                      ')
             <EOF>
           )
         )

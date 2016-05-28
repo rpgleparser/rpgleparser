@@ -303,7 +303,6 @@ public class TestFREE {
     public void testKeywordID3() {
         String inputString =
                 "TEMP14 = ZLNG(IN);";
-        TestUtils.printTokens(inputString, true);
         expectTokensForFreeSnippet(inputString,
                 "TEMP14", "=", "ZLNG", "(", "IN", ")", ";");
     }
