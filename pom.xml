@@ -6,7 +6,7 @@
 
 	<groupId>org.rpgleparser</groupId>
 	<artifactId>rpgleparser</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.2-SNAPSHOT</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr4</artifactId>
-			<version>4.5.2-1</version>
+			<version>4.5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -61,7 +61,7 @@
 			<plugin>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr4-maven-plugin</artifactId>
-				<version>4.5.2-1</version>
+				<version>4.5.3</version>
 				<executions>
 					<execution>
 						<goals>
@@ -85,7 +85,8 @@
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <executions>
+				<version>2.4.3</version>
+				<executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
@@ -94,7 +95,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <finalName>uber-${artifactId}-${version}</finalName>
+					<finalName>uber-${project.artifactId}-${project.version}</finalName>
                 </configuration>
             </plugin>
 		</plugins>

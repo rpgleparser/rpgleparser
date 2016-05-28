@@ -2338,26 +2338,24 @@ unaryExpression:
 	sign expression;
 
 expression: 
-	// op | // should drop op I think?
-	indicator
-	|function 
-	| identifier 
-	| number 
-	| literal  
-	| bif
-	| NOT expression
+	NOT expression
 	| OPEN_PAREN expression CLOSE_PAREN
 	| expression (assignmentOperator | comparisonOperator | EQUAL) expression
-    |<assoc=right> expression EXP expression
+    | <assoc=right> expression EXP expression
     | expression (MULT | MULT_NOSPACE) expression
     | expression DIV expression
     | expression PLUS expression
     | expression MINUS expression
-    // expression arithmeticalOperator expression	
-	| expression EQUAL expression	
-	| expression AND expression	
-	| expression OR expression	
+	| expression EQUAL expression
+	| expression AND expression
+	| expression OR expression
 	| unaryExpression
+	| indicator
+	| function
+	| identifier
+	| number 
+	| literal  
+	| bif
 	;
 indicator_expr: expression;
 function: functionName args;

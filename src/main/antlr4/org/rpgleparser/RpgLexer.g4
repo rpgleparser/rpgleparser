@@ -55,9 +55,9 @@ NUMBER : ([0-9]+([.][0-9]*)?) | [.][0-9]+ ;
 SEMI : ';';
 COLON : ':';
 ID : ('*' {getCharPositionInLine()>7}? '*'? [a-zA-Z])?
-        [#@%$a-zA-Z]{getCharPositionInLine()>7}? [#@$a-zA-Z0-9_]* ;             // match lower-case identifiers
-NEWLINE : ('\r' '\n'? | '\n') -> skip;
-WS : [ \t] {getCharPositionInLine()>6}? [ \t]* -> skip ; // skip spaces, tabs, NEWLINEs
+        [#@%$a-zA-Z]{getCharPositionInLine()>7}? [#@$a-zA-Z0-9_]* ;
+NEWLINE : ('\r'? '\n') -> skip;
+WS : [ \t] {getCharPositionInLine()>6}? [ \t]* -> skip ; // skip spaces, tabs
 
 mode DirectiveTitle;
 TITLE_Text : ~[\r\n]+ -> type(DIR_OtherText);
@@ -94,7 +94,7 @@ DIR_StringLiteralStart: ['] -> pushMode(InStringMode),type(StringLiteralStart) ;
 DIR_EOL : [ ]* NEWLINE {setText(getText().trim());} -> type(EOL),popMode;
 
 mode SKIP_REMAINING_WS;
-DIR_FREE_OTHER_TEXT: ~[\r\n]+ -> popMode,skip;
+DIR_FREE_OTHER_TEXT: ~[\r\n]* -> popMode,skip;
 
 mode EndOfSourceMode;
 EOS_Text : ~[\r\n]+ ;
@@ -1349,8 +1349,8 @@ CS_FieldLength: [+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9]  {getCharPosi
 CS_DecimalPositions: [ 0-9][ 0-9] {getCharPositionInLine()==70}?
 	-> pushMode(IndicatorMode),pushMode(IndicatorMode),pushMode(IndicatorMode); // 3 Indicators in a row
 CS_WhiteSpace : [ \t] {getCharPositionInLine()>=77}? [ \t]* -> skip  ; // skip spaces, tabs, newlines
-CS_Comments : ~[\r\n] {getCharPositionInLine()>80}? ~[\r\n]*  ; // skip spaces, tabs, newlines
-CS_FixedComments : ~[\r\n] {getCharPositionInLine()>=77}? ~[\r\n]*  ; // skip spaces, tabs, newlines
+CS_Comments : ~[\r\n] {getCharPositionInLine()>80}? ~[\r\n]*  ;
+CS_FixedComments : ~[\r\n] {getCharPositionInLine()>=77}? ~[\r\n]*  ;
 CS_EOL : NEWLINE -> type(EOL),popMode;
 
 mode FixedOpExtender;
@@ -1434,10 +1434,13 @@ CSQLC_Any : NEWLINE? -> skip,popMode;
 
 mode FIXED_CalcSpec_X2;
 C2_FACTOR2_CONT: ~[\r\n]{getCharPositionInLine()==36}? 
-		~[\r\n]* '+' [ ]+ NEWLINE;  //TODO  the continuation should not include the plus and the \r\n
+		~[\r\n]* REPEAT_FIXED_CalcSpec_X2;
 C2_FACTOR2: ~[\r\n]{getCharPositionInLine()==36}? 
 		~[\r\n]* ->popMode;
 C2_OTHER: ~('\r' | '\n') {getCharPositionInLine()<36}?  ->skip;
+
+fragment
+REPEAT_FIXED_CalcSpec_X2 : '+' [ ]+ NEWLINE;
 
 mode FIXED_InputSpec;
 IS_BLANK_SPEC :  

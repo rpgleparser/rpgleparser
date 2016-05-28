@@ -52,7 +52,7 @@ CS_DecimalPositions      < 0>
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
-CS_Comments              <130128        >
+CS_FixedComments         <         130128        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <5.00 >
@@ -69,7 +69,7 @@ CS_DecimalPositions      < 0>
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
-CS_Comments              <130128        >
+CS_FixedComments         <         130128        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <6.00 >
@@ -86,7 +86,7 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
-CS_Comments              <130128        >
+CS_FixedComments         <         130128        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <7.00 >
@@ -103,7 +103,7 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
-CS_Comments              <130128        >
+CS_FixedComments         <         130128        >
 EOL                      <
 >
 HIDDEN:LEAD_WS5_Comments <8.00 >
@@ -120,7 +120,7 @@ CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>
 BlankIndicator           <  >
 BlankIndicator           <  >
-CS_Comments              <130128        >
+CS_FixedComments         <         130128        >
 /*===TREE===*/
 (r
   (statement
@@ -173,7 +173,7 @@ CS_Comments              <130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            (cs_fixed_comments '130128        ')
+            (cs_fixed_comments '         130128        ')
             \r\n
           )
           (csMVR
@@ -191,7 +191,7 @@ CS_Comments              <130128        >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              (cs_fixed_comments '130128        ')
+              (cs_fixed_comments '         130128        ')
               \r\n
             )
           )
@@ -217,7 +217,7 @@ CS_Comments              <130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            (cs_fixed_comments '130128        ')
+            (cs_fixed_comments '         130128        ')
             \r\n
           )
         )
@@ -242,7 +242,7 @@ CS_Comments              <130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            (cs_fixed_comments '130128        ')
+            (cs_fixed_comments '         130128        ')
             \r\n
           )
         )
@@ -267,7 +267,7 @@ CS_Comments              <130128        >
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            (cs_fixed_comments '130128        ')
+            (cs_fixed_comments '         130128        ')
             <EOF>
           )
         )
