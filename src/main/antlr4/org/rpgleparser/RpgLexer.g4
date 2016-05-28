@@ -1434,10 +1434,13 @@ CSQLC_Any : NEWLINE? -> skip,popMode;
 
 mode FIXED_CalcSpec_X2;
 C2_FACTOR2_CONT: ~[\r\n]{getCharPositionInLine()==36}? 
-		~[\r\n]* '+' [ ]+ NEWLINE;  //TODO  the continuation should not include the plus and the \r\n
+		~[\r\n]* REPEAT_FIXED_CalcSpec_X2;
 C2_FACTOR2: ~[\r\n]{getCharPositionInLine()==36}? 
 		~[\r\n]* ->popMode;
 C2_OTHER: ~('\r' | '\n') {getCharPositionInLine()<36}?  ->skip;
+
+fragment
+REPEAT_FIXED_CalcSpec_X2 : '+' [ ]+ NEWLINE;
 
 mode FIXED_InputSpec;
 IS_BLANK_SPEC :  
