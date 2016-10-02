@@ -13,3 +13,5 @@
 [Eric Wilson](https://github.com/TheEricWilson)
 
 [Daniel Goodwin](https://github.com/danielgoodwin)
+
+[Przemysław Lipka](https://github.com/lipka-clazzpl)

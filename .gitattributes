@@ -1,0 +1,7 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Declare files that will always have LF line endings on checkout.
+# This should be consistent with the build server.
+*.rpgle text eol=lf
+*.expected.txt text eol=lf
