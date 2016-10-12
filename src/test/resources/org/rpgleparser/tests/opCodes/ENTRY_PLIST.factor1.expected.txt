@@ -53,9 +53,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor (symbolicConstants *IN30))
             PARM
             (cspec_fixed_standard_parts

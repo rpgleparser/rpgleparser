@@ -883,8 +883,8 @@ onOffIndicatorsFlag:
     | NoFlag;
 
 cs_controlLevel:
-BlankIndicator
-	|ControlLevel0Indicator
+    BlankIndicator
+	| ControlLevel0Indicator
 	| ControlLevelIndicator
 	| LastRecordIndicator
 	| SubroutineIndicator
@@ -1502,9 +1502,9 @@ csOUT:
 	cspec_fixed_standard_parts;
 csPARM:
 	CS_FIXED
-	BlankIndicator
-	BlankFlag 
-	BlankIndicator
+	cspec_continuedIndicators*
+	cs_controlLevel
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators
 	factor1=factor
 	operation=OP_PARM
 	cspec_fixed_standard_parts;

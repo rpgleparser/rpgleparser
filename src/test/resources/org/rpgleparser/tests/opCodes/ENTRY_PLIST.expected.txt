@@ -98,9 +98,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
             PARM
             (cspec_fixed_standard_parts
@@ -116,9 +116,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
             PARM
             (cspec_fixed_standard_parts
@@ -134,9 +134,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
             PARM
             (cspec_fixed_standard_parts
@@ -152,9 +152,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
             PARM
             (cspec_fixed_standard_parts

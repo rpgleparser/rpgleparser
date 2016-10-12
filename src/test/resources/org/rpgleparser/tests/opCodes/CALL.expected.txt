@@ -281,9 +281,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
             parm
             (cspec_fixed_standard_parts
@@ -323,9 +323,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
             parm
             (cspec_fixed_standard_parts
@@ -366,9 +366,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
             parm
             (cspec_fixed_standard_parts
@@ -408,9 +408,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
             parm
             (cspec_fixed_standard_parts
@@ -450,9 +450,9 @@ EOL                      <
           )
           (csPARM
             C
-            '  '
-            ' '
-            '  '
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
             (factor '              ')
             parm
             (cspec_fixed_standard_parts
