@@ -16,6 +16,8 @@ StringLiteralStart       <'>
 StringContent            <Mary had a little lamb, its>
 StringContent            <fleece was white as snow.>
 StringLiteralEnd         <'>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -42,7 +44,7 @@ StringLiteralEnd         <'>
         ' '
         (literal ' Mary had a little lamb, its fleece was white as snow. ')
       )
-      <EOF>
+      \n
     )
   )
 )

@@ -126,7 +126,7 @@ HIDDEN:COMMENTS_TEXT     <Test>
       )
     )
     (dcl_pi
-      (piBegin D (ds_name ) ' ' ' ' PI '       ' '       ' N '  ' ' ' \r\n)
+      (piBegin D (ds_name ) ' ' ' ' PI '       ' '       ' N '  ' ' ' \n)
       (pi_parm_fixed
         (parm_fixed
           D
@@ -156,7 +156,7 @@ HIDDEN:COMMENTS_TEXT     <Test>
               )
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -207,7 +207,7 @@ HIDDEN:COMMENTS_TEXT     <Test>
           )
         )
         (keyword (keyword_dim dim ( (simpleExpression (number 5)) )))
-        \r\n
+        \n
       )
       (pi_parm_fixed
         (parm_fixed
@@ -230,7 +230,7 @@ HIDDEN:COMMENTS_TEXT     <Test>
             )
           )
           (keyword (keyword_const const))
-          \r\n
+          \n
         )
       )
     )

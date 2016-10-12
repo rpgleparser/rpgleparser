@@ -47,19 +47,6 @@ public class TestUtils {
         return parseAndGetTokens(inputstr, errors, false);
     }
 
-    /**
-     * 
-     * @param inputstr - RPG source line(s)
-     * @param isFreeSnippet  - true for Free syntax, false for Fixed, null for 'no auto padding'
-     * @return list of Tokens
-     */
-    public static List<CommonToken> showParseTree(String inputstr, Boolean isFreeSnippet) {
-    	if(isFreeSnippet != null){
-    		inputstr=padSourceLines(inputstr,isFreeSnippet.booleanValue());
-    	}
-        return parseAndGetTokens(inputstr, null, true);
-    }
-    
     public static void printTokens(List<? extends Token> tokens){
     	System.out.println(getTokenString(tokens,vocabulary));
     	
@@ -89,7 +76,7 @@ public class TestUtils {
     		sb.append('<');
     		sb.append(token.getText());
     		sb.append('>');
-    		sb.append("\r\n");
+    		sb.append("\n");
     	}
 		return sb.toString().trim();
     }
@@ -121,11 +108,7 @@ public class TestUtils {
 
     public static RpgParser initialiseParser(String inputString, List<String> errors) {
         ANTLRInputStream input;
-//		try {
-//			input = new ANTLRInputStream(new BufferedReader80(inputString));
-//		} catch (IOException e) {
-			input = new ANTLRInputStream(inputString);
-//		}
+		input = new ANTLRInputStream(inputString);
         RpgLexer lexer = new RpgLexer(input);
         vocabulary = lexer.getVocabulary();
         TokenStream tokens = new CommonTokenStream(lexer);

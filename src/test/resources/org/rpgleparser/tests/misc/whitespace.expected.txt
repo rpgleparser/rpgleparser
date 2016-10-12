@@ -1,15 +1,5 @@
 /*===TOKENS===*/
-OS_FIXED                 <O>
-'                                                                           '<                                                                           >
-HIDDEN:OS_Comments       <                  >
+
 /*===TREE===*/
-(r
-  (statement
-    (blank_spec
-      O
-      '                                                                           '
-      <EOF>
-    )
-  )
-)
+r
 /*======*/

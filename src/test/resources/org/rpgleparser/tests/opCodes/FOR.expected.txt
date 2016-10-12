@@ -146,6 +146,8 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -166,7 +168,7 @@ BlankIndicator           <  >
             )
             to
             (expression (number 10))
-            \r\n
+            \n
           )
         )
         (endfor
@@ -185,7 +187,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
         )
@@ -212,7 +214,7 @@ BlankIndicator           <  >
             (expression (number 1))
             to
             (expression (number 10))
-            \r\n
+            \n
           )
         )
         (endfor
@@ -231,7 +233,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
         )
@@ -256,7 +258,7 @@ BlankIndicator           <  >
             )
             downto
             (expression (number 1))
-            \r\n
+            \n
           )
         )
         (endfor
@@ -275,7 +277,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
         )
@@ -302,7 +304,7 @@ BlankIndicator           <  >
             (expression (number 1))
             downto
             (expression (number 1))
-            \r\n
+            \n
           )
         )
         (endfor
@@ -321,7 +323,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
         )
@@ -357,7 +359,7 @@ BlankIndicator           <  >
             (expression (number 1))
             downto
             (expression (number 1))
-            \r\n
+            \n
           )
         )
         (endfor
@@ -376,7 +378,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              <EOF>
+              \n
             )
           )
         )

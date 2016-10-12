@@ -87,7 +87,6 @@ FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <>
-HIDDEN:EMPTY_LINE        <                                                                           >
 /*===TREE===*/
 (r
   (statement
@@ -119,7 +118,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -157,7 +156,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          \n
         )
       )
     )

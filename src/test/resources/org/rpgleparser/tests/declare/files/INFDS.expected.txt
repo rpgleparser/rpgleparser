@@ -28,6 +28,8 @@ ID                       <COPMB1>
 COLON                    <:>
 ID                       <COLMBID1>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -73,7 +75,7 @@ ID                       <COLMBID1>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

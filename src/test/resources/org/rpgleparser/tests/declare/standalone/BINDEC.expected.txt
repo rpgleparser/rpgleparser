@@ -39,7 +39,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec D (ds_name Bin1) ' ' ' ' 'S ' '       ' '      5' B ' 0' ' ' \r\n)
+    (dspec D (ds_name Bin1) ' ' ' ' 'S ' '       ' '      5' B ' 0' ' ' \n)
   )
   (statement
     (dspec

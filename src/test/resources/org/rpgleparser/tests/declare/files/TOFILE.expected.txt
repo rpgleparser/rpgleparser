@@ -18,6 +18,8 @@ KEYWORD_TOFILE           <TOFILE>
 '('                      <(>
 ID                       <OS6MASTR>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -45,7 +47,7 @@ ID                       <OS6MASTR>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

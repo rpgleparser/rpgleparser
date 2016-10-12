@@ -15,7 +15,7 @@ EOL                      <
           ' Enter prem w/o recovered  Prompt & validate record                                    '
         )
       )
-      \r\n
+      \n
     )
   )
 )

@@ -50,6 +50,8 @@ KEYWORD_LIKE             <like>
 ID                       <typeLanguage>
 ')'                      <)>
 KEYWORD_CONST            <const>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (dcl_pr
@@ -82,7 +84,7 @@ KEYWORD_CONST            <const>
           )
         )
       )
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -106,7 +108,7 @@ KEYWORD_CONST            <const>
         )
       )
       (keyword (keyword_const const))
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -128,7 +130,7 @@ KEYWORD_CONST            <const>
         )
       )
       (keyword (keyword_const const))
-      <EOF>
+      \n
     )
   )
 )

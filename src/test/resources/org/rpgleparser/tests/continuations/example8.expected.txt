@@ -177,7 +177,6 @@ PS_FIXED                 <P>
 PS_NAME                  <>
 PS_END                   <E>
 PS_KEYWORDS              <                                     >
-HIDDEN:PS_COMMENTS80     <                   >
 /*===TREE===*/
 (r
   (statement
@@ -192,7 +191,7 @@ HIDDEN:PS_COMMENTS80     <                   >
       A
       '  '
       ' '
-      \r\n
+      \n
     )
   )
   (statement
@@ -208,7 +207,7 @@ HIDDEN:PS_COMMENTS80     <                   >
       '  '
       ' '
       (literal ' 'This is the constant ' that the name represents. ')
-      \r\n
+      \n
     )
   )
   (statement
@@ -223,7 +222,7 @@ HIDDEN:PS_COMMENTS80     <                   >
       A
       '  '
       ' '
-      \r\n
+      \n
     )
   )
   (statement
@@ -245,7 +244,7 @@ HIDDEN:PS_COMMENTS80     <                   >
       (keyword (keyword_dim DIM ( (simpleExpression (number 12)) )))
       (keyword (keyword_ctdata CTDATA))
       (keyword (keyword_perrcd PERRCD ( (simpleExpression (number 1)) )))
-      \r\n
+      \n
     )
   )
   (dcl_pr
@@ -265,7 +264,7 @@ HIDDEN:PS_COMMENTS80     <                   >
       A
       '  '
       ' '
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -279,7 +278,7 @@ HIDDEN:PS_COMMENTS80     <                   >
       '  '
       ' '
       (keyword (keyword_value VALUE))
-      \r\n
+      \n
     )
   )
   (statement
@@ -300,7 +299,7 @@ HIDDEN:PS_COMMENTS80     <                   >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
       )
@@ -324,7 +323,7 @@ HIDDEN:PS_COMMENTS80     <                   >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
       )
@@ -361,7 +360,7 @@ HIDDEN:PS_COMMENTS80     <                   >
         A
         '  '
         ' '
-        \r\n
+        \n
       )
       (pi_parm_fixed
         (parm_fixed
@@ -376,7 +375,7 @@ HIDDEN:PS_COMMENTS80     <                   >
           '  '
           ' '
           (keyword (keyword_value VALUE))
-          \r\n
+          \n
         )
       )
     )

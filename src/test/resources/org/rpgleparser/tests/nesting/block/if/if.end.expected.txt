@@ -23,6 +23,8 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -42,7 +44,7 @@ BlankIndicator           <  >
               (expression (identifier (free_identifier (idOrKeyword theDogIsDead))))
             )
           )
-          \r\n
+          \n
         )
         (endif
           C
@@ -60,7 +62,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              <EOF>
+              \n
             )
           )
         )

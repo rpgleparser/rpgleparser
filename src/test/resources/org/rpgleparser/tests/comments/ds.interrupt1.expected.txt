@@ -23,6 +23,8 @@ TO_POSITION              <      7>
 DATA_TYPE                < >
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -37,20 +39,8 @@ RESERVED                 < >
       ' '
       '  '
       ' '
-      \r\n
-      (parm_fixed
-        D
-        (ds_name ##JDT)
-        ' '
-        ' '
-        '  '
-        '      1'
-        '      7'
-        ' '
-        ' 0'
-        ' '
-        <EOF>
-      )
+      \n
+      (parm_fixed D (ds_name ##JDT) ' ' ' ' '  ' '      1' '      7' ' ' ' 0' ' ' \n)
     )
   )
 )

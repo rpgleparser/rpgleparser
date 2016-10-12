@@ -32,6 +32,8 @@ KEYWORD_COMMIT           <COMMIT>
 '('                      <(>
 ID                       <C_COLMBID>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -85,7 +87,7 @@ ID                       <C_COLMBID>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

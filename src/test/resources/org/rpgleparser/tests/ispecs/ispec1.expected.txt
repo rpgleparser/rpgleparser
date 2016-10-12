@@ -4,6 +4,8 @@ IS_FileName              <AR1203B   >
 IS_ExtRecordReserved     <    >
 BlankIndicator           <  >
 WS                       <                                                                             >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -15,7 +17,7 @@ WS                       <                                                      
         (resultIndicator '  ')
         '                                                                             '
       )
-      <EOF>
+      \n
     )
   )
 )

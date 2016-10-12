@@ -44,7 +44,7 @@ FREE_SEMI                <;>
           )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement

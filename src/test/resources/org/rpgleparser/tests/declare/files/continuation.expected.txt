@@ -44,6 +44,8 @@ ID                       <INWCTLR>
 COLON                    <:>
 ID                       <INWCTLR02>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -73,7 +75,7 @@ ID                       <INWCTLR02>
           )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -104,7 +106,7 @@ ID                       <INWCTLR02>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

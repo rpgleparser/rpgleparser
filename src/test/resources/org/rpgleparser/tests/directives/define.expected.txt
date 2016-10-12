@@ -5,6 +5,7 @@ HIDDEN:DIR_OtherText     <def1>
 DIRECTIVE                < />
 DIR_UNDEFINE             <UNDEFINE>
 DIR_OtherText            <def1>
+EOL                      <>
 /*===TREE===*/
-(r (statement (directive ' /' (dir_undefine UNDEFINE def1) <EOF>)))
+(r (statement (directive ' /' (dir_undefine UNDEFINE def1) )))
 /*======*/

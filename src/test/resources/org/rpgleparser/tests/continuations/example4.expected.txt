@@ -51,6 +51,8 @@ GraphicLiteralStart      <G'>
 StringContent            <oAABBCCDDi>
 StringContent            <oEEFFGGi>
 StringLiteralEnd         <'>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -73,7 +75,7 @@ StringLiteralEnd         <'>
         )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -90,7 +92,7 @@ StringLiteralEnd         <'>
         '  '
         ' '
         (number 12345 67)
-        \r\n
+        \n
       )
     )
   )
@@ -107,7 +109,7 @@ StringLiteralEnd         <'>
       '  '
       ' '
       (literal G' oAABBCCDDi oEEFFGGi ')
-      <EOF>
+      \n
     )
   )
 )

@@ -85,6 +85,8 @@ KEYWORD_OPTIONS          <options>
 '('                      <(>
 ID                       <*nopass>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (dcl_pr
@@ -115,7 +117,7 @@ ID                       <*nopass>
           )
         )
       )
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -147,7 +149,7 @@ ID                       <*nopass>
         )
       )
       (keyword (keyword_const const))
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -178,7 +180,7 @@ ID                       <*nopass>
           )
         )
       )
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -217,7 +219,7 @@ ID                       <*nopass>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

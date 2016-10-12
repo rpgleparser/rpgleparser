@@ -62,7 +62,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec D (ds_name Packed1) ' ' ' ' 'S ' '       ' '      7' P ' 0' ' ' \r\n)
+    (dspec D (ds_name Packed1) ' ' ' ' 'S ' '       ' '      7' P ' 0' ' ' \n)
   )
   (statement
     (dspec
@@ -73,7 +73,7 @@ FREE_SEMI                <;>
     )
   )
   (statement
-    (dspec D (ds_name Packed2) ' ' ' ' 'S ' '       ' '      5' ' ' ' 2' ' ' \r\n)
+    (dspec D (ds_name Packed2) ' ' ' ' 'S ' '       ' '      5' ' ' ' 2' ' ' \n)
   )
   (statement
     (dspec

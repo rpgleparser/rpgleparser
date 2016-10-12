@@ -92,6 +92,8 @@ ID                       <Shorter>
 CONTINUATION             <...>
 ID                       <Name>
 ')'                      <)>
+C_FREE_NEWLINE           <
+>
 /*===TREE===*/
 (r
   (statement
@@ -106,7 +108,7 @@ ID                       <Name>
       A
       '  '
       ' '
-      \r\n
+      \n
     )
   )
   (statement
@@ -150,23 +152,11 @@ ID                       <Name>
           )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement
-    (dspec
-      D
-      (ds_name ShorterName)
-      ' '
-      ' '
-      'S '
-      '       '
-      '      5'
-      A
-      '  '
-      ' '
-      \r\n
-    )
+    (dspec D (ds_name ShorterName) ' ' ' ' 'S ' '       ' '      5' A '  ' ' ' \n)
   )
   (statement
     (cspec_fixed
@@ -195,7 +185,7 @@ ID                       <Name>
               (expression (literal ' abc '))
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -236,7 +226,7 @@ ID                       <Name>
               )
             )
           )
-          <EOF>
+          \n
         )
       )
     )

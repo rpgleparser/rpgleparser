@@ -50,6 +50,8 @@ StringLiteralStart       <'>
 StringContent            < was not found >
 StringContent            <in the file.>
 StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
 /*===TREE===*/
 (r
   (statement
@@ -71,7 +73,7 @@ StringLiteralEnd         <'>
               )
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -109,7 +111,7 @@ StringLiteralEnd         <'>
               (expression (number 24))
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -135,7 +137,7 @@ StringLiteralEnd         <'>
               (expression (literal ' ' was not found ' in the file. '))
             )
           )
-          <EOF>
+          \n
         )
       )
     )

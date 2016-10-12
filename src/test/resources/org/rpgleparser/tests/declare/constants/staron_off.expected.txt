@@ -23,26 +23,15 @@ DATA_TYPE                < >
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
 SPLAT_OFF                <*Off>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
-    (dcl_c D (ds_name True) ' ' ' ' 'C ' '       ' '       ' ' ' '  ' ' ' *On \r\n)
+    (dcl_c D (ds_name True) ' ' ' ' 'C ' '       ' '       ' ' ' '  ' ' ' *On \n)
   )
   (statement
-    (dcl_c
-      D
-      (ds_name False)
-      ' '
-      ' '
-      'C '
-      '       '
-      '       '
-      ' '
-      '  '
-      ' '
-      *Off
-      <EOF>
-    )
+    (dcl_c D (ds_name False) ' ' ' ' 'C ' '       ' '       ' ' ' '  ' ' ' *Off \n)
   )
 )
 /*======*/

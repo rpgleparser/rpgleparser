@@ -13,6 +13,8 @@ StringLiteralStart       <'>
 StringContent            < No longer Exists on the File - >
 StringContent            <Press Enter to Continue>
 StringLiteralEnd         <'>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -28,7 +30,7 @@ StringLiteralEnd         <'>
       '  '
       ' '
       (literal ' ' No longer Exists on the File - ' Press Enter to Continue ')
-      <EOF>
+      \n
     )
   )
 )

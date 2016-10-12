@@ -19,5 +19,5 @@ HIDDEN:DIR_ENDIF         <ENDIF>
 HIDDEN:DIRECTIVE         < />
 HIDDEN:DIR_ENDIF         <ENDIF>
 /*===TREE===*/
-(r (statement (hspec_fixed H (hs_expression NOMAIN) \r\n)))
+(r (statement (hspec_fixed H (hs_expression NOMAIN) \n)))
 /*======*/

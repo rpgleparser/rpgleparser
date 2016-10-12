@@ -169,7 +169,7 @@ EOL                      <
           )
         )
       )
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -183,7 +183,7 @@ EOL                      <
       ' 0'
       ' '
       (keyword (keyword_value VALUE))
-      \r\n
+      \n
     )
   )
   (dcl_pr
@@ -199,14 +199,14 @@ EOL                      <
       '  '
       ' '
       (keyword (keyword_extpgm ExtPgm ( (simpleExpression (literal ' BC01Q1P ')) )))
-      \r\n
+      \n
     )
-    (parm_fixed D (ds_name ) ' ' ' ' '  ' '       ' '      3' ' ' '  ' ' ' \r\n)
-    (parm_fixed D (ds_name ) ' ' ' ' '  ' '       ' '      3' ' ' '  ' ' ' \r\n)
-    (parm_fixed D (ds_name ) ' ' ' ' '  ' '       ' '      3' ' ' '  ' ' ' \r\n)
+    (parm_fixed D (ds_name ) ' ' ' ' '  ' '       ' '      3' ' ' '  ' ' ' \n)
+    (parm_fixed D (ds_name ) ' ' ' ' '  ' '       ' '      3' ' ' '  ' ' ' \n)
+    (parm_fixed D (ds_name ) ' ' ' ' '  ' '       ' '      3' ' ' '  ' ' ' \n)
   )
   (dcl_pi
-    (piBegin D (ds_name Main) ' ' ' ' PI '       ' '       ' ' ' '  ' ' ' \r\n)
+    (piBegin D (ds_name Main) ' ' ' ' PI '       ' '       ' ' ' '  ' ' ' \n)
     (pi_parm_fixed
       (parm_fixed
         D
@@ -219,7 +219,7 @@ EOL                      <
         ' '
         '  '
         ' '
-        \r\n
+        \n
       )
     )
     (pi_parm_fixed
@@ -234,7 +234,7 @@ EOL                      <
         ' '
         '  '
         ' '
-        \r\n
+        \n
       )
     )
     (pi_parm_fixed
@@ -249,7 +249,7 @@ EOL                      <
         ' '
         '  '
         ' '
-        \r\n
+        \n
       )
     )
   )

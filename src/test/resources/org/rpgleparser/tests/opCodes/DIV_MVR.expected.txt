@@ -121,6 +121,8 @@ LastRecordIndicator      <LR>
 BlankIndicator           <  >
 BlankIndicator           <  >
 CS_FixedComments         <         130128        >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -136,7 +138,7 @@ CS_FixedComments         <         130128        >
       ' 0'
       ' '
       (keyword (keyword_inz INZ ( (simpleExpression (number 25)) )))
-      \r\n
+      \n
     )
   )
   (statement
@@ -152,7 +154,7 @@ CS_FixedComments         <         130128        >
       ' 0'
       ' '
       (keyword (keyword_inz INZ ( (simpleExpression (number 11)) )))
-      \r\n
+      \n
     )
   )
   (statement
@@ -174,7 +176,7 @@ CS_FixedComments         <         130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (cs_fixed_comments '         130128        ')
-            \r\n
+            \n
           )
           (csMVR
             C
@@ -192,7 +194,7 @@ CS_FixedComments         <         130128        >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (cs_fixed_comments '         130128        ')
-              \r\n
+              \n
             )
           )
         )
@@ -218,7 +220,7 @@ CS_FixedComments         <         130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (cs_fixed_comments '         130128        ')
-            \r\n
+            \n
           )
         )
       )
@@ -243,7 +245,7 @@ CS_FixedComments         <         130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (cs_fixed_comments '         130128        ')
-            \r\n
+            \n
           )
         )
       )
@@ -268,7 +270,7 @@ CS_FixedComments         <         130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (cs_fixed_comments '         130128        ')
-            <EOF>
+            \n
           )
         )
       )

@@ -31,7 +31,6 @@ public class TestC {
                 "     C  NL9FACTOR1       XXAL      FACTOR2\r\n";
         inputString = TestUtils.padSourceLines(inputString, false);
 //        TestUtils.printTokens(inputString, false);
-//        TestUtils.showParseTree(inputString, false);
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.getParsedTokens(inputString, errors);
         assertThat(errors, is(empty()));

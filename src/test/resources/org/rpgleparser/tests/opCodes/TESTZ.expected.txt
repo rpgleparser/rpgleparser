@@ -112,7 +112,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
       )
@@ -208,7 +208,7 @@ EOL                      <
             (resultIndicator 16)
             (resultIndicator 18)
             (resultIndicator 17)
-            \r\n
+            \n
           )
         )
       )
@@ -232,7 +232,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
       )

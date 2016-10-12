@@ -65,7 +65,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec D (ds_name Int1) ' ' ' ' 'S ' '       ' '      3' I ' 0' ' ' \r\n)
+    (dspec D (ds_name Int1) ' ' ' ' 'S ' '       ' '      3' I ' 0' ' ' \n)
   )
   (statement
     (dspec
@@ -76,7 +76,7 @@ FREE_SEMI                <;>
     )
   )
   (statement
-    (dspec D (ds_name Uns1) ' ' ' ' 'S ' '       ' '      3' U ' 0' ' ' \r\n)
+    (dspec D (ds_name Uns1) ' ' ' ' 'S ' '       ' '      3' U ' 0' ' ' \n)
   )
   (statement
     (dspec
@@ -87,7 +87,7 @@ FREE_SEMI                <;>
     )
   )
   (statement
-    (dspec D (ds_name Float1) ' ' ' ' 'S ' '       ' '      8' F '  ' ' ' \r\n)
+    (dspec D (ds_name Float1) ' ' ' ' 'S ' '       ' '      8' F '  ' ' ' \n)
   )
   (statement
     (dspec

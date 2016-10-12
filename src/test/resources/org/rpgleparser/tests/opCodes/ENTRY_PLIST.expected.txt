@@ -72,6 +72,8 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -92,7 +94,7 @@ BlankIndicator           <  >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
           (csPARM
             C
@@ -109,7 +111,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
           (csPARM
@@ -127,7 +129,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
           (csPARM
@@ -145,7 +147,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
           (csPARM
@@ -163,7 +165,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              <EOF>
+              \n
             )
           )
         )

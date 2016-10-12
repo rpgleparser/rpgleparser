@@ -58,6 +58,7 @@ OP_ENDDO                 <enddo>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <END-FREE>
+EOL                      <>
 /*===TREE===*/
 (r
   (statement (directive ' /' (beginfree_directive FREE) ))
@@ -146,6 +147,6 @@ DIR_ENDFREE              <END-FREE>
       (enddo (op_enddo enddo) ;)
     )
   )
-  (statement (directive ' /' (endfree_directive END-FREE) <EOF>))
+  (statement (directive ' /' (endfree_directive END-FREE) ))
 )
 /*======*/

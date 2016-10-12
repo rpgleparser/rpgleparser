@@ -125,7 +125,7 @@ FREE_SEMI                <;>
       '  '
       ' '
       (keyword (keyword_varying VARYING))
-      \r\n
+      \n
     )
   )
   (statement
@@ -148,7 +148,7 @@ FREE_SEMI                <;>
           )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -166,7 +166,7 @@ FREE_SEMI                <;>
       (keyword
         (keyword_class CLASS ( *JAVA : (simpleExpression (literal ' MyClass ')) ))
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -182,7 +182,7 @@ FREE_SEMI                <;>
       '  '
       ' '
       (keyword (keyword_procptr PROCPTR))
-      \r\n
+      \n
     )
   )
   (statement

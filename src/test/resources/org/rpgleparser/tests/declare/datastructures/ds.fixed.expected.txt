@@ -27,6 +27,8 @@ TO_POSITION              <     21>
 DATA_TYPE                < >
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -42,7 +44,7 @@ RESERVED                 < >
       '  '
       ' '
       (keyword (keyword_dtaara DTAARA ( (literal ' MYTWENTY1 ') )))
-      \r\n
+      \n
       (parm_fixed
         d
         (ds_name mytwenty1)
@@ -54,7 +56,7 @@ RESERVED                 < >
         ' '
         '  '
         ' '
-        <EOF>
+        \n
       )
     )
   )

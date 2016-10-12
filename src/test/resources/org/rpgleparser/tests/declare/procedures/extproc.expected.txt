@@ -96,7 +96,7 @@ EOL                      <
       ' 0'
       ' '
       (keyword (keyword_extproc ExtProc ( (simpleExpression (literal ' open ')) )))
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -110,7 +110,7 @@ EOL                      <
       '  '
       ' '
       (keyword (keyword_value Value))
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -124,7 +124,7 @@ EOL                      <
       ' 0'
       ' '
       (keyword (keyword_value Value))
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -146,7 +146,7 @@ EOL                      <
           )
         )
       )
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -168,7 +168,7 @@ EOL                      <
           )
         )
       )
-      \r\n
+      \n
     )
   )
 )

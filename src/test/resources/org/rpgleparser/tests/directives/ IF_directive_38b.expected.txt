@@ -64,22 +64,12 @@ TO_POSITION              <      1>
 DATA_TYPE                <A>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (dcl_pi
-    (piBegin
-      D
-      (ds_name RtvAcgCde)
-      ' '
-      ' '
-      PI
-      '       '
-      '       '
-      ' '
-      '  '
-      ' '
-      \r\n
-    )
+    (piBegin D (ds_name RtvAcgCde) ' ' ' ' PI '       ' '       ' ' ' '  ' ' ' \n)
     (pi_parm_fixed
       (parm_fixed
         D
@@ -92,7 +82,7 @@ RESERVED                 < >
         A
         '  '
         ' '
-        \r\n
+        \n
       )
     )
     (pi_parm_fixed
@@ -107,7 +97,7 @@ RESERVED                 < >
         A
         '  '
         ' '
-        <EOF>
+        \n
       )
     )
   )

@@ -136,7 +136,6 @@ HIDDEN:COMMENTS_EOL_HIDDEN<
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <>
-HIDDEN:EMPTY_LINE        <                                                                           >
 /*===TREE===*/
 (r
   (statement
@@ -168,7 +167,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -197,7 +196,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -219,7 +218,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (expression (bif (bif_bitnot %BITNOT ( (expression (literal x' 800F0F ')) ))))
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -241,7 +240,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (expression (bif (bif_bitnot %bitnot ( (expression (literal x' 10 ')) ))))
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -281,7 +280,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          \n
         )
       )
     )

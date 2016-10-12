@@ -76,7 +76,7 @@ HIDDEN:COMMENTS_TEXT     <(no fields)>
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
       )
@@ -100,7 +100,7 @@ HIDDEN:COMMENTS_TEXT     <(no fields)>
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
       )
@@ -132,7 +132,7 @@ HIDDEN:COMMENTS_TEXT     <(no fields)>
         '   '
         '                             '
       )
-      \r\n
+      \n
     )
   )
 )

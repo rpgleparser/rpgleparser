@@ -24,6 +24,8 @@ KEYWORD_PREFIX           <PREFIX>
 '('                      <(>
 ID                       <M2_>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -61,7 +63,7 @@ ID                       <M2_>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

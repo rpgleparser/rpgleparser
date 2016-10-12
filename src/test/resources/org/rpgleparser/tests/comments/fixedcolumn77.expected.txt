@@ -52,6 +52,8 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 CS_FixedComments         <Subf                                                                                 >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -138,7 +140,7 @@ CS_FixedComments         <Subf                                                  
               (cs_fixed_comments
                 'Subf                                                                                 '
               )
-              <EOF>
+              \n
             )
           )
         )
