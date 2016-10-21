@@ -1304,15 +1304,15 @@ FIXED_FREE_STRING_CONTINUATION_MINUS : ('-' [ ]* NEWLINE)
      || _modeStack.contains(FIXED_OutputSpec)}?
    -> pushMode(EatCommentLines), skip;
 
-FREE_STRING_CONTINUATION : {!_modeStack.contains(FIXED_CalcSpec)
+FREE_STRING_CONTINUATION_PLUS : {!_modeStack.contains(FIXED_CalcSpec)
      && !_modeStack.contains(FIXED_DefSpec)
      && !_modeStack.contains(FIXED_OutputSpec)}?
-      '+' [ ]* NEWLINE '       ' [ ]* -> skip;
+      '+' [ ]* NEWLINE WORD5 '  ' [ ]* -> skip;
 
 FREE_STRING_CONTINUATION_MINUS : {!_modeStack.contains(FIXED_CalcSpec)
      && !_modeStack.contains(FIXED_DefSpec)
      && !_modeStack.contains(FIXED_OutputSpec)}?
-      '-' [ ]* NEWLINE '       ' -> skip;
+      '-' [ ]* NEWLINE WORD5 '  ' -> skip;
 
 PlusOrMinus : [+-] ;
 
