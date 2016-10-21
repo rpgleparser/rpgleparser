@@ -60,7 +60,7 @@ ID                       <typeUnitMeasureCode_UTS007>
 ')'                      <)>
 KEYWORD_OPTIONS          <options>
 '('                      <(>
-ID                       <*nopass>
+SPLAT_NOPASS             <*nopass>
 ')'                      <)>
 EOL                      <
 >
@@ -83,7 +83,7 @@ ID                       <ion_UTS007>
 ')'                      <)>
 KEYWORD_OPTIONS          <options>
 '('                      <(>
-ID                       <*nopass>
+SPLAT_NOPASS             <*nopass>
 ')'                      <)>
 EOL                      <
 >
@@ -173,12 +173,7 @@ EOL                      <
         )
       )
       (keyword
-        (keyword_options
-          options
-          (
-          (identifier (free_identifier (idOrKeyword *nopass)))
-          )
-        )
+        (keyword_options options ( (identifier (all (symbolicConstants *nopass))) ))
       )
       \n
     )
@@ -212,12 +207,7 @@ EOL                      <
         )
       )
       (keyword
-        (keyword_options
-          options
-          (
-          (identifier (free_identifier (idOrKeyword *nopass)))
-          )
-        )
+        (keyword_options options ( (identifier (all (symbolicConstants *nopass))) ))
       )
       \n
     )

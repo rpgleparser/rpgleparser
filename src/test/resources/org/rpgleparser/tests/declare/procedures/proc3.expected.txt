@@ -17,7 +17,7 @@ POINTER                  <POINTER>
 KEYWORD_VALUE            <Value>
 KEYWORD_OPTIONS          <OPTIONS>
 '('                      <(>
-ID                       <*STRING>
+SPLAT_STRING             <*STRING>
 ')'                      <)>
 FREE_SEMI                <;>
 MULT_NOSPACE             <*>
@@ -26,9 +26,9 @@ POINTER                  <POINTER>
 KEYWORD_VALUE            <Value>
 KEYWORD_OPTIONS          <OPTIONS>
 '('                      <(>
-ID                       <*STRING>
+SPLAT_STRING             <*STRING>
 COLON                    <:>
-ID                       <*NOPASS>
+SPLAT_NOPASS             <*NOPASS>
 ')'                      <)>
 FREE_SEMI                <;>
 MULT_NOSPACE             <*>
@@ -37,9 +37,9 @@ POINTER                  <POINTER>
 KEYWORD_VALUE            <Value>
 KEYWORD_OPTIONS          <OPTIONS>
 '('                      <(>
-ID                       <*STRING>
+SPLAT_STRING             <*STRING>
 COLON                    <:>
-ID                       <*NOPASS>
+SPLAT_NOPASS             <*NOPASS>
 ')'                      <)>
 FREE_SEMI                <;>
 HIDDEN:COMMENTS          <    //>
@@ -61,10 +61,21 @@ FREE_SEMI                <;>
       (datatype (datatypeName POINTER))
       (keyword (keyword_value Value))
       (keyword
+        (keyword_options OPTIONS ( (identifier (all (symbolicConstants *STRING))) ))
+      )
+      ;
+    )
+    (dcl_pr_field
+      (identifier (free_identifier * (idOrKeyword N)))
+      (datatype (datatypeName POINTER))
+      (keyword (keyword_value Value))
+      (keyword
         (keyword_options
           OPTIONS
           (
-          (identifier (free_identifier (idOrKeyword *STRING)))
+          (identifier (all (symbolicConstants *STRING)))
+          :
+          (identifier (all (symbolicConstants *NOPASS)))
           )
         )
       )
@@ -78,25 +89,9 @@ FREE_SEMI                <;>
         (keyword_options
           OPTIONS
           (
-          (identifier (free_identifier (idOrKeyword *STRING)))
+          (identifier (all (symbolicConstants *STRING)))
           :
-          (identifier (free_identifier (idOrKeyword *NOPASS)))
-          )
-        )
-      )
-      ;
-    )
-    (dcl_pr_field
-      (identifier (free_identifier * (idOrKeyword N)))
-      (datatype (datatypeName POINTER))
-      (keyword (keyword_value Value))
-      (keyword
-        (keyword_options
-          OPTIONS
-          (
-          (identifier (free_identifier (idOrKeyword *STRING)))
-          :
-          (identifier (free_identifier (idOrKeyword *NOPASS)))
+          (identifier (all (symbolicConstants *NOPASS)))
           )
         )
       )

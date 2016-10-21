@@ -26,9 +26,9 @@ LEAD_WS5 :  '     ' { getCharPositionInLine()==5 }? -> skip;
 
 LEAD_WS5_Comments :  WORD5 { getCharPositionInLine()==5 }? -> channel(HIDDEN);
     //5 position blank means FREE, unless..
-FREE_SPEC : { getCharPositionInLine()==5 }? [  ] -> pushMode(OpCode),skip;
+FREE_SPEC : { getCharPositionInLine()==5 }? [  ] -> pushMode(OpCode), skip;
     // 6th position asterisk is a comment
-COMMENT_SPEC_FIXED : { getCharPositionInLine()==5 }? .'*' -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
+COMMENT_SPEC_FIXED : { getCharPositionInLine()==5 }? .'*' -> pushMode(FIXED_CommentMode), channel(HIDDEN) ;
     // X specs 
 DS_FIXED : [dD] { getCharPositionInLine()==6 }? -> pushMode(FIXED_DefSpec) ; 
 
@@ -52,42 +52,39 @@ BLANK_SPEC_LINE1 : . NEWLINE { getCharPositionInLine()==7}?-> skip;
 
 BLANK_SPEC_LINE : .[ ] { getCharPositionInLine()==7 }? [ ]* NEWLINE -> skip;
 
-COMMENTS : [ ] { getCharPositionInLine()>=6 }? [ ]*? '//' -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
+COMMENTS : [ ] { getCharPositionInLine()>=6 }? [ ]*? '//' -> pushMode(FIXED_CommentMode), channel(HIDDEN) ;
 
 DIRECTIVE :  . { getCharPositionInLine()>=6 }? [ ]*? '/' -> pushMode(DirectiveMode) ;
 
 EMPTY_LINE : '                                                                           ' 
     { getCharPositionInLine()>=80 }? 
-    -> pushMode(FIXED_CommentMode),channel(HIDDEN) ;
+    -> pushMode(FIXED_CommentMode), channel(HIDDEN) ;
 
 OPEN_PAREN : '(';
 
 CLOSE_PAREN : ')';
 
-NUMBER : ([0-9]+([.][0-9]*)?) | [.][0-9]+ ;
+NUMBER : ([0-9]+([.] [0-9]*)?) | [.] [0-9]+ ;
 
 SEMI : ';';
 
 COLON : ':';
 
-ID : ('*' { getCharPositionInLine()>7 }? '*'? [a-zA-Z])?
-        [#@%$a-zA-Z]{ getCharPositionInLine()>7 }? [#@$a-zA-Z0-9_]* ;
-
-NEWLINE : ('\r'? '\n') -> skip;
+NEWLINE : '\r'? '\n' -> skip;
 
 WS : [ \t] { getCharPositionInLine()>6 }? [ \t]* -> skip ; // skip spaces, tabs
 
-fragment WORD5 : ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n];
+fragment WORD5 : ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ;
 
 fragment NAME5 : NAMECHAR NAMECHAR NAMECHAR NAMECHAR NAMECHAR;
 
 // valid characters in symbolic names.
-fragment NAMECHAR : [A-Za-z0-9$#@_ ];
+fragment NAMECHAR : [A-Za-z0-9$#@_ ] ;
 
 // names cannot start with _ or numbers
-fragment INITNAMECHAR : [A-Za-z$#@];
+fragment INITNAMECHAR : [A-Za-z$#@] ;
 
-fragment WORD_WCOLON : ~[\r\n];
+fragment WORD_WCOLON : ~[\r\n] ;
 
 fragment WORD5_WCOLON : WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON;
 
@@ -99,45 +96,45 @@ TITLE_EOL : NEWLINE -> type(EOL), popMode, popMode;
 
 
 mode DirectiveMode;
-DIR_NOT : [nN][oO][tT];
+DIR_NOT : [nN] [oO] [tT] ;
 
-DIR_DEFINED : [dD][eE][fF][iI][nN][eE][dD];
+DIR_DEFINED : [dD] [eE] [fF] [iI] [nN] [eE] [dD] ;
 
-DIR_FREE : {_input.LA(-1)=='/' }? [fF][rR][eE][eE] -> pushMode(SKIP_REMAINING_WS);
+DIR_FREE : { _input.LA(-1)=='/' }? [fF] [rR] [eE] [eE] -> pushMode(SKIP_REMAINING_WS);
 
-DIR_ENDFREE : {_input.LA(-1)=='/' }? [eE][nN][dD] '-' [fF][rR][eE][eE] -> pushMode(SKIP_REMAINING_WS);
+DIR_ENDFREE : { _input.LA(-1)=='/' }? [eE] [nN] [dD] '-' [fF] [rR] [eE] [eE] -> pushMode(SKIP_REMAINING_WS);
 
-DIR_TITLE :{_input.LA(-1)=='/' }? ([tT][iI][tT][lL][eE]) -> pushMode(DirectiveTitle);
+DIR_TITLE :{ _input.LA(-1)=='/' }? ([tT] [iI] [tT] [lL] [eE]) -> pushMode(DirectiveTitle);
 
-DIR_EJECT : {_input.LA(-1)=='/' }? [eE][jJ][eE][cC][tT] -> pushMode(SKIP_REMAINING_WS);
+DIR_EJECT : { _input.LA(-1)=='/' }? [eE] [jJ] [eE] [cC] [tT] -> pushMode(SKIP_REMAINING_WS);
 
-DIR_SPACE : {_input.LA(-1)=='/' }? [sS][pP][aA][cC][eE];
+DIR_SPACE : { _input.LA(-1)=='/' }? [sS] [pP] [aA] [cC] [eE] ;
 
-DIR_SET : {_input.LA(-1)=='/' }?  [sS][eE][tT];
+DIR_SET : { _input.LA(-1)=='/' }?  [sS] [eE] [tT] ;
 
-DIR_RESTORE : {_input.LA(-1)=='/' }? [rR][eE][sS][tT][oO][rR][eE];
+DIR_RESTORE : { _input.LA(-1)=='/' }? [rR] [eE] [sS] [tT] [oO] [rR] [eE] ;
 
-DIR_COPY : {_input.LA(-1)=='/' }? [cC][oO][pP][yY];
+DIR_COPY : { _input.LA(-1)=='/' }? [cC] [oO] [pP] [yY] ;
 
-DIR_INCLUDE : {_input.LA(-1)=='/' }? [iI][nN][cC][lL][uU][dD][eE];
+DIR_INCLUDE : { _input.LA(-1)=='/' }? [iI] [nN] [cC] [lL] [uU] [dD] [eE] ;
 
-DIR_EOF : {_input.LA(-1)=='/' }? [eE][oO][fF];
+DIR_EOF : { _input.LA(-1)=='/' }? [eE] [oO] [fF] ;
 
-DIR_DEFINE : {_input.LA(-1)=='/' }? ([dD][eE][fF][iI][nN][eE]);
+DIR_DEFINE : { _input.LA(-1)=='/' }? ([dD] [eE] [fF] [iI] [nN] [eE]);
 
-DIR_UNDEFINE : {_input.LA(-1)=='/' }? ([uU][nN][dD][eE][fF][iI][nN][eE]);
+DIR_UNDEFINE : { _input.LA(-1)=='/' }? ([uU] [nN] [dD] [eE] [fF] [iI] [nN] [eE]);
 
-DIR_IF : {_input.LA(-1)=='/' }? ([iI][fF]);
+DIR_IF : { _input.LA(-1)=='/' }? ([iI] [fF]);
 
-DIR_ELSE : {_input.LA(-1)=='/' }? ([eE][lL][sS][eE]);
+DIR_ELSE : { _input.LA(-1)=='/' }? ([eE] [lL] [sS] [eE]);
 
-DIR_ELSEIF : {_input.LA(-1)=='/' }? ([eE][lL][sS][eE][iI][fF]);
+DIR_ELSEIF : { _input.LA(-1)=='/' }? ([eE] [lL] [sS] [eE] [iI] [fF]);
 
-DIR_ENDIF : {_input.LA(-1)=='/' }? ([eE][nN][dD][iI][fF]);
+DIR_ENDIF : { _input.LA(-1)=='/' }? ([eE] [nN] [dD] [iI] [fF]);
 
 DIR_Number : NUMBER -> type(NUMBER);
 
-DIR_WhiteSpace : [ ] -> type(WS),skip;
+DIR_WhiteSpace : [ ] -> type(WS), skip;
 
 DIR_OtherText : ~[/'"\r\n \t,()]+ ;
 
@@ -149,15 +146,15 @@ DIR_OpenParen : [(] -> type(OPEN_PAREN);
 
 DIR_CloseParen : [)] -> type(CLOSE_PAREN);
 
-DIR_DblStringLiteralStart : ["] -> pushMode(InDoubleStringMode),type(StringLiteralStart) ;
+DIR_DblStringLiteralStart : ["] -> pushMode(InDoubleStringMode), type(StringLiteralStart) ;
 
-DIR_StringLiteralStart : ['] -> pushMode(InStringMode),type(StringLiteralStart) ;
+DIR_StringLiteralStart : ['] -> pushMode(InStringMode), type(StringLiteralStart) ;
 
-DIR_EOL : [ ]* NEWLINE { setText(getText().trim());} -> type(EOL), popMode;
+DIR_EOL : [ ]* NEWLINE { setText(getText().trim()); } -> type(EOL), popMode;
 
 
 mode SKIP_REMAINING_WS;
-DIR_FREE_OTHER_TEXT : ~[\r\n]* -> popMode,skip;
+DIR_FREE_OTHER_TEXT : ~[\r\n]* -> popMode, skip;
 
 
 mode EndOfSourceMode;
@@ -169,129 +166,129 @@ EOS_EOL : NEWLINE -> type(EOL);
 mode OpCode;
 OP_WS : [ \t] { getCharPositionInLine()>6 }? [ \t]* -> skip;
 
-OP_ACQ : [Aa][Cc][Qq] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_ACQ : [Aa] [Cc] [Qq] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_BEGSR : [Bb][Ee][Gg][Ss][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_BEGSR : [Bb] [Ee] [Gg] [Ss] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_CALLP : [Cc][Aa][Ll][Ll][Pp] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_CALLP : [Cc] [Aa] [Ll] [Ll] [Pp] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_CHAIN : [Cc][Hh][Aa][Ii][Nn] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_CHAIN : [Cc] [Hh] [Aa] [Ii] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_CLEAR : [Cc][Ll][Ee][Aa][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_CLEAR : [Cc] [Ll] [Ee] [Aa] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_CLOSE : [Cc][Ll][Oo][Ss][Ee] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_CLOSE : [Cc] [Ll] [Oo] [Ss] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_COMMIT : [Cc][Oo][Mm][Mm][Ii][Tt] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_COMMIT : [Cc] [Oo] [Mm] [Mm] [Ii] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DEALLOC : [Dd][Ee][Aa][Ll][Ll][Oo][Cc] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_DEALLOC : [Dd] [Ee] [Aa] [Ll] [Ll] [Oo] [Cc] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DELETE : [Dd][Ee][Ll][Ee][Tt][Ee] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_DELETE : [Dd] [Ee] [Ll] [Ee] [Tt] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DOU : [Dd][Oo][Uu] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_DOU : [Dd] [Oo] [Uu] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DOW : [Dd][Oo][Ww] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_DOW : [Dd] [Oo] [Ww] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DSPLY : [Dd][Ss][Pp][Ll][Yy] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_DSPLY : [Dd] [Ss] [Pp] [Ll] [Yy] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DUMP : [Dd][Uu][Mm][Pp] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_DUMP : [Dd] [Uu] [Mm] [Pp] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_ELSE : [Ee][Ll][Ss][Ee] {isEndOfToken()}?-> mode(FREE);
+OP_ELSE : [Ee] [Ll] [Ss] [Ee] { isEndOfToken() }? -> mode(FREE);
 
-OP_ELSEIF : [Ee][Ll][Ss][Ee][Ii][Ff] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_ELSEIF : [Ee] [Ll] [Ss] [Ee] [Ii] [Ff] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_ENDDO : [Ee][Nn][Dd][Dd][Oo] {isEndOfToken()}?-> mode(FREE);
+OP_ENDDO : [Ee] [Nn] [Dd] [Dd] [Oo] { isEndOfToken() }? -> mode(FREE);
 
-OP_ENDFOR : [Ee][Nn][Dd][Ff][Oo][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_ENDFOR : [Ee] [Nn] [Dd] [Ff] [Oo] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_ENDIF : [Ee][Nn][Dd][Ii][Ff] {isEndOfToken()}?-> mode(FREE);
+OP_ENDIF : [Ee] [Nn] [Dd] [Ii] [Ff] { isEndOfToken() }? -> mode(FREE);
 
-OP_ENDMON : [Ee][Nn][Dd][Mm][Oo][Nn] {isEndOfToken()}?-> mode(FREE);
+OP_ENDMON : [Ee] [Nn] [Dd] [Mm] [Oo] [Nn] { isEndOfToken() }? -> mode(FREE);
 
-OP_ENDSL : [Ee][Nn][Dd][Ss][Ll] {isEndOfToken()}?-> mode(FREE);
+OP_ENDSL : [Ee] [Nn] [Dd] [Ss] [Ll] { isEndOfToken() }? -> mode(FREE);
 
-OP_ENDSR : [Ee][Nn][Dd][Ss][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_ENDSR : [Ee] [Nn] [Dd] [Ss] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_EVAL : [Ee][Vv][Aa][Ll] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_EVAL : [Ee] [Vv] [Aa] [Ll] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_EVALR : [Ee][Vv][Aa][Ll][Rr] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_EVALR : [Ee] [Vv] [Aa] [Ll] [Rr] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_EVAL_CORR : [Ee][Vv][Aa][Ll][-][Cc][Oo][Rr][Rr] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_EVAL_CORR : [Ee] [Vv] [Aa] [Ll] [-] [Cc] [Oo] [Rr] [Rr] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_EXCEPT : [Ee][Xx][Cc][Ee][Pp][Tt] {isEndOfToken()}?-> mode(FREE);
+OP_EXCEPT : [Ee] [Xx] [Cc] [Ee] [Pp] [Tt] { isEndOfToken() }? -> mode(FREE);
 
-OP_EXFMT : [Ee][Xx][Ff][Mm][Tt] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_EXFMT : [Ee] [Xx] [Ff] [Mm] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_EXSR : [Ee][Xx][Ss][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_EXSR : [Ee] [Xx] [Ss] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_FEOD : [Ff][Ee][Oo][Dd] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_FEOD : [Ff] [Ee] [Oo] [Dd] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_FOR : [Ff][Oo][Rr] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_FOR : [Ff] [Oo] [Rr] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_FORCE : [Ff][Oo][Rr][Cc][Ee] {isEndOfToken()}?-> mode(FREE);
+OP_FORCE : [Ff] [Oo] [Rr] [Cc] [Ee] { isEndOfToken() }? -> mode(FREE);
 
-OP_IF : [Ii][Ff] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_IF : [Ii] [Ff] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_IN : [Ii][Nn] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_IN : [Ii] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_ITER : [Ii][Tt][Ee][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_ITER : [Ii] [Tt] [Ee] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_LEAVE : [Ll][Ee][Aa][Vv][Ee] {isEndOfToken()}?-> mode(FREE);
+OP_LEAVE : [Ll] [Ee] [Aa] [Vv] [Ee] { isEndOfToken() }? -> mode(FREE);
 
-OP_LEAVESR : [Ll][Ee][Aa][Vv][Ee][Ss][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_LEAVESR : [Ll] [Ee] [Aa] [Vv] [Ee] [Ss] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_MONITOR : [Mm][Oo][Nn][Ii][Tt][Oo][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_MONITOR : [Mm] [Oo] [Nn] [Ii] [Tt] [Oo] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_NEXT : [Nn][Ee][Xx][Tt] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_NEXT : [Nn] [Ee] [Xx] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_ON_ERROR : [Oo][Nn][-][Ee][Rr][Rr][Oo][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_ON_ERROR : [Oo] [Nn] [-] [Ee] [Rr] [Rr] [Oo] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_OPEN : [Oo][Pp][Ee][Nn] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_OPEN : [Oo] [Pp] [Ee] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_OTHER : [Oo][Tt][Hh][Ee][Rr] {isEndOfToken()}?-> mode(FREE);
+OP_OTHER : [Oo] [Tt] [Hh] [Ee] [Rr] { isEndOfToken() }? -> mode(FREE);
 
-OP_OUT : [Oo][Uu][Tt] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_OUT : [Oo] [Uu] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_POST : [Pp][Oo][Ss][Tt] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_POST : [Pp] [Oo] [Ss] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READ : [Rr][Ee][Aa][Dd] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_READ : [Rr] [Ee] [Aa] [Dd] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READC : [Rr][Ee][Aa][Dd][Cc] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_READC : [Rr] [Ee] [Aa] [Dd] [Cc] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READE : [Rr][Ee][Aa][Dd][Ee] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_READE : [Rr] [Ee] [Aa] [Dd] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READP : [Rr][Ee][Aa][Dd][Pp] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_READP : [Rr] [Ee] [Aa] [Dd] [Pp] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READPE : [Rr][Ee][Aa][Dd][Pp][Ee] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_READPE : [Rr] [Ee] [Aa] [Dd] [Pp] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_REL : [Rr][Ee][Ll] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_REL : [Rr] [Ee] [Ll] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_RESET : [Rr][Ee][Ss][Ee][Tt] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_RESET : [Rr] [Ee] [Ss] [Ee] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_RETURN : [Rr][Ee][Tt][Uu][Rr][Nn] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_RETURN : [Rr] [Ee] [Tt] [Uu] [Rr] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_ROLBK : [Rr][Oo][Ll][Bb][Kk] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_ROLBK : [Rr] [Oo] [Ll] [Bb] [Kk] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_SELECT : [Ss][Ee][Ll][Ee][Cc][Tt] {isEndOfToken()}?-> mode(FREE);
+OP_SELECT : [Ss] [Ee] [Ll] [Ee] [Cc] [Tt] { isEndOfToken() }? -> mode(FREE);
 
-OP_SETGT : [Ss][Ee][Tt][Gg][Tt] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_SETGT : [Ss] [Ee] [Tt] [Gg] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_SETLL : [Ss][Ee][Tt][Ll][Ll] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_SETLL : [Ss] [Ee] [Tt] [Ll] [Ll] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_SORTA : [Ss][Oo][Rr][Tt][Aa] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_SORTA : [Ss] [Oo] [Rr] [Tt] [Aa] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_TEST : [Tt][Ee][Ss][Tt] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_TEST : [Tt] [Ee] [Ss] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_UNLOCK : [Uu][Nn][Ll][Oo][Cc][Kk] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_UNLOCK : [Uu] [Nn] [Ll] [Oo] [Cc] [Kk] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_UPDATE : [Uu][Pp][Dd][Aa][Tt][Ee] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_UPDATE : [Uu] [Pp] [Dd] [Aa] [Tt] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_WHEN : [Ww][Hh][Ee][Nn] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_WHEN : [Ww] [Hh] [Ee] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_WRITE : [Ww][Rr][Ii][Tt][Ee] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_WRITE : [Ww] [Rr] [Ii] [Tt] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_XML_INTO : [Xx][Mm][Ll][-][Ii][Nn][Tt][Oo] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_XML_INTO : [Xx] [Mm] [Ll] [-] [Ii] [Nn] [Tt] [Oo] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_XML_SAX : [Xx][Mm][Ll][-][Ss][Aa][Xx] {isEndOfToken()}?-> mode(FREE), pushMode(FreeOpExtender);
+OP_XML_SAX : [Xx] [Mm] [Ll] [-] [Ss] [Aa] [Xx] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
 
 OP_NoSpace : -> skip,mode(FREE);
 
@@ -299,398 +296,412 @@ OP_NoSpace : -> skip,mode(FREE);
 mode FREE;
 DS_Standalone : [dD] [cC] [lL] '-' [sS] ;//-> pushMode(F_SPEC_FREE);
 
-DS_DataStructureStart : [dD] [cC] [lL] '-' [dD][sS] ;//-> pushMode(F_SPEC_FREE);
+DS_DataStructureStart : [dD] [cC] [lL] '-' [dD] [sS] ;//-> pushMode(F_SPEC_FREE);
 
-DS_DataStructureEnd : [eE] [nN] [dD] '-' [dD][sS] ;//-> pushMode(F_SPEC_FREE);
+DS_DataStructureEnd : [eE] [nN] [dD] '-' [dD] [sS] ;//-> pushMode(F_SPEC_FREE);
 
-DS_PrototypeStart : [dD] [cC] [lL] '-' [pP][rR] ;//-> pushMode(F_SPEC_FREE);
+DS_PrototypeStart : [dD] [cC] [lL] '-' [pP] [rR] ;//-> pushMode(F_SPEC_FREE);
 
-DS_PrototypeEnd : [eE] [nN] [dD] '-' [pP][rR] ;//-> pushMode(F_SPEC_FREE);
+DS_PrototypeEnd : [eE] [nN] [dD] '-' [pP] [rR] ;//-> pushMode(F_SPEC_FREE);
 
-DS_Parm : [dD] [cC] [lL] '-' [pP][aA][rR][mM] ;
+DS_Parm : [dD] [cC] [lL] '-' [pP] [aA] [rR] [mM] ;
 
-DS_SubField : [dD] [cC] [lL] '-' [sS][uU][bB][fF] ;
+DS_SubField : [dD] [cC] [lL] '-' [sS] [uU] [bB] [fF] ;
 
-DS_ProcedureInterfaceStart : [dD] [cC] [lL] '-' [pP][iI] ;//-> pushMode(F_SPEC_FREE);
+DS_ProcedureInterfaceStart : [dD] [cC] [lL] '-' [pP] [iI] ;//-> pushMode(F_SPEC_FREE);
 
-DS_ProcedureInterfaceEnd : [eE] [nN] [dD] '-' [pP][iI] ;//-> pushMode(F_SPEC_FREE);
+DS_ProcedureInterfaceEnd : [eE] [nN] [dD] '-' [pP] [iI] ;//-> pushMode(F_SPEC_FREE);
 
-DS_ProcedureStart : [dD] [cC] [lL] '-' [pP][rR][oO][cC] ;//-> pushMode(F_SPEC_FREE);
+DS_ProcedureStart : [dD] [cC] [lL] '-' [pP] [rR] [oO] [cC] ;//-> pushMode(F_SPEC_FREE);
 
-DS_ProcedureEnd : [eE] [nN] [dD] '-' [pP][rR][oO][cC] ;//-> pushMode(F_SPEC_FREE);
+DS_ProcedureEnd : [eE] [nN] [dD] '-' [pP] [rR] [oO] [cC] ;//-> pushMode(F_SPEC_FREE);
 
 DS_Constant : [dD] [cC] [lL] '-' [cC] ;//-> pushMode(F_SPEC_FREE);
 
 FS_FreeFile : [dD] [cC] [lL] '-' [fF] ;//-> pushMode(F_SPEC_FREE);
 
-H_SPEC : [cC] [tT] [lL] '-' [oO][pP][tT];
+H_SPEC : [cC] [tT] [lL] '-' [oO] [pP] [tT] ;
 
 FREE_CONT : '...' [ ]* NEWLINE WORD5[ ]+ { setText("...");} -> type(CONTINUATION);
 
 FREE_COMMENTS80 : ~[\r\n] { getCharPositionInLine()>80 }? ~[\r\n]* -> channel(HIDDEN); // skip comments after 80
 
-EXEC_SQL : [Ee][Xx][Ee][Cc][ ]+[Ss][Qq][Ll]-> pushMode(SQL_MODE) ;
+EXEC_SQL : [Ee] [Xx] [Ee] [Cc] [ ]+[Ss] [Qq] [Ll]-> pushMode(SQL_MODE) ;
 
 // Built In functions
-BIF_ABS : '%'[aA][bB][sS];
+BIF_ABS : '%'[aA] [bB] [sS] ;
 
-BIF_ADDR : '%'[aA][dD][dD][rR];
+BIF_ADDR : '%'[aA] [dD] [dD] [rR] ;
 
-BIF_ALLOC : '%'[aA][lL][lL][oO][cC];
+BIF_ALLOC : '%'[aA] [lL] [lL] [oO] [cC] ;
 
-BIF_BITAND : '%'[bB][iI][tT][aA][nN][dD];
+BIF_BITAND : '%'[bB] [iI] [tT] [aA] [nN] [dD] ;
 
-BIF_BITNOT : '%'[bB][iI][tT][nN][oO][tT];
+BIF_BITNOT : '%'[bB] [iI] [tT] [nN] [oO] [tT] ;
 
-BIF_BITOR : '%'[bB][iI][tT][oO][rR];
+BIF_BITOR : '%'[bB] [iI] [tT] [oO] [rR] ;
 
-BIF_BITXOR : '%'[bB][iI][tT][xX][oO][rR];
+BIF_BITXOR : '%'[bB] [iI] [tT] [xX] [oO] [rR] ;
 
-BIF_CHAR : '%'[cC][hH][aA][rR];
+BIF_CHAR : '%'[cC] [hH] [aA] [rR] ;
 
-BIF_CHECK : '%'[cC][hH][eE][cC][kK];
+BIF_CHECK : '%'[cC] [hH] [eE] [cC] [kK] ;
 
-BIF_CHECKR : '%'[cC][hH][eE][cC][kK][rR];
+BIF_CHECKR : '%'[cC] [hH] [eE] [cC] [kK] [rR] ;
 
-BIF_DATE : '%'[dD][aA][tT][eE];
+BIF_DATE : '%'[dD] [aA] [tT] [eE] ;
 
-BIF_DAYS : '%'[dD][aA][yY][sS];
+BIF_DAYS : '%'[dD] [aA] [yY] [sS] ;
 
-BIF_DEC : '%'[dD][eE][cC];
+BIF_DEC : '%'[dD] [eE] [cC] ;
 
-BIF_DECH : '%'[dD][eE][cC][hH];
+BIF_DECH : '%'[dD] [eE] [cC] [hH] ;
 
-BIF_DECPOS : '%'[dD][eE][cC][pP][oO][sS];
+BIF_DECPOS : '%'[dD] [eE] [cC] [pP] [oO] [sS] ;
 
-BIF_DIFF : '%'[dD][iI][fF][fF];
+BIF_DIFF : '%'[dD] [iI] [fF] [fF] ;
 
-BIF_DIV : '%'[dD][iI][vV];
+BIF_DIV : '%'[dD] [iI] [vV] ;
 
-BIF_EDITC : '%'[eE][dD][iI][tT][cC];
+BIF_EDITC : '%'[eE] [dD] [iI] [tT] [cC] ;
 
-BIF_EDITFLT : '%'[eE][dD][iI][tT][fF][lL][tT];
+BIF_EDITFLT : '%'[eE] [dD] [iI] [tT] [fF] [lL] [tT] ;
 
-BIF_EDITW : '%'[eE][dD][iI][tT][wW];
+BIF_EDITW : '%'[eE] [dD] [iI] [tT] [wW] ;
 
-BIF_ELEM : '%'[eE][lL][eE][mM];
+BIF_ELEM : '%'[eE] [lL] [eE] [mM] ;
 
-BIF_EOF : '%'[eE][oO][fF];
+BIF_EOF : '%'[eE] [oO] [fF] ;
 
-BIF_EQUAL : '%'[eE][qQ][uU][aA][lL];
+BIF_EQUAL : '%'[eE] [qQ] [uU] [aA] [lL] ;
 
-BIF_ERROR : '%'[eE][rR][rR][oO][rR];
+BIF_ERROR : '%'[eE] [rR] [rR] [oO] [rR] ;
 
-BIF_FIELDS : '%'[fF][iI][eE][lL][dD][sS];
+BIF_FIELDS : '%'[fF] [iI] [eE] [lL] [dD] [sS] ;
 
-BIF_FLOAT : '%'[fF][lL][oO][aA][tT];
+BIF_FLOAT : '%'[fF] [lL] [oO] [aA] [tT] ;
 
-BIF_FOUND : '%'[fF][oO][uU][nN][dD];
+BIF_FOUND : '%'[fF] [oO] [uU] [nN] [dD] ;
 
-BIF_GRAPH : '%'[gG][rR][aA][pP][hH];
+BIF_GRAPH : '%'[gG] [rR] [aA] [pP] [hH] ;
 
-BIF_HANDLER : '%'[hH][aA][nN][dD][lL][eE][rR];
+BIF_HANDLER : '%'[hH] [aA] [nN] [dD] [lL] [eE] [rR] ;
 
-BIF_HOURS : '%'[hH][oO][uU][rR][sS];
+BIF_HOURS : '%'[hH] [oO] [uU] [rR] [sS] ;
 
-BIF_INT : '%'[iI][nN][tT];
+BIF_INT : '%'[iI] [nN] [tT] ;
 
-BIF_INTH : '%'[iI][nN][tT][hH];
+BIF_INTH : '%'[iI] [nN] [tT] [hH] ;
 
-BIF_KDS : '%'[kK][dD][sS];
+BIF_KDS : '%'[kK] [dD] [sS] ;
 
-BIF_LEN : '%'[lL][eE][nN];
+BIF_LEN : '%'[lL] [eE] [nN] ;
 
-BIF_LOOKUP : '%'[lL][oO][oO][kK][uU][pP];
+BIF_LOOKUP : '%'[lL] [oO] [oO] [kK] [uU] [pP] ;
 
-BIF_LOOKUPLT : '%'[lL][oO][oO][kK][uU][pP][lL][tT];
+BIF_LOOKUPLT : '%'[lL] [oO] [oO] [kK] [uU] [pP] [lL] [tT] ;
 
-BIF_LOOKUPLE : '%'[lL][oO][oO][kK][uU][pP][lL][eE];
+BIF_LOOKUPLE : '%'[lL] [oO] [oO] [kK] [uU] [pP] [lL] [eE] ;
 
-BIF_LOOKUPGT : '%'[lL][oO][oO][kK][uU][pP][gG][tT];
+BIF_LOOKUPGT : '%'[lL] [oO] [oO] [kK] [uU] [pP] [gG] [tT] ;
 
-BIF_LOOKUPGE : '%'[lL][oO][oO][kK][uU][pP][gG][eE];
+BIF_LOOKUPGE : '%'[lL] [oO] [oO] [kK] [uU] [pP] [gG] [eE] ;
 
-BIF_MINUTES : '%'[mM][iI][nN][uU][tT][eE][sS];
+BIF_MINUTES : '%'[mM] [iI] [nN] [uU] [tT] [eE] [sS] ;
 
-BIF_MONTHS : '%'[mM][oO][nN][tT][hH][sS];
+BIF_MONTHS : '%'[mM] [oO] [nN] [tT] [hH] [sS] ;
 
-BIF_MSECONDS : '%'[mM][sS][eE][cC][oO][nN][dD][sS];
+BIF_MSECONDS : '%'[mM] [sS] [eE] [cC] [oO] [nN] [dD] [sS] ;
 
-BIF_NULLIND : '%'[nN][uU][lL][iI][nN][dD];
+BIF_NULLIND : '%'[nN] [uU] [lL] [iI] [nN] [dD] ;
 
-BIF_OCCUR : '%'[oO][cC][uU][rR];
+BIF_OCCUR : '%'[oO] [cC] [uU] [rR] ;
 
-BIF_OPEN : '%'[oO][pP][eE][nN];
+BIF_OPEN : '%'[oO] [pP] [eE] [nN] ;
 
-BIF_PADDR : '%'[pP][aA][dD][dD][rR];
+BIF_PADDR : '%'[pP] [aA] [dD] [dD] [rR] ;
 
-BIF_PARMS : '%'[pP][aA][rR][mM][sS];
+BIF_PARMS : '%'[pP] [aA] [rR] [mM] [sS] ;
 
-BIF_PARMNUM : '%'[pP][aA][rR][mM][nN][uU][mM];
+BIF_PARMNUM : '%'[pP] [aA] [rR] [mM] [nN] [uU] [mM] ;
 
-BIF_REALLOC : '%'[rR][eE][aA][lL][lL][oO][cC];
+BIF_REALLOC : '%'[rR] [eE] [aA] [lL] [lL] [oO] [cC] ;
 
-BIF_REM : '%'[rR][eE][mM];
+BIF_REM : '%'[rR] [eE] [mM] ;
 
-BIF_REPLACE : '%'[rR][eE][pP][lL][aA][cC][eE];
+BIF_REPLACE : '%'[rR] [eE] [pP] [lL] [aA] [cC] [eE] ;
 
-BIF_SCAN : '%'[sS][cC][aA][nN];
+BIF_SCAN : '%'[sS] [cC] [aA] [nN] ;
 
-BIF_SCANRPL : '%'[sS][cC][aA][nN][rR][pP][lL];
+BIF_SCANRPL : '%'[sS] [cC] [aA] [nN] [rR] [pP] [lL] ;
 
-BIF_SECONDS : '%'[sS][eE][cC][oO][nN][dD];
+BIF_SECONDS : '%'[sS] [eE] [cC] [oO] [nN] [dD] ;
 
-BIF_SHTDN : '%'[sS][hH][tT][dD][nN];
+BIF_SHTDN : '%'[sS] [hH] [tT] [dD] [nN] ;
 
-BIF_SIZE : '%'[sS][iI][zZ][eE];
+BIF_SIZE : '%'[sS] [iI] [zZ] [eE] ;
 
-BIF_SQRT : '%'[sS][qQ][rR][tT];
+BIF_SQRT : '%'[sS] [qQ] [rR] [tT] ;
 
-BIF_STATUS : '%'[sS][tT][aA][tT][uU][sS];
+BIF_STATUS : '%'[sS] [tT] [aA] [tT] [uU] [sS] ;
 
-BIF_STR : '%'[sS][tT][rR];
+BIF_STR : '%'[sS] [tT] [rR] ;
 
-BIF_SUBARR : '%'[sS][uU][bB][aA][rR][rR];
+BIF_SUBARR : '%'[sS] [uU] [bB] [aA] [rR] [rR] ;
 
-BIF_SUBDT : '%'[sS][uU][bB][dD][tT];
+BIF_SUBDT : '%'[sS] [uU] [bB] [dD] [tT] ;
 
-BIF_SUBST : '%'[sS][uU][bB][sS][tT];
+BIF_SUBST : '%'[sS] [uU] [bB] [sS] [tT] ;
 
-BIF_THIS : '%'[tT][hH][iI][sS];
+BIF_THIS : '%'[tT] [hH] [iI] [sS] ;
 
-BIF_TIME : '%'[tT][iI][mM][eE];
+BIF_TIME : '%'[tT] [iI] [mM] [eE] ;
 
-BIF_TIMESTAMP : '%'[tT][iI][mM][eE][sS][tT][aA][mM][pP];
+BIF_TIMESTAMP : '%'[tT] [iI] [mM] [eE] [sS] [tT] [aA] [mM] [pP] ;
 
-BIF_TLOOKUP : '%'[tT][lL][oO][oO][kK][uU][pP];
+BIF_TLOOKUP : '%'[tT] [lL] [oO] [oO] [kK] [uU] [pP] ;
 
-BIF_TLOOKUPLT : '%'[tT][lL][oO][oO][kK][uU][pP][lL][tT];
+BIF_TLOOKUPLT : '%'[tT] [lL] [oO] [oO] [kK] [uU] [pP] [lL] [tT] ;
 
-BIF_TLOOKUPLE : '%'[tT][lL][oO][oO][kK][uU][pP][lL][eE];
+BIF_TLOOKUPLE : '%'[tT] [lL] [oO] [oO] [kK] [uU] [pP] [lL] [eE] ;
 
-BIF_TLOOKUPGT : '%'[tT][lL][oO][oO][kK][uU][pP][gG][tT];
+BIF_TLOOKUPGT : '%'[tT] [lL] [oO] [oO] [kK] [uU] [pP] [gG] [tT] ;
 
-BIF_TLOOKUPGE : '%'[tT][lL][oO][oO][kK][uU][pP][gG][eE];
+BIF_TLOOKUPGE : '%'[tT] [lL] [oO] [oO] [kK] [uU] [pP] [gG] [eE] ;
 
-BIF_TRIM : '%'[tT][rR][iI][mM];
+BIF_TRIM : '%'[tT] [rR] [iI] [mM] ;
 
-BIF_TRIML : '%'[tT][rR][iI][mM][lL];
+BIF_TRIML : '%'[tT] [rR] [iI] [mM] [lL] ;
 
-BIF_TRIMR : '%'[tT][rR][iI][mM][rR];
+BIF_TRIMR : '%'[tT] [rR] [iI] [mM] [rR] ;
 
-BIF_UCS2 : '%'[uU][cC][sS]'2';
+BIF_UCS2 : '%'[uU] [cC] [sS]'2';
 
-BIF_UNS : '%'[uU][nN][sS];
+BIF_UNS : '%'[uU] [nN] [sS] ;
 
-BIF_UNSH : '%'[uU][nN][sS][hH];
+BIF_UNSH : '%'[uU] [nN] [sS] [hH] ;
 
-BIF_XFOOT : '%'[xX][fF][oO][oO][tT];
+BIF_XFOOT : '%'[xX] [fF] [oO] [oO] [tT] ;
 
-BIF_XLATE : '%'[xX][lL][aA][tT][eE];
+BIF_XLATE : '%'[xX] [lL] [aA] [tT] [eE] ;
 
-BIF_XML : '%'[xX][mM][lL];
+BIF_XML : '%'[xX] [mM] [lL] ;
 
-BIF_YEARS : '%'[yY][eE][aA][rR][sS];
+BIF_YEARS : '%'[yY] [eE] [aA] [rR] [sS] ;
 
 // Symbolic Constants
-SPLAT_ALL : '*'[aA][lL][lL];
+SPLAT_ALL : '*' [aA] [lL] [lL] ;
 
-SPLAT_NONE : '*'[nN][oO][nN][eE];
+SPLAT_NONE : '*' [nN] [oO] [nN] [eE] ;
 
-SPLAT_YES : '*'[yY][eE][sS];
+SPLAT_YES : '*' [yY] [eE] [sS] ;
 
-SPLAT_NO : '*'[nN][oO];
+SPLAT_NO : '*' [nN] [oO] ;
 
-SPLAT_ILERPG : '*'[iI][lL][eE][rR][pP][gG];
+SPLAT_ILERPG : '*' [iI] [lL] [eE] [rR] [pP] [gG] ;
 
-SPLAT_COMPAT : '*'[cC][oO][mM][pP][aA][tT];
+SPLAT_COMPAT : '*' [cC] [oO] [mM] [pP] [aA] [tT] ;
 
-SPLAT_CRTBNDRPG : '*'[cC][rR][tT][bB][nN][dD][rR][pP][gG];
+SPLAT_CRTBNDRPG : '*' [cC] [rR] [tT] [bB] [nN] [dD] [rR] [pP] [gG] ;
 
-SPLAT_CRTRPGMOD : '*'[cC][rR][tT][rR][pP][gG][mM][oO][dD];
+SPLAT_CRTRPGMOD : '*' [cC] [rR] [tT] [rR] [pP] [gG] [mM] [oO] [dD] ;
 
-SPLAT_VRM : '*'[vV][0-9][rR][0-9][mM][0-9];
+SPLAT_VRM : '*' [vV] [0-9] [rR] [0-9] [mM] [0-9] ;
 
-SPLAT_ALLG : '*'[aA][lL][lL][gG];
+SPLAT_ALLG : '*' [aA] [lL] [lL] [gG] ;
 
-SPLAT_ALLU : '*'[aA][lL][lL][uU];
+SPLAT_ALLU : '*' [aA] [lL] [lL] [uU] ;
 
-SPLAT_ALLTHREAD : '*'[aA][lL][lL][tT][hH][rR][eE][aA][dD];
+SPLAT_ALLTHREAD : '*' [aA] [lL] [lL] [tT] [hH] [rR] [eE] [aA] [dD] ;
 
-SPLAT_ALLX : '*'[aA][lL][lL][xX];
+SPLAT_ALLX : '*' [aA] [lL] [lL] [xX] ;
 
-SPLAT_BLANKS : ('*'[bB][lL][aA][nN][kK][sS] | '*'[bB][lL][aA][nN][kK]);
+SPLAT_BLANKS : ('*' [bB] [lL] [aA] [nN] [kK] [sS] | '*' [bB] [lL] [aA] [nN] [kK]);
 
-SPLAT_CANCL : '*'[cC][aA][nN][cC][lL];
+SPLAT_CANCL : '*' [cC] [aA] [nN] [cC] [lL] ;
 
-SPLAT_CYMD : '*'[cC][yY][mM][dD]('0' | '/' | '-' | '.' | ',' | '&')?;
+SPLAT_CYMD : '*' [cC] [yY] [mM] [dD]('0' | '/' | '-' | '.' | ',' | '&')? ;
 
-SPLAT_CMDY : '*'[cC][mM][dD][yY]('0' | '/' | '-' | '.' | ',' | '&')?;
+SPLAT_CMDY : '*' [cC] [mM] [dD] [yY]('0' | '/' | '-' | '.' | ',' | '&')? ;
 
-SPLAT_CDMY : '*'[cC][dD][mM][yY]('0' | '/' | '-' | '.' | ',' | '&')?;
+SPLAT_CDMY : '*' [cC] [dD] [mM] [yY]('0' | '/' | '-' | '.' | ',' | '&')? ;
 
-SPLAT_MDY : '*'[mM][dD][yY]('0' | '/' | '-' | '.' | ',' | '&')?;
+SPLAT_MDY : '*' [mM] [dD] [yY] ('0' | '/' | '-' | '.' | ',' | '&')? ;
 
-SPLAT_DMY : '*'[dD][mM][yY]('0' | '/' | '-' | '.' | ',' | '&')?;
+SPLAT_DMY : '*' [dD] [mM] [yY] ('0' | '/' | '-' | '.' | ',' | '&')? ;
 
-SPLAT_DFT : '*'[dD][fF][tT];
+SPLAT_DFT : '*' [dD] [fF] [tT] ;
 
-SPLAT_YMD : '*'[yY][mM][dD]('0' | '/' | '-' | '.' | ',' | '&')?;
+SPLAT_YMD : '*' [yY] [mM] [dD] ('0' | '/' | '-' | '.' | ',' | '&')? ;
 
-SPLAT_JUL : '*'[jJ][uU][lL]('0' | '/' | '-' | '.' | ',' | '&')?;
+SPLAT_JUL : '*' [jJ] [uU] [lL] ('0' | '/' | '-' | '.' | ',' | '&')? ;
 
-SPLAT_JAVA : '*'[jJ][aA][vV][aA];
+SPLAT_JAVA : '*' [jJ] [aA] [vV] [aA] ;
 
-SPLAT_ISO : '*'[iI][sS][oO]('0' | '-')?;
+SPLAT_ISO : '*' [iI] [sS] [oO]('0' | '-')?;
 
-SPLAT_USA : '*'[uU][sS][aA]('0' | '/')?;
+SPLAT_USA : '*' [uU] [sS] [aA]('0' | '/')?;
 
-SPLAT_EUR : '*'[eE][uU][rR]('0' | '.')?;
+SPLAT_EUR : '*' [eE] [uU] [rR]('0' | '.')?;
 
-SPLAT_JIS : '*'[jJ][iI][sS]('0' | '-')?;
+SPLAT_JIS : '*' [jJ] [iI] [sS]('0' | '-')?;
 
-SPLAT_DATE : '*'[dD][aA][tT][eE];
+SPLAT_DATE : '*' [dD] [aA] [tT] [eE] ;
 
-SPLAT_DAY :  '*'[dD][aA][yY];
+SPLAT_DAY :  '*' [dD] [aA] [yY] ;
 
-SPlAT_DETC : '*'[dD][eE][tT][cC];
+SPLAT_DETC : '*' [dD] [eE] [tT] [cC] ;
 
-SPLAT_DETL : '*'[dD][eE][tT][lL];
+SPLAT_DETL : '*' [dD] [eE] [tT] [lL] ;
 
-SPLAT_DTAARA : '*'[dD][tT][aA][aA][rR][aA];
+SPLAT_DTAARA : '*' [dD] [tT] [aA] [aA] [rR] [aA] ;
 
-SPLAT_END :  '*'[eE][nN][dD];
+SPLAT_END :  '*' [eE] [nN] [dD] ;
 
-SPLAT_ENTRY : '*'[eE][nN][tT][rR][yY];
+SPLAT_ENTRY : '*' [eE] [nN] [tT] [rR] [yY] ;
 
-SPLAT_EQUATE : '*'[eE][qQ][uU][aA][tT][eE];
+SPLAT_EQUATE : '*' [eE] [qQ] [uU] [aA] [tT] [eE] ;
 
-SPLAT_EXTDFT : '*'[eE][xX][tT][dD][fF][tT];
+SPLAT_EXTDFT : '*' [eE] [xX] [tT] [dD] [fF] [tT] ;
 
-SPLAT_EXT : '*'[eE][xX][tT];
+SPLAT_EXT : '*' [eE] [xX] [tT] ;
 
-SPLAT_FILE : '*'[fF][iI][lL][eE];
+SPLAT_FILE : '*' [fF] [iI] [lL] [eE] ;
 
-SPLAT_GETIN : '*'[gG][eE][tT][iI][nN];
+SPLAT_GETIN : '*' [gG] [eE] [tT] [iI] [nN] ;
 
-SPLAT_HIVAL : '*'[hH][iI][vV][aA][lL];
+SPLAT_HIVAL : '*' [hH] [iI] [vV] [aA] [lL] ;
 
-SPLAT_INIT : '*'[iI][nN][iI][tT];
+SPLAT_INIT : '*' [iI] [nN] [iI] [tT] ;
 
-SPLAT_INDICATOR : ('*'[iI][nN][0-9][0-9] | '*'[iI][nN]'('[0-9][0-9]')');
+SPLAT_INDICATOR : ( '*' [iI] [nN] [0-9] [0-9] | '*' [iI] [nN] '(' [0-9] [0-9] ')' );
 
-SPLAT_INZSR : '*'[iI][nN][zZ][sS][rR];
+SPLAT_INZSR : '*' [iI] [nN] [zZ] [sS] [rR] ;
 
-SPLAT_IN : '*'[iI][nN];
+SPLAT_IN : '*' [iI] [nN] ;
 
-SPLAT_INPUT : '*'[iI][nN][pP][uU][tT];
+SPLAT_INPUT : '*' [iI] [nN] [pP] [uU] [tT] ;
 
-SPLAT_OUTPUT : '*'[oO][uU][tT][pP][uU][tT];
+SPLAT_OUTPUT : '*' [oO] [uU] [tT] [pP] [uU] [tT] ;
 
-SPLAT_JOBRUN : '*'[jJ][oO][bB][rR][uU][nN];
+SPLAT_JOBRUN : '*' [jJ] [oO] [bB] [rR] [uU] [nN] ;
 
-SPLAT_JOB : '*'[jJ][oO][bB];
+SPLAT_JOB : '*' [jJ] [oO] [bB] ;
 
-SPLAT_LDA : '*'[lL][dD][aA];
+SPLAT_LDA : '*' [lL] [dD] [aA] ;
 
-SPLAT_LIKE : '*'[lL][iI][kK][eE];
+SPLAT_LIKE : '*' [lL] [iI] [kK] [eE] ;
 
-SPLAT_LONGJUL : '*'[lL][oO][nN][gG][jJ][uU][lL];
+SPLAT_LONGJUL : '*' [lL] [oO] [nN] [gG] [jJ] [uU] [lL] ;
 
-SPLAT_LOVAL : '*'[lL][oO][vV][aA][lL];
+SPLAT_LOVAL : '*' [lL] [oO] [vV] [aA] [lL] ;
 
-SPLAT_KEY : '*'[kK][eE][yY];
+SPLAT_KEY : '*' [kK] [eE] [yY] ;
 
-SPLAT_MONTH : '*'[mM][oO][nN][tT][hH];
+SPLAT_MONTH : '*' [mM] [oO] [nN] [tT] [hH] ;
 
-SPLAT_NEXT : '*'[nN][eE][xX][tT];
+SPLAT_NEXT : '*' [nN] [eE] [xX] [tT] ;
 
-SPLAT_NOIND : '*'[nN][oO][iI][nN][dD];
+SPLAT_NOIND : '*' [nN] [oO] [iI] [nN] [dD] ;
 
-SPLAT_NOKEY : '*'[nN][oO][kK][eE][yY];
+SPLAT_NOKEY : '*' [nN] [oO] [kK] [eE] [yY] ;
 
-SPLAT_NULL : '*'[nN][uU][lL][lL];
+SPLAT_NULL : '*' [nN] [uU] [lL] [lL] ;
 
-SPLAT_OFL : '*'[oO][fF][lL];
+SPLAT_OFL : '*' [oO] [fF] [lL] ;
 
-SPLAT_ON : '*'[oO][nN];
+SPLAT_ON : '*' [oO] [nN] ;
 
-SPLAT_ONLY : '*'[oO][nN][lL][yY];
+SPLAT_ONLY : '*' [oO] [nN] [lL] [yY] ;
 
-SPLAT_OFF : '*'[oO][fF][fF];
+SPLAT_OFF : '*' [oO] [fF] [fF] ;
 
-SPLAT_PDA : '*'[pP][dD][aA];
+SPLAT_PDA : '*' [pP] [dD] [aA] ;
 
-SPLAT_PLACE : '*'[pP][lL][aA][cC][eE];
+SPLAT_PLACE : '*' [pP] [lL] [aA] [cC] [eE] ;
 
-SPLAT_PSSR : '*'[pP][sS][sS][rR];
+SPLAT_PSSR : '*' [pP] [sS] [sS] [rR] ;
 
-SPLAT_ROUTINE : '*'[rR][oO][uU][tT][iI][nN][eE];
+SPLAT_ROUTINE : '*' [rR] [oO] [uU] [tT] [iI] [nN] [eE] ;
 
-SPLAT_START : '*'[sS][tT][aA][rR][tT];
+SPLAT_START : '*' [sS] [tT] [aA] [rR] [tT] ;
 
-SPLAT_SYS : '*'[sS][yY][sS];
+SPLAT_SYS : '*' [sS] [yY] [sS] ;
 
-SPLAT_TERM : '*'[tT][eE][rR][mM];
+SPLAT_TERM : '*' [tT] [eE] [rR] [mM] ;
 
-SPLAT_TOTC : '*'[tT][oO][tT][cC];
+SPLAT_TOTC : '*' [tT] [oO] [tT] [cC] ;
 
-SPLAT_TOTL : '*'[tT][oO][tT][lL];
+SPLAT_TOTL : '*' [tT] [oO] [tT] [lL] ;
 
-SPLAT_USER : '*'[uU][sS][eE][rR];
+SPLAT_USER : '*' [uU] [sS] [eE] [rR] ;
 
-SPLAT_VAR : '*'[vV][aA][rR];
+SPLAT_VAR : '*' [vV] [aA] [rR] ;
 
-SPLAT_YEAR : '*'[yY][eE][aA][rR];
+SPLAT_YEAR : '*' [yY] [eE] [aA] [rR] ;
 
-SPLAT_ZEROS : ('*'[zZ][eE][rR][oO][sS] | '*'[zZ][eE][rR][oO]);
+SPLAT_ZEROS : ('*' [zZ] [eE] [rR] [oO] [sS] | '*' [zZ] [eE] [rR] [oO]);
 
-SPLAT_HMS : '*'[hH][mM][sS]('0' | '/' | '-' | '.' | ',' | '&')?;
+SPLAT_HMS : '*' [hH] [mM] [sS]('0' | '/' | '-' | '.' | ',' | '&')?;
 
-SPLAT_INLR : '*'[iI][nN][lL][rR];
+SPLAT_INLR : '*' [iI] [nN] [lL] [rR] ;
 
-SPLAT_INOF : '*'[iI][nN][oO][fF];
+SPLAT_INOF : '*' [iI] [nN] [oO] [fF] ;
 
-SPLAT_DATA : '*'[dD][aA][tT][aA];
+SPLAT_DATA : '*' [dD] [aA] [tT] [aA] ;
 
-SPLAT_ASTFILL : '*'[aA][sS][tT][fF][iI][lL];
+SPLAT_ASTFILL : '*' [aA] [sS] [tT] [fF] [iI] [lL] ;
 
-SPLAT_CURSYM : '*'[cC][uU][rR][sS][yY][mM];
+SPLAT_CURSYM : '*' [cC] [uU] [rR] [sS] [yY] [mM] ;
 
-SPLAT_MAX : '*'[mM][aA][xX];
+SPLAT_MAX : '*' [mM] [aA] [xX] ;
 
-SPLAT_LOCK : '*'[lL][oO][cC][kK];
+SPLAT_LOCK : '*' [lL] [oO] [cC] [kK] ;
 
-SPLAT_PROGRAM : '*'[pP][rR][oO][gG][rR][aA][mM];
+SPLAT_PROGRAM : '*' [pP] [rR] [oO] [gG] [rR] [aA] [mM] ;
 
-SPLAT_EXTDESC : '*'[eE][xX][tT][dD][eE][sS][cC];
+SPLAT_EXTDESC : '*' [eE] [xX] [tT] [dD] [eE] [sS] [cC] ;
+
+SPLAT_STRING : '*' [sS] [tT] [rR] [iI] [nN] [gG] ;
+
+SPLAT_CONSTRUCTOR : '*' [cC] [oO] [nN] [sS] [tT] [rR] [uU] [cC] [tT] [oO] [rR] ;
+
+SPLAT_LIKEDS : '*' [lL] [iI] [kK] [eE] [dD] [sS] ;
+
+SPLAT_VARSIZE : '*' [vV] [aA] [rR] [sS] [iI] [zZ] [eE] ;
+
+SPLAT_NOPASS : '*' [nN] [oO] [pP] [aA] [sS] [sS];
+
+SPLAT_PROC : '*' [pP] [rR] [oO] [cC] ;
+
+SPLAT_STATUS : '*' [sS] [tT] [aA] [tT] [uU] [sS] ;
 
 //Durations
-SPLAT_D : '*' { getLastTokenType() == COLON }? [dD];
+SPLAT_D : '*' { getLastTokenType() == COLON }? [dD] ;
 
-SPLAT_H : '*' { getLastTokenType() == COLON }? [hH];
+SPLAT_H : '*' { getLastTokenType() == COLON }? [hH] ;
 
-SPLAT_HOURS : '*' { getLastTokenType() == COLON }? [hH][oO][uU][rR][sS];
+SPLAT_HOURS : '*' { getLastTokenType() == COLON }? [hH] [oO] [uU] [rR] [sS] ;
 
 SPLAT_DAYS :  SPLAT_DAY [sS] { getLastTokenType() == COLON }? ;
 
-SPLAT_M : '*' { getLastTokenType() == COLON }? [mM];
+SPLAT_M : '*' { getLastTokenType() == COLON }? [mM] ;
 
-SPLAT_MINUTES : '*' { getLastTokenType() == COLON }? [mM][iI][nN][uU][tT][eE][sS];
+SPLAT_MINUTES : '*' { getLastTokenType() == COLON }? [mM] [iI] [nN] [uU] [tT] [eE] [sS] ;
 
-SPLAT_MONTHS : SPLAT_MONTH[sS];
+SPLAT_MONTHS : SPLAT_MONTH[sS] ;
 
-SPLAT_MN : '*' { getLastTokenType() == COLON }? [mM][nN]; //Minutes
+SPLAT_MN : '*' { getLastTokenType() == COLON }? [mM] [nN]; //Minutes
 
-SPLAT_MS : '*' { getLastTokenType() == COLON }? [mM][sS]; //Minutes
+SPLAT_MS : '*' { getLastTokenType() == COLON }? [mM] [sS]; //Minutes
 
-SPLAT_MSECONDS : '*' { getLastTokenType() == COLON }? [mM][sS][eE][cC][oO][nN][dD][sS];
+SPLAT_MSECONDS : '*' { getLastTokenType() == COLON }? [mM] [sS] [eE] [cC] [oO] [nN] [dD] [sS] ;
 
-SPLAT_S : '*' { getLastTokenType() == COLON }? [sS];
+SPLAT_S : '*' { getLastTokenType() == COLON }? [sS] ;
 
-SPLAT_SECONDS : '*' { getLastTokenType() == COLON }? [sS][eE][cC][oO][nN][dD][sS];
+SPLAT_SECONDS : '*' { getLastTokenType() == COLON }? [sS] [eE] [cC] [oO] [nN] [dD] [sS] ;
 
-SPLAT_Y : '*' { getLastTokenType() == COLON }? [yY];
+SPLAT_Y : '*' { getLastTokenType() == COLON }? [yY] ;
 
 SPLAT_YEARS : SPLAT_YEAR[sS]{getLastTokenType() == COLON }? ;
 
@@ -714,211 +725,211 @@ DAY : '*' [dD] [aA] [yY] ;
 PAGE : [pP] [aA] [gG] [eE] [1-7]? ;
 
 //DataType
-CHAR : [Cc][Hh][Aa][Rr];
+CHAR : [Cc] [Hh] [Aa] [Rr] ;
 
-VARCHAR : [Va][Aa][Rr][Cc][Hh][Aa][Rr];
+VARCHAR : [Va] [Aa] [Rr] [Cc] [Hh] [Aa] [Rr] ;
 
-UCS2 : [Uu][Cc][Ss][2];
+UCS2 : [Uu] [Cc] [Ss] [2] ;
 
-DATE_ : [Dd][Aa][Tt][Ee];
+DATE_ : [Dd] [Aa] [Tt] [Ee] ;
 
-VARUCS2 : [Va][Aa][Rr][Uu][Cc][Ss][2];
+VARUCS2 : [Va] [Aa] [Rr] [Uu] [Cc] [Ss] [2] ;
 
-GRAPH : [Gg][Rr][Aa][Pp][Hh];
+GRAPH : [Gg] [Rr] [Aa] [Pp] [Hh] ;
 
-VARGRAPH : [Va][Aa][Rr][Gg][Rr][Aa][Pp][Hh];
+VARGRAPH : [Va] [Aa] [Rr] [Gg] [Rr] [Aa] [Pp] [Hh] ;
 
-IND : [Ii][Nn][Dd];
+IND : [Ii] [Nn] [Dd] ;
 
-PACKED : [Pp][Aa][Cc][Kk][Ee][Dd];
+PACKED : [Pp] [Aa] [Cc] [Kk] [Ee] [Dd] ;
 
-ZONED : [Zz][Oo][Nn][Ee][Dd];
+ZONED : [Zz] [Oo] [Nn] [Ee] [Dd] ;
 
-BINDEC : [Bb][Ii][Nn][Dd][Ee][Cc];
+BINDEC : [Bb] [Ii] [Nn] [Dd] [Ee] [Cc] ;
 
-INT : [Ii][Nn][Tt];
+INT : [Ii] [Nn] [Tt] ;
 
-UNS : [Uu][Nn][Ss];
+UNS : [Uu] [Nn] [Ss] ;
 
-FLOAT : [Ff][Ll][Oo][Aa][Tt];
+FLOAT : [Ff] [Ll] [Oo] [Aa] [Tt] ;
 
-TIME : [Tt][Ii][Mm][Ee];
+TIME : [Tt] [Ii] [Mm] [Ee] ;
 
-TIMESTAMP : [Tt][Ii][Mm][Ee][Ss][Tt][Aa][Mm][Pp];
+TIMESTAMP : [Tt] [Ii] [Mm] [Ee] [Ss] [Tt] [Aa] [Mm] [Pp] ;
 
-POINTER : [Pp][Oo][Ii][Nn][Tt][Ee][Rr];
+POINTER : [Pp] [Oo] [Ii] [Nn] [Tt] [Ee] [Rr] ;
 
-OBJECT : [Oo][Bb][Jj][Ee][Cc][Tt];
+OBJECT : [Oo] [Bb] [Jj] [Ee] [Cc] [Tt] ;
 
 // More Keywords
-KEYWORD_ALIAS : [Aa][Ll][Ii][Aa][Ss];
+KEYWORD_ALIAS : [Aa] [Ll] [Ii] [Aa] [Ss] ;
 
-KEYWORD_ALIGN : [Aa][Ll][Ii][Gg][Nn];
+KEYWORD_ALIGN : [Aa] [Ll] [Ii] [Gg] [Nn] ;
 
-KEYWORD_ALT : [Aa][Ll][Tt];
+KEYWORD_ALT : [Aa] [Ll] [Tt] ;
 
-KEYWORD_ALTSEQ : [Aa][Ll][Tt][Ss][Ee][Qq];
+KEYWORD_ALTSEQ : [Aa] [Ll] [Tt] [Ss] [Ee] [Qq] ;
 
-KEYWORD_ASCEND : [Aa][Ss][Cc][Ee][Nn][Dd];
+KEYWORD_ASCEND : [Aa] [Ss] [Cc] [Ee] [Nn] [Dd] ;
 
-KEYWORD_BASED : [Bb][Aa][Ss][Ee][Dd];
+KEYWORD_BASED : [Bb] [Aa] [Ss] [Ee] [Dd] ;
 
-KEYWORD_CCSID : [Cc][Cc][Ss][Ii][Dd];
+KEYWORD_CCSID : [Cc] [Cc] [Ss] [Ii] [Dd] ;
 
-KEYWORD_CLASS : [Cc][Ll][Aa][Ss][Ss];
+KEYWORD_CLASS : [Cc] [Ll] [Aa] [Ss] [Ss] ;
 
-KEYWORD_CONST : [Cc][Oo][Nn][Ss][Tt];
+KEYWORD_CONST : [Cc] [Oo] [Nn] [Ss] [Tt] ;
 
-KEYWORD_CTDATA : [Cc][Tt][Dd][Aa][Tt][Aa];
+KEYWORD_CTDATA : [Cc] [Tt] [Dd] [Aa] [Tt] [Aa] ;
 
-KEYWORD_DATFMT : [Dd][Aa][Tt][Ff][Mm][Tt];
+KEYWORD_DATFMT : [Dd] [Aa] [Tt] [Ff] [Mm] [Tt] ;
 
-KEYWORD_DESCEND : [Dd][Ee][Ss][Cc][Ee][Nn][Dd];
+KEYWORD_DESCEND : [Dd] [Ee] [Ss] [Cc] [Ee] [Nn] [Dd] ;
 
-KEYWORD_DIM : [Dd][Ii][Mm];
+KEYWORD_DIM : [Dd] [Ii] [Mm] ;
 
-KEYWORD_DTAARA : [Dd][Tt][Aa][Aa][Rr][Aa];
+KEYWORD_DTAARA : [Dd] [Tt] [Aa] [Aa] [Rr] [Aa] ;
 
-KEYWORD_EXPORT : [Ee][Xx][Pp][Oo][Rr][Tt];
+KEYWORD_EXPORT : [Ee] [Xx] [Pp] [Oo] [Rr] [Tt] ;
 
-KEYWORD_EXT : [Ee][Xx][Tt];
+KEYWORD_EXT : [Ee] [Xx] [Tt] ;
 
-KEYWORD_EXTFLD : [Ee][Xx][Tt][Ff][Ll][Dd];
+KEYWORD_EXTFLD : [Ee] [Xx] [Tt] [Ff] [Ll] [Dd] ;
 
-KEYWORD_EXTFMT : [Ee][Xx][Tt][Ff][Mm][Tt];
+KEYWORD_EXTFMT : [Ee] [Xx] [Tt] [Ff] [Mm] [Tt] ;
 
-KEYWORD_EXTNAME : [Ee][Xx][Tt][Nn][Aa][Mm][Ee];
+KEYWORD_EXTNAME : [Ee] [Xx] [Tt] [Nn] [Aa] [Mm] [Ee] ;
 
-KEYWORD_EXTPGM : [Ee][Xx][Tt][Pp][Gg][Mm];
+KEYWORD_EXTPGM : [Ee] [Xx] [Tt] [Pp] [Gg] [Mm] ;
 
-KEYWORD_EXTPROC : [Ee][Xx][Tt][Pp][Rr][Oo][Cc];
+KEYWORD_EXTPROC : [Ee] [Xx] [Tt] [Pp] [Rr] [Oo] [Cc] ;
 
-KEYWORD_FROMFILE : [Ff][Rr][Oo][Mm][Ff][Ii][Ll][Ee];
+KEYWORD_FROMFILE : [Ff] [Rr] [Oo] [Mm] [Ff] [Ii] [Ll] [Ee] ;
 
-KEYWORD_IMPORT : [Ii][Mm][Pp][Oo][Rr][Tt];
+KEYWORD_IMPORT : [Ii] [Mm] [Pp] [Oo] [Rr] [Tt] ;
 
-KEYWORD_INZ : [Ii][Nn][Zz];
+KEYWORD_INZ : [Ii] [Nn] [Zz] ;
 
-KEYWORD_LEN : [Ll][Ee][Nn];
+KEYWORD_LEN : [Ll] [Ee] [Nn] ;
 
-KEYWORD_LIKE : [Ll][Ii][Kk][Ee];
+KEYWORD_LIKEDS : [Ll] [Ii] [Kk] [Ee] [Dd] [Ss] ;
 
-KEYWORD_LIKEDS : [Ll][Ii][Kk][Ee][Dd][Ss];
+KEYWORD_LIKE : [Ll] [Ii] [Kk] [Ee] ;
 
-KEYWORD_LIKEFILE : [Ll][Ii][Kk][Ee][Ff][Ii][Ll][Ee];
+KEYWORD_LIKEFILE : [Ll] [Ii] [Kk] [Ee] [Ff] [Ii] [Ll] [Ee] ;
 
-KEYWORD_LIKEREC : [Ll][Ii][Kk][Ee][Rr][Ee][Cc];
+KEYWORD_LIKEREC : [Ll] [Ii] [Kk] [Ee] [Rr] [Ee] [Cc] ;
 
-KEYWORD_NOOPT : [Nn][Oo][Oo][Pp][Tt];
+KEYWORD_NOOPT : [Nn] [Oo] [Oo] [Pp] [Tt] ;
 
-KEYWORD_OCCURS : [Oo][Cc][Cc][Uu][Rr][Ss];
+KEYWORD_OCCURS : [Oo] [Cc] [Cc] [Uu] [Rr] [Ss] ;
 
-KEYWORD_OPDESC : [Oo][Pp][Dd][Ee][Ss][Cc];
+KEYWORD_OPDESC : [Oo] [Pp] [Dd] [Ee] [Ss] [Cc] ;
 
-KEYWORD_OPTIONS : [Oo][Pp][Tt][Ii][Oo][Nn][Ss];
+KEYWORD_OPTIONS : [Oo] [Pp] [Tt] [Ii] [Oo] [Nn] [Ss] ;
 
-KEYWORD_OVERLAY : [Oo][Vv][Ee][Rr][Ll][Aa][Yy];
+KEYWORD_OVERLAY : [Oo] [Vv] [Ee] [Rr] [Ll] [Aa] [Yy] ;
 
-KEYWORD_PACKEVEN : [Pp][Aa][Cc][Kk][Ee][Vv][Ee][Nn];
+KEYWORD_PACKEVEN : [Pp] [Aa] [Cc] [Kk] [Ee] [Vv] [Ee] [Nn] ;
 
-KEYWORD_PERRCD : [Pp][Ee][Rr][Rr][Cc][Dd];
+KEYWORD_PERRCD : [Pp] [Ee] [Rr] [Rr] [Cc] [Dd] ;
 
-KEYWORD_PREFIX : [Pp][Rr][Ee][Ff][Ii][Xx];
+KEYWORD_PREFIX : [Pp] [Rr] [Ee] [Ff] [Ii] [Xx] ;
 
-KEYWORD_POS : [Pp][Oo][Ss];
+KEYWORD_POS : [Pp] [Oo] [Ss] ;
 
-KEYWORD_PROCPTR : [Pp][Rr][Oo][Cc][Pp][Tt][Rr];
+KEYWORD_PROCPTR : [Pp] [Rr] [Oo] [Cc] [Pp] [Tt] [Rr] ;
 
-KEYWORD_QUALIFIED : [Qq][Uu][Aa][Ll][Ii][Ff][Ii][Ee][Dd];
+KEYWORD_QUALIFIED : [Qq] [Uu] [Aa] [Ll] [Ii] [Ff] [Ii] [Ee] [Dd] ;
 
-KEYWORD_RTNPARM : [Rr][Tt][Nn][Pp][Aa][Rr][Mm];
+KEYWORD_RTNPARM : [Rr] [Tt] [Nn] [Pp] [Aa] [Rr] [Mm] ;
 
-KEYWORD_STATIC : [Ss][Tt][Aa][Tt][Ii][Cc];
+KEYWORD_STATIC : [Ss] [Tt] [Aa] [Tt] [Ii] [Cc] ;
 
-KEYWORD_TEMPLATE : [Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee];
+KEYWORD_TEMPLATE : [Tt] [Ee] [Mm] [Pp] [Ll] [Aa] [Tt] [Ee] ;
 
-KEYWORD_TIMFMT : [Tt][Ii][Mm][Ff][Mm][Tt];
+KEYWORD_TIMFMT : [Tt] [Ii] [Mm] [Ff] [Mm] [Tt] ;
 
-KEYWORD_TOFILE : [Tt][Oo][Ff][Ii][Ll][Ee];
+KEYWORD_TOFILE : [Tt] [Oo] [Ff] [Ii] [Ll] [Ee] ;
 
-KEYWORD_VALUE : [Vv][Aa][Ll][Uu][Ee];
+KEYWORD_VALUE : [Vv] [Aa] [Ll] [Uu] [Ee] ;
 
-KEYWORD_VARYING : [Vv][Aa][Rr][Yy][Ii][Nn][Gg];
+KEYWORD_VARYING : [Vv] [Aa] [Rr] [Yy] [Ii] [Nn] [Gg] ;
 
 // File spec keywords
-KEYWORD_BLOCK : [bB][lL][oO][cC][kK];
+KEYWORD_BLOCK : [bB] [lL] [oO] [cC] [kK] ;
 
-KEYWORD_COMMIT : [cC][oO][mM][mM][iI][tT];
+KEYWORD_COMMIT : [cC] [oO] [mM] [mM] [iI] [tT] ;
 
-KEYWORD_DEVID : [dD][eE][vV][iI][dD];
+KEYWORD_DEVID : [dD] [eE] [vV] [iI] [dD] ;
 
-KEYWORD_EXTDESC : [eE][xX][tT][dD][eE][sS][cC];
+KEYWORD_EXTDESC : [eE] [xX] [tT] [dD] [eE] [sS] [cC] ;
 
-KEYWORD_EXTFILE  : [eE][xX][tT][fF][iI][lL][eE];
+KEYWORD_EXTFILE  : [eE] [xX] [tT] [fF] [iI] [lL] [eE] ;
 
-KEYWORD_EXTIND  : [eE][xX][tT][iI][nN][dD];
+KEYWORD_EXTIND  : [eE] [xX] [tT] [iI] [nN] [dD] ;
 
-KEYWORD_EXTMBR  : [eE][xX][tT][mM][bB][rR];
+KEYWORD_EXTMBR  : [eE] [xX] [tT] [mM] [bB] [rR] ;
 
-KEYWORD_FORMLEN : [fF][oO][rR][mM][lL][eE][nN];
+KEYWORD_FORMLEN : [fF] [oO] [rR] [mM] [lL] [eE] [nN] ;
 
-KEYWORD_FORMOFL : [fF][oO][rR][mM][oO][fF][lL];
+KEYWORD_FORMOFL : [fF] [oO] [rR] [mM] [oO] [fF] [lL] ;
 
-KEYWORD_IGNORE : [iI][gG][nN][oO][rR][eE];
+KEYWORD_IGNORE : [iI] [gG] [nN] [oO] [rR] [eE] ;
 
-KEYWORD_INCLUDE : [iI][nN][cC][lL][uU][dD][eE];
+KEYWORD_INCLUDE : [iI] [nN] [cC] [lL] [uU] [dD] [eE] ;
 
-KEYWORD_INDDS : [iI][nN][dD][dD][sS];
+KEYWORD_INDDS : [iI] [nN] [dD] [dD] [sS] ;
 
-KEYWORD_INFDS : [iI][nN][fF][dD][sS];
+KEYWORD_INFDS : [iI] [nN] [fF] [dD] [sS] ;
 
-KEYWORD_INFSR : [iI][nN][fF][sS][rR];
+KEYWORD_INFSR : [iI] [nN] [fF] [sS] [rR] ;
 
-KEYWORD_KEYLOC : [kK][eE][yY][lL][oO][cC];
+KEYWORD_KEYLOC : [kK] [eE] [yY] [lL] [oO] [cC] ;
 
-KEYWORD_MAXDEV : [mM][aA][xX][dD][eE][vV];
+KEYWORD_MAXDEV : [mM] [aA] [xX] [dD] [eE] [vV] ;
 
-KEYWORD_OFLIND : [oO][fF][lL][iI][nN][dD];
+KEYWORD_OFLIND : [oO] [fF] [lL] [iI] [nN] [dD] ;
 
-KEYWORD_PASS : [pP][aA][sS][sS];
+KEYWORD_PASS : [pP] [aA] [sS] [sS] ;
 
-KEYWORD_PGMNAME : [pP][gG][mM][nN][aA][mM][eE];
+KEYWORD_PGMNAME : [pP] [gG] [mM] [nN] [aA] [mM] [eE] ;
 
-KEYWORD_PLIST : [pP][lL][iI][sS][tT];
+KEYWORD_PLIST : [pP] [lL] [iI] [sS] [tT] ;
 
-KEYWORD_PRTCTL : [pP][rR][tT][cC][tT][lL];
+KEYWORD_PRTCTL : [pP] [rR] [tT] [cC] [tT] [lL] ;
 
-KEYWORD_RAFDATA : [rR][aA][fF][dD][aA][tT][aA];
+KEYWORD_RAFDATA : [rR] [aA] [fF] [dD] [aA] [tT] [aA] ;
 
-KEYWORD_RECNO : [rR][eE][cC][nN][oO];
+KEYWORD_RECNO : [rR] [eE] [cC] [nN] [oO] ;
 
-KEYWORD_RENAME : [rR][eE][nN][aA][mM][eE];
+KEYWORD_RENAME : [rR] [eE] [nN] [aA] [mM] [eE] ;
 
-KEYWORD_SAVEDS : [sS][aA][vV][eE][dD][sS];
+KEYWORD_SAVEDS : [sS] [aA] [vV] [eE] [dD] [sS] ;
 
-KEYWORD_SAVEIND : [sS][aA][vV][eE][iI][nN][dD];
+KEYWORD_SAVEIND : [sS] [aA] [vV] [eE] [iI] [nN] [dD] ;
 
-KEYWORD_SFILE : [sS][fF][iI][lL][eE];
+KEYWORD_SFILE : [sS] [fF] [iI] [lL] [eE] ;
 
-KEYWORD_SLN : [sS][lL][nN];
+KEYWORD_SLN : [sS] [lL] [nN] ;
 
-KEYWORD_SQLTYPE : [sS][qQ][lL][tT][yY][pP][eE] {_modeStack.contains(FIXED_DefSpec) }? ;
+KEYWORD_SQLTYPE : [sS] [qQ] [lL] [tT] [yY] [pP] [eE] { _modeStack.contains(FIXED_DefSpec) }? ;
 
-KEYWORD_USROPN : [uU][sS][rR][oO][pP][nN];
+KEYWORD_USROPN : [uU] [sS] [rR] [oO] [pP] [nN] ;
 
-KEYWORD_DISK : [dD][iI][sS][kK];
+KEYWORD_DISK : [dD] [iI] [sS] [kK] ;
 
-KEYWORD_WORKSTN : [wW][oO][rR][kK][sS][tT][nN];
+KEYWORD_WORKSTN : [wW] [oO] [rR] [kK] [sS] [tT] [nN] ;
 
-KEYWORD_PRINTER : [pP][rR][iI][nN][tT][eE][rR];
+KEYWORD_PRINTER : [pP] [rR] [iI] [nN] [tT] [eE] [rR] ;
 
-KEYWORD_SPECIAL : [sS][pP][eE][cC][iI][aA][lL];
+KEYWORD_SPECIAL : [sS] [pP] [eE] [cC] [iI] [aA] [lL] ;
 
-KEYWORD_KEYED : [kK][eE][yY][eE][dD];
+KEYWORD_KEYED : [kK] [eE] [yY] [eE] [dD] ;
 
-KEYWORD_USAGE : [uU][sS][aA][gG][eE];
+KEYWORD_USAGE : [uU] [sS] [aA] [gG] [eE] ;
 
-KEYWORD_PSDS : [pP][sS][dD][sS];
+KEYWORD_PSDS : [pP] [sS] [dD] [sS] ;
 
 AMPERSAND : '&';
 
@@ -964,87 +975,88 @@ LE : '<=' ;
 
 NE : '<>' ;
 
-//--------------
-//OP_E : '(' [aAdDeEhHmMnNpPrRtTzZ][aAdDeEhHmMnNpPrRtTzZ]? ')';
+FREE_OPEN_PAREN : OPEN_PAREN -> type(OPEN_PAREN) ;
 
-FREE_OPEN_PAREN : OPEN_PAREN -> type(OPEN_PAREN);
-
-FREE_CLOSE_PAREN : CLOSE_PAREN -> type(CLOSE_PAREN);
+FREE_CLOSE_PAREN : CLOSE_PAREN -> type(CLOSE_PAREN) ;
 
 FREE_DOT : '.';
 
-FREE_NUMBER_CONT : NUMBER {_modeStack.peek()==FIXED_DefSpec }? -> pushMode(NumberContinuation),type(NUMBER);
+FREE_NUMBER_CONT : NUMBER { _modeStack.peek()==FIXED_DefSpec }? -> pushMode(NumberContinuation), type(NUMBER) ;
 
-FREE_NUMBER : NUMBER -> type(NUMBER);
+FREE_NUMBER : NUMBER -> type(NUMBER) ;
 
-EQUAL : '=';
+EQUAL : '=' ;
 
 FREE_COLON : COLON -> type(COLON);
 
-FREE_BY : [bB][yY];
+FREE_BY : [bB] [yY] ;
 
-FREE_TO : [tT][oO];
+FREE_TO : [tT] [oO] ;
 
-FREE_DOWNTO : [dD][oO][wW][nN][tT][oO];
+FREE_DOWNTO : [dD] [oO] [wW] [nN] [tT] [oO] ;
 
-FREE_ID : ID -> type(ID);
+FREE_ID : ID -> type(ID) ;
 
-HexLiteralStart : [xX]['] -> pushMode(InStringMode) ;
+HexLiteralStart : [xX] ['] -> pushMode(InStringMode) ;
 
-DateLiteralStart : [dD]['] -> pushMode(InStringMode) ;
+DateLiteralStart : [dD] ['] -> pushMode(InStringMode) ;
 
-TimeLiteralStart : [tT]['] -> pushMode(InStringMode) ;
+TimeLiteralStart : [tT] ['] -> pushMode(InStringMode) ;
 
-TimeStampLiteralStart : [zZ]['] -> pushMode(InStringMode) ;
+TimeStampLiteralStart : [zZ] ['] -> pushMode(InStringMode) ;
 
-GraphicLiteralStart : [gG]['] -> pushMode(InStringMode) ;
+GraphicLiteralStart : [gG] ['] -> pushMode(InStringMode) ;
 
-UCS2LiteralStart : [uU]['] -> pushMode(InStringMode) ;
+UCS2LiteralStart : [uU] ['] -> pushMode(InStringMode) ;
 
 StringLiteralStart : ['] -> pushMode(InStringMode) ;
 
-FREE_COMMENTS :  [ ]*? '//' { getCharPositionInLine()>=8 }? -> pushMode(FIXED_CommentMode_HIDDEN),channel(HIDDEN) ;
+ID : '*' [iI] [nN] ( [kK] [a-np-yA-NP-Y] | [uU] [1-8] )
+   | '*' [mM] [a-zA-Z] [a-zA-Z] [a-zA-Z] [0-9] [0-9] [0-9] [0-9] // opcode DSPLY message id format
+   | [#@%$a-zA-Z] { getCharPositionInLine() >= 7 }? [#@$a-zA-Z0-9_]* ;
+
+FREE_COMMENTS :  [ ]*? '//' { getCharPositionInLine()>=8 }? -> pushMode(FIXED_CommentMode_HIDDEN), channel(HIDDEN) ;
 
 FREE_WS : [ \t] { getCharPositionInLine()>6 }? [ \t]* -> skip;
 
 FREE_CONTINUATION : '...'
-    {_modeStack.peek()!=FIXED_CalcSpec && _modeStack.peek()!=FIXED_DefSpec}?
+    { _modeStack.peek()!=FIXED_CalcSpec && _modeStack.peek()!=FIXED_DefSpec}?
     WS* NEWLINE -> type(CONTINUATION);
 
-C_FREE_CONTINUATION_DOTS : '...' {_modeStack.peek()==FIXED_CalcSpec }? WS* NEWLINE
+C_FREE_CONTINUATION_DOTS : '...' { _modeStack.peek()==FIXED_CalcSpec }? WS* NEWLINE
     (WORD5 [cC] ~[*] '                            ') { setText("...");} -> type(CONTINUATION);
 
-D_FREE_CONTINUATION_DOTS : '...' {_modeStack.peek()==FIXED_DefSpec }? WS* NEWLINE
+D_FREE_CONTINUATION_DOTS : '...' { _modeStack.peek()==FIXED_DefSpec }? WS* NEWLINE
     (WORD5 [dD] ~[*] '                            ') { setText("...");} -> type(CONTINUATION);
 
-C_FREE_CONTINUATION : NEWLINE {_modeStack.peek()==FIXED_CalcSpec}?
+C_FREE_CONTINUATION : NEWLINE { _modeStack.peek()==FIXED_CalcSpec}?
     (
         (WORD5 ~[\r\n] [*] ~[\r\n]* NEWLINE) //Skip mid statement comments
     |    (WORD5 ~[\r\n] [ ]* NEWLINE) //Skip mid statement blanks
     )*
      WORD5 [cC] ~[*] '                            ' -> skip;
 
-D_FREE_CONTINUATION : NEWLINE {_modeStack.peek() == FIXED_DefSpec}?
+D_FREE_CONTINUATION : NEWLINE { _modeStack.peek() == FIXED_DefSpec}?
     WORD5 [dD] ~[*] '                                    ' -> skip;
 
-F_FREE_CONTINUATION : NEWLINE {_modeStack.peek() == FIXED_FileSpec}?
+F_FREE_CONTINUATION : NEWLINE { _modeStack.peek() == FIXED_FileSpec}?
     WORD5 [fF] ~[*] '                                    ' -> skip;
 
 FREE_LEAD_WS5 :   '     ' { getCharPositionInLine()==5 }? -> skip;
 
 FREE_LEAD_WS5_Comments :  WORD5 { getCharPositionInLine()==5 }? -> channel(HIDDEN);
 
-FREE_FREE_SPEC :  [ ][ ] { getCharPositionInLine()==7 }? -> skip;
+FREE_FREE_SPEC :  [ ] [ ] { getCharPositionInLine()==7 }? -> skip;
 
-C_FREE_NEWLINE : NEWLINE {_modeStack.peek()==FIXED_CalcSpec }? -> popMode, popMode;
+C_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_CalcSpec }? -> popMode, popMode;
 
-O_FREE_NEWLINE : NEWLINE {_modeStack.peek()==FIXED_OutputSpec_PGMFIELD }? -> type(EOL), popMode, popMode, popMode;
+O_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_OutputSpec_PGMFIELD }? -> type(EOL), popMode, popMode, popMode;
 
-D_FREE_NEWLINE : NEWLINE {_modeStack.peek() == FIXED_DefSpec }? -> type(EOL), popMode, popMode;
+D_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_DefSpec }? -> type(EOL), popMode, popMode;
 
-F_FREE_NEWLINE : NEWLINE {_modeStack.peek() == FIXED_FileSpec }? -> type(EOL), popMode, popMode;
+F_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_FileSpec }? -> type(EOL), popMode, popMode;
 
-FREE_NEWLINE :   NEWLINE {_modeStack.peek()!=FIXED_CalcSpec }? -> skip, popMode;
+FREE_NEWLINE :   NEWLINE { _modeStack.peek()!=FIXED_CalcSpec }? -> skip, popMode;
 
 FREE_SEMI : SEMI -> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
 
@@ -1054,243 +1066,243 @@ NumberContinuation_CONTINUATION : ([ ]* NEWLINE)
 
 NumberPart : NUMBER -> popMode;
 
-NumberContinuation_ANY : -> popMode,skip;
+NumberContinuation_ANY : -> popMode, skip;
 
 
 mode FixedOpCodes; //Referenced (not used)
-OP_ADD : [aA][dD][dD];
+OP_ADD : [aA] [dD] [dD] ;
 
-OP_ADDDUR : OP_ADD [dD][uU][rR];
+OP_ADDDUR : OP_ADD [dD] [uU] [rR] ;
 
-OP_ALLOC : [aA][lL][lL][oO][cC];
+OP_ALLOC : [aA] [lL] [lL] [oO] [cC] ;
 
-OP_ANDxx : [aA][nN][dD][0-9][0-9];
+OP_ANDxx : [aA] [nN] [dD] [0-9] [0-9] ;
 
-OP_ANDEQ : [aA][nN][dD][eE][qQ];
+OP_ANDEQ : [aA] [nN] [dD] [eE] [qQ] ;
 
-OP_ANDNE : [aA][nN][dD][nN][eE];
+OP_ANDNE : [aA] [nN] [dD] [nN] [eE] ;
 
-OP_ANDLE : [aA][nN][dD][lL][eE];
+OP_ANDLE : [aA] [nN] [dD] [lL] [eE] ;
 
-OP_ANDLT : [aA][nN][dD][lL][tT];
+OP_ANDLT : [aA] [nN] [dD] [lL] [tT] ;
 
-OP_ANDGE : [aA][nN][dD][gG][eE];
+OP_ANDGE : [aA] [nN] [dD] [gG] [eE] ;
 
-OP_ANDGT : [aA][nN][dD][gG][tT];
+OP_ANDGT : [aA] [nN] [dD] [gG] [tT] ;
 
-OP_BITOFF : [bB][iI][tT][oO][fF][fF];
+OP_BITOFF : [bB] [iI] [tT] [oO] [fF] [fF] ;
 
-OP_BITON : [bB][iI][tT][oO][nN];
+OP_BITON : [bB] [iI] [tT] [oO] [nN] ;
 
-OP_CABxx : [cc][aA][bB][0-9][0-9];
+OP_CABxx : [cc] [aA] [bB] [0-9] [0-9] ;
 
-OP_CABEQ : [cC][aA][bB][eE][qQ];
+OP_CABEQ : [cC] [aA] [bB] [eE] [qQ] ;
 
-OP_CABNE : [cC][aA][bB][nN][eE];
+OP_CABNE : [cC] [aA] [bB] [nN] [eE] ;
 
-OP_CABLE : [cC][aA][bB][lL][eE];
+OP_CABLE : [cC] [aA] [bB] [lL] [eE] ;
 
-OP_CABLT : [cC][aA][bB][lL][tT];
+OP_CABLT : [cC] [aA] [bB] [lL] [tT] ;
 
-OP_CABGE : [cC][aA][bB][gG][eE];
+OP_CABGE : [cC] [aA] [bB] [gG] [eE] ;
 
-OP_CABGT : [cC][aA][bB][gG][tT];
+OP_CABGT : [cC] [aA] [bB] [gG] [tT] ;
 
-OP_CALL : [Cc][Aa][Ll][Ll];
+OP_CALL : [Cc] [Aa] [Ll] [Ll] ;
 
-OP_CALLB : OP_CALL [bB];
+OP_CALLB : OP_CALL [bB] ;
 
-OP_CASEQ : [cC][aA][sS][eE][qQ];
+OP_CASEQ : [cC] [aA] [sS] [eE] [qQ] ;
 
-OP_CASNE : [cC][aA][sS][nN][eE];
+OP_CASNE : [cC] [aA] [sS] [nN] [eE] ;
 
-OP_CASLE : [cC][aA][sS][lL][eE];
+OP_CASLE : [cC] [aA] [sS] [lL] [eE] ;
 
-OP_CASLT : [cC][aA][sS][lL][tT];
+OP_CASLT : [cC] [aA] [sS] [lL] [tT] ;
 
-OP_CASGE : [cC][aA][sS][gG][eE];
+OP_CASGE : [cC] [aA] [sS] [gG] [eE] ;
 
-OP_CASGT : [cC][aA][sS][gG][tT];
+OP_CASGT : [cC] [aA] [sS] [gG] [tT] ;
 
-OP_CAS : [cC][aA][sS];
+OP_CAS : [cC] [aA] [sS] ;
 
-OP_CAT : [cC][aA][tT];
+OP_CAT : [cC] [aA] [tT] ;
 
-OP_CHECK : [cC][hH][eE][cC][kK];
+OP_CHECK : [cC] [hH] [eE] [cC] [kK] ;
 
-OP_CHECKR : [cC][hH][eE][cC][kK][rR];
+OP_CHECKR : [cC] [hH] [eE] [cC] [kK] [rR] ;
 
-OP_COMP : [cC][oO][mM][pP];
+OP_COMP : [cC] [oO] [mM] [pP] ;
 
-OP_DEFINE : [dD][eE][fF][iI][nN][eE];
+OP_DEFINE : [dD] [eE] [fF] [iI] [nN] [eE] ;
 
-OP_DIV : [dD][iI][vV];
+OP_DIV : [dD] [iI] [vV] ;
 
-OP_DO : [dD][oO];
+OP_DO : [dD] [oO] ;
 
-OP_DOUEQ : [dD][oO][uU][eE][qQ];
+OP_DOUEQ : [dD] [oO] [uU] [eE] [qQ] ;
 
-OP_DOUNE : [dD][oO][uU][nN][eE];
+OP_DOUNE : [dD] [oO] [uU] [nN] [eE] ;
 
-OP_DOULE : [dD][oO][uU][lL][eE];
+OP_DOULE : [dD] [oO] [uU] [lL] [eE] ;
 
-OP_DOULT : [dD][oO][uU][lL][tT];
+OP_DOULT : [dD] [oO] [uU] [lL] [tT] ;
 
-OP_DOUGE : [dD][oO][uU][gG][eE];
+OP_DOUGE : [dD] [oO] [uU] [gG] [eE] ;
 
-OP_DOUGT : [dD][oO][uU][gG][tT];
+OP_DOUGT : [dD] [oO] [uU] [gG] [tT] ;
 
-OP_DOWEQ : [dD][oO][wW][eE][qQ];
+OP_DOWEQ : [dD] [oO] [wW] [eE] [qQ] ;
 
-OP_DOWNE : [dD][oO][wW][nN][eE];
+OP_DOWNE : [dD] [oO] [wW] [nN] [eE] ;
 
-OP_DOWLE : [dD][oO][wW][lL][eE];
+OP_DOWLE : [dD] [oO] [wW] [lL] [eE] ;
 
-OP_DOWLT : [dD][oO][wW][lL][tT];
+OP_DOWLT : [dD] [oO] [wW] [lL] [tT] ;
 
-OP_DOWGE : [dD][oO][wW][gG][eE];
+OP_DOWGE : [dD] [oO] [wW] [gG] [eE] ;
 
-OP_DOWGT : [dD][oO][wW][gG][tT];
+OP_DOWGT : [dD] [oO] [wW] [gG] [tT] ;
 
-OP_END : [eE][nN][dD];
+OP_END : [eE] [nN] [dD] ;
 
-OP_ENDCS : [eE][nN][dD][cC][sS];
+OP_ENDCS : [eE] [nN] [dD] [cC] [sS] ;
 
-OP_EXTRCT : [eE][xX][tT][rR][cC][tT];
+OP_EXTRCT : [eE] [xX] [tT] [rR] [cC] [tT] ;
 
-OP_GOTO : [gG][oO][tT][oO];
+OP_GOTO : [gG] [oO] [tT] [oO] ;
 
-OP_IFEQ : [iI][fF][eE][qQ];
+OP_IFEQ : [iI] [fF] [eE] [qQ] ;
 
-OP_IFNE : [iI][fF][nN][eE];
+OP_IFNE : [iI] [fF] [nN] [eE] ;
 
-OP_IFLE : [iI][fF][lL][eE];
+OP_IFLE : [iI] [fF] [lL] [eE] ;
 
-OP_IFLT : [iI][fF][lL][tT];
+OP_IFLT : [iI] [fF] [lL] [tT] ;
 
-OP_IFGE : [iI][fF][gG][eE];
+OP_IFGE : [iI] [fF] [gG] [eE] ;
 
-OP_IFGT : [iI][fF][gG][tT];
+OP_IFGT : [iI] [fF] [gG] [tT] ;
 
-OP_KFLD : [kK][fF][lL][dD];
+OP_KFLD : [kK] [fF] [lL] [dD] ;
 
-OP_KLIST : [kK][lL][iI][sS][tT];
+OP_KLIST : [kK] [lL] [iI] [sS] [tT] ;
 
-OP_LOOKUP : [lL][oO][oO][kK][uU][pP];
+OP_LOOKUP : [lL] [oO] [oO] [kK] [uU] [pP] ;
 
-OP_MHHZO : [mM][hH][hH][zZ][oO];
+OP_MHHZO : [mM] [hH] [hH] [zZ] [oO] ;
 
-OP_MHLZO : [mM][hH][lL][zZ][oO];
+OP_MHLZO : [mM] [hH] [lL] [zZ] [oO] ;
 
-OP_MLHZO : [mM][lL][hH][zZ][oO];
+OP_MLHZO : [mM] [lL] [hH] [zZ] [oO] ;
 
-OP_MLLZO : [mM][lL][lL][zZ][oO];
+OP_MLLZO : [mM] [lL] [lL] [zZ] [oO] ;
 
-OP_MOVE : [mM][oO][vV][eE];
+OP_MOVE : [mM] [oO] [vV] [eE] ;
 
-OP_MOVEA : [mM][oO][vV][eE][aA];
+OP_MOVEA : [mM] [oO] [vV] [eE] [aA] ;
 
-OP_MOVEL : [mM][oO][vV][eE][lL];
+OP_MOVEL : [mM] [oO] [vV] [eE] [lL] ;
 
-OP_MULT : [mM][uU][lL][tT];
+OP_MULT : [mM] [uU] [lL] [tT] ;
 
-OP_MVR : [mM][vV][rR];
+OP_MVR : [mM] [vV] [rR] ;
 
-OP_OCCUR : [oO][cC][cC][uU][rR];
+OP_OCCUR : [oO] [cC] [cC] [uU] [rR] ;
 
-OP_OREQ : [oO][rR][eE][qQ];
+OP_OREQ : [oO] [rR] [eE] [qQ] ;
 
-OP_ORNE : [oO][rR][nN][eE];
+OP_ORNE : [oO] [rR] [nN] [eE] ;
 
-OP_ORLE : [oO][rR][lL][eE];
+OP_ORLE : [oO] [rR] [lL] [eE] ;
 
-OP_ORLT : [oO][rR][lL][tT];
+OP_ORLT : [oO] [rR] [lL] [tT] ;
 
-OP_ORGE : [oO][rR][gG][eE];
+OP_ORGE : [oO] [rR] [gG] [eE] ;
 
-OP_ORGT : [oO][rR][gG][tT];
+OP_ORGT : [oO] [rR] [gG] [tT] ;
 
-OP_PARM : [pP][aA][rR][mM];
+OP_PARM : [pP] [aA] [rR] [mM] ;
 
-OP_PLIST : [pP][lL][iI][sS][tT];
+OP_PLIST : [pP] [lL] [iI] [sS] [tT] ;
 
-OP_REALLOC : [rR][eE][aA][lL][lL][oO][cC];
+OP_REALLOC : [rR] [eE] [aA] [lL] [lL] [oO] [cC] ;
 
-OP_SCAN : [sS][cC][aA][nN];
+OP_SCAN : [sS] [cC] [aA] [nN] ;
 
-OP_SETOFF : [sS][eE][tT][oO][fF][fF];
+OP_SETOFF : [sS] [eE] [tT] [oO] [fF] [fF] ;
 
-OP_SETON : [sS][eE][tT][oO][nN];
+OP_SETON : [sS] [eE] [tT] [oO] [nN] ;
 
-OP_SHTDN : [sS][hH][tT][dD][nN];
+OP_SHTDN : [sS] [hH] [tT] [dD] [nN] ;
 
-OP_SQRT : [sS][qQ][rR][tT];
+OP_SQRT : [sS] [qQ] [rR] [tT] ;
 
-OP_SUB : [sS][uU][bB];
+OP_SUB : [sS] [uU] [bB] ;
 
-OP_SUBDUR : [sS][uU][bB][dD][uU][rR];
+OP_SUBDUR : [sS] [uU] [bB] [dD] [uU] [rR] ;
 
-OP_SUBST : [sS][uU][bB][sS][tT];
+OP_SUBST : [sS] [uU] [bB] [sS] [tT] ;
 
-OP_TAG : [tT][aA][gG];
+OP_TAG : [tT] [aA] [gG] ;
 
-OP_TESTB : [tT][eE][sS][tT][bB];
+OP_TESTB : [tT] [eE] [sS] [tT] [bB] ;
 
-OP_TESTN : [tT][eE][sS][tT][nN];
+OP_TESTN : [tT] [eE] [sS] [tT] [nN] ;
 
-OP_TESTZ : [tT][eE][sS][tT][zZ];
+OP_TESTZ : [tT] [eE] [sS] [tT] [zZ] ;
 
-OP_TIME : [tT][iI][mM][eE];
+OP_TIME : [tT] [iI] [mM] [eE] ;
 
-OP_WHENEQ : [wW][hH][eE][nN][eE][qQ];
+OP_WHENEQ : [wW] [hH] [eE] [nN] [eE] [qQ] ;
 
-OP_WHENNE : [wW][hH][eE][nN][nN][eE];
+OP_WHENNE : [wW] [hH] [eE] [nN] [nN] [eE] ;
 
-OP_WHENLE : [wW][hH][eE][nN][lL][eE];
+OP_WHENLE : [wW] [hH] [eE] [nN] [lL] [eE] ;
 
-OP_WHENLT : [wW][hH][eE][nN][lL][tT];
+OP_WHENLT : [wW] [hH] [eE] [nN] [lL] [tT] ;
 
-OP_WHENGE : [wW][hH][eE][nN][gG][eE];
+OP_WHENGE : [wW] [hH] [eE] [nN] [gG] [eE] ;
 
-OP_WHENGT : [wW][hH][eE][nN][gG][tT];
+OP_WHENGT : [wW] [hH] [eE] [nN] [gG] [tT] ;
 
-OP_XFOOT : [xX][fF][oO][oO][tT];
+OP_XFOOT : [xX] [fF] [oO] [oO] [tT] ;
 
-OP_XLATE : [xX][lL][aA][tT][eE];
+OP_XLATE : [xX] [lL] [aA] [tT] [eE] ;
 
-OP_Z_ADD : [zZ]'-'[aA][dD][dD];
+OP_Z_ADD : [zZ] '-' [aA] [dD] [dD] ;
 
-OP_Z_SUB : [zZ]'-'[sS][uU][bB];
+OP_Z_SUB : [zZ] '-' [sS] [uU] [bB] ;
 
 
 mode FREE_ENDED;
 FE_BLANKS : [ ]+ -> skip;
 
-FE_COMMENTS : '//' -> popMode, pushMode(FIXED_CommentMode_HIDDEN),channel(HIDDEN) ;
+FE_COMMENTS : '//' -> popMode, pushMode(FIXED_CommentMode_HIDDEN), channel(HIDDEN) ;
 
-FE_NEWLINE : NEWLINE -> popMode,skip;
+FE_NEWLINE : NEWLINE -> popMode, skip;
 
 
 mode InStringMode;
 //  Any char except +,- or ', or a + or - followed by more than just whitespace
 StringContent : (
        ~['\r\n+-]
-       | [+-] [ ]* {_input.LA(1)!=' ' && _input.LA(1)!='\r' && _input.LA(1)!='\n' }? // Plus is ok as long as it's not the last char
+       | [+-] [ ]* { _input.LA(1)!=' ' && _input.LA(1)!='\r' && _input.LA(1)!='\n' }? // Plus is ok as long as it's not the last char
        )+;// space or not
 
-StringEscapedQuote : [']['] { setText("'");};
+StringEscapedQuote : ['] ['] { setText("'");};
 
 StringLiteralEnd : ['] -> popMode;
 
 FIXED_FREE_STRING_CONTINUATION : ('+' [ ]* NEWLINE)
-   {_modeStack.contains(FIXED_CalcSpec) || _modeStack.contains(FIXED_DefSpec)
+   { _modeStack.contains(FIXED_CalcSpec) || _modeStack.contains(FIXED_DefSpec)
      || _modeStack.contains(FIXED_OutputSpec)}?
-   -> pushMode(EatCommentLinesPlus), pushMode(EatCommentLines),skip;
+   -> pushMode(EatCommentLinesPlus), pushMode(EatCommentLines), skip;
 
 FIXED_FREE_STRING_CONTINUATION_MINUS : ('-' [ ]* NEWLINE)
-   {_modeStack.contains(FIXED_CalcSpec) || _modeStack.contains(FIXED_DefSpec)
+   { _modeStack.contains(FIXED_CalcSpec) || _modeStack.contains(FIXED_DefSpec)
      || _modeStack.contains(FIXED_OutputSpec)}?
-   -> pushMode(EatCommentLines),skip;
+   -> pushMode(EatCommentLines), skip;
 
 FREE_STRING_CONTINUATION : {!_modeStack.contains(FIXED_CalcSpec)
      && !_modeStack.contains(FIXED_DefSpec)
@@ -1302,18 +1314,18 @@ FREE_STRING_CONTINUATION_MINUS : {!_modeStack.contains(FIXED_CalcSpec)
      && !_modeStack.contains(FIXED_OutputSpec)}?
       '-' [ ]* NEWLINE '       ' -> skip;
 
-PlusOrMinus : [+-];
+PlusOrMinus : [+-] ;
 
 
 mode InDoubleStringMode;
-    //  Any char except +,- or ", or a + or - followed by more than just whitespace
+//  Any char except +,- or ", or a + or - followed by more than just whitespace
 DblStringContent : ~["\r\n]+ -> type(StringContent);
 
-DblStringLiteralEnd : ["] -> popMode,type(StringLiteralEnd);
+DblStringLiteralEnd : ["] -> popMode, type(StringLiteralEnd);
 
 
 mode EatCommentLinesPlus;
-EatCommentLinesPlus_Any : -> popMode,skip;
+EatCommentLinesPlus_Any : -> popMode, skip;
 
 
 // Inside continuations, ignore comment and blank lines.
@@ -1326,23 +1338,23 @@ EatCommentLines_StarComment :
 FIXED_FREE_STRING_CONTINUATION_Part2 :
    (
      WORD5
-     ( [cC] {_modeStack.contains(FIXED_CalcSpec)}?
-      | [dD] {_modeStack.contains(FIXED_DefSpec)}?
-      | [oO] {_modeStack.contains(FIXED_OutputSpec)}?
+     ( [cC] { _modeStack.contains(FIXED_CalcSpec)}?
+      | [dD] { _modeStack.contains(FIXED_DefSpec)}?
+      | [oO] { _modeStack.contains(FIXED_OutputSpec)}?
      )
      ~[*]
-     ( '                            ' {_modeStack.contains(FIXED_CalcSpec)}?
-       | '                                    ' {_modeStack.contains(FIXED_DefSpec)}?
-       | '                                             ' {_modeStack.contains(FIXED_OutputSpec)}?
+     ( '                            ' { _modeStack.contains(FIXED_CalcSpec)}?
+       | '                                    ' { _modeStack.contains(FIXED_DefSpec)}?
+       | '                                             ' { _modeStack.contains(FIXED_OutputSpec)}?
      )
-     ([ ]* {_modeStack.peek() == EatCommentLinesPlus}?
+     ([ ]* { _modeStack.peek() == EatCommentLinesPlus}?
       |
      )  // If it plus continuation eat whitespace.
    )
-   -> type(CONTINUATION),skip ;
+   -> type(CONTINUATION), skip ;
    
 //Deliberate match no char, pop out again
-EatCommentLines_NothingLeft : -> popMode,skip;
+EatCommentLines_NothingLeft : -> popMode, skip;
 
 
 mode InFactorStringMode;
@@ -1353,7 +1365,7 @@ InFactor_StringContent : ( ~[\r\n']
         }? )+
         -> type(StringContent);
 
-InFactor_StringEscapedQuote : ['][']
+InFactor_StringEscapedQuote : ['] [']
         {(getCharPositionInLine()>=12 && getCharPositionInLine()<=24)
             || (getCharPositionInLine()>=36 && getCharPositionInLine()<=48)
             || (getCharPositionInLine()>=50 && getCharPositionInLine()<=62)
@@ -1379,7 +1391,7 @@ BLANK_COMMENTS_TEXT : [ ]+ -> skip;
 
 COMMENTS_TEXT : ~[\r\n]+ { setText(getText().trim());} -> channel(HIDDEN);
 
-COMMENTS_EOL : NEWLINE -> popMode,skip;
+COMMENTS_EOL : NEWLINE -> popMode, skip;
 
 
 mode FIXED_CommentMode_HIDDEN;
@@ -1419,7 +1431,7 @@ PS_WS80 : [ ] { getCharPositionInLine()>80 }? [ ]* NEWLINE -> skip;
 
 PS_COMMENTS80 : FREE_COMMENTS80-> channel(HIDDEN), popMode;
 
-PS_Any : -> popMode,skip;
+PS_Any : -> popMode, skip;
 
 
 mode FIXED_DefSpec;
@@ -1437,27 +1449,27 @@ EXTERNAL_DESCRIPTION : [eE ] { getCharPositionInLine()==22 }? ;
 
 DATA_STRUCTURE_TYPE : [sSuU ] { getCharPositionInLine()==23 }? ;
 
-DEF_TYPE_C : [cC][ ] { getCharPositionInLine()==25 }? ;
+DEF_TYPE_C : [cC] [ ] { getCharPositionInLine()==25 }? ;
 
-DEF_TYPE_PI : [pP][iI] { getCharPositionInLine()==25 }? ;
+DEF_TYPE_PI : [pP] [iI] { getCharPositionInLine()==25 }? ;
 
-DEF_TYPE_PR : [pP][rR] { getCharPositionInLine()==25 }? ;
+DEF_TYPE_PR : [pP] [rR] { getCharPositionInLine()==25 }? ;
 
-DEF_TYPE_DS : [dD][sS] { getCharPositionInLine()==25 }? ;
+DEF_TYPE_DS : [dD] [sS] { getCharPositionInLine()==25 }? ;
 
-DEF_TYPE_S : [sS][ ] { getCharPositionInLine()==25 }? ;
+DEF_TYPE_S : [sS] [ ] { getCharPositionInLine()==25 }? ;
 
-DEF_TYPE_BLANK : [ ][ ] { getCharPositionInLine()==25 }? ;
+DEF_TYPE_BLANK : [ ] [ ] { getCharPositionInLine()==25 }? ;
 
-DEF_TYPE : [a-zA-Z0-9 ][a-zA-Z0-9 ] { getCharPositionInLine()==25 }? ;
+DEF_TYPE : [a-zA-Z0-9 ] [a-zA-Z0-9 ] { getCharPositionInLine()==25 }? ;
 
-FROM_POSITION : WORD5 [a-zA-Z0-9\+\- ][a-zA-Z0-9 ]{ getCharPositionInLine()==32 }? ;
+FROM_POSITION : WORD5 [a-zA-Z0-9\+\- ] [a-zA-Z0-9 ]{ getCharPositionInLine()==32 }? ;
 
-TO_POSITION : WORD5[a-zA-Z0-9\+\- ][a-zA-Z0-9 ]{ getCharPositionInLine()==39 }? ;
+TO_POSITION : WORD5[a-zA-Z0-9\+\- ] [a-zA-Z0-9 ]{ getCharPositionInLine()==39 }? ;
 
 DATA_TYPE : [a-zA-Z\* ]{ getCharPositionInLine()==40 }? ;
 
-DECIMAL_POSITIONS : [0-9\+\- ][0-9 ]{ getCharPositionInLine()==42 }? ;
+DECIMAL_POSITIONS : [0-9\+\- ] [0-9 ]{ getCharPositionInLine()==42 }? ;
 
 RESERVED :  ' ' { getCharPositionInLine()==43 }? -> pushMode(FREE) ;
 
@@ -1477,9 +1489,9 @@ CE_LEAD_WS5 :  LEAD_WS5 -> skip;
 
 CE_LEAD_WS5_Comments : LEAD_WS5_Comments -> channel(HIDDEN);
 
-CE_D_SPEC_FIXED : [dD] {_modeStack.peek()==FIXED_DefSpec && getCharPositionInLine()==6 }? -> skip, popMode ;
+CE_D_SPEC_FIXED : [dD] { _modeStack.peek()==FIXED_DefSpec && getCharPositionInLine()==6 }? -> skip, popMode ;
 
-CE_P_SPEC_FIXED : [pP] {_modeStack.peek()==FIXED_ProcedureSpec && getCharPositionInLine()==6 }? -> skip, popMode ;
+CE_P_SPEC_FIXED : [pP] { _modeStack.peek()==FIXED_ProcedureSpec && getCharPositionInLine()==6 }? -> skip, popMode ;
 
 CE_NEWLINE : NEWLINE -> skip;
 
@@ -1505,13 +1517,13 @@ FS_RecordLength : WORD5 { getCharPositionInLine()==27 }? ;
 
 FS_Limits : [lL ] { getCharPositionInLine()==28 }? ;
 
-FS_LengthOfKey : [0-9 ][0-9 ][0-9 ][0-9 ][0-9 ] { getCharPositionInLine()==33 }? ;
+FS_LengthOfKey : [0-9 ] [0-9 ] [0-9 ] [0-9 ] [0-9 ] { getCharPositionInLine()==33 }? ;
 
 FS_RecordAddressType : [a-zA-Z ] { getCharPositionInLine()==34 }? ;
 
 FS_Organization : [a-zA-Z ] { getCharPositionInLine()==35 }? ;
 
-FS_Device : WORD5 [a-zA-Z ][a-zA-Z ] { getCharPositionInLine()==42 }? ;
+FS_Device : WORD5 [a-zA-Z ] [a-zA-Z ] { getCharPositionInLine()==42 }? ;
 
 FS_Reserved : [ ] { getCharPositionInLine()==43 }? -> pushMode(FREE);
 
@@ -1525,7 +1537,7 @@ OS_BLANK_SPEC : BLANK_SPEC -> type(BLANK_SPEC);
 
 OS_RecordName : WORD5 WORD5 { getCharPositionInLine()==16 }? ;
 
-OS_AndOr : '         ' ([aA][nN][dD] | [oO][rR] ' ') '  ' ->
+OS_AndOr : '         ' ([aA] [nN] [dD] | [oO] [rR] ' ') '  ' ->
     pushMode(OnOffIndicatorMode), pushMode(OnOffIndicatorMode), pushMode(OnOffIndicatorMode);
 
 OS_FieldReserved :  '              ' { getCharPositionInLine()==20}?
@@ -1534,7 +1546,7 @@ OS_FieldReserved :  '              ' { getCharPositionInLine()==20}?
 
 OS_Type : [a-zA-Z ] { getCharPositionInLine()==17 }? ;
 
-OS_AddDelete : ([aA][dD][dD] | [dD][eE][lL]) 
+OS_AddDelete : ([aA] [dD] [dD] | [dD] [eE] [lL]) 
     { getCharPositionInLine()==20 
     }? -> pushMode(FIXED_OutputSpec_PGM1), pushMode(OnOffIndicatorMode), pushMode(OnOffIndicatorMode), pushMode(OnOffIndicatorMode);
 
@@ -1544,7 +1556,7 @@ OS_FetchOverflow : (' ' | [fFrR]) '  '
 
 OS_ExceptName : WORD5 WORD5 { getCharPositionInLine()==39 }? ;
 
-OS_Space3 : [ 0-9][ 0-9][ 0-9] 
+OS_Space3 : [ 0-9] [ 0-9] [ 0-9] 
     { getCharPositionInLine()==42 || getCharPositionInLine()==45
       || getCharPositionInLine()==48 || getCharPositionInLine()==51 
      }? ;
@@ -1553,13 +1565,12 @@ OS_RemainingSpace :  '                             ' { getCharPositionInLine()==
 
 OS_Comments : CS_Comments -> channel(HIDDEN) ; 
 
-OS_WS : [ \t] { getCharPositionInLine()>80 }? [ \t]* -> type(WS),skip  ; // skip spaces, tabs, newlines
+OS_WS : [ \t] { getCharPositionInLine()>80 }? [ \t]* -> type(WS), skip  ; // skip spaces, tabs, newlines
 
-OS_EOL : NEWLINE -> type(EOL), popMode;//,skip;
+OS_EOL : NEWLINE -> type(EOL), popMode;//, skip;
 
 
 mode FIXED_OutputSpec_PGM1;
-
 O1_ExceptName : WORD5 WORD5 { getCharPositionInLine()==39 }? -> type(OS_ExceptName);
 
 O1_RemainingSpace : '                                         '  { getCharPositionInLine()==80}?
@@ -1631,7 +1642,7 @@ CS_Factor1_SPLAT_DATE : SPLAT_DATE {11+5<= getCharPositionInLine() && getCharPos
 
 CS_Factor1_SPLAT_DAY : SPLAT_DAY {11+4<= getCharPositionInLine() && getCharPositionInLine()<=24 }? -> type(SPLAT_DAY);
 
-CS_Factor1_SPLAT_DETC : SPlAT_DETC {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24 }? -> type(SPlAT_DETC);
+CS_Factor1_SPLAT_DETC : SPLAT_DETC {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24 }? -> type(SPLAT_DETC);
 
 CS_Factor1_SPLAT_DETL : SPLAT_DETL {11+5<= getCharPositionInLine() && getCharPositionInLine()<=24 }? -> type(SPLAT_DETL);
 
@@ -1795,7 +1806,7 @@ CS_Factor2_SPLAT_DATE : SPLAT_DATE {35+5<= getCharPositionInLine() && getCharPos
 
 CS_Factor2_SPLAT_DAY : SPLAT_DAY {35+4<= getCharPositionInLine() && getCharPositionInLine()<=48 }? -> type(SPLAT_DAY);
 
-CS_Factor2_SPLAT_DETC : SPlAT_DETC {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48 }? -> type(SPlAT_DETC);
+CS_Factor2_SPLAT_DETC : SPLAT_DETC {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48 }? -> type(SPLAT_DETC);
 
 CS_Factor2_SPLAT_DETL : SPLAT_DETL {35+5<= getCharPositionInLine() && getCharPositionInLine()<=48 }? -> type(SPLAT_DETL);
 
@@ -1963,35 +1974,35 @@ CS_FactorWs2 : (' '
     -> skip;
         
 // This rather awkward token matches a literal. including whitespace literals
-CS_FactorContentHexLiteral : [xX][']
+CS_FactorContentHexLiteral : [xX] [']
     { (getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
             || (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
             || (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
     }?
     -> type(HexLiteralStart), pushMode(InFactorStringMode);
         
-CS_FactorContentDateLiteral : [dD][']
+CS_FactorContentDateLiteral : [dD] [']
     { (getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
             || (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
             || (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
     }?
          -> type(DateLiteralStart), pushMode(InFactorStringMode);
         
-CS_FactorContentTimeLiteral : [tT][']
+CS_FactorContentTimeLiteral : [tT] [']
     { (getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
             || (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
             || (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
     }?
     -> type(TimeLiteralStart), pushMode(InFactorStringMode);
         
-CS_FactorContentGraphicLiteral : [gG][']
+CS_FactorContentGraphicLiteral : [gG] [']
     {(getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
             || (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
             || (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
     }?
     -> type(GraphicLiteralStart), pushMode(InFactorStringMode);
         
-CS_FactorContentUCS2Literal : [uU]['] 
+CS_FactorContentUCS2Literal : [uU] ['] 
     {(getCharPositionInLine()>=13 && getCharPositionInLine()<=25)
             || (getCharPositionInLine()>=37 && getCharPositionInLine()<=49)
             || (getCharPositionInLine()>=51 && getCharPositionInLine()<=63)
@@ -2370,9 +2381,9 @@ CS_OperationExtenderClose : CLOSE_PAREN { getCharPositionInLine()>=26 && getChar
     }? )* { setText(getText().trim()); }
     -> type(CLOSE_PAREN);
   
-CS_FieldLength : [+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9][+\\- 0-9]  { getCharPositionInLine()==68 }? ;
+CS_FieldLength : [+\\- 0-9] [+\\- 0-9] [+\\- 0-9] [+\\- 0-9] [+\\- 0-9]  { getCharPositionInLine()==68 }? ;
 
-CS_DecimalPositions : [ 0-9][ 0-9] { getCharPositionInLine()==70 }?
+CS_DecimalPositions : [ 0-9] [ 0-9] { getCharPositionInLine()==70 }?
     -> pushMode(IndicatorMode), pushMode(IndicatorMode), pushMode(IndicatorMode); 
 
 CS_WhiteSpace : [ \t] { getCharPositionInLine()>=77 }? [ \t]* -> skip  ; 
@@ -2420,13 +2431,13 @@ CS_FixedOperationExtender2Return : { getCharPositionInLine()==35 }? -> skip, pop
 
 
 mode FreeOpExtender;
-FreeOpExtender_OPEN_PAREN : OPEN_PAREN -> popMode,type(OPEN_PAREN), pushMode(FreeOpExtender2);
+FreeOpExtender_OPEN_PAREN : OPEN_PAREN -> popMode, type(OPEN_PAREN), pushMode(FreeOpExtender2);
 //Deliberate match no char, pop out again
-FreeOpExtender_Any : -> popMode,skip;
+FreeOpExtender_Any : -> popMode, skip;
 
 
 mode FreeOpExtender2;
-FreeOpExtender2_CLOSE_PAREN : CLOSE_PAREN -> popMode,type(CLOSE_PAREN);
+FreeOpExtender2_CLOSE_PAREN : CLOSE_PAREN -> popMode, type(CLOSE_PAREN);
 
 FreeOpExtender2_WS : WS -> skip;
 
@@ -2440,39 +2451,39 @@ NoFlag : [nN] -> popMode, pushMode(IndicatorMode);
 
 
 mode IndicatorMode;
-BlankIndicator : [ ][ ] -> popMode;
+BlankIndicator : [ ] [ ] -> popMode;
 
-GeneralIndicator : ([0][1-9] | [1-9][0-9]) -> popMode;
+GeneralIndicator : ([0] [1-9] | [1-9] [0-9]) -> popMode;
 
-FunctionKeyIndicator : [Kk][A-NP-Ya-np-y] -> popMode;
+FunctionKeyIndicator : [Kk] [A-NP-Ya-np-y] -> popMode;
 
-ControlLevelIndicator : [lL][1-9] -> popMode;
+ControlLevelIndicator : [lL] [1-9] -> popMode;
 
-ControlLevel0Indicator : [lL][0] -> popMode;
+ControlLevel0Indicator : [lL] [0] -> popMode;
 
-LastRecordIndicator : [lL][rR] -> popMode;
+LastRecordIndicator : [lL] [rR] -> popMode;
 
-MatchingRecordIndicator : [mM][rR] -> popMode;
+MatchingRecordIndicator : [mM] [rR] -> popMode;
 
-HaltIndicator : [hH][1-9] -> popMode;
+HaltIndicator : [hH] [1-9] -> popMode;
 
-ReturnIndicator : [rR][tT] -> popMode;
+ReturnIndicator : [rR] [tT] -> popMode;
 
-ExternalIndicator : [uU][1-8] -> popMode;
+ExternalIndicator : [uU] [1-8] -> popMode;
 
-OverflowIndicator : [oO][A-GVa-gv] -> popMode;
+OverflowIndicator : [oO] [A-GVa-gv] -> popMode;
 
-SubroutineIndicator : [sS][rR] -> popMode;
+SubroutineIndicator : [sS] [rR] -> popMode;
 
-AndIndicator : [aA][nN] -> popMode;
+AndIndicator : [aA] [nN] -> popMode;
 
-OrIndicator : [oO][rR] -> popMode;
+OrIndicator : [oO] [rR] -> popMode;
 
 DoubleSplatIndicator : '**';
 
-FirstPageIndicator : [1][pP];
+FirstPageIndicator : [1] [pP] ;
 
-OtherTextIndicator : ~[\r\n]~[\r\n];
+OtherTextIndicator : ~[\r\n]~[\r\n] ;
 
 
 mode FIXED_CalcSpec_SQL;
@@ -2484,7 +2495,7 @@ CSQL_LEADBLANK : '     ' { getCharPositionInLine()==5}?-> skip;
 
 CSQL_LEADWS : WORD5 { getCharPositionInLine()==5}?-> skip;
 
-CSQL_END : [cC] '/' [Ee][nN][dD][-][Ee][Xx][Ee][Cc] WS ~[\r\n]* { setText(getText().trim()); } -> popMode ;
+CSQL_END : [cC] '/' [Ee] [nN] [dD] [-] [Ee] [Xx] [Ee] [Cc] WS ~[\r\n]* { setText(getText().trim()); } -> popMode ;
 
 CSQL_CONT : [cC ] '+' -> skip;
 
@@ -2528,9 +2539,9 @@ IS_BLANK_SPEC :  '                                                              
 
 IS_FileName : WORD5_WCOLON WORD5_WCOLON { getCharPositionInLine()==16 }? ;
 
-IS_FieldReserved : '                        ' { getCharPositionInLine()==30 }? -> pushMode(FIXED_I_FIELD_SPEC),skip ;
+IS_FieldReserved : '                        ' { getCharPositionInLine()==30 }? -> pushMode(FIXED_I_FIELD_SPEC), skip ;
 
-IS_ExtFieldReserved :  '              ' { getCharPositionInLine()==20}?-> pushMode(FIXED_I_EXT_FIELD_SPEC),skip ;
+IS_ExtFieldReserved :  '              ' { getCharPositionInLine()==20}?-> pushMode(FIXED_I_EXT_FIELD_SPEC), skip ;
 
 IS_LogicalRelationship :  ('AND' | 'OR '| ' OR') { getCharPositionInLine()==18 }? ;
 
@@ -2548,7 +2559,7 @@ IS_Option : [ oO] { getCharPositionInLine()==20 }? -> pushMode(IndicatorMode);
 IS_RecordIdCode :  WORD5_WCOLON WORD5_WCOLON WORD5_WCOLON WORD5_WCOLON
         WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON  { getCharPositionInLine()==46 }? ; //TODO better lexing
 
-IS_WS : [ \t] { getCharPositionInLine()>=47 }? [ \t]* -> type(WS),skip  ; // skip spaces, tabs
+IS_WS : [ \t] { getCharPositionInLine()>=47 }? [ \t]* -> type(WS), skip  ; // skip spaces, tabs
 
 IS_COMMENTS : ~[\r\n] { getCharPositionInLine()>80 }? ~[\r\n]* -> channel(HIDDEN) ; // skip spaces, tabs, newlines
 
@@ -2563,9 +2574,9 @@ IF_Reserved : '                  ' { getCharPositionInLine()==48 }? -> skip;
 IF_FieldName : WORD5_WCOLON WORD5_WCOLON WORD_WCOLON WORD_WCOLON
     WORD_WCOLON WORD_WCOLON  { getCharPositionInLine()==62 }? ->pushMode(IndicatorMode), pushMode(IndicatorMode);
 
-IF_Reserved2 : '  ' { getCharPositionInLine()==68 }? ->pushMode(IndicatorMode), pushMode(IndicatorMode), pushMode(IndicatorMode),skip; // 3 Indicators in a row
+IF_Reserved2 : '  ' { getCharPositionInLine()==68 }? ->pushMode(IndicatorMode), pushMode(IndicatorMode), pushMode(IndicatorMode), skip; // 3 Indicators in a row
 
-IF_WS : [ \t] { getCharPositionInLine()>=75 }? [ \t]* -> type(WS), popMode,skip  ; // skip spaces, tabs
+IF_WS : [ \t] { getCharPositionInLine()>=75 }? [ \t]* -> type(WS), popMode, skip  ; // skip spaces, tabs
 
 
 mode FIXED_I_EXT_REC_SPEC;
@@ -2581,7 +2592,7 @@ IFD_DATA_FORMAT : [A-Z ] { getCharPositionInLine()==36 }? ;
 
 IFD_FIELD_LOCATION : WORD5_WCOLON WORD5_WCOLON { getCharPositionInLine()==46 }? ;
 
-IFD_DECIMAL_POSITIONS : [ 0-9][ 0-9] { getCharPositionInLine()==48 }? ;
+IFD_DECIMAL_POSITIONS : [ 0-9] [ 0-9] { getCharPositionInLine()==48 }? ;
 
 IFD_FIELD_NAME : WORD5_WCOLON WORD5_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON { getCharPositionInLine()==62 }? ;
 

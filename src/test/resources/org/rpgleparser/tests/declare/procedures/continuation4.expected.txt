@@ -50,7 +50,7 @@ RESERVED                 < >
 KEYWORD_CONST            <const>
 KEYWORD_OPTIONS          <options>
 '('                      <(>
-ID                       <*nopass>
+SPLAT_NOPASS             <*nopass>
 ')'                      <)>
 EOL                      <
 >
@@ -113,12 +113,7 @@ EOL                      <
       ' '
       (keyword (keyword_const const))
       (keyword
-        (keyword_options
-          options
-          (
-          (identifier (free_identifier (idOrKeyword *nopass)))
-          )
-        )
+        (keyword_options options ( (identifier (all (symbolicConstants *nopass))) ))
       )
       \n
     )

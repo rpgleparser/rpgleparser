@@ -23,7 +23,7 @@ StringLiteralStart       <'>
 StringContent            <java.lang.Integer>
 StringLiteralEnd         <'>
 COLON                    <:>
-ID                       <*CONSTRUCTOR>
+SPLAT_CONSTRUCTOR        <*CONSTRUCTOR>
 ')'                      <)>
 EOL                      <
 >
@@ -165,7 +165,7 @@ EOL                      <
           :
           (simpleExpression (literal ' java.lang.Integer '))
           :
-          (simpleExpression (identifier (free_identifier (idOrKeyword *CONSTRUCTOR))))
+          (simpleExpression (identifier (all (symbolicConstants *CONSTRUCTOR))))
           )
         )
       )

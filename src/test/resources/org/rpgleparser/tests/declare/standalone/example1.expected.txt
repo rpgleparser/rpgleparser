@@ -94,7 +94,7 @@ DS_Standalone            <DCL-S>
 ID                       <ptr>
 POINTER                  <POINTER>
 '('                      <(>
-ID                       <*PROC>
+SPLAT_PROC               <*PROC>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
@@ -227,7 +227,7 @@ FREE_SEMI                <;>
       (identifier (free_identifier (idOrKeyword ptr)))
       (datatype
         (datatypeName POINTER)
-        (args ( (expression (identifier (free_identifier (idOrKeyword *PROC)))) ))
+        (args ( (expression (identifier (all (symbolicConstants *PROC)))) ))
       )
       ;
     )

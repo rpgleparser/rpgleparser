@@ -1,0 +1,132 @@
+/*===TOKENS===*/
+HIDDEN:COMMENT_SPEC_FIXED<C*>
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+CS_FactorContent         <FFQZUAT>
+OP_IFEQ                  <IFEQ>
+StringLiteralStart       <'>
+StringContent            <P         >
+StringLiteralEnd         <'>
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_EVAL                  <EVAL>
+ID                       <XWQTY>
+'='                      <=>
+ID                       <FFQZUN9>
+MULT_NOSPACE             <*>
+ID                       <FFIPKPC>
+'/'                      </>
+NUMBER                   <10000>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_ENDIF                 <ENDIF>
+'              '         <              >
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          (csIFxx
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor (factorContent FFQZUAT))
+            (csIFEQ
+              IFEQ
+              (cspec_fixed_standard_parts
+                (factor (factorContent (literal ' 'P         ' ')))
+                (resultType '              ')
+                '     '
+                '  '
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                (resultIndicator '  ')
+                \n
+              )
+            )
+          )
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel '  ')
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csEVAL
+                EVAL
+                (c_free
+                  (expression
+                    (expression
+                      (expression
+                        (expression (identifier (free_identifier (idOrKeyword XWQTY))))
+                        =
+                        (expression (identifier (free_identifier (idOrKeyword FFQZUN9))))
+                      )
+                      *
+                      (expression (identifier (free_identifier (idOrKeyword FFIPKPC))))
+                    )
+                    /
+                    (expression (number 10000))
+                  )
+                )
+                \n
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel '  ')
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            ENDIF
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
