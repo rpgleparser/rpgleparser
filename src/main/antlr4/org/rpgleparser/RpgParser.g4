@@ -1359,8 +1359,14 @@ csFEOD:
 csFOR:
 	operation=OP_FOR operationExtender=cs_operationExtender? expression   //For(E) I
     (EQUAL expression )? // = 1
+    (
     (FREE_BY expression )?    // By 1
-    ((FREE_TO | FREE_DOWNTO) expression )? (C_FREE_NEWLINE | EOF); // TO 10 ;
+    ((FREE_TO | FREE_DOWNTO) expression )?
+    |
+    ((FREE_TO | FREE_DOWNTO) expression )?
+    (FREE_BY expression )?    // By 1
+    )
+    (C_FREE_NEWLINE | EOF); // TO 10 ;
 csFORCE:
 	operation=OP_FORCE
 	cspec_fixed_standard_parts;
@@ -2315,7 +2321,7 @@ exec_sql: EXEC_SQL WORDS+ SEMI ;
 baseExpression: op | expression;
 indicator: SPLAT_IN
   OPEN_PAREN
-  identifier
+  baseExpression
   CLOSE_PAREN;
 
 assignmentExpression: simpleExpression EQUAL expression;

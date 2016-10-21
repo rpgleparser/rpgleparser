@@ -1,0 +1,57 @@
+/*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <6334 >
+CS_FIXED                 <c>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_EVAL                  <eval>
+SPLAT_IN                 <*in>
+'('                      <(>
+NUMBER                   <50>
+'+'                      <+>
+ID                       <sc>
+')'                      <)>
+'='                      <=>
+SPLAT_ON                 <*ON>
+C_FREE_NEWLINE           <
+>
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      c
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          eval
+          (c_free
+            (expression
+              (expression
+                (indicator
+                  *in
+                  (
+                  (baseExpression
+                    (expression
+                      (expression (number 50))
+                      +
+                      (expression (identifier (free_identifier (idOrKeyword sc))))
+                    )
+                  )
+                  )
+                )
+              )
+              =
+              (expression (identifier (all (symbolicConstants *ON))))
+            )
+          )
+          \r\n
+        )
+      )
+    )
+  )
+)
+/*======*/

@@ -27,7 +27,14 @@ C_FREE_NEWLINE           <
           EVAL
           (c_free
             (expression
-              (expression (indicator *IN ( (identifier (free_identifier (idOrKeyword X))) )))
+              (expression
+                (indicator
+                  *IN
+                  (
+                  (baseExpression (expression (identifier (free_identifier (idOrKeyword X)))))
+                  )
+                )
+              )
               =
               (expression (identifier (all (symbolicConstants *ON))))
             )
