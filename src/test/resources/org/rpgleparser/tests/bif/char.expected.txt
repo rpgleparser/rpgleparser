@@ -152,7 +152,6 @@ HIDDEN:COMMENTS_EOL_HIDDEN<
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <>
-HIDDEN:EMPTY_LINE        <                                                                           >
 /*===TREE===*/
 (r
   (statement
@@ -181,7 +180,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -203,7 +202,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -236,7 +235,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -278,7 +277,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -311,7 +310,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          \n
         )
       )
     )

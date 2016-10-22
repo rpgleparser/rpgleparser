@@ -47,7 +47,7 @@ FREE_SEMI                <;>
       '  '
       ' '
       (keyword (keyword_dtaara dtaara ( (literal ' TESTDA ') )))
-      \r\n
+      \n
     )
   )
   (statement

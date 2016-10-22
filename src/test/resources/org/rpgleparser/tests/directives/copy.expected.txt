@@ -65,6 +65,7 @@ DIR_COPY                 <COPY>
 StringLiteralStart       <'>
 StringContent            <ifs file containing blanks>
 StringLiteralEnd         <'>
+EOL                      <>
 /*===TREE===*/
 (r
   (statement (directive C/ (dir_copy COPY (copyText MBR1)) ))
@@ -116,7 +117,7 @@ StringLiteralEnd         <'>
     (directive O/ (dir_copy COPY (copyText " ifs file containing blanks ")) )
   )
   (statement
-    (directive O/ (dir_copy COPY (copyText ' ifs file containing blanks ')) <EOF>)
+    (directive O/ (dir_copy COPY (copyText ' ifs file containing blanks ')) )
   )
 )
 /*======*/

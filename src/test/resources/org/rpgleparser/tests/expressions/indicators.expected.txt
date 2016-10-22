@@ -48,7 +48,7 @@ C_FREE_NEWLINE           <
               (expression (identifier (all (symbolicConstants *ON))))
             )
           )
-          \r\n
+          \n
         )
       )
     )

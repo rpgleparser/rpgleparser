@@ -221,6 +221,8 @@ CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>
 BlankIndicator           <  >
 BlankIndicator           <  >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -582,7 +584,7 @@ BlankIndicator           <  >
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            <EOF>
+            \n
           )
         )
       )

@@ -68,7 +68,6 @@ PS_NAME                  <>
 PS_END                   <E>
 PS_KEYWORDS              <EXPORT                               >
 HIDDEN:LEAD_WS5_Comments <	    >
-HIDDEN:EMPTY_LINE        <                                                                           >
 /*===TREE===*/
 (r
   (procedure
@@ -92,7 +91,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         ' '
         '  '
         ' '
-        \r\n
+        \n
       )
       (pi_parm_fixed
         (parm_fixed
@@ -107,7 +106,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           '  '
           ' '
           (keyword (keyword_value VALUE))
-          \r\n
+          \n
         )
       )
       (pi_parm_fixed
@@ -131,7 +130,7 @@ HIDDEN:EMPTY_LINE        <                                                      
             )
           )
           (keyword (keyword_const CONST))
-          \r\n
+          \n
         )
       )
       (pi_parm_fixed
@@ -147,7 +146,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           '  '
           ' '
           (keyword (keyword_const CONST))
-          \r\n
+          \n
         )
       )
     )

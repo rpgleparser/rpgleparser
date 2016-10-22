@@ -11,7 +11,7 @@
           dsply 'msg';
           dsply msg '' result;
           dsply msg qsysopr;
-          dsply(e) *MUSR001 *EXT;
+          dsply(e) *MUSR0001 *EXT;
           dsply ('Length =' + %char(%len(str)) + 'bytes');
 
       /end-free

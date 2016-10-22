@@ -12,6 +12,7 @@ ID                       <overtime_saved>
 FREE_SEMI                <;>
 DIRECTIVE                <  />
 DIR_ENDFREE              <END-FREE>
+EOL                      <>
 /*===TREE===*/
 (r
   (statement (directive '  /' (beginfree_directive FREE) ))
@@ -43,6 +44,6 @@ DIR_ENDFREE              <END-FREE>
       ;
     )
   )
-  (statement (directive '  /' (endfree_directive END-FREE) <EOF>))
+  (statement (directive '  /' (endfree_directive END-FREE) ))
 )
 /*======*/

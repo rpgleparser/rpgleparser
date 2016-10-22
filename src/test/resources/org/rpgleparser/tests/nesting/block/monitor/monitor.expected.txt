@@ -160,6 +160,8 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -181,7 +183,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
         )
@@ -203,7 +205,7 @@ BlankIndicator           <  >
                   (resultIndicator '  ')
                   (resultIndicator '  ')
                   (resultIndicator '  ')
-                  \r\n
+                  \n
                 )
               )
             )
@@ -220,7 +222,7 @@ BlankIndicator           <  >
                 (factor '              ')
                 IF
                 (c_free (expression NOT (expression (bif (bif_eof %EOF)))))
-                \r\n
+                \n
               )
               (statement
                 (cspec_fixed
@@ -275,7 +277,7 @@ BlankIndicator           <  >
                           )
                         )
                       )
-                      \r\n
+                      \n
                     )
                   )
                 )
@@ -296,7 +298,7 @@ BlankIndicator           <  >
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \r\n
+                    \n
                   )
                 )
               )
@@ -309,7 +311,7 @@ BlankIndicator           <  >
           (onOffIndicatorsFlag ' ')
           (cs_indicators '  ')
           (factor '              ')
-          (csON_ERROR ON-ERROR (onErrorCode (number 1211)) \r\n)
+          (csON_ERROR ON-ERROR (onErrorCode (number 1211)) \n)
         )
         (onError
           C
@@ -320,7 +322,7 @@ BlankIndicator           <  >
           (csON_ERROR
             ON-ERROR
             (onErrorCode (identifier (all (symbolicConstants *FILE))))
-            \r\n
+            \n
           )
         )
         (onError
@@ -334,7 +336,7 @@ BlankIndicator           <  >
             (onErrorCode (number 00100))
             :
             (onErrorCode (number 00121))
-            \r\n
+            \n
           )
         )
         (onError
@@ -343,7 +345,7 @@ BlankIndicator           <  >
           (onOffIndicatorsFlag ' ')
           (cs_indicators '  ')
           (factor '              ')
-          (csON_ERROR ON-ERROR \r\n)
+          (csON_ERROR ON-ERROR \n)
         )
         (endmonitor
           C
@@ -361,7 +363,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              <EOF>
+              \n
             )
           )
         )

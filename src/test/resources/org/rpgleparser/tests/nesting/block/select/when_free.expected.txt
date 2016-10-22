@@ -107,7 +107,6 @@ FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <end-free>
 EOL                      <>
-HIDDEN:EMPTY_LINE        <                                                                           >
 /*===TREE===*/
 (r
   (statement (directive ' /' (beginfree_directive free) ))

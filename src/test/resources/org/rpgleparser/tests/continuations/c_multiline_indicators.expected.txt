@@ -21,6 +21,8 @@ GeneralIndicator         <99>
 BlankIndicator           <  >
 BlankIndicator           <  >
 CS_FixedComments         <*                      >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -30,7 +32,7 @@ CS_FixedComments         <*                      >
         (cs_controlLevel '  ')
         (onOffIndicatorsFlag ' ')
         (cs_indicators 98)
-        '                                                                                        \r\n'
+        '                                                                                        \n'
         C
       )
       (cs_controlLevel AN)
@@ -49,7 +51,7 @@ CS_FixedComments         <*                      >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (cs_fixed_comments '*                      ')
-            <EOF>
+            \n
           )
         )
       )

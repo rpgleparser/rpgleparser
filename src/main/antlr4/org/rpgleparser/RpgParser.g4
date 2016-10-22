@@ -1,13 +1,11 @@
 parser grammar RpgParser;
 
-//import FreeOpsParser;
-
-options {   tokenVocab = RpgLexer; }
+options { tokenVocab = RpgLexer; }
 
 r: (dcl_pr 
 	| dcl_pi
 	| ctl_opt
-//	|dspec_continuation
+//	| dspec_continuation
 //	| (dspec_continuation* dspec_fixed) 
   	| subroutine 
   	| statement
@@ -885,8 +883,8 @@ onOffIndicatorsFlag:
     | NoFlag;
 
 cs_controlLevel:
-BlankIndicator
-	|ControlLevel0Indicator
+    BlankIndicator
+	| ControlLevel0Indicator
 	| ControlLevelIndicator
 	| LastRecordIndicator
 	| SubroutineIndicator
@@ -1364,7 +1362,7 @@ csFOR:
     (
     (FREE_BY expression )?    // By 1
     ((FREE_TO | FREE_DOWNTO) expression )?
-    | 
+    |
     ((FREE_TO | FREE_DOWNTO) expression )?
     (FREE_BY expression )?    // By 1
     )
@@ -1510,9 +1508,9 @@ csOUT:
 	cspec_fixed_standard_parts;
 csPARM:
 	CS_FIXED
-	BlankIndicator
-	BlankFlag 
-	BlankIndicator
+	cspec_continuedIndicators*
+	cs_controlLevel
+	indicatorsOff=onOffIndicatorsFlag indicators=cs_indicators
 	factor1=factor
 	operation=OP_PARM
 	cspec_fixed_standard_parts;
@@ -2521,7 +2519,7 @@ SPLAT_ALL
    | SPLAT_JAVA
    | SPLAT_DATE
    | SPLAT_DAY
-   | SPlAT_DETC
+   | SPLAT_DETC
    | SPLAT_DETL
    | SPLAT_DTAARA
    | SPLAT_END
@@ -2588,4 +2586,11 @@ SPLAT_ALL
    | SPLAT_Y
    | SPLAT_YEARS
    | SPLAT_EXTDESC
+   | SPLAT_STRING
+   | SPLAT_CONSTRUCTOR
+   | SPLAT_LIKEDS
+   | SPLAT_VARSIZE
+   | SPLAT_NOPASS
+   | SPLAT_PROC
+   | SPLAT_STATUS
    ;

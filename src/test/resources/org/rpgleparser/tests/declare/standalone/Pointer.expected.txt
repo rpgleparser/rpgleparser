@@ -25,13 +25,13 @@ DS_Standalone            <DCL-S>
 ID                       <pProc>
 POINTER                  <POINTER>
 '('                      <(>
-ID                       <*PROC>
+SPLAT_PROC               <*PROC>
 ')'                      <)>
 FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec D (ds_name Pointer1) ' ' ' ' 'S ' '       ' '       ' * '  ' ' ' \r\n)
+    (dspec D (ds_name Pointer1) ' ' ' ' 'S ' '       ' '       ' * '  ' ' ' \n)
   )
   (statement
     (dspec
@@ -55,7 +55,7 @@ FREE_SEMI                <;>
       (identifier (free_identifier (idOrKeyword pProc)))
       (datatype
         (datatypeName POINTER)
-        (args ( (expression (identifier (free_identifier (idOrKeyword *PROC)))) ))
+        (args ( (expression (identifier (all (symbolicConstants *PROC)))) ))
       )
       ;
     )

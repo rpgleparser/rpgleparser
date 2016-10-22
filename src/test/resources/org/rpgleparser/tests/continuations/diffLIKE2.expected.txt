@@ -60,7 +60,7 @@ ID                       <typeUnitMeasureCode_UTS007>
 ')'                      <)>
 KEYWORD_OPTIONS          <options>
 '('                      <(>
-ID                       <*nopass>
+SPLAT_NOPASS             <*nopass>
 ')'                      <)>
 EOL                      <
 >
@@ -83,8 +83,10 @@ ID                       <ion_UTS007>
 ')'                      <)>
 KEYWORD_OPTIONS          <options>
 '('                      <(>
-ID                       <*nopass>
+SPLAT_NOPASS             <*nopass>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (dcl_pr
@@ -115,7 +117,7 @@ ID                       <*nopass>
           )
         )
       )
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -147,7 +149,7 @@ ID                       <*nopass>
         )
       )
       (keyword (keyword_const const))
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -171,14 +173,9 @@ ID                       <*nopass>
         )
       )
       (keyword
-        (keyword_options
-          options
-          (
-          (identifier (free_identifier (idOrKeyword *nopass)))
-          )
-        )
+        (keyword_options options ( (identifier (all (symbolicConstants *nopass))) ))
       )
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -210,14 +207,9 @@ ID                       <*nopass>
         )
       )
       (keyword
-        (keyword_options
-          options
-          (
-          (identifier (free_identifier (idOrKeyword *nopass)))
-          )
-        )
+        (keyword_options options ( (identifier (all (symbolicConstants *nopass))) ))
       )
-      <EOF>
+      \n
     )
   )
 )

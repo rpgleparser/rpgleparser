@@ -33,7 +33,7 @@ ID                       <typeLocation>
 KEYWORD_CONST            <const>
 KEYWORD_OPTIONS          <options>
 '('                      <(>
-ID                       <*nopass>
+SPLAT_NOPASS             <*nopass>
 ')'                      <)>
 EOL                      <
 >
@@ -126,7 +126,7 @@ HIDDEN:COMMENTS_TEXT     <Test>
       )
     )
     (dcl_pi
-      (piBegin D (ds_name ) ' ' ' ' PI '       ' '       ' N '  ' ' ' \r\n)
+      (piBegin D (ds_name ) ' ' ' ' PI '       ' '       ' N '  ' ' ' \n)
       (pi_parm_fixed
         (parm_fixed
           D
@@ -149,14 +149,9 @@ HIDDEN:COMMENTS_TEXT     <Test>
           )
           (keyword (keyword_const const))
           (keyword
-            (keyword_options
-              options
-              (
-              (identifier (free_identifier (idOrKeyword *nopass)))
-              )
-            )
+            (keyword_options options ( (identifier (all (symbolicConstants *nopass))) ))
           )
-          \r\n
+          \n
         )
       )
     )
@@ -207,7 +202,7 @@ HIDDEN:COMMENTS_TEXT     <Test>
           )
         )
         (keyword (keyword_dim dim ( (simpleExpression (number 5)) )))
-        \r\n
+        \n
       )
       (pi_parm_fixed
         (parm_fixed
@@ -230,7 +225,7 @@ HIDDEN:COMMENTS_TEXT     <Test>
             )
           )
           (keyword (keyword_const const))
-          \r\n
+          \n
         )
       )
     )

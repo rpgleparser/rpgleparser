@@ -30,6 +30,8 @@ TO_POSITION              <     17>
 DATA_TYPE                <a>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (dcl_pr
@@ -45,7 +47,7 @@ RESERVED                 < >
       '  '
       ' '
       (keyword (keyword_extpgm EXTPGM ( (simpleExpression (literal ' MSR173 ')) )))
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -58,7 +60,7 @@ RESERVED                 < >
       a
       '  '
       ' '
-      <EOF>
+      \n
     )
   )
 )

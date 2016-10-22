@@ -25,6 +25,8 @@ TO_POSITION              <      3>
 DATA_TYPE                <S>
 DECIMAL_POSITIONS        < 0>
 RESERVED                 < >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -47,23 +49,11 @@ RESERVED                 < >
           )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement
-    (dspec
-      D
-      (ds_name Element_No)
-      ' '
-      ' '
-      'S '
-      '       '
-      '      3'
-      S
-      ' 0'
-      ' '
-      <EOF>
-    )
+    (dspec D (ds_name Element_No) ' ' ' ' 'S ' '       ' '      3' S ' 0' ' ' \n)
   )
 )
 /*======*/

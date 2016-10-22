@@ -43,6 +43,7 @@ StringLiteralEnd         <'>
 FREE_SEMI                <;>
 DIRECTIVE                < />
 DIR_ENDFREE              <END-FREE>
+EOL                      <>
 /*===TREE===*/
 (r
   (statement (directive ' /' (beginfree_directive FREE) ))
@@ -123,6 +124,6 @@ DIR_ENDFREE              <END-FREE>
     )
     (endsr (freeENDSR EndSr (literal ' *CANCL ') ;))
   )
-  (statement (directive ' /' (endfree_directive END-FREE) <EOF>))
+  (statement (directive ' /' (endfree_directive END-FREE) ))
 )
 /*======*/

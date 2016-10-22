@@ -1,0 +1,146 @@
+/*===TOKENS===*/
+DIRECTIVE                < />
+DIR_FREE                 <FREE>
+EOL                      <>
+OP_BEGSR                 <BegSr>
+ID                       <CrtWrkFil>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+HIDDEN:LEAD_WS5_Comments <jh3  >
+HIDDEN:COMMENTS          <       //>
+HIDDEN:COMMENTS_TEXT     <eMail workfile)>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+EXEC_SQL                 <Exec Sql>
+WORDS                    <jh3             Drop table QTEMP/EmailFile1>
+';'                      <;>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+EXEC_SQL                 <Exec Sql>
+WORDS                    <jh3            CREATE TABLE QTEMP/EmailFile1>
+WORDS                    <(EmailData CHAR (500) NOT NULL WITH DEFAULT)>
+';'                      <;>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+HIDDEN:LEAD_WS5_Comments <jh3  >
+OP_EXSR                  <ExSr>
+ID                       <LodHed>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+HIDDEN:LEAD_WS5_Comments <jh1  >
+HIDDEN:COMMENTS          <       //>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+EXEC_SQL                 <Exec Sql>
+WORDS                    <jh3             Drop table  QTEMP/EmailFile2>
+';'                      <;>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+EXEC_SQL                 <Exec Sql>
+WORDS                    <CREATE TABLE QTEMP/EmailFile2>
+WORDS                    <(EmailData CHAR (500) NOT NULL WITH DEFAULT)>
+';'                      <;>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+OP_EVAL                  <Eval>
+ID                       <Output>
+'='                      <=>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+StringLiteralStart       <'>
+StringContent            <OD Pro#, >
+StringContent            <Pickup Date, >
+StringContent            <Delivery Date, >
+StringContent            <DR Processed, >
+StringContent            <Final Date, >
+StringContent            <Previous Revenue, >
+StringContent            <Current Revenue, >
+StringContent            <Note>
+StringLiteralEnd         <'>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+EXEC_SQL                 <Exec Sql>
+WORDS                    <jh3            Insert into EmailFile2  Values (:Output)>
+';'                      <;>
+HIDDEN:LEAD_WS5_Comments <jh3  >
+OP_ENDSR                 <EndSr>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <END-FREE>
+EOL                      <>
+/*===TREE===*/
+(r
+  (statement (directive ' /' (beginfree_directive FREE) ))
+  (subroutine
+    (begsr
+      (freeBEGSR BegSr (identifier (free_identifier (idOrKeyword CrtWrkFil))) ;)
+    )
+    (statement
+      (free (exec_sql Exec Sql jh3             Drop table QTEMP/EmailFile1 ;))
+    )
+    (statement
+      (free
+        (exec_sql
+          Exec Sql
+          jh3            CREATE TABLE QTEMP/EmailFile1
+          (EmailData CHAR (500) NOT NULL WITH DEFAULT)
+          ;
+        )
+      )
+    )
+    (statement
+      (free
+        (baseExpression
+          (op (op_exsr ExSr (identifier (free_identifier (idOrKeyword LodHed)))))
+        )
+        ;
+      )
+    )
+    (statement
+      (free (exec_sql Exec Sql jh3             Drop table  QTEMP/EmailFile2 ;))
+    )
+    (statement
+      (free
+        (exec_sql
+          Exec Sql
+          CREATE TABLE QTEMP/EmailFile2
+          (EmailData CHAR (500) NOT NULL WITH DEFAULT)
+          ;
+        )
+      )
+    )
+    (statement
+      (free
+        (baseExpression
+          (op
+            (op_eval
+              Eval
+              (evalExpression
+                (assignmentExpression
+                  (simpleExpression (identifier (free_identifier (idOrKeyword Output))))
+                  =
+                  (expression
+                    (literal
+                      '
+                      'OD Pro#, '
+                      'Pickup Date, '
+                      'Delivery Date, '
+                      'DR Processed, '
+                      'Final Date, '
+                      'Previous Revenue, '
+                      'Current Revenue, '
+                      Note
+                      '
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        ;
+      )
+    )
+    (statement
+      (free
+        (exec_sql Exec Sql jh3            Insert into EmailFile2  Values (:Output) ;)
+      )
+    )
+    (endsr (freeENDSR EndSr ;))
+  )
+  (statement (directive ' /' (endfree_directive END-FREE) ))
+)
+/*======*/

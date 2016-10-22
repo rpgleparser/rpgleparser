@@ -140,7 +140,7 @@ OP_DSPLY                 <dsply>
 '('                      <(>
 CS_OperationAndExtender  <e>
 ')'                      <)>
-ID                       <*MUSR001>
+ID                       <*MUSR0001>
 SPLAT_EXT                <*EXT>
 FREE_SEMI                <;>
 OP_DSPLY                 <dsply>
@@ -201,7 +201,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
       )
@@ -392,7 +392,7 @@ EOL                      <
           (op_dsply
             dsply
             (cs_operationExtender ( e ))
-            (expression (identifier (free_identifier (idOrKeyword *MUSR001))))
+            (expression (identifier (free_identifier (idOrKeyword *MUSR0001))))
             (expression (identifier (all (symbolicConstants *EXT))))
           )
         )
@@ -460,7 +460,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
       )

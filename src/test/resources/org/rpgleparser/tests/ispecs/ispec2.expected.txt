@@ -51,6 +51,8 @@ IS_Number                < >
 IS_Option                < >
 BlankIndicator           <  >
 IS_RecordIdCode          <   12 cI   13 cU        >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -58,7 +60,7 @@ IS_RecordIdCode          <   12 cI   13 cU        >
       I
       'orctl     '
       (is_rec ns ' ' ' ' (recordIdIndicator '  ') '   12 cX   13 cX        ')
-      \r\n
+      \n
     )
   )
   (statement
@@ -76,7 +78,7 @@ IS_RecordIdCode          <   12 cI   13 cU        >
       (fieldIndicator '  ')
       (fieldIndicator '  ')
       (fieldIndicator '  ')
-      \r\n
+      \n
     )
   )
   (statement
@@ -94,7 +96,7 @@ IS_RecordIdCode          <   12 cI   13 cU        >
       (fieldIndicator '  ')
       (fieldIndicator '  ')
       (fieldIndicator '  ')
-      \r\n
+      \n
     )
   )
   (statement
@@ -102,7 +104,7 @@ IS_RecordIdCode          <   12 cI   13 cU        >
       I
       '          '
       (is_rec ns ' ' ' ' (recordIdIndicator '  ') '   12 cI   13 cU        ')
-      <EOF>
+      \n
     )
   )
 )

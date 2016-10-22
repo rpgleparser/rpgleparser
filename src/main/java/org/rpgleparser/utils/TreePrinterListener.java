@@ -89,10 +89,10 @@ public class TreePrinterListener implements ParseTreeListener {
         		sb.append("(");
         	}
         	if(!ruleStack.isEmpty()){
-        		sb.append(ruleStack.remove(0)).append("\r\n");
+        		sb.append(ruleStack.remove(0)).append("\n");
         	}
         	while(!ruleStack.isEmpty()){
-        		sb.append(indent(ruleStack.remove(0))).append("\r\n");
+        		sb.append(indent(ruleStack.remove(0))).append("\n");
         	}
         	if(brackit){
         		sb.append(")");
@@ -105,7 +105,8 @@ public class TreePrinterListener implements ParseTreeListener {
     }
     
     static String indent(String input){
-    	return "  " + input.replaceAll("\r\n(.)","\r\n  $1");
+        return "  " + input.replaceAll("\n(.)","\n  $1");
+    	//return "  " + input.replaceAll("(\r?\n | \\u000c)(.)","\n  $2");
     }
 
     @Override

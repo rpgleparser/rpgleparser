@@ -100,7 +100,7 @@ FREE_SEMI                <;>
                     (expression (literal ' CCC '))
                   )
                 )
-                \r\n
+                \n
               )
             )
           )

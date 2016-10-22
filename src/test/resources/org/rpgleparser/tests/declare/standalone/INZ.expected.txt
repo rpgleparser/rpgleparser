@@ -75,7 +75,7 @@ NUMBER                   <1>
 ')'                      <)>
 KEYWORD_INZ              <INZ>
 '('                      <(>
-ID                       <*LIKEDS>
+SPLAT_LIKEDS             <*LIKEDS>
 ')'                      <)>
 FREE_SEMI                <;>
 /*===TREE===*/
@@ -178,7 +178,7 @@ FREE_SEMI                <;>
         (keyword_inz
           INZ
           (
-          (simpleExpression (identifier (free_identifier (idOrKeyword *LIKEDS))))
+          (simpleExpression (identifier (all (symbolicConstants *LIKEDS))))
           )
         )
       )

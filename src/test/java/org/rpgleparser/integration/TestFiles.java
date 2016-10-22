@@ -38,9 +38,9 @@ import org.rpgleparser.utils.TreeUtils;
 @RunWith(Parameterized.class)
 public class TestFiles {
 	
-	File sourceFile;
-	boolean autoReplaceFailed=false;
-	static String singleTestName=null;
+	private File sourceFile;
+	private boolean autoReplaceFailed=false;
+	private static String singleTestName=null;
 	static{
 		try{
 			singleTestName= getBundle("org.rpgleparser.tests.test").getString("RunSingleTest");
@@ -50,9 +50,9 @@ public class TestFiles {
 	public TestFiles(File sourceFile) {
 		super();
 		this.sourceFile = sourceFile;
-		try{
+		try {
 			autoReplaceFailed="Y".equalsIgnoreCase(getBundle("org.rpgleparser.tests.test").getString("AutoReplaceFailedTestResults"));
-		}catch(Exception e){}
+		} catch(Exception ignore){ /* */ }
 	}
 	
 	@Test
@@ -91,8 +91,8 @@ public class TestFiles {
 		
 		final String actualTree = TreeUtils.printTree(parseTree, parser);
 		if(!errors.isEmpty()){
-			System.out.println("/*===TOKENS===*/\r\n" + actualTokens + "\r\n");
-			System.out.println("/*===TREE===*/\r\n" + actualTree + "\r\n/*======*/");
+			System.out.println("/*===TOKENS===*/\n" + actualTokens + "\n");
+			System.out.println("/*===TREE===*/\n" + actualTree + "\n/*======*/");
 		}
 		assertThat(errors, is(empty()));
 		
@@ -112,11 +112,11 @@ public class TestFiles {
     private void writeExpectFile(File expectedFile, String actualTokens,
 			String actualTree) throws IOException {
 		final FileOutputStream fos = new FileOutputStream(expectedFile,false);
-		fos.write("/*===TOKENS===*/\r\n".getBytes());
+		fos.write("/*===TOKENS===*/\n".getBytes());
 		fos.write(actualTokens.getBytes());
-		fos.write("\r\n/*===TREE===*/\r\n".getBytes());
+		fos.write("\n/*===TREE===*/\n".getBytes());
 		fos.write(actualTree.getBytes());
-		fos.write("\r\n/*======*/".getBytes());
+		fos.write("\n/*======*/".getBytes());
 		fos.close();
 		
 	}
@@ -127,7 +127,7 @@ public class TestFiles {
     
 	private String getTokens(String expectedFileText) {
 		if(expectedFileText != null && expectedFileText.contains("/*===TOKENS===*/")){
-			int startIdx = expectedFileText.indexOf("/*===TOKENS===*/") + 16;
+			int startIdx = expectedFileText.indexOf("/*===TOKENS===*/") + 16; // notice + 16 at the end, len of the searched text
 			while(expectedFileText.charAt(startIdx) == '\r' || expectedFileText.charAt(startIdx) == '\n'){
 				startIdx++;
 			}

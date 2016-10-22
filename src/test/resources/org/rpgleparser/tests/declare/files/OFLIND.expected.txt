@@ -26,6 +26,8 @@ KEYWORD_FORMOFL          <FORMOFL>
 '('                      <(>
 NUMBER                   <44>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -55,7 +57,7 @@ NUMBER                   <44>
       )
       (fs_keyword (keyword_formlen FORMLEN ( (number 51) )))
       (fs_keyword (keyword_formofl FORMOFL ( (number 44) )))
-      <EOF>
+      \n
     )
   )
 )

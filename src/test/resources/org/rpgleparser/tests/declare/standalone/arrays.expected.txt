@@ -43,7 +43,7 @@ FREE_SEMI                <;>
       '  '
       ' '
       (keyword (keyword_dim dim ( (simpleExpression (number 100)) )))
-      \r\n
+      \n
     )
   )
   (statement

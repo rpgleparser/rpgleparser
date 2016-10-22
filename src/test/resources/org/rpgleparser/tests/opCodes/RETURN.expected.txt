@@ -117,6 +117,8 @@ CS_DecimalPositions      <  >
 LastRecordIndicator      <LR>
 BlankIndicator           <  >
 BlankIndicator           <  >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -137,7 +139,7 @@ BlankIndicator           <  >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
       )
@@ -150,7 +152,7 @@ BlankIndicator           <  >
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
-      (cspec_fixed_standard (csRETURN RETURN \r\n))
+      (cspec_fixed_standard (csRETURN RETURN \n))
     )
   )
   (statement
@@ -164,7 +166,7 @@ BlankIndicator           <  >
         (csRETURN
           RETURN
           (c_free (expression (identifier (free_identifier (idOrKeyword MYDS)))))
-          \r\n
+          \n
         )
       )
     )
@@ -186,7 +188,7 @@ BlankIndicator           <  >
               (expression (number 10))
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -199,7 +201,7 @@ BlankIndicator           <  >
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
-        (csRETURN Return (c_free (expression (literal D' 1995-10-01 '))) \r\n)
+        (csRETURN Return (c_free (expression (literal D' 1995-10-01 '))) \n)
       )
     )
   )
@@ -221,7 +223,7 @@ BlankIndicator           <  >
               (expression (number 10))
             )
           )
-          \r\n
+          \n
         )
       )
     )
@@ -307,7 +309,7 @@ BlankIndicator           <  >
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            <EOF>
+            \n
           )
         )
       )

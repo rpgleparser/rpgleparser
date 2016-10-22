@@ -17,6 +17,8 @@ KEYWORD_DIM              <DIM>
 '('                      <(>
 ID                       <RecipientArrElements>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -49,7 +51,7 @@ ID                       <RecipientArrElements>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

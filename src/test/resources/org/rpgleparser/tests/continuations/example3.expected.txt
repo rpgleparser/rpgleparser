@@ -18,6 +18,8 @@ KEYWORD_EXTIND           <EXTIND>
 '('                      <(>
 ID                       <*INU1>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -45,7 +47,7 @@ ID                       <*INU1>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

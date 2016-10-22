@@ -38,6 +38,8 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -65,7 +67,7 @@ BlankIndicator           <  >
               )
             )
           )
-          \r\n
+          \n
         )
         (statement
           (cspec_fixed
@@ -84,7 +86,7 @@ BlankIndicator           <  >
                     (expression (number 1))
                   )
                 )
-                \r\n
+                \n
               )
             )
           )
@@ -105,7 +107,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              <EOF>
+              \n
             )
           )
         )

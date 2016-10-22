@@ -156,6 +156,8 @@ CS_DecimalPositions      <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
 BlankIndicator           <  >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -173,7 +175,7 @@ BlankIndicator           <  >
               (function (functionName (free_identifier (idOrKeyword isTest))) (args ( )))
             )
           )
-          \r\n
+          \n
         )
         (endif
           C
@@ -191,7 +193,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
         )
@@ -209,7 +211,7 @@ BlankIndicator           <  >
           (factor '              ')
           IF
           (c_free (expression (bif (bif_error %ERROR ( )))))
-          \r\n
+          \n
         )
         (statement
           (block
@@ -232,7 +234,7 @@ BlankIndicator           <  >
                     (expression (number 1211))
                   )
                 )
-                \r\n
+                \n
               )
               (statement
                 (cspec_fixed
@@ -252,7 +254,7 @@ BlankIndicator           <  >
                         (resultIndicator '  ')
                         (resultIndicator '  ')
                         (resultIndicator '  ')
-                        \r\n
+                        \n
                       )
                     )
                   )
@@ -276,7 +278,7 @@ BlankIndicator           <  >
                     (expression (number 1221))
                   )
                 )
-                \r\n
+                \n
               )
               (statement
                 (cspec_fixed
@@ -297,7 +299,7 @@ BlankIndicator           <  >
                         (resultIndicator '  ')
                         (resultIndicator '  ')
                         (resultIndicator '  ')
-                        \r\n
+                        \n
                       )
                     )
                   )
@@ -320,7 +322,7 @@ BlankIndicator           <  >
                           (expression (literal ' CCC '))
                         )
                       )
-                      \r\n
+                      \n
                     )
                   )
                 )
@@ -344,7 +346,7 @@ BlankIndicator           <  >
                         (resultIndicator '  ')
                         (resultIndicator '  ')
                         (resultIndicator '  ')
-                        \r\n
+                        \n
                       )
                     )
                   )
@@ -366,7 +368,7 @@ BlankIndicator           <  >
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \r\n
+                    \n
                   )
                 )
               )
@@ -389,7 +391,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              <EOF>
+              \n
             )
           )
         )

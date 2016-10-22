@@ -61,6 +61,8 @@ TO_POSITION              <      1>
 DATA_TYPE                <A>
 DECIMAL_POSITIONS        <  >
 RESERVED                 < >
+EOL                      <
+>
 /*===TREE===*/
 (r
   (dcl_pr
@@ -78,7 +80,7 @@ RESERVED                 < >
       (keyword
         (keyword_extpgm ExtPgm ( (simpleExpression (literal ' RTVACGCDE ')) ))
       )
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -91,7 +93,7 @@ RESERVED                 < >
       A
       '  '
       ' '
-      \r\n
+      \n
     )
     (parm_fixed
       D
@@ -104,7 +106,7 @@ RESERVED                 < >
       A
       '  '
       ' '
-      <EOF>
+      \n
     )
   )
 )

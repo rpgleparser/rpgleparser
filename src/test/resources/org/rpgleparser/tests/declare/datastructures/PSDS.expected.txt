@@ -7,11 +7,11 @@ KEYWORD_QUALIFIED        <qualified>
 FREE_SEMI                <;>
 HIDDEN:LEAD_WS5_Comments <05   >
 KEYWORD_PGMNAME          <PgmName>
-ID                       <*proc>
+SPLAT_PROC               <*proc>
 FREE_SEMI                <;>
 HIDDEN:LEAD_WS5_Comments <06   >
 ID                       <Status>
-ID                       <*status>
+SPLAT_STATUS             <*status>
 FREE_SEMI                <;>
 HIDDEN:LEAD_WS5_Comments <07   >
 DS_DataStructureEnd      <end-ds>
@@ -27,12 +27,12 @@ FREE_SEMI                <;>
       ;
       (dcl_ds_field
         (identifier (free_identifier (idOrKeyword PgmName)))
-        (identifier (free_identifier (idOrKeyword *proc)))
+        (identifier (all (symbolicConstants *proc)))
         ;
       )
       (dcl_ds_field
         (identifier (free_identifier (idOrKeyword Status)))
-        (identifier (free_identifier (idOrKeyword *status)))
+        (identifier (all (symbolicConstants *status)))
         ;
       )
       (end_dcl_ds end-ds)

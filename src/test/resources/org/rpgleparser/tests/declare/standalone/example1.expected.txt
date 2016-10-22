@@ -94,7 +94,7 @@ DS_Standalone            <DCL-S>
 ID                       <ptr>
 POINTER                  <POINTER>
 '('                      <(>
-ID                       <*PROC>
+SPLAT_PROC               <*PROC>
 ')'                      <)>
 FREE_SEMI                <;>
 DS_Standalone            <DCL-S>
@@ -125,7 +125,7 @@ FREE_SEMI                <;>
       '  '
       ' '
       (keyword (keyword_varying VARYING))
-      \r\n
+      \n
     )
   )
   (statement
@@ -148,7 +148,7 @@ FREE_SEMI                <;>
           )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -166,7 +166,7 @@ FREE_SEMI                <;>
       (keyword
         (keyword_class CLASS ( *JAVA : (simpleExpression (literal ' MyClass ')) ))
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -182,7 +182,7 @@ FREE_SEMI                <;>
       '  '
       ' '
       (keyword (keyword_procptr PROCPTR))
-      \r\n
+      \n
     )
   )
   (statement
@@ -227,7 +227,7 @@ FREE_SEMI                <;>
       (identifier (free_identifier (idOrKeyword ptr)))
       (datatype
         (datatypeName POINTER)
-        (args ( (expression (identifier (free_identifier (idOrKeyword *PROC)))) ))
+        (args ( (expression (identifier (all (symbolicConstants *PROC)))) ))
       )
       ;
     )

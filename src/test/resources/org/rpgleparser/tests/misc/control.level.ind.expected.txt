@@ -1,0 +1,219 @@
+/*===TOKENS===*/
+HIDDEN:COMMENT_SPEC_FIXED<C*>
+HIDDEN:COMMENTS_TEXT     <0N01Factor1+++++++Opcode(E)+Factor2+++++++Result++++++++Len++D+HiLoEq....>
+CS_FIXED                 <c>
+LastRecordIndicator      <Lr>
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_IF                    <if>
+ID                       <chknme>
+'>'                      <>>
+StringLiteralStart       <'>
+StringContent            < >
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+LastRecordIndicator      <lr>
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_EVAL                  <Eval>
+ID                       <Cmd>
+'='                      <=>
+StringLiteralStart       <'>
+StringContent            <RGZPFM xxxxxx KEYFILE(*FILE)  >
+StringLiteralEnd         <'>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+LastRecordIndicator      <lr>
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_CALL                  <CALL>
+StringLiteralStart       <'>
+StringContent            <QCMDEXC>
+StringLiteralEnd         <'>
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+LastRecordIndicator      <lr>
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_PARM                  <PARM>
+'              '         <              >
+CS_FactorContent         <CMD>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+LastRecordIndicator      <lr>
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_PARM                  <PARM>
+'              '         <              >
+CS_FactorContent         <CmdLEN>
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+CS_FIXED                 <C>
+LastRecordIndicator      <Lr>
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_ENDIF                 <endif>
+'              '         <              >
+'              '         <              >
+CS_FieldLength           <     >
+CS_DecimalPositions      <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+BlankIndicator           <  >
+EOL                      <
+>
+/*===TREE===*/
+(r
+  (statement
+    (block
+      (ifstatement
+        (beginif
+          c
+          (cs_controlLevel Lr)
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          if
+          (c_free
+            (expression
+              (expression (identifier (free_identifier (idOrKeyword chknme))))
+              (comparisonOperator >)
+              (expression (literal ' ' ' '))
+            )
+          )
+          \n
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel lr)
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csEVAL
+                Eval
+                (c_free
+                  (expression
+                    (expression (identifier (free_identifier (idOrKeyword Cmd))))
+                    =
+                    (expression (literal ' 'RGZPFM xxxxxx KEYFILE(*FILE)  ' '))
+                  )
+                )
+                \n
+              )
+            )
+          )
+        )
+        (statement
+          (cspec_fixed
+            C
+            (cs_controlLevel lr)
+            (onOffIndicatorsFlag ' ')
+            (cs_indicators '  ')
+            (factor '              ')
+            (cspec_fixed_standard
+              (csCALL
+                CALL
+                (cspec_fixed_standard_parts
+                  (factor (factorContent (literal ' QCMDEXC ')))
+                  (resultType '              ')
+                  '     '
+                  '  '
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  (resultIndicator '  ')
+                  \n
+                )
+                (csPARM
+                  C
+                  (cs_controlLevel lr)
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  PARM
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType CMD)
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+                (csPARM
+                  C
+                  (cs_controlLevel lr)
+                  (onOffIndicatorsFlag ' ')
+                  (cs_indicators '  ')
+                  (factor '              ')
+                  PARM
+                  (cspec_fixed_standard_parts
+                    (factor '              ')
+                    (resultType CmdLEN)
+                    '     '
+                    '  '
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    (resultIndicator '  ')
+                    \n
+                  )
+                )
+              )
+            )
+          )
+        )
+        (endif
+          C
+          (cs_controlLevel Lr)
+          (onOffIndicatorsFlag ' ')
+          (cs_indicators '  ')
+          (factor '              ')
+          (csENDIF
+            endif
+            (cspec_fixed_standard_parts
+              (factor '              ')
+              (resultType '              ')
+              '     '
+              '  '
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              (resultIndicator '  ')
+              \n
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/

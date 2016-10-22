@@ -4,8 +4,8 @@ ID                       <DATFMT>
 '('                      <(>
 ID                       <*MDY&>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
-(r
-  (statement (hspec_fixed H (hs_expression DATFMT ( (hs_parm *MDY&) )) <EOF>))
-)
+(r (statement (hspec_fixed H (hs_expression DATFMT ( (hs_parm *MDY&) )) \n)))
 /*======*/

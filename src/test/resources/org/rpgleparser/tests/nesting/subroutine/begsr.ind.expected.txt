@@ -137,7 +137,7 @@ EOL                      <
               (expression (number 0))
             )
           )
-          \r\n
+          \n
         )
         (statement
           (block
@@ -156,7 +156,7 @@ EOL                      <
                     (expression (literal ' CPR '))
                   )
                 )
-                \r\n
+                \n
               )
               (elsestmt
                 C
@@ -173,7 +173,7 @@ EOL                      <
                   (resultIndicator '  ')
                   (resultIndicator '  ')
                   (resultIndicator '  ')
-                  \r\n
+                  \n
                 )
               )
               (endif
@@ -193,7 +193,7 @@ EOL                      <
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (cs_fixed_comments '*FI CODE SMELL         ')
-                    \r\n
+                    \n
                   )
                 )
               )
@@ -215,7 +215,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            \n
           )
         )
         (endif
@@ -235,7 +235,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (cs_fixed_comments '*FI CODE SMELL         ')
-              \r\n
+              \n
             )
           )
         )
@@ -259,7 +259,7 @@ EOL                      <
           (resultIndicator '  ')
           (resultIndicator '  ')
           (resultIndicator '  ')
-          \r\n
+          \n
         )
       )
     )
@@ -279,7 +279,7 @@ EOL                      <
           (resultIndicator '  ')
           (resultIndicator '  ')
           (resultIndicator '  ')
-          \r\n
+          \n
         )
       )
     )

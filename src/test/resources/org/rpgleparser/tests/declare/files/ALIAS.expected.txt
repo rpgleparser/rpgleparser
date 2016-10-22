@@ -36,6 +36,8 @@ ID                       <myfile>
 '.'                      <.>
 ID                       <custRec>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -57,7 +59,7 @@ ID                       <custRec>
       ' '
       (fs_keyword (keyword_alias ALIAS))
       (fs_keyword (keyword_qualified QUALIFIED))
-      \r\n
+      \n
     )
   )
   (statement
@@ -88,7 +90,7 @@ ID                       <custRec>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

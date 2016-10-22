@@ -18,6 +18,8 @@ KEYWORD_INCLUDE          <INCLUDE>
 '('                      <(>
 ID                       <FORMAT1>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -45,7 +47,7 @@ ID                       <FORMAT1>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )

@@ -46,7 +46,7 @@ FREE_SEMI                <;>
       ' '
       (keyword (keyword_dim dim ( (simpleExpression (number 3)) )))
       (keyword (keyword_ctdata ctdata))
-      \r\n
+      \n
     )
   )
   (statement

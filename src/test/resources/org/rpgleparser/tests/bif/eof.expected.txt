@@ -76,7 +76,6 @@ BlankIndicator           <  >
 BlankIndicator           <  >
 EOL                      <
 >
-HIDDEN:EMPTY_LINE        <                                                                           >
 /*===TREE===*/
 (r
   (statement
@@ -90,7 +89,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           (factor '              ')
           if
           (c_free (expression (bif (bif_eof %eof))))
-          \r\n
+          \n
         )
         (endif
           C
@@ -108,7 +107,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
         )
@@ -126,7 +125,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           (factor '              ')
           if
           (c_free (expression (bif (bif_eof %eof ( )))))
-          \r\n
+          \n
         )
         (endif
           C
@@ -144,7 +143,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
         )
@@ -166,7 +165,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (bif (bif_eof %eof ( (identifier (free_identifier (idOrKeyword thefile))) )))
             )
           )
-          \r\n
+          \n
         )
         (endif
           C
@@ -184,7 +183,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              \n
             )
           )
         )

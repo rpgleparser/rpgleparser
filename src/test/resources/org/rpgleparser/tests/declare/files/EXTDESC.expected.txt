@@ -105,6 +105,8 @@ KEYWORD_EXTFILE          <EXTFILE>
 '('                      <(>
 ID                       <filename3>
 ')'                      <)>
+EOL                      <
+>
 /*===TREE===*/
 (r
   (statement
@@ -127,7 +129,7 @@ ID                       <filename3>
       (fs_keyword
         (keyword_extdesc extdesc ( (simpleExpression (literal ' MYLIB/MYFILE1 ')) ))
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -168,7 +170,7 @@ ID                       <filename3>
           )
         )
       )
-      \r\n
+      \n
     )
   )
   (statement
@@ -227,7 +229,7 @@ ID                       <filename3>
           )
         )
       )
-      <EOF>
+      \n
     )
   )
 )
