@@ -1,13 +1,16 @@
 /*===TOKENS===*/
-CS_FIXED                 <C>
+HIDDEN:LEAD_WS5_Comments <6334 >
+CS_FIXED                 <c>
 BlankIndicator           <  >
 BlankFlag                < >
 BlankIndicator           <  >
 '              '         <              >
-OP_EVAL                  <EVAL>
-SPLAT_IN                 <*IN>
+OP_EVAL                  <eval>
+SPLAT_IN                 <*in>
 '('                      <(>
-ID                       <X>
+NUMBER                   <50>
+'+'                      <+>
+ID                       <sc>
 ')'                      <)>
 '='                      <=>
 SPLAT_ON                 <*ON>
@@ -17,21 +20,27 @@ C_FREE_NEWLINE           <
 (r
   (statement
     (cspec_fixed
-      C
+      c
       (cs_controlLevel '  ')
       (onOffIndicatorsFlag ' ')
       (cs_indicators '  ')
       (factor '              ')
       (cspec_fixed_standard
         (csEVAL
-          EVAL
+          eval
           (c_free
             (expression
               (expression
                 (indicator
-                  *IN
+                  *in
                   (
-                  (baseExpression (expression (identifier (free_identifier (idOrKeyword X)))))
+                  (baseExpression
+                    (expression
+                      (expression (number 50))
+                      +
+                      (expression (identifier (free_identifier (idOrKeyword sc))))
+                    )
+                  )
                   )
                 )
               )
