@@ -6,12 +6,44 @@
 
 	<groupId>org.rpgleparser</groupId>
 	<artifactId>rpgleparser</artifactId>
-	<version>0.2-SNAPSHOT</version>
+	<version>1.0.0</version>
+
+	<name>rpgleparser</name>
+	<description>
+		ANTLR parser for RPGLE.
+	</description>
+	<url>https://github.com/rpgleparser/rpgleparser</url>
+	<inceptionYear>2014</inceptionYear>
+	<organization>
+		<name>RPGLEParser</name>
+	</organization>	
+	<developers>
+		<developer>
+			<name>Ryan Eberly</name>
+			<email>ryaneberly@gmail.com</email>
+			<organization>rpgleparser</organization>
+			<organizationUrl>https://github.com/rpgleparser</organizationUrl>
+		</developer>
+	</developers>
+	
+	<scm>
+		<connection>scm:git:git@github.com:rpgleparser/rpgleparser.git</connection>
+		<developerConnection>scm:git:git@github.com:rpgleparser/rpgleparser.git</developerConnection>
+		<url>git@github.com:rpgleparser/rpgleparser.git</url>
+	</scm>
+	
+	<licenses>
+        <license>
+          <name>lgpl_v2_1</name>
+          <url>http://www.gnu.org/licenses/lgpl.txt</url>
+          <distribution>repo</distribution>
+        </license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.antlr</groupId>
@@ -100,4 +132,125 @@
             </plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>allow-snapshots</id>
+			<activation><activeByDefault>true</activeByDefault></activation>
+			<repositories>
+				<repository>
+					<id>snapshots-repo</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+					<releases><enabled>false</enabled></releases>
+					<snapshots><enabled>true</enabled></snapshots>
+				</repository>
+			</repositories>
+		</profile>
+		<profile>
+			<id>deploy</id>
+			<build>
+				<plugins>			
+		    <!-- deployment -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<configuration>
+              				<keyname>com.github.rpgleparser</keyname>
+            			</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.7</version>
+				<configuration>
+					<verbose>false</verbose>
+					<addSvnKeyWords>true</addSvnKeyWords>
+				</configuration>
+				<executions>
+					<execution>
+						<id>first</id>
+						<goals>
+							<goal>update-file-header</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<licenseName>lgpl_v2_1</licenseName>
+							<roots>
+								<root>src/main/java</root>
+								<root>src/test</root>
+							</roots>
+							<includes>
+								<include>*.java</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.2</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>false</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<!-- end deployment -->
+			     </plugins>
+		      </build>
+	       </profile>
+	</profiles>
+
+	<!-- Sonatype: mvn clean package -P deploy -->
+	<!-- Sonatype: mvn verify gpg:sign -DskipTests -P deploy -Dgpg.keyname=com.github.rpgleparser -->
+	<!-- Sonatype: mvn deploy -DskipTests -P deploy -->
+	<!-- Sonatype: mvn nexus-staging:release -DskipTests -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
 </project>
