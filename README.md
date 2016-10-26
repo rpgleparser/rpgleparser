@@ -13,3 +13,12 @@
 [Eric Wilson](https://github.com/TheEricWilson)
 
 [Daniel Goodwin](https://github.com/danielgoodwin)
+
+
+RPGLEParser is on now on maven:
+
+        <dependency>
+            <groupId>com.github.rpgleparser</groupId>
+            <artifactId>rpgleparser</artifactId>
+            <version>1.0.0</version>
+        </dependency>
