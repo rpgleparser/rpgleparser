@@ -1,5 +1,9 @@
 package org.rpgleparser.tokens;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,24 +11,29 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.TokenSource;
 import org.antlr.v4.runtime.WritableToken;
 import org.rpgleparser.RpgLexer;
+import org.rpgleparser.utils.FixedWidthBufferedReader;
 
 public class PreprocessTokenSource extends TransformTokenSource{
+
+	protected CopyBookProvider copyBookProvider=null;
 
 	public PreprocessTokenSource(TokenSource tokenSource, Lexer inclLexer) {
 		super(tokenSource, inclLexer);
 	}
 
-	public PreprocessTokenSource(TokenSource tokenSource) {
+	public PreprocessTokenSource(TokenSource tokenSource, CopyBookProvider copyBookProvider) {
 		super(tokenSource);
+		this.copyBookProvider=copyBookProvider;
 	}
 
 	List<Integer> CHECKED_TOKENS = Arrays.asList(new Integer[] {
-			RpgLexer.DIR_IF,RpgLexer.DIR_ELSEIF, RpgLexer.DIR_ELSE,RpgLexer.DIR_ENDIF ,RpgLexer.DIR_DEFINE });
+			RpgLexer.DIR_IF,RpgLexer.DIR_ELSEIF, RpgLexer.DIR_ELSE,RpgLexer.DIR_ENDIF ,RpgLexer.DIR_DEFINE,RpgLexer.DIR_COPY });
 
 	/*
 	 * This method can change the token,
@@ -64,6 +73,9 @@ public class PreprocessTokenSource extends TransformTokenSource{
 		else if(currentToken.getType() == RpgLexer.DIR_UNDEFINE){
 			consumeUnDefineDirective(currentToken);
 		}
+		else if(currentToken.getType() == RpgLexer.DIR_COPY){
+			consumeCopyDirective(currentToken);
+		}
 		return nextToken;
 	}
 	
@@ -73,6 +85,8 @@ public class PreprocessTokenSource extends TransformTokenSource{
 	List<Integer> OTHERTEXT_TOKENS = Arrays.asList(new Integer[] {RpgLexer.EOF,RpgLexer.EOL, RpgLexer.DIR_OtherText });
 	List<Integer> EOL_TOKENS = Arrays.asList(new Integer[] {
 			RpgLexer.EOF,RpgLexer.EOL});
+	List<Integer> EOL_OR_TEXT_TOKENS = Arrays.asList(new Integer[] {
+			RpgLexer.EOF,RpgLexer.EOL,RpgLexer.DIR_OtherText,RpgLexer.StringContent});
 	
 	Set<String> defined = new HashSet<String>();
 	Stack<String> directives = new Stack<String>();
@@ -108,6 +122,25 @@ public class PreprocessTokenSource extends TransformTokenSource{
 	private void consumeElseDirective(Token currentToken) {
 		ifCondition = !ifConditionWasMatched;
         consumeAndHideUntil(EOL_TOKENS);
+	}
+	private void consumeCopyDirective(Token currentToken) {
+		Token otherTextToken = consumeAndHideUntil(EOL_OR_TEXT_TOKENS);
+		List<Token> copyTokens = new ArrayList<Token>();
+		while(otherTextToken != null && !EOL_TOKENS.contains(otherTextToken.getType())){
+			hideAndAdd(otherTextToken);
+			copyTokens.add(otherTextToken);
+			otherTextToken = consumeAndHideUntil(EOL_OR_TEXT_TOKENS);
+		}
+		if(copyTokens.size()>0){
+			try{
+				String inputString = copyBookProvider != null? copyBookProvider.lookup(copyTokens):null;
+				final ANTLRInputStream input = new ANTLRInputStream(new FixedWidthBufferedReader(inputString));
+				final RpgLexer rpglexer = new RpgLexer(input);
+				tokenQueue.addAll(rpglexer.getAllTokens());
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 	private void consumeEndIfDirective(Token currentToken) {
 		directives.pop();
@@ -158,5 +191,43 @@ public class PreprocessTokenSource extends TransformTokenSource{
         }		
         addToken(t);
 	}
+    public static String loadFile(File file) throws IOException {
+        InputStream is = new FileInputStream(file);
+        byte[] b = new byte[is.available()];
+        is.read(b);
+        is.close();
+        return new String(b);
+    }
+    
+    public static interface CopyBookProvider{
+    	String lookup(List<Token> copy);
+    }
+    /**
+     * Default implementation of the provider which returns the file in a given folder.
+     * Note: the file must have the .copy extension.
+     * @author Ryan
+     *
+     */
+    public static class FileFolderCopyBookProvider implements CopyBookProvider{
 
+    	File sourceFolder;
+		public FileFolderCopyBookProvider(File sourceFolder) {
+			super();
+			if(sourceFolder.isFile())
+				this.sourceFolder = sourceFolder;
+			else
+				this.sourceFolder = sourceFolder.getParentFile();
+		}
+		@Override
+		public String lookup(List<Token> copy) {
+			String sourceMember = copy.get(copy.size()-1).getText();
+			try{
+				File sourceFile = new File(sourceFolder.getPath() + File.separator+sourceMember + ".copy");
+				return loadFile(sourceFile);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			return null;
+		}
+    }
 }
