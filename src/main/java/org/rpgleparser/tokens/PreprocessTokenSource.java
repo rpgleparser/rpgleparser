@@ -138,9 +138,11 @@ public class PreprocessTokenSource extends TransformTokenSource{
 		if(copyTokens.size()>0){
 			try{
 				String inputString = copyBookProvider != null? copyBookProvider.lookup(copyTokens):null;
-				final ANTLRInputStream input = new ANTLRInputStream(new FixedWidthBufferedReader(inputString));
-				final RpgLexer rpglexer = new RpgLexer(input);
-				tokenQueue.addAll(rpglexer.getAllTokens());
+				if(inputString != null){
+					final ANTLRInputStream input = new ANTLRInputStream(new FixedWidthBufferedReader(inputString));
+					final RpgLexer rpglexer = new RpgLexer(input);
+					tokenQueue.addAll(rpglexer.getAllTokens());
+				}
 			}catch(Exception e){
 				e.printStackTrace();
 			}

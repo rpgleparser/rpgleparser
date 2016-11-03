@@ -12,13 +12,12 @@ RESERVED                 < >
 KEYWORD_QUALIFIED        <qualified>
 EOL                      <
 >
-DIRECTIVE                <D/>
-DIR_COPY                 <copy>
-DIR_OtherText            <QMQM>
-DIR_Slash                </>
-DIR_OtherText            <QRPGLESRC>
-DIR_OtherText            <CMQRFH2G>
-EOL                      <>
+HIDDEN:DIRECTIVE         <D/>
+HIDDEN:DIR_COPY          <copy>
+HIDDEN:DIR_OtherText     <QMQM>
+HIDDEN:DIR_Slash         </>
+HIDDEN:DIR_OtherText     <QRPGLESRC>
+HIDDEN:DIR_OtherText     <CMQRFH2G>
 DS_FIXED                 <D>
 NAME                     <pscLen>
 EXTERNAL_DESCRIPTION     < >
@@ -47,11 +46,6 @@ EOL                      <
       ' '
       (keyword (keyword_qualified qualified))
       \n
-      (directive
-        D/
-        (dir_copy copy (copyText QMQM) / (copyText QRPGLESRC) (copyText CMQRFH2G))
-        
-      )
       (parm_fixed D (ds_name pscLen) ' ' ' ' '  ' '       ' '     10' I ' 0' ' ' \n)
     )
   )
