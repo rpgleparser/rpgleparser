@@ -65,7 +65,7 @@ public class TestFiles {
 		final List<String> errors = new ArrayList<String>();
         final ANTLRInputStream input = new ANTLRInputStream(new FixedWidthBufferedReader(inputString));
 		final RpgLexer rpglexer = new RpgLexer(input);
-        final TokenSource lexer = new PreprocessTokenSource(rpglexer);
+        final TokenSource lexer = new PreprocessTokenSource(rpglexer,new PreprocessTokenSource.FileFolderCopyBookProvider(sourceFile));
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
                 
         final RpgParser parser = new RpgParser(tokens);

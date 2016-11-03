@@ -1,0 +1,65 @@
+/*===TOKENS===*/
+DS_ProcedureInterfaceStart<DCL-PI>
+ID                       <DDR014>
+FREE_SEMI                <;>
+HIDDEN:DIRECTIVE         <   />
+HIDDEN:DIR_COPY          <COPY>
+HIDDEN:DIR_OtherText     <parms>
+ID                       <TRNSDT>
+PACKED                   <PACKED>
+'('                      <(>
+NUMBER                   <7>
+')'                      <)>
+FREE_SEMI                <;>
+ID                       <TRNSDT2>
+KEYWORD_LIKE             <LIKE>
+'('                      <(>
+ID                       <TRNSDT>
+')'                      <)>
+FREE_SEMI                <;>
+DS_Parm                  <dcl-parm>
+ID                       <TRNSDT3>
+KEYWORD_LIKE             <LIKE>
+'('                      <(>
+ID                       <TRNSDT>
+')'                      <)>
+FREE_SEMI                <;>
+DS_ProcedureInterfaceEnd <END-PI>
+FREE_SEMI                <;>
+/*===TREE===*/
+(r
+  (dcl_pi
+    DCL-PI
+    (identifier (free_identifier (idOrKeyword DDR014)))
+    ;
+    (dcl_pi_field
+      (identifier (free_identifier (idOrKeyword TRNSDT)))
+      (datatype (datatypeName PACKED) (args ( (expression (number 7)) )))
+      ;
+    )
+    (dcl_pi_field
+      (identifier (free_identifier (idOrKeyword TRNSDT2)))
+      (keyword_like
+        LIKE
+        (
+        (simpleExpression (identifier (free_identifier (idOrKeyword TRNSDT))))
+        )
+      )
+      ;
+    )
+    (dcl_pi_field
+      dcl-parm
+      (identifier (free_identifier (idOrKeyword TRNSDT3)))
+      (keyword_like
+        LIKE
+        (
+        (simpleExpression (identifier (free_identifier (idOrKeyword TRNSDT))))
+        )
+      )
+      ;
+    )
+    (end_dcl_pi END-PI)
+    ;
+  )
+)
+/*======*/
