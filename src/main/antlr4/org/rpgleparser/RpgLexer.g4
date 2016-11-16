@@ -1399,7 +1399,9 @@ COMMENTS_TEXT_SKIP : [ ]+ -> skip;
 
 COMMENTS_TEXT_HIDDEN :  ~[\r\n]* -> channel(HIDDEN);
 
-COMMENTS_EOL_HIDDEN : NEWLINE ->  channel(HIDDEN), popMode;
+COMMENTS_EOL_HIDDEN : NEWLINE {_modeStack.peek()!=FREE}?->  channel(HIDDEN), popMode;
+
+COMMENTS_EOL_HIDDEN_FREE : NEWLINE (WORD5 [ ])? {_modeStack.peek()==FREE}?->  type(COMMENTS_EOL_HIDDEN), channel(HIDDEN), popMode;
 
 
 mode SQL_MODE;

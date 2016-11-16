@@ -1,0 +1,56 @@
+/*===TOKENS===*/
+HIDDEN:LEAD_WS5_Comments <   . >
+HIDDEN:COMMENTS          <       //>
+HIDDEN:COMMENTS_TEXT     <Print a Report>
+HIDDEN:LEAD_WS5_Comments <33723>
+ID                       <EMAILR>
+'('                      <(>
+ID                       <Parm_Lda>
+COLON                    <:>
+ID                       <ExcelYN>
+COLON                    <:>
+ID                       <PASSWD>
+COLON                    <:>
+HIDDEN:FREE_COMMENTS     <                        //>
+HIDDEN:COMMENTS_TEXT_HIDDEN< CALL PGM          >
+HIDDEN:COMMENTS_EOL_HIDDEN<
+33723 >
+ID                       <EMAIL>
+COLON                    <:>
+ID                       <INDEX>
+COLON                    <:>
+ID                       <PGMH>
+')'                      <)>
+FREE_SEMI                <;>
+HIDDEN:LEAD_WS5_Comments <   . >
+HIDDEN:COMMENTS          <          //>
+HIDDEN:COMMENTS_TEXT     <Job submit msg>
+/*===TREE===*/
+(r
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_callp
+            (identifier (free_identifier (idOrKeyword EMAILR)))
+            (
+            (expression (identifier (free_identifier (idOrKeyword Parm_Lda))))
+            :
+            (expression (identifier (free_identifier (idOrKeyword ExcelYN))))
+            :
+            (expression (identifier (free_identifier (idOrKeyword PASSWD))))
+            :
+            (expression (identifier (free_identifier (idOrKeyword EMAIL))))
+            :
+            (expression (identifier (free_identifier (idOrKeyword INDEX))))
+            :
+            (expression (identifier (free_identifier (idOrKeyword PGMH))))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/

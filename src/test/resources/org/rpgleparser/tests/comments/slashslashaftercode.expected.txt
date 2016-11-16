@@ -37,7 +37,7 @@ NOT                      <not>
 SPLAT_INDICATOR          <*In04>
 HIDDEN:FREE_COMMENTS     <                                                        //>
 HIDDEN:COMMENTS_EOL_HIDDEN<
->
+      >
 AND                      <and>
 NOT                      <not>
 SPLAT_INDICATOR          <*In20>
