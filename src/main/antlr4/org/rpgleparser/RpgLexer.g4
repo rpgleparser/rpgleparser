@@ -1465,13 +1465,13 @@ DEF_TYPE_BLANK : [ ] [ ] { getCharPositionInLine()==25 }? ;
 
 DEF_TYPE : [a-zA-Z0-9 ] [a-zA-Z0-9 ] { getCharPositionInLine()==25 }? ;
 
-FROM_POSITION : WORD5 [a-zA-Z0-9\+\- ] [a-zA-Z0-9 ]{ getCharPositionInLine()==32 }? ;
+FROM_POSITION : WORD5 [ a-zA-Z0-9+-] [a-zA-Z0-9 ]{ getCharPositionInLine()==32 }? ;
 
-TO_POSITION : WORD5[a-zA-Z0-9\+\- ] [a-zA-Z0-9 ]{ getCharPositionInLine()==39 }? ;
+TO_POSITION : WORD5 [ a-zA-Z0-9+-] [a-zA-Z0-9 ]{ getCharPositionInLine()==39 }? ;
 
-DATA_TYPE : [a-zA-Z\* ]{ getCharPositionInLine()==40 }? ;
+DATA_TYPE : [a-zA-Z* ]{ getCharPositionInLine()==40 }? ;
 
-DECIMAL_POSITIONS : [0-9\+\- ] [0-9 ]{ getCharPositionInLine()==42 }? ;
+DECIMAL_POSITIONS : [ 0-9+-] [0-9 ]{ getCharPositionInLine()==42 }? ;
 
 RESERVED :  ' ' { getCharPositionInLine()==43 }? -> pushMode(FREE) ;
 
@@ -2619,7 +2619,7 @@ HS_StringLiteralStart : ['] -> type(StringLiteralStart), pushMode(InStringMode) 
 
 HS_COLON : ':' -> type(COLON);
 
-HS_ID : [#@%$*a-zA-Z] [&#@\-$*a-zA-Z0-9_/,\.]* -> type(ID);
+HS_ID : [#@%$*a-zA-Z] [&#@$*a-zA-Z0-9_/,.-]* -> type(ID);
 
 HS_WhiteSpace : [ \t]+ -> skip  ; // skip spaces, tabs
 
