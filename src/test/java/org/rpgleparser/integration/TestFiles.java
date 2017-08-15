@@ -1,6 +1,6 @@
 package org.rpgleparser.integration;
 
-import static java.util.ResourceBundle.*;
+import static java.util.ResourceBundle.getBundle;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
@@ -32,164 +32,182 @@ import org.rpgleparser.utils.TreeUtils;
 
 /**
  * Run a test over each *.rpgle file in src/test/resources/org/rpgleparser/tests
+ * 
  * @author ryaneberly
  *
  */
 @RunWith(Parameterized.class)
 public class TestFiles {
-	
-	private File sourceFile;
-	private boolean autoReplaceFailed=false;
-	private static String singleTestName=null;
-	static{
-		try{
-			singleTestName= getBundle("org.rpgleparser.tests.test").getString("RunSingleTest");
-		}catch(Exception ignored){}
-	}
 
-	public TestFiles(File sourceFile) {
-		super();
-		this.sourceFile = sourceFile;
-		try {
-			autoReplaceFailed="Y".equalsIgnoreCase(getBundle("org.rpgleparser.tests.test").getString("AutoReplaceFailedTestResults"));
-		} catch(Exception ignore){ /* */ }
-	}
-	
-	@Test
-	public void test() throws IOException, URISyntaxException{
-		final String inputString = TestUtils.loadFile(sourceFile);
-		final File expectedFile = new File(sourceFile.getPath().replaceAll("\\.rpgle", ".expected.txt"));
-		final String expectedFileText = expectedFile.exists()?TestUtils.loadFile(expectedFile):null;
-		final String expectedTokens = getTokens(expectedFileText);
-		String expectedTree = getTree(expectedFileText);
-		final List<String> errors = new ArrayList<String>();
+    private static String singleTestName = null;
+    static {
+        try {
+            singleTestName = getBundle("org.rpgleparser.tests.test").getString("RunSingleTest");
+        } catch (final Exception ignored) {
+        }
+    }
+
+    private static void fillResourceListing(final File file, final List<File> retval) {
+        if (file != null) {
+            if (file.isDirectory()) {
+                for (final File subfile : file.listFiles()) {
+                    fillResourceListing(subfile, retval);
+                }
+            } else if (file.getName().toLowerCase().endsWith(".rpgle")) {
+                if ((singleTestName == null) || singleTestName.equals(file.getName())) {
+                    retval.add(file);
+                } else if (singleTestName.equals("*LAST")) {
+                    if ((retval.size() == 0) || (file.lastModified() > retval.get(0).lastModified())) {
+                        retval.clear();
+                        retval.add(file);
+                    }
+                }
+            }
+        }
+    }
+
+    @Parameterized.Parameters(name = "{index}{0}")
+    public static Collection<Object[]> primeNumbers() throws URISyntaxException, IOException {
+        final ArrayList<Object[]> retval = new ArrayList<>();
+        final List<File> listing = new ArrayList<>();
+        fillResourceListing(new File("src/test/resources/org/rpgleparser/tests"), listing);
+        for (final File s : listing) {
+            retval.add(new Object[] { s });
+        }
+        return retval;
+    }
+
+    public static String printTokens(final RpgLexer lexer) {
+        return TestUtils.getTokenString(lexer.getAllTokens(), lexer.getVocabulary());
+    }
+
+    private final File sourceFile;
+
+    private boolean autoReplaceFailed = false;
+
+    public TestFiles(final File sourceFile) {
+        super();
+        this.sourceFile = sourceFile;
+        try {
+            autoReplaceFailed = "Y".equalsIgnoreCase(
+                    getBundle("org.rpgleparser.tests.test").getString("AutoReplaceFailedTestResults"));
+        } catch (final Exception ignore) {
+            /* */ }
+    }
+
+    private String getTokens(final String expectedFileText) {
+        if ((expectedFileText != null) && expectedFileText.contains("/*===TOKENS===*/")) {
+            int startIdx = expectedFileText.indexOf("/*===TOKENS===*/") + 16; // notice
+                                                                              // +
+                                                                              // 16
+                                                                              // at
+                                                                              // the
+                                                                              // end,
+                                                                              // len
+                                                                              // of
+                                                                              // the
+                                                                              // searched
+                                                                              // text
+            while ((expectedFileText.charAt(startIdx) == '\r') || (expectedFileText.charAt(startIdx) == '\n')) {
+                startIdx++;
+            }
+            int endIndex = expectedFileText.indexOf("/*===", startIdx);
+            if (endIndex > startIdx) {
+                while ((expectedFileText.charAt(endIndex - 1) == '\r')
+                        || (expectedFileText.charAt(endIndex - 1) == '\n')) {
+                    endIndex--;
+                }
+                return expectedFileText.substring(startIdx, endIndex);
+            }
+        }
+        return null;
+    }
+
+    private String getTree(final String expectedFileText) {
+        if ((expectedFileText != null) && expectedFileText.contains("/*===TREE===*/")) {
+            int startIdx = expectedFileText.indexOf("/*===TREE===*/") + 14;
+            while ((expectedFileText.charAt(startIdx) == '\r') || (expectedFileText.charAt(startIdx) == '\n')) {
+                startIdx++;
+            }
+            int endIndex = expectedFileText.indexOf("/*======*/", startIdx);
+            if (endIndex > startIdx) {
+                while ((expectedFileText.charAt(endIndex - 1) == '\r')
+                        || (expectedFileText.charAt(endIndex - 1) == '\n')) {
+                    endIndex--;
+                }
+                return expectedFileText.substring(startIdx, endIndex);
+            }
+        }
+        if ((expectedFileText != null) && expectedFileText.contains("/*===")) {
+            return null;
+        }
+        return expectedFileText;
+    }
+
+    @Test
+    public void test() throws IOException, URISyntaxException {
+        final String inputString = TestUtils.loadFile(sourceFile);
+        final File expectedFile = new File(sourceFile.getPath().replaceAll("\\.rpgle", ".expected.txt"));
+        final String expectedFileText = expectedFile.exists() ? TestUtils.loadFile(expectedFile) : null;
+        final String expectedTokens = getTokens(expectedFileText);
+        String expectedTree = getTree(expectedFileText);
+        final List<String> errors = new ArrayList<>();
         final ANTLRInputStream input = new ANTLRInputStream(new FixedWidthBufferedReader(inputString));
-		final RpgLexer rpglexer = new RpgLexer(input);
-        final TokenSource lexer = new PreprocessTokenSource(rpglexer,new PreprocessTokenSource.FileFolderCopyBookProvider(sourceFile));
+        final RpgLexer rpglexer = new RpgLexer(input);
+        final TokenSource lexer = new PreprocessTokenSource(rpglexer,
+                new PreprocessTokenSource.FileFolderCopyBookProvider(sourceFile));
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
-                
+
         final RpgParser parser = new RpgParser(tokens);
 
         final ErrorListener errorListener = new ErrorListener(errors, rpglexer, parser);
         rpglexer.addErrorListener(errorListener);
         parser.addErrorListener(errorListener);
-        
-		final String actualTokens = TestUtils.printTokens(lexer,rpglexer.getVocabulary());
-        boolean rewriteExpectFile=false;
-		if(expectedTokens != null && expectedTokens.trim().length()>0 ){
-			if(autoReplaceFailed && !expectedTokens.equals(actualTokens)){
-				rewriteExpectFile=true;
-			}else{
-				assertEquals("Token lists do not match",expectedTokens,actualTokens);
-			}
-		}
-		rpglexer.reset();
-		
-		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
-		parser.reset();
-		final ParseTree parseTree = parser.r();
-		
-		final String actualTree = TreeUtils.printTree(parseTree, parser);
-		if(!errors.isEmpty()){
-			System.out.println("/*===TOKENS===*/\n" + actualTokens + "\n");
-			System.out.println("/*===TREE===*/\n" + actualTree + "\n/*======*/");
-		}
-		assertThat(errors, is(empty()));
-		
-    	if(expectedTree==null || expectedTree.trim().length() == 0||rewriteExpectFile){
-    		writeExpectFile(expectedFile,actualTokens,actualTree);
-    		System.out.println("Tree written to " + expectedFile);
-		}else{
-			if(autoReplaceFailed && !actualTree.equals(expectedTree)){
-				System.out.println("Replaced content of " + expectedFile);
-				expectedTree = actualTree;
-				writeExpectFile(expectedFile,actualTokens,actualTree);
-			}
-        	assertEquals("Parse trees do not match",expectedTree,actualTree);
+
+        final String actualTokens = TestUtils.printTokens(lexer, rpglexer.getVocabulary());
+        boolean rewriteExpectFile = false;
+        if ((expectedTokens != null) && (expectedTokens.trim().length() > 0)) {
+            if (autoReplaceFailed && !expectedTokens.equals(actualTokens)) {
+                rewriteExpectFile = true;
+            } else {
+                assertEquals("Token lists do not match", expectedTokens, actualTokens);
+            }
         }
-	}
+        rpglexer.reset();
 
-    private void writeExpectFile(File expectedFile, String actualTokens,
-			String actualTree) throws IOException {
-		final FileOutputStream fos = new FileOutputStream(expectedFile,false);
-		fos.write("/*===TOKENS===*/\n".getBytes());
-		fos.write(actualTokens.getBytes());
-		fos.write("\n/*===TREE===*/\n".getBytes());
-		fos.write(actualTree.getBytes());
-		fos.write("\n/*======*/".getBytes());
-		fos.close();
-		
-	}
+        parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+        parser.reset();
+        final ParseTree parseTree = parser.r();
 
-	public static String printTokens(RpgLexer lexer){
-    	return TestUtils.getTokenString(lexer.getAllTokens(), lexer.getVocabulary());
+        final String actualTree = TreeUtils.printTree(parseTree, parser);
+        if (!errors.isEmpty()) {
+            System.out.println("/*===TOKENS===*/\n" + actualTokens + "\n");
+            System.out.println("/*===TREE===*/\n" + actualTree + "\n/*======*/");
+        }
+        assertThat(errors, is(empty()));
+
+        if ((expectedTree == null) || (expectedTree.trim().length() == 0) || rewriteExpectFile) {
+            writeExpectFile(expectedFile, actualTokens, actualTree);
+            System.out.println("Tree written to " + expectedFile);
+        } else {
+            if (autoReplaceFailed && !actualTree.equals(expectedTree)) {
+                System.out.println("Replaced content of " + expectedFile);
+                expectedTree = actualTree;
+                writeExpectFile(expectedFile, actualTokens, actualTree);
+            }
+            assertEquals("Parse trees do not match", expectedTree, actualTree);
+        }
     }
-    
-	private String getTokens(String expectedFileText) {
-		if(expectedFileText != null && expectedFileText.contains("/*===TOKENS===*/")){
-			int startIdx = expectedFileText.indexOf("/*===TOKENS===*/") + 16; // notice + 16 at the end, len of the searched text
-			while(expectedFileText.charAt(startIdx) == '\r' || expectedFileText.charAt(startIdx) == '\n'){
-				startIdx++;
-			}
-			int endIndex = expectedFileText.indexOf("/*===",startIdx);
-			if(endIndex > startIdx){
-				while(expectedFileText.charAt(endIndex-1) == '\r' || expectedFileText.charAt(endIndex-1) == '\n'){
-					endIndex--;
-				}
-				return expectedFileText.substring(startIdx, endIndex);
-			}
-		}
-		return null;
-	}
 
-	private String getTree(String expectedFileText) {
-		if(expectedFileText != null && expectedFileText.contains("/*===TREE===*/")){
-			int startIdx = expectedFileText.indexOf("/*===TREE===*/") + 14;
-			while(expectedFileText.charAt(startIdx) == '\r' || expectedFileText.charAt(startIdx) == '\n'){
-				startIdx++;
-			}
-			int endIndex = expectedFileText.indexOf("/*======*/",startIdx);
-			if(endIndex > startIdx){
-				while(expectedFileText.charAt(endIndex-1) == '\r' || expectedFileText.charAt(endIndex-1) == '\n'){
-					endIndex--;
-				}
-				return expectedFileText.substring(startIdx, endIndex);
-			}
-		}
-		if(expectedFileText != null && expectedFileText.contains("/*===")){
-			return null;
-		}
-		return expectedFileText;
-	}
+    private void writeExpectFile(final File expectedFile, final String actualTokens, final String actualTree)
+            throws IOException {
+        final FileOutputStream fos = new FileOutputStream(expectedFile, false);
+        fos.write("/*===TOKENS===*/\n".getBytes());
+        fos.write(actualTokens.getBytes());
+        fos.write("\n/*===TREE===*/\n".getBytes());
+        fos.write(actualTree.getBytes());
+        fos.write("\n/*======*/".getBytes());
+        fos.close();
 
-	@Parameterized.Parameters(name="{index}{0}")
-	public static Collection<Object[]> primeNumbers() throws URISyntaxException, IOException {
-		final ArrayList<Object[]> retval = new ArrayList<Object[]>();
-    	final List<File> listing = new ArrayList<File>();
-    	fillResourceListing(new File("src/test/resources/org/rpgleparser/tests"), listing);
-    	for(File s: listing){
-			retval.add(new Object[]{s});
-		}
-		return retval;
-	}
-	
-	private static void fillResourceListing(File file, List<File> retval)  {
-    	if(file != null){
-    		if(file.isDirectory()){
-    			for(File subfile: file.listFiles()){
-    				fillResourceListing(subfile, retval);
-    			}
-    		}else if(file.getName().toLowerCase().endsWith(".rpgle")){
-    			if(singleTestName == null || singleTestName.equals(file.getName())){
-    				retval.add(file);
-    			}
-    			else if(singleTestName.equals("*LAST")){
-    				if(retval.size()==0 || file.lastModified() > retval.get(0).lastModified()){
-    					retval.clear();
-    					retval.add(file);
-    				}
-    			}
-    		}
-    	}
     }
 }

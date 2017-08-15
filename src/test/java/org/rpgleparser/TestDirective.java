@@ -1,37 +1,33 @@
 package org.rpgleparser;
 
-import org.junit.Test;
-
 import static org.rpgleparser.utils.TestUtils.expectTokensForSourceLines;
+
+import org.junit.Test;
 
 public class TestDirective {
 
     @Test
-    public void testFREE() {
-        String inputString =
-                "     D/FREE";
-        expectTokensForSourceLines(inputString, "D/", "FREE", "");
-    }
-
-    @Test
     public void testEJECT() {
-        String inputString =
-                "      /EJECT";
+        final String inputString = "      /EJECT";
         expectTokensForSourceLines(inputString, " /", "EJECT", "");
     }
 
     @Test
-    public void testTITLE() {
-        String inputString =
-                "     D/TITLE There is a title here";
-        expectTokensForSourceLines(inputString, "D/", "TITLE", "There is a title here", "");
+    public void testFREE() {
+        final String inputString = "     D/FREE";
+        expectTokensForSourceLines(inputString, "D/", "FREE", "");
     }
 
     @Test
     public void testSPACE() {
-        String inputString =
-                "      /SPACE 2";
-        expectTokensForSourceLines(inputString, "/", "SPACE","2","");
+        final String inputString = "      /SPACE 2";
+        expectTokensForSourceLines(inputString, "/", "SPACE", "2", "");
+    }
+
+    @Test
+    public void testTITLE() {
+        final String inputString = "     D/TITLE There is a title here";
+        expectTokensForSourceLines(inputString, "D/", "TITLE", "There is a title here", "");
     }
 
 }
