@@ -134,7 +134,7 @@ DIR_ENDIF : { _input.LA(-1)=='/' }? ([eE] [nN] [dD] [iI] [fF]);
 
 DIR_Number : NUMBER -> type(NUMBER);
 
-DIR_WhiteSpace : [ ] -> type(WS), skip;
+DIR_WhiteSpace : [ ] -> skip;
 
 DIR_OtherText : ~[/'"\r\n \t,()]+ ;
 
@@ -1351,7 +1351,7 @@ FIXED_FREE_STRING_CONTINUATION_Part2 :
       |
      )  // If it plus continuation eat whitespace.
    )
-   -> type(CONTINUATION), skip ;
+   -> skip ;
    
 //Deliberate match no char, pop out again
 EatCommentLines_NothingLeft : -> popMode, skip;
@@ -1569,7 +1569,7 @@ OS_Comments : CS_Comments -> channel(HIDDEN) ;
 
 OS_WS : [ \t] { getCharPositionInLine()>80 }? [ \t]* -> type(WS), skip  ; // skip spaces, tabs, newlines
 
-OS_EOL : NEWLINE -> type(EOL), popMode;//, skip;
+OS_EOL : NEWLINE -> type(EOL), popMode;
 
 
 mode FIXED_OutputSpec_PGM1;
@@ -2561,7 +2561,7 @@ IS_Option : [ oO] { getCharPositionInLine()==20 }? -> pushMode(IndicatorMode);
 IS_RecordIdCode :  WORD5_WCOLON WORD5_WCOLON WORD5_WCOLON WORD5_WCOLON
         WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON  { getCharPositionInLine()==46 }? ; //TODO better lexing
 
-IS_WS : [ \t] { getCharPositionInLine()>=47 }? [ \t]* -> type(WS), skip  ; // skip spaces, tabs
+IS_WS : [ \t] { getCharPositionInLine()>=47 }? [ \t]* -> skip  ; // skip spaces, tabs
 
 IS_COMMENTS : ~[\r\n] { getCharPositionInLine()>80 }? ~[\r\n]* -> channel(HIDDEN) ; // skip spaces, tabs, newlines
 
@@ -2578,7 +2578,7 @@ IF_FieldName : WORD5_WCOLON WORD5_WCOLON WORD_WCOLON WORD_WCOLON
 
 IF_Reserved2 : '  ' { getCharPositionInLine()==68 }? ->pushMode(IndicatorMode), pushMode(IndicatorMode), pushMode(IndicatorMode), skip; // 3 Indicators in a row
 
-IF_WS : [ \t] { getCharPositionInLine()>=75 }? [ \t]* -> type(WS), popMode, skip  ; // skip spaces, tabs
+IF_WS : [ \t] { getCharPositionInLine()>=75 }? [ \t]* -> popMode, skip  ; // skip spaces, tabs
 
 
 mode FIXED_I_EXT_REC_SPEC;
