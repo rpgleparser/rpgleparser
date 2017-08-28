@@ -4,20 +4,6 @@
  
 lexer grammar RpgLexer;
 
-@members {
-    public boolean isEndOfToken() {
-        return " (;".indexOf(_input.LA(1)) >=0;
-    }
-    int lastTokenType = 0;
-    public void emit(Token token) {
-        super.emit(token);
-        lastTokenType = token.getType();
-    }
-    protected int getLastTokenType(){
-        return lastTokenType;
-    }
-} 
-
 // Parser Rules
     //End Source.  Not more parsing after this.
 END_SOURCE :  '**' { getCharPositionInLine()==2 }? ~[\r\n]~[\r\n]~[\r\n]~[\r\n*]~[\r\n]* EOL  -> pushMode(EndOfSourceMode) ;
@@ -54,7 +40,7 @@ BLANK_SPEC_LINE : .[ ] { getCharPositionInLine()==7 }? [ ]* NEWLINE -> skip;
 
 COMMENTS : [ ] { getCharPositionInLine()>=6 }? [ ]*? '//' -> pushMode(FIXED_CommentMode), channel(HIDDEN) ;
 
-DIRECTIVE :  . { getCharPositionInLine()>=6 }? [ ]*? '/' -> pushMode(DirectiveMode) ;
+DIRECTIVE :  . { getCharPositionInLine()>=6 }? [ ]*? '/' -> pushMode(DirectiveMode_Start) ;
 
 EMPTY_LINE : '                                                                           ' 
     { getCharPositionInLine()>=80 }? 
@@ -95,42 +81,45 @@ TITLE_Text : ~[\r\n]+ -> type(DIR_OtherText);
 TITLE_EOL : NEWLINE -> type(EOL), popMode, popMode;
 
 
+mode DirectiveMode_Start;
+DIR_FREE : [fF] [rR] [eE] [eE] -> popMode,pushMode(DirectiveMode),pushMode(SKIP_REMAINING_WS);
+
+DIR_ENDFREE : [eE] [nN] [dD] '-' [fF] [rR] [eE] [eE] -> popMode,pushMode(DirectiveMode),pushMode(SKIP_REMAINING_WS);
+
+DIR_TITLE :([tT] [iI] [tT] [lL] [eE]) -> popMode,pushMode(DirectiveMode),pushMode(DirectiveTitle);
+
+DIR_EJECT : [eE] [jJ] [eE] [cC] [tT] -> popMode,pushMode(DirectiveMode),pushMode(SKIP_REMAINING_WS);
+
+DIR_SPACE : [sS] [pP] [aA] [cC] [eE]  -> popMode,pushMode(DirectiveMode);
+
+DIR_SET :  [sS] [eE] [tT] -> popMode,pushMode(DirectiveMode) ;
+
+DIR_RESTORE : [rR] [eE] [sS] [tT] [oO] [rR] [eE]  -> popMode,pushMode(DirectiveMode);
+
+DIR_COPY : [cC] [oO] [pP] [yY]  -> popMode,pushMode(DirectiveMode);
+
+DIR_INCLUDE : [iI] [nN] [cC] [lL] [uU] [dD] [eE]  -> popMode,pushMode(DirectiveMode);
+
+DIR_EOF : [eE] [oO] [fF] -> popMode,pushMode(DirectiveMode) ;
+
+DIR_DEFINE : ([dD] [eE] [fF] [iI] [nN] [eE]) -> popMode,pushMode(DirectiveMode);
+
+DIR_UNDEFINE : ([uU] [nN] [dD] [eE] [fF] [iI] [nN] [eE]) -> popMode,pushMode(DirectiveMode);
+
+DIR_IF : ([iI] [fF]) -> popMode,pushMode(DirectiveMode);
+
+DIR_ELSE : ([eE] [lL] [sS] [eE]) -> popMode,pushMode(DirectiveMode);
+
+DIR_ELSEIF : ([eE] [lL] [sS] [eE] [iI] [fF]) -> popMode,pushMode(DirectiveMode);
+
+DIR_ENDIF : ([eE] [nN] [dD] [iI] [fF]) -> popMode,pushMode(DirectiveMode);
+
+DIR_Start_Any : -> popMode, pushMode(DirectiveMode);
+
 mode DirectiveMode;
 DIR_NOT : [nN] [oO] [tT] ;
 
 DIR_DEFINED : [dD] [eE] [fF] [iI] [nN] [eE] [dD] ;
-
-DIR_FREE : { _input.LA(-1)=='/' }? [fF] [rR] [eE] [eE] -> pushMode(SKIP_REMAINING_WS);
-
-DIR_ENDFREE : { _input.LA(-1)=='/' }? [eE] [nN] [dD] '-' [fF] [rR] [eE] [eE] -> pushMode(SKIP_REMAINING_WS);
-
-DIR_TITLE :{ _input.LA(-1)=='/' }? ([tT] [iI] [tT] [lL] [eE]) -> pushMode(DirectiveTitle);
-
-DIR_EJECT : { _input.LA(-1)=='/' }? [eE] [jJ] [eE] [cC] [tT] -> pushMode(SKIP_REMAINING_WS);
-
-DIR_SPACE : { _input.LA(-1)=='/' }? [sS] [pP] [aA] [cC] [eE] ;
-
-DIR_SET : { _input.LA(-1)=='/' }?  [sS] [eE] [tT] ;
-
-DIR_RESTORE : { _input.LA(-1)=='/' }? [rR] [eE] [sS] [tT] [oO] [rR] [eE] ;
-
-DIR_COPY : { _input.LA(-1)=='/' }? [cC] [oO] [pP] [yY] ;
-
-DIR_INCLUDE : { _input.LA(-1)=='/' }? [iI] [nN] [cC] [lL] [uU] [dD] [eE] ;
-
-DIR_EOF : { _input.LA(-1)=='/' }? [eE] [oO] [fF] ;
-
-DIR_DEFINE : { _input.LA(-1)=='/' }? ([dD] [eE] [fF] [iI] [nN] [eE]);
-
-DIR_UNDEFINE : { _input.LA(-1)=='/' }? ([uU] [nN] [dD] [eE] [fF] [iI] [nN] [eE]);
-
-DIR_IF : { _input.LA(-1)=='/' }? ([iI] [fF]);
-
-DIR_ELSE : { _input.LA(-1)=='/' }? ([eE] [lL] [sS] [eE]);
-
-DIR_ELSEIF : { _input.LA(-1)=='/' }? ([eE] [lL] [sS] [eE] [iI] [fF]);
-
-DIR_ENDIF : { _input.LA(-1)=='/' }? ([eE] [nN] [dD] [iI] [fF]);
 
 DIR_Number : NUMBER -> type(NUMBER);
 
@@ -151,6 +140,7 @@ DIR_DblStringLiteralStart : ["] -> pushMode(InDoubleStringMode), type(StringLite
 DIR_StringLiteralStart : ['] -> pushMode(InStringMode), type(StringLiteralStart) ;
 
 DIR_EOL : [ ]* NEWLINE { setText(getText().trim()); } -> type(EOL), popMode;
+
 
 mode CheckComment;
 CheckComment_COMMENT_SPEC_FIXED : .'*' -> type(COMMENT_SPEC_FIXED),popMode,pushMode(FIXED_CommentMode), channel(HIDDEN) ;
@@ -773,35 +763,6 @@ SPLAT_PROC : '*' [pP] [rR] [oO] [cC] ;
 
 SPLAT_STATUS : '*' [sS] [tT] [aA] [tT] [uU] [sS] ;
 
-//Durations
-SPLAT_D : '*' { getLastTokenType() == COLON }? [dD] ;
-
-SPLAT_H : '*' { getLastTokenType() == COLON }? [hH] ;
-
-SPLAT_HOURS : '*' { getLastTokenType() == COLON }? [hH] [oO] [uU] [rR] [sS] ;
-
-SPLAT_DAYS :  SPLAT_DAY [sS] { getLastTokenType() == COLON }? ;
-
-SPLAT_M : '*' { getLastTokenType() == COLON }? [mM] ;
-
-SPLAT_MINUTES : '*' { getLastTokenType() == COLON }? [mM] [iI] [nN] [uU] [tT] [eE] [sS] ;
-
-SPLAT_MONTHS : SPLAT_MONTH[sS] ;
-
-SPLAT_MN : '*' { getLastTokenType() == COLON }? [mM] [nN]; //Minutes
-
-SPLAT_MS : '*' { getLastTokenType() == COLON }? [mM] [sS]; //Minutes
-
-SPLAT_MSECONDS : '*' { getLastTokenType() == COLON }? [mM] [sS] [eE] [cC] [oO] [nN] [dD] [sS] ;
-
-SPLAT_S : '*' { getLastTokenType() == COLON }? [sS] ;
-
-SPLAT_SECONDS : '*' { getLastTokenType() == COLON }? [sS] [eE] [cC] [oO] [nN] [dD] [sS] ;
-
-SPLAT_Y : '*' { getLastTokenType() == COLON }? [yY] ;
-
-SPLAT_YEARS : SPLAT_YEAR[sS]{getLastTokenType() == COLON }? ;
-
 // Reserved Words
 UDATE : [uU] [dD] [aA] [tT] [eE] ;
 
@@ -991,7 +952,7 @@ FREE_NUMBER : NUMBER -> type(NUMBER) ;
 
 EQUAL : '=' ;
 
-FREE_COLON : COLON -> type(COLON);
+FREE_COLON : COLON -> type(COLON),pushMode(CheckDuration);
 
 FREE_BY : [bB] [yY] ;
 
@@ -1063,6 +1024,63 @@ F_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_FileSpec }? {System.out.pr
 FREE_NEWLINE :   NEWLINE { _modeStack.peek()!=FIXED_CalcSpec }? {System.out.println("FREE_NEWLINE");}-> skip,pushMode(CheckComment),pushMode(First5); //Note: Removed popMode
 
 FREE_SEMI : SEMI {System.out.println("FREE_SEMI");}-> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
+
+
+
+
+mode CheckDuration;
+//Durations always follow a semicolon
+CheckDuration_WS : ' '+ -> skip;
+
+SPLAT_D : '*' [dD] -> popMode;
+
+SPLAT_H : '*' [hH] -> popMode;
+
+SPLAT_HOURS : '*' [hH] [oO] [uU] [rR] [sS] -> popMode;
+
+SPLAT_DAYS :  SPLAT_DAY [sS] -> popMode;
+
+SPLAT_M : '*' [mM]-> popMode ;
+
+SPLAT_MINUTES : '*' [mM] [iI] [nN] [uU] [tT] [eE] [sS] -> popMode;
+
+SPLAT_MONTHS : SPLAT_MONTH[sS] -> popMode;
+
+SPLAT_MN : '*' [mM] [nN]-> popMode; //Minutes
+
+SPLAT_MS : '*' [mM] [sS]-> popMode; //Minutes
+
+SPLAT_MSECONDS : '*' [mM] [sS] [eE] [cC] [oO] [nN] [dD] [sS]-> popMode ;
+
+SPLAT_S : '*' [sS] -> popMode;
+
+SPLAT_SECONDS : '*' [sS] [eE] [cC] [oO] [nN] [dD] [sS] -> popMode;
+
+SPLAT_Y : '*' [yY] -> popMode;
+
+SPLAT_YEARS : SPLAT_YEAR[sS]-> popMode;
+
+//Copy the other splat names that would conflict.
+
+CheckDuration_SPLAT_DATA : SPLAT_DATA -> type(SPLAT_DATA),popMode;
+CheckDuration_SPLAT_DATE : SPLAT_DATE -> type(SPLAT_DATE),popMode;
+CheckDuration_SPLAT_DAY  : SPLAT_DAY -> type(SPLAT_DAY),popMode;
+CheckDuration_SPLAT_DETC : SPLAT_DETC -> type(SPLAT_DETC),popMode;
+CheckDuration_SPLAT_DETL : SPLAT_DETL -> type(SPLAT_DETL),popMode;
+CheckDuration_SPLAT_DMY  : SPLAT_DMY -> type(SPLAT_DMY),popMode;
+CheckDuration_SPLAT_HIVAL: SPLAT_HIVAL -> type(SPLAT_HIVAL),popMode;
+CheckDuration_SPLAT_HMS  : SPLAT_HMS -> type(SPLAT_HMS),popMode;
+CheckDuration_SPLAT_MAX  : SPLAT_MAX -> type(SPLAT_MAX),popMode;
+CheckDuration_SPLAT_MDY  : SPLAT_MDY -> type(SPLAT_MDY),popMode;
+CheckDuration_SPLAT_MONTH : SPLAT_MONTH -> type(SPLAT_MONTH),popMode;
+CheckDuration_SPLAT_DTAARA: SPLAT_DTAARA -> type(SPLAT_DTAARA),popMode;
+CheckDuration_SPLAT_START : SPLAT_START -> type(SPLAT_START),popMode;
+CheckDuration_SPLAT_STRING : SPLAT_STRING -> type(SPLAT_STRING),popMode;
+CheckDuration_SPLAT_STATUS : SPLAT_STATUS -> type(SPLAT_STATUS),popMode;
+CheckDuration_SPLAT_SYS  : SPLAT_SYS -> type(SPLAT_SYS),popMode;
+CheckDuration_SPLAT_YEAR : SPLAT_YEAR -> type(SPLAT_YEAR),popMode;
+
+CheckDuration_ANY : -> popMode, skip;
 
 mode NumberContinuation;
 NumberContinuation_CONTINUATION : ([ ]* NEWLINE)

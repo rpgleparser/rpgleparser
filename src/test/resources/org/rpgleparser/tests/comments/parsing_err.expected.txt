@@ -11,7 +11,7 @@ ID                       <ExcelYN>
 COLON                    <:>
 ID                       <PASSWD>
 COLON                    <:>
-HIDDEN:FREE_COMMENTS     <                        //>
+HIDDEN:FREE_COMMENTS     <//>
 HIDDEN:COMMENTS_TEXT_HIDDEN< CALL PGM          >
 HIDDEN:COMMENTS_EOL_HIDDEN<
 33723 >
