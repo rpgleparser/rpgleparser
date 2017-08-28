@@ -1685,7 +1685,7 @@ csZ_SUB:
 	cspec_fixed_standard_parts;
 			
 cs_operationExtender:
-  OPEN_PAREN
+  OPEN_PAREN?
   extender=CS_OperationAndExtender
   extender2=CS_OperationAndExtender?
   extender3=CS_OperationAndExtender?

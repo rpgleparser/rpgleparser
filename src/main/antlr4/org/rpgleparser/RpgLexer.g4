@@ -26,7 +26,7 @@ LEAD_WS5 :  '     ' { getCharPositionInLine()==5 }? -> skip;
 
 LEAD_WS5_Comments :  WORD5 { getCharPositionInLine()==5 }? -> channel(HIDDEN);
     //5 position blank means FREE, unless..
-FREE_SPEC : { getCharPositionInLine()==5 }? [  ] -> pushMode(OpCode), skip;
+FREE_SPEC : { getCharPositionInLine()==5 }? [  ] -> pushMode(FREE_Start), skip;
     // 6th position asterisk is a comment
 COMMENT_SPEC_FIXED : { getCharPositionInLine()==5 }? .'*' -> pushMode(FIXED_CommentMode), channel(HIDDEN) ;
     // X specs 
@@ -152,6 +152,13 @@ DIR_StringLiteralStart : ['] -> pushMode(InStringMode), type(StringLiteralStart)
 
 DIR_EOL : [ ]* NEWLINE { setText(getText().trim()); } -> type(EOL), popMode;
 
+mode CheckComment;
+CheckComment_COMMENT_SPEC_FIXED : .'*' -> type(COMMENT_SPEC_FIXED),popMode,pushMode(FIXED_CommentMode), channel(HIDDEN) ;
+CheckComment_NoSpace : -> skip,popMode;
+
+mode First5;
+First5_LEAD_WS5 :  '     ' -> skip,popMode;
+First5_LEAD_WS5_Comments : LEAD_WS5_Comments -> type(LEAD_WS5_Comments),channel(HIDDEN),popMode;
 
 mode SKIP_REMAINING_WS;
 DIR_FREE_OTHER_TEXT : ~[\r\n]* -> popMode, skip;
@@ -162,171 +169,261 @@ EOS_Text : ~[\r\n]+ ;
 
 EOS_EOL : NEWLINE -> type(EOL);
 
+mode FREE_Start;
+OP_WS : [ \t] [ \t]* -> skip;
 
-mode OpCode;
-OP_WS : [ \t] { getCharPositionInLine()>6 }? [ \t]* -> skip;
+OP_ACQ : [Aa] [Cc] [Qq] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_ACQ : [Aa] [Cc] [Qq] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_BEGSR : [Bb] [Ee] [Gg] [Ss] [Rr] -> mode(FREE);
 
-OP_BEGSR : [Bb] [Ee] [Gg] [Ss] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_CALLP : [Cc] [Aa] [Ll] [Ll] [Pp] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_CALLP : [Cc] [Aa] [Ll] [Ll] [Pp] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_CHAIN : [Cc] [Hh] [Aa] [Ii] [Nn] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_CHAIN : [Cc] [Hh] [Aa] [Ii] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_CLEAR : [Cc] [Ll] [Ee] [Aa] [Rr] -> mode(FREE);
 
-OP_CLEAR : [Cc] [Ll] [Ee] [Aa] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_CLOSE : [Cc] [Ll] [Oo] [Ss] [Ee] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_CLOSE : [Cc] [Ll] [Oo] [Ss] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_COMMIT : [Cc] [Oo] [Mm] [Mm] [Ii] [Tt] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_COMMIT : [Cc] [Oo] [Mm] [Mm] [Ii] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_DEALLOC : [Dd] [Ee] [Aa] [Ll] [Ll] [Oo] [Cc] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DEALLOC : [Dd] [Ee] [Aa] [Ll] [Ll] [Oo] [Cc] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_DELETE : [Dd] [Ee] [Ll] [Ee] [Tt] [Ee] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DELETE : [Dd] [Ee] [Ll] [Ee] [Tt] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_DOU : [Dd] [Oo] [Uu] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DOU : [Dd] [Oo] [Uu] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_DOW : [Dd] [Oo] [Ww] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DOW : [Dd] [Oo] [Ww] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_DSPLY : [Dd] [Ss] [Pp] [Ll] [Yy] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DSPLY : [Dd] [Ss] [Pp] [Ll] [Yy] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_DUMP : [Dd] [Uu] [Mm] [Pp] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_DUMP : [Dd] [Uu] [Mm] [Pp] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_ELSE : [Ee] [Ll] [Ss] [Ee] -> mode(FREE);
 
-OP_ELSE : [Ee] [Ll] [Ss] [Ee] { isEndOfToken() }? -> mode(FREE);
+OP_ELSEIF : [Ee] [Ll] [Ss] [Ee] [Ii] [Ff] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_ELSEIF : [Ee] [Ll] [Ss] [Ee] [Ii] [Ff] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_ENDDO : [Ee] [Nn] [Dd] [Dd] [Oo] -> mode(FREE);
 
-OP_ENDDO : [Ee] [Nn] [Dd] [Dd] [Oo] { isEndOfToken() }? -> mode(FREE);
+OP_ENDFOR : [Ee] [Nn] [Dd] [Ff] [Oo] [Rr] -> mode(FREE);
 
-OP_ENDFOR : [Ee] [Nn] [Dd] [Ff] [Oo] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_ENDIF : [Ee] [Nn] [Dd] [Ii] [Ff] -> mode(FREE);
 
-OP_ENDIF : [Ee] [Nn] [Dd] [Ii] [Ff] { isEndOfToken() }? -> mode(FREE);
+OP_ENDMON : [Ee] [Nn] [Dd] [Mm] [Oo] [Nn] -> mode(FREE);
 
-OP_ENDMON : [Ee] [Nn] [Dd] [Mm] [Oo] [Nn] { isEndOfToken() }? -> mode(FREE);
+OP_ENDSL : [Ee] [Nn] [Dd] [Ss] [Ll] -> mode(FREE);
 
-OP_ENDSL : [Ee] [Nn] [Dd] [Ss] [Ll] { isEndOfToken() }? -> mode(FREE);
+OP_ENDSR : [Ee] [Nn] [Dd] [Ss] [Rr] -> mode(FREE);
 
-OP_ENDSR : [Ee] [Nn] [Dd] [Ss] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_EVAL : [Ee] [Vv] [Aa] [Ll] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_EVAL : [Ee] [Vv] [Aa] [Ll] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_EVALR : [Ee] [Vv] [Aa] [Ll] [Rr] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_EVALR : [Ee] [Vv] [Aa] [Ll] [Rr] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_EVAL_CORR : [Ee] [Vv] [Aa] [Ll] [-] [Cc] [Oo] [Rr] [Rr] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_EVAL_CORR : [Ee] [Vv] [Aa] [Ll] [-] [Cc] [Oo] [Rr] [Rr] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_EXCEPT : [Ee] [Xx] [Cc] [Ee] [Pp] [Tt] -> mode(FREE);
 
-OP_EXCEPT : [Ee] [Xx] [Cc] [Ee] [Pp] [Tt] { isEndOfToken() }? -> mode(FREE);
+OP_EXFMT : [Ee] [Xx] [Ff] [Mm] [Tt] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_EXFMT : [Ee] [Xx] [Ff] [Mm] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_EXSR : [Ee] [Xx] [Ss] [Rr] -> mode(FREE);
 
-OP_EXSR : [Ee] [Xx] [Ss] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_FEOD : [Ff] [Ee] [Oo] [Dd] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_FEOD : [Ff] [Ee] [Oo] [Dd] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_FOR : [Ff] [Oo] [Rr] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_FOR : [Ff] [Oo] [Rr] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_FORCE : [Ff] [Oo] [Rr] [Cc] [Ee] -> mode(FREE);
 
-OP_FORCE : [Ff] [Oo] [Rr] [Cc] [Ee] { isEndOfToken() }? -> mode(FREE);
+OP_IF : [Ii] [Ff] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_IF : [Ii] [Ff] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_IN : [Ii] [Nn] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_IN : [Ii] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_ITER : [Ii] [Tt] [Ee] [Rr] -> mode(FREE);
 
-OP_ITER : [Ii] [Tt] [Ee] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_LEAVE : [Ll] [Ee] [Aa] [Vv] [Ee] -> mode(FREE);
 
-OP_LEAVE : [Ll] [Ee] [Aa] [Vv] [Ee] { isEndOfToken() }? -> mode(FREE);
+OP_LEAVESR : [Ll] [Ee] [Aa] [Vv] [Ee] [Ss] [Rr] -> mode(FREE);
 
-OP_LEAVESR : [Ll] [Ee] [Aa] [Vv] [Ee] [Ss] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_MONITOR : [Mm] [Oo] [Nn] [Ii] [Tt] [Oo] [Rr] -> mode(FREE);
 
-OP_MONITOR : [Mm] [Oo] [Nn] [Ii] [Tt] [Oo] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_NEXT : [Nn] [Ee] [Xx] [Tt] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_NEXT : [Nn] [Ee] [Xx] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_ON_ERROR : [Oo] [Nn] [-] [Ee] [Rr] [Rr] [Oo] [Rr] -> mode(FREE);
 
-OP_ON_ERROR : [Oo] [Nn] [-] [Ee] [Rr] [Rr] [Oo] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_OPEN : [Oo] [Pp] [Ee] [Nn] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_OPEN : [Oo] [Pp] [Ee] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_OTHER : [Oo] [Tt] [Hh] [Ee] [Rr] -> mode(FREE);
 
-OP_OTHER : [Oo] [Tt] [Hh] [Ee] [Rr] { isEndOfToken() }? -> mode(FREE);
+OP_OUT : [Oo] [Uu] [Tt] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_OUT : [Oo] [Uu] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_POST : [Pp] [Oo] [Ss] [Tt] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_POST : [Pp] [Oo] [Ss] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_READ : [Rr] [Ee] [Aa] [Dd] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READ : [Rr] [Ee] [Aa] [Dd] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_READC : [Rr] [Ee] [Aa] [Dd] [Cc] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READC : [Rr] [Ee] [Aa] [Dd] [Cc] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_READE : [Rr] [Ee] [Aa] [Dd] [Ee] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READE : [Rr] [Ee] [Aa] [Dd] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_READP : [Rr] [Ee] [Aa] [Dd] [Pp] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READP : [Rr] [Ee] [Aa] [Dd] [Pp] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_READPE : [Rr] [Ee] [Aa] [Dd] [Pp] [Ee] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_READPE : [Rr] [Ee] [Aa] [Dd] [Pp] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_REL : [Rr] [Ee] [Ll] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_REL : [Rr] [Ee] [Ll] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_RESET : [Rr] [Ee] [Ss] [Ee] [Tt] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_RESET : [Rr] [Ee] [Ss] [Ee] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_RETURN : [Rr] [Ee] [Tt] [Uu] [Rr] [Nn] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_RETURN : [Rr] [Ee] [Tt] [Uu] [Rr] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_ROLBK : [Rr] [Oo] [Ll] [Bb] [Kk] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_ROLBK : [Rr] [Oo] [Ll] [Bb] [Kk] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_SELECT : [Ss] [Ee] [Ll] [Ee] [Cc] [Tt] -> mode(FREE);
 
-OP_SELECT : [Ss] [Ee] [Ll] [Ee] [Cc] [Tt] { isEndOfToken() }? -> mode(FREE);
+OP_SETGT : [Ss] [Ee] [Tt] [Gg] [Tt] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_SETGT : [Ss] [Ee] [Tt] [Gg] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_SETLL : [Ss] [Ee] [Tt] [Ll] [Ll] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_SETLL : [Ss] [Ee] [Tt] [Ll] [Ll] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_SORTA : [Ss] [Oo] [Rr] [Tt] [Aa] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_SORTA : [Ss] [Oo] [Rr] [Tt] [Aa] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_TEST : [Tt] [Ee] [Ss] [Tt] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_TEST : [Tt] [Ee] [Ss] [Tt] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
+OP_UNLOCK : [Uu] [Nn] [Ll] [Oo] [Cc] [Kk] -> mode(FREE), pushMode(FreeOpExtender);
 
-OP_UNLOCK : [Uu] [Nn] [Ll] [Oo] [Cc] [Kk] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
-
-OP_UPDATE : [Uu] [Pp] [Dd] [Aa] [Tt] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
-
-OP_WHEN : [Ww] [Hh] [Ee] [Nn] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
-
-OP_WRITE : [Ww] [Rr] [Ii] [Tt] [Ee] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
-
-OP_XML_INTO : [Xx] [Mm] [Ll] [-] [Ii] [Nn] [Tt] [Oo] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
-
-OP_XML_SAX : [Xx] [Mm] [Ll] [-] [Ss] [Aa] [Xx] { isEndOfToken() }? -> mode(FREE), pushMode(FreeOpExtender);
-
-OP_NoSpace : -> skip,mode(FREE);
+OP_UPDATE : [Uu] [Pp] [Dd] [Aa] [Tt] [Ee] -> mode(FREE), pushMode(FreeOpExtender);
+
+OP_WHEN : [Ww] [Hh] [Ee] [Nn] -> mode(FREE), pushMode(FreeOpExtender);
+
+OP_WRITE : [Ww] [Rr] [Ii] [Tt] [Ee] -> mode(FREE), pushMode(FreeOpExtender);
+
+OP_XML_INTO : [Xx] [Mm] [Ll] [-] [Ii] [Nn] [Tt] [Oo] -> mode(FREE), pushMode(FreeOpExtender);
+
+OP_XML_SAX : [Xx] [Mm] [Ll] [-] [Ss] [Aa] [Xx] -> mode(FREE), pushMode(FreeOpExtender);
+
+DS_Standalone : [dD] [cC] [lL] '-' [sS]  -> mode(FREE);
+
+DS_DataStructureStart : [dD] [cC] [lL] '-' [dD] [sS]  -> mode(FREE);
+
+DS_DataStructureEnd : [eE] [nN] [dD] '-' [dD] [sS]  -> mode(FREE);
+
+DS_PrototypeStart : [dD] [cC] [lL] '-' [pP] [rR]  -> mode(FREE);
+
+DS_PrototypeEnd : [eE] [nN] [dD] '-' [pP] [rR]  -> mode(FREE);
+
+DS_Parm : [dD] [cC] [lL] '-' [pP] [aA] [rR] [mM] -> mode(FREE);
+
+DS_SubField : [dD] [cC] [lL] '-' [sS] [uU] [bB] [fF] -> mode(FREE);
+
+DS_ProcedureInterfaceStart : [dD] [cC] [lL] '-' [pP] [iI]  -> mode(FREE);
+
+DS_ProcedureInterfaceEnd : [eE] [nN] [dD] '-' [pP] [iI]  -> mode(FREE);
+
+DS_ProcedureStart : [dD] [cC] [lL] '-' [pP] [rR] [oO] [cC]  -> mode(FREE);
+
+DS_ProcedureEnd : [eE] [nN] [dD] '-' [pP] [rR] [oO] [cC]  -> mode(FREE);
+
+DS_Constant : [dD] [cC] [lL] '-' [cC]  -> mode(FREE);
+
+FS_FreeFile : [dD] [cC] [lL] '-' [fF]  -> mode(FREE);
+
+H_SPEC : [cC] [tT] [lL] '-' [oO] [pP] [tT] -> mode(FREE);
+
+EXEC_SQL : [Ee] [Xx] [Ee] [Cc] [ ]+[Ss] [Qq] [Ll]-> pushMode(SQL_MODE) ;
+
+//Keywords copied
+FREE_Start_KEYWORD_ALIAS  : KEYWORD_ALIAS -> type(KEYWORD_ALIAS),mode(FREE);
+FREE_Start_KEYWORD_ALIGN  : KEYWORD_ALIGN -> type(KEYWORD_ALIGN),mode(FREE);
+FREE_Start_KEYWORD_ALT    : KEYWORD_ALT -> type(KEYWORD_ALT),mode(FREE);
+FREE_Start_KEYWORD_ALTSEQ : KEYWORD_ALTSEQ -> type(KEYWORD_ALTSEQ),mode(FREE);
+FREE_Start_KEYWORD_ASCEND : KEYWORD_ASCEND -> type(KEYWORD_ASCEND),mode(FREE);
+FREE_Start_KEYWORD_BASED  : KEYWORD_BASED -> type(KEYWORD_BASED),mode(FREE);
+FREE_Start_KEYWORD_CCSID  : KEYWORD_CCSID -> type(KEYWORD_CCSID),mode(FREE);
+FREE_Start_KEYWORD_CLASS  : KEYWORD_CLASS -> type(KEYWORD_CLASS),mode(FREE);
+FREE_Start_KEYWORD_CONST  : KEYWORD_CONST -> type(KEYWORD_CONST),mode(FREE);
+FREE_Start_KEYWORD_CTDATA : KEYWORD_CTDATA -> type(KEYWORD_CTDATA),mode(FREE);
+FREE_Start_KEYWORD_DATFMT : KEYWORD_DATFMT -> type(KEYWORD_DATFMT),mode(FREE);
+FREE_Start_KEYWORD_DESCEND: KEYWORD_DESCEND -> type(KEYWORD_DESCEND),mode(FREE);
+FREE_Start_KEYWORD_DIM    : KEYWORD_DIM -> type(KEYWORD_DIM),mode(FREE);
+FREE_Start_KEYWORD_DTAARA : KEYWORD_DTAARA -> type(KEYWORD_DTAARA),mode(FREE);
+FREE_Start_KEYWORD_EXPORT : KEYWORD_EXPORT -> type(KEYWORD_EXPORT),mode(FREE);
+FREE_Start_KEYWORD_EXT    : KEYWORD_EXT -> type(KEYWORD_EXT),mode(FREE);
+FREE_Start_KEYWORD_EXTFLD : KEYWORD_EXTFLD -> type(KEYWORD_EXTFLD),mode(FREE);
+FREE_Start_KEYWORD_EXTFMT : KEYWORD_EXTFMT -> type(KEYWORD_EXTFMT),mode(FREE);
+FREE_Start_KEYWORD_EXTNAME: KEYWORD_EXTNAME -> type(KEYWORD_EXTNAME),mode(FREE);
+FREE_Start_KEYWORD_EXTPGM : KEYWORD_EXTPGM -> type(KEYWORD_EXTPGM),mode(FREE);
+FREE_Start_KEYWORD_EXTPROC: KEYWORD_EXTPROC -> type(KEYWORD_EXTPROC),mode(FREE);
+FREE_Start_KEYWORD_FROMFILE : KEYWORD_FROMFILE -> type(KEYWORD_FROMFILE),mode(FREE);
+FREE_Start_KEYWORD_IMPORT : KEYWORD_IMPORT -> type(KEYWORD_IMPORT),mode(FREE);
+FREE_Start_KEYWORD_INZ    : KEYWORD_INZ -> type(KEYWORD_INZ),mode(FREE);
+FREE_Start_KEYWORD_LEN    : KEYWORD_LEN -> type(KEYWORD_LEN),mode(FREE);
+FREE_Start_KEYWORD_LIKEDS : KEYWORD_LIKEDS -> type(KEYWORD_LIKEDS),mode(FREE);
+FREE_Start_KEYWORD_LIKE   : KEYWORD_LIKE -> type(KEYWORD_LIKE),mode(FREE);
+FREE_Start_KEYWORD_LIKEFILE : KEYWORD_LIKEFILE -> type(KEYWORD_LIKEFILE),mode(FREE);
+FREE_Start_KEYWORD_LIKEREC: KEYWORD_LIKEREC -> type(KEYWORD_LIKEREC),mode(FREE);
+FREE_Start_KEYWORD_NOOPT  : KEYWORD_NOOPT -> type(KEYWORD_NOOPT),mode(FREE);
+FREE_Start_KEYWORD_OCCURS : KEYWORD_OCCURS -> type(KEYWORD_OCCURS),mode(FREE);
+FREE_Start_KEYWORD_OPDESC : KEYWORD_OPDESC -> type(KEYWORD_OPDESC),mode(FREE);
+FREE_Start_KEYWORD_OPTIONS: KEYWORD_OPTIONS -> type(KEYWORD_OPTIONS),mode(FREE);
+FREE_Start_KEYWORD_OVERLAY: KEYWORD_OVERLAY -> type(KEYWORD_OVERLAY),mode(FREE);
+FREE_Start_KEYWORD_PACKEVEN : KEYWORD_PACKEVEN -> type(KEYWORD_PACKEVEN),mode(FREE);
+FREE_Start_KEYWORD_PERRCD : KEYWORD_PERRCD -> type(KEYWORD_PERRCD),mode(FREE);
+FREE_Start_KEYWORD_PREFIX : KEYWORD_PREFIX -> type(KEYWORD_PREFIX),mode(FREE);
+FREE_Start_KEYWORD_POS    : KEYWORD_POS -> type(KEYWORD_POS),mode(FREE);
+FREE_Start_KEYWORD_PROCPTR: KEYWORD_PROCPTR -> type(KEYWORD_PROCPTR),mode(FREE);
+FREE_Start_KEYWORD_QUALIFIED : KEYWORD_QUALIFIED -> type(KEYWORD_QUALIFIED),mode(FREE);
+FREE_Start_KEYWORD_RTNPARM: KEYWORD_RTNPARM -> type(KEYWORD_RTNPARM),mode(FREE);
+FREE_Start_KEYWORD_STATIC : KEYWORD_STATIC -> type(KEYWORD_STATIC),mode(FREE);
+FREE_Start_KEYWORD_TEMPLATE : KEYWORD_TEMPLATE -> type(KEYWORD_TEMPLATE),mode(FREE);
+FREE_Start_KEYWORD_TIMFMT : KEYWORD_TIMFMT -> type(KEYWORD_TIMFMT),mode(FREE);
+FREE_Start_KEYWORD_TOFILE : KEYWORD_TOFILE -> type(KEYWORD_TOFILE),mode(FREE);
+FREE_Start_KEYWORD_VALUE  : KEYWORD_VALUE -> type(KEYWORD_VALUE),mode(FREE);
+FREE_Start_KEYWORD_VARYING: KEYWORD_VARYING -> type(KEYWORD_VARYING),mode(FREE);
+FREE_Start_KEYWORD_BLOCK  : KEYWORD_BLOCK -> type(KEYWORD_BLOCK),mode(FREE);
+FREE_Start_KEYWORD_COMMIT : KEYWORD_COMMIT -> type(KEYWORD_COMMIT),mode(FREE);
+FREE_Start_KEYWORD_DEVID  : KEYWORD_DEVID -> type(KEYWORD_DEVID),mode(FREE);
+FREE_Start_KEYWORD_EXTDESC: KEYWORD_EXTDESC -> type(KEYWORD_EXTDESC),mode(FREE);
+FREE_Start_KEYWORD_EXTFILE: KEYWORD_EXTFILE -> type(KEYWORD_EXTFILE),mode(FREE);
+FREE_Start_KEYWORD_EXTIND : KEYWORD_EXTIND -> type(KEYWORD_EXTIND),mode(FREE);
+FREE_Start_KEYWORD_EXTMBR : KEYWORD_EXTMBR -> type(KEYWORD_EXTMBR),mode(FREE);
+FREE_Start_KEYWORD_FORMLEN: KEYWORD_FORMLEN -> type(KEYWORD_FORMLEN),mode(FREE);
+FREE_Start_KEYWORD_FORMOFL: KEYWORD_FORMOFL -> type(KEYWORD_FORMOFL),mode(FREE);
+FREE_Start_KEYWORD_IGNORE : KEYWORD_IGNORE -> type(KEYWORD_IGNORE),mode(FREE);
+FREE_Start_KEYWORD_INCLUDE: KEYWORD_INCLUDE -> type(KEYWORD_INCLUDE),mode(FREE);
+FREE_Start_KEYWORD_INDDS  : KEYWORD_INDDS -> type(KEYWORD_INDDS),mode(FREE);
+FREE_Start_KEYWORD_INFDS  : KEYWORD_INFDS -> type(KEYWORD_INFDS),mode(FREE);
+FREE_Start_KEYWORD_INFSR  : KEYWORD_INFSR -> type(KEYWORD_INFSR),mode(FREE);
+FREE_Start_KEYWORD_KEYLOC : KEYWORD_KEYLOC -> type(KEYWORD_KEYLOC),mode(FREE);
+FREE_Start_KEYWORD_MAXDEV : KEYWORD_MAXDEV -> type(KEYWORD_MAXDEV),mode(FREE);
+FREE_Start_KEYWORD_OFLIND : KEYWORD_OFLIND -> type(KEYWORD_OFLIND),mode(FREE);
+FREE_Start_KEYWORD_PASS   : KEYWORD_PASS -> type(KEYWORD_PASS),mode(FREE);
+FREE_Start_KEYWORD_PGMNAME: KEYWORD_PGMNAME -> type(KEYWORD_PGMNAME),mode(FREE);
+FREE_Start_KEYWORD_PLIST  : KEYWORD_PLIST -> type(KEYWORD_PLIST),mode(FREE);
+FREE_Start_KEYWORD_PRTCTL : KEYWORD_PRTCTL -> type(KEYWORD_PRTCTL),mode(FREE);
+FREE_Start_KEYWORD_RAFDATA: KEYWORD_RAFDATA -> type(KEYWORD_RAFDATA),mode(FREE);
+FREE_Start_KEYWORD_RECNO  : KEYWORD_RECNO -> type(KEYWORD_RECNO),mode(FREE);
+FREE_Start_KEYWORD_RENAME : KEYWORD_RENAME -> type(KEYWORD_RENAME),mode(FREE);
+FREE_Start_KEYWORD_SAVEDS : KEYWORD_SAVEDS -> type(KEYWORD_SAVEDS),mode(FREE);
+FREE_Start_KEYWORD_SAVEIND: KEYWORD_SAVEIND -> type(KEYWORD_SAVEIND),mode(FREE);
+FREE_Start_KEYWORD_SFILE  : KEYWORD_SFILE -> type(KEYWORD_SFILE),mode(FREE);
+FREE_Start_KEYWORD_SLN    : KEYWORD_SLN -> type(KEYWORD_SLN),mode(FREE);
+FREE_Start_KEYWORD_SQLTYPE: KEYWORD_SQLTYPE -> type(KEYWORD_SQLTYPE),mode(FREE);
+FREE_Start_KEYWORD_USROPN : KEYWORD_USROPN -> type(KEYWORD_USROPN),mode(FREE);
+FREE_Start_KEYWORD_DISK   : KEYWORD_DISK -> type(KEYWORD_DISK),mode(FREE);
+FREE_Start_KEYWORD_WORKSTN: KEYWORD_WORKSTN -> type(KEYWORD_WORKSTN),mode(FREE);
+FREE_Start_KEYWORD_PRINTER: KEYWORD_PRINTER -> type(KEYWORD_PRINTER),mode(FREE);
+FREE_Start_KEYWORD_SPECIAL: KEYWORD_SPECIAL -> type(KEYWORD_SPECIAL),mode(FREE);
+FREE_Start_KEYWORD_KEYED  : KEYWORD_KEYED -> type(KEYWORD_KEYED),mode(FREE);
+FREE_Start_KEYWORD_USAGE  : KEYWORD_USAGE -> type(KEYWORD_USAGE),mode(FREE);
+FREE_Start_KEYWORD_PSDS   : KEYWORD_PSDS -> type(KEYWORD_PSDS),mode(FREE);
+
+FREE_Start_ID :  //Limited match ID (mostly alpha)
+   [a-zA-Z] [#@$a-zA-Z0-9_]* -> type(ID),mode(FREE);
+
+FREE_Start_NoSpace : -> skip,mode(FREE);
 
 
 mode FREE;
-DS_Standalone : [dD] [cC] [lL] '-' [sS] ;//-> pushMode(F_SPEC_FREE);
-
-DS_DataStructureStart : [dD] [cC] [lL] '-' [dD] [sS] ;//-> pushMode(F_SPEC_FREE);
-
-DS_DataStructureEnd : [eE] [nN] [dD] '-' [dD] [sS] ;//-> pushMode(F_SPEC_FREE);
-
-DS_PrototypeStart : [dD] [cC] [lL] '-' [pP] [rR] ;//-> pushMode(F_SPEC_FREE);
-
-DS_PrototypeEnd : [eE] [nN] [dD] '-' [pP] [rR] ;//-> pushMode(F_SPEC_FREE);
-
-DS_Parm : [dD] [cC] [lL] '-' [pP] [aA] [rR] [mM] ;
-
-DS_SubField : [dD] [cC] [lL] '-' [sS] [uU] [bB] [fF] ;
-
-DS_ProcedureInterfaceStart : [dD] [cC] [lL] '-' [pP] [iI] ;//-> pushMode(F_SPEC_FREE);
-
-DS_ProcedureInterfaceEnd : [eE] [nN] [dD] '-' [pP] [iI] ;//-> pushMode(F_SPEC_FREE);
-
-DS_ProcedureStart : [dD] [cC] [lL] '-' [pP] [rR] [oO] [cC] ;//-> pushMode(F_SPEC_FREE);
-
-DS_ProcedureEnd : [eE] [nN] [dD] '-' [pP] [rR] [oO] [cC] ;//-> pushMode(F_SPEC_FREE);
-
-DS_Constant : [dD] [cC] [lL] '-' [cC] ;//-> pushMode(F_SPEC_FREE);
-
-FS_FreeFile : [dD] [cC] [lL] '-' [fF] ;//-> pushMode(F_SPEC_FREE);
-
-H_SPEC : [cC] [tT] [lL] '-' [oO] [pP] [tT] ;
+Inline_DS_DataStructureEnd : DS_DataStructureEnd -> type(DS_DataStructureEnd),mode(FREE);
 
 FREE_CONT : '...' [ ]* NEWLINE WORD5[ ]+ { setText("...");} -> type(CONTINUATION);
 
 FREE_COMMENTS80 : ~[\r\n] { getCharPositionInLine()>80 }? ~[\r\n]* -> channel(HIDDEN); // skip comments after 80
-
-EXEC_SQL : [Ee] [Xx] [Ee] [Cc] [ ]+[Ss] [Qq] [Ll]-> pushMode(SQL_MODE) ;
 
 // Built In functions
 BIF_ABS : '%'[aA] [bB] [sS] ;
@@ -763,188 +860,103 @@ OBJECT : [Oo] [Bb] [Jj] [Ee] [Cc] [Tt] ;
 
 // More Keywords
 KEYWORD_ALIAS : [Aa] [Ll] [Ii] [Aa] [Ss] ;
-
 KEYWORD_ALIGN : [Aa] [Ll] [Ii] [Gg] [Nn] ;
-
 KEYWORD_ALT : [Aa] [Ll] [Tt] ;
-
 KEYWORD_ALTSEQ : [Aa] [Ll] [Tt] [Ss] [Ee] [Qq] ;
-
 KEYWORD_ASCEND : [Aa] [Ss] [Cc] [Ee] [Nn] [Dd] ;
-
 KEYWORD_BASED : [Bb] [Aa] [Ss] [Ee] [Dd] ;
-
 KEYWORD_CCSID : [Cc] [Cc] [Ss] [Ii] [Dd] ;
-
 KEYWORD_CLASS : [Cc] [Ll] [Aa] [Ss] [Ss] ;
-
 KEYWORD_CONST : [Cc] [Oo] [Nn] [Ss] [Tt] ;
-
 KEYWORD_CTDATA : [Cc] [Tt] [Dd] [Aa] [Tt] [Aa] ;
-
 KEYWORD_DATFMT : [Dd] [Aa] [Tt] [Ff] [Mm] [Tt] ;
-
 KEYWORD_DESCEND : [Dd] [Ee] [Ss] [Cc] [Ee] [Nn] [Dd] ;
-
 KEYWORD_DIM : [Dd] [Ii] [Mm] ;
-
 KEYWORD_DTAARA : [Dd] [Tt] [Aa] [Aa] [Rr] [Aa] ;
-
 KEYWORD_EXPORT : [Ee] [Xx] [Pp] [Oo] [Rr] [Tt] ;
-
 KEYWORD_EXT : [Ee] [Xx] [Tt] ;
-
 KEYWORD_EXTFLD : [Ee] [Xx] [Tt] [Ff] [Ll] [Dd] ;
-
 KEYWORD_EXTFMT : [Ee] [Xx] [Tt] [Ff] [Mm] [Tt] ;
-
 KEYWORD_EXTNAME : [Ee] [Xx] [Tt] [Nn] [Aa] [Mm] [Ee] ;
-
 KEYWORD_EXTPGM : [Ee] [Xx] [Tt] [Pp] [Gg] [Mm] ;
-
 KEYWORD_EXTPROC : [Ee] [Xx] [Tt] [Pp] [Rr] [Oo] [Cc] ;
-
 KEYWORD_FROMFILE : [Ff] [Rr] [Oo] [Mm] [Ff] [Ii] [Ll] [Ee] ;
-
 KEYWORD_IMPORT : [Ii] [Mm] [Pp] [Oo] [Rr] [Tt] ;
-
 KEYWORD_INZ : [Ii] [Nn] [Zz] ;
-
 KEYWORD_LEN : [Ll] [Ee] [Nn] ;
-
 KEYWORD_LIKEDS : [Ll] [Ii] [Kk] [Ee] [Dd] [Ss] ;
-
 KEYWORD_LIKE : [Ll] [Ii] [Kk] [Ee] ;
-
 KEYWORD_LIKEFILE : [Ll] [Ii] [Kk] [Ee] [Ff] [Ii] [Ll] [Ee] ;
-
 KEYWORD_LIKEREC : [Ll] [Ii] [Kk] [Ee] [Rr] [Ee] [Cc] ;
-
 KEYWORD_NOOPT : [Nn] [Oo] [Oo] [Pp] [Tt] ;
-
 KEYWORD_OCCURS : [Oo] [Cc] [Cc] [Uu] [Rr] [Ss] ;
-
 KEYWORD_OPDESC : [Oo] [Pp] [Dd] [Ee] [Ss] [Cc] ;
-
 KEYWORD_OPTIONS : [Oo] [Pp] [Tt] [Ii] [Oo] [Nn] [Ss] ;
-
 KEYWORD_OVERLAY : [Oo] [Vv] [Ee] [Rr] [Ll] [Aa] [Yy] ;
-
 KEYWORD_PACKEVEN : [Pp] [Aa] [Cc] [Kk] [Ee] [Vv] [Ee] [Nn] ;
-
 KEYWORD_PERRCD : [Pp] [Ee] [Rr] [Rr] [Cc] [Dd] ;
-
 KEYWORD_PREFIX : [Pp] [Rr] [Ee] [Ff] [Ii] [Xx] ;
-
 KEYWORD_POS : [Pp] [Oo] [Ss] ;
-
 KEYWORD_PROCPTR : [Pp] [Rr] [Oo] [Cc] [Pp] [Tt] [Rr] ;
-
 KEYWORD_QUALIFIED : [Qq] [Uu] [Aa] [Ll] [Ii] [Ff] [Ii] [Ee] [Dd] ;
-
 KEYWORD_RTNPARM : [Rr] [Tt] [Nn] [Pp] [Aa] [Rr] [Mm] ;
-
 KEYWORD_STATIC : [Ss] [Tt] [Aa] [Tt] [Ii] [Cc] ;
-
 KEYWORD_TEMPLATE : [Tt] [Ee] [Mm] [Pp] [Ll] [Aa] [Tt] [Ee] ;
-
 KEYWORD_TIMFMT : [Tt] [Ii] [Mm] [Ff] [Mm] [Tt] ;
-
 KEYWORD_TOFILE : [Tt] [Oo] [Ff] [Ii] [Ll] [Ee] ;
-
 KEYWORD_VALUE : [Vv] [Aa] [Ll] [Uu] [Ee] ;
-
 KEYWORD_VARYING : [Vv] [Aa] [Rr] [Yy] [Ii] [Nn] [Gg] ;
+
 
 // File spec keywords
 KEYWORD_BLOCK : [bB] [lL] [oO] [cC] [kK] ;
-
 KEYWORD_COMMIT : [cC] [oO] [mM] [mM] [iI] [tT] ;
-
 KEYWORD_DEVID : [dD] [eE] [vV] [iI] [dD] ;
-
 KEYWORD_EXTDESC : [eE] [xX] [tT] [dD] [eE] [sS] [cC] ;
-
 KEYWORD_EXTFILE  : [eE] [xX] [tT] [fF] [iI] [lL] [eE] ;
-
 KEYWORD_EXTIND  : [eE] [xX] [tT] [iI] [nN] [dD] ;
-
 KEYWORD_EXTMBR  : [eE] [xX] [tT] [mM] [bB] [rR] ;
-
 KEYWORD_FORMLEN : [fF] [oO] [rR] [mM] [lL] [eE] [nN] ;
-
 KEYWORD_FORMOFL : [fF] [oO] [rR] [mM] [oO] [fF] [lL] ;
-
 KEYWORD_IGNORE : [iI] [gG] [nN] [oO] [rR] [eE] ;
-
 KEYWORD_INCLUDE : [iI] [nN] [cC] [lL] [uU] [dD] [eE] ;
-
 KEYWORD_INDDS : [iI] [nN] [dD] [dD] [sS] ;
-
 KEYWORD_INFDS : [iI] [nN] [fF] [dD] [sS] ;
-
 KEYWORD_INFSR : [iI] [nN] [fF] [sS] [rR] ;
-
 KEYWORD_KEYLOC : [kK] [eE] [yY] [lL] [oO] [cC] ;
-
 KEYWORD_MAXDEV : [mM] [aA] [xX] [dD] [eE] [vV] ;
-
 KEYWORD_OFLIND : [oO] [fF] [lL] [iI] [nN] [dD] ;
-
 KEYWORD_PASS : [pP] [aA] [sS] [sS] ;
-
 KEYWORD_PGMNAME : [pP] [gG] [mM] [nN] [aA] [mM] [eE] ;
-
 KEYWORD_PLIST : [pP] [lL] [iI] [sS] [tT] ;
-
 KEYWORD_PRTCTL : [pP] [rR] [tT] [cC] [tT] [lL] ;
-
 KEYWORD_RAFDATA : [rR] [aA] [fF] [dD] [aA] [tT] [aA] ;
-
 KEYWORD_RECNO : [rR] [eE] [cC] [nN] [oO] ;
-
 KEYWORD_RENAME : [rR] [eE] [nN] [aA] [mM] [eE] ;
-
 KEYWORD_SAVEDS : [sS] [aA] [vV] [eE] [dD] [sS] ;
-
 KEYWORD_SAVEIND : [sS] [aA] [vV] [eE] [iI] [nN] [dD] ;
-
 KEYWORD_SFILE : [sS] [fF] [iI] [lL] [eE] ;
-
 KEYWORD_SLN : [sS] [lL] [nN] ;
-
 KEYWORD_SQLTYPE : [sS] [qQ] [lL] [tT] [yY] [pP] [eE] { _modeStack.contains(FIXED_DefSpec) }? ;
-
 KEYWORD_USROPN : [uU] [sS] [rR] [oO] [pP] [nN] ;
-
 KEYWORD_DISK : [dD] [iI] [sS] [kK] ;
-
 KEYWORD_WORKSTN : [wW] [oO] [rR] [kK] [sS] [tT] [nN] ;
-
 KEYWORD_PRINTER : [pP] [rR] [iI] [nN] [tT] [eE] [rR] ;
-
 KEYWORD_SPECIAL : [sS] [pP] [eE] [cC] [iI] [aA] [lL] ;
-
 KEYWORD_KEYED : [kK] [eE] [yY] [eE] [dD] ;
-
 KEYWORD_USAGE : [uU] [sS] [aA] [gG] [eE] ;
-
 KEYWORD_PSDS : [pP] [sS] [dD] [sS] ;
 
 AMPERSAND : '&';
 
 // Boolean operators
 AND : [aA] [nN] [dD] ;
-
 OR : [oO] [rR] ;
-
 NOT : [nN] [oO] [tT] ;
 
 // Arithmetical Operators
 PLUS : '+' ;
-
 MINUS : '-' ;
-
 EXP : '**' ;
 
 ARRAY_REPEAT : { _input.LA(2) == ')' && _input.LA(-1) == '(' }? '*' ;
@@ -955,24 +967,16 @@ DIV : '/' ;
 
 // Assignment Operators
 CPLUS : '+=' ;
-
 CMINUS : '-=' ;
-
 CMULT : '*=' ;
-
 CDIV : '/=' ;
-
 CEXP : '**=' ;
 
 // Comparison Operators
 GT : '>' ;
-
 LT : '<' ;
-
 GE : '>=' ;
-
 LE : '<=' ;
-
 NE : '<>' ;
 
 FREE_OPEN_PAREN : OPEN_PAREN -> type(OPEN_PAREN) ;
@@ -1015,7 +1019,7 @@ ID : '*' [iI] [nN] ( [kK] [a-np-yA-NP-Y] | [uU] [1-8] )
    | '*' [mM] [a-zA-Z] [a-zA-Z] [a-zA-Z] [0-9] [0-9] [0-9] [0-9] // opcode DSPLY message id format
    | [#@%$a-zA-Z] { getCharPositionInLine() >= 7 }? [#@$a-zA-Z0-9_]* ;
 
-FREE_COMMENTS :  [ ]*? '//' { getCharPositionInLine()>=8 }? -> pushMode(FIXED_CommentMode_HIDDEN), channel(HIDDEN) ;
+FREE_COMMENTS :  [ ]*? '//' { getCharPositionInLine()>=8 }? {System.out.println("FREE_COMMENTS");}-> pushMode(FIXED_CommentMode_HIDDEN), channel(HIDDEN) ;
 
 FREE_WS : [ \t] { getCharPositionInLine()>6 }? [ \t]* -> skip;
 
@@ -1048,17 +1052,17 @@ FREE_LEAD_WS5_Comments :  WORD5 { getCharPositionInLine()==5 }? -> channel(HIDDE
 
 FREE_FREE_SPEC :  [ ] [ ] { getCharPositionInLine()==7 }? -> skip;
 
-C_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_CalcSpec }? -> popMode, popMode;
+C_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_CalcSpec }? {System.out.println("C_FREE_NEWLINE");}-> popMode, popMode;
 
-O_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_OutputSpec_PGMFIELD }? -> type(EOL), popMode, popMode, popMode;
+O_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_OutputSpec_PGMFIELD }? {System.out.println("O_FREE_NEWLINE");}-> type(EOL), popMode, popMode, popMode;
 
-D_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_DefSpec }? -> type(EOL), popMode, popMode;
+D_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_DefSpec }? {System.out.println("D_FREE_NEWLINE");}-> type(EOL), popMode, popMode;
 
-F_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_FileSpec }? -> type(EOL), popMode, popMode;
+F_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_FileSpec }? {System.out.println("F_FREE_NEWLINE");}-> type(EOL), popMode, popMode;
 
-FREE_NEWLINE :   NEWLINE { _modeStack.peek()!=FIXED_CalcSpec }? -> skip, popMode;
+FREE_NEWLINE :   NEWLINE { _modeStack.peek()!=FIXED_CalcSpec }? {System.out.println("FREE_NEWLINE");}-> skip,pushMode(CheckComment),pushMode(First5); //Note: Removed popMode
 
-FREE_SEMI : SEMI -> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
+FREE_SEMI : SEMI {System.out.println("FREE_SEMI");}-> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
 
 mode NumberContinuation;
 NumberContinuation_CONTINUATION : ([ ]* NEWLINE)

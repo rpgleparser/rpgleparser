@@ -2,7 +2,7 @@
 DIRECTIVE                <  />
 DIR_FREE                 <FREE>
 EOL                      <>
-TIME                     <time>
+ID                       <time>
 '='                      <=>
 ID                       <hours>
 MULT                     <*>
@@ -23,9 +23,7 @@ EOL                      <>
           (op_eval
             (evalExpression
               (assignmentExpression
-                (simpleExpression
-                  (identifier (free_identifier (idOrKeyword (datatypeName time))))
-                )
+                (simpleExpression (identifier (free_identifier (idOrKeyword time))))
                 =
                 (expression
                   (expression
