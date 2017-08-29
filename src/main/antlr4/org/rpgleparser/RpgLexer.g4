@@ -6,60 +6,16 @@ lexer grammar RpgLexer;
 
 // Parser Rules
     //End Source.  Not more parsing after this.
-END_SOURCE :  '**' { getCharPositionInLine()==2 }? ~[\r\n]~[\r\n]~[\r\n]~[\r\n*]~[\r\n]* EOL  -> pushMode(EndOfSourceMode) ;
+END_SOURCE :  '**' ~[\r\n]~[\r\n]~[\r\n]~[\r\n*]~[\r\n]* EOL  -> pushMode(EndOfSourceMode) ;
     //Ignore or skip leading 5 white space.
-LEAD_WS5 :  '     ' { getCharPositionInLine()==5 }? -> skip;
+LEAD_WS5 :  '     ' -> pushMode(Selector),skip;
 
-LEAD_WS5_Comments :  WORD5 { getCharPositionInLine()==5 }? -> channel(HIDDEN);
+LEAD_WS5_Comments :  WORD5 -> pushMode(Selector),channel(HIDDEN);
     //5 position blank means FREE, unless..
-FREE_SPEC : { getCharPositionInLine()==5 }? [  ] -> pushMode(FREE_Start), skip;
-    // 6th position asterisk is a comment
-COMMENT_SPEC_FIXED : { getCharPositionInLine()==5 }? .'*' -> pushMode(FIXED_CommentMode), channel(HIDDEN) ;
-    // X specs 
-DS_FIXED : [dD] { getCharPositionInLine()==6 }? -> pushMode(FIXED_DefSpec) ; 
-
-FS_FIXED : [fF] { getCharPositionInLine()==6 }? -> pushMode(FIXED_FileSpec) ;
-
-OS_FIXED : [oO] { getCharPositionInLine()==6 }? -> pushMode(FIXED_OutputSpec) ;
-
-CS_FIXED : [cC] { getCharPositionInLine()==6 }? -> pushMode(FIXED_CalcSpec), pushMode(OnOffIndicatorMode), pushMode(IndicatorMode) ;
-
-CS_ExecSQL :[cC] '/' { getCharPositionInLine()==7 }? EXEC_SQL -> pushMode(FIXED_CalcSpec_SQL);
-
-IS_FIXED : [iI] { getCharPositionInLine()==6 }? -> pushMode(FIXED_InputSpec) ;
-
-PS_FIXED : [pP] { getCharPositionInLine()==6 }? -> pushMode(FIXED_ProcedureSpec) ;
-
-HS_FIXED : [hH] { getCharPositionInLine()==6 }? -> pushMode(HeaderSpecMode) ;
-
-BLANK_LINE : [ ] { getCharPositionInLine()==6 }? [ ]* NEWLINE -> skip;
-
-BLANK_SPEC_LINE1 : . NEWLINE { getCharPositionInLine()==7}?-> skip;
-
-BLANK_SPEC_LINE : .[ ] { getCharPositionInLine()==7 }? [ ]* NEWLINE -> skip;
-
-COMMENTS : [ ] { getCharPositionInLine()>=6 }? [ ]*? '//' -> pushMode(FIXED_CommentMode), channel(HIDDEN) ;
-
-DIRECTIVE :  . { getCharPositionInLine()>=6 }? [ ]*? '/' -> pushMode(DirectiveMode_Start) ;
-
 EMPTY_LINE : '                                                                           ' 
-    { getCharPositionInLine()>=80 }? 
+    { getCharPositionInLine()>=80 }? {System.out.println("EMPTY_LINE");}
     -> pushMode(FIXED_CommentMode), channel(HIDDEN) ;
-
-OPEN_PAREN : '(';
-
-CLOSE_PAREN : ')';
-
-NUMBER : ([0-9]+([.] [0-9]*)?) | [.] [0-9]+ ;
-
-SEMI : ';';
-
-COLON : ':';
-
-NEWLINE : '\r'? '\n' -> skip;
-
-WS : [ \t] { getCharPositionInLine()>6 }? [ \t]* -> skip ; // skip spaces, tabs
-
+EMPTY_NEWLINE : [ ]* '\r'? '\n' {System.out.println("EMPTY_NEWLINE");}-> skip;
 fragment WORD5 : ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ;
 
 fragment NAME5 : NAMECHAR NAMECHAR NAMECHAR NAMECHAR NAMECHAR;
@@ -73,6 +29,45 @@ fragment INITNAMECHAR : [A-Za-z$#@] ;
 fragment WORD_WCOLON : ~[\r\n] ;
 
 fragment WORD5_WCOLON : WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON WORD_WCOLON;
+
+
+mode Selector;
+FREE_SPEC : [  ] -> popMode,pushMode(FREE_Start), skip;
+    // 6th position asterisk is a comment
+COMMENT_SPEC_FIXED : .'*' -> popMode,pushMode(FIXED_CommentMode), channel(HIDDEN) ;
+    // X specs 
+DS_FIXED : [dD] -> popMode,pushMode(FIXED_DefSpec) ; 
+
+FS_FIXED : [fF] -> popMode,pushMode(FIXED_FileSpec) ;
+
+OS_FIXED : [oO] -> popMode,pushMode(FIXED_OutputSpec) ;
+
+CS_FIXED : [cC] -> popMode,pushMode(FIXED_CalcSpec), pushMode(OnOffIndicatorMode), pushMode(IndicatorMode) ;
+
+CS_ExecSQL :[cC] '/' EXEC_SQL -> popMode,pushMode(FIXED_CalcSpec_SQL);
+
+IS_FIXED : [iI] -> popMode,pushMode(FIXED_InputSpec) ;
+
+PS_FIXED : [pP] -> popMode,pushMode(FIXED_ProcedureSpec) ;
+
+HS_FIXED : [hH] -> popMode,pushMode(HeaderSpecMode) ;
+
+BLANK_LINE : [ ] [ ]* NEWLINE -> popMode,skip;
+
+BLANK_SPEC_LINE1 : . NEWLINE -> popMode,skip;
+
+BLANK_SPEC_LINE : .[ ] [ ]* NEWLINE -> popMode,skip;
+
+COMMENTS : [ ] [ ]*? '//' -> popMode,pushMode(FIXED_CommentMode), channel(HIDDEN) ;
+
+DIRECTIVE :  . [ ]*? '/' -> popMode,pushMode(DirectiveMode_Start) ;
+
+NEWLINE : '\r'? '\n' -> popMode,skip;
+WS : [ \t] { getCharPositionInLine()>6 }? [ \t]* -> skip ; // skip spaces, tabs
+
+GUTTER_COMMENTS: '                                                                        ' {System.out.println("GUTTER_COMMENTS");}
+    -> popMode,pushMode(FIXED_CommentMode), channel(HIDDEN) ;
+
 
 
 mode DirectiveTitle;
@@ -403,9 +398,13 @@ FREE_Start_KEYWORD_USAGE  : KEYWORD_USAGE -> type(KEYWORD_USAGE),mode(FREE);
 FREE_Start_KEYWORD_PSDS   : KEYWORD_PSDS -> type(KEYWORD_PSDS),mode(FREE);
 
 FREE_Start_ID :  //Limited match ID (mostly alpha)
-   [a-zA-Z] [#@$a-zA-Z0-9_]* -> type(ID),mode(FREE);
+   [a-zA-Z] [#@$a-zA-Z0-9_]*{System.out.println("FREE_Start_ID");} -> type(ID),mode(FREE);
 
-FREE_Start_NoSpace : -> skip,mode(FREE);
+FREE_GUTTER_COMMENTS: ~[ \t\r\n]  { getCharPositionInLine()>=81 }? {System.out.println("GUTTER_COMMENTS");}
+    -> more,mode(FREE),pushMode(FIXED_CommentMode), channel(HIDDEN) ;
+
+
+FREE_Start_NoSpace : {System.out.println("FREE_Start_NoSpace");}-> skip,mode(FREE);
 
 
 mode FREE;
@@ -940,19 +939,19 @@ GE : '>=' ;
 LE : '<=' ;
 NE : '<>' ;
 
-FREE_OPEN_PAREN : OPEN_PAREN -> type(OPEN_PAREN) ;
+OPEN_PAREN : '(';
 
-FREE_CLOSE_PAREN : CLOSE_PAREN -> type(CLOSE_PAREN) ;
+CLOSE_PAREN : ')';
 
 FREE_DOT : '.';
 
 FREE_NUMBER_CONT : NUMBER { _modeStack.peek()==FIXED_DefSpec }? -> pushMode(NumberContinuation), type(NUMBER) ;
 
-FREE_NUMBER : NUMBER -> type(NUMBER) ;
+NUMBER : ([0-9]+([.] [0-9]*)?) | [.] [0-9]+ ;
 
 EQUAL : '=' ;
 
-FREE_COLON : COLON -> type(COLON),pushMode(CheckDuration);
+COLON : ':' -> pushMode(CheckDuration);
 
 FREE_BY : [bB] [yY] ;
 
@@ -1023,7 +1022,7 @@ F_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_FileSpec }? {System.out.pr
 
 FREE_NEWLINE :   NEWLINE { _modeStack.peek()!=FIXED_CalcSpec }? {System.out.println("FREE_NEWLINE");}-> skip,pushMode(CheckComment),pushMode(First5); //Note: Removed popMode
 
-FREE_SEMI : SEMI {System.out.println("FREE_SEMI");}-> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
+FREE_SEMI : ';' {System.out.println("FREE_SEMI");}-> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
 
 
 
@@ -1429,7 +1428,7 @@ COMMENTS_EOL_HIDDEN_FREE : NEWLINE (WORD5 [ ])? {_modeStack.peek()==FREE}?->  ty
 mode SQL_MODE;
 SQL_WS : [ \t\r\n]+ -> skip;
 
-SEMI_COLON : SEMI -> type(SEMI), popMode, popMode;
+SEMI : ';' -> popMode, popMode;
 
 WORDS : ~[ ;\r\n] (~[;\r\n]+ ~[ ;\r\n])?;
 
@@ -1503,21 +1502,24 @@ D_COMMENTS80 : ~[\r\n] { getCharPositionInLine()>=81 }? ~[\r\n]* -> channel(HIDD
 
 EOL : NEWLINE ->  popMode;
 
-
 mode CONTINUATION_ELIPSIS;
 CE_WS : WS -> skip;
-
+CE_Start_NEWLINE : NEWLINE -> skip;
+CE_Start_WS5 :  LEAD_WS5 -> skip,popMode,pushMode(CONTINUATION_ELIPSIS_2);
+CE_LEAD_WS5_Comments : LEAD_WS5_Comments -> channel(HIDDEN),popMode,pushMode(CONTINUATION_ELIPSIS_2);
+CE_NEWLINE : NEWLINE -> skip;
 CE_COMMENTS80 :  ~[\r\n ] { getCharPositionInLine()>=81 }? ~[\r\n]* -> channel(HIDDEN);
 
-CE_LEAD_WS5 :  LEAD_WS5 -> skip;
+mode CONTINUATION_ELIPSIS_2;
+CE2_WS : WS -> skip;
 
-CE_LEAD_WS5_Comments : LEAD_WS5_Comments -> channel(HIDDEN);
+CE2_COMMENTS80 :  CE_COMMENTS80-> type(CE_COMMENTS80),channel(HIDDEN);
 
 CE_D_SPEC_FIXED : [dD] { _modeStack.peek()==FIXED_DefSpec && getCharPositionInLine()==6 }? -> skip, popMode ;
 
 CE_P_SPEC_FIXED : [pP] { _modeStack.peek()==FIXED_ProcedureSpec && getCharPositionInLine()==6 }? -> skip, popMode ;
 
-CE_NEWLINE : NEWLINE -> skip;
+CE2_NEWLINE : NEWLINE -> skip;
 
 
 mode FIXED_FileSpec;
