@@ -12,6 +12,7 @@ HIDDEN:DIR_COPY          <COPY>
 HIDDEN:DIR_OtherText     <SRCLIB>
 HIDDEN:DIR_Slash         </>
 HIDDEN:DIR_OtherText     <SRCFIL>
+HIDDEN:DIR_Comma         <,>
 HIDDEN:DIR_OtherText     <MBR3>
 DIRECTIVE                <O/>
 DIR_INCLUDE              <INCLUDE>

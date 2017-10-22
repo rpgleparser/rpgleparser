@@ -91,7 +91,7 @@ DIR_SET :  [sS] [eE] [tT] -> popMode,pushMode(DirectiveMode) ;
 
 DIR_RESTORE : [rR] [eE] [sS] [tT] [oO] [rR] [eE]  -> popMode,pushMode(DirectiveMode);
 
-DIR_COPY : [cC] [oO] [pP] [yY]  -> popMode,pushMode(DirectiveMode);
+DIR_COPY : [cC] [oO] [pP] [yY]  -> popMode,pushMode(CopyMode);
 
 DIR_INCLUDE : [iI] [nN] [cC] [lL] [uU] [dD] [eE]  -> popMode,pushMode(DirectiveMode);
 
@@ -110,6 +110,18 @@ DIR_ELSEIF : ([eE] [lL] [sS] [eE] [iI] [fF]) -> popMode,pushMode(DirectiveMode);
 DIR_ENDIF : ([eE] [nN] [dD] [iI] [fF]) -> popMode,pushMode(DirectiveMode);
 
 DIR_Start_Any : -> popMode, pushMode(DirectiveMode);
+
+
+mode CopyMode;
+COPY_WhiteSpace : [ ] -> skip;
+COPY_OtherText : ~[/'"\r\n \t,()] {getCharPositionInLine()<50}? DIR_OtherText -> type(DIR_OtherText) ;
+COPY_Comma : DIR_Comma -> type(DIR_Comma);
+COPY_Slash : DIR_Slash -> type(DIR_Slash);
+COPY_EOL : DIR_EOL -> type(EOL), popMode;
+COPY_Comment : ~[/'"\r\n \t,()] -> more,pushMode(CheckComment);
+COPY_DblStringLiteralStart : ["] -> pushMode(InDoubleStringMode), type(StringLiteralStart) ;
+COPY_StringLiteralStart : ['] -> pushMode(InStringMode), type(StringLiteralStart) ;
+COPY_NA : -> skip, popMode;
 
 mode DirectiveMode;
 DIR_NOT : [nN] [oO] [tT] ;

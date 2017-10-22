@@ -1,0 +1,9 @@
+/*===TOKENS===*/
+HIDDEN:DIRECTIVE         <D/>
+HIDDEN:DIR_COPY          <COPY>
+HIDDEN:DIR_OtherText     <QASWCPYPRC>
+HIDDEN:DIR_Comma         <,>
+HIDDEN:DIR_OtherText     <AC00001>
+/*===TREE===*/
+r
+/*======*/

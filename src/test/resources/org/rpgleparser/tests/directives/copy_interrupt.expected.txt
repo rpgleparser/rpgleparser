@@ -17,6 +17,7 @@ HIDDEN:DIR_COPY          <copy>
 HIDDEN:DIR_OtherText     <QMQM>
 HIDDEN:DIR_Slash         </>
 HIDDEN:DIR_OtherText     <QRPGLESRC>
+HIDDEN:DIR_Comma         <,>
 HIDDEN:DIR_OtherText     <CMQRFH2G>
 DS_FIXED                 <D>
 NAME                     <pscLen>
