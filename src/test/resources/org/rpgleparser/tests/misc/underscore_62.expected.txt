@@ -1,0 +1,109 @@
+/*===TOKENS===*/
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_EVAL                  <EVAL>
+ID                       <getFileByName>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <SROORSHE>
+StringLiteralEnd         <'>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+CS_FIXED                 <C>
+BlankIndicator           <  >
+BlankFlag                < >
+BlankIndicator           <  >
+'              '         <              >
+OP_EVAL                  <EVAL>
+ID                       <_getFileByName>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <SROORSHE>
+StringLiteralEnd         <'>
+')'                      <)>
+C_FREE_NEWLINE           <
+>
+DIRECTIVE                < />
+DIR_FREE                 <free>
+EOL                      <>
+ID                       <_getFileByName>
+'('                      <(>
+StringLiteralStart       <'>
+StringContent            <SROORSHE>
+StringLiteralEnd         <'>
+')'                      <)>
+FREE_SEMI                <;>
+DIRECTIVE                < />
+DIR_ENDFREE              <end-free>
+EOL                      <>
+/*===TREE===*/
+(r
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (function
+                (functionName (free_identifier (idOrKeyword getFileByName)))
+                (args ( (expression (literal ' SROORSHE ')) ))
+              )
+            )
+          )
+          \n
+        )
+      )
+    )
+  )
+  (statement
+    (cspec_fixed
+      C
+      (cs_controlLevel '  ')
+      (onOffIndicatorsFlag ' ')
+      (cs_indicators '  ')
+      (factor '              ')
+      (cspec_fixed_standard
+        (csEVAL
+          EVAL
+          (c_free
+            (expression
+              (function
+                (functionName (free_identifier (idOrKeyword _getFileByName)))
+                (args ( (expression (literal ' SROORSHE ')) ))
+              )
+            )
+          )
+          \n
+        )
+      )
+    )
+  )
+  (statement (directive ' /' (beginfree_directive free) ))
+  (statement
+    (free
+      (baseExpression
+        (op
+          (op_callp
+            (identifier (free_identifier (idOrKeyword _getFileByName)))
+            (
+            (expression (literal ' SROORSHE '))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (statement (directive ' /' (endfree_directive end-free) ))
+)
+/*======*/

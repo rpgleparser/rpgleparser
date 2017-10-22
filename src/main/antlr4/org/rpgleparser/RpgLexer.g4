@@ -398,7 +398,7 @@ FREE_Start_KEYWORD_USAGE  : KEYWORD_USAGE -> type(KEYWORD_USAGE),mode(FREE);
 FREE_Start_KEYWORD_PSDS   : KEYWORD_PSDS -> type(KEYWORD_PSDS),mode(FREE);
 
 FREE_Start_ID :  //Limited match ID (mostly alpha)
-   [a-zA-Z] [#@$a-zA-Z0-9_]*{System.out.println("FREE_Start_ID");} -> type(ID),mode(FREE);
+   [#@$a-zA-Z_]* [a-zA-Z] [#@$a-zA-Z0-9_]*{System.out.println("FREE_Start_ID");} -> type(ID),mode(FREE);
 
 FREE_GUTTER_COMMENTS: ~[ \t\r\n]  { getCharPositionInLine()>=81 }? {System.out.println("GUTTER_COMMENTS");}
     -> more,mode(FREE),pushMode(FIXED_CommentMode), channel(HIDDEN) ;
@@ -977,7 +977,7 @@ StringLiteralStart : ['] -> pushMode(InStringMode) ;
 
 ID : '*' [iI] [nN] ( [kK] [a-np-yA-NP-Y] | [uU] [1-8] )
    | '*' [mM] [a-zA-Z] [a-zA-Z] [a-zA-Z] [0-9] [0-9] [0-9] [0-9] // opcode DSPLY message id format
-   | [#@%$a-zA-Z] { getCharPositionInLine() >= 7 }? [#@$a-zA-Z0-9_]* ;
+   | [_#@%$a-zA-Z] { getCharPositionInLine() >= 7 }? [#@$a-zA-Z0-9_]* ;
 
 FREE_COMMENTS :  [ ]*? '//' { getCharPositionInLine()>=8 }? {System.out.println("FREE_COMMENTS");}-> pushMode(FIXED_CommentMode_HIDDEN), channel(HIDDEN) ;
 
