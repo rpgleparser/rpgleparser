@@ -6,6 +6,8 @@ DIRECTIVE                <I/>
 DIR_INCLUDE              <INCLUDE>
 DIR_OtherText            <SRCFIL>
 DIR_OtherText            <MBR2>
+DIR_OtherText            <Comments>
+DIR_OtherText            <here>
 EOL                      <>
 HIDDEN:DIRECTIVE         <O/>
 HIDDEN:DIR_COPY          <COPY>

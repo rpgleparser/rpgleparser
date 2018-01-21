@@ -1,5 +1,5 @@
      C/COPY MBR1
-     I/INCLUDE SRCFIL,MBR2
+     I/INCLUDE SRCFIL,MBR2 Comments here
      O/COPY SRCLIB/SRCFIL,MBR3
      O/INCLUDE "SRCLIB!"/"SRC>3","MBR¬3"
      O/COPY /dir1/dir2/file.rpg
