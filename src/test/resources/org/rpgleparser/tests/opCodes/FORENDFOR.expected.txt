@@ -241,7 +241,7 @@ BlankIndicator           <  >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            \r\n
           )
         )
       )
@@ -265,7 +265,7 @@ BlankIndicator           <  >
             )
             to
             (expression (number 10))
-            \n
+            \r\n
           )
         )
         (endfor
@@ -284,7 +284,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              \r\n
             )
           )
         )
@@ -311,7 +311,7 @@ BlankIndicator           <  >
             (expression (number 1))
             to
             (expression (number 10))
-            \n
+            \r\n
           )
         )
         (endfor
@@ -330,7 +330,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              \r\n
             )
           )
         )
@@ -355,7 +355,7 @@ BlankIndicator           <  >
             )
             downto
             (expression (number 1))
-            \n
+            \r\n
           )
         )
         (endfor
@@ -374,7 +374,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              \r\n
             )
           )
         )
@@ -401,7 +401,7 @@ BlankIndicator           <  >
             (expression (number 1))
             downto
             (expression (number 1))
-            \n
+            \r\n
           )
         )
         (endfor
@@ -420,7 +420,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              \r\n
             )
           )
         )
@@ -456,7 +456,7 @@ BlankIndicator           <  >
             (expression (number 1))
             downto
             (expression (number 1))
-            \n
+            \r\n
           )
         )
         (endfor
@@ -475,7 +475,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              \r\n
             )
           )
         )

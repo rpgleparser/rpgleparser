@@ -74,7 +74,7 @@ EOL                      <
               (expression (number 0))
             )
           )
-          \n
+          \r\n
         )
         (statement
           (cspec_fixed
@@ -124,7 +124,7 @@ EOL                      <
                     )
                   )
                 )
-                \n
+                \r\n
               )
             )
           )
@@ -145,7 +145,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              \r\n
             )
           )
         )

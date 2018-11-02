@@ -54,7 +54,7 @@ BlankIndicator           <  >
           (cs_controlLevel '  ')
           (onOffIndicatorsFlag ' ')
           (cs_indicators 16)
-          '                                                                                        \n'
+          '                                                                                        \r\n'
           c
         )
         (cs_controlLevel an)
@@ -70,7 +70,7 @@ BlankIndicator           <  >
               (expression (identifier (all (symbolicConstants *on))))
             )
           )
-          \n
+          \r\n
         )
       )
       (statement
@@ -91,7 +91,7 @@ BlankIndicator           <  >
                 (resultIndicator '  ')
                 (resultIndicator '  ')
                 (resultIndicator 25)
-                \n
+                \r\n
               )
             )
           )
