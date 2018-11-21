@@ -152,7 +152,16 @@ public class TestC {
                 "", "", "", "open", "QSYSPRT", "", "", "", "", "", "", "");
     }
 
-
+    @Test
+    public void testCSpecWithSTrangeChars() {
+        String inputString =
+                        "     C                   EVAL      §§SVAR=§§SVAR";
+        String paddedInput = TestUtils.padSourceLines(inputString, false);
+        List<String> errors = new ArrayList<String>();
+        boolean gui = false;
+		TestUtils.parseAndGetTokens(paddedInput, errors, gui);
+    }
+    
     @Test
     public void testCSpec_Comments3() {
         String inputString =
