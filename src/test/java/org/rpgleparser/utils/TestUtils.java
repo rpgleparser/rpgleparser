@@ -103,7 +103,7 @@ public class TestUtils {
     	printTokens(lexer.getAllTokens());
     }
 
-    private static List<CommonToken> parseAndGetTokens(String inputString, final List<String> errors, final boolean gui) {
+    public static List<CommonToken> parseAndGetTokens(String inputString, final List<String> errors, final boolean gui) {
         final RpgParser parser = initialiseParser(inputString, errors);
 
         RpgParser.RContext parseTree = parser.r();
