@@ -1,1 +1,2 @@
 * text eol=crlf
+*.java text eol=auto
