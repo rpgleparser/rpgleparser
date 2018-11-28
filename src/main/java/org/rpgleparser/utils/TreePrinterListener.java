@@ -14,9 +14,11 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.Trees;
+import org.antlr.v4.runtime.tree.Tree;
 
 public class TreePrinterListener implements ParseTreeListener {
-    private final List<String> ruleNames;
+    private static final String NL = "NL";
+	private final List<String> ruleNames;
     private final StringBuilder builder = new StringBuilder();
     Map<RuleContext,ArrayList<String>> stack = new HashMap<RuleContext,ArrayList<String>>();
 
@@ -30,7 +32,7 @@ public class TreePrinterListener implements ParseTreeListener {
 
     @Override
     public void visitTerminal(TerminalNode node) {
-    	String text = Utils.escapeWhitespace(Trees.getNodeText(node, ruleNames), false);
+    	String text = textFor(node);
     	if(text.startsWith(" ") || text.endsWith(" ")){
     		text = "'" + text + "'";
     	}
@@ -39,8 +41,18 @@ public class TreePrinterListener implements ParseTreeListener {
 
     @Override
     public void visitErrorNode(ErrorNode node) {
-        stack.get(node.getParent()).add(Utils.escapeWhitespace(Trees.getNodeText(node, ruleNames), false));
+        stack.get(node.getParent()).add(textFor(node));
     }
+
+	private String textFor(Tree node) {
+		String text = Trees.getNodeText(node, ruleNames);
+		StringBuilder buf = new StringBuilder();
+		for (char c : text.toCharArray()) {
+		    if ( c=='\n' ) buf.append(NL);
+			else if ( c!='\r' ) buf.append(c);
+		}
+		return buf.toString();
+	}
 
     @Override
     public void enterEveryRule(ParserRuleContext ctx) {

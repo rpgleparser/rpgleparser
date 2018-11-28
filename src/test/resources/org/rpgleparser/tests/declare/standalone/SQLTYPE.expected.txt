@@ -42,7 +42,7 @@ EOL                      <
         )
       )
       (keyword (keyword_ccsid CCSID ( (number 1208) )))
-      \r\n
+      NL
     )
   )
 )

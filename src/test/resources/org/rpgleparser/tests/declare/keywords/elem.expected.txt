@@ -47,7 +47,7 @@ RESERVED                 < >
           )
         )
       )
-      \r\n
+      NL
     )
   )
   (statement

@@ -82,7 +82,7 @@ KEYWORD_CONST            <const>
           )
         )
       )
-      \r\n
+      NL
     )
     (parm_fixed
       D
@@ -106,7 +106,7 @@ KEYWORD_CONST            <const>
         )
       )
       (keyword (keyword_const const))
-      \r\n
+      NL
     )
     (parm_fixed
       D

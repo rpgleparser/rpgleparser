@@ -92,7 +92,7 @@ BlankIndicator           <  >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
           (csPARM
             C
@@ -109,7 +109,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
           (csPARM
@@ -127,7 +127,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
           (csPARM
@@ -145,7 +145,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
           (csPARM

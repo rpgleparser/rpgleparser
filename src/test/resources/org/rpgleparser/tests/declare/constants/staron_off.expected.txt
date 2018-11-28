@@ -26,7 +26,7 @@ SPLAT_OFF                <*Off>
 /*===TREE===*/
 (r
   (statement
-    (dcl_c D (ds_name True) ' ' ' ' 'C ' '       ' '       ' ' ' '  ' ' ' *On \r\n)
+    (dcl_c D (ds_name True) ' ' ' ' 'C ' '       ' '       ' ' ' '  ' ' ' *On NL)
   )
   (statement
     (dcl_c

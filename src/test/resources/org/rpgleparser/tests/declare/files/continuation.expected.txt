@@ -73,7 +73,7 @@ ID                       <INWCTLR02>
           )
         )
       )
-      \r\n
+      NL
     )
   )
   (statement

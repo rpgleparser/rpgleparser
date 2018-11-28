@@ -71,7 +71,7 @@ StringLiteralEnd         <'>
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -109,7 +109,7 @@ StringLiteralEnd         <'>
               (expression (number 24))
             )
           )
-          \r\n
+          NL
         )
       )
     )

@@ -47,7 +47,7 @@ BlankIndicator           <  >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
           (csPARM
             C

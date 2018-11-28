@@ -45,7 +45,7 @@ RESERVED                 < >
       '  '
       ' '
       (keyword (keyword_extpgm EXTPGM ( (simpleExpression (literal ' MSR173 ')) )))
-      \r\n
+      NL
     )
     (parm_fixed
       D

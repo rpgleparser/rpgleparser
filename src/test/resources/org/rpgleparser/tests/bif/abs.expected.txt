@@ -149,7 +149,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -184,7 +184,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -223,7 +223,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -262,7 +262,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )

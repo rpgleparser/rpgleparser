@@ -106,7 +106,7 @@ ID                       <Name>
       A
       '  '
       ' '
-      \r\n
+      NL
     )
   )
   (statement
@@ -150,23 +150,11 @@ ID                       <Name>
           )
         )
       )
-      \r\n
+      NL
     )
   )
   (statement
-    (dspec
-      D
-      (ds_name ShorterName)
-      ' '
-      ' '
-      'S '
-      '       '
-      '      5'
-      A
-      '  '
-      ' '
-      \r\n
-    )
+    (dspec D (ds_name ShorterName) ' ' ' ' 'S ' '       ' '      5' A '  ' ' ' NL)
   )
   (statement
     (cspec_fixed
@@ -195,7 +183,7 @@ ID                       <Name>
               (expression (literal ' abc '))
             )
           )
-          \r\n
+          NL
         )
       )
     )

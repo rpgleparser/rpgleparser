@@ -85,7 +85,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec D (ds_name Alpha1) ' ' ' ' 'S ' '       ' '     10' A '  ' ' ' \r\n)
+    (dspec D (ds_name Alpha1) ' ' ' ' 'S ' '       ' '     10' A '  ' ' ' NL)
   )
   (statement
     (dspec
@@ -123,7 +123,7 @@ FREE_SEMI                <;>
           )
         )
       )
-      \r\n
+      NL
     )
   )
   (statement

@@ -136,7 +136,7 @@ CS_FixedComments         <         130128        >
       ' 0'
       ' '
       (keyword (keyword_inz INZ ( (simpleExpression (number 25)) )))
-      \r\n
+      NL
     )
   )
   (statement
@@ -152,7 +152,7 @@ CS_FixedComments         <         130128        >
       ' 0'
       ' '
       (keyword (keyword_inz INZ ( (simpleExpression (number 11)) )))
-      \r\n
+      NL
     )
   )
   (statement
@@ -174,7 +174,7 @@ CS_FixedComments         <         130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (cs_fixed_comments '         130128        ')
-            \r\n
+            NL
           )
           (csMVR
             C
@@ -192,7 +192,7 @@ CS_FixedComments         <         130128        >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (cs_fixed_comments '         130128        ')
-              \r\n
+              NL
             )
           )
         )
@@ -218,7 +218,7 @@ CS_FixedComments         <         130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (cs_fixed_comments '         130128        ')
-            \r\n
+            NL
           )
         )
       )
@@ -243,7 +243,7 @@ CS_FixedComments         <         130128        >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (cs_fixed_comments '         130128        ')
-            \r\n
+            NL
           )
         )
       )

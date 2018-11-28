@@ -233,7 +233,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -257,7 +257,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         C
@@ -275,7 +275,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         C
@@ -293,7 +293,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator 16)
-            \n
+            NL
           )
         )
         C
@@ -311,7 +311,7 @@ EOL                      <
             (resultIndicator 17)
             (resultIndicator 18)
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         C
@@ -329,7 +329,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator 19)
-            \n
+            NL
           )
         )
         C
@@ -347,7 +347,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         C
@@ -365,7 +365,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         C
@@ -383,7 +383,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 20)
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         C
@@ -401,7 +401,7 @@ EOL                      <
             (resultIndicator 21)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         (casestatementend
@@ -420,7 +420,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -444,7 +444,7 @@ EOL                      <
           (resultIndicator '  ')
           (resultIndicator '  ')
           (resultIndicator '  ')
-          \n
+          NL
         )
       )
     )
@@ -464,7 +464,7 @@ EOL                      <
           (resultIndicator '  ')
           (resultIndicator '  ')
           (resultIndicator '  ')
-          \r\n
+          NL
         )
       )
     )
@@ -487,7 +487,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

@@ -119,7 +119,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           )
         )
       )
-      \r\n
+      NL
     )
   )
   (statement
@@ -157,7 +157,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )

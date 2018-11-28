@@ -73,7 +73,7 @@ CS_FixedComments         <Subf                                                  
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
         )
@@ -93,7 +93,7 @@ CS_FixedComments         <Subf                                                  
                   (expression (identifier (free_identifier (idOrKeyword @PRIME1))))
                 )
               )
-              \r\n
+              NL
             )
           )
           (statement
@@ -113,7 +113,7 @@ CS_FixedComments         <Subf                                                  
                       (expression (literal ' 5 '))
                     )
                   )
-                  \r\n
+                  NL
                 )
               )
             )

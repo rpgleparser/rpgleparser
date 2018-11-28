@@ -97,7 +97,7 @@ BlankIndicator           <  >
               )
             )
           )
-          \r\n
+          NL
         )
         (statement
           (cspec_fixed
@@ -116,7 +116,7 @@ BlankIndicator           <  >
                     (expression (identifier (free_identifier (idOrKeyword OOIITMN))))
                   )
                 )
-                \r\n
+                NL
               )
             )
           )

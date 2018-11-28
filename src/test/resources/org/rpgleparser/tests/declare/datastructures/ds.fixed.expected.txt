@@ -42,7 +42,7 @@ RESERVED                 < >
       '  '
       ' '
       (keyword (keyword_dtaara DTAARA ( (literal ' MYTWENTY1 ') )))
-      \r\n
+      NL
       (parm_fixed
         d
         (ds_name mytwenty1)

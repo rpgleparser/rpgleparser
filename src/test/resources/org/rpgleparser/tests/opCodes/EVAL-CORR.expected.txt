@@ -99,7 +99,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -122,7 +122,7 @@ EOL                      <
               (expression (identifier (free_identifier (idOrKeyword y))))
             )
           )
-          \n
+          NL
         )
       )
     )
@@ -144,7 +144,7 @@ EOL                      <
               (expression (identifier (free_identifier (idOrKeyword fld02))))
             )
           )
-          \n
+          NL
         )
       )
     )
@@ -221,7 +221,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

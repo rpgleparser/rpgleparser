@@ -205,7 +205,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -229,7 +229,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -253,7 +253,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 99)
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -278,7 +278,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -302,7 +302,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 99)
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -326,7 +326,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -350,7 +350,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -374,7 +374,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -398,7 +398,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -474,7 +474,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

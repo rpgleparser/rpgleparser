@@ -31,7 +31,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec D (ds_name Pointer1) ' ' ' ' 'S ' '       ' '       ' * '  ' ' ' \r\n)
+    (dspec D (ds_name Pointer1) ' ' ' ' 'S ' '       ' '       ' * '  ' ' ' NL)
   )
   (statement
     (dspec

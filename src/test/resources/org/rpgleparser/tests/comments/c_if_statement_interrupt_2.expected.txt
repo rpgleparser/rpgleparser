@@ -129,7 +129,7 @@ BlankIndicator           <  >
               (expression (identifier (free_identifier (idOrKeyword OpenSeg))))
             )
           )
-          \r\n
+          NL
         )
         (statement
           (block
@@ -213,7 +213,7 @@ BlankIndicator           <  >
                     )
                   )
                 )
-                \r\n
+                NL
               )
               (statement
                 (cspec_fixed
@@ -232,7 +232,7 @@ BlankIndicator           <  >
                           (expression (identifier (free_identifier (idOrKeyword Isdsap))))
                         )
                       )
-                      \r\n
+                      NL
                     )
                   )
                 )
@@ -254,7 +254,7 @@ BlankIndicator           <  >
                           (expression (identifier (free_identifier (idOrKeyword wrkDestWgt))))
                         )
                       )
-                      \r\n
+                      NL
                     )
                   )
                 )
@@ -275,7 +275,7 @@ BlankIndicator           <  >
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \r\n
+                    NL
                   )
                 )
               )

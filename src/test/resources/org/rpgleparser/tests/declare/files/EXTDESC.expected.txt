@@ -127,7 +127,7 @@ ID                       <filename3>
       (fs_keyword
         (keyword_extdesc extdesc ( (simpleExpression (literal ' MYLIB/MYFILE1 ')) ))
       )
-      \r\n
+      NL
     )
   )
   (statement
@@ -168,7 +168,7 @@ ID                       <filename3>
           )
         )
       )
-      \r\n
+      NL
     )
   )
   (statement

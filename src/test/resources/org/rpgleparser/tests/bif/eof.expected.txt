@@ -90,7 +90,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           (factor '              ')
           if
           (c_free (expression (bif (bif_eof %eof))))
-          \r\n
+          NL
         )
         (endif
           C
@@ -108,7 +108,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
         )
@@ -126,7 +126,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           (factor '              ')
           if
           (c_free (expression (bif (bif_eof %eof ( )))))
-          \r\n
+          NL
         )
         (endif
           C
@@ -144,7 +144,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
         )
@@ -166,7 +166,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (bif (bif_eof %eof ( (identifier (free_identifier (idOrKeyword thefile))) )))
             )
           )
-          \r\n
+          NL
         )
         (endif
           C
@@ -184,7 +184,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
         )

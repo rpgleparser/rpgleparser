@@ -28,7 +28,7 @@ FREE_SEMI                <;>
           (cs_controlLevel '  ')
           (onOffIndicatorsFlag ' ')
           (cs_indicators 16)
-          '                                                                                        \r\n'
+          '                                                                                        NL'
           c
         )
         (cs_controlLevel an)
@@ -44,7 +44,7 @@ FREE_SEMI                <;>
               (expression (identifier (all (symbolicConstants *on))))
             )
           )
-          \r\n
+          NL
         )
       )
       (enddo (op_enddo enddo) ;)

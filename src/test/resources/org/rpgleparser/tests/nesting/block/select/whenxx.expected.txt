@@ -322,7 +322,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
         )
@@ -343,7 +343,7 @@ BlankIndicator           <  >
                 (resultIndicator '  ')
                 (resultIndicator '  ')
                 (resultIndicator '  ')
-                \r\n
+                NL
               )
             )
             (csORxx
@@ -362,7 +362,7 @@ BlankIndicator           <  >
                   (resultIndicator '  ')
                   (resultIndicator '  ')
                   (resultIndicator '  ')
-                  \r\n
+                  NL
                 )
               )
             )
@@ -385,7 +385,7 @@ BlankIndicator           <  >
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \r\n
+                    NL
                   )
                 )
               )
@@ -409,7 +409,7 @@ BlankIndicator           <  >
                 (resultIndicator '  ')
                 (resultIndicator '  ')
                 (resultIndicator '  ')
-                \r\n
+                NL
               )
             )
           )
@@ -431,7 +431,7 @@ BlankIndicator           <  >
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \r\n
+                    NL
                   )
                 )
               )
@@ -456,7 +456,7 @@ BlankIndicator           <  >
                       (resultIndicator '  ')
                       (resultIndicator '  ')
                       (resultIndicator '  ')
-                      \r\n
+                      NL
                     )
                   )
                 )
@@ -477,7 +477,7 @@ BlankIndicator           <  >
                         (resultIndicator '  ')
                         (resultIndicator '  ')
                         (resultIndicator '  ')
-                        \r\n
+                        NL
                       )
                     )
                   )
@@ -499,7 +499,7 @@ BlankIndicator           <  >
                         (resultIndicator '  ')
                         (resultIndicator '  ')
                         (resultIndicator '  ')
-                        \r\n
+                        NL
                       )
                     )
                   )
@@ -521,7 +521,7 @@ BlankIndicator           <  >
                             (resultIndicator '  ')
                             (resultIndicator '  ')
                             (resultIndicator '  ')
-                            \r\n
+                            NL
                           )
                         )
                       )
@@ -545,7 +545,7 @@ BlankIndicator           <  >
                         (resultIndicator '  ')
                         (resultIndicator '  ')
                         (resultIndicator '  ')
-                        \r\n
+                        NL
                       )
                     )
                   )
@@ -567,7 +567,7 @@ BlankIndicator           <  >
                             (resultIndicator '  ')
                             (resultIndicator '  ')
                             (resultIndicator '  ')
-                            \r\n
+                            NL
                           )
                         )
                       )
@@ -591,7 +591,7 @@ BlankIndicator           <  >
                             (resultIndicator '  ')
                             (resultIndicator '  ')
                             (resultIndicator '  ')
-                            \r\n
+                            NL
                           )
                         )
                       )
@@ -615,7 +615,7 @@ BlankIndicator           <  >
                             (resultIndicator '  ')
                             (resultIndicator '  ')
                             (resultIndicator '  ')
-                            \r\n
+                            NL
                           )
                         )
                       )
@@ -638,7 +638,7 @@ BlankIndicator           <  >
                       (resultIndicator '  ')
                       (resultIndicator '  ')
                       (resultIndicator '  ')
-                      \r\n
+                      NL
                     )
                   )
                 )
@@ -663,7 +663,7 @@ BlankIndicator           <  >
                 (resultIndicator '  ')
                 (resultIndicator '  ')
                 (resultIndicator '  ')
-                \r\n
+                NL
               )
             )
           )
@@ -685,7 +685,7 @@ BlankIndicator           <  >
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \r\n
+                    NL
                   )
                 )
               )

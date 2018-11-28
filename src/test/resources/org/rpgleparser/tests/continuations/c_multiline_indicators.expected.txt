@@ -30,7 +30,7 @@ CS_FixedComments         <*                      >
         (cs_controlLevel '  ')
         (onOffIndicatorsFlag ' ')
         (cs_indicators 98)
-        '                                                                                        \r\n'
+        '                                                                                        NL'
         C
       )
       (cs_controlLevel AN)

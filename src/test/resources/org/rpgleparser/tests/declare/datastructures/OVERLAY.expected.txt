@@ -136,8 +136,8 @@ FREE_SEMI                <;>
       ' '
       '  '
       ' '
-      \r\n
-      (parm_fixed D (ds_name subf1) ' ' ' ' '  ' '     11' '     15' A '  ' ' ' \r\n)
+      NL
+      (parm_fixed D (ds_name subf1) ' ' ' ' '  ' '     11' '     15' A '  ' ' ' NL)
       (parm_fixed
         D
         (ds_name subf2)
@@ -157,7 +157,7 @@ FREE_SEMI                <;>
             )
           )
         )
-        \r\n
+        NL
       )
       (parm_fixed
         D
@@ -180,7 +180,7 @@ FREE_SEMI                <;>
             )
           )
         )
-        \r\n
+        NL
       )
       (parm_fixed
         D
@@ -203,7 +203,7 @@ FREE_SEMI                <;>
             )
           )
         )
-        \r\n
+        NL
       )
     )
   )

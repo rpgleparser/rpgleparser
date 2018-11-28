@@ -173,7 +173,7 @@ BlankIndicator           <  >
               (function (functionName (free_identifier (idOrKeyword isTest))) (args ( )))
             )
           )
-          \r\n
+          NL
         )
         (endif
           C
@@ -191,7 +191,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
         )
@@ -209,7 +209,7 @@ BlankIndicator           <  >
           (factor '              ')
           IF
           (c_free (expression (bif (bif_error %ERROR ( )))))
-          \r\n
+          NL
         )
         (statement
           (block
@@ -232,7 +232,7 @@ BlankIndicator           <  >
                     (expression (number 1211))
                   )
                 )
-                \r\n
+                NL
               )
               (statement
                 (cspec_fixed
@@ -252,7 +252,7 @@ BlankIndicator           <  >
                         (resultIndicator '  ')
                         (resultIndicator '  ')
                         (resultIndicator '  ')
-                        \r\n
+                        NL
                       )
                     )
                   )
@@ -276,7 +276,7 @@ BlankIndicator           <  >
                     (expression (number 1221))
                   )
                 )
-                \r\n
+                NL
               )
               (statement
                 (cspec_fixed
@@ -297,7 +297,7 @@ BlankIndicator           <  >
                         (resultIndicator '  ')
                         (resultIndicator '  ')
                         (resultIndicator '  ')
-                        \r\n
+                        NL
                       )
                     )
                   )
@@ -320,7 +320,7 @@ BlankIndicator           <  >
                           (expression (literal ' CCC '))
                         )
                       )
-                      \r\n
+                      NL
                     )
                   )
                 )
@@ -344,7 +344,7 @@ BlankIndicator           <  >
                         (resultIndicator '  ')
                         (resultIndicator '  ')
                         (resultIndicator '  ')
-                        \r\n
+                        NL
                       )
                     )
                   )
@@ -366,7 +366,7 @@ BlankIndicator           <  >
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \r\n
+                    NL
                   )
                 )
               )

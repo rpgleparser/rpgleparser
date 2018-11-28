@@ -112,7 +112,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -136,7 +136,7 @@ EOL                      <
             (resultIndicator 11)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -160,7 +160,7 @@ EOL                      <
             (resultIndicator 11)
             (resultIndicator 12)
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -184,7 +184,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 12)
             (resultIndicator 13)
-            \n
+            NL
           )
         )
       )
@@ -208,7 +208,7 @@ EOL                      <
             (resultIndicator 11)
             (resultIndicator 12)
             (resultIndicator 13)
-            \n
+            NL
           )
         )
       )
@@ -232,7 +232,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

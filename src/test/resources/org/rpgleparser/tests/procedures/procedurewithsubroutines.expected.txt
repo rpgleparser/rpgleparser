@@ -274,7 +274,7 @@ HIDDEN:PS_COMMENTS80     <                     >
         ' '
         '  '
         ' '
-        \r\n
+        NL
       )
       (pi_parm_fixed
         (parm_fixed
@@ -297,7 +297,7 @@ HIDDEN:PS_COMMENTS80     <                     >
             )
           )
           (keyword (keyword_const CONST))
-          \r\n
+          NL
         )
       )
     )
@@ -315,7 +315,7 @@ HIDDEN:PS_COMMENTS80     <                     >
           ' 0'
           ' '
           (keyword (keyword_inz Inz ( (simpleExpression (number 0)) )))
-          \r\n
+          NL
         )
       )
     )
@@ -333,47 +333,23 @@ HIDDEN:PS_COMMENTS80     <                     >
           ' 0'
           ' '
           (keyword (keyword_inz Inz ( (simpleExpression (number 0)) )))
-          \r\n
+          NL
         )
       )
     )
     (subprocedurestatement
       (statement
-        (dspec
-          D
-          (ds_name DataBefore)
-          ' '
-          ' '
-          'S '
-          '       '
-          '    100'
-          ' '
-          '  '
-          ' '
-          \r\n
-        )
+        (dspec D (ds_name DataBefore) ' ' ' ' 'S ' '       ' '    100' ' ' '  ' ' ' NL)
       )
     )
     (subprocedurestatement
       (statement
-        (dspec
-          D
-          (ds_name DataAfter)
-          ' '
-          ' '
-          'S '
-          '       '
-          '    100'
-          ' '
-          '  '
-          ' '
-          \r\n
-        )
+        (dspec D (ds_name DataAfter) ' ' ' ' 'S ' '       ' '    100' ' ' '  ' ' ' NL)
       )
     )
     (subprocedurestatement
       (statement
-        (dspec D (ds_name MsgLine) ' ' ' ' 'S ' '       ' '    200' ' ' '  ' ' ' \r\n)
+        (dspec D (ds_name MsgLine) ' ' ' ' 'S ' '       ' '    200' ' ' '  ' ' ' NL)
       )
     )
     (subprocedurestatement
@@ -389,7 +365,7 @@ HIDDEN:PS_COMMENTS80     <                     >
           ' '
           '  '
           ' '
-          \r\n
+          NL
         )
       )
     )
