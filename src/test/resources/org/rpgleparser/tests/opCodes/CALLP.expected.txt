@@ -162,7 +162,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -185,7 +185,7 @@ EOL                      <
             )
           )
         )
-        \n
+        NL
       )
     )
   )
@@ -212,7 +212,7 @@ EOL                      <
             )
           )
         )
-        \n
+        NL
       )
     )
   )
@@ -239,7 +239,7 @@ EOL                      <
             )
           )
         )
-        \n
+        NL
       )
     )
   )
@@ -273,7 +273,7 @@ EOL                      <
             )
           )
         )
-        \n
+        NL
       )
     )
   )
@@ -374,7 +374,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

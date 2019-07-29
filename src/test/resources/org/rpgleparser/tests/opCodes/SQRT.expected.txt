@@ -85,7 +85,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
           (csPARM
             C
@@ -102,7 +102,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -127,7 +127,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -152,7 +152,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )

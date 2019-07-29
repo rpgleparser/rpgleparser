@@ -313,7 +313,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -337,7 +337,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -361,7 +361,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 99)
             (resultIndicator 98)
-            \n
+            NL
           )
         )
       )
@@ -386,7 +386,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -410,7 +410,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 99)
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -435,7 +435,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator 98)
-            \n
+            NL
           )
         )
       )
@@ -459,7 +459,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -483,7 +483,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 98)
             (resultIndicator 99)
-            \n
+            NL
           )
         )
       )
@@ -507,7 +507,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 99)
             (resultIndicator 98)
-            \n
+            NL
           )
         )
       )
@@ -532,7 +532,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -556,7 +556,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 99)
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -581,7 +581,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator 98)
-            \n
+            NL
           )
         )
       )
@@ -605,7 +605,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -629,7 +629,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator 98)
             (resultIndicator 99)
-            \n
+            NL
           )
         )
       )
@@ -732,7 +732,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

@@ -263,7 +263,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -290,7 +290,7 @@ EOL                      <
               (expression (identifier (all (symbolicConstants *IN20))))
             )
           )
-          \n
+          NL
         )
         (elsestmt
           C
@@ -307,7 +307,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         (endif
@@ -326,7 +326,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -358,7 +358,7 @@ EOL                      <
               )
             )
           )
-          \n
+          NL
         )
         (elseifstmt
           C
@@ -374,7 +374,7 @@ EOL                      <
               (expression (number 5))
             )
           )
-          \n
+          NL
         )
         (elsestmt
           C
@@ -391,7 +391,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         (endif
@@ -410,7 +410,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -439,7 +439,7 @@ EOL                      <
               (expression (identifier (all (symbolicConstants *IN(20)))))
             )
           )
-          \n
+          NL
         )
         (elseifstmt
           C
@@ -455,7 +455,7 @@ EOL                      <
               (expression (number 5))
             )
           )
-          \n
+          NL
         )
         (elsestmt
           C
@@ -472,7 +472,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
         (endif
@@ -491,7 +491,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -622,7 +622,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

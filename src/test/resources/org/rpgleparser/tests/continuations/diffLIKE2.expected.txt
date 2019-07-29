@@ -115,7 +115,7 @@ ID                       <*nopass>
           )
         )
       )
-      \r\n
+      NL
     )
     (parm_fixed
       D
@@ -147,7 +147,7 @@ ID                       <*nopass>
         )
       )
       (keyword (keyword_const const))
-      \r\n
+      NL
     )
     (parm_fixed
       D
@@ -178,7 +178,7 @@ ID                       <*nopass>
           )
         )
       )
-      \r\n
+      NL
     )
     (parm_fixed
       D

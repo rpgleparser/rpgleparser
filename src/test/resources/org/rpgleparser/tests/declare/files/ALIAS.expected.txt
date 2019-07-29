@@ -57,7 +57,7 @@ ID                       <custRec>
       ' '
       (fs_keyword (keyword_alias ALIAS))
       (fs_keyword (keyword_qualified QUALIFIED))
-      \r\n
+      NL
     )
   )
   (statement

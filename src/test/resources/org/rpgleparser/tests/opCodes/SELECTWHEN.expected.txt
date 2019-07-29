@@ -345,7 +345,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -370,7 +370,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -390,7 +390,7 @@ EOL                      <
                   (expression (number 1))
                 )
               )
-              \n
+              NL
             )
           )
           (statement
@@ -411,7 +411,7 @@ EOL                      <
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \n
+                    NL
                   )
                 )
               )
@@ -434,7 +434,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -460,7 +460,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -497,7 +497,7 @@ EOL                      <
                   )
                 )
               )
-              \n
+              NL
             )
           )
         )
@@ -511,7 +511,7 @@ EOL                      <
             (csWHEN
               when
               (c_free (expression (identifier (free_identifier (idOrKeyword *INKC)))))
-              \n
+              NL
             )
           )
           (statement
@@ -532,7 +532,7 @@ EOL                      <
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \n
+                    NL
                   )
                 )
               )
@@ -555,7 +555,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -581,7 +581,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -612,7 +612,7 @@ EOL                      <
                   )
                 )
               )
-              \n
+              NL
             )
           )
         )
@@ -653,7 +653,7 @@ EOL                      <
                   (expression (literal ' ABC '))
                 )
               )
-              \n
+              NL
             )
           )
           (statement
@@ -674,7 +674,7 @@ EOL                      <
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \n
+                    NL
                   )
                 )
               )
@@ -697,7 +697,7 @@ EOL                      <
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \n
+              NL
             )
           )
         )
@@ -859,7 +859,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

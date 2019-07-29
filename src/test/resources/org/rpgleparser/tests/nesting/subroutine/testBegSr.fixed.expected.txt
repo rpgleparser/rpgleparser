@@ -52,7 +52,7 @@ EOL                      <
           (resultIndicator '  ')
           (resultIndicator '  ')
           (resultIndicator '  ')
-          \r\n
+          NL
         )
       )
     )
@@ -90,7 +90,7 @@ EOL                      <
           (resultIndicator '  ')
           (resultIndicator '  ')
           (resultIndicator '  ')
-          \r\n
+          NL
         )
       )
     )

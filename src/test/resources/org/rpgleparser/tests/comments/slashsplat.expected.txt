@@ -89,7 +89,7 @@ HIDDEN:PS_COMMENTS80     <                   >
       (psBegin P (ps_name CalcDOW) B 'Export                               ')
     )
     (dcl_pi
-      (piBegin D (ds_name CalcDOW) ' ' ' ' PI '       ' '     10' I ' 0' ' ' \r\n)
+      (piBegin D (ds_name CalcDOW) ' ' ' ' PI '       ' '     10' I ' 0' ' ' NL)
       (pi_parm_fixed
         (parm_fixed
           D
@@ -111,13 +111,13 @@ HIDDEN:PS_COMMENTS80     <                   >
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
     (subprocedurestatement
       (statement
-        (dspec D (ds_name Result) ' ' ' ' 'S ' '       ' '     10' I ' 0' ' ' \r\n)
+        (dspec D (ds_name Result) ' ' ' ' 'S ' '       ' '     10' I ' 0' ' ' NL)
       )
     )
     (subprocedurestatement
@@ -132,7 +132,7 @@ HIDDEN:PS_COMMENTS80     <                   >
             (csRETURN
               Return
               (c_free (expression (identifier (free_identifier (idOrKeyword Result)))))
-              \r\n
+              NL
             )
           )
         )

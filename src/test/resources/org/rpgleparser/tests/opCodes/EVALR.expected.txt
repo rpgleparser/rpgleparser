@@ -147,7 +147,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -170,7 +170,7 @@ EOL                      <
               (expression (identifier (free_identifier (idOrKeyword y))))
             )
           )
-          \n
+          NL
         )
       )
     )
@@ -205,7 +205,7 @@ EOL                      <
               )
             )
           )
-          \n
+          NL
         )
       )
     )
@@ -241,7 +241,7 @@ EOL                      <
               (expression (literal ' Richard '))
             )
           )
-          \n
+          NL
         )
       )
     )
@@ -344,7 +344,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

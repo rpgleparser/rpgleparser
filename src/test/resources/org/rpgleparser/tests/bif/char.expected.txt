@@ -181,7 +181,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -203,7 +203,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (expression (bif (bif_char %CHAR ( (expression (literal x' 80 ')) ))))
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -236,7 +236,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -278,7 +278,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -311,7 +311,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )

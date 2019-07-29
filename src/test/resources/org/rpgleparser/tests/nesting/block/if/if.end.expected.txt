@@ -42,7 +42,7 @@ BlankIndicator           <  >
               (expression (identifier (free_identifier (idOrKeyword theDogIsDead))))
             )
           )
-          \r\n
+          NL
         )
         (endif
           C

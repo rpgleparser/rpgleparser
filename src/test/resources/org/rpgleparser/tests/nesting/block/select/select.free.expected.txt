@@ -229,7 +229,7 @@ BlankIndicator           <  >
               (resultIndicator '  ')
               (resultIndicator '  ')
               (resultIndicator '  ')
-              \r\n
+              NL
             )
           )
         )
@@ -273,7 +273,7 @@ BlankIndicator           <  >
                   )
                 )
               )
-              \r\n
+              NL
             )
           )
           (statement
@@ -293,7 +293,7 @@ BlankIndicator           <  >
                       (expression (literal ' 2 '))
                     )
                   )
-                  \r\n
+                  NL
                 )
               )
             )
@@ -370,7 +370,7 @@ BlankIndicator           <  >
                   )
                 )
               )
-              \r\n
+              NL
             )
           )
           (statement
@@ -390,7 +390,7 @@ BlankIndicator           <  >
                       (expression (literal ' 3 '))
                     )
                   )
-                  \r\n
+                  NL
                 )
               )
             )
@@ -467,7 +467,7 @@ BlankIndicator           <  >
                   )
                 )
               )
-              \r\n
+              NL
             )
           )
           (statement
@@ -487,7 +487,7 @@ BlankIndicator           <  >
                       (expression (literal ' 4 '))
                     )
                   )
-                  \r\n
+                  NL
                 )
               )
             )
@@ -538,7 +538,7 @@ BlankIndicator           <  >
                   )
                 )
               )
-              \r\n
+              NL
             )
           )
           (statement
@@ -558,7 +558,7 @@ BlankIndicator           <  >
                       (expression (literal ' 5 '))
                     )
                   )
-                  \r\n
+                  NL
                 )
               )
             )

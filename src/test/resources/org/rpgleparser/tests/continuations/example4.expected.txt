@@ -73,7 +73,7 @@ StringLiteralEnd         <'>
         )
         )
       )
-      \r\n
+      NL
     )
   )
   (statement
@@ -90,7 +90,7 @@ StringLiteralEnd         <'>
         '  '
         ' '
         (number 12345 67)
-        \r\n
+        NL
       )
     )
   )

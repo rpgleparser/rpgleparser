@@ -65,7 +65,7 @@ NUMBER                   <0>
         )
       )
       (keyword (keyword_inz Inz ( (simpleExpression (number 0)) )))
-      \r\n
+      NL
     )
   )
   (statement

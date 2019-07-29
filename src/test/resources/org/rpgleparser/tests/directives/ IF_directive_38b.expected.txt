@@ -67,19 +67,7 @@ RESERVED                 < >
 /*===TREE===*/
 (r
   (dcl_pi
-    (piBegin
-      D
-      (ds_name RtvAcgCde)
-      ' '
-      ' '
-      PI
-      '       '
-      '       '
-      ' '
-      '  '
-      ' '
-      \r\n
-    )
+    (piBegin D (ds_name RtvAcgCde) ' ' ' ' PI '       ' '       ' ' ' '  ' ' ' NL)
     (pi_parm_fixed
       (parm_fixed
         D
@@ -92,7 +80,7 @@ RESERVED                 < >
         A
         '  '
         ' '
-        \r\n
+        NL
       )
     )
     (pi_parm_fixed

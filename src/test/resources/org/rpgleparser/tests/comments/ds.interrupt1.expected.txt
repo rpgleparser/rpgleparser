@@ -37,7 +37,7 @@ RESERVED                 < >
       ' '
       '  '
       ' '
-      \r\n
+      NL
       (parm_fixed
         D
         (ds_name ##JDT)

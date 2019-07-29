@@ -67,7 +67,7 @@ BlankIndicator           <  >
                 (resultIndicator '  ')
                 (resultIndicator '  ')
                 (resultIndicator '  ')
-                \r\n
+                NL
               )
             )
             (csANDxx
@@ -86,7 +86,7 @@ BlankIndicator           <  >
                   (resultIndicator '  ')
                   (resultIndicator '  ')
                   (resultIndicator '  ')
-                  \r\n
+                  NL
                 )
               )
             )

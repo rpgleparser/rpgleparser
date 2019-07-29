@@ -65,7 +65,7 @@ BlankIndicator           <  >
               )
             )
           )
-          \r\n
+          NL
         )
         (statement
           (cspec_fixed
@@ -84,7 +84,7 @@ BlankIndicator           <  >
                     (expression (number 1))
                   )
                 )
-                \r\n
+                NL
               )
             )
           )

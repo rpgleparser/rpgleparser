@@ -168,7 +168,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           )
         )
       )
-      \r\n
+      NL
     )
   )
   (statement
@@ -197,7 +197,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -219,7 +219,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (expression (bif (bif_bitnot %BITNOT ( (expression (literal x' 800F0F ')) ))))
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -241,7 +241,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (expression (bif (bif_bitnot %bitnot ( (expression (literal x' 10 ')) ))))
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -281,7 +281,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )

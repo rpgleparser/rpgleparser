@@ -139,7 +139,7 @@ BlankIndicator           <  >
                 (resultIndicator '  ')
                 (resultIndicator '  ')
                 (resultIndicator '  ')
-                \r\n
+                NL
               )
             )
             (csANDxx
@@ -158,7 +158,7 @@ BlankIndicator           <  >
                   (resultIndicator '  ')
                   (resultIndicator '  ')
                   (resultIndicator '  ')
-                  \r\n
+                  NL
                 )
               )
             )
@@ -178,7 +178,7 @@ BlankIndicator           <  >
                   (resultIndicator '  ')
                   (resultIndicator '  ')
                   (resultIndicator '  ')
-                  \r\n
+                  NL
                 )
               )
               (csANDxx
@@ -197,7 +197,7 @@ BlankIndicator           <  >
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \r\n
+                    NL
                   )
                 )
               )
@@ -222,7 +222,7 @@ BlankIndicator           <  >
                   (resultIndicator '  ')
                   (resultIndicator '  ')
                   (resultIndicator '  ')
-                  \r\n
+                  NL
                 )
               )
             )
@@ -243,7 +243,7 @@ BlankIndicator           <  >
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
         (statement
@@ -264,7 +264,7 @@ BlankIndicator           <  >
                   (resultIndicator '  ')
                   (resultIndicator '  ')
                   (resultIndicator '  ')
-                  \r\n
+                  NL
                 )
               )
             )

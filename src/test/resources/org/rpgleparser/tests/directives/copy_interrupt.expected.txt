@@ -44,7 +44,7 @@ RESERVED                 < >
       '  '
       ' '
       (keyword (keyword_qualified qualified))
-      \r\n
+      NL
       (directive
         D/
         (dir_copy copy (copyText QMQM) / (copyText QRPGLESRC) (copyText CMQRFH2G))

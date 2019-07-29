@@ -92,7 +92,7 @@ HIDDEN:EMPTY_LINE        <                                                      
         ' '
         '  '
         ' '
-        \r\n
+        NL
       )
       (pi_parm_fixed
         (parm_fixed
@@ -107,7 +107,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           '  '
           ' '
           (keyword (keyword_value VALUE))
-          \r\n
+          NL
         )
       )
       (pi_parm_fixed
@@ -131,7 +131,7 @@ HIDDEN:EMPTY_LINE        <                                                      
             )
           )
           (keyword (keyword_const CONST))
-          \r\n
+          NL
         )
       )
       (pi_parm_fixed
@@ -147,7 +147,7 @@ HIDDEN:EMPTY_LINE        <                                                      
           '  '
           ' '
           (keyword (keyword_const CONST))
-          \r\n
+          NL
         )
       )
     )

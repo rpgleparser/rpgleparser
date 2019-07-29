@@ -101,7 +101,7 @@ BlankIndicator           <  >
           (resultIndicator '  ')
           (resultIndicator '  ')
           (resultIndicator '  ')
-          \r\n
+          NL
         )
       )
     )
@@ -146,7 +146,7 @@ BlankIndicator           <  >
                 )
               )
             )
-            \r\n
+            NL
           )
           (statement
             (cspec_fixed
@@ -166,7 +166,7 @@ BlankIndicator           <  >
                     (resultIndicator '  ')
                     (resultIndicator '  ')
                     (resultIndicator '  ')
-                    \r\n
+                    NL
                   )
                 )
               )
@@ -188,7 +188,7 @@ BlankIndicator           <  >
                 (resultIndicator '  ')
                 (resultIndicator '  ')
                 (resultIndicator '  ')
-                \r\n
+                NL
               )
             )
           )

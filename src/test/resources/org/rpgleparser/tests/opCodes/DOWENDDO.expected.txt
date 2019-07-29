@@ -203,7 +203,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )
@@ -220,7 +220,7 @@ EOL                      <
         (csDOW
           DOW
           (c_free (expression (identifier (all (symbolicConstants *IN01)))))
-          \n
+          NL
         )
       )
       (enddo
@@ -239,7 +239,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -262,7 +262,7 @@ EOL                      <
               (expression (identifier (all (symbolicConstants *OFF))))
             )
           )
-          \n
+          NL
         )
       )
       (enddo
@@ -281,7 +281,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -305,7 +305,7 @@ EOL                      <
               (expression (identifier (all (symbolicConstants *OFF))))
             )
           )
-          \n
+          NL
         )
       )
       (enddo
@@ -324,7 +324,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -359,7 +359,7 @@ EOL                      <
               )
             )
           )
-          \n
+          NL
         )
       )
       (enddo
@@ -378,7 +378,7 @@ EOL                      <
             (resultIndicator '  ')
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \n
+            NL
           )
         )
       )
@@ -481,7 +481,7 @@ EOL                      <
             (resultIndicator LR)
             (resultIndicator '  ')
             (resultIndicator '  ')
-            \r\n
+            NL
           )
         )
       )

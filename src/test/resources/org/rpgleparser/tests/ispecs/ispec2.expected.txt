@@ -58,7 +58,7 @@ IS_RecordIdCode          <   12 cI   13 cU        >
       I
       'orctl     '
       (is_rec ns ' ' ' ' (recordIdIndicator '  ') '   12 cX   13 cX        ')
-      \r\n
+      NL
     )
   )
   (statement
@@ -76,7 +76,7 @@ IS_RecordIdCode          <   12 cI   13 cU        >
       (fieldIndicator '  ')
       (fieldIndicator '  ')
       (fieldIndicator '  ')
-      \r\n
+      NL
     )
   )
   (statement
@@ -94,7 +94,7 @@ IS_RecordIdCode          <   12 cI   13 cU        >
       (fieldIndicator '  ')
       (fieldIndicator '  ')
       (fieldIndicator '  ')
-      \r\n
+      NL
     )
   )
   (statement

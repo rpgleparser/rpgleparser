@@ -71,7 +71,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )

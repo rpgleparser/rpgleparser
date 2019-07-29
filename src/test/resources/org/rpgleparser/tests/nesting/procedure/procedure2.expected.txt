@@ -108,7 +108,7 @@ HIDDEN:PS_COMMENTS80     <                   >
       (psBegin P (ps_name ) B '                                     ')
     )
     (dcl_pi
-      (piBegin D (ds_name Function) ' ' ' ' PI '       ' '     10' I ' 0' ' ' \r\n)
+      (piBegin D (ds_name Function) ' ' ' ' PI '       ' '     10' I ' 0' ' ' NL)
       (pi_parm_fixed
         (parm_fixed
           D
@@ -122,7 +122,7 @@ HIDDEN:PS_COMMENTS80     <                   >
           ' 0'
           ' '
           (keyword (keyword_value VALUE))
-          \r\n
+          NL
         )
       )
       (pi_parm_fixed
@@ -138,7 +138,7 @@ HIDDEN:PS_COMMENTS80     <                   >
           ' 0'
           ' '
           (keyword (keyword_value VALUE))
-          \r\n
+          NL
         )
       )
       (pi_parm_fixed
@@ -154,7 +154,7 @@ HIDDEN:PS_COMMENTS80     <                   >
           ' 0'
           ' '
           (keyword (keyword_value VALUE))
-          \r\n
+          NL
         )
       )
       (pi_parm_fixed
@@ -170,13 +170,13 @@ HIDDEN:PS_COMMENTS80     <                   >
           ' 0'
           ' '
           (keyword (keyword_value VALUE))
-          \r\n
+          NL
         )
       )
     )
     (subprocedurestatement
       (statement
-        (dspec D (ds_name Result) ' ' ' ' 'S ' '       ' '     10' I ' 0' ' ' \r\n)
+        (dspec D (ds_name Result) ' ' ' ' 'S ' '       ' '     10' I ' 0' ' ' NL)
       )
     )
     (subprocedurestatement

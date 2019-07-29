@@ -149,7 +149,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               (expression (bif (bif_alloc %ALLOC ( (expression (number 200)) ))))
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -180,7 +180,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -220,7 +220,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )
@@ -259,7 +259,7 @@ HIDDEN:EMPTY_LINE        <                                                      
               )
             )
           )
-          \r\n
+          NL
         )
       )
     )

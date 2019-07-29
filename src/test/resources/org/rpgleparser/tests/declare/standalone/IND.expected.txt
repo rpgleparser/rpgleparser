@@ -20,7 +20,7 @@ FREE_SEMI                <;>
 /*===TREE===*/
 (r
   (statement
-    (dspec D (ds_name Ind1) ' ' ' ' 'S ' '       ' '       ' N '  ' ' ' \r\n)
+    (dspec D (ds_name Ind1) ' ' ' ' 'S ' '       ' '       ' N '  ' ' ' NL)
   )
   (statement
     (dspec

@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 
@@ -22,16 +22,16 @@ public class TestPGMInFolder {
         List<String> errors = new ArrayList<String>();
         List<CommonToken> tokenList = TestUtils.getParsedTokens(rpgsource, errors);
         assertThat(errors, is(empty()));
+        assertThat(tokenList, not(is(empty())));
     }
 
     @Test
-    @Ignore
     public void testAllRpgSources() throws Exception {
         List<String> errors = new ArrayList<String>();
         List<String> files = new ArrayList<String>();
-        //File dir = new File(getResourcePath("./"));
-        File dir = new File("c:\\temp\\rpg\\all");
-
+        File dir = new File(getResourcePath("./"));
+        System.out.println("Reading " + dir.getAbsolutePath());
+        
         int count=0;
         for (File file : dir.listFiles()) {
             if (isRpgSourceFile(file)) {
@@ -39,7 +39,7 @@ public class TestPGMInFolder {
                 rpgsource = TestUtils.padSourceLines(rpgsource, false);
                 List<CommonToken> tokenList = TestUtils.getParsedTokens(rpgsource, errors);
                 if (errors.size() > 0) {
-                		System.out.println("The failing file is :"  + file.getName());
+                	System.out.println("The failing file is :"  + file.getName());
                 	if(count++>10)
                     break;
                 	errors.clear();

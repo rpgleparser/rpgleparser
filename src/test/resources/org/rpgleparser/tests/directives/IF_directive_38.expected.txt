@@ -78,7 +78,7 @@ RESERVED                 < >
       (keyword
         (keyword_extpgm ExtPgm ( (simpleExpression (literal ' RTVACGCDE ')) ))
       )
-      \r\n
+      NL
     )
     (parm_fixed
       D
@@ -91,7 +91,7 @@ RESERVED                 < >
       A
       '  '
       ' '
-      \r\n
+      NL
     )
     (parm_fixed
       D
