@@ -4,3 +4,4 @@ gen/
 *.classpath
 *.iml
 *.project
+*.log
