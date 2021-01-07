@@ -21,7 +21,7 @@ fragment WORD5 : ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ;
 fragment NAME5 : NAMECHAR NAMECHAR NAMECHAR NAMECHAR NAMECHAR;
 
 // valid characters in symbolic names.
-fragment NAMECHAR : [A-Za-z0-9$#@_ ] ;
+fragment NAMECHAR : [A-Za-z0-9$#@_£àéèùç ] ;
 
 // names cannot start with _ or numbers
 fragment INITNAMECHAR : [A-Za-z$#@] ;
