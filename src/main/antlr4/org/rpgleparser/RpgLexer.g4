@@ -13,9 +13,9 @@ LEAD_WS5 :  '     ' -> pushMode(Selector),skip;
 LEAD_WS5_Comments :  WORD5 -> pushMode(Selector),channel(HIDDEN);
     //5 position blank means FREE, unless..
 EMPTY_LINE : '                                                                           ' 
-    { getCharPositionInLine()>=80 }? {System.out.println("EMPTY_LINE");}
+    { getCharPositionInLine()>=80 }? {if (false) System.out.println("EMPTY_LINE");}
     -> pushMode(FIXED_CommentMode), channel(HIDDEN) ;
-EMPTY_NEWLINE : [ ]* '\r'? '\n' {System.out.println("EMPTY_NEWLINE");}-> skip;
+EMPTY_NEWLINE : [ ]* '\r'? '\n' {if (false) System.out.println("EMPTY_NEWLINE");}-> skip;
 fragment WORD5 : ~[\r\n]~[\r\n]~[\r\n]~[\r\n]~[\r\n] ;
 
 fragment NAME5 : NAMECHAR NAMECHAR NAMECHAR NAMECHAR NAMECHAR;
@@ -65,7 +65,7 @@ DIRECTIVE :  . [ ]*? '/' -> popMode,pushMode(DirectiveMode_Start) ;
 NEWLINE : '\r'? '\n' -> popMode,skip;
 WS : [ \t] { getCharPositionInLine()>6 }? [ \t]* -> skip ; // skip spaces, tabs
 
-GUTTER_COMMENTS: '                                                                        ' {System.out.println("GUTTER_COMMENTS");}
+GUTTER_COMMENTS: '                                                                        ' {if (false) System.out.println("GUTTER_COMMENTS");}
     -> popMode,pushMode(FIXED_CommentMode), channel(HIDDEN) ;
 
 
@@ -410,13 +410,13 @@ FREE_Start_KEYWORD_USAGE  : KEYWORD_USAGE -> type(KEYWORD_USAGE),mode(FREE);
 FREE_Start_KEYWORD_PSDS   : KEYWORD_PSDS -> type(KEYWORD_PSDS),mode(FREE);
 
 FREE_Start_ID :  //Limited match ID (mostly alpha)
-   [#@$a-zA-Z_]* [a-zA-Z] [#@$a-zA-Z0-9_]*{System.out.println("FREE_Start_ID");} -> type(ID),mode(FREE);
+   [#@$a-zA-Z_]* [a-zA-Z] [#@$a-zA-Z0-9_]*{if (false) System.out.println("FREE_Start_ID");} -> type(ID),mode(FREE);
 
-FREE_GUTTER_COMMENTS: ~[ \t\r\n]  { getCharPositionInLine()>=81 }? {System.out.println("GUTTER_COMMENTS");}
+FREE_GUTTER_COMMENTS: ~[ \t\r\n]  { getCharPositionInLine()>=81 }? {if (false) System.out.println("GUTTER_COMMENTS");}
     -> more,mode(FREE),pushMode(FIXED_CommentMode), channel(HIDDEN) ;
 
 
-FREE_Start_NoSpace : {System.out.println("FREE_Start_NoSpace");}-> skip,mode(FREE);
+FREE_Start_NoSpace : {if (false) System.out.println("FREE_Start_NoSpace");}-> skip,mode(FREE);
 
 
 mode FREE;
@@ -991,7 +991,7 @@ ID : '*' [iI] [nN] ( [kK] [a-np-yA-NP-Y] | [uU] [1-8] )
    | '*' [mM] [a-zA-Z] [a-zA-Z] [a-zA-Z] [0-9] [0-9] [0-9] [0-9] // opcode DSPLY message id format
    | [_#@%$a-zA-Z] { getCharPositionInLine() >= 7 }? [#@$a-zA-Z0-9_]* ;
 
-FREE_COMMENTS :  [ ]*? '//' { getCharPositionInLine()>=8 }? {System.out.println("FREE_COMMENTS");}-> pushMode(FIXED_CommentMode_HIDDEN), channel(HIDDEN) ;
+FREE_COMMENTS :  [ ]*? '//' { getCharPositionInLine()>=8 }? {if (false) System.out.println("FREE_COMMENTS");}-> pushMode(FIXED_CommentMode_HIDDEN), channel(HIDDEN) ;
 
 FREE_WS : [ \t] { getCharPositionInLine()>6 }? [ \t]* -> skip;
 
@@ -1024,17 +1024,17 @@ FREE_LEAD_WS5_Comments :  WORD5 { getCharPositionInLine()==5 }? -> channel(HIDDE
 
 FREE_FREE_SPEC :  [ ] [ ] { getCharPositionInLine()==7 }? -> skip;
 
-C_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_CalcSpec }? {System.out.println("C_FREE_NEWLINE");}-> popMode, popMode;
+C_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_CalcSpec }? {if (false) System.out.println("C_FREE_NEWLINE");}-> popMode, popMode;
 
-O_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_OutputSpec_PGMFIELD }? {System.out.println("O_FREE_NEWLINE");}-> type(EOL), popMode, popMode, popMode;
+O_FREE_NEWLINE : NEWLINE { _modeStack.peek()==FIXED_OutputSpec_PGMFIELD }? {if (false) System.out.println("O_FREE_NEWLINE");}-> type(EOL), popMode, popMode, popMode;
 
-D_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_DefSpec }? {System.out.println("D_FREE_NEWLINE");}-> type(EOL), popMode, popMode;
+D_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_DefSpec }? {if (false) System.out.println("D_FREE_NEWLINE");}-> type(EOL), popMode, popMode;
 
-F_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_FileSpec }? {System.out.println("F_FREE_NEWLINE");}-> type(EOL), popMode, popMode;
+F_FREE_NEWLINE : NEWLINE { _modeStack.peek() == FIXED_FileSpec }? {if (false) System.out.println("F_FREE_NEWLINE");}-> type(EOL), popMode, popMode;
 
-FREE_NEWLINE :   NEWLINE { _modeStack.peek()!=FIXED_CalcSpec }? {System.out.println("FREE_NEWLINE");}-> skip,pushMode(CheckComment),pushMode(First5); //Note: Removed popMode
+FREE_NEWLINE :   NEWLINE { _modeStack.peek()!=FIXED_CalcSpec }? {if (false) System.out.println("FREE_NEWLINE");}-> skip,pushMode(CheckComment),pushMode(First5); //Note: Removed popMode
 
-FREE_SEMI : ';' {System.out.println("FREE_SEMI");}-> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
+FREE_SEMI : ';' {if (false) System.out.println("FREE_SEMI");}-> popMode, pushMode(FREE_ENDED);  //Captures // immediately following the semi colon
 
 
 
