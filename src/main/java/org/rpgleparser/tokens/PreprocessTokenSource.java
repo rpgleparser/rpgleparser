@@ -38,7 +38,7 @@ public class PreprocessTokenSource extends TransformTokenSource {
 
         public FileFolderCopyBookProvider(final File sourceFolder) {
             super();
-            if (sourceFolder.isFile()) {
+            if (sourceFolder.isDirectory()) {
                 this.sourceFolder = sourceFolder;
             } else {
                 this.sourceFolder = sourceFolder.getParentFile();
@@ -52,7 +52,7 @@ public class PreprocessTokenSource extends TransformTokenSource {
                 final File sourceFile = new File(sourceFolder.getPath() + File.separator + sourceMember + ".copy");
                 return loadFile(sourceFile);
             } catch (final Exception e) {
-                e.printStackTrace();
+              //  e.printStackTrace();
             }
             return null;
         }

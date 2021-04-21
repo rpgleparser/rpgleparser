@@ -2,13 +2,6 @@
 HIDDEN:DIRECTIVE         <C/>
 HIDDEN:DIR_COPY          <COPY>
 HIDDEN:DIR_OtherText     <MBR1>
-DIRECTIVE                <I/>
-DIR_INCLUDE              <INCLUDE>
-DIR_OtherText            <SRCFIL>
-DIR_OtherText            <MBR2>
-DIR_OtherText            <Comments>
-DIR_OtherText            <here>
-EOL                      <>
 HIDDEN:DIRECTIVE         <O/>
 HIDDEN:DIR_COPY          <COPY>
 HIDDEN:DIR_OtherText     <SRCLIB>
@@ -64,9 +57,6 @@ HIDDEN:StringContent     <ifs file containing blanks>
 HIDDEN:StringLiteralEnd  <'>
 /*===TREE===*/
 (r
-  (statement
-    (directive I/ (dir_include INCLUDE (copyText SRCFIL) (copyText MBR2)) )
-  )
   (statement
     (directive
       O/
