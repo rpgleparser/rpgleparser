@@ -25,9 +25,9 @@ import org.junit.runners.Parameterized;
 import org.rpgleparser.RpgLexer;
 import org.rpgleparser.RpgParser;
 import org.rpgleparser.tokens.PreprocessTokenSource;
+import org.rpgleparser.utils.ErrorListener;
 import org.rpgleparser.utils.FixedWidthBufferedReader;
 import org.rpgleparser.utils.TestUtils;
-import org.rpgleparser.utils.TestUtils.ErrorListener;
 import org.rpgleparser.utils.TreeUtils;
 
 /**
