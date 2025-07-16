@@ -72,7 +72,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.25</version>
+			<version>1.7.34</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.jt400</groupId>
